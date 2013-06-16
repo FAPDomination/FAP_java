@@ -10,6 +10,7 @@ public class Cell extends Element{
     private boolean walkable;
     private int hp;
     private boolean height;
+    private boolean trap;
     
     public Cell(int i, int j, int type) {
         super();
@@ -20,9 +21,9 @@ public class Cell extends Element{
     }
     
     public void paintComponent(Graphics g) {
-        int x = MapTools.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = MapTools.giveTalePosition(this.getI(), this.getJ())[1];
+        int x = Map.giveTalePosition(this.getI(), this.getJ())[0];
+        int y = Map.giveTalePosition(this.getI(), this.getJ())[1];
         g.setColor(Color.BLACK);
-        g.drawRect(x, y, MapTools.TH, MapTools.TW);
+        g.drawRect(x, y, Map.TH, Map.TW);
     }
 }

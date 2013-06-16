@@ -1,5 +1,7 @@
 package fap_java;
 
+import java.awt.Graphics;
+
 public abstract class Element {
     private int i;
     private int j;

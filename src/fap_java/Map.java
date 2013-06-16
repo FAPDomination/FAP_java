@@ -1,6 +1,6 @@
 package fap_java;
 
-public class MapTools {
+public class Map {
     public static final int FAC = 2;
     public static final int TH = 60/FAC;
     public static final int TW = 35/FAC;

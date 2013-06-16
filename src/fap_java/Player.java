@@ -1,5 +1,6 @@
 package fap_java;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Player extends Human{
@@ -11,6 +12,7 @@ public class Player extends Human{
     private int tmax;
     private int skillTime;
     private String ori;
+    private Cell current;
     private Cell parent;
     private int decLifeForced;
     private int recovLifeAuto;
@@ -20,6 +22,11 @@ public class Player extends Human{
         super();
     }
 
-    public void paintComponent(Graphics g) {
+    public void setCurrent(Cell current) {
+        this.current = current;
+    }
+
+    public Cell getCurrent() {
+        return current;
     }
 }
