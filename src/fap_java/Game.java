@@ -20,7 +20,7 @@ public class Game extends JPanel{
         map = new CMap();
         Cell c1 = new Cell(5,3,1,map);
         Cell c2 = new Cell(5,4,1,map);
-        Cell c3 = new Cell(6,3,1,map);
+        Cell c3 = new Cell(6,3,10,map,"7,12");
         Cell c4 = new Cell(6,4,1,map);
         Cell c5 = new Cell(6,5,1,map);
         Cell c6 = new Cell(7,3,1,map);
@@ -120,7 +120,7 @@ public class Game extends JPanel{
     
     public Player isOccupied(Cell c){
         Player p = null;
-        if(map.containsCell(c) != -1){
+        if(c!=null && map.containsCell(c) != -1){
             for(int i =0; i< players.size();i++){
                 Player q = players.get(i);
                 if(q.getI() == c.getI() && q.getJ() == c.getJ()){

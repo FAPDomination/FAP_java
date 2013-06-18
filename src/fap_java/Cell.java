@@ -14,8 +14,13 @@ public class Cell extends Element{
     private boolean height;
     private boolean trap;
     private CMap map;
+    private String addParam;
     
     public Cell(int i, int j, int type, CMap map) {
+        this(i, j, type, map,"");
+    }
+    
+    public Cell(int i, int j, int type, CMap map, String param) {
         super();
         
         this.setI(i);
@@ -24,6 +29,7 @@ public class Cell extends Element{
         this.walkable = true;
         this.hp=0;
         this.map = map;
+        this.addParam = param;
     }
     
     public void paintComponent(Graphics g) {
@@ -35,6 +41,9 @@ public class Cell extends Element{
         }
         else{
             g.setColor(owner.getColor());
+        }
+        if(type == 10){
+            g.setColor(Color.GREEN);
         }
         g.drawRect(x, y, CMap.TW, CMap.TH);
         if(hp>0){
@@ -67,8 +76,13 @@ public class Cell extends Element{
             // if not, tests if the tale is empty
             if (hp<=0) {
                     // The tale is empty, sets it as the property of the player, gives HP and draw the according map
+                if(walkable == false){
+                    p.kickBack(); 
+                }
+                else{
                     owner = p;
                     hp = p.getInitHP();
+                }
             } else {
                     // Else forces the healthpoints of the tale to decrease (Attack)
                     hp -= p.getDecLifeForced();
@@ -157,5 +171,21 @@ public class Cell extends Element{
 
     public Player getOwner() {
         return owner;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setAddParam(String addParam) {
+        this.addParam = addParam;
+    }
+
+    public String getAddParam() {
+        return addParam;
     }
 }

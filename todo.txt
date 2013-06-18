@@ -1,5 +1,5 @@
   Not so good :
-  	- Player l150 : big repaint
+  	- Player l183 : big repaint
 V 	- TheThread : static count
 
   Displacement Hexa
@@ -8,5 +8,13 @@ V 	- TheThread : static count
   Collisions
   Cleaner define of keys in params
   Complete shiftStick
-  refreshHealthPoints
-  stickActivateTile
+	- Switch on type
+		- move to Cell.activateTile ?
+		- Warp
+		- Switch
+		- NPC exit
+	- TrapCells
+V refreshHealthPoints
+V stickActivateTile
+  Depth
+  TeamPlay

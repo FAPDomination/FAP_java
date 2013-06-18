@@ -178,12 +178,49 @@ public class Player extends Human {
                     this.setI(current.getI());
                     this.setJ(current.getJ());
                     current.activateCell(this);
+                    
+                    switch(current.getType()){
+                    case 10:        // Warp
+                        int[] tab = new int[2];
+                        String[] tabS = new String[2];
+                        tabS = c.getAddParam().split(",");
+                        tab[0] = Integer.parseInt(tabS[0]);
+                        tab[1] = Integer.parseInt(tabS[1]);
+                        
+                        Cell wantedCell = game.getMap().getCell(tab);
+                        if(wantedCell != null){
+                            if(game.isOccupied(wantedCell)==null){
+                                   current = wantedCell;
+                                    this.setI(current.getI());
+                                    this.setJ(current.getJ());
+                                    current.activateCell(this);
+                                    // add a little animation :p
+                            }
+                            else{
+                                //Restore parent ?
+                                /*
+                                    var pPos:Array = stick.prevTale;
+                                    var nPos:Array = giveTalePosition(pPos[0], pPos[1]);
+                                    stick._x = nPos[0]+offx;
+                                    stick._y = nPos[1]+offy;
+                                */
+                            }
+                        }
+                        break;
+                    case 11:        // Switch
+                        break;
+                    case 12:        // Exit NPC
+                        break;
+                    }
             }
+            
+            //Test  trap Cell
+            //-----
             
             game.repaint();
     };
 
-    // Will be used to have to repeat da key pressing
+    // Will be used to have to repeat da key pressing and for H-Displacement
     public void keyLow(int i) {
         keys[i][1] = 0;
     }
@@ -262,9 +299,11 @@ public class Player extends Human {
     
     public void kickBack(){
         //Note : you can't double kickback
-        current = parent;
-        this.setI(current.getI());
-        this.setJ(current.getJ());
-        current.activateCell(this);
+        if(game.isOccupied(parent) == null){
+            current = parent;
+            this.setI(current.getI());
+            this.setJ(current.getJ());
+            current.activateCell(this);
+        }
     }
 }
