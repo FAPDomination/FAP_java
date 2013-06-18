@@ -73,7 +73,7 @@ public class CMap {
     
     public Cell getCell(int[] tab){
         Cell c;
-        Cell o = new Cell(tab[0],tab[1],1);
+        Cell o = new Cell(tab[0],tab[1],1,this);
         if(tab.length == 2 && containsCell(o)!=(-1)){
             c = myMap.get(containsCell(o));
         }
@@ -81,6 +81,83 @@ public class CMap {
             c=null;
         }
         return c;
+    }
+    
+    public Cell getCell(int i, int j){
+        int[] tab = new int[2];
+        tab[0] = i;
+        tab[1] = j;
+        return getCell(tab);
+    }
+    
+    public int countNeighbours(Cell c){
+        int n=0;
+        int i=c.getI();
+        int j = c.getJ();
+        Player owns = c.getOwner();
+        Cell o;
+        // cells from the superior line
+                if (i != 0) {
+                        // not the first line
+                        if (i%2 == 0) {
+                                // line with even index
+                                if (j != 0) {
+                                        // not the first column
+                                        if (getCell(i-1,j-1) != null && getCell(i-1,j-1).getOwner() == owns) {
+                                                n++;
+                                        }
+                                }
+                                if (getCell(i-1,j) != null && getCell(i-1,j).getOwner() == owns) {
+                                        n++;
+                                }
+                        } else {
+                                // line with odd index
+                               // if (j != map[i].length-1) {
+                                        // not the last column
+                                        if (getCell(i-1,j+1) != null && getCell(i-1,j+1).getOwner() == owns) {
+                                                n++;
+                                        }
+                                //}
+                                if (getCell(i-1,j) != null && getCell(i-1,j).getOwner() == owns) {
+                                        n++;
+                                }
+                        }
+                }
+                // cells from the same line     
+                if (j != 0) {
+                        if (getCell(i,j-1) != null && getCell(i,j-1).getOwner() == owns) {
+                                n++;
+                        }
+                }
+               // if (j != map[i].length-1) {
+                        if (getCell(i,j+1) != null && getCell(i,j+1).getOwner() == owns) {
+                                n++;
+                        }
+               // }
+                // cells from the inferior line     
+                //if (i != map.length-1) {
+                        if (i%2 == 0) {
+                                if (j != 0) {
+                                        if (getCell(i+1,j-1) != null && getCell(i+1,j-1).getOwner() == owns) {
+                                                n++;
+                                        }
+                                }
+                                if (getCell(i+1,j) != null && getCell(i+1,j).getOwner() == owns) {
+                                        n++;
+                                }
+                        } else {
+                               // if (j != map[i].length-1) {
+                                        if (getCell(i+1,j+1) != null && getCell(i+1,j+1).getOwner() == owns) {
+                                                n++;
+                                        }
+                               // }
+                                if (getCell(i+1,j) != null && getCell(i+1,j).getOwner() == owns) {
+                                        n++;
+                                }
+                        }
+                //}
+        // You just lost the game.
+        return n;
     }
  
 }

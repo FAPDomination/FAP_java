@@ -21,6 +21,9 @@ public class Player extends Human {
     private Game game;
     private Color color;
     private int initHP;
+    private int maxHP;
+    private double gainLife;
+    private double decLifeAuto;
     //Keys
     private int[][] keys = new int[5][2];
 
@@ -58,8 +61,11 @@ public class Player extends Human {
         tmax = game.getThread().getDelay()*10;
         
         initHP = 100;
+        maxHP = 130;
         decLifeForced = 0.5;
         recovLifeAuto = 0.1;
+        gainLife = 0.05;
+        decLifeAuto = 0.3;
     }
 
     public void setCurrent(Cell current) {
@@ -228,5 +234,29 @@ public class Player extends Human {
 
     public double getRecovLifeAuto() {
         return recovLifeAuto;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setGainLife(double gainLife) {
+        this.gainLife = gainLife;
+    }
+
+    public double getGainLife() {
+        return gainLife;
+    }
+
+    public void setDecLifeAuto(double decLifeAuto) {
+        this.decLifeAuto = decLifeAuto;
+    }
+
+    public double getDecLifeAuto() {
+        return decLifeAuto;
     }
 }
