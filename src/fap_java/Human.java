@@ -10,10 +10,10 @@ public abstract class Human extends Element{
     }
     
     public void paintComponent(Graphics g) {
-        int x = MapTools.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
-        int y = MapTools.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
         
         g.setColor(Color.RED);
-        g.drawRect(x, y, 30, 10);
+        g.drawRect(x, y, 10, 30);
     }
 }

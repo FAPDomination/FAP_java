@@ -1,12 +1,18 @@
 package fap_java;
 
 import java.awt.Graphics;
+
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class Game extends JPanel{
     
     private CMap map;
     private TheThread thread;
+    private ArrayList<Player> players = new ArrayList<Player>();
+    private KListener kl;
+    
     public Game() {
         super();
         
@@ -27,9 +33,27 @@ public class Game extends JPanel{
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
+        
+        int[] coord = new int[2];
+        coord[0] = 6;
+        coord[1] = 4;
+        Player p1 = new Player(coord);
+        players.add(p1);
+        
+        kl = new KListener(this);
+        this.addKeyListener(kl);
+        this.setFocusable(true);
+        requestFocus();
     }
     
     public void paintComponent(Graphics g) {
         map.paintComponent(g);
+        for(int i = 0; i< players.size();i++){
+            players.get(i).paintComponent(g);
+        }
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 }
