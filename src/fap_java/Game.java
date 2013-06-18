@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 public class Game extends JPanel{
     
     private CMap map;
-    
+    private TheThread thread;
     public Game() {
         super();
         
@@ -22,6 +22,11 @@ public class Game extends JPanel{
         map.addElement(c2);
         map.addElement(c3);
         map.addElement(c4);
+        
+        thread = new TheThread(this);
+        thread.setRunning(false);
+        new Thread(this.thread).start();
+        thread.setRunning(true);
     }
     
     public void paintComponent(Graphics g) {
