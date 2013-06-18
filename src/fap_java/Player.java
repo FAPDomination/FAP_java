@@ -17,7 +17,7 @@ public class Player extends Human {
     private Cell current;
     private Cell parent;
     private double decLifeForced;
-    private int recovLifeAuto;
+    private double recovLifeAuto;
     private Game game;
     private Color color;
     private int initHP;
@@ -58,7 +58,8 @@ public class Player extends Human {
         tmax = game.getThread().getDelay()*10;
         
         initHP = 100;
-        decLifeForced = 0.1;
+        decLifeForced = 0.5;
+        recovLifeAuto = 0.1;
     }
 
     public void setCurrent(Cell current) {
@@ -219,5 +220,13 @@ public class Player extends Human {
 
     public Game getGame() {
         return game;
+    }
+
+    public void setRecovLifeAuto(double recovLifeAuto) {
+        this.recovLifeAuto = recovLifeAuto;
+    }
+
+    public double getRecovLifeAuto() {
+        return recovLifeAuto;
     }
 }

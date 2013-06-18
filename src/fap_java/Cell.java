@@ -10,7 +10,7 @@ public class Cell extends Element{
     private int type;
     private Player owner;
     private boolean walkable;
-    private int hp;
+    private double hp;
     private boolean height;
     private boolean trap;
     
@@ -35,6 +35,9 @@ public class Cell extends Element{
             g.setColor(owner.getColor());
         }
         g.drawRect(x, y, CMap.TW, CMap.TH);
+        if(hp>0){
+        g.drawString(""+(int)hp, x+5, y+10);
+        }
     }
 
     public void setWalkable(boolean walkable) {
@@ -68,8 +71,10 @@ public class Cell extends Element{
                     // Else forces the healthpoints of the tale to decrease (Attack)
                     hp -= p.getDecLifeForced();
             }
-            
-            owner.getGame().repaint();
         }
+    }
+    
+    public void refreshHealthPoints(){
+        
     }
 }

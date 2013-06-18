@@ -39,6 +39,7 @@ public class TheThread implements Runnable{
         while(true){
             if(running){
                 count +=delay;
+                myGame.refreshHealthPoints();
                 try{
                     Thread.sleep(delay);
                 } catch (InterruptedException ie){
