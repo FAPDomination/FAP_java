@@ -1,0 +1,8 @@
+type 1 : takable cell
+type 13 : healthy healthy
+type 8 : floor is lava / unstable
+type 2 : CountDown Cell
+type 10 : warp
+type 11 : switch
+type 12 : exit NPC
+type 20 : Blocking, but will go back to 1 and set walkable

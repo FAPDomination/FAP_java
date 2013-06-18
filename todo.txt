@@ -10,7 +10,7 @@ V 	- TheThread : static count
   Complete shiftStick
 	- Switch on type
 		- move to Cell.activateTile ?
-		- Warp
+V		- Warp
 		- Switch
 		- NPC exit
 	- TrapCells
