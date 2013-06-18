@@ -16,20 +16,20 @@ public class Cell extends Element{
     private CMap map;
     private String addParam;
     
-    public Cell(int i, int j, int type, CMap map) {
-        this(i, j, type, map,"");
+    public Cell(int i, int j, int type) {
+        this(i, j, type,"");
     }
     
-    public Cell(int i, int j, int type, CMap map, String param) {
+    public Cell(int i, int j, int type, String param) {
         super();
         
         this.setI(i);
         this.setJ(j);
-        this.type = type;
         this.walkable = true;
         this.hp=0;
-        this.map = map;
         this.addParam = param;
+        this.setType(type);
+        
     }
     
     public void paintComponent(Graphics g) {
@@ -44,6 +44,9 @@ public class Cell extends Element{
         }
         if(type == 10){
             g.setColor(Color.GREEN);
+        }
+        if(!walkable){
+            g.setColor(Color.pink);
         }
         g.drawRect(x, y, CMap.TW, CMap.TH);
         if(hp>0){
@@ -135,32 +138,20 @@ public class Cell extends Element{
                 // Testing if the tale is a neutral tale with HP (Countdown Cell) :
                 if (type == 2) {
                                         // The HP will decrease until the cell is dead
-                                        hp -= owner.getDecLifeAuto();
+                                        hp -= Params.decLifeCountDown;
                 }
                 // If a cell dies, it goes back to normal un-owned tale  
                 if (hp<=0) {
                         // if it's a timer-cell
                         if (type == 2) {
-                        /*
-                                //test if it's an occupied- takable cell :
-                                cvi = _root["t"+i].vi;
-                                cvj = _root["t"+i].vj;
-                                var talArr:Array = new Array(cvi,cvj);
-                                if(myMap[cvi][cvj][2] == 0 && isOccupied(talArr)){
-                                        myMap[cvi][cvj] = isOccupied(talArr);
-                                        _root["t"+i].gotoAndStop(isOccupied(talArr));
-                                }
-                                else{
-                                // it becomes blocking again
-                                        m = 20;                         // v6-Point : Doesnt block v6.
-                                        _root["d"+i].gotoAndStop(idBlockingHigh);
-                                }
-                        */
+                            type = 1;
+                            walkable = false;
+                            //Change did
                         } else {
                                 //else it goes back to neutral
                         }
                         // set the changes in the different variables
-                       hp = 0;
+                        hp = 0;
                         owner = null;
                 }
     }
@@ -174,7 +165,17 @@ public class Cell extends Element{
     }
 
     public void setType(int type) {
-        this.type = type;
+        if(type ==20){
+            this.type = 1;
+            walkable = false;
+        }
+        else if(type == 2){
+            this.type = type;
+            hp = Integer.parseInt(addParam);
+        }
+        else{
+            this.type = type;
+        }
     }
 
     public int getType() {
@@ -187,5 +188,13 @@ public class Cell extends Element{
 
     public String getAddParam() {
         return addParam;
+    }
+
+    public void setMap(CMap map) {
+        this.map = map;
+    }
+
+    public CMap getMap() {
+        return map;
     }
 }

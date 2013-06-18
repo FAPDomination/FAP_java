@@ -4,7 +4,7 @@ public class TheThread implements Runnable{
     
     private Game myGame;
     private boolean running;
-    private int delay = 50;     // in ms
+    private int delay = Params.delay;     // in ms
     private int count;          // Counts the number of ms of the game
     /**
      * Initialize Thread

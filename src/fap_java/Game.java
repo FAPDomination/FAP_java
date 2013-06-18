@@ -18,27 +18,33 @@ public class Game extends JPanel{
 
         this.setLayout(null);
         map = new CMap();
-        Cell c1 = new Cell(5,3,1,map);
-        Cell c2 = new Cell(5,4,1,map);
-        Cell c3 = new Cell(6,3,10,map,"7,12");
-        Cell c4 = new Cell(6,4,1,map);
-        Cell c5 = new Cell(6,5,1,map);
-        Cell c6 = new Cell(7,3,1,map);
-        Cell c7 = new Cell(7,4,1,map);
+        Cell c1 = new Cell(5,3,1);
+        Cell c2 = new Cell(5,4,1);
+        Cell c3 = new Cell(6,3,10,"7,12");
+        Cell c4 = new Cell(6,4,1);
+        Cell c5 = new Cell(6,5,1);
+        Cell c6 = new Cell(7,3,1);
+        Cell c7 = new Cell(7,4,1);
         
-        Cell c8 = new Cell(6,6,1,map);
-        Cell c9 = new Cell(6,7,1,map);
-        Cell c10 = new Cell(6,8,1,map);
-        Cell c11 = new Cell(6,9,1,map);
-        Cell c12 = new Cell(6,10,1,map);
+        Cell c8 = new Cell(6,6,1);
+        Cell c9 = new Cell(6,7,2,"100");
+        Cell c10 = new Cell(6,8,1);
+        Cell c11 = new Cell(6,9,1);
+        Cell c12 = new Cell(6,10,1);
         
-        Cell c13 = new Cell(6,11,1,map);
-        Cell c14 = new Cell(7,9,1,map);
-        Cell c15 = new Cell(7,10,1,map);
-        Cell c16 = new Cell(7,11,1,map);
-        Cell c17 = new Cell(7,12,1,map);
-        Cell c18 = new Cell(8,10,1,map);
-        Cell c19 = new Cell(8,11,1,map);
+        Cell c13 = new Cell(6,11,1);
+        Cell c14 = new Cell(7,9,1);
+        Cell c15 = new Cell(7,10,1);
+        Cell c16 = new Cell(7,11,1);
+        Cell c17 = new Cell(7,12,1);
+        Cell c18 = new Cell(8,10,1);
+        Cell c19 = new Cell(8,11,1);
+        
+        Cell c20 = new Cell(9,9,20);
+        Cell c21 = new Cell(9,10,20);
+        Cell c22 = new Cell(9,11,20);
+        Cell c23 = new Cell(9,12,20);
+        Cell c24 = new Cell(8,12,20);
         
         map.addElement(c5);
         map.addElement(c1);
@@ -59,6 +65,11 @@ public class Game extends JPanel{
         map.addElement(c17);
         map.addElement(c18);
         map.addElement(c19);
+        map.addElement(c20);
+        map.addElement(c21);
+        map.addElement(c22);
+        map.addElement(c23);
+        map.addElement(c24);
         
         thread = new TheThread(this);
         thread.setRunning(false);
