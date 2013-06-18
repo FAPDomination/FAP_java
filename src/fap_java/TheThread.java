@@ -5,8 +5,8 @@ public class TheThread implements Runnable{
     private Game myGame;
     private boolean running;
     private int delay = 50;     // in ms
-    private int count;          // Counts the number of ms of the game
-
+    private static int count;          // Counts the number of ms of the game
+    // NOT GOOD, STATIC
     /**
      * Initialize Thread
      * @param myGame
@@ -50,4 +50,11 @@ public class TheThread implements Runnable{
         }
     }
 
+    public static void setCount(int count) {
+        TheThread.count = count;
+    }
+
+    public static int getCount() {
+        return count;
+    }
 }

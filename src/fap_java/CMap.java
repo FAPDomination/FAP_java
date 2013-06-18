@@ -2,6 +2,7 @@ package fap_java;
 
 import java.awt.Graphics;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +13,8 @@ public class CMap {
     public static final int TH = 35/FAC;
     public static final int OFFMAP = 0;
     
-    private static Map<int[], Cell> myMap = new HashMap<int[], Cell>();
-    
+    //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
+    private ArrayList<Cell> myMap = new ArrayList<Cell>();
    public static int[] giveTalePosition(int i, int j) {
             int[] arr = new int[2];
             // calculate the corresponding position
@@ -35,43 +36,51 @@ public class CMap {
     };
    
     public void paintComponent(Graphics g) {
-        //TODO with a maxI and maxJ methods
+        //TODO with a maxI and maxJ methods ??
         //Emergency solution with a collection
-        Collection col = myMap.values();
-        Object[] colA = col.toArray();
-        for(int i=0; i<col.size();i++){
-            Cell c = (Cell)colA[i];
+        for(int i=0; i<myMap.size();i++){
+            Cell c = myMap.get(i);
             c.paintComponent(g);
         }
     }
 
-    public static Map<int[], Cell> getMyMap() {
+    public ArrayList<Cell> getMyMap() {
         return myMap;
     }
     
-    public static void addElement(Cell c){
-        int[] tab = new int[2];
-        tab[0] = c.getI();
-        tab[1] = c.getJ();
-        myMap.put(tab, c);
+    public void addElement(Cell c){
+        if(containsCell(c)!=-1){
+            myMap.remove(containsCell(c));
+        }
+        myMap.add(c);
     }
     
-    public static void removeElement(Cell c){
+    public void removeElement(Cell c){
         myMap.remove(c);
     }
     
-    public static boolean containsCell(Cell c){
-        return myMap.containsValue(c);
+    public int containsCell(Cell c){
+        int b = (-1);
+        for(int k=0;k<myMap.size();k++){
+            Cell o = myMap.get(k);
+            if(o.equals(c)){
+                b = k;
+                break;
+            }
+        }
+        return b;
     }
     
-    public static Cell getCell(int[] tab){
+    public Cell getCell(int[] tab){
         Cell c;
-        if(tab.length == 2 && myMap.containsKey(tab)){
-            c = myMap.get(tab);
+        Cell o = new Cell(tab[0],tab[1],1);
+        if(tab.length == 2 && containsCell(o)!=(-1)){
+            c = myMap.get(containsCell(o));
         }
         else{
             c=null;
         }
         return c;
     }
+ 
 }

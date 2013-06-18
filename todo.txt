@@ -1,0 +1,3 @@
+  Not so good :
+  	- Player l150 : big repaint
+  	- TheThread : static count

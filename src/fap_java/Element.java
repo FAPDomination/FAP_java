@@ -1,8 +1,11 @@
 package fap_java;
 
 import java.awt.Graphics;
+import java.awt.Point;
 
-public abstract class Element {
+import javax.swing.JPanel;
+
+public abstract class Element{
     private int i;
     private int j;
     
