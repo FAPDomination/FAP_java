@@ -117,4 +117,18 @@ public class Game extends JPanel{
         }
         this.repaint();
     }
+    
+    public Player isOccupied(Cell c){
+        Player p = null;
+        if(map.containsCell(c) != -1){
+            for(int i =0; i< players.size();i++){
+                Player q = players.get(i);
+                if(q.getI() == c.getI() && q.getJ() == c.getJ()){
+                    p=q;
+                    break;
+                }
+            }
+        }
+        return p;
+    }
 }

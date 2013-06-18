@@ -17,7 +17,7 @@ public class KListener implements KeyListener{
 
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        System.out.println(code);
+        //System.out.println(code);
         for(int i = 0;i<players.size();i++){
             Player p = players.get(i);
             int[][] keys = p.getKeys();

@@ -155,10 +155,10 @@ public class Player extends Human {
                             Is true if the tile type is t and 1<= t < 20, and the tile is not occupied.
             */
             // Adds colisions : one does not simply walk into an occupied tale
-           
-           /* if (isOccupied(tal2Arr)) {
+           boolean walkable = c!=null && c.isWalkable() == true;
+            if (game.isOccupied(c) !=null) {
                     walkable = false;
-            }*/
+            }
             /*
             var n:NPC=isNPC(tal2Arr[0],tal2Arr[1]);
             if(n!=null){
@@ -171,7 +171,7 @@ public class Player extends Human {
             }
             */
             //Apply walkable
-            if (c!=null && c.isWalkable() == true) {
+            if (walkable) {
                     // Move the stick
                     parent = current;
                     current = c;
@@ -258,5 +258,13 @@ public class Player extends Human {
 
     public double getDecLifeAuto() {
         return decLifeAuto;
+    }
+    
+    public void kickBack(){
+        //Note : you can't double kickback
+        current = parent;
+        this.setI(current.getI());
+        this.setJ(current.getJ());
+        current.activateCell(this);
     }
 }

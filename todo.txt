@@ -3,6 +3,10 @@
 V 	- TheThread : static count
 
   Displacement Hexa
+  Same time displacements
   Get rid of colors
   Collisions
   Cleaner define of keys in params
+  Complete shiftStick
+  refreshHealthPoints
+  stickActivateTile

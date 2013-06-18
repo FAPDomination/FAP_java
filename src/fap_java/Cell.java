@@ -63,7 +63,7 @@ public class Cell extends Element{
     }
 
     public void activateCell(Player p){
-        if (owner!=p) {
+        if (owner!=p && type ==1) {
             // if not, tests if the tale is empty
             if (hp<=0) {
                     // The tale is empty, sets it as the property of the player, gives HP and draw the according map
@@ -82,7 +82,7 @@ public class Cell extends Element{
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell;
+            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell && type != 8;
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getInitHP()) {
