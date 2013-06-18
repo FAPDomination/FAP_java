@@ -32,6 +32,14 @@ public class Game extends JPanel{
         Cell c11 = new Cell(6,9,1);
         Cell c12 = new Cell(6,10,1);
         
+        Cell c13 = new Cell(6,11,1);
+        Cell c14 = new Cell(7,9,1);
+        Cell c15 = new Cell(7,10,1);
+        Cell c16 = new Cell(7,11,1);
+        Cell c17 = new Cell(7,12,1);
+        Cell c18 = new Cell(8,10,1);
+        Cell c19 = new Cell(8,11,1);
+        
         map.addElement(c5);
         map.addElement(c1);
         map.addElement(c2);
@@ -44,6 +52,13 @@ public class Game extends JPanel{
         map.addElement(c10);
         map.addElement(c11);
         map.addElement(c12);
+        map.addElement(c13);
+        map.addElement(c14);
+        map.addElement(c15);
+        map.addElement(c16);
+        map.addElement(c17);
+        map.addElement(c18);
+        map.addElement(c19);
         
         thread = new TheThread(this);
         thread.setRunning(false);
@@ -53,8 +68,14 @@ public class Game extends JPanel{
         int[] coord = new int[2];
         coord[0] = 6;
         coord[1] = 4;
-        Player p1 = new Player(coord, this);
+        Player p1 = new Player(1,coord, this);
         players.add(p1);
+        
+        coord = new int[2];
+        coord[0] = 7;
+        coord[1] = 11;
+        Player p2 = new Player(2,coord, this);
+        players.add(p2);
         
         kl = new KListener(this);
         this.addKeyListener(kl);

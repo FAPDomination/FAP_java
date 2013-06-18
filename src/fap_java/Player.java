@@ -16,31 +16,49 @@ public class Player extends Human {
     private String ori;
     private Cell current;
     private Cell parent;
-    private int decLifeForced;
+    private double decLifeForced;
     private int recovLifeAuto;
     private Game game;
+    private Color color;
+    private int initHP;
     //Keys
     private int[][] keys = new int[5][2];
 
-    public Player(int[] coord, Game game) {
+    public Player(int id, int[] coord, Game game) {
         super();
+        this.id = id;
         this.setI(coord[0]);
         this.setJ(coord[1]);
         this.game = game;
         
+        color = Color.RED;
+        if(id == 2){
+            color = Color.BLUE;
+        }
+        
         current = game.getMap().getCell(coord);
         // 38 40 39 37 : arrow keys
+        if(id == 1){
         keys[0][0] = 38;
         keys[1][0] = 40;
         keys[2][0] = 39;
         keys[3][0] = 37;
-        
+        }
+        else{
+            keys[0][0] = 90;
+            keys[1][0] = 83;
+            keys[2][0] = 68;
+            keys[3][0] = 81; 
+        }
         keys[0][1] = 0;
         keys[1][1] = 0;
         keys[2][1] = 0;
         keys[3][1] = 0;
         
         tmax = game.getThread().getDelay()*10;
+        
+        initHP = 100;
+        decLifeForced = 0.1;
     }
 
     public void setCurrent(Cell current) {
@@ -75,8 +93,8 @@ public class Player extends Human {
         keys[i][1] = 1;
 
         // Test if displacement is allowed
-        if (TheThread.getCount() - lastDisplacement >= tmax) {
-            lastDisplacement = TheThread.getCount();
+        if (game.getThread().getCount() - lastDisplacement >= tmax) {
+            lastDisplacement = game.getThread().getCount();
 
             // If the key LEFT is pressed
             if (keys[3][1] == 1) {
@@ -152,6 +170,7 @@ public class Player extends Human {
                     current = c;
                     this.setI(current.getI());
                     this.setJ(current.getJ());
+                    current.activateCell(this);
             }
             
             game.repaint();
@@ -160,5 +179,45 @@ public class Player extends Human {
     // Will be used to have to repeat da key pressing
     public void keyLow(int i) {
         keys[i][1] = 0;
+    }
+    
+    public void paintComponent(Graphics g) {
+        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+        
+        g.setColor(color);
+        g.drawRect(x, y, 10, 30);
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setInitHP(int initHP) {
+        this.initHP = initHP;
+    }
+
+    public int getInitHP() {
+        return initHP;
+    }
+
+    public void setDecLifeForced(double decLifeForced) {
+        this.decLifeForced = decLifeForced;
+    }
+
+    public double getDecLifeForced() {
+        return decLifeForced;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

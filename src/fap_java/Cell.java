@@ -8,7 +8,7 @@ import java.util.Map;
 public class Cell extends Element{
     private int did;
     private int type;
-    //private Player owner;
+    private Player owner;
     private boolean walkable;
     private int hp;
     private boolean height;
@@ -21,12 +21,19 @@ public class Cell extends Element{
         this.setJ(j);
         this.type = type;
         this.walkable = true;
+        this.hp=0;
     }
     
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1]+CMap.OFFMAP;
-        g.setColor(Color.BLACK);
+        
+        if(owner == null){
+            g.setColor(Color.BLACK);
+        }
+        else{
+            g.setColor(owner.getColor());
+        }
         g.drawRect(x, y, CMap.TW, CMap.TH);
     }
 
@@ -50,4 +57,19 @@ public class Cell extends Element{
         return b;
     }
 
+    public void activateCell(Player p){
+        if (owner!=p) {
+            // if not, tests if the tale is empty
+            if (hp<=0) {
+                    // The tale is empty, sets it as the property of the player, gives HP and draw the according map
+                    owner = p;
+                    hp = p.getInitHP();
+            } else {
+                    // Else forces the healthpoints of the tale to decrease (Attack)
+                    hp -= p.getDecLifeForced();
+            }
+            
+            owner.getGame().repaint();
+        }
+    }
 }

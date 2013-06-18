@@ -1,3 +1,8 @@
   Not so good :
   	- Player l150 : big repaint
-  	- TheThread : static count
+V 	- TheThread : static count
+
+  Displacement Hexa
+  Get rid of colors
+  Collisions
+  Cleaner define of keys in params

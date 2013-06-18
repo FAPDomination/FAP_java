@@ -5,8 +5,7 @@ public class TheThread implements Runnable{
     private Game myGame;
     private boolean running;
     private int delay = 50;     // in ms
-    private static int count;          // Counts the number of ms of the game
-    // NOT GOOD, STATIC
+    private int count;          // Counts the number of ms of the game
     /**
      * Initialize Thread
      * @param myGame
@@ -15,7 +14,6 @@ public class TheThread implements Runnable{
         this.myGame = myGame;
         this.running = false;
         count = 0;
-        System.out.println("init thread");
     }
     
     public void setRunning(boolean running){
@@ -50,11 +48,11 @@ public class TheThread implements Runnable{
         }
     }
 
-    public static void setCount(int count) {
-        TheThread.count = count;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public static int getCount() {
+    public int getCount() {
         return count;
     }
 }
