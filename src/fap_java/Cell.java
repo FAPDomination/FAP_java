@@ -168,12 +168,12 @@ public class Cell extends Element{
 
     public void setType(int type) {
         if(type ==20){
-            this.type = 1;
+            //this.type = 1;
             walkable = false;
             this.height = true;
         }
         else if(type == 19){
-            this.type = 1;
+            //this.type = 1;
             walkable = false;
             this.height = false;
         }
@@ -212,5 +212,13 @@ public class Cell extends Element{
 
     public int getDid() {
         return did;
+    }
+
+    public void setHp(double hp) {
+        this.hp = hp;
+    }
+
+    public double getHp() {
+        return hp;
     }
 }
