@@ -1,5 +1,7 @@
 package fap_java;
 
+import characters.*;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -144,14 +146,14 @@ public class Game extends JPanel{
         coord[1] = 5;
         Cell c = map.getCell(coord);
         System.out.println(c);
-        Player p1 = new Player(1,c, this);
+        Player p1 = new Knight(1,c, this);
         players.add(p1);
         
         coord = new int[2];
         coord[0] = 17;
         coord[1] = 15;
         c = map.getCell(coord);
-        Player p2 = new Player(2,c, this);
+        Player p2 = new Knight(2,c, this);
         players.add(p2);
     }
 }

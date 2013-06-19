@@ -24,8 +24,9 @@ V stickActivateTile
 E	- Understand XML
 	- Parse a Map
 V		- Cells
-E		- Parse DMap
-E		- Parse type
+V		- Parse DMap
+V		- Parse type
 		- Players
 	- Parse the paramTable
 	- English translation
+  Skills

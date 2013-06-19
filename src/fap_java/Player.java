@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import java.security.Key;
 
-public class Player extends Human {
+public abstract class Player extends Human {
 
     private int id;
     private int pc;
@@ -27,45 +27,50 @@ public class Player extends Human {
     //Keys
     private int[][] keys = new int[5][2];
 
-    public Player(int id, Cell c, Game game) {
+    public Player(int id, Cell c, Game game, int pc) {
         super();
         this.id = id;
         current = c;
         this.setI(c.getI());
         this.setJ(c.getJ());
         this.game = game;
-        
+
+        this.pc = pc;
+
         color = Color.RED;
-        if(id == 2){
+        if (id == 2) {
             color = Color.BLUE;
         }
         // 38 40 39 37 : arrow keys
-        if(id == 1){
+        if (id == 1) {
             keys[0][0] = 38;
             keys[1][0] = 40;
             keys[2][0] = 39;
             keys[3][0] = 37;
-        }
-        else{
+            keys[4][0] = 35;
+        } else {
             keys[0][0] = 90;
             keys[1][0] = 83;
             keys[2][0] = 68;
-            keys[3][0] = 81; 
+            keys[3][0] = 81;
+            keys[4][0] = 69;
         }
-        
+
         keys[0][1] = 0;
         keys[1][1] = 0;
         keys[2][1] = 0;
         keys[3][1] = 0;
-        
-        tmax = game.getThread().getDelay()*10;
-        
+
+        tmax = game.getThread().getDelay() * 10;
+
         initHP = 100;
         maxHP = 130;
         decLifeForced = 5;
         recovLifeAuto = 0.2;
         gainLife = 0.01;
         decLifeAuto = 1;
+        lastDisplacement=0;
+        lastSkill = 0;
     }
 
     public void setCurrent(Cell current) {
@@ -134,32 +139,36 @@ public class Player extends Human {
                 ori = "br";
             }
         }
+        if(i==4){ //Skill
+            this.getSkill();
+        }
+        
     }
-    
+
     public void shiftStick(int dx, int dy) {
-            // Get the position of the stick
-            int[] talArr = new int[2];
-            talArr[0] = current.getI();
-            talArr[1] = current.getJ();
-            // Get the supposed new position of the stick
-            int[] tal2Arr = new int[2];
-            tal2Arr[0] = talArr[0] + dy;
-            tal2Arr[1] = talArr[1] + dx;
-            Cell c = game.getMap().getCell(tal2Arr);
-            //trace(myMap[tal2Arr[0]][tal2Arr[1]][0]);
-            /* 
+        // Get the position of the stick
+        int[] talArr = new int[2];
+        talArr[0] = current.getI();
+        talArr[1] = current.getJ();
+        // Get the supposed new position of the stick
+        int[] tal2Arr = new int[2];
+        tal2Arr[0] = talArr[0] + dy;
+        tal2Arr[1] = talArr[1] + dx;
+        Cell c = game.getMap().getCell(tal2Arr);
+        //trace(myMap[tal2Arr[0]][tal2Arr[1]][0]);
+        /*
                     Variable: walkable
                     tests if it's allowed to walk on the tile
-                    
+
                     Results:
                             Is true if the tile type is t and 1<= t < 20, and the tile is not occupied.
             */
-            // Adds colisions : one does not simply walk into an occupied tale
-           boolean walkable = c!=null && c.isWalkable() == true;
-            if (game.isOccupied(c) !=null) {
-                    walkable = false;
-            }
-            /*
+        // Adds colisions : one does not simply walk into an occupied tale
+        boolean walkable = c != null && c.isWalkable() == true;
+        if (game.isOccupied(c) != null) {
+            walkable = false;
+        }
+        /*
             var n:NPC=isNPC(tal2Arr[0],tal2Arr[1]);
             if(n!=null){
                     if(f != 0){
@@ -170,65 +179,65 @@ public class Player extends Human {
                     }
             }
             */
-            //Apply walkable
-            if (walkable) {
-                    // Move the stick
-                    parent = current;
-                    current = c;
-                    this.setI(current.getI());
-                    this.setJ(current.getJ());
-                    current.activateCell(this);
-                    
-                    switch(current.getType()){
-                    case 10:        // Warp
-                        int[] tab = new int[2];
-                        String[] tabS = new String[2];
-                        tabS = c.getAddParam().split(",");
-                        tab[0] = Integer.parseInt(tabS[0]);
-                        tab[1] = Integer.parseInt(tabS[1]);
-                        
-                        Cell wantedCell = game.getMap().getCell(tab);
-                        if(wantedCell != null){
-                            if(game.isOccupied(wantedCell)==null){
-                                   current = wantedCell;
-                                    this.setI(current.getI());
-                                    this.setJ(current.getJ());
-                                    current.activateCell(this);
-                                    // add a little animation :p
-                            }
-                            else{
-                                //Restore parent ?
-                                /*
+        //Apply walkable
+        if (walkable) {
+            // Move the stick
+            parent = current;
+            current = c;
+            this.setI(current.getI());
+            this.setJ(current.getJ());
+            current.activateCell(this);
+
+            switch (current.getType()) {
+            case 10: // Warp
+                int[] tab = new int[2];
+                String[] tabS = new String[2];
+                tabS = c.getAddParam().split(",");
+                tab[0] = Integer.parseInt(tabS[0]);
+                tab[1] = Integer.parseInt(tabS[1]);
+
+                Cell wantedCell = game.getMap().getCell(tab);
+                if (wantedCell != null) {
+                    if (game.isOccupied(wantedCell) == null) {
+                        current = wantedCell;
+                        this.setI(current.getI());
+                        this.setJ(current.getJ());
+                        current.activateCell(this);
+                        // add a little animation :p
+                    } else {
+                        //Restore parent ?
+                        /*
                                     var pPos:Array = stick.prevTale;
                                     var nPos:Array = giveTalePosition(pPos[0], pPos[1]);
                                     stick._x = nPos[0]+offx;
                                     stick._y = nPos[1]+offy;
                                 */
-                            }
-                        }
-                        break;
-                    case 11:        // Switch
-                        break;
-                    case 12:        // Exit NPC
-                        break;
                     }
+                }
+                break;
+            case 11: // Switch
+                break;
+            case 12: // Exit NPC
+                break;
             }
-            
-            //Test  trap Cell
-            //-----
-            
-            game.repaint();
+        }
+
+        //Test  trap Cell
+        //-----
+
+        game.repaint();
     };
 
     // Will be used to have to repeat da key pressing and for H-Displacement
+
     public void keyLow(int i) {
         keys[i][1] = 0;
     }
-    
+
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-        
+
         g.setColor(color);
         g.drawRect(x, y, 10, 30);
     }
@@ -296,14 +305,24 @@ public class Player extends Human {
     public double getDecLifeAuto() {
         return decLifeAuto;
     }
-    
-    public void kickBack(){
+
+    public void kickBack() {
         //Note : you can't double kickback
-        if(game.isOccupied(parent) == null){
+        if (game.isOccupied(parent) == null) {
             current = parent;
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
         }
+    }
+
+    public abstract void getSkill();
+
+    public void setSkillTime(int skillTime) {
+        this.skillTime = skillTime;
+    }
+
+    public int getSkillTime() {
+        return skillTime;
     }
 }

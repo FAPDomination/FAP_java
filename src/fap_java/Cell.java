@@ -205,4 +205,12 @@ public class Cell extends Element{
     public CMap getMap() {
         return map;
     }
+
+    public void setDid(int did) {
+        this.did = did;
+    }
+
+    public int getDid() {
+        return did;
+    }
 }
