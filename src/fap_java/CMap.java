@@ -78,7 +78,7 @@ public class CMap {
     
     public Cell getCell(int[] tab){
         Cell c;
-        Cell o = new Cell(tab[0],tab[1],1);
+        Cell o = new Cell(tab[0],tab[1],1,1);
         if(tab.length == 2 && containsCell(o)!=(-1)){
             c = myMap.get(containsCell(o));
         }

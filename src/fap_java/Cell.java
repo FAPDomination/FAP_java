@@ -16,18 +16,20 @@ public class Cell extends Element{
     private CMap map;
     private String addParam;
     
-    public Cell(int i, int j, int type) {
-        this(i, j, type,"");
+    public Cell(int i, int j, int type, int did) {
+        this(i, j, type,"", did);
     }
     
-    public Cell(int i, int j, int type, String param) {
+    public Cell(int i, int j, int type, String param, int did) {
         super();
         
         this.setI(i);
         this.setJ(j);
         this.walkable = true;
+        this.height = false;
         this.hp=0;
         this.addParam = param;
+        this.did = did;
         this.setType(type);
         
     }
@@ -168,6 +170,12 @@ public class Cell extends Element{
         if(type ==20){
             this.type = 1;
             walkable = false;
+            this.height = true;
+        }
+        else if(type == 19){
+            this.type = 1;
+            walkable = false;
+            this.height = false;
         }
         else if(type == 2){
             this.type = type;

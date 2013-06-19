@@ -19,7 +19,10 @@ public class Game extends JPanel{
     public Game() {
 
         this.setLayout(null);
+        
         map = new CMap();
+        map = XMLparser.parseMap(5);
+       /* map = new CMap();
         Cell c1 = new Cell(5,3,1);
         Cell c2 = new Cell(5,4,1);
         Cell c3 = new Cell(6,3,10,"7,12");
@@ -72,31 +75,19 @@ public class Game extends JPanel{
         map.addElement(c22);
         map.addElement(c23);
         map.addElement(c24);
+        */
         
         thread = new TheThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
         
-        int[] coord = new int[2];
-        coord[0] = 6;
-        coord[1] = 4;
-        Player p1 = new Player(1,coord, this);
-        players.add(p1);
-        
-        coord = new int[2];
-        coord[0] = 7;
-        coord[1] = 11;
-        Player p2 = new Player(2,coord, this);
-        players.add(p2);
-        
         kl = new KListener(this);
         this.addKeyListener(kl);
         this.setFocusable(true);
         requestFocus();
         
-        map = new CMap();
-        map = XMLparser.parseMap(5);
+        initPlayers();
     }
     
     public void paintComponent(Graphics g) {
@@ -145,5 +136,22 @@ public class Game extends JPanel{
             }
         }
         return p;
+    }
+    
+    public void initPlayers(){
+        int[] coord = new int[2];
+        coord[0] = 16;
+        coord[1] = 5;
+        Cell c = map.getCell(coord);
+        System.out.println(c);
+        Player p1 = new Player(1,c, this);
+        players.add(p1);
+        
+        coord = new int[2];
+        coord[0] = 17;
+        coord[1] = 15;
+        c = map.getCell(coord);
+        Player p2 = new Player(2,c, this);
+        players.add(p2);
     }
 }

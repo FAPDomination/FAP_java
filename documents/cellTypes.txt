@@ -5,4 +5,8 @@ type 2 : CountDown Cell
 type 10 : warp
 type 11 : switch
 type 12 : exit NPC
-type 20 : Blocking, but will go back to 1 and set walkable
+type 19 : Blocking low, but will...
+type 20 : Blocking High, but will go back to 1 and set walkable
+
+Implementing a new tile :
+	- Dont forget to assign this type in the MapHandler.java (~l75)

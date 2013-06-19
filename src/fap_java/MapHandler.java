@@ -60,33 +60,39 @@ public class MapHandler extends DefaultHandler{
                         inI = false;
                     }else if(qName.equals("case")){
                         String content = buffer.toString();
-                        String preT = "";
+                        String preDid = "";
                         String param="";
                         int t=0;
-                            for(int k=0;k<content.length();k++){
-                                char ch = content.charAt(k);
-                                
-                                if(ch == ',' || (t==0 && k==content.length()-1)){
-                                    if(preT.length()==0){
-                                        preT+=ch;
-                                    }
-                                    t=Integer.parseInt(preT);
-                                }
-                                
-                                if(t==0){
-                                    preT+=ch;
-                                }
-                                else if(k!=content.indexOf(",")){
-                                    param+=ch;
-                                }
+                        int did = 0;
+                        
+                        String[] tabS = content.split(",", 2);
+                        did = Integer.parseInt(tabS[0]);
+                        if(tabS.length > 1){
+                            param = tabS[1];
+                        }
+                        
+                            if(did >= 100 && did<200){
+                                t=20;
                             }
-
-                        System.out.println(t);
-                        System.out.println(param);
+                            else if(did >=200){
+                                t=19;
+                            }
+                            else if(param.equals("")){
+                                t=1;
+                            }
+                            else if(param.indexOf(',') == -1){
+                                t=2;
+                            }
+                            else if(did == 10){
+                                t=10;
+                            }
+                            else {
+                                
+                            }
                         //int t = Integer.parseInt(buffer.toString());
                             inJ = false;
-                            if(t!=0){
-                                c = new Cell(i,j,t,param);   
+                            if(did!=0){
+                                c = new Cell(i,j,t,param,did);   
                                 map.addElement(c);
                              }
                             j++;
@@ -111,13 +117,12 @@ public class MapHandler extends DefaultHandler{
             }
             //début du parsing
             public void startDocument() throws SAXException {
-                    System.out.println("Début du parsing");
+                    //System.out.println("Début du parsing");
             }
             //fin du parsing
             public void endDocument() throws SAXException {
-                    System.out.println("Fin du parsing");
-                    System.out.println("Resultats du parsing");
-                    
+                    //System.out.println("Fin du parsing");
+                    //System.out.println("Resultats du parsing");
             }
 
     public void setMap(CMap map) {

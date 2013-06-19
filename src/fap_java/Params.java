@@ -9,4 +9,6 @@ public class Params {
     public static double gainLifeFactorMultiplier = 1.5;
     public static int delay = 40;
     public static double decLifeCountDown = 1;
+    public static int idBlockingHigh = 100;
+    public static int idblockingLow = 200;
 }

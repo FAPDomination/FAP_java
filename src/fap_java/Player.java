@@ -27,19 +27,18 @@ public class Player extends Human {
     //Keys
     private int[][] keys = new int[5][2];
 
-    public Player(int id, int[] coord, Game game) {
+    public Player(int id, Cell c, Game game) {
         super();
         this.id = id;
-        this.setI(coord[0]);
-        this.setJ(coord[1]);
+        current = c;
+        this.setI(c.getI());
+        this.setJ(c.getJ());
         this.game = game;
         
         color = Color.RED;
         if(id == 2){
             color = Color.BLUE;
         }
-        
-        current = game.getMap().getCell(coord);
         // 38 40 39 37 : arrow keys
         if(id == 1){
             keys[0][0] = 38;
