@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import org.xml.sax.helpers.DefaultHandler;
+
 public class Game extends JPanel{
     
     private CMap map;
@@ -93,6 +95,8 @@ public class Game extends JPanel{
         this.setFocusable(true);
         requestFocus();
         
+        map = new CMap();
+        map = XMLparser.parseMap(5);
     }
     
     public void paintComponent(Graphics g) {

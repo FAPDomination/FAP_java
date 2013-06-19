@@ -18,3 +18,14 @@ V refreshHealthPoints
 V stickActivateTile
   Depth
   TeamPlay
+  CMap :
+	- MaxI & MaxJ
+  XML
+E	- Understand XML
+	- Parse a Map
+V		- Cells
+E		- Parse DMap
+E		- Parse type
+		- Players
+	- Parse the paramTable
+	- English translation

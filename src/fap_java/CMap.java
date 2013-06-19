@@ -13,6 +13,10 @@ public class CMap {
     public static final int TH = 35/FAC;
     public static final int OFFMAP = 0;
     
+    public CMap(){
+        
+    }
+    
     //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
    public static int[] giveTalePosition(int i, int j) {

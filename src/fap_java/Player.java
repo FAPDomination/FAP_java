@@ -42,10 +42,10 @@ public class Player extends Human {
         current = game.getMap().getCell(coord);
         // 38 40 39 37 : arrow keys
         if(id == 1){
-        keys[0][0] = 38;
-        keys[1][0] = 40;
-        keys[2][0] = 39;
-        keys[3][0] = 37;
+            keys[0][0] = 38;
+            keys[1][0] = 40;
+            keys[2][0] = 39;
+            keys[3][0] = 37;
         }
         else{
             keys[0][0] = 90;
@@ -53,6 +53,7 @@ public class Player extends Human {
             keys[2][0] = 68;
             keys[3][0] = 81; 
         }
+        
         keys[0][1] = 0;
         keys[1][1] = 0;
         keys[2][1] = 0;
