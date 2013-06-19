@@ -24,6 +24,7 @@ public class KListener implements KeyListener{
             for(int j=0; j<keys.length;j++){
                 if(code == keys[j][0]){
                     p.keyHigh(j);
+                    break;
                 }
             }
         }

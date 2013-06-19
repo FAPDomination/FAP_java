@@ -62,10 +62,10 @@ public class Player extends Human {
         
         initHP = 100;
         maxHP = 130;
-        decLifeForced = 0.5;
-        recovLifeAuto = 0.1;
-        gainLife = 0.05;
-        decLifeAuto = 0.3;
+        decLifeForced = 5;
+        recovLifeAuto = 0.2;
+        gainLife = 0.01;
+        decLifeAuto = 1;
     }
 
     public void setCurrent(Cell current) {

@@ -8,5 +8,5 @@ public class Params {
     public static int higherMaxHP = 200;
     public static double gainLifeFactorMultiplier = 1.5;
     public static int delay = 40;
-    public static double decLifeCountDown = 0.2;
+    public static double decLifeCountDown = 1;
 }
