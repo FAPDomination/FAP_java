@@ -30,3 +30,19 @@ V		- Parse type
 	- Parse the paramTable
 	- English translation
   Skills
+V	- Create objects
+	- Function getSkill
+		- Knight
+		- Miner
+		- Warlock
+		- Archer
+		- Vampire
+		- NC
+		- Magician
+		- Booster
+	- Being blocked on the tile after throwing skill
+  ScoreBar
+	- Get nCells
+	- Update scores
+	- Get scores
+	- Draw Bar

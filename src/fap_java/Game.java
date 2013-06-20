@@ -17,6 +17,7 @@ public class Game extends JPanel{
     private TheThread thread;
     private ArrayList<Player> players = new ArrayList<Player>();
     private KListener kl;
+    private ScoreBar scoreHandler;
     
     public Game() {
 
@@ -90,6 +91,8 @@ public class Game extends JPanel{
         requestFocus();
         
         initPlayers();
+        
+        scoreHandler = new ScoreBar(this);
     }
     
     public void paintComponent(Graphics g) {
@@ -98,6 +101,7 @@ public class Game extends JPanel{
         for(int i = 0; i< players.size();i++){
             players.get(i).paintComponent(g);
         }
+        this.scoreHandler.paintComponent(g);
     }
 
     public ArrayList<Player> getPlayers() {
@@ -155,5 +159,26 @@ public class Game extends JPanel{
         c = map.getCell(coord);
         Player p2 = new Knight(2,c, this);
         players.add(p2);
+    }
+    
+    public void updateCellsByOwner(){
+        for(int j=0;j<players.size();j++){
+            Player p = players.get(j);
+            p.setNCells(0);
+        }
+        ArrayList<Cell> cells = map.getMyMap();
+        for(int i=0;i<cells.size();i++){
+            Cell c = cells.get(i);
+            if(c.getOwner()!=null){
+                Player p = c.getOwner();
+                p.setNCells(p.getNCells()+1);
+            }
+        }
+        
+    }
+
+
+    public ScoreBar getScoreHandler() {
+        return scoreHandler;
     }
 }

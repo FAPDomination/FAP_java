@@ -25,7 +25,7 @@ public class Frame1 extends JFrame {
 
     private void jbInit() throws Exception {
         this.getContentPane().setLayout(borderLayout1);
-        this.setSize(new Dimension(607, 373));
+        this.setSize(new Dimension(900, 700));
         this.getContentPane().add(jPanel1, BorderLayout.NORTH);
         this.getContentPane().add(game, BorderLayout.CENTER);
     }

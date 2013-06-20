@@ -38,8 +38,7 @@ public class TheThread implements Runnable{
     public void run(){
         while(true){
             if(running){
-                count +=delay;
-                myGame.refreshHealthPoints();
+                execute();
                 try{
                     Thread.sleep(delay);
                 } catch (InterruptedException ie){
@@ -55,5 +54,18 @@ public class TheThread implements Runnable{
 
     public int getCount() {
         return count;
+    }
+    
+    private void execute(){
+        count +=delay;
+        int frame = count/delay;
+        myGame.refreshHealthPoints();
+        if(frame % 4 == 0){
+            myGame.updateCellsByOwner();
+        }
+        if(count%(1000*Params.giveScore)==0){
+            myGame.getScoreHandler().computeScores();
+        }
+        
     }
 }

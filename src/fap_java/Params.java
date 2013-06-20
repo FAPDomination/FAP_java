@@ -11,6 +11,8 @@ public class Params {
     public static double decLifeCountDown = 1;
     public static int idBlockingHigh = 100;
     public static int idblockingLow = 200;
+    public static int giveScore = 2;
+    public static int rPoints = 2;
     
     //Skills
     public static double warriorDammage = 120/Math.pow(4.5*1000, 2);

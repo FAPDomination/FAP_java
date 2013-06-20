@@ -24,6 +24,8 @@ public abstract class Player extends Human {
     private int maxHP;
     private double gainLife;
     private double decLifeAuto;
+    private int nCells;
+    private int score;
     //Keys
     private int[][] keys = new int[5][2];
 
@@ -71,6 +73,8 @@ public abstract class Player extends Human {
         decLifeAuto = 1;
         lastDisplacement=0;
         lastSkill = 0;
+        
+        score = 0;
     }
 
     public void setCurrent(Cell current) {
@@ -324,5 +328,21 @@ public abstract class Player extends Human {
 
     public int getSkillTime() {
         return skillTime;
+    }
+
+    public void setNCells(int nCells) {
+        this.nCells = nCells;
+    }
+
+    public int getNCells() {
+        return nCells;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
     }
 }
