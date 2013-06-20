@@ -2,6 +2,7 @@ package fap_java;
 
 import characters.*;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -22,7 +23,7 @@ public class Game extends JPanel{
     public Game() {
 
         this.setLayout(null);
-        
+        this.setBackground(Color.white);
         map = new CMap();
         map = XMLparser.parseMap(5);
        /* map = new CMap();
@@ -180,5 +181,9 @@ public class Game extends JPanel{
 
     public ScoreBar getScoreHandler() {
         return scoreHandler;
+    }
+    
+    public int getRWidth(){
+        return this.getWidth();
     }
 }

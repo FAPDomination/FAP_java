@@ -13,6 +13,7 @@ public class ScoreBar {
     public ScoreBar(Game game) {
         super();
         this.game = game;
+        totalTakable = game.getMap().getNTakableCells().size();
     }
     
     public void computeScores(){
@@ -27,12 +28,31 @@ public class ScoreBar {
     
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
+        //g.drawString(""+totalTakable, 20, 10);
+        int x=0;
+        int notTaken = totalTakable;
         ArrayList<Player> players = game.getPlayers();
         for(int i =0;i<players.size();i++){
             Player p = players.get(i);
             int score = p.getScore();
             int nCells = p.getNCells();
-            g.drawString(nCells+"    "+score, 20, 40*(i+1));
+
+            double percentCell = ((double)nCells)/totalTakable;
+            g.setColor(p.getColor());
+            g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
+            g.setColor(Color.white);
+            g.drawString(""+score, x+5, 10);
+            x += (int)(game.getRWidth()*(double)percentCell);
+            notTaken-=nCells;
+            
+        }
+
+        if(notTaken >=1){
+            double percentCell = ((double)notTaken)/totalTakable;
+            g.setColor(Color.GRAY);
+            g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
+            g.setColor(Color.white);
+            g.drawString(""+notTaken, x, 10);
         }
     }
 }

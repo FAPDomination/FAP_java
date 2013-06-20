@@ -30,9 +30,9 @@ public class Knight extends Player{
                                                     */
                                                     //if he hurts
                                                     int dammage = (int)(Params.warriorDammage*Math.pow(ts,2));
-                                                    System.out.println(dammage);
+                                                    //System.out.println(dammage);
                                                     c.setHp(c.getHp()-dammage);
-                                                    if(c.getType() == 1 && ((c.getHp() <=0 && c.getOwner() != null) || (c.getOwner() == null && dammage>=90))){
+                                                    if(c != null && c.getType() == 1 && ((c.getHp() <=0 && c.getOwner() != null) || (c.getOwner() == null && dammage>=90))){
                                                             c.setOwner(this);
                                                             c.setHp(this.getInitHP());
                                                     }

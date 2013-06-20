@@ -212,4 +212,15 @@ public class CMap {
         }
         return surroundingCells;
     };
+    
+    public ArrayList<Cell> getNTakableCells(){
+        ArrayList<Cell> cells = new ArrayList<Cell>();
+        for(int i=0;i<myMap.size();i++){
+            Cell c = myMap.get(i);
+            if(c.getType() == 1){
+                cells.add(c);
+            }
+        }
+        return cells;
+    }
 }
