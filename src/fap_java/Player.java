@@ -43,6 +43,9 @@ public abstract class Player extends Human {
         if (id == 2) {
             color = Color.BLUE;
         }
+        else if(id == 3){
+            color = Color.YELLOW;
+        }
         // 38 40 39 37 : arrow keys
         if (id == 1) {
             keys[0][0] = 38;

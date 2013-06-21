@@ -22,7 +22,7 @@ public class Knight extends Player{
                                     ArrayList<Cell> neighborHoodList = this.getGame().getMap().surroundingCells(this.getCurrent());
                                     for (int i =0; i<neighborHoodList.size();i++) {
                                             Cell c = neighborHoodList.get(i);
-                                            if (c.getType()==1 && c.getOwner()!=this) {
+                                            if (c != null && c.getType()==1 && c.getOwner()!=this) {
                                                     // if he kills
                                                     /*
                                                     myMap[vi][vj] = stick.id;

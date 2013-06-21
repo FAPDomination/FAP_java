@@ -10,3 +10,4 @@ type 20 : Blocking High
 
 Implementing a new tile :
 	- Dont forget to assign this type in the MapHandler.java (~l75)
+	- And in cell.setType too

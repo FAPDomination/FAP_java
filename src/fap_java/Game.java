@@ -160,6 +160,20 @@ public class Game extends JPanel{
         c = map.getCell(coord);
         Player p2 = new Knight(2,c, this);
         players.add(p2);
+        
+        coord = new int[2];
+        coord[0] = 15;
+        coord[1] = 12;
+        c = map.getCell(coord);
+        Player p3 = new Knight(3,c, this);
+        players.add(p3);
+        
+        coord = new int[2];
+        coord[0] = 12;
+        coord[1] = 8;
+        c = map.getCell(coord);
+        Player p4 = new Knight(4,c, this);
+        players.add(p4);
     }
     
     public void updateCellsByOwner(){

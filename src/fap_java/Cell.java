@@ -146,7 +146,7 @@ public class Cell extends Element{
                 if (hp<=0) {
                         // if it's a timer-cell
                         if (type == 2) {
-                            type = 1;
+                            type = 20;
                             walkable = false;
                             //Change did
                         } else {
