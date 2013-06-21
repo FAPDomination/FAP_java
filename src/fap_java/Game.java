@@ -150,7 +150,6 @@ public class Game extends JPanel{
         coord[0] = 16;
         coord[1] = 5;
         Cell c = map.getCell(coord);
-        System.out.println(c);
         Player p1 = new Knight(1,c, this);
         players.add(p1);
         

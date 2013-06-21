@@ -28,4 +28,6 @@ public abstract class Element{
     public int getJ() {
         return j;
     }
+    
+    public abstract String toString();
 }

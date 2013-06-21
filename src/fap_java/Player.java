@@ -46,6 +46,9 @@ public abstract class Player extends Human {
         else if(id == 3){
             color = Color.YELLOW;
         }
+        else if(id == 4){
+            color =  new Color(0,200,0);
+        }
         // 38 40 39 37 : arrow keys
         if (id == 1) {
             keys[0][0] = 38;
@@ -246,7 +249,7 @@ public abstract class Player extends Human {
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
 
         g.setColor(color);
-        g.drawRect(x, y, 10, 30);
+        g.fillRect(x, y, 10, 30);
     }
 
     public void setColor(Color color) {
@@ -347,5 +350,9 @@ public abstract class Player extends Human {
 
     public int getScore() {
         return score;
+    }
+    
+    public String toString(){
+        return "Player n°"+id+" at "+this.getI()+","+this.getJ();
     }
 }

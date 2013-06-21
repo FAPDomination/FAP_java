@@ -65,7 +65,14 @@ public class Cell extends Element{
     }
     
     public String toString(){
-        return "lolilol"+this.getI()+"-"+this.getJ();
+        String s = "Cell at "+this.getI()+","+this.getJ();
+        if(this.owner != null){
+            s+=", owned by "+owner;
+        }
+        if(walkable){
+            s+=", walkable.";
+        }
+        return s;
     }
     
     public boolean equals(Cell c){

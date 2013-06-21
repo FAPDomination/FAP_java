@@ -223,4 +223,8 @@ public class CMap {
         }
         return cells;
     }
+    
+    public String toString(){
+        return "Map with "+myMap.size()+" cells";
+    }
 }
