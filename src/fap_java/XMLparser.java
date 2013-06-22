@@ -16,6 +16,9 @@ public class XMLparser {
     // Sert à charger des fichiers dans les ressources : faire "load.getResource(chemin relatif depuis 'ressources')".
     private static final ClassLoader load = XMLparser.class.getClassLoader();
     
+    
+    
+    
     public XMLparser() {
         super();
     }
@@ -26,6 +29,11 @@ public class XMLparser {
         //System.out.println(dh);
         MapHandler dhm = (MapHandler) dh;
         return dhm.getMap();
+    }
+    
+    public static void parseParams(){
+        DefaultHandler dh = new MapHandler();
+        parseXML("paramTable.xml", dh);
     }
     
     private static void parseXML(String f, DefaultHandler gestionnaire){
