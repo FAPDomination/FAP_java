@@ -28,6 +28,8 @@ V		- Parse DMap
 V		- Parse type
 		- Players
 	- Parse the paramTable
+V		- Generic
+		- specParam
 	- English translation
   Skills
 V	- Create objects
@@ -41,8 +43,8 @@ V	- Create objects
 		- Magician
 		- Booster
 	- Being blocked on the tile after throwing skill
-  ScoreBar
-	- Get nCells
-	- Update scores
-	- Get scores
-	- Draw Bar
+V ScoreBar
+V	- Get nCells
+V	- Update scores
+V	- Get scores
+V	- Draw Bar

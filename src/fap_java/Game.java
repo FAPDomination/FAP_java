@@ -26,6 +26,8 @@ public class Game extends JPanel{
         this.setBackground(Color.white);
         map = new CMap();
         map = XMLparser.parseMap(5);
+        //Parse ParamTable
+        XMLparser.parseParams();
        /* map = new CMap();
         Cell c1 = new Cell(5,3,1);
         Cell c2 = new Cell(5,4,1);
@@ -150,7 +152,7 @@ public class Game extends JPanel{
         coord[0] = 16;
         coord[1] = 5;
         Cell c = map.getCell(coord);
-        Player p1 = new Knight(1,c, this);
+        Player p1 = new Vampire(1,c, this);
         players.add(p1);
         
         coord = new int[2];

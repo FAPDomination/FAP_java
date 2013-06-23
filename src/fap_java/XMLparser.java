@@ -32,7 +32,7 @@ public class XMLparser {
     }
     
     public static void parseParams(){
-        DefaultHandler dh = new MapHandler();
+        DefaultHandler dh = new ParamTableHandler();
         parseXML("paramTable.xml", dh);
     }
     

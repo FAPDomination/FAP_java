@@ -69,12 +69,12 @@ public abstract class Player extends Human {
         keys[2][1] = 0;
         keys[3][1] = 0;
 
-        tmax = game.getThread().getDelay() * 10;
+        tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
 
         initHP = 100;
-        maxHP = 130;
-        decLifeForced = 5;
-        recovLifeAuto = 0.2;
+        maxHP = (int)Params.paramTable.get("maxHP")[pc];
+        decLifeForced = Params.paramTable.get("decLifeForced")[pc];
+        recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
         gainLife = 0.01;
         decLifeAuto = 1;
         lastDisplacement=0;
