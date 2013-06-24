@@ -17,8 +17,22 @@ public class Params {
     public static int giveScore = 2;
     public static int rPoints = 2;
     
+    //skills
+    public static int howLongBlockingMagician;
+    public static int howManyRingsIstheMagicianActive;
+
+    public static int nBlastedTiles;
+    public static int ringsVampirismTakes;
+    public static int rateVampirismGains;
+    public static int arrowSpeed;
+    public static int boosterSpeed;
+    public static int boosterTime; // in ms
+    public static int archerDammage;
+    public static int warlockCanDisableTraps = true;
+    public static double warriorDammage = 120/Math.pow(4.5*1000, 2);
+    
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
     //Skills
-    public static double warriorDammage = 120/Math.pow(4.5*1000, 2);
+    
 }

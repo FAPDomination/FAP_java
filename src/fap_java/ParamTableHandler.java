@@ -74,7 +74,27 @@ public class ParamTableHandler extends DefaultHandler {
                 datas[7] = Double.parseDouble(buffer.toString());
             } 
         }else if(whereAreWe == "specParam"){
-            
+            if (qName.equals("admin")) {
+               
+            } else if (qName.equals("knight")) {
+                
+            } else if (qName.equals("magician")) {
+                
+            } else if (qName.equals("miner")) {
+                
+            } else if (qName.equals("warlock")) {
+                
+            } else if (qName.equals("archer")) {
+                
+            } else if (qName.equals("vampire")) {
+                
+            } else if (qName.equals("Nmagician")) {
+                
+            } else if (qName.equals("booster")) {
+                
+            } else if (qName.equals("NoChar")) {
+                
+            } 
         }
         else {
             //erreur, on peut lever une exception
