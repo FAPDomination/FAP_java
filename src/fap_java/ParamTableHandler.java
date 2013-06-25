@@ -77,9 +77,14 @@ public class ParamTableHandler extends DefaultHandler {
             if (qName.equals("admin")) {
                
             } else if (qName.equals("knight")) {
-                
+                String[] stab = buffer.toString().split(",");
+                int fac = Integer.parseInt(stab[0]);
+                double pow = Double.parseDouble(stab[1]);
+                Params.warriorDammage = fac/Math.pow(pow*1000, 2);
             } else if (qName.equals("magician")) {
-                
+                String[] stab = buffer.toString().split(",");
+                Params.howManyRingsIstheMagicianActive = Integer.parseInt(stab[0]);
+                Params.howLongBlockingMagician = Integer.parseInt(stab[1]);
             } else if (qName.equals("miner")) {
                 
             } else if (qName.equals("warlock")) {
