@@ -39,7 +39,7 @@
 		<admin>null</admin>
 		<knight>120,5.5</knight>
 		<magician>4</magician>
-		<miner>null</miner>
+		<miner>3</miner>
 		<warlock>5</warlock>
 		<archer>7,110</archer>
 		<vampire>3,1</vampire>

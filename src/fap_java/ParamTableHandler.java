@@ -81,24 +81,36 @@ public class ParamTableHandler extends DefaultHandler {
                 int fac = Integer.parseInt(stab[0]);
                 double pow = Double.parseDouble(stab[1]);
                 Params.warriorDammage = fac/Math.pow(pow*1000, 2);
-            } else if (qName.equals("magician")) {
+            } else if (qName.equals("Nmagician")) {
                 String[] stab = buffer.toString().split(",");
                 Params.howManyRingsIstheMagicianActive = Integer.parseInt(stab[0]);
                 Params.howLongBlockingMagician = Integer.parseInt(stab[1]);
             } else if (qName.equals("miner")) {
-                
+                Params.minerNCells = Integer.parseInt(buffer.toString());
             } else if (qName.equals("warlock")) {
-                
+                Params.nBlastedTiles = Integer.parseInt(buffer.toString());
             } else if (qName.equals("archer")) {
-                
+                String[] stab = buffer.toString().split(",");
+                int speed = Integer.parseInt(stab[0]);
+                int dam = Integer.parseInt(stab[1]);
+                Params.archerDammage = dam;
+                Params.arrowSpeed = speed;
             } else if (qName.equals("vampire")) {
+                String[] stab = buffer.toString().split(",");
+                int nRings = Integer.parseInt(stab[0]);
+                int gain = Integer.parseInt(stab[1]);
                 
-            } else if (qName.equals("Nmagician")) {
-                
+                Params.ringsVampirismTakes = nRings;
+                Params.rateVampirismGains = gain;
             } else if (qName.equals("booster")) {
+                String[] stab = buffer.toString().split(",");
+                int newSpeed = Integer.parseInt(stab[0]);
+                int time = Integer.parseInt(stab[1]);
                 
+                Params.boosterSpeed = newSpeed;
+                Params.boosterTime = time;
             } else if (qName.equals("NoChar")) {
-                
+                // You lost the FAP
             } 
         }
         else {

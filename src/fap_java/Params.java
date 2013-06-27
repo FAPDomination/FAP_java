@@ -29,6 +29,7 @@ public class Params {
     public static int archerDammage;
     public static boolean warlockCanDisableTraps = true;
     public static double warriorDammage;
+    public static int minerNCells;
     
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
