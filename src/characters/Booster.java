@@ -7,7 +7,6 @@ import fap_java.Player;
 public class Booster extends Player{
     public Booster(int id, Cell c, Game game) {
         super(id, c, game, 9);
-        this.setSkillTime(300);
     }
 
     public void getSkill() {

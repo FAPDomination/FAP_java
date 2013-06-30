@@ -2,10 +2,10 @@
   	- Player l183 : big repaint
 V 	- TheThread : static count
 
-  Displacement Hexa
+V Displacement Hexa
   Same time displacements
   Get rid of colors
-  Collisions
+V Collisions
   Cleaner define of keys in params
   Complete shiftStick
 	- Switch on type
@@ -13,11 +13,20 @@ V 	- TheThread : static count
 V		- Warp
 		- Switch
 		- NPC exit
-	- TrapCells
+V	- TrapCells
+T		- Blast method
+T		- Trap system
 V refreshHealthPoints
 V stickActivateTile
   Depth
   TeamPlay
+	- TrapCells
+  Player init :
+V	- Cleaner init for position
+V	- Random startCell
+	- Init skills
+	- Init Keys
+	- get the list of who is playing
   CMap :
 	- MaxI & MaxJ
   XML
@@ -27,22 +36,28 @@ V		- Cells
 V		- Parse DMap
 V		- Parse type
 		- Players
-	- Parse the paramTable
+			- For with a regex to get all stX
+V	- Parse the paramTable
 V		- Generic
-		- specParam
+V		- specParam
 	- English translation
   Skills
 V	- Create objects
 	- Function getSkill
-		- Knight
+V		- Knight
 		- Miner
-		- Warlock
+V		- Warlock
 		- Archer
 		- Vampire
 		- NC
 		- Magician
 		- Booster
 	- Being blocked on the tile after throwing skill
+  Game
+	- Get Params
+		- whoIsPlaying
+		- randStart
+		- skills
 V ScoreBar
 V	- Get nCells
 V	- Update scores

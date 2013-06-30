@@ -7,7 +7,6 @@ import fap_java.Player;
 public class Miner extends Player{
     public Miner(int id, Cell c, Game game) {
         super(id, c, game, 3);
-        this.setSkillTime(300);
     }
 
         public void getSkill() {

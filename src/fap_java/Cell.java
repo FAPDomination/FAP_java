@@ -12,7 +12,7 @@ public class Cell extends Element{
     private boolean walkable;
     private double hp;
     private boolean height;
-    private boolean trap;
+    private Player trap;
     private CMap map;
     private String addParam;
     
@@ -31,6 +31,7 @@ public class Cell extends Element{
         this.addParam = param;
         this.did = did;
         this.setType(type);
+        this.trap = null;
         
     }
     
@@ -98,6 +99,23 @@ public class Cell extends Element{
             } else {
                     // Else forces the healthpoints of the tale to decrease (Attack)
                     hp -= p.getDecLifeForced();
+            }
+        }
+        //System.out.println(trap);
+        if(trap != null){
+            if(trap != p){ // Blast that guy
+                //System.out.println("blasting");
+                p.blast(Params.nBlastedTiles);
+                trap = null;
+                // Add animation
+            }
+            else{ // Disable the bomb
+                if(p.getGame().getThread().getCount() - p.getLastSkill() >= p.getSkillTime()){
+                    //System.out.println("disabling");
+                    trap = null;
+                    p.setLastSkill(p.getGame().getThread().getCount());
+                    //Add animation
+                }
             }
         }
     }
@@ -227,5 +245,13 @@ public class Cell extends Element{
 
     public double getHp() {
         return hp;
+    }
+
+    public void setTrap(Player trap) {
+        this.trap = trap;
+    }
+
+    public Player getTrap() {
+        return trap;
     }
 }

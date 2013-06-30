@@ -5,6 +5,8 @@ import java.awt.Graphics;
 
 import java.security.Key;
 
+import java.util.ArrayList;
+
 public abstract class Player extends Human {
 
     private int id;
@@ -40,17 +42,15 @@ public abstract class Player extends Human {
         this.pc = pc;
 
         color = Color.RED;
-        if (id == 2) {
+        if (id == 1) {
             color = Color.BLUE;
-        }
-        else if(id == 3){
+        } else if (id == 2) {
             color = Color.YELLOW;
-        }
-        else if(id == 4){
-            color =  new Color(0,200,0);
+        } else if (id == 3) {
+            color = new Color(0, 200, 0);
         }
         // 38 40 39 37 : arrow keys
-        if (id == 1) {
+        if (id == 0) {
             keys[0][0] = 38;
             keys[1][0] = 40;
             keys[2][0] = 39;
@@ -77,8 +77,10 @@ public abstract class Player extends Human {
         recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
         gainLife = 0.01;
         decLifeAuto = 1;
-        lastDisplacement=0;
+        lastDisplacement = 0;
         lastSkill = 0;
+        
+        this.setSkillTime((int)(Params.paramTable.get("decLifeForced")[pc]*1000));
         
         score = 0;
     }
@@ -117,9 +119,47 @@ public abstract class Player extends Human {
         // Test if displacement is allowed
         if (game.getThread().getCount() - lastDisplacement >= tmax) {
             lastDisplacement = game.getThread().getCount();
-
+            //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
+            // Hexa displacements :
+            // Left + Down
+            if (keys[3][1] == 1 && keys[1][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(-1, 1);
+                } else {
+                    shiftStick(0, 1);
+                }
+                ori = "bl";
+            }
+            //Up + Right
+            else if (keys[0][1] == 1 && keys[2][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(0, -1);
+                } else {
+                    shiftStick(1, -1);
+                }
+                ori = "tr";
+            }
+            //Up + Left
+            else if (keys[0][1] == 1 && keys[3][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(-1, -1);
+                } else {
+                    shiftStick(0, -1);
+                }
+                ori = "tl";
+            }
+            // Down + Right
+            else if (keys[1][1] == 1 && keys[3][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(0, 1);
+                } else {
+                    shiftStick(1, 1);
+                }
+                ori = "br";
+            }
+            //Regular
             // If the key LEFT is pressed
-            if (keys[3][1] == 1) {
+            else if (keys[3][1] == 1) {
                 // Move the stick
                 shiftStick(-1, 0);
                 // Update the stick's orientation :
@@ -149,10 +189,10 @@ public abstract class Player extends Human {
                 ori = "br";
             }
         }
-        if(i==4){ //Skill
+        if (i == 4) { //Skill
             this.getSkill();
         }
-        
+
     }
 
     public void shiftStick(int dx, int dy) {
@@ -351,8 +391,32 @@ public abstract class Player extends Human {
     public int getScore() {
         return score;
     }
-    
-    public String toString(){
-        return "Player n°"+id+" at "+this.getI()+","+this.getJ();
+
+    public String toString() {
+        return "Player n°" + id + " at " + this.getI() + "," + this.getJ();
+    }
+
+    public void blast(int numberOfCells) {
+        // Get the list of the array he owns
+        ArrayList<Cell> map = game.getMap().getMyMap();
+        ArrayList<Cell> owned = new ArrayList<Cell>();
+        for (int i = 0; i < map.size(); i++) {
+            Cell c = map.get(i);
+            if (c.getOwner() == this) {
+                owned.add(c);
+            }
+        }
+
+        //Blast
+        for (int i = 0; i < numberOfCells; i++) {
+            //Pick random cell
+            int rand = Tools.randRange(0, owned.size() - 1);
+            Cell randCell = owned.get(rand);
+            //KILL IT WITH FIRE !
+            randCell.setOwner(null);
+            randCell.setHp(0);
+            owned.remove(randCell);
+            //Add animation
+        }
     }
 }

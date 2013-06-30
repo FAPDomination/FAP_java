@@ -7,7 +7,6 @@ import fap_java.Player;
 public class Archer extends Player{
     public Archer(int id, Cell c, Game game) {
         super(id, c, game, 5);
-        this.setSkillTime(300);
     }
 
     public void getSkill() {

@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 
 import org.xml.sax.helpers.DefaultHandler;
 
-public class Game extends JPanel{
-    
+public class Game extends JPanel {
+
     private CMap map;
     private TheThread thread;
     private ArrayList<Player> players = new ArrayList<Player>();
     private KListener kl;
     private ScoreBar scoreHandler;
-    
+
     public Game() {
 
         this.setLayout(null);
@@ -28,7 +28,7 @@ public class Game extends JPanel{
         map = XMLparser.parseMap(5);
         //Parse ParamTable
         XMLparser.parseParams();
-       /* map = new CMap();
+        /* map = new CMap();
         Cell c1 = new Cell(5,3,1);
         Cell c2 = new Cell(5,4,1);
         Cell c3 = new Cell(6,3,10,"7,12");
@@ -36,13 +36,13 @@ public class Game extends JPanel{
         Cell c5 = new Cell(6,5,1);
         Cell c6 = new Cell(7,3,1);
         Cell c7 = new Cell(7,4,1);
-        
+
         Cell c8 = new Cell(6,6,1);
         Cell c9 = new Cell(6,7,2,"100");
         Cell c10 = new Cell(6,8,1);
         Cell c11 = new Cell(6,9,1);
         Cell c12 = new Cell(6,10,1);
-        
+
         Cell c13 = new Cell(6,11,1);
         Cell c14 = new Cell(7,9,1);
         Cell c15 = new Cell(7,10,1);
@@ -50,13 +50,13 @@ public class Game extends JPanel{
         Cell c17 = new Cell(7,12,1);
         Cell c18 = new Cell(8,10,1);
         Cell c19 = new Cell(8,11,1);
-        
+
         Cell c20 = new Cell(9,9,20);
         Cell c21 = new Cell(9,10,20);
         Cell c22 = new Cell(9,11,20);
         Cell c23 = new Cell(9,12,20);
         Cell c24 = new Cell(8,12,20);
-        
+
         map.addElement(c5);
         map.addElement(c1);
         map.addElement(c2);
@@ -82,26 +82,26 @@ public class Game extends JPanel{
         map.addElement(c23);
         map.addElement(c24);
         */
-        
+
         thread = new TheThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
-        
+
         kl = new KListener(this);
         this.addKeyListener(kl);
         this.setFocusable(true);
         requestFocus();
-        
+
         initPlayers();
-        
+
         scoreHandler = new ScoreBar(this);
     }
-    
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         map.paintComponent(g);
-        for(int i = 0; i< players.size();i++){
+        for (int i = 0; i < players.size(); i++) {
             players.get(i).paintComponent(g);
         }
         this.scoreHandler.paintComponent(g);
@@ -110,7 +110,7 @@ public class Game extends JPanel{
     public ArrayList<Player> getPlayers() {
         return players;
     }
-    
+
     public CMap getMap() {
         return map;
     }
@@ -118,87 +118,79 @@ public class Game extends JPanel{
     public TheThread getThread() {
         return thread;
     }
-    
-    public void refreshHealthPoints(){
+
+    public void refreshHealthPoints() {
         ArrayList<Cell> myMap = map.getMyMap();
-        for(int j=0;j<myMap.size();j++){
+        for (int j = 0; j < myMap.size(); j++) {
             Cell c = myMap.get(j);
             c.refreshHealthPoints();
         }
-        for(int i=0;i<players.size();i++){
+        for (int i = 0; i < players.size(); i++) {
             Player p = players.get(i);
             Cell c = p.getCurrent();
             c.activateCell(p);
         }
         this.repaint();
     }
-    
-    public Player isOccupied(Cell c){
+
+    public Player isOccupied(Cell c) {
         Player p = null;
-        if(c!=null && map.containsCell(c) != -1){
-            for(int i =0; i< players.size();i++){
+        if (c != null && map.containsCell(c) != -1) {
+            for (int i = 0; i < players.size(); i++) {
                 Player q = players.get(i);
-                if(q.getI() == c.getI() && q.getJ() == c.getJ()){
-                    p=q;
+                if (q.getI() == c.getI() && q.getJ() == c.getJ()) {
+                    p = q;
                     break;
                 }
             }
         }
         return p;
     }
-    
-    public void initPlayers(){
-        int[] coord = new int[2];
-        coord[0] = 16;
-        coord[1] = 5;
-        Cell c = map.getCell(coord);
-        Player p1 = new Vampire(1,c, this);
-        players.add(p1);
-        
-        coord = new int[2];
-        coord[0] = 17;
-        coord[1] = 15;
-        c = map.getCell(coord);
-        Player p2 = new Knight(2,c, this);
-        players.add(p2);
-        
-        coord = new int[2];
-        coord[0] = 15;
-        coord[1] = 12;
-        c = map.getCell(coord);
-        Player p3 = new Knight(3,c, this);
-        players.add(p3);
-        
-        coord = new int[2];
-        coord[0] = 12;
-        coord[1] = 8;
-        c = map.getCell(coord);
-        Player p4 = new Knight(4,c, this);
-        players.add(p4);
+
+    public void initPlayers() {
+        String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
+        boolean randStart = true;
+        ArrayList<Cell> startCellsAL = map.getStartCells();
+        for (int i = 0; i < whoIsPlaying.length(); i += 2) {
+            boolean isPlaying = whoIsPlaying.charAt(i) != '0';
+            if (isPlaying) {
+                int pid = i / 2;
+                Cell c;
+                if (randStart) {
+                    int rand = Tools.randRange(0, startCellsAL.size() - 1);
+                    c = startCellsAL.get(rand);
+                    startCellsAL.remove(rand);
+                } else {
+                    c = startCellsAL.get(pid);
+                }
+                Player p = new Warlock(pid, c, this);
+                players.add(p);
+            }
+        }
     }
-    
-    public void updateCellsByOwner(){
-        for(int j=0;j<players.size();j++){
+
+    public void updateCellsByOwner() {
+        for (int j = 0; j < players.size(); j++) {
             Player p = players.get(j);
             p.setNCells(0);
         }
         ArrayList<Cell> cells = map.getMyMap();
-        for(int i=0;i<cells.size();i++){
+        for (int i = 0; i < cells.size(); i++) {
             Cell c = cells.get(i);
-            if(c.getOwner()!=null){
+            if (c.getOwner() != null) {
                 Player p = c.getOwner();
-                p.setNCells(p.getNCells()+1);
+                p.setNCells(p.getNCells() + 1);
             }
         }
-        
+
     }
 
 
     public ScoreBar getScoreHandler() {
         return scoreHandler;
     }
-    
-    public int getRWidth(){
+
+    public int getRWidth() {
         return this.getWidth();
     }
 }

@@ -11,13 +11,12 @@ public class Knight extends Player{
     
     public Knight(int id, Cell c, Game game) {
         super(id, c, game, 1);
-        this.setSkillTime(10);
     }
 
     public void getSkill() {
         int ts = this.getGame().getThread().getCount() - this.getLastSkill();
         if (ts >= this.getSkillTime()) {
-            System.out.println("*BANG*");
+            
             //Send Skill :
                                     ArrayList<Cell> neighborHoodList = this.getGame().getMap().surroundingCells(this.getCurrent());
                                     for (int i =0; i<neighborHoodList.size();i++) {

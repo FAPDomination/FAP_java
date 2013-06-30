@@ -19,6 +19,7 @@ public class CMap {
 
     //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    private ArrayList<Cell> startCells = new ArrayList<Cell>();
 
     public static int[] giveTalePosition(int i, int j) {
         int[] arr = new int[2];
@@ -212,19 +213,36 @@ public class CMap {
         }
         return surroundingCells;
     };
-    
-    public ArrayList<Cell> getNTakableCells(){
+
+    public ArrayList<Cell> getNTakableCells() {
         ArrayList<Cell> cells = new ArrayList<Cell>();
-        for(int i=0;i<myMap.size();i++){
+        for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);
-            if(c.getType() == 1){
+            if (c.getType() == 1) {
                 cells.add(c);
             }
         }
         return cells;
     }
-    
-    public String toString(){
-        return "Map with "+myMap.size()+" cells";
+
+    public String toString() {
+        return "Map with " + myMap.size() + " cells";
+    }
+
+
+    public void addStartCell(Cell c, int index) {
+        this.startCells.add(index, c);
+    }
+
+    public void removeStartCell(int index) {
+        this.startCells.remove(index);
+    }
+
+    public void setStartCells(ArrayList<Cell> startCells) {
+        this.startCells = startCells;
+    }
+
+    public ArrayList<Cell> getStartCells() {
+        return startCells;
     }
 }
