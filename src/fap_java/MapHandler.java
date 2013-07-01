@@ -14,9 +14,9 @@ public class MapHandler extends DefaultHandler {
     private int i = 0;
     private int j = 0;
 
-    //flags nous indiquant la position du parseur
+    // flags giving the parser's position
     private boolean inFile, inI, inJ, inStartCell;
-    //buffer nous permettant de récupérer les données
+    // buffer for getting the data
     private StringBuffer buffer;
 
     public MapHandler() {
@@ -24,7 +24,7 @@ public class MapHandler extends DefaultHandler {
     }
 
 
-    //détection d'ouverture de balise
+    // detection of tag opening
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (qName.equals("root")) {
@@ -42,13 +42,13 @@ public class MapHandler extends DefaultHandler {
             if (qName.equals("case")) {
                 inJ = true;
             } else {
-                //erreur, on peut lever une exception
-                throw new SAXException("Balise " + qName + " inconnue.");
+                // error : you can throw an exception
+                throw new SAXException("Tag " + qName + " unknown.");
             }
         }
         buffer = new StringBuffer();
     }
-    //détection fin de balise
+    // detection of tag ending
 
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (qName.equals("root")) {
@@ -104,27 +104,27 @@ public class MapHandler extends DefaultHandler {
             map.addStartCell(c, pid - 2);
             inStartCell = false;
         } else {
-            //erreur, on peut lever une exception
-            throw new SAXException("Balise " + qName + " inconnue.");
+            // error : you can throw an exception
+            throw new SAXException("Tag " + qName + " unknown.");
         }
     }
-    //détection de caractères
+    // character detection
 
     public void characters(char[] ch, int start, int length) throws SAXException {
         String lecture = new String(ch, start, length);
         if (buffer != null)
             buffer.append(lecture);
     }
-    //début du parsing
+    // Parsing start
 
     public void startDocument() throws SAXException {
-        //System.out.println("Début du parsing");
+        //System.out.println("Parsing start");
     }
-    //fin du parsing
+    // Parsing end
 
     public void endDocument() throws SAXException {
-        //System.out.println("Fin du parsing");
-        //System.out.println("Resultats du parsing");
+        //System.out.println("Parsing end");
+        //System.out.println("Parsing results");
     }
 
     public void setMap(CMap map) {

@@ -5,10 +5,10 @@ import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Graphics {
+public class Graph {
     
     // used for loading files in this resource class : do "load.getResource(relative path from 'resources')".
-    private static final ClassLoader load = Graphics.class.getClassLoader();
+    private static final ClassLoader load = Graph.class.getClassLoader();
 
     /* ******************************************************
      * ********************* IMAGES *************************
@@ -35,6 +35,6 @@ public class Graphics {
         }
     }
     
-    public Graphics() {
+    public Graph() {
     }
 }

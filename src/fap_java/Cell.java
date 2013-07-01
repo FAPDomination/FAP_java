@@ -3,6 +3,10 @@ package fap_java;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+
 import java.util.Map;
 
 public class Cell extends Element{
@@ -27,7 +31,7 @@ public class Cell extends Element{
         this.setJ(j);
         this.walkable = true;
         this.height = false;
-        this.hp=0;
+        this.hp = 0;
         this.addParam = param;
         this.did = did;
         this.setType(type);
@@ -37,7 +41,20 @@ public class Cell extends Element{
     
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1]+CMap.OFFMAP;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + CMap.OFFMAP;
+        
+        /*
+        Graphics2D g2d = (Graphics2D)g;
+        
+        // Anti-aliasing enabled
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        g2d.drawImage(Graph.cells.get("normal"), x, y, CMap.TW * 2, CMap.TH * 2, null);
+        
+        // Anti-aliasing disabled (trying not to slow down the entire thing)
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        
+        */
         
         if(owner == null){
             g.setColor(Color.BLACK);
@@ -52,8 +69,9 @@ public class Cell extends Element{
             g.setColor(Color.pink);
         }
         g.drawRect(x, y, CMap.TW, CMap.TH);
-        if(hp>0){
-        g.drawString(""+(int)hp, x+5, y+10);
+        
+        if(hp > 0){
+            g.drawString("" + (int) hp, x + 5, y + 10);
         }
     }
 
