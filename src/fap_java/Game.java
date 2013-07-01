@@ -14,11 +14,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class Game extends JPanel {
 
-    private CMap map;
-    private TheThread thread;
-    private ArrayList<Player> players = new ArrayList<Player>();
-    private KListener kl;
-    private ScoreBar scoreHandler;
+    private transient CMap map;
+    private transient TheThread thread;
+    private transient ArrayList<Player> players = new ArrayList<Player>();
+    private transient KListener kl;
+    private transient ScoreBar scoreHandler;
 
     public Game() {
 
