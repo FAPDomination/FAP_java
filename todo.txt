@@ -31,7 +31,7 @@ V	- Random startCell
   CMap :
 	- MaxI & MaxJ
   XML
-E	- Understand XML
+V	- Understand XML
 	- Parse a Map
 V		- Cells
 V		- Parse DMap
@@ -41,7 +41,7 @@ V		- Parse type
 V	- Parse the paramTable
 V		- Generic
 V		- specParam
-	- English translation
+V	- English translation
   Skills
 V	- Create objects
 	- Function getSkill
@@ -50,7 +50,7 @@ V		- Knight
 V		- Warlock
 		- Archer
 		- Vampire
-		- NC
+V		- NC
 		- Magician
 		- Booster
 	- Being blocked on the tile after throwing skill
