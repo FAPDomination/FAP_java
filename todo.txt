@@ -19,6 +19,7 @@ T		- Trap system
 V refreshHealthPoints
 V stickActivateTile
   Depth
+  Kick back player with countdown cell
   TeamPlay
 	- TrapCells
   Player init :

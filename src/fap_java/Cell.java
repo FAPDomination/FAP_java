@@ -173,6 +173,8 @@ public class Cell extends Element{
                         if (type == 2) {
                             type = 20;
                             walkable = false;
+                            // KICK BACK
+                            
                             //Change did
                         } else {
                                 //else it goes back to neutral

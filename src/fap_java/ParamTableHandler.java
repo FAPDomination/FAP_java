@@ -6,10 +6,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class ParamTableHandler extends DefaultHandler {
 
-    //flags nous indiquant la position du parseur
+    // Flags for the position of the parser
     private boolean inFile;
     private String whereAreWe;
-    //buffer nous permettant de récupérer les données
+    //buffer for retreiving datas
     private StringBuffer buffer;
     private double[] datas;
 
@@ -17,7 +17,7 @@ public class ParamTableHandler extends DefaultHandler {
         super();
     }
 
-    //détection d'ouverture de balise
+    // Detecting tag opening
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (qName.equals("root")) {
@@ -38,12 +38,12 @@ public class ParamTableHandler extends DefaultHandler {
         } else if (qName.equals("NoChar")) {
         } else {
             buffer = new StringBuffer();
-            //erreur, on peut lever une exception
-            throw new SAXException("Balise " + qName + " inconnue.");
+            // Error
+            throw new SAXException("Unknown tag " + qName + ".");
         }
         buffer = new StringBuffer();
     }
-    //détection fin de balise
+    //Detecting tag closing
 
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (qName.equals("root")) {
@@ -114,26 +114,24 @@ public class ParamTableHandler extends DefaultHandler {
             } 
         }
         else {
-            //erreur, on peut lever une exception
-            throw new SAXException("Balise " + qName + " inconnue.");
+            //Error
+            throw new SAXException("Unknown tag " + qName + ".");
         }
     }
-    //détection de caractères
+    //Detecting chars
 
     public void characters(char[] ch,int start, int length)
                     throws SAXException{
             String lecture = new String(ch,start,length);
             if(buffer != null) buffer.append(lecture);       
     }
-    //début du parsing
+    //Parsing starting
 
     public void startDocument() throws SAXException {
-        //System.out.println("Début du parsing");
     }
-    //fin du parsing
+    //End of parsing
 
     public void endDocument() throws SAXException {
-        //System.out.println("Fin du parsing");
-        //System.out.println("Resultats du parsing");
+        //System.out.println("End of parsing");
     }
 }

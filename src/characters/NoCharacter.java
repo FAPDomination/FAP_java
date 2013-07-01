@@ -10,10 +10,6 @@ public class NoCharacter extends Player{
     }
 
     public void getSkill() {
-        if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
-            this.setLastSkill(this.getGame().getThread().getCount());
-            System.out.println("*BANG*");
-            //Send Skill :
-        }
+        //No character, no skill
     }
-    }
+}
