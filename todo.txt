@@ -3,7 +3,7 @@
 V 	- TheThread : static count
 
 V Displacement Hexa
-  Same time displacements
+V Same time displacements
   Get rid of colors
 V Collisions
   Cleaner define of keys in params
