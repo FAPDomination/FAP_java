@@ -59,9 +59,12 @@ V		- Warlock
 		- Archer
 		- Vampire
 V		- NC
-		- Magician
+P		- Magician
+V			- Detecting players
+P			- Modifying params
 		- Booster
 	- Being blocked on the tile after throwing skill
+  Modifying params
   Game
 	- Get Params
 		- whoIsPlaying

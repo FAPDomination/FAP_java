@@ -18,7 +18,7 @@ public class Magician extends Player{
                 this.setLastSkill(this.getGame().getThread().getCount());
                 System.out.println("*BANG*");
                 //Send Skill :
-                int nRings = 3;
+                int nRings = 2;
                 Map<Integer, ArrayList<Cell>> ringsOfCells = this.getGame().getMap().ringsSurrounding(this.getCurrent(), nRings);
                 for(int i = 0;i<=nRings;i++){
                     ArrayList<Cell> theRing = ringsOfCells.get(i);
@@ -26,6 +26,10 @@ public class Magician extends Player{
                         Cell c = theRing.get(j);
                         //c.setOwner(this.getTeam());
                         //c.setHp(this.getInitHP());
+                        Player p = this.getGame().isOccupied(c);
+                        if(p != null && p.getTeam()!=this.getTeam()){
+                            p.blast(10);
+                        }
                     }
                 }
             }
