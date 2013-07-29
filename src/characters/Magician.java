@@ -2,6 +2,7 @@ package characters;
 
 import fap_java.Cell;
 import fap_java.Game;
+import fap_java.Params;
 import fap_java.Player;
 import fap_java.Team;
 
@@ -18,7 +19,7 @@ public class Magician extends Player{
                 this.setLastSkill(this.getGame().getThread().getCount());
                 System.out.println("*BANG*");
                 //Send Skill :
-                int nRings = 2;
+                int nRings = Params.howManyRingsIstheMagicianActive;
                 Map<Integer, ArrayList<Cell>> ringsOfCells = this.getGame().getMap().ringsSurrounding(this.getCurrent(), nRings);
                 for(int i = 0;i<=nRings;i++){
                     ArrayList<Cell> theRing = ringsOfCells.get(i);
@@ -28,7 +29,10 @@ public class Magician extends Player{
                         //c.setHp(this.getInitHP());
                         Player p = this.getGame().isOccupied(c);
                         if(p != null && p.getTeam()!=this.getTeam()){
-                            p.blast(10);
+                            //p.blast(10);
+                            //Modify date of last displacement into the FUTCHA
+                            p.setLastDisplacement(this.getGame().getThread().getCount()+Params.howLongBlockingMagician*1000);
+                            //Add animation
                         }
                     }
                 }
