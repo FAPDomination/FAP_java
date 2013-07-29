@@ -20,6 +20,11 @@ public class Game extends JPanel {
     private transient KListener kl;
     private transient ScoreBar scoreHandler;
     private transient ArrayList<Team> teams = new ArrayList<Team>();
+    
+    //Parameters to be given when starting a new game
+    private String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
+    private String wichTeam = "0,1,1,2"; // Here player n°2 is in team n°0
+    private boolean randStart = true;
 
     public Game() {
 
@@ -151,10 +156,6 @@ public class Game extends JPanel {
     }
 
     public void initPlayers() {
-        String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
-        String wichTeam = "0,1,0,1"; // Here player n°2 is in team n°0
-        
-        boolean randStart = true;
         ArrayList<Cell> startCellsAL = map.getStartCells();
         for (int i = 0; i < whoIsPlaying.length(); i += 2) {
             boolean isPlaying = whoIsPlaying.charAt(i) != '0';
@@ -201,10 +202,23 @@ public class Game extends JPanel {
     }
 
     private void initTeams() {
+        /*
         Team te = new Team();
         teams.add(0, te);
         te = new Team();
         teams.add(1, te);
+        te = new Team();
+        teams.add(2, te);
+        te = new Team();
+        teams.add(3, te);
+        */
+        for (int i = 0; i < wichTeam.length(); i += 2) {
+            int idT = Integer.parseInt(""+wichTeam.charAt(i));
+            if(idT>=teams.size()){
+                Team te = new Team();
+                teams.add(idT, te);
+            }
+        }
     }
 
     public void setTeams(ArrayList<Team> teams) {
