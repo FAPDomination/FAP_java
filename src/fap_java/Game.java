@@ -23,7 +23,7 @@ public class Game extends JPanel {
     
     //Parameters to be given when starting a new game
     private String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
-    private String wichTeam = "0,1,1,2"; // Here player n°2 is in team n°0
+    private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
     private boolean randStart = true;
 
     public Game() {
@@ -170,7 +170,7 @@ public class Game extends JPanel {
                     c = startCellsAL.get(pid);
                 }
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
-                Player p = new Warlock(pid, c, this,team);
+                Player p = new Knight(pid, c, this,team);
                 players.add(p);
             }
         }

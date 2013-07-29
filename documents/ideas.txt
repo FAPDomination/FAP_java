@@ -8,3 +8,6 @@ placés sur la scène grâce à des I,J (ou des cells).
 Listés dans une arrayList de la scène,
 qui leur demanderait de se repaint en continu
 ils calculeraient leur aspect en fonction de leur temps de vie
+
+----- Modification d'un paramètre d'un joueur
+Exemple : pour le booster

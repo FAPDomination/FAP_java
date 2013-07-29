@@ -168,7 +168,7 @@ public class CMap {
 
 
     public ArrayList<Cell> surroundingCells(Cell c) {
-        ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
+        ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -181,11 +181,13 @@ public class CMap {
             o = this.getCell(i - 1, j);
             surroundingCells.add(o);
         } else {
-            //surroundingCells['tr'] = [i-1, j+1];
-            o = this.getCell(i - 1, j + 1);
-            surroundingCells.add(o);
+            
             //surroundingCells['tl'] = [i-1, j];
             o = this.getCell(i - 1, j);
+            surroundingCells.add(o);
+            
+            //surroundingCells['tr'] = [i-1, j+1];
+            o = this.getCell(i - 1, j + 1);
             surroundingCells.add(o);
         }
         // cells from the same line

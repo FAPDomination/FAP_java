@@ -26,7 +26,7 @@ V Kick back player with countdown cell
   TeamPlay
 T	- Implement teams
 	- TrapCells
-	- Warning : the first player sets the params
+	- Warning : the first player sets ALL the params
 	- Cleaner initTeams
 V		- Cleaner
 		- Teams 0,1,3 but not 2 : exception
