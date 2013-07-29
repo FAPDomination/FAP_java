@@ -1,5 +1,5 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
-  Order the methods lists
+  Tidy the methods lists
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count
@@ -7,7 +7,7 @@ V 	- TheThread : static count
 V	- Hexa
 	- Bug changing
 V Same time displacements
-  Get rid of colors
+? Get rid of colors
 V Collisions
   Cleaner define of keys in params
   Complete shiftStick
@@ -26,7 +26,7 @@ V Kick back player with countdown cell
   TeamPlay
 T	- Implement teams
 	- TrapCells
-	- Warning : the first player sets ALL the params
+~	- Warning : the first player sets ALL the params
 	- Cleaner initTeams
 V		- Cleaner
 		- Teams 0,1,3 but not 2 : exception
@@ -36,8 +36,8 @@ V	- Random startCell
 	- Init skills
 	- Init Keys
 	- get the list of who is playing
-  CMap :
-	- MaxI & MaxJ
+? CMap :
+?	- MaxI & MaxJ
   XML
 V	- Understand XML
 	- Parse a Map
@@ -57,7 +57,7 @@ V		- Knight
 		- Miner
 V		- Warlock
 		- Archer
-		- Vampire
+V		- Vampire
 V		- NC
 V		- Magician
 V			- Detecting players
@@ -65,9 +65,13 @@ V			- Modifying params
 		- Booster
 	- Being blocked on the tile after throwing skill
   Modifying params
+  Add animation
+	- Skills
+	- Warps
   Game
 	- Get Params
 		- whoIsPlaying
+		- wichTeam
 		- randStart
 		- skills
 V ScoreBar
@@ -75,3 +79,4 @@ V	- Get nCells
 V	- Update scores
 V	- Get scores
 V	- Draw Bar
+	- Display skillTime
