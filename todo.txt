@@ -1,5 +1,5 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
-
+  Order the methods lists
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count

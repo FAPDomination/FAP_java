@@ -247,4 +247,55 @@ public class CMap {
     public ArrayList<Cell> getStartCells() {
         return startCells;
     }
+    
+    public Map<Integer, ArrayList<Cell>> ringsSurrounding(Cell c, int numberOfRings){
+        Map<Integer, ArrayList<Cell>> ringsOfCells = new HashMap<Integer, ArrayList<Cell>>();
+        //ArrayList<Cell>[] ringsOfCells = new ArrayList<Cell>[numberOfRings+1];
+        for(int k=0;k<numberOfRings;k++){
+            ringsOfCells.put(k, new ArrayList<Cell>());
+        }
+        ringsOfCells.get(0).add(c);
+        
+        int ring = 1;
+        boolean continueRingLoop = true;        // For stopping the loop after a certain number of rings
+        while(continueRingLoop){
+           ringsOfCells.put(ring, new ArrayList<Cell>());
+            int indexRing = 0;            // Index of the array for the current ring
+             
+            // Loop : gets the cells of the inferior ring and checks their neighbour cells
+            ArrayList<Cell> previousRing = ringsOfCells.get(ring-1);
+            for(int i = 0; i<previousRing.size(); i++){
+                Cell cell = previousRing.get(i);        // Inferior ring cell
+                ArrayList<Cell> aroundCurrentCell = surroundingCells(cell);
+                 
+                // Loop : checking if the cells must be added to the current ring array
+                for(int j =0; j<aroundCurrentCell.size();j++){
+                    Cell tempCell = aroundCurrentCell.get(j);
+                    boolean rejectCell = false;
+                    // Loop : is this cell already in the returned array ?
+                    for(int k = ring-2 ; k <= ring ; k++){
+                        if(k < 0){ k = 0; } // Prevents error if ring = 1
+                        // use of other function arrayContainsCoords(array, coords)
+                        if((tempCell == null) || ringsOfCells.get(k).contains(tempCell)){
+                            rejectCell = true;
+                        }
+                    }
+                    if(!rejectCell){
+                        // Update of returned array and current ring index
+                        ringsOfCells.get(ring).add(tempCell);
+                        indexRing++;
+                    }
+                }
+            }
+            ring++;
+             
+            // Stop condition
+            if(ring > numberOfRings){
+                continueRingLoop = false;
+            }
+        }
+
+        return ringsOfCells;
+
+    }
 }

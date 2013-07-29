@@ -170,7 +170,7 @@ public class Game extends JPanel {
                     c = startCellsAL.get(pid);
                 }
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
-                Player p = new Knight(pid, c, this,team);
+                Player p = new Magician(pid, c, this,team);
                 players.add(p);
             }
         }
