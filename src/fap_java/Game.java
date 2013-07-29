@@ -123,7 +123,7 @@ public class Game extends JPanel {
         ArrayList<Cell> myMap = map.getMyMap();
         for (int j = 0; j < myMap.size(); j++) {
             Cell c = myMap.get(j);
-            c.refreshHealthPoints();
+            c.refreshHealthPoints(this);
         }
         for (int i = 0; i < players.size(); i++) {
             Player p = players.get(i);

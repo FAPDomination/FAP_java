@@ -138,7 +138,7 @@ public class Cell extends Element{
         }
     }
     
-    public void refreshHealthPoints(){
+    public void refreshHealthPoints(Game game){
         //trace(_root.kco);
                 // Counts the neighbours of the same type of the tale
                 //Note : MyDMap != 8 is for lava floor and unstable cells
@@ -192,7 +192,10 @@ public class Cell extends Element{
                             type = 20;
                             walkable = false;
                             // KICK BACK
-                            
+                            Player p = game.isOccupied(this);
+                            if(p!=null){
+                                p.kickBack();
+                            }
                             //Change did
                         } else {
                                 //else it goes back to neutral
@@ -274,4 +277,5 @@ public class Cell extends Element{
     public Player getTrap() {
         return trap;
     }
+
 }

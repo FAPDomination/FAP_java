@@ -2,7 +2,9 @@
   	- Player l183 : big repaint
 V 	- TheThread : static count
 
-V Displacement Hexa
+ Displacement Hexa
+V	- Hexa
+	- Bug changing
 V Same time displacements
   Get rid of colors
 V Collisions
