@@ -3,10 +3,11 @@ package characters;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Player;
+import fap_java.Team;
 
 public class Booster extends Player{
-    public Booster(int id, Cell c, Game game) {
-        super(id, c, game, 9);
+    public Booster(int id, Cell c, Game game, Team t) {
+        super(id, c, game, 9,t);
     }
 
     public void getSkill() {

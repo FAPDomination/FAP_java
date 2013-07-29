@@ -100,7 +100,7 @@ public class CMap {
         int n = 0;
         int i = c.getI();
         int j = c.getJ();
-        Player owns = c.getOwner();
+        Team owns = c.getOwner();
         Cell o;
         // cells from the superior line
         if (i != 0) {

@@ -12,7 +12,7 @@ import java.util.Map;
 public class Cell extends Element{
     private int did;
     private int type;
-    private Player owner;
+    private Team owner;
     private boolean walkable;
     private double hp;
     private boolean height;
@@ -103,7 +103,7 @@ public class Cell extends Element{
     }
 
     public void activateCell(Player p){
-        if (owner!=p && type ==1) {
+        if (owner!=p.getTeam() && type ==1) {
             // if not, tests if the tale is empty
             if (hp<=0) {
                     // The tale is empty, sets it as the property of the player, gives HP and draw the according map
@@ -111,7 +111,7 @@ public class Cell extends Element{
                     p.kickBack(); 
                 }
                 else{
-                    owner = p;
+                    owner = p.getTeam();
                     hp = p.getInitHP();
                 }
             } else {
@@ -147,11 +147,11 @@ public class Cell extends Element{
             boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell && type != 8;
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
-                        if (hp<owner.getInitHP()) {
+                        if (hp<owner.getFirstPlayer().getInitHP()) {
                                         // The HP will recover slowly up to initHP
-                                        hp += owner.getRecovLifeAuto();
+                                        hp += owner.getFirstPlayer().getRecovLifeAuto();
                                 // between initHP and maxHP
-                        } else if (hp<owner.getMaxHP() || (hp<Params.higherMaxHP && type == 13)) {
+                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && type == 13)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
                                         double gainLifeFactor;
@@ -161,7 +161,7 @@ public class Cell extends Element{
                                         else{
                                                 gainLifeFactor = 1;
                                         }
-                                        hp += owner.getGainLife()*gainLifeFactor;
+                                        hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
                                 //};
                         } else {
                                 // If the tale isn't lonely or anything, do nothing
@@ -175,7 +175,7 @@ public class Cell extends Element{
                         if (Params.gameOfLife==true && type != 2) {
                                         //_root["t"+i].onEnterFrame = function() {
                                                 // The HP will decrease until the cell is dead OR not alone anymore
-                                                hp -= owner.getDecLifeAuto();
+                                                hp -= owner.getFirstPlayer().getDecLifeAuto();
                                         //};
                         }
                 }
@@ -206,11 +206,11 @@ public class Cell extends Element{
                 }
     }
 
-    public void setOwner(Player owner) {
+    public void setOwner(Team owner) {
         this.owner = owner;
     }
 
-    public Player getOwner() {
+    public Team getOwner() {
         return owner;
     }
 

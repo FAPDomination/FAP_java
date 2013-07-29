@@ -5,12 +5,14 @@ import fap_java.Game;
 import fap_java.Params;
 import fap_java.Player;
 
+import fap_java.Team;
+
 import java.util.ArrayList;
 
 public class Knight extends Player{
     
-    public Knight(int id, Cell c, Game game) {
-        super(id, c, game, 1);
+    public Knight(int id, Cell c, Game game, Team t) {
+        super(id, c, game, 1,t);
     }
 
     public void getSkill() {
@@ -21,7 +23,7 @@ public class Knight extends Player{
                                     ArrayList<Cell> neighborHoodList = this.getGame().getMap().surroundingCells(this.getCurrent());
                                     for (int i =0; i<neighborHoodList.size();i++) {
                                             Cell c = neighborHoodList.get(i);
-                                            if (c != null && c.getType()==1 && c.getOwner()!=this) {
+                                            if (c != null && c.getType()==1 && c.getOwner()!=this.getTeam()) {
                                                     // if he kills
                                                     /*
                                                     myMap[vi][vj] = stick.id;
@@ -32,7 +34,7 @@ public class Knight extends Player{
                                                     //System.out.println(dammage);
                                                     c.setHp(c.getHp()-dammage);
                                                     if(c != null && c.getType() == 1 && ((c.getHp() <=0 && c.getOwner() != null) || (c.getOwner() == null && dammage>=90))){
-                                                            c.setOwner(this);
+                                                            c.setOwner(this.getTeam());
                                                             c.setHp(this.getInitHP());
                                                     }
                                             }

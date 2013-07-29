@@ -17,12 +17,12 @@ public class ScoreBar {
     }
     
     public void computeScores(){
-        ArrayList<Player> players = game.getPlayers();
-        for(int i =0;i<players.size();i++){
-            Player p = players.get(i);
-            int score = p.getScore();
-            score+=(p.getNCells()-1)*Params.rPoints;
-            p.setScore(score);
+        ArrayList<Team> teams = game.getTeams();
+        for(int i =0;i<teams.size();i++){
+            Team te = teams.get(i);
+            int score = te.getScore();
+            score+=(te.getNCells()-1)*Params.rPoints;
+            te.setScore(score);
         }
     }
     
@@ -31,16 +31,16 @@ public class ScoreBar {
         //g.drawString(""+totalTakable, 20, 10);
         int x=0;
         int notTaken = computeNotTaken();
-        ArrayList<Player> players = game.getPlayers();
-        int nPlayers = players.size();
+        ArrayList<Team> teams = game.getTeams();
+        int nTeams = teams.size();
         
-        for(int i =0;i<players.size();i++){
-            Player p = players.get(i);
-            int score = p.getScore();
-            int nCells = p.getNCells();
+        for(int i =0;i<teams.size();i++){
+           Team te = teams.get(i);
+            int score = te.getScore();
+            int nCells = te.getNCells();
 
             double percentCell = ((double)nCells)/totalTakable;
-            g.setColor(p.getColor());
+            g.setColor(te.getColor());
             g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
             g.setColor(Color.white);
             g.drawString(""+score, x+5, 10);
@@ -48,7 +48,7 @@ public class ScoreBar {
 
             
             
-            if(i == (nPlayers/2-1) && notTaken >=1){
+            if(i == (nTeams/2-1) && notTaken >=1){
                  percentCell = ((double)notTaken)/totalTakable;
                 g.setColor(Color.GRAY);
                 g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
@@ -61,10 +61,10 @@ public class ScoreBar {
     
     public int computeNotTaken(){
         int notTaken = totalTakable;
-            ArrayList<Player> players = game.getPlayers();
-            for(int j =0;j<players.size();j++){
-                Player p = players.get(j);
-                notTaken-=p.getNCells();
+        ArrayList<Team> teams = game.getTeams();
+            for(int j =0;j<teams.size();j++){
+                Team te = teams.get(j);
+                notTaken-= te.getNCells();
             }
         return notTaken;
     }

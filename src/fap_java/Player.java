@@ -26,19 +26,20 @@ public abstract class Player extends Human {
     private int maxHP;
     private double gainLife;
     private double decLifeAuto;
-    private int nCells;
-    private int score;
+    private Team team;
     //Keys
     private int[][] keys = new int[5][2];
 
-    public Player(int id, Cell c, Game game, int pc) {
+    public Player(int id, Cell c, Game game, int pc, Team t) {
         super();
         this.id = id;
         current = c;
         this.setI(c.getI());
         this.setJ(c.getJ());
         this.game = game;
-
+        this.team = t;
+        team.addPlayer(this);
+        
         this.pc = pc;
 
         color = Color.RED;
@@ -81,8 +82,6 @@ public abstract class Player extends Human {
         lastSkill = 0;
         
         this.setSkillTime((int)(Params.paramTable.get("decLifeForced")[pc]*1000));
-        
-        score = 0;
     }
 
     public void setCurrent(Cell current) {
@@ -376,22 +375,6 @@ public abstract class Player extends Human {
         return skillTime;
     }
 
-    public void setNCells(int nCells) {
-        this.nCells = nCells;
-    }
-
-    public int getNCells() {
-        return nCells;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
     public String toString() {
         return "Player n°" + id + " at " + this.getI() + "," + this.getJ();
     }
@@ -402,7 +385,7 @@ public abstract class Player extends Human {
         ArrayList<Cell> owned = new ArrayList<Cell>();
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
-            if (c.getOwner() == this) {
+            if (c.getOwner() == this.team) {
                 owned.add(c);
             }
         }
@@ -418,5 +401,13 @@ public abstract class Player extends Human {
             owned.remove(randCell);
             //Add animation
         }
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }

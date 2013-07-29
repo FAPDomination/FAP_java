@@ -3,10 +3,11 @@ package characters;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Player;
+import fap_java.Team;
 
 public class Miner extends Player{
-    public Miner(int id, Cell c, Game game) {
-        super(id, c, game, 3);
+    public Miner(int id, Cell c, Game game, Team t) {
+        super(id, c, game, 3,t);
     }
 
         public void getSkill() {

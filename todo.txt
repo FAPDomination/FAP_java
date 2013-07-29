@@ -1,7 +1,6 @@
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count
-
  Displacement Hexa
 V	- Hexa
 	- Bug changing
@@ -21,9 +20,11 @@ T		- Trap system
 V refreshHealthPoints
 V stickActivateTile
   Depth
-  Kick back player with countdown cell
+V Kick back player with countdown cell
   TeamPlay
+T	- Implement teams
 	- TrapCells
+	- Warning : the first player sets the params
   Player init :
 V	- Cleaner init for position
 V	- Random startCell

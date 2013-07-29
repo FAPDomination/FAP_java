@@ -19,6 +19,7 @@ public class Game extends JPanel {
     private transient ArrayList<Player> players = new ArrayList<Player>();
     private transient KListener kl;
     private transient ScoreBar scoreHandler;
+    private transient ArrayList<Team> teams = new ArrayList<Team>();
 
     public Game() {
 
@@ -93,6 +94,8 @@ public class Game extends JPanel {
         this.setFocusable(true);
         requestFocus();
 
+        initTeams();
+        
         initPlayers();
 
         scoreHandler = new ScoreBar(this);
@@ -149,6 +152,8 @@ public class Game extends JPanel {
 
     public void initPlayers() {
         String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
+        String wichTeam = "0,1,0,1"; // Here player n°2 is in team n°0
+        
         boolean randStart = true;
         ArrayList<Cell> startCellsAL = map.getStartCells();
         for (int i = 0; i < whoIsPlaying.length(); i += 2) {
@@ -163,23 +168,24 @@ public class Game extends JPanel {
                 } else {
                     c = startCellsAL.get(pid);
                 }
-                Player p = new Warlock(pid, c, this);
+                Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
+                Player p = new Warlock(pid, c, this,team);
                 players.add(p);
             }
         }
     }
 
     public void updateCellsByOwner() {
-        for (int j = 0; j < players.size(); j++) {
-            Player p = players.get(j);
-            p.setNCells(0);
+        for (int j = 0; j < teams.size(); j++) {
+            Team te = teams.get(j);
+            te.setNCells(0);
         }
         ArrayList<Cell> cells = map.getMyMap();
         for (int i = 0; i < cells.size(); i++) {
             Cell c = cells.get(i);
             if (c.getOwner() != null) {
-                Player p = c.getOwner();
-                p.setNCells(p.getNCells() + 1);
+                Team te = c.getOwner();
+                te.setNCells(te.getNCells() + 1);
             }
         }
 
@@ -192,5 +198,20 @@ public class Game extends JPanel {
 
     public int getRWidth() {
         return this.getWidth();
+    }
+
+    private void initTeams() {
+        Team te = new Team();
+        teams.add(0, te);
+        te = new Team();
+        teams.add(1, te);
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
+    public ArrayList<Team> getTeams() {
+        return teams;
     }
 }
