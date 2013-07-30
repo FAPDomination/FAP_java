@@ -81,7 +81,12 @@ public class MapHandler extends DefaultHandler {
             } else if (param.equals("")) {
                 t = 1;
             } else if (param.indexOf(',') == -1) {
-                t = 2;
+                if(param.charAt(0) == 'h'){ // Healthy Healthy
+                    t=1;
+                }
+                else{
+                    t = 2;
+                }
             } else if (did == 10) {
                 t = 10;
             } else {

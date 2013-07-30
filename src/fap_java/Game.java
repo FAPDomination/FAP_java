@@ -31,7 +31,7 @@ public class Game extends JPanel {
         this.setLayout(null);
         this.setBackground(Color.white);
         map = new CMap();
-        map = XMLparser.parseMap(5);
+        map = XMLparser.parseMap(7);
         //Parse ParamTable
         XMLparser.parseParams();
         /* map = new CMap();

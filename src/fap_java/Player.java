@@ -65,6 +65,7 @@ public abstract class Player extends Human {
             keys[4][0] = 69;
         }
 
+        //Init key pressing
         keys[0][1] = 0;
         keys[1][1] = 0;
         keys[2][1] = 0;

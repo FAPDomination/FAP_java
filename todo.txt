@@ -10,6 +10,12 @@ V Same time displacements
 ? Get rid of colors
 V Collisions
   Cleaner define of keys in params
+  Special Tiles
+	- The Floor is Lava
+V	- Healthy Healthy
+V		- Higher maxHP
+V		- quicker recovery
+	- Frozen
   Complete shiftStick
 	- Switch on type
 		- move to Cell.activateTile ?

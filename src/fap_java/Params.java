@@ -9,7 +9,7 @@ public class Params {
     public static boolean gameOfLife = true;
     public static int nNeighboursConwell = 1;
     public static int higherMaxHP = 200;
-    public static double gainLifeFactorMultiplier = 1.5;
+    public static double gainLifeFactorMultiplier = 1.5;    //For healthy healthy
     public static int delay = 40;
     public static double decLifeCountDown = 1;
     public static int idBlockingHigh = 100;

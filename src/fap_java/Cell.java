@@ -16,9 +16,14 @@ public class Cell extends Element{
     private boolean walkable;
     private double hp;
     private boolean height;
-    private Team trap;
     private CMap map;
     private String addParam;
+    
+    //Special params
+    private Team trap;
+    private boolean healthy;
+    private boolean unstable;
+    private boolean frozen;
     
     public Cell(int i, int j, int type, int did) {
         this(i, j, type,"", did);
@@ -144,18 +149,18 @@ public class Cell extends Element{
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell && type != 8;
+            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell && !unstable;
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
                                         // The HP will recover slowly up to initHP
                                         hp += owner.getFirstPlayer().getRecovLifeAuto();
                                 // between initHP and maxHP
-                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && type == 13)) {
+                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
                                         double gainLifeFactor;
-                                        if(type == 13){
+                                        if(healthy){
                                                 gainLifeFactor = Params.gainLifeFactorMultiplier;
                                         }
                                         else{
@@ -231,6 +236,11 @@ public class Cell extends Element{
         }
         else{
             this.type = type;
+        }
+        
+        //Healthy Healthy
+        if(type == 1 && addParam.length()>0 && addParam.charAt(0)=='h'){
+            healthy=true;
         }
     }
 
