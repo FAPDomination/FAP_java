@@ -67,6 +67,7 @@ public class ParamTableHandler extends DefaultHandler {
             } else if (qName.equals("vampire")) {
                 datas[6] = Double.parseDouble(buffer.toString());
             } else if (qName.equals("Nmagician")) {
+                //System.out.println(whereAreWe+"-"+Double.parseDouble(buffer.toString()));
                 datas[8] = Double.parseDouble(buffer.toString());
             } else if (qName.equals("booster")) {
                 datas[9] = Double.parseDouble(buffer.toString());

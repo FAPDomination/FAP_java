@@ -41,8 +41,8 @@ V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
 	- Init Keys
-	- get the list of who is playing
-	- Bug with skillTime (set to 5s)
+V	- get the list of who is playing
+V	- Bug with skillTime (set to 5s)
 ? CMap :
 ?	- MaxI & MaxJ
   XML
@@ -85,4 +85,4 @@ V	- Get nCells
 V	- Update scores
 V	- Get scores
 V	- Draw Bar
-	- Display skillTime
+V	- Display skillTime

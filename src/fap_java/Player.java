@@ -82,7 +82,7 @@ public abstract class Player extends Human {
         lastDisplacement = 0;
         lastSkill = 0;
         
-        this.setSkillTime((int)(Params.paramTable.get("decLifeForced")[pc]*1000));
+        this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
     }
 
     public void setCurrent(Cell current) {
