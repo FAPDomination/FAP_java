@@ -64,6 +64,16 @@ V		- Knight
 		- Miner
 V		- Warlock
 		- Archer
+			- Arrow
+V				- Class File
+				- PaintComponent
+					- Offsets
+~					- Paint
+~				- Attributes
+				- Compute new position
+				- Acting
+					- Compute Cell
+					- Effect on it
 V		- Vampire
 V		- NC
 V		- Magician
