@@ -45,9 +45,9 @@ V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 ? CMap :
 ?	- MaxI & MaxJ
-  XML
+? XML
 V	- Understand XML
-	- Parse a Map
+?	- Parse a Map
 V		- Cells
 V		- Parse DMap
 V		- Parse type

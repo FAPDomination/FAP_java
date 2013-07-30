@@ -71,18 +71,7 @@ public abstract class Player extends Human {
         keys[2][1] = 0;
         keys[3][1] = 0;
 
-        tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
-
-        initHP = 100;
-        maxHP = (int)Params.paramTable.get("maxHP")[pc];
-        decLifeForced = Params.paramTable.get("decLifeForced")[pc];
-        recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
-        gainLife = 0.01;
-        decLifeAuto = 1;
-        lastDisplacement = 0;
-        lastSkill = 0;
-        
-        this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
+        this.initParams();
     }
 
     public void setCurrent(Cell current) {
@@ -417,5 +406,20 @@ public abstract class Player extends Human {
     public void makeHimWait(int delay){
         //Modify date of last displacement into the FUTCHA
         this.setLastDisplacement(this.getGame().getThread().getCount()+delay*1000);
+    }
+    
+    public void initParams(){
+        tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+
+        initHP = 100;
+        maxHP = (int)Params.paramTable.get("maxHP")[pc];
+        decLifeForced = Params.paramTable.get("decLifeForced")[pc];
+        recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+        gainLife = 0.01;
+        decLifeAuto = 1;
+        lastDisplacement = 0;
+        lastSkill = 0;
+        
+        this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
     }
 }
