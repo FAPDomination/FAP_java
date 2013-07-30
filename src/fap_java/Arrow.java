@@ -6,6 +6,7 @@ import java.awt.Graphics;
 public class Arrow extends Element{
     
     private Cell current;
+    
     private int x;
     private int y;
     private int course;
@@ -51,5 +52,50 @@ public class Arrow extends Element{
 
     public String toString() {
         return "An arrow";
+    }
+    
+    public void displacement(){
+        double approxAngle = -0.85832;
+                                /*if(ori == "l"){
+                                        angle = -Math.PI/2;
+                                }
+                                else if(ori == "r"){
+                                        angle = Math.PI/2;
+                                        arro.gotoAndStop(2);
+                                }
+                                else if(ori == "tl"){
+                                        angle = approxAngle; // In rad, approximation with Maple
+                                }
+                                else if(ori=="br"){
+                                        angle = (Math.PI)+approxAngle; // In rad, approximation with Maple
+                                        arro.gotoAndStop(2);
+                                }
+                                else if(ori == "tr"){
+                                        angle = -approxAngle; // In rad, approximation with Maple
+                                        arro.gotoAndStop(2);
+                                }
+                                else if(ori == "bl"){
+                                        angle = (Math.PI)-approxAngle; // In rad, approximation with Maple
+                                        arro.gotoAndStop(2);
+                                }
+                                else{
+                                        
+                                }*/
+        switch(course){
+            case 0:
+                break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            default:
+                break;
+        }
     }
 }
