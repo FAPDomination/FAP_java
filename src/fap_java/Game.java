@@ -22,7 +22,7 @@ public class Game extends JPanel {
     private transient ArrayList<Team> teams = new ArrayList<Team>();
     
     //Parameters to be given when starting a new game
-    private String whoIsPlaying = "1,1,1,1"; // This could be linked with skills, uh ?
+    private String whoIsPlaying = "1,8,4,6"; // This is linked with skill, here player 1 is magician
     private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
     private boolean randStart = true;
 
@@ -158,7 +158,9 @@ public class Game extends JPanel {
     public void initPlayers() {
         ArrayList<Cell> startCellsAL = map.getStartCells();
         for (int i = 0; i < whoIsPlaying.length(); i += 2) {
-            boolean isPlaying = whoIsPlaying.charAt(i) != '0';
+            //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
+            int charac = Integer.parseInt(""+whoIsPlaying.charAt(i));
+            boolean isPlaying = charac!=0;
             if (isPlaying) {
                 int pid = i / 2;
                 Cell c;
@@ -170,7 +172,39 @@ public class Game extends JPanel {
                     c = startCellsAL.get(pid);
                 }
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
-                Player p = new Warlock(pid, c, this,team);
+                Player p;
+                switch(charac){
+                    case 1:
+                        p = new Knight(pid, c, this,team);
+                        break;
+                    /*case 2:
+                        p = new Warlock(pid, c, this,team);
+                        break;*/
+                    case 3:
+                        p = new Miner(pid, c, this,team);
+                        break;
+                    case 4:
+                        p = new Warlock(pid, c, this,team);
+                        break;
+                    case 5:
+                        p = new Archer(pid, c, this,team);
+                        break;
+                    case 6:
+                        p = new Vampire(pid, c, this,team);
+                        break;
+                    case 7:
+                        p = new NoCharacter(pid, c, this,team);
+                        break;
+                    case 8:
+                        p = new Magician(pid, c, this,team);
+                        break;
+                    case 9:
+                        p = new Booster(pid, c, this,team);
+                        break;
+                default:
+                    p = new Knight(pid, c, this,team);
+                    break;
+                }
                 players.add(p);
             }
         }

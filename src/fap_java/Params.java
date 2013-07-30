@@ -33,6 +33,4 @@ public class Params {
     
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
-    //Skills
-    
 }

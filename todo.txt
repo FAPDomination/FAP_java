@@ -39,9 +39,10 @@ V		- Cleaner
   Player init :
 V	- Cleaner init for position
 V	- Random startCell
-	- Init skills
+V	- Init skills
 	- Init Keys
 	- get the list of who is playing
+	- Bug with skillTime (set to 5s)
 ? CMap :
 ?	- MaxI & MaxJ
   XML
@@ -76,10 +77,9 @@ V			- Modifying params
 	- Warps
   Game
 	- Get Params
-		- whoIsPlaying
+		- whoIsPlaying && skills
 		- wichTeam
 		- randStart
-		- skills
 V ScoreBar
 V	- Get nCells
 V	- Update scores

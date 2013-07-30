@@ -293,4 +293,27 @@ public class Cell extends Element{
         return trap;
     }
 
+    public void setHealthy(boolean healthy) {
+        this.healthy = healthy;
+    }
+
+    public boolean isHealthy() {
+        return healthy;
+    }
+
+    public void setUnstable(boolean unstable) {
+        this.unstable = unstable;
+    }
+
+    public boolean isUnstable() {
+        return unstable;
+    }
+
+    public void setFrozen(boolean frozen) {
+        this.frozen = frozen;
+    }
+
+    public boolean isFrozen() {
+        return frozen;
+    }
 }
