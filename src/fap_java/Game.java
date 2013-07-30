@@ -54,8 +54,8 @@ public class Game extends JPanel {
         scoreHandler = new ScoreBar(this);
         
         //Testing :
-        Arrow arr = new Arrow(players.get(0).getCurrent(),0,this);
-        objects.add(arr);
+        Arrow arr = new Arrow(players.get(0).getCurrent(),2,this);
+        //objects.add(arr);
     }
 
     public void paintComponent(Graphics g) {
@@ -222,8 +222,12 @@ public class Game extends JPanel {
             Element e = objects.get(j);
             if(e instanceof Arrow){
                 Arrow a = (Arrow)e;
-                
+                a.displacement();
             }
         }
+    }
+    
+    public void addObject(Element e){
+        objects.add(e);
     }
 }

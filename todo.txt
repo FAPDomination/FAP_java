@@ -72,6 +72,7 @@ V				- Class File
 ~				- Attributes
 				- Compute new position
 				- Acting
+T					- Displacement
 					- Compute Cell
 					- Effect on it
 V		- Vampire

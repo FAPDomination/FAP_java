@@ -11,6 +11,7 @@ public class Arrow extends Element{
     private int y;
     private int course;
     private Game game;
+    private double angle;
     
     public Arrow(Cell c, int course, Game game) {
         this.course = course;
@@ -18,6 +19,32 @@ public class Arrow extends Element{
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0]+(CMap.TW/2);
         this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + CMap.OFFMAP+(CMap.TH/2);
+        game.addObject(this);
+        
+        double approxAngle = -0.85832;
+        switch(course){
+            case 0: // TL
+            angle = approxAngle; // In rad, approximation with Maple
+                break;
+                case 1: //TR
+                angle = -approxAngle;
+                    break;
+                case 2: //R
+                angle = Math.PI/2;
+                    break;
+                case 3: //BR
+                angle = (Math.PI)+approxAngle;
+                    break;
+                case 4: //BL
+                angle = (Math.PI)-approxAngle;
+                    break;
+                case 5: //L
+                angle = -Math.PI/2;
+                    break;
+            default: //TL
+            angle = approxAngle; // In rad, approximation with Maple
+                break;
+        }
     }
     
     public void paintComponent(Graphics g) {
@@ -46,6 +73,8 @@ public class Arrow extends Element{
             break;
         }
         
+        offsetY = 0;
+        
         g.setColor(Color.BLACK);
         g.fillRect(x, y+offsetY, 4, 4);
     }
@@ -55,47 +84,9 @@ public class Arrow extends Element{
     }
     
     public void displacement(){
-        double approxAngle = -0.85832;
-                                /*if(ori == "l"){
-                                        angle = -Math.PI/2;
-                                }
-                                else if(ori == "r"){
-                                        angle = Math.PI/2;
-                                        arro.gotoAndStop(2);
-                                }
-                                else if(ori == "tl"){
-                                        angle = approxAngle; // In rad, approximation with Maple
-                                }
-                                else if(ori=="br"){
-                                        angle = (Math.PI)+approxAngle; // In rad, approximation with Maple
-                                        arro.gotoAndStop(2);
-                                }
-                                else if(ori == "tr"){
-                                        angle = -approxAngle; // In rad, approximation with Maple
-                                        arro.gotoAndStop(2);
-                                }
-                                else if(ori == "bl"){
-                                        angle = (Math.PI)-approxAngle; // In rad, approximation with Maple
-                                        arro.gotoAndStop(2);
-                                }
-                                else{
-                                        
-                                }*/
-        switch(course){
-            case 0:
-                break;
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-            default:
-                break;
-        }
+        this.y -= Params.arrowSpeed*Math.cos(this.angle);
+        this.x += Params.arrowSpeed*Math.sin(this.angle);
+        
+        
     }
 }
