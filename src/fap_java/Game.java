@@ -21,6 +21,8 @@ public class Game extends JPanel {
     private transient ScoreBar scoreHandler;
     private transient ArrayList<Team> teams = new ArrayList<Team>();
     
+    private ArrayList<Element> toBePainted = new ArrayList<Element>();
+    
     //Parameters to be given when starting a new game
     private String whoIsPlaying = "1,8,4,6"; // This is linked with skill, here player 1 is magician
     private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
@@ -111,6 +113,9 @@ public class Game extends JPanel {
         map.paintComponent(g);
         for (int i = 0; i < players.size(); i++) {
             players.get(i).paintComponent(g);
+        }
+        for(int j=0;j<toBePainted.size();j++){
+            toBePainted.get(j).paintComponent(g);
         }
         this.scoreHandler.paintComponent(g);
     }

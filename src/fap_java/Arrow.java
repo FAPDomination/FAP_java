@@ -3,7 +3,7 @@ package fap_java;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Arrow {
+public class Arrow extends Element{
     
     private Cell current;
     private int x;
@@ -47,5 +47,9 @@ public class Arrow {
         
         g.setColor(Color.BLACK);
         g.fillRect(x, y+offsetY, 4, 4);
+    }
+
+    public String toString() {
+        return "An arrow";
     }
 }
