@@ -81,7 +81,7 @@ public class MapHandler extends DefaultHandler {
             } else if (param.equals("")) {
                 t = 1;
             } else if (param.indexOf(',') == -1) {
-                if(param.charAt(0) == 'h'){ // Healthy Healthy
+                if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
                     t=1;
                 }
                 else{

@@ -238,9 +238,14 @@ public class Cell extends Element{
             this.type = type;
         }
         
-        //Healthy Healthy
-        if(type == 1 && addParam.length()>0 && addParam.charAt(0)=='h'){
-            healthy=true;
+        //Healthy Healthy and special tiles
+        if(type == 1 && addParam.matches("[a-z]")){
+            if(addParam.charAt(0)=='h'){
+                healthy=true;
+            }
+            else if(addParam.charAt(0)=='u'){
+                unstable = true;
+            }
         }
     }
 

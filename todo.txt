@@ -11,7 +11,7 @@ V Same time displacements
 V Collisions
   Cleaner define of keys in params
   Special Tiles
-	- The Floor is Lava
+V	- The Floor is Lava
 V	- Healthy Healthy
 V		- Higher maxHP
 V		- quicker recovery
