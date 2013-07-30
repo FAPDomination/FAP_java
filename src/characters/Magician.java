@@ -30,8 +30,7 @@ public class Magician extends Player{
                         Player p = this.getGame().isOccupied(c);
                         if(p != null && p.getTeam()!=this.getTeam()){
                             //p.blast(10);
-                            //Modify date of last displacement into the FUTCHA
-                            p.setLastDisplacement(this.getGame().getThread().getCount()+Params.howLongBlockingMagician*1000);
+                            p.makeHimWait(Params.howLongBlockingMagician);
                             //Add animation
                         }
                     }

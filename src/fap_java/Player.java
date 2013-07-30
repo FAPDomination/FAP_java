@@ -410,4 +410,10 @@ public abstract class Player extends Human {
     public Team getTeam() {
         return team;
     }
+    
+    //Make the player wait for "delay" seconds
+    public void makeHimWait(int delay){
+        //Modify date of last displacement into the FUTCHA
+        this.setLastDisplacement(this.getGame().getThread().getCount()+delay*1000);
+    }
 }
