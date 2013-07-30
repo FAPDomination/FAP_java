@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import java.util.LinkedList;
 
+import java.util.regex.Pattern;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -27,13 +29,14 @@ public class MapHandler extends DefaultHandler {
     // Detecting tag opening
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        String regex1 = "st[0-9]";
         if (qName.equals("root")) {
             inFile = true;
         } else if (qName.equals("ligne")) {
             inI = true;
         } else if (qName.equals("map")) {
         } else if (qName.equals("persos")) {
-        } else if (qName.equals("st2") || qName.equals("st3") || qName.equals("st4") || qName.equals("st5")) {
+        } else if (qName.matches(regex1)) { // ie <stX> where X is 0->9
             inStartCell = true;
         } else if (qName.equals("i")) {
         } else if (qName.equals("j")) {
@@ -51,6 +54,8 @@ public class MapHandler extends DefaultHandler {
     //Detecting tag closing
 
     public void endElement(String uri, String localName, String qName) throws SAXException {
+        String regex1 = "st[0-9]";
+        
         if (qName.equals("root")) {
             inFile = false;
         } else if (qName.equals("ligne")) {
@@ -95,7 +100,7 @@ public class MapHandler extends DefaultHandler {
             i = Integer.parseInt(buffer.toString());
         } else if (qName.equals("j")) {
             j = Integer.parseInt(buffer.toString());
-        } else if (qName.equals("st2") || qName.equals("st3") || qName.equals("st4") || qName.equals("st5")) {
+        } else if (qName.matches(regex1)) {
             //Cell c = new Cell(i,j,0,0);
             Cell c = map.getCell(i, j);
             i = 0;

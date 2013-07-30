@@ -3,7 +3,7 @@
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count
- Displacement Hexa
+  Displacement Hexa
 V	- Hexa
 	- Bug changing
 V Same time displacements
@@ -44,8 +44,8 @@ V	- Understand XML
 V		- Cells
 V		- Parse DMap
 V		- Parse type
-		- Players
-			- For with a regex to get all stX
+V		- Players
+V			- For with a regex to get all stX
 V	- Parse the paramTable
 V		- Generic
 V		- specParam
