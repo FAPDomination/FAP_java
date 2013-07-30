@@ -21,11 +21,11 @@ T		- Blast method
 T		- Trap system
 V refreshHealthPoints
 V stickActivateTile
-  Depth
+P Depth
 V Kick back player with countdown cell
-  TeamPlay
+T TeamPlay
 T	- Implement teams
-	- TrapCells
+T	- TrapCells
 ~	- Warning : the first player sets ALL the params
 	- Cleaner initTeams
 V		- Cleaner

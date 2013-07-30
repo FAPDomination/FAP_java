@@ -16,7 +16,7 @@ public class Cell extends Element{
     private boolean walkable;
     private double hp;
     private boolean height;
-    private Player trap;
+    private Team trap;
     private CMap map;
     private String addParam;
     
@@ -121,7 +121,7 @@ public class Cell extends Element{
         }
         //System.out.println(trap);
         if(trap != null){
-            if(trap != p){ // Blast that guy
+            if(trap != p.getTeam()){ // Blast that guy
                 //System.out.println("blasting");
                 p.blast(Params.nBlastedTiles);
                 trap = null;
@@ -270,11 +270,11 @@ public class Cell extends Element{
         return hp;
     }
 
-    public void setTrap(Player trap) {
+    public void setTrap(Team trap) {
         this.trap = trap;
     }
 
-    public Player getTrap() {
+    public Team getTrap() {
         return trap;
     }
 

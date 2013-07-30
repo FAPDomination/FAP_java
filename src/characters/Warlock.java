@@ -17,7 +17,7 @@ public class Warlock extends Player{
             System.out.println("*BANG*");
             //Send Skill :
             Cell current = this.getCurrent();
-            current.setTrap(this);
+            current.setTrap(this.getTeam());
             //Add animation
         }
     }
