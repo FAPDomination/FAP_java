@@ -222,7 +222,7 @@ public class Game extends JPanel {
             Element e = objects.get(j);
             if(e instanceof Arrow){
                 Arrow a = (Arrow)e;
-                a.displacement();
+                a.effect();
             }
         }
     }

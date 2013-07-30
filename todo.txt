@@ -75,6 +75,9 @@ V				- Class File
 T					- Displacement
 					- Compute Cell
 					- Effect on it
+						- Dissapear if blocked
+						- Disapear if out of bounds
+						- Dammage the cell
 V		- Vampire
 V		- NC
 V		- Magician
