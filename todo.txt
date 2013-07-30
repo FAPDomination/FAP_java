@@ -43,6 +43,10 @@ V	- Init skills
 	- Init Keys
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
+V	- Ori
+V		- Init ori
+V		- Modify when displacement
+V		- Set "ori" to int
 ? CMap :
 ?	- MaxI & MaxJ
 ? XML
@@ -64,6 +68,23 @@ V		- Knight
 		- Miner
 V		- Warlock
 		- Archer
+			- Arrow
+V				- Class File
+				- PaintComponent
+					- Offsets
+~					- Paint
+~				- Attributes
+V				- Compute new position
+				- Acting
+T					- Displacement
+V					- Compute Cell
+					- Effect on it
+						- Dissappear if blocked
+						- Disappear if out of bounds
+						- Dammage the cell
+						- Hits ennemy
+							-Disapear
+							- Make him wait
 V		- Vampire
 V		- NC
 V		- Magician

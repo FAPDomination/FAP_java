@@ -15,7 +15,7 @@ public abstract class Player extends Human {
     private int lastDisplacement;
     private int skillTime;
     private int lastSkill;
-    private String ori;
+    private int ori;
     private Cell current;
     private Cell parent;
     private double decLifeForced;
@@ -117,7 +117,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, 1);
                 }
-                ori = "bl";
+                ori = 4;
             }
             //Up + Right
             else if (keys[0][1] == 1 && keys[2][1] == 1) {
@@ -126,7 +126,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(1, -1);
                 }
-                ori = "tr";
+                ori = 1;
             }
             //Up + Left
             else if (keys[0][1] == 1 && keys[3][1] == 1) {
@@ -135,7 +135,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = "tl";
+                ori = 0;
             }
             // Down + Right
             else if (keys[1][1] == 1 && keys[3][1] == 1) {
@@ -144,7 +144,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(1, 1);
                 }
-                ori = "br";
+                ori = 3;
             }
             //Regular
             // If the key LEFT is pressed
@@ -152,11 +152,11 @@ public abstract class Player extends Human {
                 // Move the stick
                 shiftStick(-1, 0);
                 // Update the stick's orientation :
-                ori = "l";
+                ori = 5;
             } else if (keys[2][1] == 1) { // If key RIGHT is pressed
                 shiftStick(1, 0);
                 // If the key1 is pressed
-                ori = "r";
+                ori = 2;
             } else if (keys[0][1] == 1) { // If key UP is pressed
                 // reset the timer for this stick so the player is not able to move for a little while
                 // Because of the hexa-grid to movings up and down are complicated
@@ -168,14 +168,14 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = "tl";
+                ori = 4;
             } else if (keys[1][1] == 1) { // If key DOWN is pressed
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, 1);
                 } else {
                     shiftStick(1, 1);
                 }
-                ori = "br";
+                ori = 3;
             }
         }
         if (i == 4) { //Skill
