@@ -66,6 +66,7 @@ V	- Create objects
 	- Function getSkill
 V		- Knight
 		- Miner
+			- Create Branch
 V		- Warlock
 		- Archer
 			- Arrow
