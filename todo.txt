@@ -43,10 +43,10 @@ V	- Init skills
 	- Init Keys
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
-	- Ori
+V	- Ori
 V		- Init ori
 V		- Modify when displacement
-		- Set "ori" to int
+V		- Set "ori" to int
 ? CMap :
 ?	- MaxI & MaxJ
 ? XML
@@ -79,8 +79,13 @@ V				- Compute new position
 T					- Displacement
 V					- Compute Cell
 					- Effect on it
+<<<<<<< HEAD
 						- Dissapear if blocked
 						- Disapear if out of bounds
+=======
+						- Dissappear if blocked
+						- Disappear if out of bounds
+>>>>>>> master
 						- Dammage the cell
 						- Hits ennemy
 							-Disapear
