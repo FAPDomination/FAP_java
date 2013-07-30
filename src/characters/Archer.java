@@ -15,7 +15,7 @@ public class Archer extends Player{
             this.setLastSkill(this.getGame().getThread().getCount());
             System.out.println("*BANG*");
             //Send Skill :
-            //test
+            //test archer branching
         }
     }
     }
