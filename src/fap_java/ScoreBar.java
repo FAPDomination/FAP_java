@@ -57,6 +57,19 @@ public class ScoreBar {
                 g.drawString(""+notTaken, x, 10);
             }
         }
+        
+        //Display skillTimes
+        ArrayList<Player> players = game.getPlayers();
+        for(int i=0;i<players.size();i++){
+            Player p = players.get(i);
+            g.setColor(p.getColor());
+            //this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()
+            int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()))/1000 -1;
+            if(skillTime<0){
+                skillTime = 0;
+            }
+            g.drawString(""+skillTime, 15, i*30+100);
+        }
     }
     
     public int computeNotTaken(){

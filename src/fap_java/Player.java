@@ -289,6 +289,7 @@ public abstract class Player extends Human {
 
         g.setColor(color);
         g.fillRect(x, y, 10, 30);
+        
     }
 
     public void setColor(Color color) {
