@@ -77,19 +77,16 @@ V				- Class File
 V				- Compute new position
 				- Acting
 T					- Displacement
+T						- Angle
 V					- Compute Cell
 					- Effect on it
-<<<<<<< HEAD
+~						- Destroy function
 						- Dissapear if blocked
 						- Disapear if out of bounds
-=======
-						- Dissappear if blocked
-						- Disappear if out of bounds
->>>>>>> master
 						- Dammage the cell
-						- Hits ennemy
-							-Disapear
-							- Make him wait
+V						- Hits ennemy
+V							-Disapear
+V							- Make him wait
 V		- Vampire
 V		- NC
 V		- Magician

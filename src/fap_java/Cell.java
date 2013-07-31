@@ -316,4 +316,5 @@ public class Cell extends Element{
     public boolean isFrozen() {
         return frozen;
     }
+
 }

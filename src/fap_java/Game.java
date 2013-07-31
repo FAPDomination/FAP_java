@@ -54,7 +54,7 @@ public class Game extends JPanel {
         scoreHandler = new ScoreBar(this);
         
         //Testing :
-        Arrow arr = new Arrow(players.get(0).getCurrent(),2,this);
+        Arrow arr = new Arrow(players.get(0).getCurrent(),2,this,players.get(0));
         //objects.add(arr);
     }
 
@@ -229,5 +229,11 @@ public class Game extends JPanel {
     
     public void addObject(Element e){
         objects.add(e);
+    }
+    
+    public void deleteObject(Element e){
+        if(objects.contains(e)){
+            objects.remove(e);
+        }
     }
 }

@@ -12,18 +12,19 @@ public class Arrow extends Element{
     private int course;
     private Game game;
     private double angle;
+    private Player thrower;
     
     private int offsetY;
     private int offsetX;
     
-    public Arrow(Cell c, int course, Game game) {
+    public Arrow(Cell c, int course, Game game, Player thrower) {
         this.course = course;
         this.current = c;
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0]+(CMap.TW/2);
         this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + CMap.OFFMAP+(CMap.TH/2);
         game.addObject(this);
-        
+        this.thrower = thrower;
         this.initConstants();
     }
     
@@ -44,12 +45,18 @@ public class Arrow extends Element{
         this.x += Params.arrowSpeed*Math.sin(this.angle);
         
         computeCell();
+        Player p;
+        p = game.isOccupied(current);
+        if(p!=null && p!=thrower){
+            p.makeHimWait(Params.howLongBlockingMagician/2);
+            this.destroy();
+        }
     }
     
     public void computeCell(){
         int[] tab = CMap.givePositionTale(x, y-(CMap.TH/2));
         Cell c = game.getMap().getCell(tab);
-        if(c!=null && c != current){
+        if(c != current){
             current = c;
         }
     }
@@ -93,5 +100,9 @@ public class Arrow extends Element{
             offsetX = 0;
             break;
         }
+    }
+    
+    public void destroy(){
+        this.game.deleteObject(this);
     }
 }
