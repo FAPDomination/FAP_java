@@ -37,7 +37,7 @@ public class Arrow extends Element{
     }
 
     public String toString() {
-        return "An arrow";
+        return "An arrow thrown by "+thrower;
     }
     
     public void effect(){
@@ -45,11 +45,27 @@ public class Arrow extends Element{
         this.x += Params.arrowSpeed*Math.sin(this.angle);
         
         computeCell();
+        
+        //Detect ennemy
         Player p;
         p = game.isOccupied(current);
         if(p!=null && p!=thrower){
             p.makeHimWait(Params.howLongBlockingMagician/2);
             this.destroy();
+        }
+        //Detect ennemy's cell
+        if(current != null){
+            Team te = current.getOwner();
+            if(te != thrower.getTeam() && current.getType() == 1){
+                current.setHp(current.getHp()-Params.archerDammage);
+                if(current.getHp()<=0){
+                    current.setOwner(thrower.getTeam());
+                    current.setHp(thrower.getInitHP());
+                }
+            }
+            if(current.isHeight()){
+                this.destroy();
+            }
         }
     }
     

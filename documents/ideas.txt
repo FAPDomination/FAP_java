@@ -11,3 +11,7 @@ ils calculeraient leur aspect en fonction de leur temps de vie
 
 ----- Modification d'un paramètre d'un joueur
 Exemple : pour le booster
+
+----- Flèche
+- Avoid too much calculus with a "parent" cell atribute.
+Démarrer les calculs seulement sur un front montant de current

@@ -1,5 +1,8 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   Tidy the methods lists
+  What happens to the getI, getJ, etc... ?
+  Bugs :
+	- Type of blocking tiles all to 0 ?
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count
@@ -78,15 +81,18 @@ V				- Compute new position
 				- Acting
 T					- Displacement
 T						- Angle
+						- Speed and compute cell bug
 V					- Compute Cell
 					- Effect on it
 ~						- Destroy function
-						- Dissapear if blocked
+V						- Dissapear if blocked
 						- Disapear if out of bounds
-						- Dammage the cell
+V						- Dammage the cell
+~						- COnstant archerDammage
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
+				- Clear Calculus
 V		- Vampire
 V		- NC
 V		- Magician

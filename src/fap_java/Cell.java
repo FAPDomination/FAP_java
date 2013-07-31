@@ -41,7 +41,7 @@ public class Cell extends Element{
         this.did = did;
         this.setType(type);
         this.trap = null;
-        
+        this.owner = null;
     }
     
     public void paintComponent(Graphics g) {
@@ -220,7 +220,7 @@ public class Cell extends Element{
     }
 
     public void setType(int type) {
-        if(type ==20){
+        if(type == 20){
             //this.type = 1;
             walkable = false;
             this.height = true;
@@ -317,4 +317,11 @@ public class Cell extends Element{
         return frozen;
     }
 
+    public void setHeight(boolean height) {
+        this.height = height;
+    }
+
+    public boolean isHeight() {
+        return height;
+    }
 }

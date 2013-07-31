@@ -26,7 +26,7 @@ public class Game extends JPanel {
     //Parameters to be given when starting a new game
     private String whoIsPlaying = "1,8,4,6"; // This is linked with skill, here player 1 is magician
     private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
-    private boolean randStart = true;
+    private boolean randStart = false;
 
     public Game() {
 
