@@ -83,10 +83,10 @@ T					- Displacement
 T						- Angle
 						- Speed and compute cell bug
 V					- Compute Cell
-					- Effect on it
+V					- Effect on it
 ~						- Destroy function
 V						- Dissapear if blocked
-						- Disapear if out of bounds
+V						- Disapear if out of bounds
 V						- Dammage the cell
 ~						- COnstant archerDammage
 V						- Hits ennemy

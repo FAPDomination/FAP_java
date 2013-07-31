@@ -34,6 +34,8 @@ public class Arrow extends Element{
         
         g.setColor(Color.BLACK);
         g.fillRect(x, y+offsetY, 4, 4);
+        
+        g.fillRect(100,100,20,20);
     }
 
     public String toString() {
@@ -64,6 +66,13 @@ public class Arrow extends Element{
                 }
             }
             if(current.isHeight()){
+                this.destroy();
+            }
+        }
+        else{
+            int bound = 10;
+            //System.out.println(game.getWidth());
+            if(this.x < -bound || this.x > game.getWidth()+bound || this.y < -bound || this.y > game.getHeight()+bound){
                 this.destroy();
             }
         }
