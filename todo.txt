@@ -1,5 +1,8 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   Tidy the methods lists
+  What happens to the getI, getJ, etc... ?
+  Bugs :
+	- Type of blocking tiles all to 0 ?
   Not so good :
   	- Player l183 : big repaint
 V 	- TheThread : static count
@@ -10,6 +13,7 @@ V Same time displacements
 ? Get rid of colors
 V Collisions
   Cleaner define of keys in params
+  Tile on Path method
   Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
@@ -74,18 +78,26 @@ V				- Class File
 				- PaintComponent
 					- Offsets
 ~					- Paint
+					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
 				- Acting
 T					- Displacement
+T						- Angle
+						- Tile on path ?
+T						- Speed and compute cell bug
 V					- Compute Cell
-					- Effect on it
-						- Dissappear if blocked
-						- Disappear if out of bounds
-						- Dammage the cell
-						- Hits ennemy
-							-Disapear
-							- Make him wait
+V					- Effect on it
+~						- Destroy function
+V						- Dissapear if blocked
+V						- Disapear if out of bounds
+V						- Dammage the cell
+~						- COnstant archerDammage
+V						- Hits ennemy
+V							-Disapear
+V							- Make him wait
+				- Clear Calculus
+V			- Implement into class
 V		- Vampire
 V		- NC
 V		- Magician

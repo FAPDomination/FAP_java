@@ -60,6 +60,7 @@ public class TheThread implements Runnable{
         count += delay;
         int frame = count / delay;
         myGame.refreshHealthPoints();
+        myGame.repaint();
         if(frame % 4 == 0){
             myGame.updateCellsByOwner();
         }
@@ -67,5 +68,6 @@ public class TheThread implements Runnable{
             myGame.getScoreHandler().computeScores();
         }
         
+        myGame.computeObjects();
     }
 }
