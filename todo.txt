@@ -93,6 +93,7 @@ V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
 				- Clear Calculus
+V			- Implement into class
 V		- Vampire
 V		- NC
 V		- Magician

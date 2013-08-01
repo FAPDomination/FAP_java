@@ -422,4 +422,12 @@ public abstract class Player extends Human {
         
         this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
     }
+
+    public void setOri(int ori) {
+        this.ori = ori;
+    }
+
+    public int getOri() {
+        return ori;
+    }
 }
