@@ -13,6 +13,7 @@ V Same time displacements
 ? Get rid of colors
 V Collisions
   Cleaner define of keys in params
+  Tile on Path method
   Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
@@ -79,9 +80,10 @@ V				- Class File
 					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
-T~				- Acting
+				- Acting
 T					- Displacement
 T						- Angle
+						- Tile on path ?
 T						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it

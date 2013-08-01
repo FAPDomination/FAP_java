@@ -24,7 +24,7 @@ public class Game extends JPanel {
     private ArrayList<Element> objects = new ArrayList<Element>();
     
     //Parameters to be given when starting a new game
-    private String whoIsPlaying = "5,8,4,6"; // This is linked with skill, here player 1 is magician
+    private String whoIsPlaying = "1,8,4,6"; // This is linked with skill, here player 1 is magician
     private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
     private boolean randStart = false;
 
@@ -54,7 +54,7 @@ public class Game extends JPanel {
         scoreHandler = new ScoreBar(this);
         
         //Testing :
-        Arrow arr = new Arrow(players.get(0).getCurrent(),2,this,players.get(0));
+        //Arrow arr = new Arrow(players.get(0).getCurrent(),2,this,players.get(0));
         //objects.add(arr);
     }
 
