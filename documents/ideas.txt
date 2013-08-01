@@ -15,3 +15,6 @@ Exemple : pour le booster
 ----- Flèche
 - Avoid too much calculus with a "parent" cell atribute.
 Démarrer les calculs seulement sur un front montant de current
+----- Special Tiles
+Warp, Switch, to be written in separate cell-extended classes ?
+Also DMap Cells ?

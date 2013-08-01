@@ -1,5 +1,5 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
-  Tidy the methods lists
+  Tidy the methods lists  
   What happens to the getI, getJ, etc... ?
   Bugs :
 	- Type of blocking tiles all to 0 ?
@@ -37,9 +37,9 @@ T TeamPlay
 T	- Implement teams
 T	- TrapCells
 ~	- Warning : the first player sets ALL the params
-	- Cleaner initTeams
+?	- Cleaner initTeams
 V		- Cleaner
-		- Teams 0,1,3 but not 2 : exception
+?		- Teams 0,1,3 but not 2 : exception
   Player init :
 V	- Cleaner init for position
 V	- Random startCell
@@ -105,9 +105,9 @@ V			- Modifying params
 		- Booster
 	- Being blocked on the tile after throwing skill
   Modifying params
-  Add animation
-	- Skills
-	- Warps
+P Add animation
+P	- Skills
+P	- Warps
   Game
 	- Get Params
 		- whoIsPlaying && skills
