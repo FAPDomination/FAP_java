@@ -35,7 +35,6 @@ public class Arrow extends Element{
         g.setColor(Color.BLACK);
         g.fillRect(x, y+offsetY, 4, 4);
         
-        g.fillRect(100,100,20,20);
     }
 
     public String toString() {
