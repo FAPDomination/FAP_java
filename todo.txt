@@ -76,12 +76,13 @@ V				- Class File
 				- PaintComponent
 					- Offsets
 ~					- Paint
+					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
-				- Acting
+T~				- Acting
 T					- Displacement
 T						- Angle
-						- Speed and compute cell bug
+T						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
 ~						- Destroy function
