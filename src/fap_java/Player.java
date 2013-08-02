@@ -168,7 +168,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = 4;
+                ori = 0;
             } else if (keys[1][1] == 1) { // If key DOWN is pressed
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, 1);
