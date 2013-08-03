@@ -8,8 +8,8 @@ import fap_java.Player;
 import fap_java.Team;
 
 public class Archer extends Player{
-    public Archer(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 5,t);
+    public Archer(int id, Cell c, Game game, Team t, boolean ai) {
+        super(id, c, game, 5,t, ai);
     }
 
     public void getSkill() {

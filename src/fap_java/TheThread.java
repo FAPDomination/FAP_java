@@ -61,7 +61,6 @@ public class TheThread implements Runnable{
         int frame = count / delay;
         myGame.refreshHealthPoints();
         myGame.repaint();
-        myGame.fs.executeMethod();
         if(frame % 4 == 0){
             myGame.updateCellsByOwner();
         }
@@ -70,5 +69,6 @@ public class TheThread implements Runnable{
         }
         
         myGame.computeObjects();
+        myGame.executeFSMs();
     }
 }

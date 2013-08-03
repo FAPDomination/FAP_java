@@ -7,8 +7,8 @@ import fap_java.Player;
 import fap_java.Team;
 
 public class Miner extends Player{
-    public Miner(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 3,t);
+    public Miner(int id, Cell c, Game game, Team t, boolean ai) {
+        super(id, c, game, 3,t, ai);
     }
 
         public void getSkill() {

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class Knight extends Player{
     
-    public Knight(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 1,t);
+    public Knight(int id, Cell c, Game game, Team t, boolean ai) {
+        super(id, c, game, 1,t, ai);
     }
 
     public void getSkill() {

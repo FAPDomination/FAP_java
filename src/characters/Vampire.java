@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Vampire extends Player{
-    public Vampire(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 6,t);
+    public Vampire(int id, Cell c, Game game, Team t, boolean ai) {
+        super(id, c, game, 6,t, ai);
     }
 
     public void getSkill() {

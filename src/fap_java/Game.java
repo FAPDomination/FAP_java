@@ -28,8 +28,6 @@ public class Game extends JPanel {
     private String wichTeam = "0,1,0,2"; // Here player n°2 is in team n°0
     private String isFSM = "1,0,0,0";
     private boolean randStart = false;
-    
-    public FSM fs = new FSM();
 
     public Game() {
 
@@ -129,37 +127,38 @@ public class Game extends JPanel {
                     c = startCellsAL.get(pid);
                 }
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
+                boolean ai = isFSM.charAt(i) == '1';
                 Player p;
                 switch(charac){
                     case 1:
-                        p = new Knight(pid, c, this,team);
+                        p = new Knight(pid, c, this,team,ai);
                         break;
                     /*case 2:
                         p = new Warlock(pid, c, this,team);
                         break;*/
                     case 3:
-                        p = new Miner(pid, c, this,team);
+                        p = new Miner(pid, c, this,team,ai);
                         break;
                     case 4:
-                        p = new Warlock(pid, c, this,team);
+                        p = new Warlock(pid, c, this,team,ai);
                         break;
                     case 5:
-                        p = new Archer(pid, c, this,team);
+                        p = new Archer(pid, c, this,team,ai);
                         break;
                     case 6:
-                        p = new Vampire(pid, c, this,team);
+                        p = new Vampire(pid, c, this,team,ai);
                         break;
                     case 7:
-                        p = new NoCharacter(pid, c, this,team);
+                        p = new NoCharacter(pid, c, this,team,ai);
                         break;
                     case 8:
-                        p = new Magician(pid, c, this,team);
+                        p = new Magician(pid, c, this,team,ai);
                         break;
                     case 9:
-                        p = new Booster(pid, c, this,team);
+                        p = new Booster(pid, c, this,team,ai);
                         break;
                 default:
-                    p = new Knight(pid, c, this,team);
+                    p = new Knight(pid, c, this,team,ai);
                     break;
                 }
                 players.add(p);
@@ -237,6 +236,15 @@ public class Game extends JPanel {
     public void deleteObject(Element e){
         if(objects.contains(e)){
             objects.remove(e);
+        }
+    }
+
+    public void executeFSMs() {
+        for(int i=0;i<players.size();i++){
+            Player p = players.get(i);
+            if(p.getFsm() != null){
+                p.getFsm().executeMethod();
+            }
         }
     }
 }

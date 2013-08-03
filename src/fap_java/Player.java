@@ -35,8 +35,10 @@ public abstract class Player extends Human {
     private int[][] keys = new int[5][2];
     //Modification
     private String param;
+    //FSM
+    private FSM fsm;
 
-    public Player(int id, Cell c, Game game, int pc, Team t) {
+    public Player(int id, Cell c, Game game, int pc, Team t, boolean ai) {
         super();
         this.id = id;
         current = c;
@@ -45,7 +47,12 @@ public abstract class Player extends Human {
         this.game = game;
         this.team = t;
         team.addPlayer(this);
-        
+        if(ai){
+            fsm = new FSM();
+        }
+        else{
+            fsm = null;
+        }
         this.pc = pc;
 
         color = Color.RED;
@@ -492,5 +499,13 @@ public abstract class Player extends Human {
               }
             }, time);
         }
+    }
+
+    public void setFsm(FSM fsm) {
+        this.fsm = fsm;
+    }
+
+    public FSM getFsm() {
+        return fsm;
     }
 }
