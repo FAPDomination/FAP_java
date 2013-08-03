@@ -21,7 +21,7 @@ public class Vampire extends Player{
             //Send Skill :
             //Find the cells he owns
             ArrayList<Cell> ownArr = new ArrayList<Cell>();
-            ArrayList<Cell> cellsMap = this.getGame().getMap().getNTakableCells();
+            ArrayList<Cell> cellsMap = this.getGame().getMap().getTakableCells();
             for(int i=0;i<cellsMap.size();i++){
                 Cell c = cellsMap.get(i);
                 if(c!=null && c.getOwner() == this.getTeam()){

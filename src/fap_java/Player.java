@@ -2,6 +2,8 @@ package fap_java;
 
 import characters.Booster;
 
+import characters.Miner;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -32,7 +34,7 @@ public abstract class Player extends Human {
     private double decLifeAuto;
     private Team team;
     //Keys
-    private int[][] keys = new int[5][2];
+    protected int[][] keys = new int[5][2];
     //Modification
     private String param;
     //FSM
