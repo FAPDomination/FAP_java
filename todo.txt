@@ -50,6 +50,8 @@ V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
 	- Init Keys
+		- Init Keys
+		- Not if FSM
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 V	- Ori
@@ -131,9 +133,11 @@ V		- Class File
 ~		- Attributes
 		- States
 			- Picking
-				- Pick the first cell as test
+V				- Pick random cell as test
 				- Real  state
 			- Shifting
+V				- Engage displacement
+				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
 	- Skills
 V ScoreBar
