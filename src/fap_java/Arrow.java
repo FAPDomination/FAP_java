@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Arrow extends Element{
     
     private Cell current;
-    
+        
     private int x;
     private int y;
     private int course;
@@ -45,14 +45,16 @@ public class Arrow extends Element{
         this.y -= Params.arrowSpeed*Math.cos(this.angle);
         this.x += Params.arrowSpeed*Math.sin(this.angle);
         
-        computeCell();
+        boolean b = computeCell();
         
-        //Detect ennemy
-        Player p;
-        p = game.isOccupied(current);
-        if(p!=null && p!=thrower){
-            p.makeHimWait((Params.howLongBlockingMagician*1000)/2);
-            this.destroy();
+        if(b){
+            //Detect ennemy
+            Player p;
+            p = game.isOccupied(current);
+            if(p!=null && p!=thrower){
+                p.makeHimWait((Params.howLongBlockingMagician*1000)/2);
+                this.destroy();
+            }
         }
         //Detect ennemy's cell
         if(current != null){
@@ -77,12 +79,15 @@ public class Arrow extends Element{
         }
     }
     
-    public void computeCell(){
+    public boolean computeCell(){
+        boolean b = false;
         int[] tab = CMap.givePositionTale(x, y-(CMap.TH/2));
         Cell c = game.getMap().getCell(tab);
         if(c != current){
             current = c;
+            b = true;
         }
+        return b;
     }
     
     public void initConstants(){

@@ -74,10 +74,10 @@ V		- Warlock
 		- Archer
 			- Arrow
 V				- Class File
-				- PaintComponent
-					- Offsets
+P				- PaintComponent
+P					- Offsets
 ~					- Paint
-					- Change direction f(ori)
+P					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
 				- Acting
@@ -95,7 +95,8 @@ V						- Dammage the cell
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
-				- Clear Calculus
+~				- Clear Calculus
+				- Matrix Bug
 V			- Implement into class
 V		- Vampire
 V		- NC
