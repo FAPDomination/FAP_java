@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.security.Key;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Player extends Human {
 
@@ -29,6 +31,8 @@ public abstract class Player extends Human {
     private Team team;
     //Keys
     private int[][] keys = new int[5][2];
+    //Modification
+    private String param;
 
     public Player(int id, Cell c, Game game, int pc, Team t) {
         super();
@@ -429,5 +433,56 @@ public abstract class Player extends Human {
 
     public int getOri() {
         return ori;
+    }
+
+    /**
+     * @param param
+     * @param newValue
+     * @param time : the duration of the modification in ms
+     */
+    public void changeParam(String wich, double newValue, int time){
+        Timer timer = new Timer();
+        this.param = wich;
+        boolean go = true;
+        if(param.equals("dispSpeed")){
+            tmax = (int)(game.getThread().getDelay() * newValue);
+        }
+        else if(param.equals("maxHP")){
+            maxHP = (int)newValue;
+        }
+        else if(param.equals("decLifeForced")){
+            decLifeForced = newValue;
+        }
+        else if(param.equals("recovLifeAuto")){
+            recovLifeAuto = newValue;
+        }
+        else if(param.equals("skillTime")){
+            this.setSkillTime((int)(newValue*1000));
+        }
+        else{
+            go = false;
+            }
+        if(go){
+            timer.schedule(new TimerTask() {
+              public void run() {
+                  
+                  if(param.equals("dispSpeed")){
+                      tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+                  }
+                  else if(param.equals("maxHP")){
+                      maxHP = (int)Params.paramTable.get("maxHP")[pc];
+                  }
+                  else if(param.equals("decLifeForced")){
+                      decLifeForced = Params.paramTable.get("decLifeForced")[pc];
+                  }
+                  else if(param.equals("recovLifeAuto")){
+                      recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+                  }
+                  else if(param.equals("skillTime")){
+                      setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
+                  }
+              }
+            }, time);
+        }
     }
 }

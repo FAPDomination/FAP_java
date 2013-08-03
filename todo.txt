@@ -71,8 +71,8 @@ V	- Create objects
 V		- Knight
 		- Miner
 V		- Warlock
-		- Archer
-			- Arrow
+PT?~		- Archer
+PT?~			- Arrow
 V				- Class File
 P				- PaintComponent
 P					- Offsets
@@ -80,7 +80,7 @@ P					- Offsets
 P					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
-				- Acting
+T?~				- Acting
 T					- Displacement
 T						- Angle
 ?						- Tile on path ?
@@ -106,6 +106,10 @@ V			- Modifying params
 		- Booster
 V	- Being blocked on the tile after throwing skill
   Modifying params
+	- Timer
+	- Implement all params
+	- Pointer to escape the double switch
+	- Way to pass param to the timer
   Add animation
 	- Skills
 	- Warps
