@@ -50,7 +50,7 @@ public class Arrow extends Element{
         //Detect ennemy
         Player p;
         p = game.isOccupied(current);
-        if(p!=null && p!=thrower){
+        if(p!=null){
             p.makeHimWait((Params.howLongBlockingMagician*1000)/2);
             this.destroy();
         }
