@@ -9,6 +9,8 @@ public class Params {
     public static boolean gameOfLife = true;
     public static int nNeighboursConwell = 1;
     public static int higherMaxHP = 200;
+    public static int frozenTime = 4*1000;
+    public static double frozenFac = 3;
     public static double gainLifeFactorMultiplier = 1.5;    //For healthy healthy
     public static int delay = 40;
     public static double decLifeCountDown = 1;
@@ -16,6 +18,7 @@ public class Params {
     public static int idblockingLow = 200;
     public static int giveScore = 2;
     public static int rPoints = 2;
+    
     
     //skills
     public static int howLongBlockingMagician;

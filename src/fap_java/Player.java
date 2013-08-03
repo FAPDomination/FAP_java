@@ -1,5 +1,7 @@
 package fap_java;
 
+import characters.Booster;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -230,6 +232,12 @@ public abstract class Player extends Human {
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
+            
+            //Check frozen cell :
+            if(current.isFrozen() && !(this instanceof Booster)){
+                int value = (int)((Params.paramTable.get("dispSpeed")[pc])*Params.frozenFac);
+                this.changeParam("dispSpeed", value, Params.frozenTime);
+            }
 
             switch (current.getType()) {
             case 10: // Warp
@@ -414,7 +422,7 @@ public abstract class Player extends Human {
     
     public void initParams(){
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
-
+        System.out.println(tmax);
         initHP = 100;
         maxHP = (int)Params.paramTable.get("maxHP")[pc];
         decLifeForced = Params.paramTable.get("decLifeForced")[pc];

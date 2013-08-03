@@ -4,7 +4,9 @@
   Bugs :
 	- Type of blocking tiles all to 0 ?
   Not so good :
-  	- Player l183 : big repaint
+O? 	- Player l183 : big repaint
+O		- Get a lighter repaint
+?		- Get it inside the walkable block
 V 	- TheThread : static count
   Displacement Hexa
 V	- Hexa
@@ -14,12 +16,14 @@ V Same time displacements
 V Collisions
   Cleaner define of keys in params
   Tile on Path method
-  Special Tiles
+? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
 V		- Higher maxHP
 V		- quicker recovery
-	- Frozen
+V	- Frozen
+V		- Implement
+V		- Booster Imuned
   Complete shiftStick
 	- Switch on type
 		- move to Cell.activateTile ?
@@ -103,13 +107,13 @@ V		- NC
 V		- Magician
 V			- Detecting players
 V			- Modifying params
-		- Booster
+V		- Booster
 V	- Being blocked on the tile after throwing skill
-  Modifying params
-	- Timer
-	- Implement all params
-	- Pointer to escape the double switch
-	- Way to pass param to the timer
+O Modifying params
+V	- Timer
+V	- Implement all params
+O	- Pointer to escape the double switch
+O	- Way to pass param to the timer
   Add animation
 	- Skills
 	- Warps
