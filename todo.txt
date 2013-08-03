@@ -96,7 +96,7 @@ V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
 ~				- Clear Calculus
-				- Matrix Bug
+?				- Matrix Bug
 V			- Implement into class
 V		- Vampire
 V		- NC
