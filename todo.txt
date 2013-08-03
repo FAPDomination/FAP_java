@@ -26,10 +26,10 @@ V		- Implement
 V		- Booster Imuned
   Complete shiftStick
 	- Switch on type
-		- move to Cell.activateTile ?
+?		- move to Cell.activateTile ?
 V		- Warp
 		- Switch
-		- NPC exit
+P		- NPC exit
 V	- TrapCells
 T		- Blast method
 T		- Trap system
@@ -117,11 +117,18 @@ O	- Way to pass param to the timer
   Add animation
 	- Skills
 	- Warps
+	- Traps
   Game
 	- Get Params
 		- whoIsPlaying && skills
 		- wichTeam
 		- randStart
+  AI
+	- States
+	- Object
+		- Class File
+		- Attributes
+	- Skills
 V ScoreBar
 V	- Get nCells
 V	- Update scores
