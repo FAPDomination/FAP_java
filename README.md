@@ -1,7 +1,8 @@
 FAP_java
 ========
 
-Petite explication sur la légende dans le todo :\n
+Petite explication sur la légende dans le todo :
+
 V : tâche finie
 P : Pas maintenant (impossible ou inutile à l'heure actuelle avec le code présent)
 ? : cette tâche est-elle vraiment nécessaire ?
