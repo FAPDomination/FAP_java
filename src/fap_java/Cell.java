@@ -26,6 +26,7 @@ public class Cell extends Element{
     private boolean frozen;
     
     private Player minerSelect;
+    private boolean minerSing;
     
     public Cell(int i, int j, int type, int did) {
         this(i, j, type,"", did);
@@ -44,6 +45,8 @@ public class Cell extends Element{
         this.setType(type);
         this.trap = null;
         this.owner = null;
+        this.minerSing = false;
+        
         }
     
     public void paintComponent(Graphics g) {
@@ -65,6 +68,10 @@ public class Cell extends Element{
         if(minerSelect != null){
             g.setColor(minerSelect.getColor());
             g.fillRect(x, y, CMap.TW, CMap.TH);
+            if(this.minerSing){
+                g.setColor(Color.black);
+                g.fillRect(x+CMap.TW/2,y+CMap.TH/2,4,4);
+            }
         }
         else{
         if(owner == null){
@@ -341,5 +348,13 @@ public class Cell extends Element{
 
     public Player getMinerSelect() {
         return minerSelect;
+    }
+
+    public void setMinerSing(boolean minerSing) {
+        this.minerSing = minerSing;
+    }
+
+    public boolean isMinerSing() {
+        return minerSing;
     }
 }
