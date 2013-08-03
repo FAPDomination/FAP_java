@@ -25,6 +25,8 @@ public class Cell extends Element{
     private boolean unstable;
     private boolean frozen;
     
+    private Player minerSelect;
+    
     public Cell(int i, int j, int type, int did) {
         this(i, j, type,"", did);
     }
@@ -42,7 +44,7 @@ public class Cell extends Element{
         this.setType(type);
         this.trap = null;
         this.owner = null;
-    }
+        }
     
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
@@ -60,7 +62,11 @@ public class Cell extends Element{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         
         */
-        
+        if(minerSelect != null){
+            g.setColor(minerSelect.getColor());
+            g.fillRect(x, y, CMap.TW, CMap.TH);
+        }
+        else{
         if(owner == null){
             g.setColor(Color.BLACK);
         }
@@ -74,6 +80,7 @@ public class Cell extends Element{
             g.setColor(Color.pink);
         }
         g.drawRect(x, y, CMap.TW, CMap.TH);
+        }
         
         if(hp > 0){
             g.drawString("" + (int) hp, x + 5, y + 10);
@@ -326,5 +333,13 @@ public class Cell extends Element{
 
     public boolean isHeight() {
         return height;
+    }
+
+    public void setMinerSelect(Player minerSelect) {
+        this.minerSelect = minerSelect;
+    }
+
+    public Player getMinerSelect() {
+        return minerSelect;
     }
 }

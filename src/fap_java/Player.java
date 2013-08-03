@@ -2,6 +2,8 @@ package fap_java;
 
 import characters.Booster;
 
+import characters.Miner;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -283,6 +285,10 @@ public abstract class Player extends Human {
 
     public void keyLow(int i) {
         keys[i][1] = 0;
+        if(this instanceof Miner){
+            Miner m = (Miner) this;
+            m.setSelecting(false);
+        }
     }
 
     public void paintComponent(Graphics g) {
