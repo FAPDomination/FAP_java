@@ -246,6 +246,9 @@ public class Cell extends Element{
             else if(addParam.charAt(0)=='u'){
                 unstable = true;
             }
+            else if(addParam.charAt(0)== 'f'){
+                frozen = true;
+            }
         }
     }
 

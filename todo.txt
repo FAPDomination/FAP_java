@@ -4,7 +4,9 @@
   Bugs :
 	- Type of blocking tiles all to 0 ?
   Not so good :
-  	- Player l183 : big repaint
+O? 	- Player l183 : big repaint
+O		- Get a lighter repaint
+?		- Get it inside the walkable block
 V 	- TheThread : static count
   Displacement Hexa
 V	- Hexa
@@ -14,12 +16,14 @@ V Same time displacements
 V Collisions
   Cleaner define of keys in params
   Tile on Path method
-  Special Tiles
+? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
 V		- Higher maxHP
 V		- quicker recovery
-	- Frozen
+V	- Frozen
+V		- Implement
+V		- Booster Imuned
   Complete shiftStick
 	- Switch on type
 		- move to Cell.activateTile ?
@@ -37,9 +41,9 @@ T TeamPlay
 T	- Implement teams
 T	- TrapCells
 ~	- Warning : the first player sets ALL the params
-	- Cleaner initTeams
+O	- Cleaner initTeams
 V		- Cleaner
-		- Teams 0,1,3 but not 2 : exception
+O		- Teams 0,1,3 but not 2 : exception
   Player init :
 V	- Cleaner init for position
 V	- Random startCell
@@ -72,19 +76,19 @@ V		- Knight
 		- Miner
 			- Create Branch
 V		- Warlock
-		- Archer
-			- Arrow
+PT?~		- Archer
+PT?~			- Arrow
 V				- Class File
-				- PaintComponent
-					- Offsets
+P				- PaintComponent
+P					- Offsets
 ~					- Paint
-					- Change direction f(ori)
+P					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
-				- Acting
+T?~				- Acting
 T					- Displacement
 T						- Angle
-						- Tile on path ?
+?						- Tile on path ?
 T						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
@@ -96,16 +100,21 @@ V						- Dammage the cell
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
-				- Clear Calculus
+~				- Clear Calculus
+?				- Matrix Bug
 V			- Implement into class
 V		- Vampire
 V		- NC
 V		- Magician
 V			- Detecting players
 V			- Modifying params
-		- Booster
-	- Being blocked on the tile after throwing skill
-  Modifying params
+V		- Booster
+V	- Being blocked on the tile after throwing skill
+O Modifying params
+V	- Timer
+V	- Implement all params
+O	- Pointer to escape the double switch
+O	- Way to pass param to the timer
   Add animation
 	- Skills
 	- Warps

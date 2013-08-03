@@ -1,11 +1,15 @@
 package fap_java;
 
+import characters.Booster;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
 import java.security.Key;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Player extends Human {
 
@@ -29,6 +33,8 @@ public abstract class Player extends Human {
     private Team team;
     //Keys
     private int[][] keys = new int[5][2];
+    //Modification
+    private String param;
 
     public Player(int id, Cell c, Game game, int pc, Team t) {
         super();
@@ -168,7 +174,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = 4;
+                ori = 0;
             } else if (keys[1][1] == 1) { // If key DOWN is pressed
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, 1);
@@ -226,6 +232,12 @@ public abstract class Player extends Human {
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
+            
+            //Check frozen cell :
+            if(current.isFrozen() && !(this instanceof Booster)){
+                int value = (int)((Params.paramTable.get("dispSpeed")[pc])*Params.frozenFac);
+                this.changeParam("dispSpeed", value, Params.frozenTime);
+            }
 
             switch (current.getType()) {
             case 10: // Warp
@@ -402,15 +414,15 @@ public abstract class Player extends Human {
         return team;
     }
     
-    //Make the player wait for "delay" seconds
+    //Make the player wait for "delay" m-seconds
     public void makeHimWait(int delay){
         //Modify date of last displacement into the FUTCHA
-        this.setLastDisplacement(this.getGame().getThread().getCount()+delay*1000);
+        this.setLastDisplacement(this.getGame().getThread().getCount()+delay);
     }
     
     public void initParams(){
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
-
+        //System.out.println(tmax);
         initHP = 100;
         maxHP = (int)Params.paramTable.get("maxHP")[pc];
         decLifeForced = Params.paramTable.get("decLifeForced")[pc];
@@ -429,5 +441,56 @@ public abstract class Player extends Human {
 
     public int getOri() {
         return ori;
+    }
+
+    /**
+     * @param param
+     * @param newValue
+     * @param time : the duration of the modification in ms
+     */
+    public void changeParam(String wich, double newValue, int time){
+        Timer timer = new Timer();
+        this.param = wich;
+        boolean go = true;
+        if(param.equals("dispSpeed")){
+            tmax = (int)(game.getThread().getDelay() * newValue);
+        }
+        else if(param.equals("maxHP")){
+            maxHP = (int)newValue;
+        }
+        else if(param.equals("decLifeForced")){
+            decLifeForced = newValue;
+        }
+        else if(param.equals("recovLifeAuto")){
+            recovLifeAuto = newValue;
+        }
+        else if(param.equals("skillTime")){
+            this.setSkillTime((int)(newValue*1000));
+        }
+        else{
+            go = false;
+            }
+        if(go){
+            timer.schedule(new TimerTask() {
+              public void run() {
+                  
+                  if(param.equals("dispSpeed")){
+                      tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+                  }
+                  else if(param.equals("maxHP")){
+                      maxHP = (int)Params.paramTable.get("maxHP")[pc];
+                  }
+                  else if(param.equals("decLifeForced")){
+                      decLifeForced = Params.paramTable.get("decLifeForced")[pc];
+                  }
+                  else if(param.equals("recovLifeAuto")){
+                      recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+                  }
+                  else if(param.equals("skillTime")){
+                      setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
+                  }
+              }
+            }, time);
+        }
     }
 }

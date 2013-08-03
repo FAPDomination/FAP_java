@@ -17,7 +17,7 @@ public class Vampire extends Player{
     public void getSkill() {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
-            System.out.println("*BANG*");
+            //System.out.println("*BANG*");
             //Send Skill :
             //Find the cells he owns
             ArrayList<Cell> ownArr = new ArrayList<Cell>();
@@ -50,6 +50,8 @@ public class Vampire extends Player{
                 Cell c = ownArr.get(i);
                 c.setHp(c.getHp()+amountProCell);
             }
+            
+            this.makeHimWait(Params.timeAfterSkill);
         }
     }
     }
