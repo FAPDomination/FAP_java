@@ -31,6 +31,8 @@ public class Params {
     public static double warriorDammage;
     public static int minerNCells;
     
+    public static int timeAfterSkill = 1000; //in m-second
+    
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
 }

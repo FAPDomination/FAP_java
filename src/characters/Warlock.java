@@ -14,11 +14,13 @@ public class Warlock extends Player{
     public void getSkill() {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
-            System.out.println("*BANG*");
+            //System.out.println("*BANG*");
             //Send Skill :
             Cell current = this.getCurrent();
             current.setTrap(this.getTeam());
             //Add animation
+            
+            this.makeHimWait(Params.timeAfterSkill);
         }
     }
     }

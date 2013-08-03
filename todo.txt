@@ -37,9 +37,9 @@ T TeamPlay
 T	- Implement teams
 T	- TrapCells
 ~	- Warning : the first player sets ALL the params
-	- Cleaner initTeams
+O	- Cleaner initTeams
 V		- Cleaner
-		- Teams 0,1,3 but not 2 : exception
+O		- Teams 0,1,3 but not 2 : exception
   Player init :
 V	- Cleaner init for position
 V	- Random startCell
@@ -83,7 +83,7 @@ V				- Compute new position
 				- Acting
 T					- Displacement
 T						- Angle
-						- Tile on path ?
+?						- Tile on path ?
 T						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
@@ -103,7 +103,7 @@ V		- Magician
 V			- Detecting players
 V			- Modifying params
 		- Booster
-	- Being blocked on the tile after throwing skill
+V	- Being blocked on the tile after throwing skill
   Modifying params
   Add animation
 	- Skills
