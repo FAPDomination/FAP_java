@@ -33,6 +33,7 @@ P		- NPC exit
 V	- TrapCells
 T		- Blast method
 T		- Trap system
+	- Rewrite properly with objects, you flashy
 V refreshHealthPoints
 V stickActivateTile
 P Depth
@@ -126,8 +127,14 @@ O	- Way to pass param to the timer
   AI
 	- States
 	- Object
-		- Class File
-		- Attributes
+V		- Class File
+~		- Attributes
+		- States
+			- Picking
+				- Pick the first cell as test
+				- Real  state
+			- Shifting
+			- Analysing
 	- Skills
 V ScoreBar
 V	- Get nCells

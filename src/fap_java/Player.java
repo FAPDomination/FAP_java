@@ -48,7 +48,7 @@ public abstract class Player extends Human {
         this.team = t;
         team.addPlayer(this);
         if(ai){
-            fsm = new FSM();
+            fsm = new FSM(this);
         }
         else{
             fsm = null;
@@ -118,9 +118,6 @@ public abstract class Player extends Human {
     public void keyHigh(int i) {
         keys[i][1] = 1;
 
-        // Test if displacement is allowed
-        if (game.getThread().getCount() - lastDisplacement >= tmax) {
-            lastDisplacement = game.getThread().getCount();
             //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
             // Hexa displacements :
             // Left + Down
@@ -190,7 +187,6 @@ public abstract class Player extends Human {
                 }
                 ori = 3;
             }
-        }
         if (i == 4) { //Skill
             this.getSkill();
         }
@@ -198,15 +194,24 @@ public abstract class Player extends Human {
     }
 
     public void shiftStick(int dx, int dy) {
-        // Get the position of the stick
-        int[] talArr = new int[2];
-        talArr[0] = current.getI();
-        talArr[1] = current.getJ();
-        // Get the supposed new position of the stick
-        int[] tal2Arr = new int[2];
-        tal2Arr[0] = talArr[0] + dy;
-        tal2Arr[1] = talArr[1] + dx;
-        Cell c = game.getMap().getCell(tal2Arr);
+        // Test if displacement is allowed
+        if (game.getThread().getCount() - lastDisplacement >= tmax) {
+            lastDisplacement = game.getThread().getCount();
+        Cell c;
+        if(this.fsm != null){
+            c = fsm.getNextCell();
+        }
+        else{
+            // Get the position of the stick
+            int[] talArr = new int[2];
+            talArr[0] = current.getI();
+            talArr[1] = current.getJ();
+            // Get the supposed new position of the stick
+            int[] tal2Arr = new int[2];
+            tal2Arr[0] = talArr[0] + dy;
+            tal2Arr[1] = talArr[1] + dx;
+            c = game.getMap().getCell(tal2Arr);
+        }
         //trace(myMap[tal2Arr[0]][tal2Arr[1]][0]);
         /*
                     Variable: walkable
@@ -279,7 +284,7 @@ public abstract class Player extends Human {
                 break;
             }
         }
-
+        }
         //Test  trap Cell
         //-----
 

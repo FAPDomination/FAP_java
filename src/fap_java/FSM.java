@@ -3,6 +3,7 @@ package fap_java;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,11 @@ public class FSM{
     private FSM_State currentState;
     private FSM_State prevState;
     private FSM_Event currentEvent;
-
+    
+    private Cell nextCell;
+    
+    private Player body;
+    
     private boolean fsmGo;
     
     //States
@@ -21,10 +26,11 @@ public class FSM{
     //Events
     public static FSM_Event ev_done = new FSM_Event(0);
 
-    public FSM() {
+    public FSM(Player p) {
     //    super(id, c, game, pc, t);
         fsmGo = true;
         currentState = picking;
+        body = p;
         initFSM();
     }
 
@@ -47,17 +53,18 @@ public class FSM{
     }
 
     public void pickCell() {
-        System.out.println("PickCell, sending Done");
+        ArrayList<Cell> neighborHoodList = this.body.getGame().getMap().surroundingCells(this.body.getCurrent());
+        Cell c = neighborHoodList.get(Tools.randRange(0, 5));
+        nextCell = c;
         this.fsm_receive_event(ev_done, null);
     }
 
     public void shiftToPicked() {
-        System.out.println("ShiftToPicked, sending Done");
+        body.shiftStick(0,0);
         this.fsm_receive_event(ev_done, null);
     }
     
     public void analyseCurCell() {
-        System.out.println("Analyse, sending Done");
         this.fsm_receive_event(ev_done, null);
     }
     
@@ -92,5 +99,13 @@ public class FSM{
         picking.addTransition(ev_done, shifting);
         shifting.addTransition(ev_done, analysing);
         analysing.addTransition(ev_done, picking);
+    }
+
+    public void setNextCell(Cell nextCell) {
+        this.nextCell = nextCell;
+    }
+
+    public Cell getNextCell() {
+        return nextCell;
     }
 }
