@@ -6,13 +6,19 @@ import fap_java.Params;
 import fap_java.Player;
 import fap_java.Team;
 
+import fap_java.Tools;
+
+import java.util.ArrayList;
+
 public class Miner extends Player{
     
     private boolean selecting;
+    private ArrayList<Cell> randCells;
     
     public Miner(int id, Cell c, Game game, Team t) {
         super(id, c, game, 3,t);
         selecting = false;
+        randCells = new ArrayList<Cell>();
     }
 
         public void getSkill() {
@@ -21,6 +27,14 @@ public class Miner extends Player{
                 //System.out.println("*BANG*");
                 //Send Skill :
                 selecting = true;
+                ArrayList<Cell> takable = this.getGame().getMap().getTakableCells();
+                for(int k=0;k<Params.minerNCells;k++){
+                    int rand = Tools.randRange(0, takable.size()-1);
+                    Cell c = takable.get(rand);
+                    takable.remove(c);
+                    c.setMinerSelect(this);
+                    randCells.add(c);
+                }
                 this.makeHimWait(Params.timeAfterSkill);
             }
         }
@@ -31,5 +45,27 @@ public class Miner extends Player{
 
     public boolean isSelecting() {
         return selecting;
+    }
+    
+    public void keyHigh(int i) {
+        super.keys[i][1] = 1;
+        if(this.selecting){
+            
+        }
+        else{
+            super.keyHigh(i);
+        }
+    }
+    
+    public void keyLow(int i) {
+        super.keyLow(i);
+        if (i == 4) { //Skill
+           selecting = false;
+           for(int j=0;j<randCells.size();j++){
+               Cell c = randCells.get(j);
+               c.setMinerSelect(null);
+           }
+           this.randCells = new ArrayList<Cell>();
+        }
     }
 }

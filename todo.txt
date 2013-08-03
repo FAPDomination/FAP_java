@@ -79,9 +79,14 @@ V		- Knight
 		- Miner
 V			- Cell
 V				- Special param
-~				- Special paintComponent
+T~				- Special paintComponent
 			- Miner
-				- Special Param
+V				- Special Param
+V				- Pick random Cells
+				- Select one
+					- Override keyHigh
+					- handle keyPressing
+				- Teleport
 V		- Warlock
 PT?~		- Archer
 PT?~			- Arrow

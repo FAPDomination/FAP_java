@@ -216,7 +216,7 @@ public class CMap {
         return surroundingCells;
     };
 
-    public ArrayList<Cell> getNTakableCells() {
+    public ArrayList<Cell> getTakableCells() {
         ArrayList<Cell> cells = new ArrayList<Cell>();
         for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);

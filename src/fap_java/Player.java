@@ -34,7 +34,7 @@ public abstract class Player extends Human {
     private double decLifeAuto;
     private Team team;
     //Keys
-    private int[][] keys = new int[5][2];
+    protected int[][] keys = new int[5][2];
     //Modification
     private String param;
 
@@ -285,10 +285,6 @@ public abstract class Player extends Human {
 
     public void keyLow(int i) {
         keys[i][1] = 0;
-        if(this instanceof Miner){
-            Miner m = (Miner) this;
-            m.setSelecting(false);
-        }
     }
 
     public void paintComponent(Graphics g) {
