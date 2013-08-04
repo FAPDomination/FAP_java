@@ -153,6 +153,12 @@ V				- Pick random cell as test
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
+		- getWeight
+V			- General weights
+			- change ennemy f(score)
+			- warp weight
+				- parse destination cell
+				- compute zone weight
 	- Skills
 V ScoreBar
 V	- Get nCells

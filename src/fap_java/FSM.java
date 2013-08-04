@@ -108,4 +108,33 @@ public class FSM{
     public Cell getNextCell() {
         return nextCell;
     }
+    
+    public int getWeight(Cell c){
+            int w;
+            int type = c.getType();
+            if(!c.isWalkable()){
+                    w = 0;
+            }
+            else if(c.getOwner() != null){
+                if(c.getOwner() == body.getTeam()){
+                    w = 2;
+                }
+                else{
+                    w = 8;
+                }
+            }
+            else{
+                switch(c.getType()){
+                case 1:
+                    w=9;
+                    break;
+                case 10:
+                    w=3;
+                case 11:
+                    w=3;
+                    break;
+                }
+            }
+            return w;
+    }
 }
