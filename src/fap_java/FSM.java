@@ -22,6 +22,7 @@ public class FSM{
     
     private boolean fsmGo;
     private Object fsm_param;
+    private Object fsm_secParam;
     
     //States
     public static FSM_State picking = new FSM_State(0,"pickCell");
@@ -29,6 +30,8 @@ public class FSM{
     public static FSM_State analysing = new FSM_State(2,"analyseCurCell");
     public static FSM_State waiting = new FSM_State(3,"waitForIt");
     public static FSM_State staying = new FSM_State(4,"stay");
+    public static FSM_State pathDefine = new FSM_State(4,"definePath");
+    public static FSM_State pathFollow = new FSM_State(4,"followPath");
     //Events
     public static FSM_Event ev_done = new FSM_Event(0);
     public static FSM_Event ev_error = new FSM_Event(1);
@@ -116,6 +119,16 @@ public class FSM{
     public void waitForIt(){
         body.makeHimWait((Integer)fsm_param);
         this.fsm_receive_event(ev_done, null);
+    }
+    
+    public void definePath(){
+        //Dis is da path, yo
+        //the wantedCell is in the param
+        //have to define if the path will be direct (no waiting on cell for conquering) or  not
+    }
+    
+    public void followPath(){
+        
     }
     
     public void stay(){

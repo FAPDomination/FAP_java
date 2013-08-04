@@ -162,6 +162,7 @@ V				- reactionTime
 			- DefinePath
 				- Cell as param
 				- Pathfinding
+				- Emergency (no conquering) toggle
 			- Follow Path
 				- read list
 				- wait for being on list's next cell
@@ -172,6 +173,12 @@ V			- General weights
 				- parse destination cell
 				- compute zone weight
 	- Skills
+	- Levels
+  PathFinding
+V	- Classes files
+	- Convert flash => Java
+	- Test
+	- Make all static and getable
 V ScoreBar
 V	- Get nCells
 V	- Update scores
