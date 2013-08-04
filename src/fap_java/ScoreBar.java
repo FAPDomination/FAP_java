@@ -13,7 +13,7 @@ public class ScoreBar {
     public ScoreBar(Game game) {
         super();
         this.game = game;
-        totalTakable = game.getMap().getNTakableCells().size();
+        totalTakable = game.getMap().getTakableCells().size();
     }
     
     public void computeScores(){

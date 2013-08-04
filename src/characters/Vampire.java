@@ -17,11 +17,11 @@ public class Vampire extends Player{
     public void getSkill() {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
-            System.out.println("*BANG*");
+            //System.out.println("*BANG*");
             //Send Skill :
             //Find the cells he owns
             ArrayList<Cell> ownArr = new ArrayList<Cell>();
-            ArrayList<Cell> cellsMap = this.getGame().getMap().getNTakableCells();
+            ArrayList<Cell> cellsMap = this.getGame().getMap().getTakableCells();
             for(int i=0;i<cellsMap.size();i++){
                 Cell c = cellsMap.get(i);
                 if(c!=null && c.getOwner() == this.getTeam()){
@@ -50,6 +50,8 @@ public class Vampire extends Player{
                 Cell c = ownArr.get(i);
                 c.setHp(c.getHp()+amountProCell);
             }
+            
+            this.makeHimWait(Params.timeAfterSkill);
         }
     }
     }

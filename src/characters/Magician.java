@@ -17,7 +17,7 @@ public class Magician extends Player{
         public void getSkill() {
             if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
                 this.setLastSkill(this.getGame().getThread().getCount());
-                System.out.println("*BANG*");
+                //System.out.println("*BANG*");
                 //Send Skill :
                 int nRings = Params.howManyRingsIstheMagicianActive;
                 Map<Integer, ArrayList<Cell>> ringsOfCells = this.getGame().getMap().ringsSurrounding(this.getCurrent(), nRings);
@@ -30,11 +30,12 @@ public class Magician extends Player{
                         Player p = this.getGame().isOccupied(c);
                         if(p != null && p.getTeam()!=this.getTeam()){
                             //p.blast(10);
-                            p.makeHimWait(Params.howLongBlockingMagician);
+                            p.makeHimWait(Params.howLongBlockingMagician*1000);
                             //Add animation
                         }
                     }
                 }
+                this.makeHimWait(Params.timeAfterSkill);
             }
         }
         }

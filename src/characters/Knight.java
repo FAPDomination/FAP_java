@@ -43,6 +43,8 @@ public class Knight extends Player{
                                   //  attachAnimation("sKnight", stick._x, stick._y);
             
             this.setLastSkill(this.getGame().getThread().getCount());
+            //He isn't blocked after throwing his skill
+            //this.makeHimWait(Params.timeAfterSkill);
         }
     }
 }

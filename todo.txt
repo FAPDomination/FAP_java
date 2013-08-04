@@ -4,7 +4,9 @@
   Bugs :
 	- Type of blocking tiles all to 0 ?
   Not so good :
-  	- Player l183 : big repaint
+O? 	- Player l183 : big repaint
+O		- Get a lighter repaint
+?		- Get it inside the walkable block
 V 	- TheThread : static count
   Displacement Hexa
 V	- Hexa
@@ -14,21 +16,24 @@ V Same time displacements
 V Collisions
   Cleaner define of keys in params
   Tile on Path method
-  Special Tiles
+? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
 V		- Higher maxHP
 V		- quicker recovery
-	- Frozen
+V	- Frozen
+V		- Implement
+V		- Booster Imuned
   Complete shiftStick
 	- Switch on type
-		- move to Cell.activateTile ?
+?		- move to Cell.activateTile ?
 V		- Warp
 		- Switch
-		- NPC exit
+P		- NPC exit
 V	- TrapCells
 T		- Blast method
 T		- Trap system
+	- Rewrite properly with objects, you flashy
 V refreshHealthPoints
 V stickActivateTile
 P Depth
@@ -37,14 +42,22 @@ T TeamPlay
 T	- Implement teams
 T	- TrapCells
 ~	- Warning : the first player sets ALL the params
+<<<<<<< HEAD
 ?	- Cleaner initTeams
 V		- Cleaner
 ?		- Teams 0,1,3 but not 2 : exception
+=======
+O	- Cleaner initTeams
+V		- Cleaner
+O		- Teams 0,1,3 but not 2 : exception
+>>>>>>> master
   Player init :
 V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
 	- Init Keys
+		- Init Keys
+		- Not if FSM
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 V	- Ori
@@ -65,25 +78,38 @@ V	- Parse the paramTable
 V		- Generic
 V		- specParam
 V	- English translation
-  Skills
+V Skills
 V	- Create objects
-	- Function getSkill
+V	- Function getSkill
 V		- Knight
-		- Miner
+V		- Miner
+V			- Cell
+V				- Special params
+~				- Special paintComponent
+V			- Miner
+V				- Special Param
+V				- Pick random Cells
+V				- Select one
+V					- Override keyHigh
+V					- handle keyPressing
+~					- Cursor
+~						- PaintComponent
+V				- Teleport
+T				- SkillTime odd ?
 V		- Warlock
-		- Archer
-			- Arrow
+PT?~		- Archer
+PT?~			- Arrow
 V				- Class File
-				- PaintComponent
-					- Offsets
+P				- PaintComponent
+P					- Offsets
 ~					- Paint
-					- Change direction f(ori)
+P					- Change direction f(ori)
 ~				- Attributes
 V				- Compute new position
-				- Acting
+T?~				- Acting
 T					- Displacement
 T						- Angle
-						- Tile on path ?
+?						- Tile on path ?
 T						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
@@ -95,24 +121,88 @@ V						- Dammage the cell
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
-				- Clear Calculus
+~				- Clear Calculus
+?				- Matrix Bug
 V			- Implement into class
 V		- Vampire
 V		- NC
 V		- Magician
 V			- Detecting players
 V			- Modifying params
+<<<<<<< HEAD
 		- Booster
 	- Being blocked on the tile after throwing skill
   Modifying params
 P Add animation
 P	- Skills
 P	- Warps
+=======
+V		- Booster
+V	- Being blocked on the tile after throwing skill
+O Modifying params
+V	- Timer
+V	- Implement all params
+O	- Pointer to escape the double switch
+O	- Way to pass param to the timer
+  Add animation
+	- Skills
+	- Warps
+	- Traps
+	- Miner Warp
+>>>>>>> master
   Game
 	- Get Params
 		- whoIsPlaying && skills
 		- wichTeam
 		- randStart
+  AI
+	- States
+	- Object
+V		- Class File
+~		- Attributes
+		- Complete the state-transition table
+		- States
+P			- Picking
+V				- Pick random cell as test
+V				- Real  state
+			- Shifting
+V				- Engage displacement
+				- Count if the tile is blocked (timeout or "try"out)
+			- Analysing
+V				- Analyse cell
+V				- Analyse Area
+V					- Get Weight
+V					- Toggle escape
+P					- Get it lighter with a parent/current thing
+				- Find good Cell
+					- use method
+					- toggle escape
+				- Escape to pathFinding
+V			- waiting
+V				- System
+V				- reactionTime
+			- DefinePath
+				- Cell as param
+				- Pathfinding
+			- Follow Path
+				- read list
+				- wait for being on list's next cell
+		- getWeight
+V			- General weights
+			- change ennemy f(score)
+			- warp weight
+				- parse destination cell
+				- compute zone weight
+		- findGoodCell
+V		- areaWeight
+V			- Param Ring
+V			- compute and return
+	- Skills
+	- Levels
+		- Ideas of what should depend on level
+			- nRings in areaWeight
+			- Weight toggle for changing area
+		- Init when creating FSM object
 V ScoreBar
 V	- Get nCells
 V	- Update scores
