@@ -146,9 +146,9 @@ O	- Way to pass param to the timer
 V		- Class File
 ~		- Attributes
 		- States
-			- Picking
+P			- Picking
 V				- Pick random cell as test
-				- Real  state
+V				- Real  state
 			- Shifting
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)

@@ -86,6 +86,7 @@ public class FSM{
     }
     
     public void analyseCurCell() {
+        System.out.println(body.getCurrent());
         this.fsm_receive_event(ev_done, null);
     }
     
