@@ -174,10 +174,11 @@ V			- General weights
 				- parse destination cell
 				- compute zone weight
 		- findGoodCell
-		- areaWeight
-			- Param Ring
-			- compute and return
+V		- areaWeight
+V			- Param Ring
+V			- compute and return
 	- Skills
+	- Levels
 V ScoreBar
 V	- Get nCells
 V	- Update scores
