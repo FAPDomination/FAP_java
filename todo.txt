@@ -185,21 +185,17 @@ V			- Param Ring
 V			- compute and return
 	- Skills
 	- Levels
-<<<<<<< HEAD
-<<<<<<< HEAD
-  PathFinding
-V	- Classes files
-	- Convert flash => Java
-	- Test
-	- Make all static and getable
-=======
->>>>>>> fsm
-=======
 		- Ideas of what should depend on level
 			- nRings in areaWeight
 			- Weight toggle for changing area
 		- Init when creating FSM object
->>>>>>> fsm
+V PathFinding
+V	- Classes files
+V	- Convert flash => Java
+V		- Node
+V		- Pathfinder
+V	- Test
+V	- Make all static and getable
 V ScoreBar
 V	- Get nCells
 V	- Update scores

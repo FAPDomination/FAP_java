@@ -28,6 +28,7 @@ public class Cell extends Element{
     private Player minerSelect;
     private boolean minerSing;
     
+    
     public Cell(int i, int j, int type, int did) {
         this(i, j, type,"", did);
     }
@@ -357,4 +358,5 @@ public class Cell extends Element{
     public boolean isMinerSing() {
         return minerSing;
     }
+
 }

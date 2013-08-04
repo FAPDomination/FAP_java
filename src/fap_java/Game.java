@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 
 import org.xml.sax.helpers.DefaultHandler;
 
+import pathFinder.pathFinder;
+
 public class Game extends JPanel {
 
     private transient CMap map;
@@ -57,6 +59,14 @@ public class Game extends JPanel {
         //Testing :
         //Arrow arr = new Arrow(players.get(0).getCurrent(),2,this,players.get(0));
         //objects.add(arr);
+        /*
+        ArrayList<Cell> path = pathFinder.findPath(this.getMap().getMyMap(), players.get(0).getCurrent(), players.get(3).getCurrent());
+        for(int i=0;i<path.size();i++){
+            Cell c = path.get(i);
+            c.setOnPath(true);
+        }
+        System.out.println(path);
+*/
     }
 
     public void paintComponent(Graphics g) {
