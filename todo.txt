@@ -155,10 +155,10 @@ V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
 V				- Analyse cell
-				- Analyse Area
-					- Get Weight
-					- Toggle escape
-					- Get it lighter with a parent/current thing
+V				- Analyse Area
+V					- Get Weight
+V					- Toggle escape
+P					- Get it lighter with a parent/current thing
 				- Find good Cell
 					- use method
 					- toggle escape
