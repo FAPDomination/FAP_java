@@ -101,7 +101,10 @@ public class FSM{
         //Analyses
         //check area
         int areaWeight = this.areaWeight(body.getCurrent(), 2);
-        System.out.println(""+areaWeight);
+        //Weight toggle for changin area
+        if(areaWeight <4){
+            //Find good Cell system
+        }
         //Define if it's time to go :
         Cell c = body.getCurrent();
         if(c.getOwner() != null && c.getOwner() != body.getTeam()){
