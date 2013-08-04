@@ -154,11 +154,17 @@ V				- Real  state
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
-V				- Analyse neighbourhood
+V				- Analyse cell
 				- Analyse Area
 V			- waiting
 V				- System
 V				- reactionTime
+			- DefinePath
+				- Cell as param
+				- Pathfinding
+			- Follow Path
+				- read list
+				- wait for being on list's next cell
 		- getWeight
 V			- General weights
 			- change ennemy f(score)
