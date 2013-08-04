@@ -156,6 +156,8 @@ V				- Engage displacement
 			- Analysing
 V				- Analyse cell
 				- Analyse Area
+				- Find good Cell
+				- Escape to pathFinding
 V			- waiting
 V				- System
 V				- reactionTime
@@ -171,6 +173,10 @@ V			- General weights
 			- warp weight
 				- parse destination cell
 				- compute zone weight
+		- findGoodCell
+		- areaWeight
+			- Param Ring
+			- compute and return
 	- Skills
 V ScoreBar
 V	- Get nCells
