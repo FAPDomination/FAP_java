@@ -4,8 +4,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class FSM{
 
@@ -54,7 +56,26 @@ public class FSM{
 
     public void pickCell() {
         ArrayList<Cell> neighborHoodList = this.body.getGame().getMap().surroundingCells(this.body.getCurrent());
-        Cell c = neighborHoodList.get(Tools.randRange(0, 5));
+        Map<Cell, Integer> weights = new HashMap<Cell, Integer>();
+        for(int i=0;i<neighborHoodList.size();i++){
+            Cell c = neighborHoodList.get(i);
+            if(c!=null){
+                int w = this.getWeight(c);
+                weights.put(c, w);
+            }
+        }
+        ArrayList<Integer> weightList = new ArrayList(weights.values());
+        Collections.sort(weightList);
+
+        ArrayList<Cell> bestCells = new ArrayList<Cell>();
+        for(int k=0;k<neighborHoodList.size();k++){
+            Cell c = neighborHoodList.get(k);
+            if(c!= null && this.getWeight(c) == weightList.get(weightList.size()-1)){
+                bestCells.add(c);
+            }
+        }
+        
+        Cell c = bestCells.get(Tools.randRange(0, bestCells.size()-1));
         nextCell = c;
         this.fsm_receive_event(ev_done, null);
     }
@@ -111,7 +132,6 @@ public class FSM{
     
     public int getWeight(Cell c){
             int w;
-            int type = c.getType();
             if(!c.isWalkable()){
                     w = 0;
             }
@@ -133,6 +153,10 @@ public class FSM{
                 case 11:
                     w=3;
                     break;
+                
+                default:
+                    w=0;
+                break;
                 }
             }
             return w;
