@@ -72,9 +72,9 @@ V	- Parse the paramTable
 V		- Generic
 V		- specParam
 V	- English translation
-  Skills
+V Skills
 V	- Create objects
-	- Function getSkill
+V	- Function getSkill
 V		- Knight
 V		- Miner
 V			- Cell
@@ -145,15 +145,49 @@ O	- Way to pass param to the timer
 	- Object
 V		- Class File
 ~		- Attributes
+		- Complete the state-transition table
 		- States
-			- Picking
+P			- Picking
 V				- Pick random cell as test
-				- Real  state
+V				- Real  state
 			- Shifting
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
+V				- Analyse cell
+V				- Analyse Area
+V					- Get Weight
+V					- Toggle escape
+P					- Get it lighter with a parent/current thing
+				- Find good Cell
+					- use method
+					- toggle escape
+				- Escape to pathFinding
+V			- waiting
+V				- System
+V				- reactionTime
+			- DefinePath
+				- Cell as param
+				- Pathfinding
+			- Follow Path
+				- read list
+				- wait for being on list's next cell
+		- getWeight
+V			- General weights
+			- change ennemy f(score)
+			- warp weight
+				- parse destination cell
+				- compute zone weight
+		- findGoodCell
+V		- areaWeight
+V			- Param Ring
+V			- compute and return
 	- Skills
+	- Levels
+		- Ideas of what should depend on level
+			- nRings in areaWeight
+			- Weight toggle for changing area
+		- Init when creating FSM object
 V ScoreBar
 V	- Get nCells
 V	- Update scores
