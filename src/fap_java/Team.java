@@ -49,4 +49,8 @@ public class Team {
     public int getScore() {
         return score;
     }
+    
+    public String toString(){
+        return "Team :\n"+this.playersInThisTeam;
+    }
 }
