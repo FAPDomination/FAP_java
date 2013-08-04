@@ -37,4 +37,8 @@ public class FSM_State {
     public FSM_State getNextState(FSM_Event ev){
         return this.transitionTable.get(ev);
     }
+    
+    public String toString(){
+        return this.associatedMethod;
+    }
 }

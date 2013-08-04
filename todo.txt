@@ -156,7 +156,12 @@ V				- Engage displacement
 			- Analysing
 V				- Analyse cell
 				- Analyse Area
+					- Get Weight
+					- Toggle escape
+					- Get it lighter with a parent/current thing
 				- Find good Cell
+					- use method
+					- toggle escape
 				- Escape to pathFinding
 V			- waiting
 V				- System
@@ -179,6 +184,10 @@ V			- Param Ring
 V			- compute and return
 	- Skills
 	- Levels
+		- Ideas of what should depend on level
+			- nRings in areaWeight
+			- Weight toggle for changing area
+		- Init when creating FSM object
 V ScoreBar
 V	- Get nCells
 V	- Update scores

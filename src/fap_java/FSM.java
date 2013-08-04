@@ -98,6 +98,11 @@ public class FSM{
     
     public void analyseCurCell() {
         //System.out.println(body.getCurrent());
+        //Analyses
+        //check area
+        int areaWeight = this.areaWeight(body.getCurrent(), 2);
+        System.out.println(""+areaWeight);
+        //Define if it's time to go :
         Cell c = body.getCurrent();
         if(c.getOwner() != null && c.getOwner() != body.getTeam()){
             cellWasTaken = true;
@@ -135,6 +140,7 @@ public class FSM{
                 currentState=nextState;
                 //trace("transition "+currentState);
                 //fsmGo = 1;
+                //System.out.println(prevState+"-"+ev+"-"+currentState);
     }
 
     public void executeMethod() {
@@ -208,14 +214,17 @@ public class FSM{
     }
     
     public int areaWeight(Cell cell, int nRings){
-        int average;
-        Map<Integer, ArrayList<Cell>> ringsOfCells = this.body.getGame().getMap().ringsSurrounding(cell, nRings);
+        int average=0;
         int nCells = 0;
+        Map<Integer, ArrayList<Cell>> ringsOfCells = this.body.getGame().getMap().ringsSurrounding(cell, nRings);
         for(int i = 0;i<=nRings;i++){
             ArrayList<Cell> theRing = ringsOfCells.get(i);
             for(int j=0;j<theRing.size();j++){
                 Cell c = theRing.get(j);
-                average += this.getWeight(c);
+                if(c != null){
+                    average += this.getWeight(c);
+                    nCells++;
+                }
             }
         }
         average /= nCells;
