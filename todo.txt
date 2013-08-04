@@ -156,6 +156,8 @@ V				- Engage displacement
 			- Analysing
 V				- Analyse cell
 				- Analyse Area
+				- Find good Cell
+				- Escape to pathFinding
 V			- waiting
 V				- System
 V				- reactionTime
@@ -172,13 +174,20 @@ V			- General weights
 			- warp weight
 				- parse destination cell
 				- compute zone weight
+		- findGoodCell
+V		- areaWeight
+V			- Param Ring
+V			- compute and return
 	- Skills
 	- Levels
+<<<<<<< HEAD
   PathFinding
 V	- Classes files
 	- Convert flash => Java
 	- Test
 	- Make all static and getable
+=======
+>>>>>>> fsm
 V ScoreBar
 V	- Get nCells
 V	- Update scores

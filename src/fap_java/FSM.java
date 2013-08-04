@@ -219,4 +219,19 @@ public class FSM{
             }
             return w;
     }
+    
+    public int areaWeight(Cell cell, int nRings){
+        int average;
+        Map<Integer, ArrayList<Cell>> ringsOfCells = this.body.getGame().getMap().ringsSurrounding(cell, nRings);
+        int nCells = 0;
+        for(int i = 0;i<=nRings;i++){
+            ArrayList<Cell> theRing = ringsOfCells.get(i);
+            for(int j=0;j<theRing.size();j++){
+                Cell c = theRing.get(j);
+                average += this.getWeight(c);
+            }
+        }
+        average /= nCells;
+        return average;
+    }
 }
