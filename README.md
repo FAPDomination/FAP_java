@@ -13,3 +13,12 @@ T : Réalisé mais pas encore vraiment testé<br />
 E : En cours (c'est commencé et c'est là qu'on s'est arrêté la dernière fois)<br />
 
 Un item parent dans l'arbre hérite de tous les symboles que peuvent avoir ses enfants
+
+Projets futurs
+--------------
+
+<ul>
+<li>OpenGL</li>
+<li>FAP-LAN</li>
+<li>FAPDroid</li>
+</ul>
