@@ -145,6 +145,7 @@ O	- Way to pass param to the timer
 	- Object
 V		- Class File
 ~		- Attributes
+		- Complete the state-transition table
 		- States
 P			- Picking
 V				- Pick random cell as test
@@ -153,6 +154,11 @@ V				- Real  state
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
+V				- Analyse neighbourhood
+				- Analyse Area
+V			- waiting
+V				- System
+V				- reactionTime
 		- getWeight
 V			- General weights
 			- change ennemy f(score)

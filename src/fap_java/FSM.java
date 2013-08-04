@@ -16,17 +16,24 @@ public class FSM{
     private FSM_Event currentEvent;
     
     private Cell nextCell;
+    private boolean cellWasTaken;
     
     private Player body;
     
     private boolean fsmGo;
+    private Object fsm_param;
     
     //States
     public static FSM_State picking = new FSM_State(0,"pickCell");
     public static FSM_State shifting = new FSM_State(1,"shiftToPicked");
     public static FSM_State analysing = new FSM_State(2,"analyseCurCell");
+    public static FSM_State waiting = new FSM_State(3,"waitForIt");
+    public static FSM_State staying = new FSM_State(4,"stay");
     //Events
     public static FSM_Event ev_done = new FSM_Event(0);
+    public static FSM_Event ev_error = new FSM_Event(1);
+    public static FSM_Event ev_secDone = new FSM_Event(2);
+    
 
     public FSM(Player p) {
     //    super(id, c, game, pc, t);
@@ -74,10 +81,14 @@ public class FSM{
                 bestCells.add(c);
             }
         }
-        
-        Cell c = bestCells.get(Tools.randRange(0, bestCells.size()-1));
-        nextCell = c;
-        this.fsm_receive_event(ev_done, null);
+        if(bestCells.size()==0){
+            this.fsm_receive_event(ev_error, "No walkable cell");
+        }
+        else{
+            Cell c = bestCells.get(Tools.randRange(0, bestCells.size()-1));
+            nextCell = c;
+            this.fsm_receive_event(ev_done, null);
+        }
     }
 
     public void shiftToPicked() {
@@ -86,14 +97,39 @@ public class FSM{
     }
     
     public void analyseCurCell() {
-        System.out.println(body.getCurrent());
+        //System.out.println(body.getCurrent());
+        Cell c = body.getCurrent();
+        if(c.getOwner() != null && c.getOwner() != body.getTeam()){
+            cellWasTaken = true;
+        }
+        else{
+            if(cellWasTaken){
+                this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+            }
+            else{
+                this.fsm_receive_event(ev_done, null);
+            }
+            cellWasTaken = false;
+        }
+    }
+    
+    public void waitForIt(){
+        body.makeHimWait((Integer)fsm_param);
         this.fsm_receive_event(ev_done, null);
+    }
+    
+    public void stay(){
+        System.out.println("An error occured, FSM crashed");
+        System.out.println((String)fsm_param);
+
+        fsmGo=false;
     }
     
     public void fsm_receive_event(FSM_Event ev, Object param){
         currentEvent = ev;
                 //trace(currentState+"-"+currentEvent);
                 prevState = currentState;
+                fsm_param = param;
                 FSM_State nextState = currentState.getNextState(ev);
                 //trace(currentState+"-"+currentEvent+"-"+nextState);
                 currentState=nextState;
@@ -118,9 +154,17 @@ public class FSM{
     }
 
     private void initFSM() {
+        //ev_done
         picking.addTransition(ev_done, shifting);
         shifting.addTransition(ev_done, analysing);
         analysing.addTransition(ev_done, picking);
+        waiting.addTransition(ev_done, picking);
+        //ev_error
+        picking.addTransition(ev_error, staying);
+        shifting.addTransition(ev_error, staying);
+        analysing.addTransition(ev_error, staying);
+        //ev_secDone
+        analysing.addTransition(ev_secDone, waiting);
     }
 
     public void setNextCell(Cell nextCell) {

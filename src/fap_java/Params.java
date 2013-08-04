@@ -37,4 +37,7 @@ public class Params {
     public static int timeAfterSkill = 1000; //in m-second
     
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
+    
+    //FSM
+    public static int fsmReactionTime = 40;
 }
