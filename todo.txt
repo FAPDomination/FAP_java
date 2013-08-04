@@ -155,8 +155,13 @@ V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 			- Analysing
 V				- Analyse cell
-				- Analyse Area
+V				- Analyse Area
+V					- Get Weight
+V					- Toggle escape
+P					- Get it lighter with a parent/current thing
 				- Find good Cell
+					- use method
+					- toggle escape
 				- Escape to pathFinding
 V			- waiting
 V				- System
@@ -181,12 +186,19 @@ V			- compute and return
 	- Skills
 	- Levels
 <<<<<<< HEAD
+<<<<<<< HEAD
   PathFinding
 V	- Classes files
 	- Convert flash => Java
 	- Test
 	- Make all static and getable
 =======
+>>>>>>> fsm
+=======
+		- Ideas of what should depend on level
+			- nRings in areaWeight
+			- Weight toggle for changing area
+		- Init when creating FSM object
 >>>>>>> fsm
 V ScoreBar
 V	- Get nCells

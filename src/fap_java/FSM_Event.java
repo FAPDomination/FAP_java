@@ -13,4 +13,8 @@ public class FSM_Event {
     public int getValue() {
         return value;
     }
+    
+    public String toString(){
+        return ""+value;
+    }
 }
