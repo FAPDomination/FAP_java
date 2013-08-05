@@ -26,6 +26,8 @@ public class FSM{
     private Object fsm_param;
     private Object fsm_secParam;
     
+    private int nRings = 2;
+    
     //States
     public static FSM_State picking = new FSM_State(0,"pickCell");
     public static FSM_State shifting = new FSM_State(1,"shiftToPicked");
@@ -112,7 +114,7 @@ public class FSM{
         //System.out.println(body.getCurrent());
         //Analyses
         //check area
-        int areaWeight = this.areaWeight(body.getCurrent(), 2);
+        int areaWeight = this.areaWeight(body.getCurrent(), nRings);
         //Weight toggle for changin area
         if(areaWeight <4){
             //Find good Cell system
@@ -268,8 +270,16 @@ public class FSM{
                 case 1:
                     w=9;
                     break;
-                case 10:
-                    w=3;
+                case 10:    //It's a warp
+                    
+                int[] tab = new int[2];
+                String[] tabS = new String[2];
+                tabS = c.getAddParam().split(",");
+                tab[0] = Integer.parseInt(tabS[0]);
+                tab[1] = Integer.parseInt(tabS[1]);
+
+                Cell warpedCell = body.getGame().getMap().getCell(tab);
+                w = areaWeight(warpedCell, nRings+1);
                 case 11:
                     w=3;
                     break;
