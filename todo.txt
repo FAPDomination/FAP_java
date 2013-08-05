@@ -160,19 +160,20 @@ V					- Get Weight
 V					- Toggle escape
 P					- Get it lighter with a parent/current thing
 				- Find good Cell
+V					- Find Player Cell (ersatz)
 					- use method
-					- toggle escape
-				- Escape to pathFinding
+V					- toggle escape
+V				- Escape to pathFinding
 V			- waiting
 V				- System
 V				- reactionTime
 			- DefinePath
-				- Cell as param
-				- Pathfinding
+V				- Cell as param
+V				- Pathfinding
 				- Emergency (no conquering) toggle
-			- Follow Path
-				- read list
-				- wait for being on list's next cell
+V			- Follow Path
+V				- read list
+V				- wait for being on list's next cell
 		- getWeight
 V			- General weights
 			- change ennemy f(score)
