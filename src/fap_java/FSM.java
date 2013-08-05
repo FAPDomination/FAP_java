@@ -189,7 +189,7 @@ public class FSM{
         System.out.println("An error occured, FSM crashed");
         System.out.println((String)fsm_param);
 
-        fsmGo=false;
+        fsmGo=false;    // 
     }
     
     public void fsm_receive_event(FSM_Event ev, Object param){
