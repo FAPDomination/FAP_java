@@ -130,7 +130,9 @@ public class FSM{
             }
             else{
                 //Ersatz system : find Cell with ennemy
-                Cell k = body.getGame().getPlayers().get(0).getCurrent();
+                //Cell k = body.getGame().getPlayers().get(0).getCurrent();
+                // The right thing
+                Cell k = findGoodCell();
                 fsm_param = k;
                 this.fsm_receive_event(ev_thirdDone, fsm_param);
             }
@@ -279,6 +281,7 @@ public class FSM{
     
     public void definePath(){
         //Dis is da path, yo
+        System.out.println("Begin path");
         Cell c = (Cell) fsm_param;
         Cell s = body.getCurrent();
         ArrayList<Cell> map = body.getGame().getMap().getMyMap();
@@ -305,6 +308,7 @@ public class FSM{
         else{
             if(path.size()<=1){         // Path is over
                 // Escape to pickCell
+            System.out.println("End of Path");
                 this.fsm_receive_event(ev_thirdDone, fsm_param);
             }
             else{                       // Cell is shifted
@@ -433,7 +437,7 @@ public class FSM{
         int average=0;
         int nCells = 0;
         Map<Integer, ArrayList<Cell>> ringsOfCells = this.body.getGame().getMap().ringsSurrounding(cell, nRings);
-        for(int i = 0;i<=nRings;i++){
+        for(int i = 1;i<=nRings;i++){
             ArrayList<Cell> theRing = ringsOfCells.get(i);
             for(int j=0;j<theRing.size();j++){
                 Cell c = theRing.get(j);
@@ -445,5 +449,33 @@ public class FSM{
         }
         average /= nCells;
         return average;
+    }
+    
+    public Cell findGoodCell(){
+        Cell c=null;
+        //Constants
+        int count = 0;
+        int minWeight = 8;
+        int tries = 5+level;
+        ArrayList<Cell> list = body.getGame().getMap().getMyMap();
+        while(c==null){
+            Cell k = list.get(Tools.randRange(0, list.size()-1));
+            if(k!=null && k.getType() == 1){
+                int w = areaWeight(k,nRings);
+                if(w>=minWeight){
+                    c=k;
+                }
+                else{
+                    if(count>=tries){
+                        count = 0;
+                        minWeight--;
+                    }
+                    else{
+                        count++;
+                    }
+                }
+            }
+        }
+        return c;
     }
 }

@@ -152,15 +152,16 @@ V				- Real  state
 			- Shifting
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
+				- if try out and pathFinding, recalculate
 			- Analysing
 V				- Analyse cell
 V				- Analyse Area
 V					- Get Weight
 V					- Toggle escape
 P					- Get it lighter with a parent/current thing
-				- Find good Cell
+V				- Find good Cell
 V					- Find Player Cell (ersatz)
-					- use method
+V					- use method
 V					- toggle escape
 V				- Escape to pathFinding
 V			- waiting
@@ -181,6 +182,8 @@ V				- parse destination cell
 V				- compute zone weight
 V				- Set it as warp weight
 		- findGoodCell
+V			- General system
+			- Available cell (not on island)
 V		- areaWeight
 V			- Param Ring
 V			- compute and return
@@ -201,6 +204,7 @@ P		- Booster
 			- ReactionTime
 			- Miner Time after Skill
 			- All skill triggers
+			- number of tries in findgoodCell
 V		- Init when creating FSM object
 V PathFinding
 V	- Classes files
