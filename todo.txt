@@ -204,7 +204,7 @@ P		- Booster
 			- ReactionTime
 			- Miner Time after Skill
 			- All skill triggers
-			- number of tries in findgoodCell
+			- number of tries in findGoodCell
 V		- Init when creating FSM object
 V PathFinding
 V	- Classes files

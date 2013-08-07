@@ -369,6 +369,8 @@ public class FSM{
         shifting.addTransition(ev_error, staying);
         analysing.addTransition(ev_error, staying);
         pathDefine.addTransition(ev_error, staying);
+        waiting.addTransition(ev_error, staying);
+        pathFollow.addTransition(ev_error, staying);
         //ev_secDone
         analysing.addTransition(ev_secDone, waiting);
         pathFollow.addTransition(ev_secDone, pathFollow);
