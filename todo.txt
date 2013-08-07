@@ -190,8 +190,8 @@ V		- Knight
 ~		- Miner
 V		- Warlock
 		- Archer
-		- Vampire
-		- NC
+V		- Vampire
+V		- NC
 V		- Magician
 P		- Booster
 	- Levels

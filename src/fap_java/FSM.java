@@ -183,10 +183,49 @@ public class FSM{
                         skillWorth = true;
                     }
                 break;
-                case 8:
+                case 6:             //Vampire
+                        nCells = 0;
+                    int randVNum = Tools.randRange(0, 10);
+                    int randVRing = 0;
+                    if (randVNum == 0) {
+                        randVRing = 1;
+                    } else if (randVNum == 1) {
+                        randVRing = -1;
+                    } else {
+                        randVRing = 0;
+                    }
+                    int nVRg = randVRing+Params.ringsVampirismTakes;
+                    Map<Integer, ArrayList<Cell>> ringsVOfCells = body.getGame().getMap().ringsSurrounding(c,nVRg);
+                    //per ring...
+                        for(int i = 0;i<=nVRg;i++){
+                            ArrayList<Cell> theRing = ringsVOfCells.get(i);
+                            for(int j=0;j<theRing.size();j++){
+                                Cell a = theRing.get(j);
+                                //c.setOwner(this.getTeam());
+                                //c.setHp(this.getInitHP());
+                                if(a!=null && a.getType()==1 && a.getOwner()!=null && a.getOwner()!=body.getTeam()){
+                                    nCells++;
+                                }
+                            }
+                        }
+
+                    //Totally arbitrary : should depend on levels
+                    if (nCells >= 9) {
+                        skillWorth = true;
+                    }
+                    break;
+                case 8:             //Magician
                     Game game = body.getGame();
-                    int err = Tools.randRange(-1, 1);
-                    int nRg = Params.howManyRingsIstheMagicianActive+err;
+                    int randNum = Tools.randRange(0, 5);
+                    int randRing = 0;
+                    if (randNum == 0) {
+                        randRing = 1;
+                    } else if (randNum == 1) {
+                        randRing = -1;
+                    } else {
+                        randRing = 0;
+                    }
+                    int nRg = Params.howManyRingsIstheMagicianActive+randRing;
                     Map<Integer, ArrayList<Cell>> ringsOfCells = game.getMap().ringsSurrounding(c,nRg);
                     for(int i = 0;i<=nRg;i++){
                         ArrayList<Cell> theRing = ringsOfCells.get(i);
