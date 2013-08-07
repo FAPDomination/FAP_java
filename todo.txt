@@ -141,7 +141,6 @@ O	- Way to pass param to the timer
 		- wichTeam
 		- randStart
   AI
-	- States
 	- Object
 V		- Class File
 ~		- Attributes
@@ -185,12 +184,22 @@ V				- Set it as warp weight
 V		- areaWeight
 V			- Param Ring
 V			- compute and return
-	- Skills
+	- Skills (detect if worth)
+V		- General
+T		- Knight
+V		- Miner
+		- Warlock
+		- Archer
+		- Vampire
+		- NC
+		- Magician
+		- Booster
 	- Levels
 		- Ideas of what should depend on level
 			- nRings in areaWeight
 			- Weight toggle for changing area
 			- ReactionTime
+			- Miner Time after Skill
 		- Init when creating FSM object
 V PathFinding
 V	- Classes files

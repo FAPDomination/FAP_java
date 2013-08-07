@@ -1,5 +1,7 @@
 package fap_java;
 
+import characters.Miner;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -118,25 +120,79 @@ public class FSM{
         //Weight toggle for changin area
         if(areaWeight <4){
             //Find good Cell system
-            //Ersatz system : find Cell with ennemy
-            Cell k = body.getGame().getPlayers().get(0).getCurrent();
-            fsm_param = k;
-            this.fsm_receive_event(ev_thirdDone, fsm_param);
-        }
-        else{
-            //Define if it's time to go :
-            Cell c = body.getCurrent();
-            if(c.getOwner() != null && c.getOwner() != body.getTeam()){
-                cellWasTaken = true;
+            if(body instanceof Miner){
+                body.getSkill();
+                body.keyLow(4);
+                this.fsm_receive_event(ev_secDone, 3*Params.fsmReactionTime);
             }
             else{
-                if(cellWasTaken){
-                    this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+                //Ersatz system : find Cell with ennemy
+                Cell k = body.getGame().getPlayers().get(0).getCurrent();
+                fsm_param = k;
+                this.fsm_receive_event(ev_thirdDone, fsm_param);
+            }
+        }
+        else{
+            boolean skillWorth = false;
+            int ts = body.getGame().getThread().getCount() - body.getLastSkill();
+            if (ts >= body.getSkillTime()) {
+                switch(body.getPc()){
+                case 1:
+                    //Get the average HP of the tiles surrounding
+                    Cell c = body.getCurrent();
+                    ArrayList<Cell> neighbour = body.getGame().getMap().surroundingCells(c);
+                    int averageHP = 0;
+                    int nCells = 0;
+                    for (int i = 0; i < neighbour.size(); i++) {
+                        Cell k = neighbour.get(i);
+                        if (k!= null && k.getType() == 1 && (k.getOwner() != body.getTeam() || k.getOwner() == null)) {
+                            int hpAmount = (int)k.getHp();
+                            if (k.getOwner() == null) {
+                                hpAmount = 90;
+                            }
+                            averageHP += hpAmount;
+                            nCells++;
+                        }
+                    }
+                    if (nCells > 0) {
+                        averageHP /= nCells;
+                    }
+                    //Calculate the amount of damage he can do
+                    double randError = ((double)Tools.randRange(-100, 100)) / 10;
+                    int dammage = (int)(Params.warriorDammage * Math.pow((ts + randError), 2));
+                    //Triggah'
+                    //Totally arbitrary : should also depend on levels
+                    int triggNCells = 4;
+                    if (nCells >= triggNCells && dammage >= averageHP) {
+                        skillWorth = true;
+                    }
+                break;
+                //Note : for the Miner (pc = 3) see above
+                default:
+                    break;
+                }
+            }
+            
+            if(skillWorth){
+            System.out.println("sop");
+                body.getSkill();
+                this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+            }
+            else{
+                //Define if it's time to go :
+                Cell c = body.getCurrent();
+                if(c.getOwner() != null && c.getOwner() != body.getTeam()){
+                    cellWasTaken = true;
                 }
                 else{
-                    this.fsm_receive_event(ev_done, null);
+                    if(cellWasTaken){
+                        this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+                    }
+                    else{
+                        this.fsm_receive_event(ev_done, null);
+                    }
+                    cellWasTaken = false;
                 }
-                cellWasTaken = false;
             }
         }
     }

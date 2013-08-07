@@ -515,4 +515,12 @@ public abstract class Player extends Human {
     public FSM getFsm() {
         return fsm;
     }
+
+    public void setPc(int pc) {
+        this.pc = pc;
+    }
+
+    public int getPc() {
+        return pc;
+    }
 }
