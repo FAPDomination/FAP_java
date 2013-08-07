@@ -201,7 +201,7 @@ P		- Booster
 			- ReactionTime
 			- Miner Time after Skill
 			- All skill triggers
-		- Init when creating FSM object
+V		- Init when creating FSM object
 V PathFinding
 V	- Classes files
 V	- Convert flash => Java

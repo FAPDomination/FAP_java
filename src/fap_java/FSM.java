@@ -23,6 +23,7 @@ public class FSM{
     private boolean cellWasTaken;
     
     private Player body;
+    private int level;
     
     private boolean fsmGo;
     private Object fsm_param;
@@ -45,11 +46,12 @@ public class FSM{
     public static FSM_Event ev_thirdDone = new FSM_Event(3);
     
 
-    public FSM(Player p) {
+    public FSM(Player p, int level) {
     //    super(id, c, game, pc, t);
         fsmGo = true;
         currentState = picking;
         body = p;
+        this.level = level;
         initFSM();
     }
 
