@@ -186,9 +186,9 @@ V			- Param Ring
 V			- compute and return
 	- Skills (detect if worth)
 V		- General
-T		- Knight
-V		- Miner
-		- Warlock
+V		- Knight
+~		- Miner
+V		- Warlock
 		- Archer
 		- Vampire
 		- NC

@@ -135,14 +135,14 @@ public class FSM{
         else{
             boolean skillWorth = false;
             int ts = body.getGame().getThread().getCount() - body.getLastSkill();
+            Cell c = body.getCurrent();
+            ArrayList<Cell> neighbour = body.getGame().getMap().surroundingCells(c);
+            int averageHP = 0;
+            int nCells = 0;
             if (ts >= body.getSkillTime()) {
                 switch(body.getPc()){
-                case 1:
+                case 1:         //Knight
                     //Get the average HP of the tiles surrounding
-                    Cell c = body.getCurrent();
-                    ArrayList<Cell> neighbour = body.getGame().getMap().surroundingCells(c);
-                    int averageHP = 0;
-                    int nCells = 0;
                     for (int i = 0; i < neighbour.size(); i++) {
                         Cell k = neighbour.get(i);
                         if (k!= null && k.getType() == 1 && (k.getOwner() != body.getTeam() || k.getOwner() == null)) {
@@ -168,6 +168,21 @@ public class FSM{
                     }
                 break;
                 //Note : for the Miner (pc = 3) see above
+                case 4 :        //Warlock
+                Cell k = body.getCurrent();
+                    neighbour = body.getGame().getMap().surroundingCells(k);
+                    averageHP = 0;
+                    nCells = 0;
+                    for (int i = 0; i < neighbour.size(); i++) {
+                        if (neighbour.get(i)!= null && neighbour.get(i).getType() == 1) {
+                            nCells++;
+                        }
+                    }
+                    //Totally arbitrary : should also depend on levels
+                    if (nCells < 5) {
+                        skillWorth = true;
+                    }
+                break;
                 default:
                     break;
                 }
@@ -180,7 +195,7 @@ public class FSM{
             }
             else{
                 //Define if it's time to go :
-                Cell c = body.getCurrent();
+                c = body.getCurrent();
                 if(c.getOwner() != null && c.getOwner() != body.getTeam()){
                     cellWasTaken = true;
                 }
