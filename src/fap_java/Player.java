@@ -40,7 +40,7 @@ public abstract class Player extends Human {
     //FSM
     private FSM fsm;
 
-    public Player(int id, Cell c, Game game, int pc, Team t, boolean ai) {
+    public Player(int id, Cell c, Game game, int pc, Team t, int ai) {
         super();
         this.id = id;
         current = c;
@@ -49,8 +49,8 @@ public abstract class Player extends Human {
         this.game = game;
         this.team = t;
         team.addPlayer(this);
-        if(ai){
-            fsm = new FSM(this);
+        if(ai>0){
+            fsm = new FSM(this,ai);
         }
         else{
             fsm = null;

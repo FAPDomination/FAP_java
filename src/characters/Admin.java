@@ -7,7 +7,7 @@ import fap_java.Team;
 
 public class Admin extends Player{
     
-    public Admin(int id, Cell c, Game game, Team t, boolean ai) {
+    public Admin(int id, Cell c, Game game, Team t, int ai) {
         super(id, c, game, 0,t, ai);
     }
 

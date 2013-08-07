@@ -7,7 +7,7 @@ import fap_java.Player;
 import fap_java.Team;
 
 public class Warlock extends Player{
-    public Warlock(int id, Cell c, Game game,Team t,boolean ai) {
+    public Warlock(int id, Cell c, Game game,Team t,int ai) {
         super(id, c, game, 4, t,ai);
     }
 

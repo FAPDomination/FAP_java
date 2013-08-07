@@ -70,8 +70,9 @@ public class FSM{
     */
 
     public String toString() {
-        return "fsm";
+        return "Level "+this.level+" FSM";
     }
+    
 
     public void pickCell() {
         ArrayList<Cell> neighborHoodList = this.body.getGame().getMap().surroundingCells(this.body.getCurrent());

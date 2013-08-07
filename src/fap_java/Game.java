@@ -28,7 +28,7 @@ public class Game extends JPanel {
     //Parameters to be given when starting a new game
     private String whoIsPlaying = "3,6,1,1"; // This is linked with skill, here player 1 is magician
     private String wichTeam = "0,1,0,0"; // Here player n°2 is in team n°0
-    private String isFSM = "0,1,0,0";
+    private String isFSM = "0,2,0,0";   // 0 for player, other for FSM level
     private boolean randStart = false;
 
     public Game() {
@@ -137,7 +137,7 @@ public class Game extends JPanel {
                     c = startCellsAL.get(pid);
                 }
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
-                boolean ai = isFSM.charAt(i) == '1';
+                int ai = Integer.parseInt(""+isFSM.charAt(i));
                 Player p;
                 switch(charac){
                     case 1:
