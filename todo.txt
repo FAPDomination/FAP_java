@@ -192,14 +192,15 @@ V		- Warlock
 		- Archer
 		- Vampire
 		- NC
-		- Magician
-		- Booster
+V		- Magician
+P		- Booster
 	- Levels
 		- Ideas of what should depend on level
 			- nRings in areaWeight
 			- Weight toggle for changing area
 			- ReactionTime
 			- Miner Time after Skill
+			- All skill triggers
 		- Init when creating FSM object
 V PathFinding
 V	- Classes files

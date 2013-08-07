@@ -183,6 +183,24 @@ public class FSM{
                         skillWorth = true;
                     }
                 break;
+                case 8:
+                    Game game = body.getGame();
+                    int err = Tools.randRange(-1, 1);
+                    int nRg = Params.howManyRingsIstheMagicianActive+err;
+                    Map<Integer, ArrayList<Cell>> ringsOfCells = game.getMap().ringsSurrounding(c,nRg);
+                    for(int i = 0;i<=nRg;i++){
+                        ArrayList<Cell> theRing = ringsOfCells.get(i);
+                        for(int j=0;j<theRing.size();j++){
+                            Cell a = theRing.get(j);
+                            //c.setOwner(this.getTeam());
+                            //c.setHp(this.getInitHP());
+                            Player p = game.isOccupied(a);
+                            if(p != null){
+                                skillWorth = true;
+                            }
+                        }
+                    }
+                break;
                 default:
                     break;
                 }
