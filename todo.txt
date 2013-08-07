@@ -173,9 +173,9 @@ V				- Pathfinding
 V			- Follow Path
 V				- read list
 V				- wait for being on list's next cell
-		- getWeight
+V		- getWeight
 V			- General weights
-			- change ennemy f(score)
+V			- change ennemy f(score)
 T			- warp weight
 V				- parse destination cell
 V				- compute zone weight

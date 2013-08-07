@@ -393,7 +393,13 @@ public class FSM{
                     w = 2;
                 }
                 else{
-                    w = 8;
+                    Team te = c.getOwner();
+                    if(te.getScore() > body.getTeam().getScore()){
+                        w = 8;
+                    }
+                    else{
+                        w=7;
+                    }
                 }
             }
             else{
