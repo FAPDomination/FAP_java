@@ -123,7 +123,7 @@ public class FSM{
         //check area
         int areaWeight = this.areaWeight(body.getCurrent(), nRings);
         //Weight toggle for changin area
-        if(areaWeight <4 && fsm_secParam == null){
+        if(areaWeight <3 && fsm_secParam == null){
             //Find good Cell system
             if(body instanceof Miner){
                 body.getSkill();
@@ -301,6 +301,7 @@ public class FSM{
     }
     
     public void definePath(){
+        fsm_secParam = null;
         //Dis is da path, yo
         //System.out.println("Begin path");
         Cell c = (Cell) fsm_param;
@@ -322,7 +323,6 @@ public class FSM{
         if(nCells>=5){
             fsm_secParam = true;
         }
-        fsm_secParam = null;
         if(path.size() > 0){
             this.fsm_receive_event(ev_done);
         }
