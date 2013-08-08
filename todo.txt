@@ -140,11 +140,17 @@ O	- Way to pass param to the timer
 		- whoIsPlaying && skills
 		- wichTeam
 		- randStart
+	- Pause/Play
+		- Define Keys
+		- Execute Pause
+			- Pause
+			- Display
+		- Resume
   AI
 	- Object
 V		- Class File
 ~		- Attributes
-		- Complete the state-transition table
+E		- Complete the state-transition table
 		- States
 P			- Picking
 V				- Pick random cell as test
