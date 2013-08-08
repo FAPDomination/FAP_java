@@ -152,7 +152,7 @@ V				- Real  state
 			- Shifting
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
-				- if try out and pathFinding, recalculate
+				- if try out while pathFollowing, recalculate
 			- Analysing
 V				- Analyse cell
 V				- Analyse Area
@@ -167,10 +167,12 @@ V				- Escape to pathFinding
 V			- waiting
 V				- System
 V				- reactionTime
-			- DefinePath
+V			- DefinePath
 V				- Cell as param
 V				- Pathfinding
-				- Emergency (no conquering) toggle
+~S				- Emergency (no conquering) toggle
+V					- Trigger
+V					- Execute
 V			- Follow Path
 V				- read list
 V				- wait for being on list's next cell
@@ -205,6 +207,7 @@ P		- Booster
 			- Miner Time after Skill
 			- All skill triggers
 			- number of tries in findGoodCell
+			- Trigger for direct pathfinding or conquest
 V		- Init when creating FSM object
 V PathFinding
 V	- Classes files

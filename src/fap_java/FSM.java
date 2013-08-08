@@ -44,6 +44,7 @@ public class FSM{
     public static FSM_Event ev_error = new FSM_Event(1);
     public static FSM_Event ev_secDone = new FSM_Event(2);
     public static FSM_Event ev_thirdDone = new FSM_Event(3);
+    public static FSM_Event ev_fourthDone = new FSM_Event(4);
     
 
     public FSM(Player p, int level) {
@@ -95,22 +96,23 @@ public class FSM{
             }
         }
         if(bestCells.size()==0){
-            this.fsm_receive_event(ev_error, "No walkable cell");
+            fsm_param = "No walkable cell";
+            this.fsm_receive_event(ev_error);
         }
         else{
             Cell c = bestCells.get(Tools.randRange(0, bestCells.size()-1));
             nextCell = c;
-            this.fsm_receive_event(ev_done, null);
+            this.fsm_receive_event(ev_done);
         }
     }
 
     public void shiftToPicked() {
         body.shiftStick(0,0);
-        if(prevState == pathFollow){
-            this.fsm_receive_event(ev_secDone, fsm_param);
+        if(prevState == pathFollow && fsm_secParam == null){
+            this.fsm_receive_event(ev_secDone);
         }
         else{
-            this.fsm_receive_event(ev_done, null);
+            this.fsm_receive_event(ev_done);
         }
     }
     
@@ -121,12 +123,13 @@ public class FSM{
         //check area
         int areaWeight = this.areaWeight(body.getCurrent(), nRings);
         //Weight toggle for changin area
-        if(areaWeight <4){
+        if(areaWeight <4 && fsm_secParam == null){
             //Find good Cell system
             if(body instanceof Miner){
                 body.getSkill();
                 body.keyLow(4);
-                this.fsm_receive_event(ev_secDone, 3*Params.fsmReactionTime);
+                fsm_param = 3*Params.fsmReactionTime;
+                this.fsm_receive_event(ev_secDone);
             }
             else{
                 //Ersatz system : find Cell with ennemy
@@ -134,7 +137,7 @@ public class FSM{
                 // The right thing
                 Cell k = findGoodCell();
                 fsm_param = k;
-                this.fsm_receive_event(ev_thirdDone, fsm_param);
+                this.fsm_receive_event(ev_thirdDone);
             }
         }
         else{
@@ -250,10 +253,11 @@ public class FSM{
                 }
             }
             
-            if(skillWorth){
-            System.out.println("sop");
+            if(skillWorth && fsm_secParam == null){
+                //System.out.println("sop");
                 body.getSkill();
-                this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+                fsm_param = Params.fsmReactionTime;
+                this.fsm_receive_event(ev_secDone);
             }
             else{
                 //Define if it's time to go :
@@ -263,10 +267,21 @@ public class FSM{
                 }
                 else{
                     if(cellWasTaken){
-                        this.fsm_receive_event(ev_secDone, Params.fsmReactionTime);
+                        if(fsm_secParam != null){
+                            fsm_secParam = Params.fsmReactionTime;
+                        }
+                        else{
+                            fsm_param = Params.fsmReactionTime;
+                        }
+                        this.fsm_receive_event(ev_secDone);
                     }
                     else{
-                        this.fsm_receive_event(ev_done, null);
+                        if(fsm_secParam == null){
+                            this.fsm_receive_event(ev_done);
+                        }
+                        else{
+                            this.fsm_receive_event(ev_fourthDone);
+                        }
                     }
                     cellWasTaken = false;
                 }
@@ -275,26 +290,46 @@ public class FSM{
     }
     
     public void waitForIt(){
-        body.makeHimWait((Integer)fsm_param);
-        this.fsm_receive_event(ev_done, null);
+        if(fsm_secParam != null){
+            body.makeHimWait((Integer)fsm_secParam);
+            this.fsm_receive_event(ev_secDone);
+        }
+        else{
+            body.makeHimWait((Integer)fsm_param);
+            this.fsm_receive_event(ev_done);
+        }
     }
     
     public void definePath(){
         //Dis is da path, yo
-        System.out.println("Begin path");
+        //System.out.println("Begin path");
         Cell c = (Cell) fsm_param;
         Cell s = body.getCurrent();
         ArrayList<Cell> map = body.getGame().getMap().getMyMap();
         ArrayList<Cell> path = pathFinder.findPath(map, c, s);
         
         fsm_param = path;
+        
+        //have to define if the path will be direct (no waiting on cell for conquering) or  not
+        int nCells = 0;
+        for(int i=0;i<path.size();i++){
+            Cell k = path.get(i);
+            if(k.getType() == 1 && k.getOwner() != body.getTeam()){
+                nCells++;
+            }
+        }
+        //Should depend on level
+        if(nCells>=5){
+            fsm_secParam = true;
+        }
+        fsm_secParam = null;
         if(path.size() > 0){
-            this.fsm_receive_event(ev_done, fsm_param);
+            this.fsm_receive_event(ev_done);
         }
         else{
-            this.fsm_receive_event(ev_error, "You shall not path");
+            fsm_param = "You shall not path";
+            this.fsm_receive_event(ev_error);
         }
-        //have to define if the path will be direct (no waiting on cell for conquering) or  not
     }
     
     public void followPath(){
@@ -303,19 +338,20 @@ public class FSM{
         if(c != body.getCurrent()){     // Have to shift to cell
             // go to shiftCell
              nextCell = c;
-            this.fsm_receive_event(ev_done, fsm_param);
+            this.fsm_receive_event(ev_done);
         }
         else{
             if(path.size()<=1){         // Path is over
                 // Escape to pickCell
-            System.out.println("End of Path");
-                this.fsm_receive_event(ev_thirdDone, fsm_param);
+            //System.out.println("End of Path");
+            fsm_secParam = null;
+                this.fsm_receive_event(ev_thirdDone);
             }
             else{                       // Cell is shifted
                 
                 path.remove(c);
                 fsm_param = path;
-                this.fsm_receive_event(ev_secDone, fsm_param);
+                this.fsm_receive_event(ev_secDone);
             }
         }
     }
@@ -327,11 +363,10 @@ public class FSM{
         fsmGo=false;    // 
     }
     
-    public void fsm_receive_event(FSM_Event ev, Object param){
+    public void fsm_receive_event(FSM_Event ev){
         currentEvent = ev;
                 //trace(currentState+"-"+currentEvent);
                 prevState = currentState;
-                fsm_param = param;
                 FSM_State nextState = currentState.getNextState(ev);
                 //trace(currentState+"-"+currentEvent+"-"+nextState);
                 currentState=nextState;
@@ -375,10 +410,12 @@ public class FSM{
         analysing.addTransition(ev_secDone, waiting);
         pathFollow.addTransition(ev_secDone, pathFollow);
         shifting.addTransition(ev_secDone, pathFollow);
+        waiting.addTransition(ev_secDone, pathFollow);
         //ev_thirdDone
         analysing.addTransition(ev_thirdDone, pathDefine);
         pathFollow.addTransition(ev_thirdDone, picking);
-        
+        //ev_fourthDone
+        analysing.addTransition(ev_fourthDone, pathFollow);
     }
 
     public void setNextCell(Cell nextCell) {
