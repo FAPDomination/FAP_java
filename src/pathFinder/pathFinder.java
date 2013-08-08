@@ -46,29 +46,29 @@ import java.util.Collections;
 	
 	Same thing in french:
 	
-	Ajout du node de départ à la liste ouverte.
-        - Entrée dans la boucle suivante :
-          - Récupération du node avec le plus petit F contenu dans la liste ouverte.
+	Ajout du node de depart a la liste ouverte.
+        - Entree dans la boucle suivante :
+          - Recuperation du node avec le plus petit F contenu dans la liste ouverte.
 		  	On le nommera CURRENT.
-          - Basculer CURRENT dans la liste fermée.
-          - Pour chacun des 6 nodes adjacents à CURRENT appliquer la méthode suivante:
+          - Basculer CURRENT dans la liste fermee.
+          - Pour chacun des 6 nodes adjacents a CURRENT appliquer la methode suivante:
 
-			  .Si le node est un obstacle ou est dans la liste fermée ignorez-le et
-			passer à l'analyse d'un autre node.
+			  .Si le node est un obstacle ou est dans la liste fermee ignorez-le et
+			passer a l'analyse d'un autre node.
 	
-			  .Si le node n'est pas dans la liste ouverte, ajoutez-le à ladite liste
+			  .Si le node n'est pas dans la liste ouverte, ajoutez-le a ladite liste
 				et faites de CURRENT son parent(P). Calculez et enregistrez
-				ses propriétés F, G et H.
+				ses proprietes F, G et H.
 	
-			  .Si le node est déjà dans la liste ouverte, recalculez son G, s'il est inférieur
-				à l'ancien, faites de CURRENT son parent(P) et recalculez et enregistrez
-				ses propriétés F et H.
+			  .Si le node est deja dans la liste ouverte, recalculez son G, s'il est inferieur
+				a l'ancien, faites de CURRENT son parent(P) et recalculez et enregistrez
+				ses proprietes F et H.
 	
-			  .Stopper la boucle de recherche si vous ajoutez le node d'arrivée à la liste fermée ou si la liste ouverte est vide,
+			  .Stopper la boucle de recherche si vous ajoutez le node d'arrivee a la liste fermee ou si la liste ouverte est vide,
 			dans ce dernier cas, il n'y a pas de chemin possible entre A et B.
 
-        - Prenez le node d'arrivée et reconstruisez le chemin à rebours, càd en bouclant sur les propriétés parentes
-        jusqu'à ce que le parent soit CURRENT.
+        - Prenez le node d'arrivee et reconstruisez le chemin a rebours, cad en bouclant sur les proprietes parentes
+        jusqu'a ce que le parent soit CURRENT.
 	
 	See Also:
 	<http://forums.mediabox.fr/wiki/tutoriaux/flashplatform/jeux/pathfinder_algorithme_astar>
@@ -97,7 +97,7 @@ public class pathFinder {
     public static ArrayList<Node> findPath( NMap param_graphe, Node param_start, Node param_end )
         {
               // Creating closed and open lists
-          // on crée les listes fermées et les listes ouvertes
+          // on cree les listes fermees et les listes ouvertes
           openList = new ArrayList<Node>();
           closeList = new ArrayList<Node>();
      
@@ -112,7 +112,7 @@ public class pathFinder {
           }
      
               // Creating the variable that will host the final path
-          // on crée la variable qui va accueillir le chemin final
+          // on cree la variable qui va accueillir le chemin final
      
           ArrayList<Node> finalPath = new ArrayList<Node>();
      
@@ -124,31 +124,31 @@ public class pathFinder {
           while( openList.size() > 0 ) 
           {
                     // a. get the node with the smallest F in the open list. name it CURRENT
-            // a. Récupération du node avec le plus petit F contenu dans la liste ouverte. On le nommera CURRENT.
+            // a. Recuperation du node avec le plus petit F contenu dans la liste ouverte. On le nommera CURRENT.
             currentNode = getCurrentNode(); 
                     
                     //  stop the loop if the end node is added to closed list
-            //  stopper la boucle si n ajoute le noeud d'arrivée à la liste fermée
+            //  stopper la boucle si n ajoute le noeud d'arrivee a la liste fermee
             if( currentNode == param_end ) 
               break;
      
                     // b. Place CURRENT in the closed list
-            // b. Basculer CURRENT dans la liste fermée.
+            // b. Basculer CURRENT dans la liste fermee.
             addToCloseList( currentNode ); 
      
                     //  get neighbours of CURRENT
-            //  récupération des voisins de CURRENT
+            //  recuperation des voisins de CURRENT
             ArrayList<Node> neighbours = param_graphe.surroundingNodes(currentNode); 
             int maxi = neighbours.size();
                     // For each of the 6 surrounding nodes, apply the following
-            // Pour chacun des 6 nodes adjacents à CURRENT appliquer la méthode suivante:
+            // Pour chacun des 6 nodes adjacents a CURRENT appliquer la methode suivante:
             for( int i = 0; i < maxi; i++ )
             {
             
               Node node = neighbours.get(i);
                 if(node != null){
                       //if the node is an obstacle, ignore
-              //Si le node est un obstacle ou est dans la liste fermée ignorez-le et passer à l'analyse d'un autre node.
+              //Si le node est un obstacle ou est dans la liste fermee ignorez-le et passer a l'analyse d'un autre node.
               if(closeList.contains( node ) || node != null && !node.getCell().isWalkable()) 
                 continue;
                             
@@ -175,8 +175,8 @@ public class pathFinder {
                              If the node is already in the open list, re-calculate its G, and, if it is
                              less than the former G, make CURRENT its parent and re-calculate its F and H
                              */
-                //Si le node est déjà dans la liste ouverte, recalculez son G, s'il est inférieur à l'ancien, 
-                //faites de CURRENT  son parent(P) et recalculez et enregistrez ses propriétés F et H.
+                //Si le node est deja dans la liste ouverte, recalculez son G, s'il est inferieur a l'ancien, 
+                //faites de CURRENT  son parent(P) et recalculez et enregistrez ses proprietes F et H.
      
                 if( newG < node.getG() )
                 {
@@ -190,8 +190,8 @@ public class pathFinder {
               else 
               {
                             //If the node isn't in the open list, add it to this list. Calculate F,G,H
-                //Si le node n'est pas dans la liste ouverte, ajoutez-le à la dite liste et faites de CURRENT son parent(P). 
-                //Calculez et enregistrez ses propriétés F, G et H.
+                //Si le node n'est pas dans la liste ouverte, ajoutez-le a la dite liste et faites de CURRENT son parent(P). 
+                //Calculez et enregistrez ses proprietes F, G et H.
                 addToOpenList( node );
                 node.setParent(currentNode);
                 node.setG(newG);
@@ -203,7 +203,7 @@ public class pathFinder {
      
           }
               // end of the list. Either there's no path and the list is empty
-          // on est sorti de la liste, on a deux solutions, soit la liste ouverte est vide dans ces cas là il 
+          // on est sorti de la liste, on a deux solutions, soit la liste ouverte est vide dans ces cas la il 
           // n'y a pas de solutions et on retoure directement finalPath;
      
               // There's no path
@@ -211,7 +211,7 @@ public class pathFinder {
             return finalPath;
      
               //Either there's a path and we build it backwards from the end of the list, using the parent property
-          // Soit on maintenant on construit le chemin à rebours;
+          // Soit on maintenant on construit le chemin a rebours;
      
           Node lastNode = param_end;
           while( lastNode != param_start )

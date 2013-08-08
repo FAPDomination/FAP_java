@@ -456,12 +456,6 @@ public abstract class Player extends Human {
     public int getOri() {
         return ori;
     }
-
-    /**
-     * @param param
-     * @param newValue
-     * @param time : the duration of the modification in ms
-     */
     public void changeParam(String wich, double newValue, int time){
         Timer timer = new Timer();
         this.param = wich;
