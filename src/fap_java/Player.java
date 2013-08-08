@@ -245,7 +245,7 @@ public abstract class Player extends Human {
             current = c;
             this.setI(current.getI());
             this.setJ(current.getJ());
-            current.activateCell(this);
+                current.activateCell(this);
             
             //Check frozen cell :
             if(current.isFrozen() && !(this instanceof Booster)){

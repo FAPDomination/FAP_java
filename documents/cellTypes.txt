@@ -2,6 +2,7 @@ type 1 : takable cell
 //type 13 : healthy healthy
 //type 8 : floor is lava / unstable
 type 2 : CountDown Cell
+type 3 : neutral tile that can't be owned
 type 10 : warp
 type 11 : switch
 type 12 : exit NPC
