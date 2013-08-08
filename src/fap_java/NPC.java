@@ -11,4 +11,8 @@ public class NPC extends Human{
     public String toString() {
         return "NPC at "+this.getI()+","+this.getJ();
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+    }
 }

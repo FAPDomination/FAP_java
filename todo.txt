@@ -135,6 +135,8 @@ O	- Way to pass param to the timer
 	- Warps
 	- Traps
 	- Miner Warp
+  Design
+	- Change did of countdown cell after end of timer
   Game
 	- Get Params
 		- whoIsPlaying && skills
