@@ -181,9 +181,9 @@ T			- warp weight
 V				- parse destination cell
 V				- compute zone weight
 V				- Set it as warp weight
-		- findGoodCell
+T		- findGoodCell
 V			- General system
-			- Available cell (not on island)
+T			- Available cell (not on island)
 V		- areaWeight
 V			- Param Ring
 V			- compute and return

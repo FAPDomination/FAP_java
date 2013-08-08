@@ -464,7 +464,8 @@ public class FSM{
             Cell k = list.get(Tools.randRange(0, list.size()-1));
             if(k!=null && k.getType() == 1){
                 int w = areaWeight(k,nRings);
-                if(w>=minWeight){
+                ArrayList<Cell> path = pathFinder.findPath(list, body.getCurrent(), k);
+                if(w>=minWeight && path.size()>0){
                     c=k;
                 }
                 else{
