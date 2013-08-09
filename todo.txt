@@ -58,6 +58,11 @@ V	- Ori
 V		- Init ori
 V		- Modify when displacement
 V		- Set "ori" to int
+V	- Color
+V		- Param list
+V		- get
+V		- 8
+~		- Yellow
 ? CMap :
 ?	- MaxI & MaxJ
 	- Countneighbour with surroundingCell

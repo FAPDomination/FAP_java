@@ -1,5 +1,7 @@
 package fap_java;
 
+import java.awt.Color;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,4 +42,7 @@ public class Params {
     
     //FSM
     public static int fsmReactionTime = 40;
+    
+    // Colors
+    public static Color[] colorList = {Color.red,Color.blue, Color.yellow,new Color(0, 200, 0), new Color(0,220,235), new Color(234,0,220), new Color(255,132,0), new Color(156,0,255)};
 }

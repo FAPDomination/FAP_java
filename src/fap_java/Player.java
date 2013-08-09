@@ -57,14 +57,7 @@ public abstract class Player extends Human {
         }
         this.pc = pc;
 
-        color = Color.RED;
-        if (id == 1) {
-            color = Color.BLUE;
-        } else if (id == 2) {
-            color = Color.YELLOW;
-        } else if (id == 3) {
-            color = new Color(0, 200, 0);
-        }
+        color = Params.colorList[id];
         // 38 40 39 37 : arrow keys
         if (id == 0) {
             keys[0][0] = 38;
