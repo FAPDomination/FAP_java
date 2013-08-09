@@ -63,12 +63,12 @@ V		- Param list
 V		- get
 V		- 8
 ~		- Yellow
-? CMap :
-?	- MaxI & MaxJ
+V CMap :
+X	- MaxI & MaxJ
 V	- Countneighbour with surroundingCell
-? XML
+V XML
 V	- Understand XML
-?	- Parse a Map
+V	- Parse a Map
 V		- Cells
 V		- Parse DMap
 V		- Parse type
@@ -255,7 +255,7 @@ V		- Pathfinding
 V			- Pathfinder
 V			- Node
 V			- NMap
-	- Not Necessary
-		- Element
-		- Frame1
-		- Application1
+V	- Not Necessary
+V		- Element
+V		- Frame1
+V		- Application1
