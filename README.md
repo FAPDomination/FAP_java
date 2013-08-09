@@ -11,6 +11,8 @@ O : pas la compétence pour réaliser ça (go tuto)<br />
 T : Réalisé mais pas encore vraiment testé<br />
 ! : Attention, bug ou item important<br />
 E : En cours (c'est commencé et c'est là qu'on s'est arrêté la dernière fois)<br />
+X : Tâche annulée
+S : Saaaale
 
 Un item parent dans l'arbre hérite de tous les symboles que peuvent avoir ses enfants
 
