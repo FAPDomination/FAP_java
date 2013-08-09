@@ -197,24 +197,12 @@ public abstract class Player extends Human {
             c = fsm.getNextCell();
         }
         else{
-            // Get the position of the stick
-            int[] talArr = new int[2];
-            talArr[0] = current.getI();
-            talArr[1] = current.getJ();
             // Get the supposed new position of the stick
             int[] tal2Arr = new int[2];
-            tal2Arr[0] = talArr[0] + dy;
-            tal2Arr[1] = talArr[1] + dx;
+            tal2Arr[0] = current.getI() + dy;
+            tal2Arr[1] = current.getJ() + dx;
             c = game.getMap().getCell(tal2Arr);
         }
-        //trace(myMap[tal2Arr[0]][tal2Arr[1]][0]);
-        /*
-                    Variable: walkable
-                    tests if it's allowed to walk on the tile
-
-                    Results:
-                            Is true if the tile type is t and 1<= t < 20, and the tile is not occupied.
-            */
         // Adds colisions : one does not simply walk into an occupied tale
         boolean walkable = c != null && c.isWalkable() == true;
         if (game.isOccupied(c) != null) {
@@ -282,8 +270,6 @@ public abstract class Player extends Human {
         }
         //Test  trap Cell
         //-----
-
-        game.repaint();
     };
 
     // Will be used to have to repeat da key pressing and for H-Displacement

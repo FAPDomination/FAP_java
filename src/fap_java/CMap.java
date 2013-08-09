@@ -149,70 +149,17 @@ public class CMap {
      */
     public int countNeighbours(Cell c) {
         int n = 0;
-        int i = c.getI();
-        int j = c.getJ();
         Team owns = c.getOwner();
-        // cells from the superior line
-        if (i != 0) {
-            // not the first line
-            if (i % 2 == 0) {
-                // line with even index
-                if (j != 0) {
-                    // not the first column
-                    if (getCell(i - 1, j - 1) != null && getCell(i - 1, j - 1).getOwner() == owns) {
-                        n++;
-                    }
-                }
-                if (getCell(i - 1, j) != null && getCell(i - 1, j).getOwner() == owns) {
-                    n++;
-                }
-            } else {
-                // line with odd index
-                // if (j != map[i].length-1) {
-                // not the last column
-                if (getCell(i - 1, j + 1) != null && getCell(i - 1, j + 1).getOwner() == owns) {
-                    n++;
-                }
-                //}
-                if (getCell(i - 1, j) != null && getCell(i - 1, j).getOwner() == owns) {
-                    n++;
-                }
-            }
-        }
-        // cells from the same line
-        if (j != 0) {
-            if (getCell(i, j - 1) != null && getCell(i, j - 1).getOwner() == owns) {
+        
+        ArrayList<Cell> surround = surroundingCells(c);
+        for(int i=0;i<surround.size();i++){
+            Cell k = surround.get(i);
+            if(k!=null && k.getOwner() == owns){
                 n++;
             }
         }
-        // if (j != map[i].length-1) {
-        if (getCell(i, j + 1) != null && getCell(i, j + 1).getOwner() == owns) {
-            n++;
-        }
-        // }
-        // cells from the inferior line
-        //if (i != map.length-1) {
-        if (i % 2 == 0) {
-            if (j != 0) {
-                if (getCell(i + 1, j - 1) != null && getCell(i + 1, j - 1).getOwner() == owns) {
-                    n++;
-                }
-            }
-            if (getCell(i + 1, j) != null && getCell(i + 1, j).getOwner() == owns) {
-                n++;
-            }
-        } else {
-            // if (j != map[i].length-1) {
-            if (getCell(i + 1, j + 1) != null && getCell(i + 1, j + 1).getOwner() == owns) {
-                n++;
-            }
-            // }
-            if (getCell(i + 1, j) != null && getCell(i + 1, j).getOwner() == owns) {
-                n++;
-            }
-        }
-        //}
-        // You just lost the game.
+        
+        // You just lost the game
         return n;
     }
 

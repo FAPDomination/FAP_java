@@ -4,9 +4,9 @@
   Bugs :
 	- Type of blocking tiles all to 0 ?
   Not so good :
-O? 	- Player l183 : big repaint
+V 	- Player l183 : big repaint
 O		- Get a lighter repaint
-?		- Get it inside the walkable block
+X		- Get it inside the walkable block
 V 	- TheThread : static count
   Displacement Hexa
 V	- Hexa
@@ -33,7 +33,7 @@ P		- NPC exit
 V	- TrapCells
 T		- Blast method
 T		- Trap system
-	- Rewrite properly with objects, you flashy
+V	- Rewrite properly with objects, you flashy
 V refreshHealthPoints
 V stickActivateTile
 P Depth
@@ -65,7 +65,7 @@ V		- 8
 ~		- Yellow
 ? CMap :
 ?	- MaxI & MaxJ
-	- Countneighbour with surroundingCell
+V	- Countneighbour with surroundingCell
 ? XML
 V	- Understand XML
 ?	- Parse a Map
