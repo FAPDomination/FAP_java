@@ -41,7 +41,7 @@
 		<magician>4</magician>
 		<miner>3</miner>
 		<warlock>5</warlock>
-		<archer>7,8</archer>
+		<archer>0,8</archer>
 		<vampire>3,1</vampire>
 		<NoChar>null</NoChar>
 		<Nmagician>2,6</Nmagician>

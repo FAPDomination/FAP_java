@@ -2,6 +2,10 @@ package fap_java;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 public class Arrow extends Element {
 
@@ -38,10 +42,26 @@ public class Arrow extends Element {
     public void paintComponent(Graphics g) {
         //int offsetY;
         offsetY = 0;
-
+        /*
         g.setColor(Color.BLACK);
         g.fillRect(x, y + offsetY, 4, 4);
-
+        */
+        angle = 45;
+        Image arrow =Graph.list.get("arrow");
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawImage(arrow, this.x, this.y, 40, 12, null);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        
+        double sin = Math.abs(Math.sin(Math.toRadians(angle))), cos = Math.abs(Math.cos(Math.toRadians(angle)));
+        int w = arrow.getWidth(null), h = arrow.getHeight(null);
+        int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h
+                * cos + w * sin);
+        
+        g2d.translate((neww - w) / 2, (newh - h) / 2);
+        g2d.rotate(Math.toRadians(angle), w / 2, h / 2);
+        g2d.drawImage(arrow,x,y,null);
+        g2d.dispose();
     }
 
     /**
