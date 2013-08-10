@@ -150,12 +150,16 @@ P	- Change did of countdown cell after end of timer
 		- randStart
 		- isFSM
 		- Keys
+		- Victory conditions
 	- Pause/Play
 		- Define Keys
 		- Execute Pause
 			- Pause
 			- Display
 		- Resume
+	- Victory
+		- Check victory
+		- Display it
   AI
 	- Object
 V		- Class File
@@ -199,6 +203,7 @@ T			- warp weight
 V				- parse destination cell
 V				- compute zone weight
 V				- Set it as warp weight
+			- Switch weight
 T		- findGoodCell
 V			- General system
 T			- Available cell (not on island)
@@ -239,23 +244,3 @@ V	- Get scores
 V	- Draw Bar
 V	- Display skillTime
 E Documentation
-	- JavaDoc
-V		- Cell
-V		- CMap
-V		- FSM_Event
-V		- FSM_State
-V		- Pathfinding
-V			- Pathfinder
-V			- Node
-V			- NMap
-	- Comments
-V		- Cell
-V		- CMap
-V		- Pathfinding
-V			- Pathfinder
-V			- Node
-V			- NMap
-V	- Not Necessary
-V		- Element
-V		- Frame1
-V		- Application1
