@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel north = new JPanel();
-    private JPanel center = new MainMenu();
+    private JPanel center = new MainMenu(this);
     
     public TheFrame() {
         try {
@@ -38,9 +38,5 @@ public class TheFrame extends JFrame {
         this.validate();
         this.repaint();
     }
-    
-    public void paintComponent(Graphics g){
-        g.setColor(Color.BLACK);
-        g.drawString("lolilol", 5, this.getHeight()-30);
-    }
+
 }

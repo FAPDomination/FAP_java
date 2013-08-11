@@ -1,13 +1,23 @@
 package gui;
 
 
+import fap_java.Game;
+
 import java.awt.Color;
-import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MainMenu extends JPanel {
+import fap_java.Tools;
+
+import java.awt.BorderLayout;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+public class MainMenu extends JPanel{
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
@@ -15,7 +25,10 @@ public class MainMenu extends JPanel {
     private JButton btnCredits = new JButton();
     private JButton btnQuit = new JButton();
     
-    public MainMenu() {
+    private TheFrame parent;
+    
+    public MainMenu(TheFrame fr) {
+        parent = fr;
         try {
             jbInit();
         } catch (Exception e) {
@@ -59,5 +72,35 @@ public class MainMenu extends JPanel {
         this.add(btnOptions);
         this.add(btnCredits);
         this.add(btnQuit);
+        // Effects
+        btnVersus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                startQuickPlay();
+            }
+            });
+        btnQuit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+            });
+    }
+    
+    private void startQuickPlay(){
+        // init map
+        int nmap = 5;
+        // init skill
+        int pcP = 0;
+        do{
+        pcP = Tools.randRange(1,9);
+        }
+        while(pcP == 2 || pcP == 7);
+        int pcF = 0;
+        do{
+        pcF = Tools.randRange(1,9);
+        }
+        while(pcF == 2 || pcF == 7);
+        
+        Game game = new Game(""+pcP+","+pcF,"0,1","0,1",true,nmap);
+        parent.changePanel(game, BorderLayout.CENTER);
     }
 }

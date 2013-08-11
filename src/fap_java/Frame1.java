@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class Frame1 extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel jPanel1 = new JPanel();
-    private Game game = new Game();
+    private Game game = new Game("3,6,1,1","0,1,0,0","0,5,0,0",true,5);
 
     public Frame1() {
         try {

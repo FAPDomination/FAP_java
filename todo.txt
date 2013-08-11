@@ -222,3 +222,24 @@ V	- Update scores
 V	- Get scores
 V	- Draw Bar
 V	- Display skillTime
+
+---------------------------- GUI
+
+  MainMenu
+	- Buttons
+		- adv
+		- vs
+		- quick
+V			- pick map
+V			- rand pc
+V			- rand pc fsm
+V			- teams & stuff
+V			- init
+T			- launch
+				- Bug no displacement
+		- options
+P		- credits
+?		- quit
+V			- Quit
+?			- Dialog ?
+  Frame

@@ -28,17 +28,21 @@ public class Game extends JPanel {
     private ArrayList<Element> objects = new ArrayList<Element>();
     
     //Parameters to be given when starting a new game
-    private String whoIsPlaying = "3,6,1,1"; // This is linked with skill, here player 1 is magician
-    private String wichTeam = "0,1,0,0"; // Here player n°2 is in team n°0
-    private String isFSM = "0,5,0,0";   // 0 for player, other for FSM level
-    private boolean randStart = false;
+    private String whoIsPlaying; // This is linked with skill, here player 1 is magician
+    private String wichTeam; // Here player n°2 is in team n°0
+    private String isFSM;   // 0 for player, other for FSM level
+    private boolean randStart;
 
-    public Game() {
-
+    public Game(String whoIsPlaying, String wichTeam, String isFSM, boolean randStart, int nmap) {
+        this.whoIsPlaying = whoIsPlaying;
+        this.wichTeam = wichTeam;
+        this.isFSM = isFSM;
+        this.randStart = randStart;
+        
         this.setLayout(null);
         this.setBackground(Color.white);
         map = new CMap();
-        map = XMLparser.parseMap(5);
+        map = XMLparser.parseMap(nmap);
         //Parse ParamTable
         XMLparser.parseParams();
         this.setSize(Constants.frameDimension);
