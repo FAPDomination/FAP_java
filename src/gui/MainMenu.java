@@ -9,13 +9,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import fap_java.Tools;
+import fap_java.Graph;
 
 import java.awt.BorderLayout;
 
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 
 public class MainMenu extends JPanel {
     private JButton btnAdventure = new JButton();
@@ -28,6 +32,7 @@ public class MainMenu extends JPanel {
     private TheFrame parent;
 
     public MainMenu(TheFrame fr, boolean animBack) {
+        //super();
         parent = fr;
         try {
             jbInit(animBack);
@@ -38,7 +43,6 @@ public class MainMenu extends JPanel {
 
     private void jbInit(boolean animBack) throws Exception {
         this.setLayout(null);
-        this.setBackground(Color.white);
         this.setSize(Constants.frameDimension);
 
         //------ Buttons
@@ -80,6 +84,7 @@ public class MainMenu extends JPanel {
                 System.exit(0);
             }
         });
+    
     }
 
     private void startQuickPlay() {
@@ -116,5 +121,26 @@ public class MainMenu extends JPanel {
         this.remove(btnOptions);
         this.remove(btnCredits);
         this.remove(btnQuit);
+    }
+    
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        // Background
+        int w = this.getWidth( );
+        int h = this.getHeight( );
+         
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(
+            0, 0, new Color(50,118,249),
+            0, h, new Color(114,228,255) );
+
+        g2d.setPaint( gp );
+        g2d.fillRect( 0, 0, w, h );
+        
+        // Sword
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawImage(Graph.guimg.get("MM_sword"), -80, 70, 2153, 762, null);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 }

@@ -16,6 +16,7 @@ public class Graph {
 
     // Cells images
     protected static Map<String, Image> cells = new HashMap<String, Image>();
+    public static Map<String, Image> guimg = new HashMap<String, Image>();
     // key : String, the name of the cell
     // entry : the cell image
     static {
@@ -30,6 +31,7 @@ public class Graph {
             cells.put("trail", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
             cells.put("rock", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
             cells.put("tree_1", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
+            guimg.put("MM_sword", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/sword.png")));
         } catch (Exception e) {
             System.out.println("An error occured while trying loading the cell images.");
         }

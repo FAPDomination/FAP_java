@@ -8,6 +8,7 @@ O? 	- Player l183 : big repaint
 O		- Get a lighter repaint
 ?		- Get it inside the walkable block
 V 	- TheThread : static count
+	- Graph guimg public
   Displacement Hexa
 V	- Hexa
 	- Bug changing
@@ -245,10 +246,14 @@ V			- Quit
 ?			- Dialog ?
 	- Design
 		- Implement images
+V			- Sword
+			- clouds
 		- Ground manage
 		- Sliding effect
 			- Go
 			- Back
+~		- Gradient BG
+		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
   Right Click Menu
   Frame
