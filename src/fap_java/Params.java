@@ -40,9 +40,9 @@ public class Params {
     
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
-    //FSM
-    public static int fsmReactionTime = 40;
-    
     // Colors
     public static Color[] colorList = {Color.red,Color.blue, Color.yellow,new Color(0, 200, 0), new Color(0,220,235), new Color(234,0,220), new Color(255,132,0), new Color(156,0,255)};
+    
+    public static int fsmReactionTime = 10;
+
 }

@@ -219,16 +219,16 @@ V		- Warlock
 V		- Vampire
 V		- NC
 V		- Magician
-P		- Booster
-	- Levels
-		- Ideas of what should depend on level
-			- nRings in areaWeight
-			- Weight toggle for changing area
-			- ReactionTime
-			- Miner Time after Skill
-			- All skill triggers
-			- number of tries in findGoodCell
-			- Trigger for direct pathfinding or conquest
+V		- Booster
+T~	- Levels
+T		- Ideas of what should depend on level
+T			- nRings in areaWeight
+T			- Weight toggle for changing area
+T			- ReactionTime
+T			- Miner Time after Skill
+T			- All skill triggers
+T			- number of tries in findGoodCell
+T			- Trigger for direct pathfinding or conquest
 V		- Init when creating FSM object
 V PathFinding
 V	- Classes files

@@ -12,7 +12,6 @@ public class NPC extends Human{
         return "NPC at "+this.getI()+","+this.getJ();
     }
 
-    @Override
     public void paintComponent(Graphics g) {
     }
 }
