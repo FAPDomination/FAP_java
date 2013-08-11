@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MainMenu extends JPanel implements AnimPanel{
+public class MainMenu extends JPanel implements AnimPanel {
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
@@ -34,7 +34,7 @@ public class MainMenu extends JPanel implements AnimPanel{
 
     private TheFrame parent;
     private ThreadGUI theThread;
-    
+
     // Images
     private Image sword;
     private Image clouds;
@@ -94,7 +94,7 @@ public class MainMenu extends JPanel implements AnimPanel{
         btnCredits.setLocation(origX + 68, origY + 200);
         btnQuit.setLocation(origX + 50, origY + 250);
         // Adding
-        if(!animBack){
+        if (!animBack) {
             addButtons();
         }
         // Effects
@@ -108,23 +108,23 @@ public class MainMenu extends JPanel implements AnimPanel{
                 System.exit(0);
             }
         });
-        
+
         //-------------- Images
         sword = Graph.guimg.get("MM_sword");
         clouds = Graph.guimg.get("MM_clouds");
-        
+
         // init location
         this.cloudsX = 130;
         this.swordX = gminx;
-        
+
         this.validate();
         this.repaint();
     }
 
     private void startQuickPlay() {
         // init map
-        int[] possibleMaps = {5,6,8,10,11};
-        int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length-1)];
+        int[] possibleMaps = { 5, 6, 8, 10, 11 };
+        int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
         // init skill
         int pcP = 0;
         do {
@@ -138,8 +138,8 @@ public class MainMenu extends JPanel implements AnimPanel{
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
         parent.changePanel(game, BorderLayout.CENTER);
     }
-    
-    private void addButtons(){
+
+    private void addButtons() {
         // Adding
         this.add(btnAdventure);
         this.add(btnVersus);
@@ -148,7 +148,8 @@ public class MainMenu extends JPanel implements AnimPanel{
         this.add(btnCredits);
         this.add(btnQuit);
     }
-    private void removeButtons(){
+
+    private void removeButtons() {
         this.remove(btnAdventure);
         this.remove(btnVersus);
         this.remove(btnQuickPlay);
@@ -156,22 +157,20 @@ public class MainMenu extends JPanel implements AnimPanel{
         this.remove(btnCredits);
         this.remove(btnQuit);
     }
-    
-    public void paintComponent(Graphics g){
+
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
         // Background
-        int w = this.getWidth( );
-        int h = this.getHeight( );
-         
-        // Paint a gradient from top to bottom
-        GradientPaint gp = new GradientPaint(
-            0, 0, new Color(50,118,249),
-            0, h, new Color(114,228,255) );
+        int w = this.getWidth();
+        int h = this.getHeight();
 
-        g2d.setPaint( gp );
-        g2d.fillRect( 0, 0, w, h );
-        
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(0, 0, new Color(50, 118, 249), 0, h, new Color(114, 228, 255));
+
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
+
         // Sword
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
@@ -180,15 +179,14 @@ public class MainMenu extends JPanel implements AnimPanel{
     }
 
     public void executeAnim() {
-        swordX += this.groundSpeed*facVground;
-        cloudsX += this.groundSpeed*facVground/2;
-        if(facVground == 0){
+        swordX += this.groundSpeed * facVground;
+        cloudsX += this.groundSpeed * facVground / 2;
+        if (facVground == 0) {
             facVground = 1;
+        } else if ((swordX > gmaxx && facVground == 1) || (swordX < gminx && facVground == -1)) {
+            facVground *= -1;
         }
-        else if((swordX > gmaxx && facVground == 1)  || (swordX < gminx && facVground == -1)){
-                facVground *= -1;
-        }
-        
+
         repaint();
     }
 }
