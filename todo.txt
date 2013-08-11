@@ -271,9 +271,9 @@ V			- clouds
 X		- Ground manage
 X		- Ground lag
 X		- Delete ground displacement ?
-		- Sliding effect
-			- Go
-			- Back
+V		- Sliding effect
+V			- Go
+V			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
 		- Buttons

@@ -33,6 +33,7 @@ public class MainMenu extends JPanel implements AnimPanel{
     private JButton btnQuit = new JButton();
 
     private TheFrame parent;
+    private ThreadGUI theThread;
 
     // Images
     private Image sword;
@@ -41,6 +42,12 @@ public class MainMenu extends JPanel implements AnimPanel{
     private double swordX;
     private double cloudsX;
     private double buttonsX;
+    // Slide animation
+    private int speed;
+    private int maxxS = Constants.maxxS;
+    private int minxS = Constants.minxS; 
+    private int maxxC = Constants.maxxC;
+    private int minxC = Constants.minxC;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
@@ -101,11 +108,13 @@ public class MainMenu extends JPanel implements AnimPanel{
         clouds = Graph.guimg.get("MM_clouds");
 
         // init location
-        this.cloudsX = 130;
-        this.swordX = -80;
+        this.cloudsX = maxxC;
+        this.swordX = maxxS;
 
         this.validate();
         this.repaint();
+        
+        //this.startSliding(false);
     }
 
     private void startQuickPlay() {
@@ -153,7 +162,7 @@ public class MainMenu extends JPanel implements AnimPanel{
         int h = this.getHeight();
 
         // Paint a gradient from top to bottom
-        GradientPaint gp = new GradientPaint(0, 0, new Color(50, 118, 249), 0, h, new Color(114, 228, 255));
+        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
 
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, w, h);
@@ -165,7 +174,35 @@ public class MainMenu extends JPanel implements AnimPanel{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 
-    @Override
     public void executeAnim() {
+        swordX+=speed;
+        cloudsX+=speed*1.35;
+        if((speed < 0 && swordX <= minxS) || (speed > 0 && swordX >= maxxS)){
+            endAnim();
+        }
+        repaint();
+    }
+    
+    public void startSliding(boolean toTheLeft){
+        this.removeButtons();
+        speed = 25;
+        if(toTheLeft){
+            speed*=-1;
+            swordX = maxxS;
+            cloudsX = maxxC;
+        }
+        else{
+            swordX = minxS;
+            cloudsX = minxC;
+        }
+        
+        theThread = new ThreadGUI(this);
+        theThread.setRunning(false);
+        new Thread(this.theThread).start();
+        theThread.setRunning(true);
+    }
+    
+    public void endAnim(){
+        theThread.setRunning(false);
     }
 }

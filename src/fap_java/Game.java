@@ -6,7 +6,10 @@ import gui.Constants;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
+
+import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
@@ -78,6 +81,17 @@ public class Game extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        // Background
+        int w = this.getWidth();
+        int h = this.getHeight();
+
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
+
+        //g2d.setPaint(gp);
+        //g2d.fillRect(0, 0, w, h);
+        
         map.paintComponent(g);
         for (int i = 0; i < players.size(); i++) {
             players.get(i).paintComponent(g);
