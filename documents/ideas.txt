@@ -20,3 +20,4 @@ Démarrer les calculs seulement sur un front montant de current
 5 levels of FSM
 1 : starter
 5 : MegaBoss of the death
+

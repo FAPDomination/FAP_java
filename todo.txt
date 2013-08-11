@@ -153,7 +153,7 @@ V				- Real  state
 V				- Engage displacement
 				- Count if the tile is blocked (timeout or "try"out)
 				- if try out while pathFollowing, recalculate
-			- Analysing
+PS~T			- Analysing
 V				- Analyse cell
 V				- Analyse Area
 V					- Get Weight
@@ -198,8 +198,8 @@ V		- Warlock
 V		- Vampire
 V		- NC
 V		- Magician
-P		- Booster
-T	- Levels
+V		- Booster
+T~	- Levels
 T		- Ideas of what should depend on level
 T			- nRings in areaWeight
 T			- Weight toggle for changing area
