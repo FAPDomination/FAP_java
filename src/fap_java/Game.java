@@ -2,6 +2,8 @@ package fap_java;
 
 import characters.*;
 
+import gui.Constants;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -39,7 +41,8 @@ public class Game extends JPanel {
         map = XMLparser.parseMap(5);
         //Parse ParamTable
         XMLparser.parseParams();
-
+        this.setSize(Constants.frameDimension);
+        
         thread = new TheThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
