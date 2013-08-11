@@ -237,9 +237,18 @@ V			- teams & stuff
 V			- init
 T			- launch
 				- Bug no displacement
+P			- Keep list of maps updated
 		- options
 P		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
+	- Design
+		- Implement images
+		- Ground manage
+		- Sliding effect
+			- Go
+			- Back
+  Go back buttons EEEEEEEEEEEEE
+  Right Click Menu
   Frame

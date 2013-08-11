@@ -27,16 +27,16 @@ public class MainMenu extends JPanel {
 
     private TheFrame parent;
 
-    public MainMenu(TheFrame fr) {
+    public MainMenu(TheFrame fr, boolean animBack) {
         parent = fr;
         try {
-            jbInit();
+            jbInit(animBack);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void jbInit() throws Exception {
+    private void jbInit(boolean animBack) throws Exception {
         this.setLayout(null);
         this.setBackground(Color.white);
         this.setSize(Constants.frameDimension);
@@ -66,12 +66,9 @@ public class MainMenu extends JPanel {
         btnCredits.setLocation(origX + 68, origY + 200);
         btnQuit.setLocation(origX + 50, origY + 250);
         // Adding
-        this.add(btnAdventure);
-        this.add(btnVersus);
-        this.add(btnQuickPlay);
-        this.add(btnOptions);
-        this.add(btnCredits);
-        this.add(btnQuit);
+        if(!animBack){
+            addButtons();
+        }
         // Effects
         btnQuickPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -101,5 +98,23 @@ public class MainMenu extends JPanel {
 
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
         parent.changePanel(game, BorderLayout.CENTER);
+    }
+    
+    private void addButtons(){
+        // Adding
+        this.add(btnAdventure);
+        this.add(btnVersus);
+        this.add(btnQuickPlay);
+        this.add(btnOptions);
+        this.add(btnCredits);
+        this.add(btnQuit);
+    }
+    private void removeButtons(){
+        this.remove(btnAdventure);
+        this.remove(btnVersus);
+        this.remove(btnQuickPlay);
+        this.remove(btnOptions);
+        this.remove(btnCredits);
+        this.remove(btnQuit);
     }
 }

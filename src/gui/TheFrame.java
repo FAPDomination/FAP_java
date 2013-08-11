@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel north = new JPanel();
-    private JPanel center = new MainMenu(this);
+    private JPanel center = new MainMenu(this,false);
     
     public TheFrame() {
         try {
