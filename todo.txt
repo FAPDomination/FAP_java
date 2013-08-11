@@ -268,9 +268,9 @@ V			- Quit
 V		- Implement images
 V			- Sword
 V			- clouds
-~		- Ground manage
-		- Ground lag
-?		- Delete ground displacement ?
+X		- Ground manage
+X		- Ground lag
+X		- Delete ground displacement ?
 		- Sliding effect
 			- Go
 			- Back

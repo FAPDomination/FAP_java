@@ -42,11 +42,6 @@ public class MainMenu extends JPanel implements AnimPanel {
     private double swordX;
     private double cloudsX;
     private double buttonsX;
-    // Bounds
-    private int gminx = -120;
-    private int gmaxx = -55;
-    private int facVground = 0;
-    private double groundSpeed = 0.1;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
@@ -115,7 +110,7 @@ public class MainMenu extends JPanel implements AnimPanel {
 
         // init location
         this.cloudsX = 130;
-        this.swordX = gminx;
+        this.swordX = -80;
 
         this.validate();
         this.repaint();
@@ -173,6 +168,7 @@ public class MainMenu extends JPanel implements AnimPanel {
 
         // Sword
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
