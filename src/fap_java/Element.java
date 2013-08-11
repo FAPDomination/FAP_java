@@ -1,14 +1,14 @@
 package fap_java;
 
 import java.awt.Graphics;
-import java.awt.Point;
 
-import javax.swing.JPanel;
-
-public abstract class Element{
+public abstract class Element {
     private int i;
     private int j;
-    
+
+    /**
+     * An Element of the map. Can be a cell, a player, a NPC, ...
+     */
     public Element() {
         super();
     }
@@ -28,8 +28,8 @@ public abstract class Element{
     public int getJ() {
         return j;
     }
-    
+
     public abstract String toString();
-    
+
     public abstract void paintComponent(Graphics g);
 }

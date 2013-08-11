@@ -5,6 +5,10 @@ import fap_java.Cell;
 import java.util.ArrayList;
 
 public class NMap {
+    /**
+     * Creates a node version of a Cell map
+     * @param map
+     */
     public NMap(ArrayList<Cell> map) {
         this.convertMap(map);
     }
