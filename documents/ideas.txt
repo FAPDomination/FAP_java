@@ -15,3 +15,8 @@ Exemple : pour le booster
 ----- Flèche
 - Avoid too much calculus with a "parent" cell atribute.
 Démarrer les calculs seulement sur un front montant de current
+
+----- FSM
+5 levels of FSM
+1 : starter
+5 : MegaBoss of the death

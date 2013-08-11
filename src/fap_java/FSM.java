@@ -29,7 +29,8 @@ public class FSM{
     private Object fsm_param;
     private Object fsm_secParam;
     
-    private int nRings = 2;
+    private int nRings;
+    private int reactTime;
     
     //States
     public static FSM_State picking = new FSM_State(0,"pickCell");
@@ -123,12 +124,16 @@ public class FSM{
         //check area
         int areaWeight = this.areaWeight(body.getCurrent(), nRings);
         //Weight toggle for changin area
-        if(areaWeight <3 && fsm_secParam == null){
+        int weightToggle = 6-level;
+        if(weightToggle < 2){
+            weightToggle = 2;
+        }
+        if(areaWeight <weightToggle && fsm_secParam == null){
             //Find good Cell system
             if(body instanceof Miner){
                 body.getSkill();
                 body.keyLow(4);
-                fsm_param = 3*Params.fsmReactionTime;
+                fsm_param = (6-level)*reactTime;
                 this.fsm_receive_event(ev_secDone);
             }
             else{
@@ -256,7 +261,7 @@ public class FSM{
             if(skillWorth && fsm_secParam == null){
                 //System.out.println("sop");
                 body.getSkill();
-                fsm_param = Params.fsmReactionTime;
+                fsm_param = reactTime;
                 this.fsm_receive_event(ev_secDone);
             }
             else{
@@ -268,10 +273,10 @@ public class FSM{
                 else{
                     if(cellWasTaken){
                         if(fsm_secParam != null){
-                            fsm_secParam = Params.fsmReactionTime;
+                            fsm_secParam = reactTime;
                         }
                         else{
-                            fsm_param = Params.fsmReactionTime;
+                            fsm_param = reactTime;
                         }
                         this.fsm_receive_event(ev_secDone);
                     }
@@ -320,7 +325,7 @@ public class FSM{
             }
         }
         //Should depend on level
-        if(nCells>=5){
+        if(nCells>=2+level){
             fsm_secParam = true;
         }
         if(path.size() > 0){
@@ -416,6 +421,14 @@ public class FSM{
         pathFollow.addTransition(ev_thirdDone, picking);
         //ev_fourthDone
         analysing.addTransition(ev_fourthDone, pathFollow);
+        
+        // COnstants
+        nRings = level;
+        if(nRings > 3){
+            nRings = 3;
+        }
+        
+        reactTime = 50 - Params.fsmReactionTime*level;
     }
 
     public void setNextCell(Cell nextCell) {
@@ -495,7 +508,7 @@ public class FSM{
         //Constants
         int count = 0;
         int minWeight = 8;
-        int tries = 5+level;
+        int tries = 10+level;
         ArrayList<Cell> list = body.getGame().getMap().getMyMap();
         while(c==null){
             Cell k = list.get(Tools.randRange(0, list.size()-1));

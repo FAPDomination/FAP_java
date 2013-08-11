@@ -39,5 +39,5 @@ public class Params {
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
     //FSM
-    public static int fsmReactionTime = 40;
+    public static int fsmReactionTime = 10;
 }
