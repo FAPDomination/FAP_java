@@ -8,9 +8,10 @@ V 	- Player l183 : big repaint
 O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
-  Displacement Hexa
+? Displacement Hexa
 V	- Hexa
-	- Bug changing
+V	- Bug changing
+?	- Toggle handleKeys with thread and not keypress ?
 V Same time displacements
 ? Get rid of colors
 V Collisions
@@ -243,4 +244,3 @@ V	- Update scores
 V	- Get scores
 V	- Draw Bar
 V	- Display skillTime
-E Documentation
