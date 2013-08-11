@@ -33,7 +33,18 @@ public class MainMenu extends JPanel {
     private TheFrame parent;
     
     // Images
-    Image sword;
+    private Image sword;
+    private Image cloud1;
+    private Image cloud2;
+    // Locations
+    private int swordX;
+    private int cloud1X;
+    private int cloud2X;
+    // Bounds
+    private int gminx = -60;
+    private int gmaxx = 30;
+    private int facVground = 1;
+    private double groundSpeed = 0.10;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
