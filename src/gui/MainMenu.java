@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MainMenu extends JPanel implements AnimPanel {
+public class MainMenu extends JPanel implements AnimPanel{
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
@@ -33,7 +33,6 @@ public class MainMenu extends JPanel implements AnimPanel {
     private JButton btnQuit = new JButton();
 
     private TheFrame parent;
-    private ThreadGUI theThread;
 
     // Images
     private Image sword;
@@ -56,13 +55,6 @@ public class MainMenu extends JPanel implements AnimPanel {
     private void jbInit(boolean animBack) throws Exception {
         this.setLayout(null);
         this.setSize(Constants.frameDimension);
-
-        // launch aimation
-        theThread = new ThreadGUI(this);
-        theThread.setDelay(8);
-        theThread.setRunning(false);
-        new Thread(this.theThread).start();
-        theThread.setRunning(true);
 
         //------ Buttons
         // Texts
@@ -168,21 +160,12 @@ public class MainMenu extends JPanel implements AnimPanel {
 
         // Sword
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 
+    @Override
     public void executeAnim() {
-        swordX += this.groundSpeed * facVground;
-        cloudsX += this.groundSpeed * facVground / 2;
-        if (facVground == 0) {
-            facVground = 1;
-        } else if ((swordX > gmaxx && facVground == 1) || (swordX < gminx && facVground == -1)) {
-            facVground *= -1;
-        }
-
-        repaint();
     }
 }

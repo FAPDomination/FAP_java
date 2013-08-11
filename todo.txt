@@ -276,6 +276,7 @@ X		- Delete ground displacement ?
 			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
+		- Buttons
   Go back buttons EEEEEEEEEEEEE
   Right Click Menu
   Frame
