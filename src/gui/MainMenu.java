@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import fap_java.Tools;
 import fap_java.Graph;
 
+import fap_java.TheThread;
+
 import java.awt.BorderLayout;
 
 import java.awt.GradientPaint;
@@ -22,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MainMenu extends JPanel {
+public class MainMenu extends JPanel implements AnimPanel{
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
@@ -31,20 +33,20 @@ public class MainMenu extends JPanel {
     private JButton btnQuit = new JButton();
 
     private TheFrame parent;
+    private ThreadGUI theThread;
     
     // Images
     private Image sword;
-    private Image cloud1;
-    private Image cloud2;
+    private Image clouds;
     // Locations
-    private int swordX;
-    private int cloud1X;
-    private int cloud2X;
+    private double swordX;
+    private double cloudsX;
+    private double buttonsX;
     // Bounds
-    private int gminx = -60;
-    private int gmaxx = 30;
-    private int facVground = 1;
-    private double groundSpeed = 0.10;
+    private int gminx = -120;
+    private int gmaxx = -55;
+    private int facVground = 0;
+    private double groundSpeed = 0.1;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
@@ -59,6 +61,13 @@ public class MainMenu extends JPanel {
     private void jbInit(boolean animBack) throws Exception {
         this.setLayout(null);
         this.setSize(Constants.frameDimension);
+
+        // launch aimation
+        theThread = new ThreadGUI(this);
+        theThread.setDelay(8);
+        theThread.setRunning(false);
+        new Thread(this.theThread).start();
+        theThread.setRunning(true);
 
         //------ Buttons
         // Texts
@@ -100,7 +109,14 @@ public class MainMenu extends JPanel {
             }
         });
         
+        //-------------- Images
         sword = Graph.guimg.get("MM_sword");
+        clouds = Graph.guimg.get("MM_clouds");
+        
+        // init location
+        this.cloudsX = 130;
+        this.swordX = gminx;
+        
         this.validate();
         this.repaint();
     }
@@ -158,7 +174,21 @@ public class MainMenu extends JPanel {
         
         // Sword
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(sword, -80, 70, 2153, 762, this);
+        g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
+        g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+    }
+
+    public void executeAnim() {
+        swordX += this.groundSpeed*facVground;
+        cloudsX += this.groundSpeed*facVground/2;
+        if(facVground == 0){
+            facVground = 1;
+        }
+        else if((swordX > gmaxx && facVground == 1)  || (swordX < gminx && facVground == -1)){
+                facVground *= -1;
+        }
+        
+        repaint();
     }
 }

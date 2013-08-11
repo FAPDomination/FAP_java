@@ -265,10 +265,12 @@ P		- credits
 V			- Quit
 ?			- Dialog ?
 	- Design
-		- Implement images
+V		- Implement images
 V			- Sword
-			- clouds
-		- Ground manage
+V			- clouds
+~		- Ground manage
+		- Ground lag
+?		- Delete ground displacement ?
 		- Sliding effect
 			- Go
 			- Back
