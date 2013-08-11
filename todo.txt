@@ -253,7 +253,7 @@ V			- Sword
 			- Go
 			- Back
 ~		- Gradient BG
-		- Bug with the repaint
+V		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
   Right Click Menu
   Frame

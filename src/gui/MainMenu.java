@@ -16,6 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,9 @@ public class MainMenu extends JPanel {
     private JButton btnQuit = new JButton();
 
     private TheFrame parent;
+    
+    // Images
+    Image sword;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
@@ -84,7 +88,10 @@ public class MainMenu extends JPanel {
                 System.exit(0);
             }
         });
-    
+        
+        sword = Graph.guimg.get("MM_sword");
+        this.validate();
+        this.repaint();
     }
 
     private void startQuickPlay() {
@@ -140,7 +147,7 @@ public class MainMenu extends JPanel {
         
         // Sword
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(Graph.guimg.get("MM_sword"), -80, 70, 2153, 762, null);
+        g2d.drawImage(sword, -80, 70, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 }
