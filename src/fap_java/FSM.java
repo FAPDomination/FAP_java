@@ -171,7 +171,8 @@ public class FSM{
                         averageHP /= nCells;
                     }
                     //Calculate the amount of damage he can do
-                    double randError = ((double)Tools.randRange(-100, 100)) / 10;
+                    int randBound = 140-20*level;
+                    double randError = ((double)Tools.randRange(-randBound, randBound)) / 10;
                     int dammage = (int)(Params.warriorDammage * Math.pow((ts + randError), 2));
                     //Triggah'
                     //Totally arbitrary : should also depend on levels
@@ -192,7 +193,7 @@ public class FSM{
                         }
                     }
                     //Totally arbitrary : should also depend on levels
-                    if (nCells < 5) {
+                    if (nCells < 6-level) {
                         skillWorth = true;
                     }
                 break;
@@ -428,7 +429,7 @@ public class FSM{
             nRings = 3;
         }
         
-        reactTime = 50 - Params.fsmReactionTime*level;
+        reactTime = 60 - Params.fsmReactionTime*level;
     }
 
     public void setNextCell(Cell nextCell) {
