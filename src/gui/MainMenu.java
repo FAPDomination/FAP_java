@@ -17,16 +17,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-public class MainMenu extends JPanel{
+public class MainMenu extends JPanel {
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
     private JButton btnOptions = new JButton();
     private JButton btnCredits = new JButton();
     private JButton btnQuit = new JButton();
-    
+
     private TheFrame parent;
-    
+
     public MainMenu(TheFrame fr) {
         parent = fr;
         try {
@@ -40,7 +40,7 @@ public class MainMenu extends JPanel{
         this.setLayout(null);
         this.setBackground(Color.white);
         this.setSize(Constants.frameDimension);
-        
+
         //------ Buttons
         // Texts
         btnAdventure.setText("Aventure");
@@ -60,11 +60,11 @@ public class MainMenu extends JPanel{
         int origX = 460;
         int origY = 150;
         btnAdventure.setLocation(origX + 32, origY);
-        btnVersus.setLocation(origX + 70, origY+50);
-        btnQuickPlay.setLocation(origX + 38, origY+100);
-        btnOptions.setLocation(origX + 0, origY+150);
-        btnCredits.setLocation(origX + 68, origY+200);
-        btnQuit.setLocation(origX + 50, origY+250);
+        btnVersus.setLocation(origX + 70, origY + 50);
+        btnQuickPlay.setLocation(origX + 38, origY + 100);
+        btnOptions.setLocation(origX + 0, origY + 150);
+        btnCredits.setLocation(origX + 68, origY + 200);
+        btnQuit.setLocation(origX + 50, origY + 250);
         // Adding
         this.add(btnAdventure);
         this.add(btnVersus);
@@ -73,34 +73,33 @@ public class MainMenu extends JPanel{
         this.add(btnCredits);
         this.add(btnQuit);
         // Effects
-        btnVersus.addActionListener(new ActionListener() {
+        btnQuickPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 startQuickPlay();
             }
-            });
+        });
         btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
-            });
+        });
     }
-    
-    private void startQuickPlay(){
+
+    private void startQuickPlay() {
         // init map
-        int nmap = 5;
+        int[] possibleMaps = {5,6,8,10,11};
+        int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length-1)];
         // init skill
         int pcP = 0;
-        do{
-        pcP = Tools.randRange(1,9);
-        }
-        while(pcP == 2 || pcP == 7);
+        do {
+            pcP = Tools.randRange(1, 9);
+        } while (pcP == 2 || pcP == 7);
         int pcF = 0;
-        do{
-        pcF = Tools.randRange(1,9);
-        }
-        while(pcF == 2 || pcF == 7);
-        
-        Game game = new Game(""+pcP+","+pcF,"0,1","0,1",true,nmap);
+        do {
+            pcF = Tools.randRange(1, 9);
+        } while (pcF == 2 || pcF == 7);
+
+        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
         parent.changePanel(game, BorderLayout.CENTER);
     }
 }

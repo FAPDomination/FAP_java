@@ -25,7 +25,7 @@ public class XMLparser {
     
     public static CMap parseMap(int mapID){
         DefaultHandler dh = new MapHandler();
-        parseXML("map"+mapID+".xml", dh);
+        parseXML("Maps/map"+mapID+".xml", dh);
         //System.out.println(dh);
         MapHandler dhm = (MapHandler) dh;
         return dhm.getMap();
