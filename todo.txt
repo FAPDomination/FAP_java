@@ -9,9 +9,10 @@ O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
 	- Graph guimg public
-  Displacement Hexa
+? Displacement Hexa
 V	- Hexa
-	- Bug changing
+V	- Bug changing
+?	- Toggle handleKeys with thread and not keypress ?
 V Same time displacements
 ? Get rid of colors
 V Collisions
@@ -146,21 +147,29 @@ P Design
 P	- Change did of countdown cell after end of timer
   Game
 	- Get Params
-		- whoIsPlaying && skills
-		- wichTeam
-		- randStart
-		- isFSM
+V		- whoIsPlaying && skills
+V		- wichTeam
+V		- randStart
+V		- isFSM
 		- Keys
 		- Victory conditions
 	- Pause/Play
-		- Define Keys
+		- Get Key from param
 		- Execute Pause
-			- Pause
+V			- Pause
 			- Display
 		- Resume
+V			- without countdown
+			- With countdown
 	- Victory
-		- Check victory
+V		- Check victory
+		- Double timeout bug
+V		- endGame method
 		- Display it
+			- General
+			- tie
+			- player win
+P			- player lost (adventure)
   AI
 	- Object
 V		- Class File
@@ -244,6 +253,7 @@ V	- Update scores
 V	- Get scores
 V	- Draw Bar
 V	- Display skillTime
+
 ---------------------------- GUI
 
   MainMenu

@@ -33,6 +33,12 @@ public class Game extends JPanel implements NeedingFocus {
     private transient ScoreBar scoreHandler;
     private transient ArrayList<Team> teams = new ArrayList<Team>();
     
+    private int victScore;
+    private double victTile;    // in percent
+    private int victTime; // in sec
+    
+    private boolean gameEnded;
+    
     private ArrayList<Element> objects = new ArrayList<Element>();
     
     //Parameters to be given when starting a new game
@@ -61,6 +67,12 @@ public class Game extends JPanel implements NeedingFocus {
         thread.setRunning(true);
 
         initFocus();
+        
+        victScore = 2000;
+        victTile = 0;
+        victTime = 0;
+        
+        gameEnded = false;
 
         initTeams();
         
@@ -79,7 +91,7 @@ public class Game extends JPanel implements NeedingFocus {
         }
         System.out.println(path);
 */
-        
+        pauseGame();
     }
 
     public void paintComponent(Graphics g) {
@@ -282,5 +294,56 @@ public class Game extends JPanel implements NeedingFocus {
         initKListener();
         this.setFocusable(true);
         requestFocus();
+    }
+    
+    public Team testVictory() {
+        Team p= null;
+        //test for each player
+        for (int i = 0; i < teams.size(); i++) {
+            Team te = teams.get(i);
+            //place here victory condition
+            int score = te.getScore();
+            int tilesOwned = te.getNCells();
+            int totalTile = map.getTakableCells().size();
+            //pass the time test
+            //if(victTime!=0 && dateG <= victTime*fpsa){
+            //Pass the score test
+            if (score != 0 && score >= victScore) {
+                //Pass the tile test
+                if (((double)tilesOwned) / totalTile >= victTile) {
+                    p = te;
+                }
+            }
+            //}
+            if (victTime != 0 && this.getThread().getCount() > victTime * 1000) {
+                System.out.println("Time out !");
+                endGame(null);
+            }
+        }
+        return p;
+    }
+    
+    public void pauseGame(){
+        if(thread.getRunning()){
+            thread.setRunning(false);
+            // Display pause
+        }
+        else if(!gameEnded){
+            // display countdown
+            thread.setRunning(true);
+        }
+    }
+    
+    public void endGame(Team winner){
+        pauseGame();
+        gameEnded = true;
+        // versus mode
+        if(winner == null){
+            System.out.println("Tie !");
+        }
+        else{
+            System.out.println("Winner : "+winner);
+        }
+        // adventure mode : if the winner isn't the player, then display lost
     }
 }
