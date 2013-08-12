@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class MainMenu extends JPanel implements AnimPanel{
+public class MainMenu extends FAPanel implements AnimPanel{
     private JButton btnAdventure = new JButton();
     private JButton btnVersus = new JButton();
     private JButton btnQuickPlay = new JButton();
@@ -34,24 +34,13 @@ public class MainMenu extends JPanel implements AnimPanel{
 
     private TheFrame parent;
     private ThreadGUI theThread;
-
-    // Images
-    private Image sword;
-    private Image clouds;
-    // Locations
-    private double swordX;
-    private double cloudsX;
-    private double buttonsX;
-    // Slide animation
-    private int speed;
-    private int maxxS = Constants.maxxS;
-    private int minxS = Constants.minxS; 
-    private int maxxC = Constants.maxxC;
-    private int minxC = Constants.minxC;
+    
+    private JPanel nextPanel;
 
     public MainMenu(TheFrame fr, boolean animBack) {
         //super();
         parent = fr;
+        nextPanel = null;
         try {
             jbInit(animBack);
         } catch (Exception e) {
@@ -102,10 +91,13 @@ public class MainMenu extends JPanel implements AnimPanel{
                 System.exit(0);
             }
         });
+        btnOptions.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btnOption_actionPerformed();
+            }
+            });
 
         //-------------- Images
-        sword = Graph.guimg.get("MM_sword");
-        clouds = Graph.guimg.get("MM_clouds");
 
         // init location
         this.cloudsX = maxxC;
@@ -115,6 +107,11 @@ public class MainMenu extends JPanel implements AnimPanel{
         this.repaint();
         
         //this.startSliding(false);
+    }
+    
+    private void btnOption_actionPerformed() {
+        nextPanel = new OptionMenu();
+        this.startSliding(true);
     }
 
     private void startQuickPlay() {
@@ -156,22 +153,6 @@ public class MainMenu extends JPanel implements AnimPanel{
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)g;
-        // Background
-        int w = this.getWidth();
-        int h = this.getHeight();
-
-        // Paint a gradient from top to bottom
-        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
-
-        g2d.setPaint(gp);
-        g2d.fillRect(0, 0, w, h);
-
-        // Sword
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
-        g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
 
     public void executeAnim() {
@@ -204,5 +185,8 @@ public class MainMenu extends JPanel implements AnimPanel{
     
     public void endAnim(){
         theThread.setRunning(false);
+        if(nextPanel != null){
+            parent.changePanel(nextPanel, BorderLayout.CENTER);
+        }
     }
 }

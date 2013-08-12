@@ -250,7 +250,7 @@ V	- Display skillTime
 	- Buttons
 		- adv
 		- vs
-		- quick
+TP		- quick
 V			- pick map
 V			- rand pc
 V			- rand pc fsm
@@ -278,5 +278,6 @@ V			- Back
 V		- Bug with the repaint
 		- Buttons
   Go back buttons EEEEEEEEEEEEE
+  Game extends FAPanel ?
   Right Click Menu
   Frame

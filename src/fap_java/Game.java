@@ -4,6 +4,7 @@ import characters.*;
 
 import gui.Constants;
 
+import gui.FAPanel;
 import gui.NeedingFocus;
 
 import java.awt.Color;
@@ -59,7 +60,7 @@ public class Game extends JPanel implements NeedingFocus {
         new Thread(this.thread).start();
         thread.setRunning(true);
 
-        initKListener();
+        initFocus();
 
         initTeams();
         
@@ -83,16 +84,6 @@ public class Game extends JPanel implements NeedingFocus {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D)g;
-        // Background
-        int w = this.getWidth();
-        int h = this.getHeight();
-
-        // Paint a gradient from top to bottom
-        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
-
-        //g2d.setPaint(gp);
-        //g2d.fillRect(0, 0, w, h);
         
         map.paintComponent(g);
         for (int i = 0; i < players.size(); i++) {
