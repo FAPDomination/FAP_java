@@ -23,6 +23,10 @@ public class Game extends JPanel {
     private transient ScoreBar scoreHandler;
     private transient ArrayList<Team> teams = new ArrayList<Team>();
     
+    private int victScore;
+    private double victTile;    // in percent
+    private int victTime; // in sec
+    
     private ArrayList<Element> objects = new ArrayList<Element>();
     
     //Parameters to be given when starting a new game
@@ -49,6 +53,10 @@ public class Game extends JPanel {
         this.addKeyListener(kl);
         this.setFocusable(true);
         requestFocus();
+        
+        victScore = 4000;
+        victTile = 0;
+        victTime = 0;
 
         initTeams();
         
@@ -256,5 +264,31 @@ public class Game extends JPanel {
                 p.getFsm().executeMethod();
             }
         }
+    }
+    
+    public Team testVictory() {
+        Team p= null;
+        //test for each player
+        for (int i = 0; i < teams.size(); i++) {
+            Team te = teams.get(i);
+            //place here victory condition
+            int score = te.getScore();
+            int tilesOwned = te.getNCells();
+            int totalTile = map.getTakableCells().size();
+            //pass the time test
+            //if(victTime!=0 && dateG <= victTime*fpsa){
+            //Pass the score test
+            if (score != 0 && score >= victScore) {
+                //Pass the tile test
+                if (((double)tilesOwned) / totalTile >= victTile) {
+                    p = te;
+                }
+            }
+            //}
+            if (victTime != 0 && this.getThread().getCount() >= victTime * 1000) {
+                System.out.println("Time out !");
+            }
+        }
+        return p;
     }
 }

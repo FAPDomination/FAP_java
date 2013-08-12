@@ -146,10 +146,10 @@ P Design
 P	- Change did of countdown cell after end of timer
   Game
 	- Get Params
-		- whoIsPlaying && skills
-		- wichTeam
-		- randStart
-		- isFSM
+V		- whoIsPlaying && skills
+V		- wichTeam
+V		- randStart
+V		- isFSM
 		- Keys
 		- Victory conditions
 	- Pause/Play
@@ -159,7 +159,8 @@ P	- Change did of countdown cell after end of timer
 			- Display
 		- Resume
 	- Victory
-		- Check victory
+V		- Check victory
+		- Double timeout bug
 		- Display it
   AI
 	- Object
