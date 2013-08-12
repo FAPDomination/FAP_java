@@ -8,10 +8,14 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class FAPanel extends JPanel {
-    
+public abstract class FAPanel extends JPanel {
+    protected TheFrame parent;
     // Images
     protected Image sword;
     protected Image clouds;
@@ -26,10 +30,19 @@ public class FAPanel extends JPanel {
     protected int maxxC = Constants.maxxC;
     protected int minxC = Constants.minxC;
     
-    public FAPanel() {
+    protected JButton btnGoBack = new JButton();
+    
+    public FAPanel(TheFrame parent) {
         super();
+        this.parent = parent;
         sword = Graph.guimg.get("MM_sword");
         clouds = Graph.guimg.get("MM_clouds");
+        
+        btnGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                goBack();
+            }
+        });
     }
     
     public void paintComponent(Graphics g) {
@@ -51,4 +64,6 @@ public class FAPanel extends JPanel {
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
+    
+    public abstract void goBack();
 }

@@ -31,15 +31,13 @@ public class MainMenu extends FAPanel implements AnimPanel{
     private JButton btnOptions = new JButton();
     private JButton btnCredits = new JButton();
     private JButton btnQuit = new JButton();
-
-    private TheFrame parent;
+    
     private ThreadGUI theThread;
     
     private JPanel nextPanel;
 
     public MainMenu(TheFrame fr, boolean animBack) {
-        //super();
-        parent = fr;
+        super(fr);
         nextPanel = null;
         try {
             jbInit(animBack);
@@ -76,10 +74,6 @@ public class MainMenu extends FAPanel implements AnimPanel{
         btnOptions.setLocation(origX + 0, origY + 150);
         btnCredits.setLocation(origX + 68, origY + 200);
         btnQuit.setLocation(origX + 50, origY + 250);
-        // Adding
-        if (!animBack) {
-            addButtons();
-        }
         // Effects
         btnQuickPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -102,6 +96,14 @@ public class MainMenu extends FAPanel implements AnimPanel{
         // init location
         this.cloudsX = maxxC;
         this.swordX = maxxS;
+        
+        // Adding buttons
+        if (!animBack) {
+            addButtons();
+        }
+        else{
+            this.startSliding(false);
+        }
 
         this.validate();
         this.repaint();
@@ -110,7 +112,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
     }
     
     private void btnOption_actionPerformed() {
-        nextPanel = new OptionMenu();
+        nextPanel = new OptionMenu(parent);
         this.startSliding(true);
     }
 
@@ -188,5 +190,10 @@ public class MainMenu extends FAPanel implements AnimPanel{
         if(nextPanel != null){
             parent.changePanel(nextPanel, BorderLayout.CENTER);
         }
+        else{
+            addButtons();
+        }
     }
+
+    public void goBack() {} // Not needed
 }
