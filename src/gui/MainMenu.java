@@ -131,7 +131,9 @@ public class MainMenu extends FAPanel implements AnimPanel{
         } while (pcF == 2 || pcF == 7);
 
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
-        parent.changePanel(game, BorderLayout.CENTER);
+        
+        nextPanel = new LoadingScreen(parent,game);
+        this.startSliding(true);
     }
 
     private void addButtons() {
