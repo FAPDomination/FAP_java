@@ -153,15 +153,21 @@ V		- isFSM
 		- Keys
 		- Victory conditions
 	- Pause/Play
-		- Define Keys
+		- Get Key from param
 		- Execute Pause
-			- Pause
+V			- Pause
 			- Display
 		- Resume
+V			- without countdown
+			- With countdown
 	- Victory
 V		- Check victory
 		- Double timeout bug
 		- Display it
+			- endGame method
+			- tie
+			- player win
+P			- player lost (adventure)
   AI
 	- Object
 V		- Class File

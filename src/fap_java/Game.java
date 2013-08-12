@@ -291,4 +291,15 @@ public class Game extends JPanel {
         }
         return p;
     }
+    
+    public void pauseGame(){
+        if(thread.getRunning()){
+            thread.setRunning(false);
+            // Display pause
+        }
+        else{
+            // display countdown
+            thread.setRunning(true);
+        }
+    }
 }
