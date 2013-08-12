@@ -4,6 +4,8 @@ import characters.*;
 
 import gui.Constants;
 
+import gui.NeedingFocus;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -21,7 +23,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import pathFinder.pathFinder;
 
-public class Game extends JPanel {
+public class Game extends JPanel implements NeedingFocus {
 
     private transient CMap map;
     private transient TheThread thread;
@@ -279,9 +281,14 @@ public class Game extends JPanel {
         }
     }
 
-    public void initKListener() {
+
+    private void initKListener() {
         kl = new KListener(this);
         this.addKeyListener(kl);
+    }
+
+    public void initFocus() {
+        initKListener();
         this.setFocusable(true);
         requestFocus();
     }

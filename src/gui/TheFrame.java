@@ -38,8 +38,8 @@ public class TheFrame extends JFrame {
         compo = jp;
         this.getContentPane().add(compo, layout);
         compo.setFocusable(true);
-        if(compo instanceof Game){
-            ((Game) compo).initKListener();
+        if(compo instanceof NeedingFocus){
+            ((NeedingFocus) compo).initFocus();
         }
         this.validate();
         this.repaint();
