@@ -27,6 +27,8 @@ public class Game extends JPanel {
     private double victTile;    // in percent
     private int victTime; // in sec
     
+    private boolean gameEnded;
+    
     private ArrayList<Element> objects = new ArrayList<Element>();
     
     //Parameters to be given when starting a new game
@@ -54,9 +56,11 @@ public class Game extends JPanel {
         this.setFocusable(true);
         requestFocus();
         
-        victScore = 4000;
+        victScore = 2000;
         victTile = 0;
         victTime = 0;
+        
+        gameEnded = false;
 
         initTeams();
         
@@ -285,8 +289,9 @@ public class Game extends JPanel {
                 }
             }
             //}
-            if (victTime != 0 && this.getThread().getCount() >= victTime * 1000) {
+            if (victTime != 0 && this.getThread().getCount() > victTime * 1000) {
                 System.out.println("Time out !");
+                endGame(null);
             }
         }
         return p;
@@ -297,9 +302,22 @@ public class Game extends JPanel {
             thread.setRunning(false);
             // Display pause
         }
-        else{
+        else if(!gameEnded){
             // display countdown
             thread.setRunning(true);
         }
+    }
+    
+    public void endGame(Team winner){
+        pauseGame();
+        gameEnded = true;
+        // versus mode
+        if(winner == null){
+            System.out.println("Tie !");
+        }
+        else{
+            System.out.println("Winner : "+winner);
+        }
+        // adventure mode : if the winner isn't the player, then display lost
     }
 }

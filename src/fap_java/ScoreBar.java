@@ -27,7 +27,7 @@ public class ScoreBar {
         //Check victory
         Team winner = game.testVictory();
         if(winner != null){
-            System.out.println("Winner : "+winner);
+            game.endGame(winner);
         }
     }
     

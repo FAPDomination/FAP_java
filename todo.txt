@@ -163,8 +163,9 @@ V			- without countdown
 	- Victory
 V		- Check victory
 		- Double timeout bug
+V		- endGame method
 		- Display it
-			- endGame method
+			- General
 			- tie
 			- player win
 P			- player lost (adventure)
