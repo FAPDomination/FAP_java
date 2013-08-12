@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.Game;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -35,6 +37,10 @@ public class TheFrame extends JFrame {
         this.remove(compo);
         compo = jp;
         this.getContentPane().add(compo, layout);
+        compo.setFocusable(true);
+        if(compo instanceof Game){
+            ((Game) compo).initKListener();
+        }
         this.validate();
         this.repaint();
     }

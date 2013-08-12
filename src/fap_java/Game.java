@@ -11,6 +11,8 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 
+import java.awt.KeyboardFocusManager;
+
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -55,10 +57,7 @@ public class Game extends JPanel {
         new Thread(this.thread).start();
         thread.setRunning(true);
 
-        kl = new KListener(this);
-        this.addKeyListener(kl);
-        this.setFocusable(true);
-        requestFocus();
+        initKListener();
 
         initTeams();
         
@@ -77,6 +76,7 @@ public class Game extends JPanel {
         }
         System.out.println(path);
 */
+        
     }
 
     public void paintComponent(Graphics g) {
@@ -277,5 +277,12 @@ public class Game extends JPanel {
                 p.getFsm().executeMethod();
             }
         }
+    }
+
+    public void initKListener() {
+        kl = new KListener(this);
+        this.addKeyListener(kl);
+        this.setFocusable(true);
+        requestFocus();
     }
 }

@@ -257,7 +257,7 @@ V			- rand pc fsm
 V			- teams & stuff
 V			- init
 T			- launch
-				- Bug no displacement
+V				- Bug no displacement
 P			- Keep list of maps updated
 		- options
 P		- credits
