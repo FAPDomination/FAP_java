@@ -250,7 +250,8 @@ V	- Display skillTime
 	- Buttons
 		- adv
 		- vs
-TP		- quick
+		- quick
+			- Loading screen
 V			- pick map
 V			- rand pc
 V			- rand pc fsm
@@ -259,7 +260,7 @@ V			- init
 T			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
-		- options
+V		- options
 P		- credits
 ?		- quit
 V			- Quit
@@ -278,6 +279,13 @@ V			- Back
 V		- Bug with the repaint
 		- Buttons
   Go back buttons EEEEEEEEEEEEE
-  Game extends FAPanel ?
+? Game extends FAPanel ?
+  OptionMenu
+	- Buttons
+V		- Back
+		- Controls
+		- Sound
+		- FullScreen
+  Init panels with a previous panel instead of always creating a new one
   Right Click Menu
   Frame
