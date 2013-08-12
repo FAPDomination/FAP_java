@@ -1,13 +1,7 @@
 package gui;
 
-import fap_java.Game;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-
-import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
