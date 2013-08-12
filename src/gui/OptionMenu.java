@@ -3,10 +3,12 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 public class OptionMenu extends FAPanel {
     
-    public OptionMenu(TheFrame fr) {
-        super(fr);
+    public OptionMenu(TheFrame fr, JPanel prevPanel) {
+        super(fr,prevPanel);
         
         swordX = minxS;
         cloudsX = minxC;
@@ -25,9 +27,5 @@ public class OptionMenu extends FAPanel {
     
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-    }
-
-    public void goBack() {
-        parent.changePanel(new MainMenu(parent,true), BorderLayout.CENTER);
     }
 }

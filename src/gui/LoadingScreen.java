@@ -8,12 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class LoadingScreen extends FAPanel {
     Game game;
     private JButton btnPlay = new JButton();
-    public LoadingScreen(TheFrame fr, Game game) {
-        super(fr);
+    public LoadingScreen(TheFrame fr, Game game, JPanel prevPanel) {
+        super(fr, prevPanel);
         this.game = game;
 
         swordX = minxS;
@@ -42,9 +43,5 @@ public class LoadingScreen extends FAPanel {
     public void startGame(){
         game.pauseGame();
         parent.changePanel(game, BorderLayout.CENTER);
-    }
-
-    public void goBack() {
-        parent.changePanel(new MainMenu(parent, true), BorderLayout.CENTER);
     }
 }

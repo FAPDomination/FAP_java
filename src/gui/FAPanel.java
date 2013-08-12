@@ -2,6 +2,7 @@ package gui;
 
 import fap_java.Graph;
 
+import java.awt.BorderLayout;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 
 public abstract class FAPanel extends JPanel {
     protected TheFrame parent;
+    protected JPanel prevPanel;
     // Images
     protected Image sword;
     protected Image clouds;
@@ -32,8 +34,9 @@ public abstract class FAPanel extends JPanel {
     
     protected JButton btnGoBack = new JButton();
     
-    public FAPanel(TheFrame parent) {
+    public FAPanel(TheFrame parent, JPanel prevPanel) {
         super();
+        this.prevPanel = prevPanel;
         this.parent = parent;
         sword = Graph.guimg.get("MM_sword");
         clouds = Graph.guimg.get("MM_clouds");
@@ -65,5 +68,12 @@ public abstract class FAPanel extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
     }
     
-    public abstract void goBack();
+    public void goBack() {
+        if(prevPanel instanceof MainMenu){
+            MainMenu pp = ((MainMenu)prevPanel);
+            pp.setNextPanel(null);
+            pp.startSliding(false);
+        }
+        parent.changePanel(prevPanel, BorderLayout.CENTER);
+    }
 }

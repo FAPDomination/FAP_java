@@ -275,7 +275,7 @@ P		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
-	- Design
+V	- Design
 V		- Implement images
 V			- Sword
 V			- clouds
@@ -287,9 +287,9 @@ V			- Go
 V			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
-		- Buttons
   Go back buttons EEEEEEEEEEEEE
 	- Find a place for it and keep it
+?	- Even for OptionMenu ?
 ? Game extends FAPanel ?
   OptionMenu
 	- Buttons
@@ -297,12 +297,14 @@ V		- Back
 		- Controls
 		- Sound
 		- FullScreen
-  Init panels with a previous panel instead of always creating a new one
-	- OptionMenu
+P Init panels with a previous panel instead of always creating a new one
+V	- OptionMenu
 P	- Game
-	- LoadingScreen
+V	- LoadingScreen
   LoadingScreen
 V	- Launch
 	- Display game datas
+  General Design
+	- Button for menu
+	- Button for other
   Right Click Menu
-  Frame

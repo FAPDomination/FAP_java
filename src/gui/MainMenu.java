@@ -37,7 +37,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
     private JPanel nextPanel;
 
     public MainMenu(TheFrame fr, boolean animBack) {
-        super(fr);
+        super(fr, null);
         nextPanel = null;
         try {
             jbInit(animBack);
@@ -112,7 +112,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
     }
     
     private void btnOption_actionPerformed() {
-        nextPanel = new OptionMenu(parent);
+        nextPanel = new OptionMenu(parent, this);
         this.startSliding(true);
     }
 
@@ -132,7 +132,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
 
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
         
-        nextPanel = new LoadingScreen(parent,game);
+        nextPanel = new LoadingScreen(parent,game,this);
         this.startSliding(true);
     }
 
@@ -198,4 +198,12 @@ public class MainMenu extends FAPanel implements AnimPanel{
     }
 
     public void goBack() {} // Not needed
+
+    public void setNextPanel(JPanel nextPanel) {
+        this.nextPanel = nextPanel;
+    }
+
+    public JPanel getNextPanel() {
+        return nextPanel;
+    }
 }
