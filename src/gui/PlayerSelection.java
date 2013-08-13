@@ -81,10 +81,13 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void nextFrame(){
+        /* // Used for testing
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
             System.out.println(ps);
         }
+        */
+        // Parse the PlayerSelecters
     }
     
     public void paintComponent(Graphics g){
@@ -189,5 +192,13 @@ public class PlayerSelection extends FAPanel {
             
             this.organizePlayerSelect();
         }
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxPlayers = maxPlayers;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
     }
 }

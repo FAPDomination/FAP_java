@@ -323,4 +323,11 @@ V			- Control (Player 1,2,3, AI)
 V			- Team
 		- Placements with attributes
 V	- Button add
+	- Btn next
+		- Parse the player selecters
+			- isFSM
+			- Nothing more, passing to next panel
+		- Security on number and order of teams
+		- Go to next panel
+  CharacterSelection
   Right Click Menu
