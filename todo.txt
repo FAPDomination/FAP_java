@@ -290,6 +290,8 @@ V		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
 	- Find a place for it and keep it
 ?	- Even for OptionMenu ?
+	- Versus : keep information from one another
+  Go next button : find place and keep it
 ? Game extends FAPanel ?
   OptionMenu
 	- Buttons
@@ -307,4 +309,12 @@ V	- Launch
   General Design
 	- Button for menu
 	- Button for other
+  PlayerSelection
+	- PlayerSelect
+		- Button remove
+		- paintCompo
+		- ComboBoxes
+			- Control (Player 1,2,3, AI)
+			- Team
+	- Button add
   Right Click Menu
