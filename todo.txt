@@ -310,15 +310,17 @@ V	- Launch
 	- Button for menu
 	- Button for other
 	- Button remove
+	- Btn add
   PlayerSelection
 	- PlayerSelect
-		- Button remove
-			- Implement
-			- Dirty id finding
-		- paintCompo
-		- ComboBoxes
-			- Control (Player 1,2,3, AI)
-			- Team
+V		- Button remove
+V			- Implement
+V			- Dirty id finding
+			- Exception OutOfBounds -1
+X		- paintCompo
+V		- ComboBoxes
+V			- Control (Player 1,2,3, AI)
+V			- Team
 		- Placements with attributes
-	- Button add
+V	- Button add
   Right Click Menu

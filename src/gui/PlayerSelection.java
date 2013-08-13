@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
+    private JButton btnAdd = new JButton();
     
     private ArrayList<PlayerSelect> players;
     private ArrayList<JComboBox> controlSelecters;
@@ -45,8 +46,6 @@ public class PlayerSelection extends FAPanel {
         */
         this.addPlayerSelecter();
         this.addPlayerSelecter();
-        this.addPlayerSelecter();
-        this.organizePlayerSelect();
         //---------
         
         swordX = minxS;
@@ -62,6 +61,15 @@ public class PlayerSelection extends FAPanel {
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
+        
+        btnAdd.setText("+");
+        btnAdd.setSize(40,30);
+        btnAdd.setLocation(140,140);
+        btnAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addPlayerSelecter();
+            }
+        });
         
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +104,7 @@ public class PlayerSelection extends FAPanel {
         this.removeAll();
         this.add(btnNext);
         this.add(btnGoBack);
+        this.add(btnAdd);
         this.validate();
         this.repaint();
         
@@ -157,22 +166,28 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void addPlayerSelecter(){
-        players.add(new PlayerSelect(this));
-        controlSelecters.add(new JComboBox(listControls));
-        JComboBox teamS = new JComboBox();
-        for(int i=0;i<maxPlayers;i++){
-            teamS.addItem("Team "+(i+1));
+        if(players.size()<this.maxPlayers){
+            players.add(new PlayerSelect(this));
+            controlSelecters.add(new JComboBox(listControls));
+            JComboBox teamS = new JComboBox();
+            for(int i=0;i<maxPlayers;i++){
+                teamS.addItem("Team "+(i+1));
+            }
+            teamSelecters.add(teamS);
+            eraseSelecters.add(new JButton());
+            
+            this.organizePlayerSelect();
         }
-        teamSelecters.add(teamS);
-        eraseSelecters.add(new JButton());
     }
     
     public void removePlayerSelecter(int id){
-        players.remove(id);
-        controlSelecters.remove(id);
-        teamSelecters.remove(id);
-        eraseSelecters.remove(id);
-        
-        this.organizePlayerSelect();
+        if(players.size()>2){
+            players.remove(id);
+            controlSelecters.remove(id);
+            teamSelecters.remove(id);
+            eraseSelecters.remove(id);
+            
+            this.organizePlayerSelect();
+        }
     }
 }
