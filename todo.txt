@@ -259,7 +259,7 @@ V	- Display skillTime
   MainMenu
 	- Buttons
 		- adv
-		- vs
+V		- vs
 PT		- quick
 V			- Loading screen
 V			- pick map
@@ -309,12 +309,16 @@ V	- Launch
   General Design
 	- Button for menu
 	- Button for other
+	- Button remove
   PlayerSelection
 	- PlayerSelect
 		- Button remove
+			- Implement
+			- Dirty id finding
 		- paintCompo
 		- ComboBoxes
 			- Control (Player 1,2,3, AI)
 			- Team
+		- Placements with attributes
 	- Button add
   Right Click Menu

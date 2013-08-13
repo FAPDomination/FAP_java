@@ -5,25 +5,17 @@ import java.awt.Graphics;
 public class PlayerSelect{
     
     private PlayerSelection panel;
-    private boolean isFSM;
+    private int controler;
     private int pc;
     private int team;
-    
+
     public PlayerSelect(PlayerSelection panel) {
         this.panel = panel;
-        isFSM = false;
         pc = 0;
-        team = -1;
+        controler = 0;
+        team = 0;
     }
 
-
-    public void setIsFSM(boolean isFSM) {
-        this.isFSM = isFSM;
-    }
-
-    public boolean isIsFSM() {
-        return isFSM;
-    }
 
     public void setPc(int pc) {
         this.pc = pc;
@@ -39,5 +31,17 @@ public class PlayerSelect{
 
     public int getTeam() {
         return team;
+    }
+
+    public void setControler(int controler) {
+        this.controler = controler;
+    }
+
+    public int getControler() {
+        return controler;
+    }
+    
+    public String toString(){
+        return ""+controler+"-"+team;
     }
 }

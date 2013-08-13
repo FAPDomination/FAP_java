@@ -2,24 +2,51 @@ package gui;
 
 import java.awt.Graphics;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
     
     private ArrayList<PlayerSelect> players;
+    private ArrayList<JComboBox> controlSelecters;
+    private ArrayList<JComboBox> teamSelecters;
+    private ArrayList<JButton> eraseSelecters;
+    private String[] listControls = {"Player 1","Player 2","Player 3","AI Low", "AI Middle", "AI High"};
+    private int maxPlayers = 8;
     
     public PlayerSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
         
         players = new ArrayList<PlayerSelect>();
-        
+        controlSelecters = new ArrayList<JComboBox>(); 
+        teamSelecters = new ArrayList<JComboBox>(); 
+        eraseSelecters = new ArrayList<JButton>();
         // testing
+        /*
         players.add(new PlayerSelect(this));
         players.add(new PlayerSelect(this));
+        controlSelecters.add(new JComboBox(listControls));
+        controlSelecters.add(new JComboBox(listControls));
+        JComboBox teamS = new JComboBox();
+        JComboBox teamD = new JComboBox();
+        for(int i=0;i<maxPlayers;i++){
+            teamS.addItem("Team "+(i+1));
+            teamD.addItem("Team "+(i+1));   
+        }
+        teamSelecters.add(teamS);
+        teamSelecters.add(teamD);
+        */
+        this.addPlayerSelecter();
+        this.addPlayerSelecter();
+        this.addPlayerSelecter();
+        this.organizePlayerSelect();
         //---------
         
         swordX = minxS;
@@ -31,14 +58,25 @@ public class PlayerSelection extends FAPanel {
         btnGoBack.setText("Retour");
         btnGoBack.setSize(120, 40);
         btnGoBack.setLocation(20, 20);
-        this.add(btnGoBack);
         
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
-        this.add(btnNext);
+        
+        btnNext.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nextFrame();
+            }
+        });
         
         this.repaint();
+    }
+    
+    public void nextFrame(){
+        for(int i=0;i<players.size();i++){
+            PlayerSelect ps = players.get(i);
+            System.out.println(ps);
+        }
     }
     
     public void paintComponent(Graphics g){
@@ -51,5 +89,90 @@ public class PlayerSelection extends FAPanel {
 
     public ArrayList<PlayerSelect> getPlayers() {
         return players;
+    }
+    
+    public void organizePlayerSelect(){
+        // Reinit buttons and lists
+        this.removeAll();
+        this.add(btnNext);
+        this.add(btnGoBack);
+        this.validate();
+        this.repaint();
+        
+        for(int i=0;i<this.players.size();i++){
+            // PlayerSelect
+            PlayerSelect ps = players.get(i);
+            // Associated controller
+            JComboBox combo = this.controlSelecters.get(i);
+            combo.setSelectedIndex(ps.getControler());
+            combo.setBounds(200, 200+50*i, 150, 30);
+            //this.remove(combo);
+            this.add(combo);
+            combo.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    combo_ActionPerformed(e);
+                }
+            });
+            // Associated Team
+            JComboBox team = this.teamSelecters.get(i);
+            team.setSelectedIndex(ps.getTeam());
+            team.setBounds(370, 200+50*i, 150, 30);
+            //this.remove(team);
+            this.add(team);
+            team.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    team_ActionPerformed(e);
+                }
+            });
+            // Delete button
+            JButton jb = this.eraseSelecters.get(i);
+            jb.setText("X");
+            jb.setBounds(140, 200+50*i, 40, 30);
+            this.add(jb);
+            jb.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    jb_ActionPerformed(e);
+                }
+            });
+        }
+    }
+    
+    public void jb_ActionPerformed(ActionEvent e){
+        JButton jb = (JButton) e.getSource();
+        this.removePlayerSelecter(this.eraseSelecters.indexOf(jb));
+    }
+    
+    public void combo_ActionPerformed(ActionEvent e){
+        JComboBox combo = (JComboBox)e.getSource();
+        int controler = combo.getSelectedIndex();
+        PlayerSelect ps = players.get(this.controlSelecters.indexOf(combo));
+        ps.setControler(controler);
+    }
+    
+    public void team_ActionPerformed(ActionEvent e){
+        JComboBox combo = (JComboBox)e.getSource();
+        int team = combo.getSelectedIndex();
+        PlayerSelect ps = players.get(this.teamSelecters.indexOf(combo));
+        ps.setTeam(team);
+    }
+    
+    public void addPlayerSelecter(){
+        players.add(new PlayerSelect(this));
+        controlSelecters.add(new JComboBox(listControls));
+        JComboBox teamS = new JComboBox();
+        for(int i=0;i<maxPlayers;i++){
+            teamS.addItem("Team "+(i+1));
+        }
+        teamSelecters.add(teamS);
+        eraseSelecters.add(new JButton());
+    }
+    
+    public void removePlayerSelecter(int id){
+        players.remove(id);
+        controlSelecters.remove(id);
+        teamSelecters.remove(id);
+        eraseSelecters.remove(id);
+        
+        this.organizePlayerSelect();
     }
 }
