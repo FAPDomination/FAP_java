@@ -332,4 +332,8 @@ V		- Go to next panel
   CharacterSelection
 	- Get previous information
 	- Set character
+		- KListener
+		- Timer
+		- Move the arrow
+		- Animation
   Right Click Menu
