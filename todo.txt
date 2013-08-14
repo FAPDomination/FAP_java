@@ -290,7 +290,7 @@ V		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
 	- Find a place for it and keep it
 ?	- Even for OptionMenu ?
-	- Versus : keep information from one another
+T	- Versus : keep information from one another
   Go next button : find place and keep it
 ? Game extends FAPanel ?
   OptionMenu
@@ -330,4 +330,6 @@ V			- Nothing more, passing to next panel
 		- Security on number and order of teams
 V		- Go to next panel
   CharacterSelection
+	- Get previous information
+	- Set character
   Right Click Menu
