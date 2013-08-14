@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.Graphics;
-
 public class PlayerSelect{
     
     private PlayerSelection panel;
@@ -12,7 +10,7 @@ public class PlayerSelect{
 
     public PlayerSelect(PlayerSelection panel) {
         this.panel = panel;
-        pc = 0;
+        pc = 1;
         controler = 0;
         team = 0;
         isFSM = 0;

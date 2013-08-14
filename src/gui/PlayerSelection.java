@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import gui.versusSelection.characterSelection.*;
+
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
     private JButton btnAdd = new JButton();
@@ -87,6 +89,9 @@ public class PlayerSelection extends FAPanel {
             if(ps.getControler() > 2){
                 int isFSM = ps.getControler()-1;    // So they get lvl 2,3 and 4
                 ps.setIsFSM(isFSM);
+            }
+            else{
+                ps.setIsFSM(0);
             }
         }
         // Security for number of teams :
