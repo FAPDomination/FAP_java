@@ -86,6 +86,11 @@ public class MainMenu extends FAPanel implements AnimPanel{
                 btnVersus_actionPerformed();
             }
             });
+        btnAdventure.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btnAdv_actionPerformed();
+            }
+            });
 
         //-------------- Images
 
@@ -105,6 +110,11 @@ public class MainMenu extends FAPanel implements AnimPanel{
         this.repaint();
         
         //this.startSliding(false);
+    }
+    
+    private void btnAdv_actionPerformed() {
+        nextPanel = new HardCodePanel(parent, this);
+        this.startSliding(true);
     }
     
     private void btnOption_actionPerformed() {
