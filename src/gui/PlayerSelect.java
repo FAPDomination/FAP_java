@@ -8,12 +8,14 @@ public class PlayerSelect{
     private int controler;
     private int pc;
     private int team;
+    private int isFSM;
 
     public PlayerSelect(PlayerSelection panel) {
         this.panel = panel;
         pc = 0;
         controler = 0;
         team = 0;
+        isFSM = 0;
     }
 
 
@@ -43,5 +45,13 @@ public class PlayerSelect{
     
     public String toString(){
         return ""+controler+"-"+team;
+    }
+
+    public void setIsFSM(int isFSM) {
+        this.isFSM = isFSM;
+    }
+
+    public int getIsFSM() {
+        return isFSM;
     }
 }

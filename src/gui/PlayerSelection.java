@@ -81,13 +81,19 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void nextFrame(){
-        /* // Used for testing
+        // Parse the PlayerSelecters
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
-            System.out.println(ps);
+            if(ps.getControler() > 2){
+                int isFSM = ps.getControler()-1;    // So they get lvl 2,3 and 4
+                ps.setIsFSM(isFSM);
+            }
         }
-        */
-        // Parse the PlayerSelecters
+        // Security for number of teams :
+        
+        // Proceeding to next panel
+        JPanel nextPanel = new CharacterSelection(parent,this);
+        parent.changePanel(nextPanel);
     }
     
     public void paintComponent(Graphics g){

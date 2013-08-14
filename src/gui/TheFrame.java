@@ -38,5 +38,9 @@ public class TheFrame extends JFrame {
         this.validate();
         this.repaint();
     }
+    
+    public void changePanel(JPanel jp){
+        changePanel(jp, BorderLayout.CENTER);
+    }
 
 }
