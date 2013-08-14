@@ -145,6 +145,10 @@ O	- Way to pass param to the timer
 	- Miner Warp
 P Design
 P	- Change did of countdown cell after end of timer
+  Minimap
+	- Object
+	- Get map
+	- PaintComponent
   Game
 	- Get Params
 V		- whoIsPlaying && skills
