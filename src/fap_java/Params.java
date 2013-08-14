@@ -45,4 +45,6 @@ public class Params {
     
     public static int fsmReactionTime = 10;
 
+    public static int nPlayersOn1Computer = 3;
+    public static int[][] controlsList = new int[nPlayersOn1Computer][5];
 }

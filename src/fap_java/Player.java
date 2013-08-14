@@ -59,7 +59,7 @@ public abstract class Player extends Human {
 
         color = Params.colorList[id];
         // 38 40 39 37 : arrow keys
-        if (id == 0) {
+        /*if (id == 0) {
             keys[0][0] = 38;
             keys[1][0] = 40;
             keys[2][0] = 39;
@@ -72,7 +72,12 @@ public abstract class Player extends Human {
             keys[3][0] = 81;
             keys[4][0] = 69;
         }
-
+        */
+        if(fsm==null && id<Params.nPlayersOn1Computer){
+            for(int i=0;i<=4;i++){
+               keys[i][0] = Params.controlsList[id][i];
+            }
+        }
         //Init key pressing
         keys[0][1] = 0;
         keys[1][1] = 0;

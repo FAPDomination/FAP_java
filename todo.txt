@@ -16,7 +16,7 @@ V	- Bug changing
 V Same time displacements
 ? Get rid of colors
 V Collisions
-  Cleaner define of keys in params
+V Cleaner define of keys in params
   Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
@@ -47,13 +47,13 @@ T	- TrapCells
 O	- Cleaner initTeams
 V		- Cleaner
 O		- Teams 0,1,3 but not 2 : exception
-  Player init :
+V Player init :
 V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
-	- Init Keys
-		- Init Keys
-		- Not if FSM
+V	- Init Keys
+V		- Init Keys
+V		- Not if FSM
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 V	- Ori

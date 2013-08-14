@@ -31,6 +31,11 @@ public class XMLparser {
         return dhm.getMap();
     }
     
+    public static void parseOptions(){
+        OptionsParser dh = new OptionsParser();
+        parseXML("options.xml", dh);
+    }
+    
     public static void parseParams(){
         DefaultHandler dh = new ParamTableHandler();
         parseXML("paramTable.xml", dh);

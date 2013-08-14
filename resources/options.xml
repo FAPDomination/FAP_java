@@ -1,0 +1,27 @@
+<root>
+    <keys>
+        <player1>
+            <up>38</up>
+            <down>40</down>
+            <right>39</right>
+            <left>37</left>
+            <skill>35</skill>
+        </player1>
+        <player2>
+            <up>90</up>
+            <down>83</down>
+            <right>68</right>
+            <left>81</left>
+            <skill>69</skill>
+        </player2>
+        <player3>
+            <up>90</up>
+            <down>83</down>
+            <right>68</right>
+            <left>81</left>
+            <skill>69</skill>
+        </player3>
+    </keys>
+</root>
+
+

@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.XMLparser;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 
@@ -24,6 +26,9 @@ public class TheFrame extends JFrame {
         this.setSize(Constants.frameDimension);
         //this.getContentPane().add(north, BorderLayout.NORTH);
         this.getContentPane().add(center, BorderLayout.CENTER);
+        
+        // Parse the options of the game
+        XMLparser.parseOptions();
     }
     
     public void changePanel(JPanel jp, Object layout){
