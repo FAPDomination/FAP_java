@@ -3,6 +3,7 @@ package gui;
 import fap_java.Game;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,6 +57,12 @@ public class HardCodePanel extends FAPanel{
         this.add(jtxtWho);
         this.add(jtxtTeam);
         this.add(jtxtisFSM);
+    
+    }
+    
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        //mini.paintComponent(g);
     }
     
     public void next(){

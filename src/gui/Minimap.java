@@ -1,0 +1,52 @@
+package gui;
+
+import fap_java.CMap;
+import fap_java.Cell;
+
+import fap_java.XMLparser;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import java.util.ArrayList;
+
+public class Minimap {
+    private ArrayList<Cell> map;
+    private int size = 5;
+    private Color[] colorList = new Color[300];
+    
+    private int x;
+    private int y;
+
+    public Minimap(int map, int x, int y) {
+        CMap theMap = XMLparser.parseMap(map);
+        this.map = theMap.getMyMap();
+        this.x = x;
+        this.y = y;
+
+        colorList[1] = new Color(0, 153, 0);
+        colorList[2] = new Color(202, 149, 69);
+        colorList[3] = new Color(150, 150, 150);
+        colorList[4] = new Color(150, 150, 150);
+        colorList[5] = new Color(116, 80, 18);
+        colorList[6] = new Color(0, 204, 0);
+        colorList[7] = new Color(51, 51, 51);
+        colorList[8] = new Color(128, 11, 0);
+
+        colorList[10] = new Color(106, 255, 102);
+        colorList[11] = new Color(153, 0, 0);
+
+        colorList[100] = new Color(86, 43, 2);
+        colorList[200] = new Color(46, 159, 200);
+        colorList[201] = new Color(241, 58, 5);
+    }
+
+    public void paintComponent(Graphics g) {
+        for (int i = 0; i < map.size(); i++) {
+            Cell c = map.get(i);
+            g.setColor(colorList[c.getDid()]);
+            int width = (int)(size*1.2);
+            g.fillRect(x+c.getJ() * width, y+c.getI() * size, width, size);
+        }
+    }
+}
