@@ -3,26 +3,39 @@ package gui;
 import fap_java.CMap;
 import fap_java.Cell;
 
+import fap_java.Graph;
 import fap_java.XMLparser;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
 
 public class Minimap {
     private ArrayList<Cell> map;
     private int size = 5;
     private Color[] colorList = new Color[300];
-    
+
     private int x;
     private int y;
 
-    public Minimap(int map, int x, int y) {
+    private Image img = Graph.guimg.get("minimapBG");
+    private JPanel panel;
+    private String name;
+
+    public Minimap(int map, int x, int y, JPanel panel, String name) {
         CMap theMap = XMLparser.parseMap(map);
         this.map = theMap.getMyMap();
         this.x = x;
         this.y = y;
+        this.panel = panel;
+        this.name = name;
 
         colorList[1] = new Color(0, 153, 0);
         colorList[2] = new Color(202, 149, 69);
@@ -42,11 +55,18 @@ public class Minimap {
     }
 
     public void paintComponent(Graphics g) {
+        g.drawImage(img, x, y, panel);
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
             g.setColor(colorList[c.getDid()]);
-            int width = (int)(size*1.2);
-            g.fillRect(x+c.getJ() * width, y+c.getI() * size, width, size);
+            int width = (int)(size * 1.4);
+            g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
         }
+        g.setColor(Color.black);
+        Graphics2D g2d = (Graphics2D)g;
+        FontMetrics fm = g2d.getFontMetrics();
+        int nameWidth = fm.stringWidth(name);
+        int imgWidth = 150;
+        g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 220);
     }
 }

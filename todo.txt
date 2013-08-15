@@ -1,4 +1,5 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
+  UTF-8
   Tidy the methods lists
   What happens to the getI, getJ, etc... ?
   Bugs :
@@ -16,7 +17,7 @@ V	- Bug changing
 V Same time displacements
 ? Get rid of colors
 V Collisions
-V Cleaner define of keys in params
+  Cleaner define of keys in params
   Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
@@ -47,13 +48,13 @@ T	- TrapCells
 O	- Cleaner initTeams
 V		- Cleaner
 O		- Teams 0,1,3 but not 2 : exception
-V Player init :
+  Player init :
 V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
-V	- Init Keys
-V		- Init Keys
-V		- Not if FSM
+	- Init Keys
+		- Init Keys
+		- Not if FSM
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 V	- Ori
@@ -145,10 +146,14 @@ O	- Way to pass param to the timer
 	- Miner Warp
 P Design
 P	- Change did of countdown cell after end of timer
-  Minimap
-	- Object
-	- Get map
-	- PaintComponent
+V Minimap
+V	- Object
+V	- Get map
+V	- PaintComponent
+V		- Background
+V		- Cells
+~		- Name
+	- isSelected
   Game
 	- Get Params
 V		- whoIsPlaying && skills
@@ -336,8 +341,4 @@ V		- Go to next panel
   CharacterSelection
 	- Get previous information
 	- Set character
-		- KListener
-		- Timer
-		- Move the arrow
-		- Animation
   Right Click Menu

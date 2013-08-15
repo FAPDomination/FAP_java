@@ -62,7 +62,8 @@ public class HardCodePanel extends FAPanel{
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        //mini.paintComponent(g);
+        Minimap mini = new Minimap(5,300,300,this,"La Riviere");
+        mini.paintComponent(g);
     }
     
     public void next(){
