@@ -28,13 +28,11 @@ public class Minimap {
     private Image img = Graph.guimg.get("minimapBG");
     private JPanel panel;
     private String name;
+    private boolean isSelected;
 
-    public Minimap(int map, int x, int y, JPanel panel, String name) {
+    public Minimap(int map, String name) {
         CMap theMap = XMLparser.parseMap(map);
         this.map = theMap.getMyMap();
-        this.x = x;
-        this.y = y;
-        this.panel = panel;
         this.name = name;
 
         colorList[1] = new Color(0, 153, 0);
@@ -53,6 +51,13 @@ public class Minimap {
         colorList[200] = new Color(46, 159, 200);
         colorList[201] = new Color(241, 58, 5);
     }
+    
+    public Minimap(int map, int x, int y, JPanel panel, String name) {
+        this(map,name);
+        this.panel = panel;
+        this.x = x;
+        this.y = y;
+    }
 
     public void paintComponent(Graphics g) {
         g.drawImage(img, x, y, panel);
@@ -68,5 +73,37 @@ public class Minimap {
         int nameWidth = fm.stringWidth(name);
         int imgWidth = 150;
         g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 220);
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
+
+    public boolean isIsSelected() {
+        return isSelected;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JPanel getPanel() {
+        return panel;
     }
 }

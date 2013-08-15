@@ -150,10 +150,13 @@ V Minimap
 V	- Object
 V	- Get map
 V	- PaintComponent
-V		- Background
+~		- Background
+~			- Size of background for big maps
 V		- Cells
 ~		- Name
-	- isSelected
+E	- isSelected
+	- Adjustable sizes (fit background to size attribute)
+	- Make it clickable
   Game
 	- Get Params
 V		- whoIsPlaying && skills
@@ -341,4 +344,16 @@ V		- Go to next panel
   CharacterSelection
 	- Get previous information
 	- Set character
+  Map Selection
+V	- Parse map list
+P	- Keep map list updated
+V	- Display map list
+~		- Size of maps
+~		- Increments
+?		- more than 8 ?
+	- update map value when clicked
+	- btn next
+		- wait for map to be selected
+		- generate Game
+		- Send loading screen
   Right Click Menu

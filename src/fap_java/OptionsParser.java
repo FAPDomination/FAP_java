@@ -9,10 +9,8 @@ public class OptionsParser extends DefaultHandler {
     // Flags for the position of the parser
     private boolean inFile;
     private boolean inKey;
-    private String whereAreWe;
     //buffer for retreiving datas
     private StringBuffer buffer;
-    private double[] datas;
     private int controlNumber;
     private int keyNumber;
     private String regex1 = "player[0-9]";

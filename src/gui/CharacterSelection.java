@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.Graphics;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -11,6 +14,7 @@ public class CharacterSelection extends FAPanel {
     private JButton btnNext = new JButton();
     private ArrayList<CharacterDisplay> charList;
     private ArrayList<ArrowSelect> arrowList;
+    private ArrayList<PlayerSelect> players;
     
     // Displaying
     private static int characDisplayOrigX = 0;
@@ -32,13 +36,18 @@ public class CharacterSelection extends FAPanel {
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
+        btnNext.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nextFrame();
+            }
+        });
         
         this.add(btnGoBack);
         this.add(btnNext);
         this.validate();
         this.repaint();
         
-        ArrayList<PlayerSelect> players = ((PlayerSelection)prevPanel).getPlayers();
+        players = ((PlayerSelection)prevPanel).getPlayers();
         charList = new ArrayList<CharacterDisplay>();
         arrowList = new ArrayList<ArrowSelect>();
         
@@ -58,6 +67,13 @@ public class CharacterSelection extends FAPanel {
             }
         }
         
+    }
+    
+    public void nextFrame(){
+        // Check if everyone has a skill
+        // Proceeding to next panel
+        JPanel nextPanel = new MapSelect(parent,this);
+        parent.changePanel(nextPanel);
     }
     
     public void paintComponent(Graphics g){
@@ -93,5 +109,13 @@ public class CharacterSelection extends FAPanel {
 
     public ArrayList<CharacterDisplay> getCharList() {
         return charList;
+    }
+
+    public void setPlayers(ArrayList<PlayerSelect> players) {
+        this.players = players;
+    }
+
+    public ArrayList<PlayerSelect> getPlayers() {
+        return players;
     }
 }

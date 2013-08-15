@@ -7,6 +7,10 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.event.MouseAdapter;
+
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,6 +20,7 @@ public class HardCodePanel extends FAPanel{
     private JTextField jtxtWho = new JTextField();
     private JTextField jtxtisFSM = new JTextField();
     private JTextField jtxtTeam = new JTextField();
+    private Minimap mini;
     
     public HardCodePanel(TheFrame fr, JPanel prevPanel) {
         super(fr, prevPanel);
@@ -57,12 +62,12 @@ public class HardCodePanel extends FAPanel{
         this.add(jtxtWho);
         this.add(jtxtTeam);
         this.add(jtxtisFSM);
-    
+        
+        mini = new Minimap(5,300,300,this,"La Riviere");
     }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        Minimap mini = new Minimap(5,300,300,this,"La Riviere");
         mini.paintComponent(g);
     }
     
