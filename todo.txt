@@ -353,7 +353,8 @@ V	- Display map list
 ?		- more than 8 ?
 	- update map value when clicked
 	- btn next
-		- wait for map to be selected
-		- generate Game
-		- Send loading screen
+V		- wait for map to be selected
+V		- generate Game
+V		- Send loading screen
+		- Better parsing without blank characters (1,0,0,1,1)->(1,1,1)
   Right Click Menu

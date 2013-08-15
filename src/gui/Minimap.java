@@ -29,11 +29,13 @@ public class Minimap {
     private JPanel panel;
     private String name;
     private boolean isSelected;
+    private int fileNumber;
 
     public Minimap(int map, String name) {
         CMap theMap = XMLparser.parseMap(map);
         this.map = theMap.getMyMap();
         this.name = name;
+        this.fileNumber = map;
 
         colorList[1] = new Color(0, 153, 0);
         colorList[2] = new Color(202, 149, 69);
@@ -105,5 +107,13 @@ public class Minimap {
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public void setFileNumber(int fileNumber) {
+        this.fileNumber = fileNumber;
+    }
+
+    public int getFileNumber() {
+        return fileNumber;
     }
 }

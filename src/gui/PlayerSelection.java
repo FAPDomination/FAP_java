@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.Params;
+
 import java.awt.Graphics;
 
 import java.awt.event.ActionEvent;
@@ -22,7 +24,7 @@ public class PlayerSelection extends FAPanel {
     private ArrayList<JComboBox> teamSelecters;
     private ArrayList<JButton> eraseSelecters;
     private String[] listControls = {"Player 1","Player 2","Player 3","AI Low", "AI Middle", "AI High"};
-    private int maxPlayers = 8;
+    private int maxPlayers = Params.maxPlayers;
     
     public PlayerSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
@@ -212,4 +214,5 @@ public class PlayerSelection extends FAPanel {
     public int getMaxPlayers() {
         return maxPlayers;
     }
+    
 }

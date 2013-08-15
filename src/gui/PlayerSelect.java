@@ -15,6 +15,7 @@ public class PlayerSelect{
         team = 0;
         isFSM = 0;
     }
+    
 
 
     public void setPc(int pc) {
@@ -51,5 +52,13 @@ public class PlayerSelect{
 
     public int getIsFSM() {
         return isFSM;
+    }
+    
+    public boolean equals(PlayerSelect e){
+        boolean b = false;
+        if(this.getControler() == e.getControler()){
+            b= true;
+        }
+        return b;
     }
 }
