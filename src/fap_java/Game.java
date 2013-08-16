@@ -162,58 +162,10 @@ public class Game extends JPanel implements NeedingFocus {
             boolean isPlaying = charac!=0;
             if (isPlaying) {
                 int pid = i / 2;
-                Cell c;
-                if (randStart) {
-                    if(startCellsAL.size()>0){
-                        int rand = Tools.randRange(0, startCellsAL.size() - 1);
-                        c = startCellsAL.get(rand);
-                        startCellsAL.remove(rand);
-                    }
-                    else{
-                        ArrayList<Cell> takable = map.getTakableCells();
-                        do{
-                        c = takable.get(Tools.randRange(0, takable.size()-1));
-                        }
-                        while(this.isOccupied(c) != null);
-                    }
-                } else {
-                    c = startCellsAL.get(pid);
-                }
+                Cell c = getStartCell(pid);
                 Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
                 int ai = Integer.parseInt(""+isFSM.charAt(i));
-                Player p;
-                switch(charac){
-                    case 1:
-                        p = new Knight(pid, c, this,team,ai,controler);
-                        break;
-                    /*case 2:
-                        p = new Warlock(pid, c, this,team);
-                        break;*/
-                    case 3:
-                        p = new Miner(pid, c, this,team,ai,controler);
-                        break;
-                    case 4:
-                        p = new Warlock(pid, c, this,team,ai,controler);
-                        break;
-                    case 5:
-                        p = new Archer(pid, c, this,team,ai,controler);
-                        break;
-                    case 6:
-                        p = new Vampire(pid, c, this,team,ai,controler);
-                        break;
-                    case 7:
-                        p = new NoCharacter(pid, c, this,team,ai,controler);
-                        break;
-                    case 8:
-                        p = new Magician(pid, c, this,team,ai,controler);
-                        break;
-                    case 9:
-                        p = new Booster(pid, c, this,team,ai,controler);
-                        break;
-                default:
-                    p = new Knight(pid, c, this,team,ai,controler);
-                    break;
-                }
+                Player p = generatePlayer(charac,pid,c,team,ai,controler);
                 players.add(p);
             }
         }
@@ -365,62 +317,73 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     private void initPlayers(ArrayList<PlayerSelect> playerSelect) {
-        ArrayList<Cell> startCellsAL = map.getStartCells();
         for (int i = 0; i < playerSelect.size(); i ++) {
             PlayerSelect ps = playerSelect.get(i);
             //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
             int charac = ps.getPc();
             int pid = players.size();
-                Cell c;
-                if (randStart) {
-                    if(startCellsAL.size()>0){
-                        int rand = Tools.randRange(0, startCellsAL.size() - 1);
-                        c = startCellsAL.get(rand);
-                        startCellsAL.remove(rand);
-                    }
-                    else{
-                        ArrayList<Cell> takable = map.getTakableCells();
-                        do{
-                        c = takable.get(Tools.randRange(0, takable.size()-1));
-                        }
-                        while(this.isOccupied(c) != null);
-                    }
-                } else {
-                    c = startCellsAL.get(pid);
-                }
+                Cell c = getStartCell(pid);
                 Team team = teams.get(ps.getTeam());
                 int ai = ps.getIsFSM();
-                Player p;
-                switch(charac){
-                    case 1:
-                        p = new Knight(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 3:
-                        p = new Miner(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 4:
-                        p = new Warlock(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 5:
-                        p = new Archer(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 6:
-                        p = new Vampire(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 7:
-                        p = new NoCharacter(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 8:
-                        p = new Magician(pid, c, this,team,ai,ps.getControler());
-                        break;
-                    case 9:
-                        p = new Booster(pid, c, this,team,ai,ps.getControler());
-                        break;
-                default:
-                    p = new Knight(pid, c, this,team,ai,ps.getControler());
-                    break;
-                }
+                Player p = generatePlayer(charac,pid,c,team,ai,ps.getControler());
+                
                 players.add(p);
         }
+    }
+    
+    private Cell getStartCell(int pid){
+        ArrayList<Cell> startCellsAL = map.getStartCells();
+        Cell c;
+        if (randStart) {
+            if(startCellsAL.size()>0){
+                int rand = Tools.randRange(0, startCellsAL.size() - 1);
+                c = startCellsAL.get(rand);
+                startCellsAL.remove(rand);
+            }
+            else{
+                ArrayList<Cell> takable = map.getTakableCells();
+                do{
+                c = takable.get(Tools.randRange(0, takable.size()-1));
+                }
+                while(this.isOccupied(c) != null);
+            }
+        } else {
+            c = startCellsAL.get(pid);
+        }
+        return c;
+    }
+    
+    private Player generatePlayer(int charac, int pid, Cell c, Team team, int ai, int controler){
+        Player p;
+        switch(charac){
+            case 1:
+                p = new Knight(pid, c, this,team,ai,controler);
+                break;
+            case 3:
+                p = new Miner(pid, c, this,team,ai,controler);
+                break;
+            case 4:
+                p = new Warlock(pid, c, this,team,ai,controler);
+                break;
+            case 5:
+                p = new Archer(pid, c, this,team,ai,controler);
+                break;
+            case 6:
+                p = new Vampire(pid, c, this,team,ai,controler);
+                break;
+            case 7:
+                p = new NoCharacter(pid, c, this,team,ai,controler);
+                break;
+            case 8:
+                p = new Magician(pid, c, this,team,ai,controler);
+                break;
+            case 9:
+                p = new Booster(pid, c, this,team,ai,controler);
+                break;
+        default:
+            p = new Knight(pid, c, this,team,ai,controler);
+            break;
+        }
+        return p;
     }
 }
