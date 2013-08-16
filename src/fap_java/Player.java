@@ -40,7 +40,7 @@ public abstract class Player extends Human {
     //FSM
     private FSM fsm;
 
-    public Player(int id, Cell c, Game game, int pc, Team t, int ai) {
+    public Player(int id, Cell c, Game game, int pc, Team t, int ai, int controler) {
         super();
         this.id = id;
         current = c;
@@ -51,6 +51,7 @@ public abstract class Player extends Human {
         team.addPlayer(this);
         if(ai>0){
             fsm = new FSM(this,ai);
+            controler = 1;
         }
         else{
             fsm = null;
@@ -73,9 +74,9 @@ public abstract class Player extends Human {
             keys[4][0] = 69;
         }
         */
-        if(fsm==null && id<Params.nPlayersOn1Computer){
+        if(fsm==null){
             for(int i=0;i<=4;i++){
-               keys[i][0] = Params.controlsList[id][i];
+               keys[i][0] = Params.controlsList[controler][i];
             }
         }
         //Init key pressing

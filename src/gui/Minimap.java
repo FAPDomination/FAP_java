@@ -7,17 +7,23 @@ import fap_java.Graph;
 import fap_java.XMLparser;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-public class Minimap {
+public class Minimap{
     private ArrayList<Cell> map;
     private int size = 5;
     private Color[] colorList = new Color[300];
@@ -53,6 +59,7 @@ public class Minimap {
         colorList[200] = new Color(46, 159, 200);
         colorList[201] = new Color(241, 58, 5);
     }
+
     
     public Minimap(int map, int x, int y, JPanel panel, String name) {
         this(map,name);

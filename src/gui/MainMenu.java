@@ -141,7 +141,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
             pcF = Tools.randRange(1, 9);
         } while (pcF == 2 || pcF == 7);
 
-        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1", true, nmap);
+        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", true, nmap);
         
         nextPanel = new LoadingScreen(parent,game,this);
         this.startSliding(true);

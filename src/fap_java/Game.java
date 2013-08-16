@@ -7,6 +7,8 @@ import gui.Constants;
 import gui.FAPanel;
 import gui.NeedingFocus;
 
+import gui.PlayerSelect;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
@@ -45,14 +47,36 @@ public class Game extends JPanel implements NeedingFocus {
     private String whoIsPlaying; // This is linked with skill, here player 1 is magician
     private String wichTeam; // Here player n°2 is in team n°0
     private String isFSM;   // 0 for player, other for FSM level
+    private String controlers;
     private boolean randStart;
 
-    public Game(String whoIsPlaying, String wichTeam, String isFSM, boolean randStart, int nmap) {
+    public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap) {
         this.whoIsPlaying = whoIsPlaying;
         this.wichTeam = wichTeam;
         this.isFSM = isFSM;
         this.randStart = randStart;
+        this.controlers = controlers;
         
+        initGame(nmap);
+        
+        initTeams();
+        
+        initPlayers();
+
+        scoreHandler = new ScoreBar(this);
+    }
+
+    public Game(ArrayList<PlayerSelect> playerSelect, boolean randStart, int mapNumber) {
+        initGame(mapNumber);
+        this.randStart = randStart;
+        
+        initTeams(playerSelect);
+        initPlayers(playerSelect);
+        
+        scoreHandler = new ScoreBar(this);
+    }
+    
+    private void initGame(int nmap){
         this.setLayout(null);
         this.setBackground(Color.white);
         map = new CMap();
@@ -73,24 +97,7 @@ public class Game extends JPanel implements NeedingFocus {
         victTime = 0;
         
         gameEnded = false;
-
-        initTeams();
         
-        initPlayers();
-
-        scoreHandler = new ScoreBar(this);
-        
-        //Testing :
-        //Arrow arr = new Arrow(players.get(0).getCurrent(),2,this,players.get(0));
-        //objects.add(arr);
-        /*
-        ArrayList<Cell> path = pathFinder.findPath(this.getMap().getMyMap(), players.get(0).getCurrent(), players.get(3).getCurrent());
-        for(int i=0;i<path.size();i++){
-            Cell c = path.get(i);
-            c.setOnPath(true);
-        }
-        System.out.println(path);
-*/
         pauseGame();
     }
 
@@ -151,14 +158,24 @@ public class Game extends JPanel implements NeedingFocus {
         for (int i = 0; i < whoIsPlaying.length(); i += 2) {
             //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
             int charac = Integer.parseInt(""+whoIsPlaying.charAt(i));
+            int controler = Integer.parseInt(""+controlers.charAt(i));
             boolean isPlaying = charac!=0;
             if (isPlaying) {
                 int pid = i / 2;
                 Cell c;
                 if (randStart) {
-                    int rand = Tools.randRange(0, startCellsAL.size() - 1);
-                    c = startCellsAL.get(rand);
-                    startCellsAL.remove(rand);
+                    if(startCellsAL.size()>0){
+                        int rand = Tools.randRange(0, startCellsAL.size() - 1);
+                        c = startCellsAL.get(rand);
+                        startCellsAL.remove(rand);
+                    }
+                    else{
+                        ArrayList<Cell> takable = map.getTakableCells();
+                        do{
+                        c = takable.get(Tools.randRange(0, takable.size()-1));
+                        }
+                        while(this.isOccupied(c) != null);
+                    }
                 } else {
                     c = startCellsAL.get(pid);
                 }
@@ -167,34 +184,34 @@ public class Game extends JPanel implements NeedingFocus {
                 Player p;
                 switch(charac){
                     case 1:
-                        p = new Knight(pid, c, this,team,ai);
+                        p = new Knight(pid, c, this,team,ai,controler);
                         break;
                     /*case 2:
                         p = new Warlock(pid, c, this,team);
                         break;*/
                     case 3:
-                        p = new Miner(pid, c, this,team,ai);
+                        p = new Miner(pid, c, this,team,ai,controler);
                         break;
                     case 4:
-                        p = new Warlock(pid, c, this,team,ai);
+                        p = new Warlock(pid, c, this,team,ai,controler);
                         break;
                     case 5:
-                        p = new Archer(pid, c, this,team,ai);
+                        p = new Archer(pid, c, this,team,ai,controler);
                         break;
                     case 6:
-                        p = new Vampire(pid, c, this,team,ai);
+                        p = new Vampire(pid, c, this,team,ai,controler);
                         break;
                     case 7:
-                        p = new NoCharacter(pid, c, this,team,ai);
+                        p = new NoCharacter(pid, c, this,team,ai,controler);
                         break;
                     case 8:
-                        p = new Magician(pid, c, this,team,ai);
+                        p = new Magician(pid, c, this,team,ai,controler);
                         break;
                     case 9:
-                        p = new Booster(pid, c, this,team,ai);
+                        p = new Booster(pid, c, this,team,ai,controler);
                         break;
                 default:
-                    p = new Knight(pid, c, this,team,ai);
+                    p = new Knight(pid, c, this,team,ai,controler);
                     break;
                 }
                 players.add(p);
@@ -227,19 +244,19 @@ public class Game extends JPanel implements NeedingFocus {
         return this.getWidth();
     }
 
-    public void initTeams() {
-        /*
-        Team te = new Team();
-        teams.add(0, te);
-        te = new Team();
-        teams.add(1, te);
-        te = new Team();
-        teams.add(2, te);
-        te = new Team();
-        teams.add(3, te);
-        */
+    private void initTeams() {
         for (int i = 0; i < wichTeam.length(); i += 2) {
             int idT = Integer.parseInt(""+wichTeam.charAt(i));
+            if(idT>=teams.size()){
+                Team te = new Team();
+                teams.add(idT, te);
+            }
+        }
+    }
+    
+    private void initTeams(ArrayList<PlayerSelect> playerSelect) {
+        for (int i = 0; i < playerSelect.size(); i ++) {
+            int idT = playerSelect.get(i).getTeam();
             if(idT>=teams.size()){
                 Team te = new Team();
                 teams.add(idT, te);
@@ -345,5 +362,65 @@ public class Game extends JPanel implements NeedingFocus {
             System.out.println("Winner : "+winner);
         }
         // adventure mode : if the winner isn't the player, then display lost
+    }
+
+    private void initPlayers(ArrayList<PlayerSelect> playerSelect) {
+        ArrayList<Cell> startCellsAL = map.getStartCells();
+        for (int i = 0; i < playerSelect.size(); i ++) {
+            PlayerSelect ps = playerSelect.get(i);
+            //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
+            int charac = ps.getPc();
+            int pid = players.size();
+                Cell c;
+                if (randStart) {
+                    if(startCellsAL.size()>0){
+                        int rand = Tools.randRange(0, startCellsAL.size() - 1);
+                        c = startCellsAL.get(rand);
+                        startCellsAL.remove(rand);
+                    }
+                    else{
+                        ArrayList<Cell> takable = map.getTakableCells();
+                        do{
+                        c = takable.get(Tools.randRange(0, takable.size()-1));
+                        }
+                        while(this.isOccupied(c) != null);
+                    }
+                } else {
+                    c = startCellsAL.get(pid);
+                }
+                Team team = teams.get(ps.getTeam());
+                int ai = ps.getIsFSM();
+                Player p;
+                switch(charac){
+                    case 1:
+                        p = new Knight(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 3:
+                        p = new Miner(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 4:
+                        p = new Warlock(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 5:
+                        p = new Archer(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 6:
+                        p = new Vampire(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 7:
+                        p = new NoCharacter(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 8:
+                        p = new Magician(pid, c, this,team,ai,ps.getControler());
+                        break;
+                    case 9:
+                        p = new Booster(pid, c, this,team,ai,ps.getControler());
+                        break;
+                default:
+                    p = new Knight(pid, c, this,team,ai,ps.getControler());
+                    break;
+                }
+                players.add(p);
+        }
     }
 }

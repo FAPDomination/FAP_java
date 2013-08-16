@@ -61,12 +61,15 @@ public class MapSelect extends FAPanel {
     public void nextFrame(){
         // Check if map is selected
         if(selectedMap != null){
+            
+            
+            ArrayList<PlayerSelect> players = ((CharacterSelection)prevPanel).getPlayers();
+            /*
+            PlayerSelect[] psTable = new PlayerSelect[Params.maxPlayers];
+            
             String whoIsPlaying = "";
             String wichTeam = "";
             String isFSM = "";
-            
-            ArrayList<PlayerSelect> players = ((CharacterSelection)prevPanel).getPlayers();
-            PlayerSelect[] psTable = new PlayerSelect[Params.maxPlayers];
             
             for(int i=0;i<psTable.length;i++){
                 PlayerSelect play = null;
@@ -102,6 +105,9 @@ public class MapSelect extends FAPanel {
             // Proceeding to next panel
             System.out.println(whoIsPlaying+"-"+wichTeam+"-"+isFSM);
             Game game = new Game(whoIsPlaying,wichTeam,isFSM,true,selectedMap.getFileNumber());
+            parent.changePanel(new LoadingScreen(parent,game,this));
+            */
+            Game game = new Game(players,true,selectedMap.getFileNumber());
             parent.changePanel(new LoadingScreen(parent,game,this));
         }
     }
