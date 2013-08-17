@@ -2,11 +2,18 @@ package gui;
 
 import fap_java.Game;
 
+import fap_java.Graph;
+import fap_java.Player;
+import fap_java.Team;
+
 import java.awt.BorderLayout;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,10 +23,19 @@ public class LoadingScreen extends FAPanel {
     private JButton btnPlay = new JButton();
     private Minimap minimap;
     
+    // Get infos from the game
+    private ArrayList<Team> teams;
+    private int origX = 40;
+    private int origY = 100;
+    private int incremY = 120;
+    private int incremPlayerX = 30;
+    
     public LoadingScreen(TheFrame fr, Game game, JPanel prevPanel, int nmap) {
         super(fr, prevPanel);
         this.game = game;
-
+        
+        teams = game.getTeams();
+        
         swordX = minxS;
         cloudsX = minxC;
         
@@ -37,7 +53,7 @@ public class LoadingScreen extends FAPanel {
         this.add(btnPlay);
         
         minimap = new Minimap(nmap,580,100,this,"");
-        
+        //LS_BGteam : 322,103
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 startGame();
@@ -53,5 +69,18 @@ public class LoadingScreen extends FAPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         minimap.paintComponent(g);
+        
+        for(int i=0;i<teams.size();i++){
+            int y = origY+i*incremY;
+            g.drawImage(Graph.guimg.get("LS_BGteam"), origX, y, this);
+            
+            g.setColor(Color.black);
+            g.drawString("Team "+(i+1), origX+20, y+30);
+            
+            ArrayList<Player> players = teams.get(i).getPlayersInThisTeam();
+            for(int j=0;j<players.size();j++){
+                players.get(j).paintStick(g, origX+30+incremPlayerX*j, y+50);
+            }
+        }
     }
 }

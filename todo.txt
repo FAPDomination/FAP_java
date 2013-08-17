@@ -311,6 +311,7 @@ V		- Back
 		- Controls
 		- Sound
 		- FullScreen
+		- FAP Editor
 P Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 P	- Game
@@ -319,8 +320,11 @@ V	- LoadingScreen
 V	- Launch
 	- Display game datas
 		- Teams List
-			- Write team name and specs
-			- Players list (display character figures)
+~			- Write team name and specs
+V			- Players list (display character figures)
+			- Critical Size problem with 8 teams !
+				- Change BG
+				- Change players disposition
 V		- Display Minimap
   General Design
 	- Button for menu
@@ -329,6 +333,7 @@ V		- Display Minimap
 	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
+	- Nice fonts and sizes for texts
   PlayerSelection
 V	- PlayerSelect
 V		- Button remove
