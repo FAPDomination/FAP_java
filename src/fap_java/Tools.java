@@ -15,10 +15,12 @@ public class Tools {
     }
     
     public static ArrayList removeNull(ArrayList al){
-        for(int i=0;i<al.size();i++){
-            Object o = al.get(i);
-            if(o==null){
-                al.remove(o);
+        while(al.contains(null)){
+            for(int i=0;i<al.size();i++){
+                Object o = al.get(i);
+                if(o==null){
+                    al.remove(o);
+                }
             }
         }
         return al;

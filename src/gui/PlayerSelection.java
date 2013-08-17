@@ -99,9 +99,7 @@ public class PlayerSelection extends FAPanel {
             }
         }
         // Security for number of teams :
-        System.out.println(listTeams);
         listTeams = Tools.removeNull(listTeams);
-        System.out.println(listTeams);
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
             ps.setTeam(listTeams.indexOf(ps.getTeam()));
