@@ -16,6 +16,11 @@ public class PlayerSelect{
         isFSM = 0;
     }
     
+    public PlayerSelect(PlayerSelection panel, int ctrl, int team) {
+        this(panel);
+        controler = ctrl;
+        this.team = team;
+    }
 
 
     public void setPc(int pc) {

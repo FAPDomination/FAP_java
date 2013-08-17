@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 
 import gui.versusSelection.characterSelection.*;
 
+import java.awt.Color;
+
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
     private JButton btnAdd = new JButton();
@@ -33,6 +35,9 @@ public class PlayerSelection extends FAPanel {
     private int displayOrigY = 200;
     private int displayIncrementY = 50;
     private int displayHeight = 30;
+    
+    private boolean error;
+    private String message;
 
     public PlayerSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
@@ -50,6 +55,8 @@ public class PlayerSelection extends FAPanel {
         
         swordX = minxS;
         cloudsX = minxC;
+        
+        message = "";
         
         this.setLayout(null);
         this.setSize(Constants.frameDimension);
@@ -81,42 +88,48 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void nextFrame(){
-        
-        ArrayList<Integer> listTeams = new ArrayList<Integer>();
-        for(int i=0;i<Params.maxPlayers;i++){
-            listTeams.add(null);
-        }
-        // Parse the PlayerSelecters
-        for(int i=0;i<players.size();i++){
-            PlayerSelect ps = players.get(i);
-            if(ps.getControler() > 2){
-                int isFSM = ps.getControler()-1;    // So they get lvl 2,3 and 4
-                ps.setIsFSM(isFSM);
+        if(!error){
+            ArrayList<Integer> listTeams = new ArrayList<Integer>();
+            for(int i=0;i<Params.maxPlayers;i++){
+                listTeams.add(null);
             }
-            else{
-                ps.setIsFSM(0);
+            // Parse the PlayerSelecters
+            for(int i=0;i<players.size();i++){
+                PlayerSelect ps = players.get(i);
+                if(ps.getControler() > 2){
+                    int isFSM = ps.getControler()-1;    // So they get lvl 2,3 and 4
+                    ps.setIsFSM(isFSM);
+                }
+                else{
+                    ps.setIsFSM(0);
+                }
+                // Security for number of teams :
+                int team = ps.getTeam();
+                if(listTeams.contains(team)){}
+                else{
+                    listTeams.set(team, team);
+                }
             }
             // Security for number of teams :
-            int team = ps.getTeam();
-            if(listTeams.contains(team)){}
-            else{
-                listTeams.set(team, team);
+            listTeams = Tools.removeNull(listTeams);
+            for(int i=0;i<players.size();i++){
+                PlayerSelect ps = players.get(i);
+                ps.setTeam(listTeams.indexOf(ps.getTeam()));
             }
+            
+            // Proceeding to next panel
+            JPanel nextPanel = new CharacterSelection(parent,this);
+            parent.changePanel(nextPanel);
         }
-        // Security for number of teams :
-        listTeams = Tools.removeNull(listTeams);
-        for(int i=0;i<players.size();i++){
-            PlayerSelect ps = players.get(i);
-            ps.setTeam(listTeams.indexOf(ps.getTeam()));
-        }
-        
-        // Proceeding to next panel
-        JPanel nextPanel = new CharacterSelection(parent,this);
-        parent.changePanel(nextPanel);
     }
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        
+        if(!message.equals("")){
+            g.setColor(Color.black);
+            g.drawString(message, 600, 300);
+        }
     }
 
     public void setPlayers(ArrayList<PlayerSelect> players) {
@@ -173,6 +186,8 @@ public class PlayerSelection extends FAPanel {
             });
         }
         
+        updateErrorText();
+        
         this.validate();
         this.repaint();
     }
@@ -187,6 +202,7 @@ public class PlayerSelection extends FAPanel {
         int controler = combo.getSelectedIndex();
         PlayerSelect ps = players.get(this.controlSelecters.indexOf(combo));
         ps.setControler(controler);
+        updateErrorText();
     }
     
     public void team_ActionPerformed(ActionEvent e){
@@ -194,11 +210,16 @@ public class PlayerSelection extends FAPanel {
         int team = combo.getSelectedIndex();
         PlayerSelect ps = players.get(this.teamSelecters.indexOf(combo));
         ps.setTeam(team);
+        updateErrorText();
     }
     
     public void addPlayerSelecter(){
         if(players.size()<this.maxPlayers){
-            players.add(new PlayerSelect(this));
+            int ctrl = players.size();
+            if(ctrl>2){
+                ctrl = 3;
+            }
+            players.add(new PlayerSelect(this,ctrl,players.size()));
             controlSelecters.add(new JComboBox(listControls));
             JComboBox teamS = new JComboBox();
             for(int i=0;i<maxPlayers;i++){
@@ -232,4 +253,44 @@ public class PlayerSelection extends FAPanel {
         return maxPlayers;
     }
     
+    public void updateErrorText(){
+        int onlyTeam=0;
+        error = true;
+        message = "Vous devez avoir au moins deux équipes !";
+        int fsmCounter = 0;
+        for(int i=0;i<players.size();i++){
+            PlayerSelect ps = players.get(i);
+            if(i==0){
+                onlyTeam = ps.getTeam();
+            }
+            else if(ps.getTeam() != onlyTeam){
+                message = "";
+                error = false;
+            }
+            if(ps.getControler() > 2){
+                fsmCounter++;
+            }
+        }
+        if(!error && fsmCounter == players.size()){
+            message = "Vous avez le droit de regarder des ordinateurs se battre.\nMais c'est moins fun.";
+        }
+        if(!error){
+            int[] controlers = new int[Params.nPlayersOn1Computer];
+            for(int i=0;i<Params.nPlayersOn1Computer;i++){
+                controlers[i] = 0;
+            }
+            for(int i=0;i<players.size();i++){
+                PlayerSelect ps = players.get(i);
+                if(ps.getControler()<Params.nPlayersOn1Computer){
+                    controlers[ps.getControler()]++;
+                    if(controlers[ps.getControler()]>1){
+                        message = "Vous ne pouvez contrôler qu'un personage !";
+                        error = true;
+                        break;
+                    }
+                }
+            }
+        }
+        this.repaint();
+    }
 }

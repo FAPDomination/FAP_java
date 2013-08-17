@@ -300,10 +300,10 @@ V			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
-	- Find a place for it and keep it
+V	- Find a place for it and keep it
 ?	- Even for OptionMenu ?
 T	- Versus : keep information from one another
-  Go next button : find place and keep it
+V Go next button : find place and keep it
 ? Game extends FAPanel ?
   OptionMenu
 	- Buttons
@@ -316,7 +316,7 @@ P Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game
 V	- LoadingScreen
-V LoadingScreen
+T LoadingScreen
 V	- Launch
 V	- Display game datas
 V		- Teams List
@@ -354,9 +354,11 @@ V			- Nothing more, passing to next panel
 V		- Security on number and order of teams
 V		- Go to next panel
 	- "Error" textField
-		- textField and block next
-		- "2 or more teams"
-		- 1 controler for 1 player
+V		- textField and block next
+V		- "2 or more teams"
+V		- 1 controler for 1 player
+		- DrawString and back to new line
+	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
 P CharacterSelection
 V	- Get previous information
 P	- Set character
