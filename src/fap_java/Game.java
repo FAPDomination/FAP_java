@@ -95,8 +95,6 @@ public class Game extends JPanel implements NeedingFocus {
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
-
-        initFocus();
         
         gameEnded = false;
         

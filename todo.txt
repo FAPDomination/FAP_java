@@ -158,7 +158,7 @@ V		- Cells
 	- Adjustable sizes (fit background to size attribute)
 V	- Make it clickable
   Game
-	- Get Params
+V	- Get Params
 V		- whoIsPlaying && skills
 V		- wichTeam
 V		- randStart
@@ -166,7 +166,7 @@ V		- isFSM
 V		- Keys
 V		- Victory conditions
 	- Pause/Play
-		- Get Key from param
+V		- Get Key from param
 		- Execute Pause
 V			- Pause
 			- Display

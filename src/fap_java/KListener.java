@@ -42,7 +42,7 @@ public class KListener implements KeyListener {
                 }
             }
         }
-        if (code == 80) {
+        if (code == Params.pauseKey) {
             game.pauseGame();
         }
     }

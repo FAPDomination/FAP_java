@@ -51,6 +51,8 @@ public class Params {
 
     public static int nPlayersOn1Computer = 3;
     public static int maxPlayers = 8;
+    
+    public static int pauseKey;
     /*
      * 0 : UP
      * 1 : DOWN

@@ -39,7 +39,8 @@ public class OptionsParser extends DefaultHandler {
             keyNumber = 3;
         } else if (qName.equals("skill")) {
             keyNumber = 4;
-        } else {
+        } else if(qName.equals("pauseKey")){
+        }else {
             buffer = new StringBuffer();
             // Error
             throw new SAXException("Unknown tag " + qName + ".");
@@ -57,6 +58,8 @@ public class OptionsParser extends DefaultHandler {
         } else if (qName.matches(regex1)) {
         } else if (qName.equals("up") || qName.equals("down") || qName.equals("right") || qName.equals("left") || qName.equals("skill")) {
             Params.controlsList[this.controlNumber][this.keyNumber] = Integer.parseInt(buffer.toString());
+        } else if(qName.equals("pauseKey")){
+            Params.pauseKey = Integer.parseInt(buffer.toString());
         } else {
             //Error
             throw new SAXException("Unknown tag " + qName + ".");
