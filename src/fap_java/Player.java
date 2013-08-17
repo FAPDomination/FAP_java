@@ -293,10 +293,13 @@ public abstract class Player extends Human {
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-
+        paintStick(g, x, y);
+    }
+    
+    public void paintStick(Graphics g, int x, int y){
         g.setColor(color);
+        // Switch on ori
         g.fillRect(x, y, 10, 30);
-        
     }
 
     public void setColor(Color color) {

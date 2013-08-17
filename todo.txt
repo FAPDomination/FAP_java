@@ -318,6 +318,10 @@ V	- LoadingScreen
   LoadingScreen
 V	- Launch
 	- Display game datas
+		- Teams List
+			- Write team name and specs
+			- Players list (display character figures)
+		- Display Minimap
   General Design
 	- Button for menu
 	- Button for other
