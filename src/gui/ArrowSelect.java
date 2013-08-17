@@ -2,6 +2,8 @@ package gui;
 
 import fap_java.Params;
 
+import fap_java.Tools;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -50,8 +52,8 @@ public class ArrowSelect {
             pc--;
         }
         CharacterDisplay cd = cs.getCharList().get(pc-1);
-        wantedX = cd.getX()+cd.getW()/2;
-        wantedY = cd.getY()+cs.getArroSelectOrigY();
+        wantedX = cd.getX()+cd.getW()/2 +Tools.randRange(-5, 5);
+        wantedY = cd.getY()+cs.getArroSelectOrigY() +Tools.randRange(-5, 5);
     }
     
     public void computeSpeed(){

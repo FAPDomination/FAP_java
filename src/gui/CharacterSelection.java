@@ -78,6 +78,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         for(int j=0;j<players.size();j++){
             PlayerSelect ps = players.get(j);
             if(ps.getIsFSM() == 0){
+                ps.setPc(Tools.randRange(1,9,Params.excludedChars));
                 ArrowSelect as = new ArrowSelect(ps,this);
                 arrowList.set(ps.getControler(),as);
             }

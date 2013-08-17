@@ -355,8 +355,8 @@ V			- Timer displacement
 V			- Set new values for arrows
 V			- Set new values for characters
 			- Optional
-				- paint arrows slightly shifted from one another
-				- init with random chars
+V				- paint arrows slightly shifted from one another
+V				- init with random chars
 				- forbid same character in same team
 V			- Animate
 V				- Make panel animated
