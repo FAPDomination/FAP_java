@@ -96,7 +96,7 @@ public class PlayerSelection extends FAPanel {
             // Parse the PlayerSelecters
             for(int i=0;i<players.size();i++){
                 PlayerSelect ps = players.get(i);
-                if(ps.getControler() > 2){
+                if(ps.getControler() > Params.nPlayersOn1Computer-1){
                     int isFSM = ps.getControler()-1;    // So they get lvl 2,3 and 4
                     ps.setIsFSM(isFSM);
                 }
@@ -216,7 +216,7 @@ public class PlayerSelection extends FAPanel {
     public void addPlayerSelecter(){
         if(players.size()<this.maxPlayers){
             int ctrl = players.size();
-            if(ctrl>2){
+            if(ctrl>Params.nPlayersOn1Computer-1){
                 ctrl = 3;
             }
             players.add(new PlayerSelect(this,ctrl,players.size()));
@@ -267,7 +267,7 @@ public class PlayerSelection extends FAPanel {
                 message = "";
                 error = false;
             }
-            if(ps.getControler() > 2){
+            if(ps.getControler() > Params.nPlayersOn1Computer-1){
                 fsmCounter++;
             }
         }

@@ -333,9 +333,11 @@ V		- Display Minimap
 	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
+		- Versus menus
 	- Nice fonts and sizes for texts
 		- LoadingScreen
-  PlayerSelection
+		- PlayerSelection
+P PlayerSelection
 V	- PlayerSelect
 V		- Button remove
 V			- Implement
@@ -353,12 +355,12 @@ V			- isFSM
 V			- Nothing more, passing to next panel
 V		- Security on number and order of teams
 V		- Go to next panel
-	- "Error" textField
+P	- "Error" textField
 V		- textField and block next
 V		- "2 or more teams"
 V		- 1 controler for 1 player
-		- DrawString and back to new line
-	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
+P		- DrawString and back to new line
+T	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
 P CharacterSelection
 V	- Get previous information
 P	- Set character
