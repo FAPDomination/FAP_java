@@ -167,6 +167,9 @@ public class PlayerSelection extends FAPanel {
                 }
             });
         }
+        
+        this.validate();
+        this.repaint();
     }
     
     public void jb_ActionPerformed(ActionEvent e){
@@ -204,13 +207,15 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void removePlayerSelecter(int id){
-        if(players.size()>2){
-            players.remove(id);
-            controlSelecters.remove(id);
-            teamSelecters.remove(id);
-            eraseSelecters.remove(id);
-            
-            this.organizePlayerSelect();
+        if(players.size()>2 && id!=-1){
+            if(players.get(id) != null){
+                players.remove(id);
+                controlSelecters.remove(id);
+                teamSelecters.remove(id);
+                eraseSelecters.remove(id);
+                
+                this.organizePlayerSelect();
+            }
         }
     }
 

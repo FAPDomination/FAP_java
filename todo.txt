@@ -329,7 +329,7 @@ V	- Launch
 V		- Button remove
 V			- Implement
 V			- Dirty id finding
-			- Exception OutOfBounds -1
+V			- Exception OutOfBounds -1
 X		- paintCompo
 V		- ComboBoxes
 V			- Control (Player 1,2,3, AI)
@@ -346,18 +346,18 @@ V		- Go to next panel
 		- textField and block next
 		- "2 or more teams"
 		- 1 controler for 1 player
-  CharacterSelection
+P CharacterSelection
 V	- Get previous information
-	- Set character
-		- Players
+P	- Set character
+P		- Players
 V			- Read keys
 V			- Timer displacement
 V			- Set new values for arrows
 V			- Set new values for characters
-			- Optional
+P			- Optional
 V				- paint arrows slightly shifted from one another
 V				- init with random chars
-				- forbid same character in same team
+P				- forbid same character in same team
 V			- Animate
 V				- Make panel animated
 V				- Execute anim for every arrow that needs it
