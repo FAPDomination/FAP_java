@@ -50,7 +50,10 @@ public class Game extends JPanel implements NeedingFocus {
     private String controlers;
     private boolean randStart;
 
-    public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap) {
+    public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime) {
+        this.victScore = victScore;
+        this.victTile = victTile;
+        this.victTime = victTime;
         this.whoIsPlaying = whoIsPlaying;
         this.wichTeam = wichTeam;
         this.isFSM = isFSM;
@@ -66,7 +69,10 @@ public class Game extends JPanel implements NeedingFocus {
         scoreHandler = new ScoreBar(this);
     }
 
-    public Game(ArrayList<PlayerSelect> playerSelect, boolean randStart, int mapNumber) {
+    public Game(ArrayList<PlayerSelect> playerSelect, boolean randStart, int mapNumber, int victScore, double victTile, int victTime) {
+        this.victScore = victScore;
+        this.victTile = victTile;
+        this.victTime = victTime;
         initGame(mapNumber);
         this.randStart = randStart;
         
@@ -91,10 +97,6 @@ public class Game extends JPanel implements NeedingFocus {
         thread.setRunning(true);
 
         initFocus();
-        
-        victScore = 2000;
-        victTile = 0;
-        victTime = 0;
         
         gameEnded = false;
         

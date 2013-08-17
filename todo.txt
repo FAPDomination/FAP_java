@@ -163,8 +163,8 @@ V		- whoIsPlaying && skills
 V		- wichTeam
 V		- randStart
 V		- isFSM
-		- Keys
-		- Victory conditions
+V		- Keys
+V		- Victory conditions
 	- Pause/Play
 		- Get Key from param
 		- Execute Pause

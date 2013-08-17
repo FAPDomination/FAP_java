@@ -2,6 +2,8 @@ package gui;
 
 import fap_java.Game;
 
+import fap_java.Params;
+
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -85,7 +87,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         String isFSM = jtxtisFSM.getText();
         String controlers = jtxtControlers.getText();
         
-        Game game = new Game(whoIsPlaying,wichTeam,isFSM,controlers,false,5);
+        Game game = new Game(whoIsPlaying,wichTeam,isFSM,controlers,false,5,Params.defaultVictoryScore,0,0);
        parent.changePanel(new LoadingScreen(parent,game,this), BorderLayout.CENTER);
     }
 
