@@ -139,7 +139,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
 
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", true, nmap,Params.defaultVictoryScore,0,0);
         
-        nextPanel = new LoadingScreen(parent,game,this);
+        nextPanel = new LoadingScreen(parent,game,this,nmap);
         this.startSliding(true);
     }
 

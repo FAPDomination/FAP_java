@@ -113,7 +113,7 @@ public class MapSelect extends FAPanel implements MouseListener{
             parent.changePanel(new LoadingScreen(parent,game,this));
             */
             Game game = new Game(players,true,selectedMap.getFileNumber(),Params.defaultVictoryScore,0,0);
-            parent.changePanel(new LoadingScreen(parent,game,this));
+            parent.changePanel(new LoadingScreen(parent,game,this,selectedMap.getFileNumber()));
         }
     }
     

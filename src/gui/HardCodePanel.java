@@ -81,14 +81,14 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
     }
     
     public void next(){
-        System.out.println("yay");
+
         String whoIsPlaying = jtxtWho.getText();
         String wichTeam = jtxtTeam.getText();
         String isFSM = jtxtisFSM.getText();
         String controlers = jtxtControlers.getText();
-        
-        Game game = new Game(whoIsPlaying,wichTeam,isFSM,controlers,false,5,Params.defaultVictoryScore,0,0);
-       parent.changePanel(new LoadingScreen(parent,game,this), BorderLayout.CENTER);
+        int nmap = 5;
+        Game game = new Game(whoIsPlaying,wichTeam,isFSM,controlers,false,nmap,Params.defaultVictoryScore,0,0);
+       parent.changePanel(new LoadingScreen(parent,game,this,nmap), BorderLayout.CENTER);
     }
 
     public void initFocus() {

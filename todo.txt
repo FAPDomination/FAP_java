@@ -321,13 +321,14 @@ V	- Launch
 		- Teams List
 			- Write team name and specs
 			- Players list (display character figures)
-		- Display Minimap
+V		- Display Minimap
   General Design
 	- Button for menu
 	- Button for other
 	- Button remove
 	- Btn add
-	- Everything relative -> resizable
+	- Everything relative -> resizable + Component locations
+		- LoadingScreen
   PlayerSelection
 V	- PlayerSelect
 V		- Button remove

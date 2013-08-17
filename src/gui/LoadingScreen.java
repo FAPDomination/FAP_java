@@ -4,6 +4,7 @@ import fap_java.Game;
 
 import java.awt.BorderLayout;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,9 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class LoadingScreen extends FAPanel {
-    Game game;
+    private Game game;
     private JButton btnPlay = new JButton();
-    public LoadingScreen(TheFrame fr, Game game, JPanel prevPanel) {
+    private Minimap minimap;
+    
+    public LoadingScreen(TheFrame fr, Game game, JPanel prevPanel, int nmap) {
         super(fr, prevPanel);
         this.game = game;
 
@@ -30,8 +33,10 @@ public class LoadingScreen extends FAPanel {
         
         btnPlay.setText("Play");
         btnPlay.setSize(120, 40);
-        btnPlay.setLocation(600, 250);
+        btnPlay.setLocation(600, 370);
         this.add(btnPlay);
+        
+        minimap = new Minimap(nmap,580,100,this,"");
         
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -43,5 +48,10 @@ public class LoadingScreen extends FAPanel {
     public void startGame(){
         game.pauseGame();
         parent.changePanel(game, BorderLayout.CENTER);
+    }
+    
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        minimap.paintComponent(g);
     }
 }
