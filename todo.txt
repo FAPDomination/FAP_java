@@ -343,11 +343,30 @@ V			- Nothing more, passing to next panel
 V		- Security on number and order of teams
 V		- Go to next panel
 	- "Error" textField
-		- textFiled and block next
+		- textField and block next
 		- "2 or more teams"
   CharacterSelection
 	- Get previous information
 	- Set character
+		- Players
+			- Read keys
+			- Timer displacement
+			- Set new values for arrows
+			- Set new values for characters
+			- Optional
+				- paint arrows slightly shifted from one another
+				- init with random chars
+				- forbid same character in same team
+			- Animate
+				- Make panel animated
+				- Execute anim for every arrow that needs it
+				- Create anim method in arrow
+					- Compute speed
+					- Update x and y
+					- Compute new speed if needed
+					- Attribute "I don't need animation"
+				- Update new values settings
+		- FSMs
 V Map Selection
 V	- Parse map list
 P	- Keep map list updated
