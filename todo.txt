@@ -316,15 +316,15 @@ P Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game
 V	- LoadingScreen
-  LoadingScreen
+V LoadingScreen
 V	- Launch
-	- Display game datas
-		- Teams List
+V	- Display game datas
+V		- Teams List
 ~			- Write team name and specs
 V			- Players list (display character figures)
-			- Critical Size problem with 8 teams !
-				- Change BG
-				- Change players disposition
+V			- Critical Size problem with 8 teams !
+V				- Change BG
+V				- Change players disposition
 V		- Display Minimap
   General Design
 	- Button for menu

@@ -35,6 +35,7 @@ public class Graph {
             guimg.put("MM_clouds", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/clouds.png")));
             guimg.put("minimapBG", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/versus/mapSelect/minimapBackground.png")));
             guimg.put("LS_BGteam", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_team.png")));
+            guimg.put("LS_BG8team", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_8Teams.png")));
             
         } catch (Exception e) {
             System.out.println("An error occured while trying loading the cell images.");

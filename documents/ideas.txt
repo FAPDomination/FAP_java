@@ -26,3 +26,9 @@ Démarrer les calculs seulement sur un front montant de current
 
 Solution pour les ombres : calcul de l'angle au sol facile, calcul de la taille grâce à une pondération de la taille par un cosinus de l'angle du soleil
 J'ai peur que les surcouches fassent un effet bof par contre
+
+----- Questions générales sur le bousin
+Est-ce qu'on doit laisser le choix aux joueurs (dans versus, s'entend) sur leurs conditions de victoire ? à savoir :
+Pour victScore ?
+Pour victTile ?
+Pour victTime ?
