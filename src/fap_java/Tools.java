@@ -14,6 +14,23 @@ public class Tools {
         return randomNum;
     }
     
+    public static int randRange(int min, int max, int[] exclude){
+        int rand;
+        boolean b = true;
+        do{
+            b=true;
+            rand = randRange(min,max);
+            for(int i=0;i<exclude.length;i++){
+                int a = exclude[i];
+                if(a==rand){
+                    b = false;
+                }
+            }
+        }
+        while(!b);
+        return rand;
+    }
+    
     public static ArrayList removeNull(ArrayList al){
         while(al.contains(null)){
             for(int i=0;i<al.size();i++){

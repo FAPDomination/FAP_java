@@ -346,7 +346,7 @@ V		- Go to next panel
 		- textField and block next
 		- "2 or more teams"
   CharacterSelection
-	- Get previous information
+V	- Get previous information
 	- Set character
 		- Players
 			- Read keys
@@ -366,7 +366,7 @@ V		- Go to next panel
 					- Compute new speed if needed
 					- Attribute "I don't need animation"
 				- Update new values settings
-		- FSMs
+V		- FSMs
 V Map Selection
 V	- Parse map list
 P	- Keep map list updated

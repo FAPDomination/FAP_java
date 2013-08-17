@@ -3,6 +3,8 @@ package gui;
 
 import fap_java.Game;
 
+import fap_java.Params;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -132,14 +134,8 @@ public class MainMenu extends FAPanel implements AnimPanel{
         int[] possibleMaps = { 5, 6, 8, 10, 11 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
         // init skill
-        int pcP = 0;
-        do {
-            pcP = Tools.randRange(1, 9);
-        } while (pcP == 2 || pcP == 7);
-        int pcF = 0;
-        do {
-            pcF = Tools.randRange(1, 9);
-        } while (pcF == 2 || pcF == 7);
+        int pcP = Tools.randRange(1, 9, Params.excludedChars);
+        int pcF = Tools.randRange(1, 9, Params.excludedChars);
 
         Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", true, nmap);
         

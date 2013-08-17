@@ -1,5 +1,8 @@
 package gui;
 
+import fap_java.Params;
+import fap_java.Tools;
+
 import java.awt.Graphics;
 
 import java.awt.event.ActionEvent;
@@ -70,7 +73,13 @@ public class CharacterSelection extends FAPanel {
     }
     
     public void nextFrame(){
-        // Check if everyone has a skill
+        // Set skills for FSMs :
+        for(int i=0;i<players.size();i++){
+            PlayerSelect ps = players.get(i);
+            if(ps.getIsFSM() != 0){
+                ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+            }
+        }
         // Proceeding to next panel
         JPanel nextPanel = new MapSelect(parent,this);
         parent.changePanel(nextPanel);

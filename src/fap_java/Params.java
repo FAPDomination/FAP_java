@@ -38,6 +38,8 @@ public class Params {
     
     public static int timeAfterSkill = 1000; //in m-second
     
+    public static int[] excludedChars = {2,7};
+    
     public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
     // Colors
