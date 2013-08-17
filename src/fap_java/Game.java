@@ -153,23 +153,6 @@ public class Game extends JPanel implements NeedingFocus {
         return p;
     }
 
-    public void initPlayers() {
-        ArrayList<Cell> startCellsAL = map.getStartCells();
-        for (int i = 0; i < whoIsPlaying.length(); i += 2) {
-            //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
-            int charac = Integer.parseInt(""+whoIsPlaying.charAt(i));
-            int controler = Integer.parseInt(""+controlers.charAt(i));
-            boolean isPlaying = charac!=0;
-            if (isPlaying) {
-                int pid = i / 2;
-                Cell c = getStartCell(pid);
-                Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
-                int ai = Integer.parseInt(""+isFSM.charAt(i));
-                Player p = generatePlayer(charac,pid,c,team,ai,controler);
-                players.add(p);
-            }
-        }
-    }
 
     public void updateCellsByOwner() {
         for (int j = 0; j < teams.size(); j++) {
@@ -314,6 +297,24 @@ public class Game extends JPanel implements NeedingFocus {
             System.out.println("Winner : "+winner);
         }
         // adventure mode : if the winner isn't the player, then display lost
+    }
+    
+    private void initPlayers() {
+        ArrayList<Cell> startCellsAL = map.getStartCells();
+        for (int i = 0; i < whoIsPlaying.length(); i += 2) {
+            //Note : the number in "isPlaying" is also the character of the player. If 0, the player is disabled
+            int charac = Integer.parseInt(""+whoIsPlaying.charAt(i));
+            int controler = Integer.parseInt(""+controlers.charAt(i));
+            boolean isPlaying = charac!=0;
+            if (isPlaying) {
+                int pid = i / 2;
+                Cell c = getStartCell(pid);
+                Team team = teams.get(Integer.parseInt(""+wichTeam.charAt(i)));
+                int ai = Integer.parseInt(""+isFSM.charAt(i));
+                Player p = generatePlayer(charac,pid,c,team,ai,controler);
+                players.add(p);
+            }
+        }
     }
 
     private void initPlayers(ArrayList<PlayerSelect> playerSelect) {

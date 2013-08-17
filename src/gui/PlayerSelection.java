@@ -1,6 +1,9 @@
 package gui;
 
+import fap_java.NPC;
 import fap_java.Params;
+
+import fap_java.Tools;
 
 import java.awt.Graphics;
 
@@ -34,20 +37,8 @@ public class PlayerSelection extends FAPanel {
         teamSelecters = new ArrayList<JComboBox>(); 
         eraseSelecters = new ArrayList<JButton>();
         // testing
-        /*
-        players.add(new PlayerSelect(this));
-        players.add(new PlayerSelect(this));
-        controlSelecters.add(new JComboBox(listControls));
-        controlSelecters.add(new JComboBox(listControls));
-        JComboBox teamS = new JComboBox();
-        JComboBox teamD = new JComboBox();
-        for(int i=0;i<maxPlayers;i++){
-            teamS.addItem("Team "+(i+1));
-            teamD.addItem("Team "+(i+1));   
-        }
-        teamSelecters.add(teamS);
-        teamSelecters.add(teamD);
-        */
+
+        //
         this.addPlayerSelecter();
         this.addPlayerSelecter();
         //---------
@@ -85,6 +76,11 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void nextFrame(){
+        
+        ArrayList<Integer> listTeams = new ArrayList<Integer>();
+        for(int i=0;i<Params.maxPlayers;i++){
+            listTeams.add(null);
+        }
         // Parse the PlayerSelecters
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
@@ -95,8 +91,21 @@ public class PlayerSelection extends FAPanel {
             else{
                 ps.setIsFSM(0);
             }
+            // Security for number of teams :
+            int team = ps.getTeam();
+            if(listTeams.contains(team)){}
+            else{
+                listTeams.set(team, team);
+            }
         }
         // Security for number of teams :
+        System.out.println(listTeams);
+        listTeams = Tools.removeNull(listTeams);
+        System.out.println(listTeams);
+        for(int i=0;i<players.size();i++){
+            PlayerSelect ps = players.get(i);
+            ps.setTeam(listTeams.indexOf(ps.getTeam()));
+        }
         
         // Proceeding to next panel
         JPanel nextPanel = new CharacterSelection(parent,this);

@@ -339,7 +339,7 @@ V	- Button add
 V		- Parse the player selecters
 V			- isFSM
 V			- Nothing more, passing to next panel
-		- Security on number and order of teams
+V		- Security on number and order of teams
 V		- Go to next panel
   CharacterSelection
 	- Get previous information
@@ -352,9 +352,9 @@ V	- Display map list
 ~		- Increments
 ?		- more than 8 ?
 	- update map value when clicked
-	- btn next
+V	- btn next
 V		- wait for map to be selected
 V		- generate Game
 V		- Send loading screen
-		- Better parsing without blank characters (1,0,0,1,1)->(1,1,1)
+V		- Better parsing without blank characters (1,0,0,1,1)->(1,1,1)
   Right Click Menu
