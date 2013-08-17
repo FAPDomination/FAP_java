@@ -14,6 +14,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -30,8 +31,10 @@ public class Minimap{
 
     private int x;
     private int y;
+    private int w = 147;
+    private int h = 208;
 
-    private Image img = Graph.guimg.get("minimapBG");
+    private static Image img = Graph.guimg.get("minimapBG");
     private JPanel panel;
     private String name;
     private boolean isSelected;
@@ -70,6 +73,11 @@ public class Minimap{
 
     public void paintComponent(Graphics g) {
         g.drawImage(img, x, y, panel);
+        // Special if is selected
+        if(isSelected){
+            g.setColor(Color.blue);
+            g.fillRect(x, y, 5, 5);
+        }
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
             g.setColor(colorList[c.getDid()]);
@@ -122,5 +130,33 @@ public class Minimap{
 
     public int getFileNumber() {
         return fileNumber;
+    }
+    
+    public int[] getArea(){
+        int[] table = new int[4];
+        table[0] = x;
+        table[1] = y;
+        table[2] = w;
+        table[3] = h;
+        return table;
+    }
+    
+    public boolean inArea(double u, double v){
+        boolean b = true;
+        if(!(u>=this.x && u<=this.x+this.w)){
+            b = false;
+        }
+        if(!(v>=this.y && v<=this.y+this.h)){
+            b = false;
+        }
+        return b;
+    }
+    
+    public boolean inArea(Point p){
+        return this.inArea(p.getX(),p.getY());
+    }
+    
+    public String toString(){
+        return "Minimap for the file "+this.fileNumber;
     }
 }

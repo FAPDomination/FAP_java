@@ -154,9 +154,9 @@ V	- PaintComponent
 ~			- Size of background for big maps
 V		- Cells
 ~		- Name
-E	- isSelected
+~	- isSelected
 	- Adjustable sizes (fit background to size attribute)
-	- Make it clickable
+V	- Make it clickable
   Game
 	- Get Params
 V		- whoIsPlaying && skills
@@ -323,6 +323,7 @@ V	- Launch
 	- Button for other
 	- Button remove
 	- Btn add
+	- Everything relative -> resizable
   PlayerSelection
 	- PlayerSelect
 V		- Button remove
@@ -335,7 +336,7 @@ V			- Control (Player 1,2,3, AI)
 V			- Team
 		- Placements with attributes
 V	- Button add
-	- Btn next
+V	- Btn next
 V		- Parse the player selecters
 V			- isFSM
 V			- Nothing more, passing to next panel
@@ -344,14 +345,14 @@ V		- Go to next panel
   CharacterSelection
 	- Get previous information
 	- Set character
-  Map Selection
+V Map Selection
 V	- Parse map list
 P	- Keep map list updated
 V	- Display map list
 ~		- Size of maps
 ~		- Increments
 ?		- more than 8 ?
-	- update map value when clicked
+V	- update map value when clicked
 V	- btn next
 V		- wait for map to be selected
 V		- generate Game

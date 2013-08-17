@@ -7,8 +7,12 @@ import fap_java.XMLparser;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
 
@@ -17,7 +21,7 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class MapSelect extends FAPanel {
+public class MapSelect extends FAPanel implements MouseListener{
     private JButton btnNext = new JButton();
     private ArrayList<Minimap> mapList;
     private Minimap selectedMap;
@@ -55,6 +59,7 @@ public class MapSelect extends FAPanel {
         }
         
         selectedMap = mapList.get(0);
+        this.addMouseListener(this);
         this.repaint();
     }
     
@@ -129,5 +134,42 @@ public class MapSelect extends FAPanel {
                 h++;
             }
         }
+    }
+    
+    private Minimap whoIsClicked(Point p){
+        Minimap m = null;
+        for(int i=0;i<this.mapList.size();i++){
+            Minimap k = mapList.get(i);
+            if(k.inArea(p)){
+                m = k;
+                break;
+            }
+        }
+        return m;
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        Point p = e.getPoint();     // Where is the click
+        Minimap m = whoIsClicked(p);
+        if(m!=null){
+            System.out.println(m);
+            if(selectedMap != null){
+                selectedMap.setIsSelected(false);
+            }
+            selectedMap = m;
+            selectedMap.setIsSelected(true);
+        }
+    }
+
+    public void mousePressed(MouseEvent e) {
+    }
+
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    public void mouseExited(MouseEvent e) {
     }
 }
