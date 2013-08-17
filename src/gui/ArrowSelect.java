@@ -2,10 +2,9 @@ package gui;
 
 import fap_java.Params;
 
-import gui.PlayerSelect;
-
 import java.awt.Color;
 import java.awt.Graphics;
+
 
 public class ArrowSelect {
     
@@ -20,14 +19,21 @@ public class ArrowSelect {
     private PlayerSelect ps;
     private CharacterSelection cs;
     
+    private int distanceTrigger = 3;
+    private int speedX;
+    private int speedY;
+    
+    private boolean needAnim;
+    
     public ArrowSelect(PlayerSelect ps, CharacterSelection cs) {
         this.ps = ps;
         this.color = Params.colorList[ps.getControler()];
         this.cs = cs;
         computeWantedPosition();
             
-        wantedX = x;
-        wantedY = y;
+        x = wantedX;
+        y = wantedY;
+        needAnim = false;
     }
     
     public void paintComponent(Graphics g){
@@ -44,8 +50,34 @@ public class ArrowSelect {
             pc--;
         }
         CharacterDisplay cd = cs.getCharList().get(pc-1);
-        x = cd.getX()+cd.getW()/2;
-        y = cd.getY()-40;
+        wantedX = cd.getX()+cd.getW()/2;
+        wantedY = cd.getY()+cs.getArroSelectOrigY();
+    }
+    
+    public void computeSpeed(){
+        speedX = (int)((wantedX-x)/5.2);
+        speedY = (int)((wantedY-y)/5.2);
+    }
+    
+    public void executeAnim(){
+        int diffX = (wantedX-x);
+        if(Math.abs(diffX) > Math.sqrt(distanceTrigger)){
+            x+=speedX;
+            if(speedX/diffX < 0){
+                this.computeSpeed();
+            }
+        }
+        int diffY = (wantedY-y);
+        if(Math.abs(diffY) > Math.sqrt(distanceTrigger)){
+            y+=speedY;
+            if(speedY/diffY < 0){
+                this.computeSpeed();
+            }
+        }
+        
+        if(Math.sqrt(x*x+y*y)<=distanceTrigger){
+            needAnim = false;
+        }
     }
 
     public void setX(int x) {
@@ -86,5 +118,13 @@ public class ArrowSelect {
 
     public PlayerSelect getPs() {
         return ps;
+    }
+
+    public void setNeedAnim(boolean needAnim) {
+        this.needAnim = needAnim;
+    }
+
+    public boolean isNeedAnim() {
+        return needAnim;
     }
 }

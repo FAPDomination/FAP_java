@@ -28,6 +28,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
     private static int characDisplayOrigX = 0;
     private static int characDisplayIncrement = 100;
     
+    private int arroSelectOrigY = -20;
+    
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
         
@@ -62,7 +64,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         int k=1;
         for(int i=1;i<10;i++){
             if(i != 2 && i != 7){
-                charList.add(new CharacterDisplay(this.characDisplayOrigX+k*this.characDisplayIncrement,200,i,this));
+                charList.add(new CharacterDisplay(this.characDisplayOrigX+k*this.characDisplayIncrement+Tools.randRange(-10, 10),300+Tools.randRange(0,50),i,this));
                 k++;
             }
         }
@@ -163,6 +165,10 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
     public void executeAnim() {
         for(int i=0;i<timers.size();i++){
             timers.set(i, timers.get(i)+1);
+            ArrowSelect ar = this.arrowList.get(i);
+            if(ar!=null && ar.isNeedAnim()){
+                ar.executeAnim();
+            }
         }
         
         ArrayList<Integer> pressed = kl.getPressed();
@@ -194,8 +200,9 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
                             // Set new pc  value
                             if(cd !=null){
                                 ar.getPs().setPc(cd.getPc());
-                                ar.setX(cd.getX());
-                                ar.setY(cd.getY());
+                                ar.computeWantedPosition();
+                                ar.computeSpeed();
+                                ar.setNeedAnim(true);
                             }
                         }
                     }
@@ -207,5 +214,13 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
 
     public void endAnim() {
         // NEVAH !
+    }
+
+    public void setArroSelectOrigY(int arroSelectOrigY) {
+        this.arroSelectOrigY = arroSelectOrigY;
+    }
+
+    public int getArroSelectOrigY() {
+        return arroSelectOrigY;
     }
 }
