@@ -325,7 +325,7 @@ V	- Launch
 	- Btn add
 	- Everything relative -> resizable
   PlayerSelection
-	- PlayerSelect
+V	- PlayerSelect
 V		- Button remove
 V			- Implement
 V			- Dirty id finding
@@ -334,7 +334,7 @@ X		- paintCompo
 V		- ComboBoxes
 V			- Control (Player 1,2,3, AI)
 V			- Team
-		- Placements with attributes
+V		- Placements with attributes
 V	- Button add
 V	- Btn next
 V		- Parse the player selecters

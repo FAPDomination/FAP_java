@@ -29,6 +29,11 @@ public class PlayerSelection extends FAPanel {
     private String[] listControls = {"Player 1","Player 2","Player 3","AI Low", "AI Middle", "AI High"};
     private int maxPlayers = Params.maxPlayers;
     
+    private int displayOrigX = 140;
+    private int displayOrigY = 200;
+    private int displayIncrementY = 50;
+    private int displayHeight = 30;
+
     public PlayerSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
         
@@ -58,8 +63,8 @@ public class PlayerSelection extends FAPanel {
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
         
         btnAdd.setText("+");
-        btnAdd.setSize(40,30);
-        btnAdd.setLocation(140,140);
+        btnAdd.setSize(40,displayHeight);
+        btnAdd.setLocation(displayOrigX,displayOrigY-displayIncrementY);
         btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addPlayerSelecter();
@@ -137,7 +142,7 @@ public class PlayerSelection extends FAPanel {
             // Associated controller
             JComboBox combo = this.controlSelecters.get(i);
             combo.setSelectedIndex(ps.getControler());
-            combo.setBounds(200, 200+50*i, 150, 30);
+            combo.setBounds(displayOrigX+60, displayOrigY + displayIncrementY * i, 150, displayHeight);
             //this.remove(combo);
             this.add(combo);
             combo.addActionListener(new ActionListener() {
@@ -148,7 +153,7 @@ public class PlayerSelection extends FAPanel {
             // Associated Team
             JComboBox team = this.teamSelecters.get(i);
             team.setSelectedIndex(ps.getTeam());
-            team.setBounds(370, 200+50*i, 150, 30);
+            team.setBounds(displayOrigX+230, displayOrigY+displayIncrementY*i, 150, displayHeight);
             //this.remove(team);
             this.add(team);
             team.addActionListener(new ActionListener() {
@@ -159,7 +164,7 @@ public class PlayerSelection extends FAPanel {
             // Delete button
             JButton jb = this.eraseSelecters.get(i);
             jb.setText("X");
-            jb.setBounds(140, 200+50*i, 40, 30);
+            jb.setBounds(displayOrigX, displayOrigY+displayIncrementY*i, 40, displayHeight);
             this.add(jb);
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
