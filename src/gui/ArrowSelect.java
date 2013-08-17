@@ -47,4 +47,44 @@ public class ArrowSelect {
         x = cd.getX()+cd.getW()/2;
         y = cd.getY()-40;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setWantedX(int wantedX) {
+        this.wantedX = wantedX;
+    }
+
+    public int getWantedX() {
+        return wantedX;
+    }
+
+    public void setWantedY(int wantedY) {
+        this.wantedY = wantedY;
+    }
+
+    public int getWantedY() {
+        return wantedY;
+    }
+
+    public void setPs(PlayerSelect ps) {
+        this.ps = ps;
+    }
+
+    public PlayerSelect getPs() {
+        return ps;
+    }
 }

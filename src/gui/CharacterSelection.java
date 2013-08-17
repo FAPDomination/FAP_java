@@ -1,5 +1,6 @@
 package gui;
 
+import fap_java.KListener;
 import fap_java.Params;
 import fap_java.Tools;
 
@@ -13,11 +14,15 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class CharacterSelection extends FAPanel {
+public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPanel {
     private JButton btnNext = new JButton();
     private ArrayList<CharacterDisplay> charList;
     private ArrayList<ArrowSelect> arrowList;
     private ArrayList<PlayerSelect> players;
+    private ArrayList<Integer> timers;
+    private StandardKListener kl;
+    
+    private ThreadGUI theThread;
     
     // Displaying
     private static int characDisplayOrigX = 0;
@@ -62,14 +67,38 @@ public class CharacterSelection extends FAPanel {
             }
         }
         
+        timers = new ArrayList<Integer>();
+        for(int r=0;r<Params.nPlayersOn1Computer;r++){
+            arrowList.add(null);
+            timers.add(0);
+        }
+        
         for(int j=0;j<players.size();j++){
             PlayerSelect ps = players.get(j);
             if(ps.getIsFSM() == 0){
                 ArrowSelect as = new ArrowSelect(ps,this);
-                arrowList.add(as);
+                arrowList.set(ps.getControler(),as);
             }
         }
+    
         
+        initFocus();
+        
+        theThread = new ThreadGUI(this);
+        theThread.setRunning(false);
+        new Thread(this.theThread).start();
+        theThread.setRunning(true);
+    }
+    
+    private void initKListener() {
+        kl = new StandardKListener();
+        this.addKeyListener(kl);
+    }
+    
+    public void initFocus() {
+        initKListener();
+        this.setFocusable(true);
+        requestFocus();
     }
     
     public void nextFrame(){
@@ -92,7 +121,10 @@ public class CharacterSelection extends FAPanel {
             charList.get(i).paintComponent(g);
         }
         for(int j=0;j<arrowList.size();j++){
-            arrowList.get(j).paintComponent(g);
+            ArrowSelect ar = arrowList.get(j);
+            if(ar != null){
+                ar.paintComponent(g);
+            }
         }
     }
 
@@ -126,5 +158,54 @@ public class CharacterSelection extends FAPanel {
 
     public ArrayList<PlayerSelect> getPlayers() {
         return players;
+    }
+
+    public void executeAnim() {
+        for(int i=0;i<timers.size();i++){
+            timers.set(i, timers.get(i)+1);
+        }
+        
+        ArrayList<Integer> pressed = kl.getPressed();
+        for(int i=0;i<pressed.size();i++){
+            int code = pressed.get(i);
+            for(int j = 0;j<arrowList.size();j++){
+                ArrowSelect ar = arrowList.get(j);
+                if(ar!=null && timers.get(j)>10){
+                    for(int k=0;k<=4;k++){
+                        if(code == Params.controlsList[ar.getPs().getControler()][k]){
+                            timers.set(j, 0);
+                            int pc = ar.getPs().getPc();
+                            CharacterDisplay cd = null;
+                            for(int l = 0;l<charList.size();l++){
+                                CharacterDisplay charD = charList.get(l);
+                                if(charD.getPc() == pc){
+                                    if(k==2){
+                                        cd = charList.get((l+1)%charList.size());
+                                    }else if(k==3){
+                                        int id = (l-1);
+                                        if(l==0){
+                                            id = charList.size()-1;
+                                        }
+                                        cd = charList.get(id);
+                                    }
+                                    
+                                }
+                            }
+                            // Set new pc  value
+                            if(cd !=null){
+                                ar.getPs().setPc(cd.getPc());
+                                ar.setX(cd.getX());
+                                ar.setY(cd.getY());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        this.repaint();
+    }
+
+    public void endAnim() {
+        // NEVAH !
     }
 }

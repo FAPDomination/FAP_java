@@ -49,5 +49,12 @@ public class Params {
 
     public static int nPlayersOn1Computer = 3;
     public static int maxPlayers = 8;
+    /*
+     * 0 : 
+     * 1 :
+     * 2 :
+     * 3 :
+     * 4 : Skill
+     */
     public static int[][] controlsList = new int[nPlayersOn1Computer][5];
 }
