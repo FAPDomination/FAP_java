@@ -314,7 +314,7 @@ V		- Back
 		- FAP Editor
 P Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
-P	- Game
+?	- Game
 V	- LoadingScreen
   LoadingScreen
 V	- Launch
@@ -334,6 +334,7 @@ V		- Display Minimap
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
 	- Nice fonts and sizes for texts
+		- LoadingScreen
   PlayerSelection
 V	- PlayerSelect
 V		- Button remove
