@@ -342,6 +342,9 @@ V			- isFSM
 V			- Nothing more, passing to next panel
 V		- Security on number and order of teams
 V		- Go to next panel
+	- "Error" textField
+		- textFiled and block next
+		- "2 or more teams"
   CharacterSelection
 	- Get previous information
 	- Set character

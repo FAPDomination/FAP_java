@@ -152,12 +152,12 @@ public class MapSelect extends FAPanel implements MouseListener{
         Point p = e.getPoint();     // Where is the click
         Minimap m = whoIsClicked(p);
         if(m!=null){
-            System.out.println(m);
             if(selectedMap != null){
                 selectedMap.setIsSelected(false);
             }
             selectedMap = m;
             selectedMap.setIsSelected(true);
+            this.repaint();
         }
     }
 
