@@ -31,10 +31,14 @@ public class Graph {
             cells.put(4, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/paved.png")));
             cells.put(5, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/bridge.png")));
             cells.put(6, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/grass.png")));
+            cells.put(7, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/rock_dark.png")));
+            cells.put(8, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/lava_rock.png")));
+            cells.put(9, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/ice.png")));
             cells.put(10, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/warp.png")));
             cells.put(100, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
             cells.put(102, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
-            cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/river.png")));
+            cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river.png")));
+            cells.put(201, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river_lava.png")));
             // Offsets
             /*
              * Note : although it's a Dimension array, they are just used as a pair of Integers.
@@ -49,10 +53,14 @@ public class Graph {
             offsetsCells.put(4, new Dimension(-9,-17));
             offsetsCells.put(5, new Dimension(-9,-17));
             offsetsCells.put(6, new Dimension(-9,-17));
+            offsetsCells.put(7, new Dimension(-9,-17));
+            offsetsCells.put(8, new Dimension(-9,-17));
+            offsetsCells.put(9, new Dimension(-9,-17));
             offsetsCells.put(10, new Dimension(-9,-17));
-            offsetsCells.put(100, new Dimension(-9,-17));
-            offsetsCells.put(102, new Dimension(-9,-17));
+            offsetsCells.put(100, new Dimension(-9,-16));
+            offsetsCells.put(102, new Dimension(-34,-122));
             offsetsCells.put(200, new Dimension(-9,-17));
+            offsetsCells.put(201, new Dimension(-9,-17));
             // Other images
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
             //Gui
