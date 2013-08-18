@@ -17,7 +17,7 @@ V	- Bug changing
 V Same time displacements
 ? Get rid of colors
 V Collisions
-  Cleaner define of keys in params
+V Cleaner define of keys in params
   Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
@@ -299,7 +299,7 @@ V			- Go
 V			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
-  Go back buttons EEEEEEEEEEEEE
+?TGo back buttons EEEEEEEEEEEEE
 V	- Find a place for it and keep it
 ?	- Even for OptionMenu ?
 T	- Versus : keep information from one another
