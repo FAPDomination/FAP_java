@@ -48,13 +48,13 @@ T	- TrapCells
 O	- Cleaner initTeams
 V		- Cleaner
 O		- Teams 0,1,3 but not 2 : exception
-  Player init :
+~ Player init :
 V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
-	- Init Keys
-		- Init Keys
-		- Not if FSM
+V	- Init Keys
+V		- Init Keys
+V		- Not if FSM
 V	- get the list of who is playing
 V	- Bug with skillTime (set to 5s)
 V	- Ori
