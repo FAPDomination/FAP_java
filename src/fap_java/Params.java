@@ -21,6 +21,7 @@ public class Params {
     public static int giveScore = 2;
     public static int rPoints = 2;
     
+    public static int pauseDuration = 3600;
     
     //skills
     public static int howLongBlockingMagician;

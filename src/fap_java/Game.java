@@ -1,5 +1,9 @@
 package fap_java;
 
+import animations.Animation;
+
+import animations.PauseCountDown;
+
 import characters.*;
 
 import gui.Constants;
@@ -42,6 +46,7 @@ public class Game extends JPanel implements NeedingFocus {
     private boolean gameEnded;
     
     private ArrayList<Element> objects = new ArrayList<Element>();
+    private ArrayList<Animation> anims = new ArrayList<Animation>();
     
     //Parameters to be given when starting a new game
 
@@ -113,6 +118,17 @@ public class Game extends JPanel implements NeedingFocus {
             objects.get(j).paintComponent(g);
         }
         this.scoreHandler.paintComponent(g);
+        
+        // Paint black screen if the game is paused
+        if(!thread.getRunning()){
+            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
+        }
+        
+        for(int j=0;j<anims.size();j++){
+            if(!thread.getRunning() || anims.get(j) instanceof PauseCountDown){
+                anims.get(j).paintComponent(g);
+            }
+        }
     }
 
     public ArrayList<Player> getPlayers() {
@@ -218,6 +234,15 @@ public class Game extends JPanel implements NeedingFocus {
         }
     }
     
+    public void computeAnimations(){
+        for(int j=0;j<anims.size();j++){
+            Animation a = anims.get(j);
+            if(a.isRunning()){
+                a.executeAnimation();
+            }
+        }
+    }
+    
     public void playerHandleKeys(){
         for(int i=0;i<players.size();i++){
             players.get(i).handleKeys();
@@ -228,9 +253,19 @@ public class Game extends JPanel implements NeedingFocus {
         objects.add(e);
     }
     
+    public void addAnim(Animation e){
+        anims.add(e);
+    }
+    
     public void deleteObject(Element e){
         if(objects.contains(e)){
             objects.remove(e);
+        }
+    }
+    
+    public void deleteAnim(Animation e){
+        if(anims.contains(e)){
+            anims.remove(e);
         }
     }
 
@@ -285,11 +320,12 @@ public class Game extends JPanel implements NeedingFocus {
     public void pauseGame(){
         if(thread.getRunning()){
             thread.setRunning(false);
+            this.repaint();
             // Display pause
         }
         else if(!gameEnded){
             // display countdown
-            thread.setRunning(true);
+            Animation countDown = new PauseCountDown(400,150,Params.pauseDuration,thread);
         }
     }
     

@@ -144,8 +144,16 @@ O	- Way to pass param to the timer
 	- Warps
 	- Traps
 	- Miner Warp
+V	- Pause CountDown
 P Design
 P	- Change did of countdown cell after end of timer
+	- Pause background
+	- Animations
+		- Skills
+		- Warps
+		- Traps
+		- Miner Warp
+		- Pause CountDown
 V Minimap
 V	- Object
 V	- Get map
@@ -167,12 +175,16 @@ V		- Keys
 V		- Victory conditions
 	- Pause/Play
 V		- Get Key from param
-		- Execute Pause
+V		- Execute Pause
 V			- Pause
-			- Display
-		- Resume
+V			- Display
+V		- Resume
 V			- without countdown
-			- With countdown
+V			- With countdown
+		- Escape from pause
+			- Pause to menu (give up game)
+?			- Pause to option (keep game)
+			- Resume button
 	- Victory
 V		- Check victory
 		- Double timeout bug

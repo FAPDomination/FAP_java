@@ -56,13 +56,15 @@ public class TheThread implements Runnable{
             if(running){
                 // Execute tasks
                 execute();
+            }
+            myGame.computeAnimations();
                 try{
                     // ait for "delay" ms
                     Thread.sleep(delay);
                 } catch (InterruptedException ie){
                     ie.printStackTrace();
                 }
-            }
+            
         }
     }
 
@@ -99,5 +101,13 @@ public class TheThread implements Runnable{
         }
         myGame.computeObjects();
         myGame.executeFSMs();
+    }
+
+    public void setMyGame(Game myGame) {
+        this.myGame = myGame;
+    }
+
+    public Game getMyGame() {
+        return myGame;
     }
 }
