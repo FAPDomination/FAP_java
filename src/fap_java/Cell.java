@@ -90,12 +90,17 @@ public class Cell extends Element {
         
         // Special case if the miner is currently selecting the cell
         if (minerSelect != null) {
-            g.setColor(minerSelect.getColor());
-            g.fillRect(x, y, CMap.TW, CMap.TH);
+            int minerSlectID = 13;
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * Graph.facH);
+            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
+            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            if (this.minerSing) {
-                g.setColor(Color.black);
-                g.fillRect(x + CMap.TW / 2, y + CMap.TH / 2, 4, 4);
+            if(this.minerSing){
+                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
+            }
+            else{
+                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
             }
         }
         

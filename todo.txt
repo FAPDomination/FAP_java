@@ -162,14 +162,17 @@ P			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
-		- MinerSelect
+P		- MinerSelect
+V			- Base
+V			- Cursor
+P			- Specific for each player color
 		- Paint Owner
 			- Text in the middle of the cell
 			- Coloured background
-		- Tidy paintComponent
+V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
-  Depth
+V Depth
 V Minimap
 V	- Object
 V	- Get map
