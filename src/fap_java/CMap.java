@@ -183,7 +183,7 @@ public class CMap {
      */
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
-        ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
+        ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
         for(int k=0;k<6;k++){
             surroundingCells.add(null);
         }
@@ -222,14 +222,14 @@ public class CMap {
             surroundingCells.set(4,o);
             //surroundingCells['br'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(3,o);
+            surroundingCells.set(3,o);
         } else {
             //surroundingCells['br'] = [i+1, j+1];
             o = this.getCell(i + 1, j + 1);
-            surroundingCells.add(3,o);
+            surroundingCells.set(3,o);
             //surroundingCells['bl'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(4,o);
+            surroundingCells.set(4,o);
         }
         return surroundingCells;
     };
