@@ -15,14 +15,16 @@ public class MapHandler extends DefaultHandler {
     private Cell c;
     private int i = 0;
     private int j = 0;
+    private Game game;
 
     // Flags for the position of the parser
     private boolean inFile, inI, inJ, inStartCell;
     //buffer for retreiving datas
     private StringBuffer buffer;
 
-    public MapHandler() {
+    public MapHandler(Game game) {
         super();
+        this.game = game;
     }
 
 
@@ -96,7 +98,7 @@ public class MapHandler extends DefaultHandler {
             //int t = Integer.parseInt(buffer.toString());
             inJ = false;
             if (did != 0) {
-                c = new Cell(i, j, t, param, did);
+                c = new Cell(i, j, t, param, did,game);
                 map.addElement(c);
             }
             j++;

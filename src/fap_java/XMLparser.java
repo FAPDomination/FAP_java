@@ -21,16 +21,17 @@ public class XMLparser {
     
     // Sert à charger des fichiers dans les ressources : faire "load.getResource(chemin relatif depuis 'ressources')".
     private static final ClassLoader load = XMLparser.class.getClassLoader();
+    private Game game;
     
     
     
-    
-    public XMLparser() {
+    public XMLparser(Game game) {
         super();
+        this.game = game;
     }
     
-    public static CMap parseMap(int mapID){
-        DefaultHandler dh = new MapHandler();
+    public static CMap parseMap(int mapID, Game game){
+        DefaultHandler dh = new MapHandler(game);
         parseXML("Maps/map"+mapID+".xml", dh);
         //System.out.println(dh);
         MapHandler dhm = (MapHandler) dh;

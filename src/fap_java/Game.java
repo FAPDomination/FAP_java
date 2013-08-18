@@ -92,7 +92,7 @@ public class Game extends JPanel implements NeedingFocus {
         this.setLayout(null);
         this.setBackground(Color.white);
         map = new CMap();
-        map = XMLparser.parseMap(nmap);
+        map = XMLparser.parseMap(nmap,this);
         //Parse ParamTable
         XMLparser.parseParams();
         this.setSize(Constants.frameDimension);

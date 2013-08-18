@@ -154,6 +154,16 @@ P	- Change did of countdown cell after end of timer
 		- Traps
 		- Miner Warp
 		- Pause CountDown
+	- Cells
+		- Modify cells in graph
+		- Paint dirt
+			- On all
+			- Just on specified tiles
+		- paint image
+			- put facs in graph
+			- Write all offsets
+		- MinerSelect
+		- Paint Owner
 V Minimap
 V	- Object
 V	- Get map

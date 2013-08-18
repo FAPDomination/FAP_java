@@ -1,5 +1,6 @@
 package fap_java;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.HashMap;
@@ -15,23 +16,43 @@ public class Graph {
      * *****************************************************/
 
     // Cells images
-    protected static Map<String, Image> cells = new HashMap<String, Image>();
+    protected static Map<Integer, Image> cells = new HashMap<Integer, Image>();
     protected static Map<String, Image> list = new HashMap<String, Image>();
     public static Map<String, Image> guimg = new HashMap<String, Image>();
+    protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
     // key : String, the name of the cell
     // entry : the cell image
     static {
         try {
-            cells.put("normal", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/cell.png")));
-            cells.put("dirt", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/dirt.png")));
-            cells.put("bridge", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/bridge.png")));
-            cells.put("grass", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/grass.png")));
-            cells.put("paved", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/paved.png")));
-            cells.put("river", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/river.png")));
-            cells.put("little_rocks", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/little_rocks.png")));
-            cells.put("trail", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
-            cells.put("rock", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
-            cells.put("tree_1", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
+            cells.put(0, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/dirt.png")));
+            cells.put(1, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/cell.png")));
+            cells.put(2, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
+            cells.put(3, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/little_rocks.png")));
+            cells.put(4, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/paved.png")));
+            cells.put(5, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/bridge.png")));
+            cells.put(6, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/grass.png")));
+            cells.put(10, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/warp.png")));
+            cells.put(100, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
+            cells.put(102, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
+            cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/river.png")));
+            // Offsets
+            /*
+             * Note : although it's a Dimension array, they are just used as a pair of Integers.
+             * width is the X offset
+             * height is the Y offset
+             * /!\ they are both supposed to be negative
+             */
+            offsetsCells.put(0, new Dimension(-9,-17));
+            offsetsCells.put(1, new Dimension(-9,-17));
+            offsetsCells.put(2, new Dimension(-9,-17));
+            offsetsCells.put(3, new Dimension(-9,-17));
+            offsetsCells.put(4, new Dimension(-9,-17));
+            offsetsCells.put(5, new Dimension(-9,-17));
+            offsetsCells.put(6, new Dimension(-9,-17));
+            offsetsCells.put(10, new Dimension(-9,-17));
+            offsetsCells.put(100, new Dimension(-9,-17));
+            offsetsCells.put(102, new Dimension(-9,-17));
+            offsetsCells.put(200, new Dimension(-9,-17));
             // Other images
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
             //Gui

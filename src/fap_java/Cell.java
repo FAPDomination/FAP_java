@@ -2,9 +2,11 @@ package fap_java;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class Cell extends Element {
     private int did;
+    private Image img;
     private int type;
     private Team owner;
     private boolean walkable;
@@ -21,12 +23,14 @@ public class Cell extends Element {
 
     private Player minerSelect;
     private boolean minerSing;
+    
+    private Game game;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
      */
-    public Cell(int i, int j, int type, int did) {
-        this(i, j, type, "", did);
+    public Cell(int i, int j, int type, int did, Game game) {
+        this(i, j, type, "", did, game);
     }
 
     /**
@@ -38,8 +42,9 @@ public class Cell extends Element {
      * @param param : An additional param, such as a property (frozen, unstable, healthy)
      * @param did : the design of the cell (grass, rock, water, lava,...)
      */
-    public Cell(int i, int j, int type, String param, int did) {
+    public Cell(int i, int j, int type, String param, int did, Game game) {
         super();
+        this.game = game;
         this.setI(i);
         this.setJ(j);
         this.walkable = true;
@@ -51,7 +56,10 @@ public class Cell extends Element {
         this.trap = null;
         this.owner = null;
         this.minerSing = false;
-
+        this.img = Graph.cells.get(did);
+        if(img == null){
+            System.out.println("Null image for this did : "+did);
+        }
     }
 
     /**
@@ -62,6 +70,16 @@ public class Cell extends Element {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + CMap.OFFMAP;
 
+        // Paint dirt
+        //g.drawImage(Graph.cells.get(0), x, y+CMap.TH, CMap.TW, CMap.TH, game);
+        // Paint did
+            double facW = CMap.TW/((double)(97-20));
+            double facH = CMap.TH/((double)(73-36));
+            int width = (int)(this.img.getWidth(game)*facW);
+            int height = (int)(this.img.getHeight(game)*facH);
+            int offX = (int)Graph.offsetsCells.get(did).getWidth();
+            int offY = (int)Graph.offsetsCells.get(did).getHeight();
+            g.drawImage(this.img, x+offX, y+offY,width,height, game);
         // Special case if the miner is currently selecting the cell
         if (minerSelect != null) {
             g.setColor(minerSelect.getColor());
@@ -71,7 +89,9 @@ public class Cell extends Element {
                 g.setColor(Color.black);
                 g.fillRect(x + CMap.TW / 2, y + CMap.TH / 2, 4, 4);
             }
-        } else {
+        }
+        /*
+        else {
             if (owner == null) {
                 g.setColor(Color.BLACK);
             } else {
@@ -85,6 +105,7 @@ public class Cell extends Element {
             }
             g.drawRect(x, y, CMap.TW, CMap.TH);
         }
+        */
 
         // Write the amount of HP of the tile
         if (hp > 0) {

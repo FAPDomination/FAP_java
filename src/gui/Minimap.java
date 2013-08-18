@@ -41,7 +41,7 @@ public class Minimap{
     private int fileNumber;
 
     public Minimap(int map, String name) {
-        CMap theMap = XMLparser.parseMap(map);
+        CMap theMap = XMLparser.parseMap(map,null);
         this.map = theMap.getMyMap();
         this.name = name;
         this.fileNumber = map;

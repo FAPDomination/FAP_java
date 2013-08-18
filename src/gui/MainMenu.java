@@ -133,11 +133,12 @@ public class MainMenu extends FAPanel implements AnimPanel{
         // init map
         int[] possibleMaps = { 5, 6, 8, 10, 11 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
+        nmap = 5;
         // init skill
         int pcP = Tools.randRange(1, 9, Params.excludedChars);
         int pcF = Tools.randRange(1, 9, Params.excludedChars);
 
-        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", true, nmap,Params.defaultVictoryScore,0,0);
+        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", false, nmap,Params.defaultVictoryScore,0,0);
         
         nextPanel = new LoadingScreen(parent,game,this,nmap);
         this.startSliding(true);
