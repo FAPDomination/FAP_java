@@ -172,6 +172,13 @@ P			- Specific for each player color
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
+		- Null images dids
+	- Scorebar
+	- Texts of all kinds
+		- HPs on cells
+		- Scorebar's scores
+		- SkillTimes
+		- PauseCountDown
 V Depth
 V Minimap
 V	- Object
