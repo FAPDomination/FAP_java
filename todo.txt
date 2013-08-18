@@ -3,7 +3,7 @@
   Tidy the methods lists
   What happens to the getI, getJ, etc... ?
   Bugs :
-	- Type of blocking tiles all to 0 ?
+V	- Type of blocking tiles all to 0 ?
   Not so good :
 V 	- Player l183 : big repaint
 O		- Get a lighter repaint

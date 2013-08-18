@@ -40,7 +40,6 @@ public class Cell extends Element {
      */
     public Cell(int i, int j, int type, String param, int did) {
         super();
-
         this.setI(i);
         this.setJ(j);
         this.walkable = true;
@@ -194,6 +193,7 @@ public class Cell extends Element {
             if (type == 2) {
                 type = 20;
                 walkable = false;
+                this.height= true;
                 // KICK BACK
                 Player p = game.isOccupied(this);
                 if (p != null) {
@@ -286,11 +286,13 @@ public class Cell extends Element {
     public void setType(int type) {
         //Blocking high
         if (type == 20) {
+            this.type = 20;
             walkable = false;
             this.height = true;
         }
         //Blocking low
         else if (type == 19) {
+            this.type = 19;
             //this.type = 1;
             walkable = false;
             this.height = false;

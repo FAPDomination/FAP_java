@@ -73,6 +73,7 @@ public class MapHandler extends DefaultHandler {
             if (tabS.length > 1) {
                 param = tabS[1];
             }
+            //System.out.println(did);
 
             if (did >= 100 && did < 200) {
                 t = 20;

@@ -84,7 +84,7 @@ public class CMap {
         while(bool){
             path.add(c);
             c = this.surroundingCells(c).get(ori);
-            if(c== null || c.getType() == 20){
+            if(c== null || c.isHeight()){
                 bool = false;
             }
         }
