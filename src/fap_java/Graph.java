@@ -20,6 +20,10 @@ public class Graph {
     protected static Map<String, Image> list = new HashMap<String, Image>();
     public static Map<String, Image> guimg = new HashMap<String, Image>();
     protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
+    
+    // Important factors for drawing cells
+    protected static double facW = CMap.TW/((double)(97-20));
+    protected static double facH = CMap.TH/((double)(73-36));
     // key : String, the name of the cell
     // entry : the cell image
     static {
