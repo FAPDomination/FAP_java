@@ -108,6 +108,16 @@ public class FSM{
     }
 
     public void shiftToPicked() {
+        //Set ori
+        Cell current = body.getCurrent();
+        ArrayList<Cell> list = body.getGame().getMap().surroundingCells(current);
+        for(int i=0;i<list.size();i++){
+            Cell w = list.get(i);
+            if(w == this.nextCell){
+                body.setOri(i);
+            }
+        }
+        //---
         body.shiftStick(0,0);
         if(prevState == pathFollow && fsm_secParam == null){
             this.fsm_receive_event(ev_secDone);
@@ -194,6 +204,13 @@ public class FSM{
                     }
                     //Totally arbitrary : should also depend on levels
                     if (nCells < 6-level) {
+                        skillWorth = true;
+                    }
+                break;
+                case 5 :            // Archer
+                    ArrayList<Cell> path = this.body.getGame().getMap().tileOnPath(this.body.getCurrent(),this.body.getOri());
+                    //Totally arbitrary : should also depend on levels
+                    if(path.size()>=level+2){
                         skillWorth = true;
                     }
                 break;

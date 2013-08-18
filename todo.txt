@@ -17,8 +17,8 @@ V	- Bug changing
 V Same time displacements
 ? Get rid of colors
 V Collisions
-  Cleaner define of keys in params
-  Tile on Path method
+V Cleaner define of keys in params
+~ Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
@@ -232,12 +232,12 @@ T			- Available cell (not on island)
 V		- areaWeight
 V			- Param Ring
 V			- compute and return
-	- Skills (detect if worth)
+V	- Skills (detect if worth)
 V		- General
 V		- Knight
 ~		- Miner
 V		- Warlock
-		- Archer
+T		- Archer
 V		- Vampire
 V		- NC
 V		- Magician
@@ -252,6 +252,7 @@ T			- All skill triggers
 T			- number of tries in findGoodCell
 T			- Trigger for direct pathfinding or conquest
 V		- Init when creating FSM object
+P	- Test Archer
 V PathFinding
 V	- Classes files
 V	- Convert flash => Java
