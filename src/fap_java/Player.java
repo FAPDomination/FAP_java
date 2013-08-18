@@ -119,7 +119,7 @@ public abstract class Player extends Human {
     public void keyHigh(int i) {
         keys[i][1] = 1;
         
-        handleKeys();
+        //handleKeys();
         
         if (i == 4) { //Skill
             this.getSkill();
@@ -127,7 +127,7 @@ public abstract class Player extends Human {
 
     }
     
-    private void handleKeys(){
+    public void handleKeys(){
         //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
         // Hexa displacements :
         // Left + Down
@@ -287,7 +287,7 @@ public abstract class Player extends Human {
 
     public void keyLow(int i) {
         keys[i][1] = 0;
-        handleKeys();
+        //handleKeys();
     }
 
     public void paintComponent(Graphics g) {

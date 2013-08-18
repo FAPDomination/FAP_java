@@ -218,6 +218,12 @@ public class Game extends JPanel implements NeedingFocus {
         }
     }
     
+    public void playerHandleKeys(){
+        for(int i=0;i<players.size();i++){
+            players.get(i).handleKeys();
+        }
+    }
+    
     public void addObject(Element e){
         objects.add(e);
     }

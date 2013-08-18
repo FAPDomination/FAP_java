@@ -77,6 +77,19 @@ public class CMap {
             c.paintComponent(g);
         }
     }
+    
+    public ArrayList<Cell> tileOnPath(Cell c, int ori){
+        ArrayList<Cell> path = new ArrayList<Cell>();
+        boolean bool = true;
+        while(bool){
+            path.add(c);
+            c = this.surroundingCells(c).get(ori);
+            if(c== null || c.getType() == 20){
+                bool = false;
+            }
+        }
+        return path;
+    }
 
     //------ Accessors for the map
     
@@ -171,6 +184,9 @@ public class CMap {
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
         ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
+        for(int k=0;k<6;k++){
+            surroundingCells.add(null);
+        }
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -178,42 +194,42 @@ public class CMap {
         // not the first line
         if (i % 2 == 0) {
             o = this.getCell(i - 1, j - 1);
-            surroundingCells.add(o);
+            surroundingCells.set(0,o);
             //surroundingCells['tr'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(1,o);
         } else {
             
             //surroundingCells['tl'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(0,o);
             
             //surroundingCells['tr'] = [i-1, j+1];
             o = this.getCell(i - 1, j + 1);
-            surroundingCells.add(o);
+            surroundingCells.set(1,o);
         }
         // cells from the same line
         //surroundingCells['l'] = [i, j-1];
         o = this.getCell(i, j - 1);
-        surroundingCells.add(o);
+        surroundingCells.set(5,o);
         //surroundingCells['r'] = [i, j+1];
         o = this.getCell(i, j + 1);
-        surroundingCells.add(o);
+        surroundingCells.set(2,o);
         // bottom cells (see top cells)
         if (i % 2 == 0) {
             //surroundingCells['bl'] = [i+1, j-1];
             o = this.getCell(i + 1, j - 1);
-            surroundingCells.add(o);
+            surroundingCells.set(4,o);
             //surroundingCells['br'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(o);
+            surroundingCells.add(3,o);
         } else {
             //surroundingCells['br'] = [i+1, j+1];
             o = this.getCell(i + 1, j + 1);
-            surroundingCells.add(o);
+            surroundingCells.add(3,o);
             //surroundingCells['bl'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(o);
+            surroundingCells.add(4,o);
         }
         return surroundingCells;
     };

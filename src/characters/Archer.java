@@ -7,6 +7,8 @@ import fap_java.Params;
 import fap_java.Player;
 import fap_java.Team;
 
+import java.util.ArrayList;
+
 public class Archer extends Player{
     public Archer(int id, Cell c, Game game, Team t, int ai, int controler) {
         super(id, c, game, 5,t, ai, controler);
@@ -17,8 +19,12 @@ public class Archer extends Player{
             this.setLastSkill(this.getGame().getThread().getCount());
             //System.out.println("*BANG*");
             //Send Skill :
-            Arrow arr = new Arrow(this.getCurrent(),this.getOri(),this.getGame(),this);
-            
+            //Arrow arr = new Arrow(this.getCurrent(),this.getOri(),this.getGame(),this);
+            ArrayList<Cell> path = this.getGame().getMap().tileOnPath(this.getCurrent(),this.getOri());
+            for(int i=0;i<path.size();i++){
+                Cell c = path.get(i);
+                c.setMinerSelect(this);
+            }
             this.makeHimWait(Params.timeAfterSkill);
         }
     }

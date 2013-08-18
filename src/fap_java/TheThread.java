@@ -94,6 +94,9 @@ public class TheThread implements Runnable{
         }
         
         //Execute other objects actions
+        if(count%2 == 0){
+            myGame.playerHandleKeys();
+        }
         myGame.computeObjects();
         myGame.executeFSMs();
     }
