@@ -16,8 +16,8 @@ public class Miner extends Player{
     private ArrayList<Cell> randCells;
     private int cursor;
     
-    public Miner(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 3,t);
+        public Miner(int id, Cell c, Game game, Team t, int ai, int controler) {
+        super(id, c, game, 3,t, ai, controler);
         selecting = false;
         randCells = new ArrayList<Cell>();
     }

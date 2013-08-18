@@ -16,6 +16,8 @@ public class Graph {
 
     // Cells images
     protected static Map<String, Image> cells = new HashMap<String, Image>();
+    protected static Map<String, Image> list = new HashMap<String, Image>();
+    public static Map<String, Image> guimg = new HashMap<String, Image>();
     // key : String, the name of the cell
     // entry : the cell image
     static {
@@ -30,6 +32,15 @@ public class Graph {
             cells.put("trail", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
             cells.put("rock", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
             cells.put("tree_1", Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
+            // Other images
+            list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
+            //Gui
+            guimg.put("MM_sword", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/sword.png")));
+            guimg.put("MM_clouds", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/clouds.png")));
+            guimg.put("minimapBG", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/versus/mapSelect/minimapBackground.png")));
+            guimg.put("LS_BGteam", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_team.png")));
+            guimg.put("LS_BG8team", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_8Teams.png")));
+
         } catch (Exception e) {
             System.out.println("An error occured while trying loading the cell images.");
         }

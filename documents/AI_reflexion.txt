@@ -1,0 +1,8 @@
+Réflexions sur l'IA :
+
+States :
+PickingCell
+Shifting
+Analysing
+
+Events :

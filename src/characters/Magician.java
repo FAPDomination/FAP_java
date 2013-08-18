@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Magician extends Player{
-    public Magician(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 8,t);
+    public Magician(int id, Cell c, Game game, Team t, int ai, int controler) {
+        super(id, c, game, 8,t, ai, controler);
     }
 
         public void getSkill() {

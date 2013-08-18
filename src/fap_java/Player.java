@@ -37,8 +37,10 @@ public abstract class Player extends Human {
     protected int[][] keys = new int[5][2];
     //Modification
     private String param;
+    //FSM
+    private FSM fsm;
 
-    public Player(int id, Cell c, Game game, int pc, Team t) {
+    public Player(int id, Cell c, Game game, int pc, Team t, int ai, int controler) {
         super();
         this.id = id;
         current = c;
@@ -47,19 +49,18 @@ public abstract class Player extends Human {
         this.game = game;
         this.team = t;
         team.addPlayer(this);
-        
+        if(ai>0){
+            fsm = new FSM(this,ai);
+            controler = 1;
+        }
+        else{
+            fsm = null;
+        }
         this.pc = pc;
 
-        color = Color.RED;
-        if (id == 1) {
-            color = Color.BLUE;
-        } else if (id == 2) {
-            color = Color.YELLOW;
-        } else if (id == 3) {
-            color = new Color(0, 200, 0);
-        }
+        color = Params.colorList[id];
         // 38 40 39 37 : arrow keys
-        if (id == 0) {
+        /*if (id == 0) {
             keys[0][0] = 38;
             keys[1][0] = 40;
             keys[2][0] = 39;
@@ -72,7 +73,12 @@ public abstract class Player extends Human {
             keys[3][0] = 81;
             keys[4][0] = 69;
         }
-
+        */
+        if(fsm==null){
+            for(int i=0;i<=4;i++){
+               keys[i][0] = Params.controlsList[controler][i];
+            }
+        }
         //Init key pressing
         keys[0][1] = 0;
         keys[1][1] = 0;
@@ -112,104 +118,102 @@ public abstract class Player extends Human {
 
     public void keyHigh(int i) {
         keys[i][1] = 1;
-
-        // Test if displacement is allowed
-        if (game.getThread().getCount() - lastDisplacement >= tmax) {
-            lastDisplacement = game.getThread().getCount();
-            //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
-            // Hexa displacements :
-            // Left + Down
-            if (keys[3][1] == 1 && keys[1][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(-1, 1);
-                } else {
-                    shiftStick(0, 1);
-                }
-                ori = 4;
-            }
-            //Up + Right
-            else if (keys[0][1] == 1 && keys[2][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, -1);
-                } else {
-                    shiftStick(1, -1);
-                }
-                ori = 1;
-            }
-            //Up + Left
-            else if (keys[0][1] == 1 && keys[3][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(-1, -1);
-                } else {
-                    shiftStick(0, -1);
-                }
-                ori = 0;
-            }
-            // Down + Right
-            else if (keys[1][1] == 1 && keys[3][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, 1);
-                } else {
-                    shiftStick(1, 1);
-                }
-                ori = 3;
-            }
-            //Regular
-            // If the key LEFT is pressed
-            else if (keys[3][1] == 1) {
-                // Move the stick
-                shiftStick(-1, 0);
-                // Update the stick's orientation :
-                ori = 5;
-            } else if (keys[2][1] == 1) { // If key RIGHT is pressed
-                shiftStick(1, 0);
-                // If the key1 is pressed
-                ori = 2;
-            } else if (keys[0][1] == 1) { // If key UP is pressed
-                // reset the timer for this stick so the player is not able to move for a little while
-                // Because of the hexa-grid to movings up and down are complicated
-                // find if the stick is on an odd or even number of line
-                if (current.getI() % 2 == 0) {
-                    // Move the stick
-                    shiftStick(-1, -1);
-
-                } else {
-                    shiftStick(0, -1);
-                }
-                ori = 0;
-            } else if (keys[1][1] == 1) { // If key DOWN is pressed
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, 1);
-                } else {
-                    shiftStick(1, 1);
-                }
-                ori = 3;
-            }
-        }
+        
+        //handleKeys();
+        
         if (i == 4) { //Skill
             this.getSkill();
         }
 
     }
+    
+    public void handleKeys(){
+        //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
+        // Hexa displacements :
+        // Left + Down
+        if (keys[3][1] == 1 && keys[1][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(-1, 1);
+            } else {
+                shiftStick(0, 1);
+            }
+            ori = 4;
+        }
+        //Up + Right
+        else if (keys[0][1] == 1 && keys[2][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, -1);
+            } else {
+                shiftStick(1, -1);
+            }
+            ori = 1;
+        }
+        //Up + Left
+        else if (keys[0][1] == 1 && keys[3][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(-1, -1);
+            } else {
+                shiftStick(0, -1);
+            }
+            ori = 0;
+        }
+        // Down + Right
+        else if (keys[1][1] == 1 && keys[2][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, 1);
+            } else {
+                shiftStick(1, 1);
+            }
+            ori = 3;
+        }
+        //Regular
+        // If the key LEFT is pressed
+        else if (keys[3][1] == 1) {
+            // Move the stick
+            shiftStick(-1, 0);
+            // Update the stick's orientation :
+            ori = 5;
+        } else if (keys[2][1] == 1) { // If key RIGHT is pressed
+            shiftStick(1, 0);
+            // If the key1 is pressed
+            ori = 2;
+        } else if (keys[0][1] == 1) { // If key UP is pressed
+            // reset the timer for this stick so the player is not able to move for a little while
+            // Because of the hexa-grid to movings up and down are complicated
+            // find if the stick is on an odd or even number of line
+            if (current.getI() % 2 == 0) {
+                // Move the stick
+                shiftStick(-1, -1);
+
+            } else {
+                shiftStick(0, -1);
+            }
+            ori = 0;
+        } else if (keys[1][1] == 1) { // If key DOWN is pressed
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, 1);
+            } else {
+                shiftStick(1, 1);
+            }
+            ori = 3;
+        }
+    }
 
     public void shiftStick(int dx, int dy) {
-        // Get the position of the stick
-        int[] talArr = new int[2];
-        talArr[0] = current.getI();
-        talArr[1] = current.getJ();
-        // Get the supposed new position of the stick
-        int[] tal2Arr = new int[2];
-        tal2Arr[0] = talArr[0] + dy;
-        tal2Arr[1] = talArr[1] + dx;
-        Cell c = game.getMap().getCell(tal2Arr);
-        //trace(myMap[tal2Arr[0]][tal2Arr[1]][0]);
-        /*
-                    Variable: walkable
-                    tests if it's allowed to walk on the tile
-
-                    Results:
-                            Is true if the tile type is t and 1<= t < 20, and the tile is not occupied.
-            */
+        // Test if displacement is allowed
+        if (game.getThread().getCount() - lastDisplacement >= tmax) {
+            lastDisplacement = game.getThread().getCount();
+        Cell c;
+        if(this.fsm != null){
+            c = fsm.getNextCell();
+        }
+        else{
+            // Get the supposed new position of the stick
+            int[] tal2Arr = new int[2];
+            tal2Arr[0] = current.getI() + dy;
+            tal2Arr[1] = current.getJ() + dx;
+            c = game.getMap().getCell(tal2Arr);
+        }
         // Adds colisions : one does not simply walk into an occupied tale
         boolean walkable = c != null && c.isWalkable() == true;
         if (game.isOccupied(c) != null) {
@@ -233,7 +237,7 @@ public abstract class Player extends Human {
             current = c;
             this.setI(current.getI());
             this.setJ(current.getJ());
-            current.activateCell(this);
+                current.activateCell(this);
             
             //Check frozen cell :
             if(current.isFrozen() && !(this instanceof Booster)){
@@ -274,26 +278,28 @@ public abstract class Player extends Human {
                 break;
             }
         }
-
+        }
         //Test  trap Cell
         //-----
-
-        game.repaint();
     };
 
     // Will be used to have to repeat da key pressing and for H-Displacement
 
     public void keyLow(int i) {
         keys[i][1] = 0;
+        //handleKeys();
     }
 
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-
+        paintStick(g, x, y);
+    }
+    
+    public void paintStick(Graphics g, int x, int y){
         g.setColor(color);
+        // Switch on ori
         g.fillRect(x, y, 10, 30);
-        
     }
 
     public void setColor(Color color) {
@@ -444,12 +450,6 @@ public abstract class Player extends Human {
     public int getOri() {
         return ori;
     }
-
-    /**
-     * @param param
-     * @param newValue
-     * @param time : the duration of the modification in ms
-     */
     public void changeParam(String wich, double newValue, int time){
         Timer timer = new Timer();
         this.param = wich;
@@ -494,5 +494,21 @@ public abstract class Player extends Human {
               }
             }, time);
         }
+    }
+
+    public void setFsm(FSM fsm) {
+        this.fsm = fsm;
+    }
+
+    public FSM getFsm() {
+        return fsm;
+    }
+
+    public void setPc(int pc) {
+        this.pc = pc;
+    }
+
+    public int getPc() {
+        return pc;
     }
 }

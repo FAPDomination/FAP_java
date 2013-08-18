@@ -7,8 +7,8 @@ import fap_java.Player;
 import fap_java.Team;
 
 public class Booster extends Player{
-    public Booster(int id, Cell c, Game game, Team t) {
-        super(id, c, game, 9,t);
+    public Booster(int id, Cell c, Game game, Team t, int ai, int controler) {
+        super(id, c, game, 9,t, ai, controler);
     }
 
     public void getSkill() {

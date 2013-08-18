@@ -1,8 +1,14 @@
 package fap_java;
 
+import gui.MapListHandler;
+
+import gui.Minimap;
+
 import java.io.File;
 
 import java.io.IOException;
+
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -25,10 +31,21 @@ public class XMLparser {
     
     public static CMap parseMap(int mapID){
         DefaultHandler dh = new MapHandler();
-        parseXML("map"+mapID+".xml", dh);
+        parseXML("Maps/map"+mapID+".xml", dh);
         //System.out.println(dh);
         MapHandler dhm = (MapHandler) dh;
         return dhm.getMap();
+    }
+    
+    public static void parseOptions(){
+        OptionsParser dh = new OptionsParser();
+        parseXML("options.xml", dh);
+    }
+    
+    public static ArrayList<Minimap> parseMapList(){
+        MapListHandler dh = new MapListHandler();
+        parseXML("maps.xml", dh);
+        return dh.getList();
     }
     
     public static void parseParams(){

@@ -24,6 +24,11 @@ public class ScoreBar {
             score+=(te.getNCells()-1)*Params.rPoints;
             te.setScore(score);
         }
+        //Check victory
+        Team winner = game.testVictory();
+        if(winner != null){
+            game.endGame(winner);
+        }
     }
     
     public void paintComponent(Graphics g) {
