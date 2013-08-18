@@ -111,9 +111,6 @@ public class Game extends JPanel implements NeedingFocus {
         super.paintComponent(g);
         
         map.paintComponent(g);
-        for (int i = 0; i < players.size(); i++) {
-            //players.get(i).paintComponent(g);
-        }
         for(int j=0;j<objects.size();j++){
             objects.get(j).paintComponent(g);
         }

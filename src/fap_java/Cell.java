@@ -101,6 +101,12 @@ public class Cell extends Element {
         
         // Write the amount of HP of the tile
         if (hp > 0) {
+            if(owner !=null){
+                g.setColor(owner.getColor());
+            }
+            else{
+                g.setColor(Color.black);
+            }
             g.drawString("" + (int)hp, x + 5, y + 10);
         }
     }
