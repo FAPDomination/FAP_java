@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class MapHandler extends DefaultHandler {
-    private CMap map = new CMap();
+    private CMap map;
     private Cell c;
     private int i = 0;
     private int j = 0;
@@ -25,6 +25,7 @@ public class MapHandler extends DefaultHandler {
     public MapHandler(Game game) {
         super();
         this.game = game;
+        map = new CMap(game);
     }
 
 

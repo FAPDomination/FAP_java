@@ -16,13 +16,14 @@ public class CMap {
     /**
      * Creates a map with all tools needed.
      */
-    public CMap() {
-
+    public CMap(Game game) {
+        this.game = game;
     }
 
     //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
     private ArrayList<Cell> startCells = new ArrayList<Cell>();
+    private Game game;
 
     /**
      * Give the position in pixels of a couple a values
@@ -75,6 +76,10 @@ public class CMap {
         for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);
             c.paintComponent(g);
+            Player p = game.isOccupied(c);
+            if(p!=null){
+                p.paintComponent(g);
+            }
         }
     }
     

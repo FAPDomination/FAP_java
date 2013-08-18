@@ -169,7 +169,7 @@ V			- Write all offsets
 		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
-  Depth
+V Depth
 V Minimap
 V	- Object
 V	- Get map

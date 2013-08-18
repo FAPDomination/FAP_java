@@ -91,7 +91,7 @@ public class Game extends JPanel implements NeedingFocus {
     private void initGame(int nmap){
         this.setLayout(null);
         this.setBackground(Color.white);
-        map = new CMap();
+        map = new CMap(this);
         map = XMLparser.parseMap(nmap,this);
         //Parse ParamTable
         XMLparser.parseParams();
@@ -112,7 +112,7 @@ public class Game extends JPanel implements NeedingFocus {
         
         map.paintComponent(g);
         for (int i = 0; i < players.size(); i++) {
-            players.get(i).paintComponent(g);
+            //players.get(i).paintComponent(g);
         }
         for(int j=0;j<objects.size();j++){
             objects.get(j).paintComponent(g);
