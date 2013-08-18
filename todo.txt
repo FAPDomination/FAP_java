@@ -1,4 +1,5 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
+  UTF-8
   Tidy the methods lists
   What happens to the getI, getJ, etc... ?
   Bugs :
@@ -8,9 +9,11 @@ V 	- Player l183 : big repaint
 O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
-  Displacement Hexa
+	- Graph guimg public
+? Displacement Hexa
 V	- Hexa
-	- Bug changing
+V	- Bug changing
+?	- Toggle handleKeys with thread and not keypress ?
 V Same time displacements
 ? Get rid of colors
 V Collisions
@@ -143,23 +146,42 @@ O	- Way to pass param to the timer
 	- Miner Warp
 P Design
 P	- Change did of countdown cell after end of timer
+V Minimap
+V	- Object
+V	- Get map
+V	- PaintComponent
+~		- Background
+~			- Size of background for big maps
+V		- Cells
+~		- Name
+~	- isSelected
+	- Adjustable sizes (fit background to size attribute)
+V	- Make it clickable
   Game
-	- Get Params
-		- whoIsPlaying && skills
-		- wichTeam
-		- randStart
-		- isFSM
-		- Keys
-		- Victory conditions
+V	- Get Params
+V		- whoIsPlaying && skills
+V		- wichTeam
+V		- randStart
+V		- isFSM
+V		- Keys
+V		- Victory conditions
 	- Pause/Play
-		- Define Keys
+V		- Get Key from param
 		- Execute Pause
-			- Pause
+V			- Pause
 			- Display
 		- Resume
+V			- without countdown
+			- With countdown
 	- Victory
-		- Check victory
+V		- Check victory
+		- Double timeout bug
+V		- endGame method
 		- Display it
+			- General
+			- tie
+			- player win
+P			- player lost (adventure)
   AI
 	- Object
 V		- Class File
@@ -219,16 +241,16 @@ V		- Warlock
 V		- Vampire
 V		- NC
 V		- Magician
-P		- Booster
-	- Levels
-		- Ideas of what should depend on level
-			- nRings in areaWeight
-			- Weight toggle for changing area
-			- ReactionTime
-			- Miner Time after Skill
-			- All skill triggers
-			- number of tries in findGoodCell
-			- Trigger for direct pathfinding or conquest
+V		- Booster
+T~	- Levels
+T		- Ideas of what should depend on level
+T			- nRings in areaWeight
+T			- Weight toggle for changing area
+T			- ReactionTime
+T			- Miner Time after Skill
+T			- All skill triggers
+T			- number of tries in findGoodCell
+T			- Trigger for direct pathfinding or conquest
 V		- Init when creating FSM object
 V PathFinding
 V	- Classes files
@@ -243,4 +265,135 @@ V	- Update scores
 V	- Get scores
 V	- Draw Bar
 V	- Display skillTime
-E Documentation
+
+---------------------------- GUI
+
+  MainMenu
+	- Buttons
+		- adv
+V		- vs
+PT		- quick
+V			- Loading screen
+V			- pick map
+V			- rand pc
+V			- rand pc fsm
+V			- teams & stuff
+V			- init
+T			- launch
+V				- Bug no displacement
+P			- Keep list of maps updated
+V		- options
+P		- credits
+?		- quit
+V			- Quit
+?			- Dialog ?
+V	- Design
+V		- Implement images
+V			- Sword
+V			- clouds
+X		- Ground manage
+X		- Ground lag
+X		- Delete ground displacement ?
+V		- Sliding effect
+V			- Go
+V			- Back
+~		- Gradient BG
+V		- Bug with the repaint
+  Go back buttons EEEEEEEEEEEEE
+V	- Find a place for it and keep it
+?	- Even for OptionMenu ?
+T	- Versus : keep information from one another
+V Go next button : find place and keep it
+? Game extends FAPanel ?
+  OptionMenu
+	- Buttons
+V		- Back
+		- Controls
+		- Sound
+		- FullScreen
+		- FAP Editor
+P Init panels with a previous panel instead of always creating a new one
+V	- OptionMenu
+?	- Game
+V	- LoadingScreen
+T LoadingScreen
+V	- Launch
+V	- Display game datas
+V		- Teams List
+~			- Write team name and specs
+V			- Players list (display character figures)
+V			- Critical Size problem with 8 teams !
+V				- Change BG
+V				- Change players disposition
+V		- Display Minimap
+  General Design
+	- Button for menu
+	- Button for other
+	- Button remove
+	- Btn add
+	- Everything relative -> resizable + Component locations
+		- LoadingScreen
+		- Versus menus
+	- Nice fonts and sizes for texts
+		- LoadingScreen
+		- PlayerSelection
+P PlayerSelection
+V	- PlayerSelect
+V		- Button remove
+V			- Implement
+V			- Dirty id finding
+V			- Exception OutOfBounds -1
+X		- paintCompo
+V		- ComboBoxes
+V			- Control (Player 1,2,3, AI)
+V			- Team
+V		- Placements with attributes
+V	- Button add
+V	- Btn next
+V		- Parse the player selecters
+V			- isFSM
+V			- Nothing more, passing to next panel
+V		- Security on number and order of teams
+V		- Go to next panel
+P	- "Error" textField
+V		- textField and block next
+V		- "2 or more teams"
+V		- 1 controler for 1 player
+P		- DrawString and back to new line
+T	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
+P CharacterSelection
+V	- Get previous information
+P	- Set character
+P		- Players
+V			- Read keys
+V			- Timer displacement
+V			- Set new values for arrows
+V			- Set new values for characters
+P			- Optional
+V				- paint arrows slightly shifted from one another
+V				- init with random chars
+P				- forbid same character in same team
+V			- Animate
+V				- Make panel animated
+V				- Execute anim for every arrow that needs it
+V				- Create anim method in arrow
+V					- Compute speed
+V					- Update x and y
+V					- Compute new speed if needed
+V					- Attribute "I don't need animation"
+V				- Update new values settings
+V		- FSMs
+V Map Selection
+V	- Parse map list
+P	- Keep map list updated
+V	- Display map list
+~		- Size of maps
+~		- Increments
+?		- more than 8 ?
+V	- update map value when clicked
+V	- btn next
+V		- wait for map to be selected
+V		- generate Game
+V		- Send loading screen
+V		- Better parsing without blank characters (1,0,0,1,1)->(1,1,1)
+  Right Click Menu

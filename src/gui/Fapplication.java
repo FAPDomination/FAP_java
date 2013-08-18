@@ -1,4 +1,4 @@
-package fap_java;
+package gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -6,9 +6,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-public class ApplicationFAP {
-    public ApplicationFAP() {
-        JFrame frame = new Frame1();
+public class Fapplication {
+    public Fapplication() {
+        JFrame frame = new TheFrame();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = frame.getSize();
         if (frameSize.height > screenSize.height) {
@@ -28,6 +28,6 @@ public class ApplicationFAP {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new ApplicationFAP();
+        new Fapplication();
     }
 }

@@ -38,11 +38,27 @@ public class Params {
     
     public static int timeAfterSkill = 1000; //in m-second
     
-    public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
+    public static int[] excludedChars = {2,7};
     
-    //FSM
-    public static int fsmReactionTime = 40;
+    public static Map<String, double[]> paramTable = new HashMap<String, double[]>();
     
     // Colors
     public static Color[] colorList = {Color.red,Color.blue, Color.yellow,new Color(0, 200, 0), new Color(0,220,235), new Color(234,0,220), new Color(255,132,0), new Color(156,0,255)};
+    
+    public static int fsmReactionTime = 10;
+    
+    public static int defaultVictoryScore = 3000;
+
+    public static int nPlayersOn1Computer = 3;
+    public static int maxPlayers = 8;
+    
+    public static int pauseKey;
+    /*
+     * 0 : UP
+     * 1 : DOWN
+     * 2 : RIGHT
+     * 3 : LEFT
+     * 4 : Skill
+     */
+    public static int[][] controlsList = new int[nPlayersOn1Computer][5];
 }

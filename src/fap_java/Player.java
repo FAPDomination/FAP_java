@@ -40,7 +40,7 @@ public abstract class Player extends Human {
     //FSM
     private FSM fsm;
 
-    public Player(int id, Cell c, Game game, int pc, Team t, int ai) {
+    public Player(int id, Cell c, Game game, int pc, Team t, int ai, int controler) {
         super();
         this.id = id;
         current = c;
@@ -51,6 +51,7 @@ public abstract class Player extends Human {
         team.addPlayer(this);
         if(ai>0){
             fsm = new FSM(this,ai);
+            controler = 1;
         }
         else{
             fsm = null;
@@ -59,7 +60,7 @@ public abstract class Player extends Human {
 
         color = Params.colorList[id];
         // 38 40 39 37 : arrow keys
-        if (id == 0) {
+        /*if (id == 0) {
             keys[0][0] = 38;
             keys[1][0] = 40;
             keys[2][0] = 39;
@@ -72,7 +73,12 @@ public abstract class Player extends Human {
             keys[3][0] = 81;
             keys[4][0] = 69;
         }
-
+        */
+        if(fsm==null){
+            for(int i=0;i<=4;i++){
+               keys[i][0] = Params.controlsList[controler][i];
+            }
+        }
         //Init key pressing
         keys[0][1] = 0;
         keys[1][1] = 0;
@@ -112,80 +118,85 @@ public abstract class Player extends Human {
 
     public void keyHigh(int i) {
         keys[i][1] = 1;
-
-            //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
-            // Hexa displacements :
-            // Left + Down
-            if (keys[3][1] == 1 && keys[1][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(-1, 1);
-                } else {
-                    shiftStick(0, 1);
-                }
-                ori = 4;
-            }
-            //Up + Right
-            else if (keys[0][1] == 1 && keys[2][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, -1);
-                } else {
-                    shiftStick(1, -1);
-                }
-                ori = 1;
-            }
-            //Up + Left
-            else if (keys[0][1] == 1 && keys[3][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(-1, -1);
-                } else {
-                    shiftStick(0, -1);
-                }
-                ori = 0;
-            }
-            // Down + Right
-            else if (keys[1][1] == 1 && keys[3][1] == 1) {
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, 1);
-                } else {
-                    shiftStick(1, 1);
-                }
-                ori = 3;
-            }
-            //Regular
-            // If the key LEFT is pressed
-            else if (keys[3][1] == 1) {
-                // Move the stick
-                shiftStick(-1, 0);
-                // Update the stick's orientation :
-                ori = 5;
-            } else if (keys[2][1] == 1) { // If key RIGHT is pressed
-                shiftStick(1, 0);
-                // If the key1 is pressed
-                ori = 2;
-            } else if (keys[0][1] == 1) { // If key UP is pressed
-                // reset the timer for this stick so the player is not able to move for a little while
-                // Because of the hexa-grid to movings up and down are complicated
-                // find if the stick is on an odd or even number of line
-                if (current.getI() % 2 == 0) {
-                    // Move the stick
-                    shiftStick(-1, -1);
-
-                } else {
-                    shiftStick(0, -1);
-                }
-                ori = 0;
-            } else if (keys[1][1] == 1) { // If key DOWN is pressed
-                if (current.getI() % 2 == 0) {
-                    shiftStick(0, 1);
-                } else {
-                    shiftStick(1, 1);
-                }
-                ori = 3;
-            }
+        
+        handleKeys();
+        
         if (i == 4) { //Skill
             this.getSkill();
         }
 
+    }
+    
+    private void handleKeys(){
+        //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
+        // Hexa displacements :
+        // Left + Down
+        if (keys[3][1] == 1 && keys[1][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(-1, 1);
+            } else {
+                shiftStick(0, 1);
+            }
+            ori = 4;
+        }
+        //Up + Right
+        else if (keys[0][1] == 1 && keys[2][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, -1);
+            } else {
+                shiftStick(1, -1);
+            }
+            ori = 1;
+        }
+        //Up + Left
+        else if (keys[0][1] == 1 && keys[3][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(-1, -1);
+            } else {
+                shiftStick(0, -1);
+            }
+            ori = 0;
+        }
+        // Down + Right
+        else if (keys[1][1] == 1 && keys[2][1] == 1) {
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, 1);
+            } else {
+                shiftStick(1, 1);
+            }
+            ori = 3;
+        }
+        //Regular
+        // If the key LEFT is pressed
+        else if (keys[3][1] == 1) {
+            // Move the stick
+            shiftStick(-1, 0);
+            // Update the stick's orientation :
+            ori = 5;
+        } else if (keys[2][1] == 1) { // If key RIGHT is pressed
+            shiftStick(1, 0);
+            // If the key1 is pressed
+            ori = 2;
+        } else if (keys[0][1] == 1) { // If key UP is pressed
+            // reset the timer for this stick so the player is not able to move for a little while
+            // Because of the hexa-grid to movings up and down are complicated
+            // find if the stick is on an odd or even number of line
+            if (current.getI() % 2 == 0) {
+                // Move the stick
+                shiftStick(-1, -1);
+
+            } else {
+                shiftStick(0, -1);
+            }
+            ori = 0;
+        } else if (keys[1][1] == 1) { // If key DOWN is pressed
+            if (current.getI() % 2 == 0) {
+                shiftStick(0, 1);
+            } else {
+                shiftStick(1, 1);
+            }
+            ori = 3;
+        }
     }
 
     public void shiftStick(int dx, int dy) {
@@ -276,15 +287,19 @@ public abstract class Player extends Human {
 
     public void keyLow(int i) {
         keys[i][1] = 0;
+        handleKeys();
     }
 
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-
+        paintStick(g, x, y);
+    }
+    
+    public void paintStick(Graphics g, int x, int y){
         g.setColor(color);
+        // Switch on ori
         g.fillRect(x, y, 10, 30);
-        
     }
 
     public void setColor(Color color) {
