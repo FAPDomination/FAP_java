@@ -14,6 +14,7 @@ public class Cell extends Element{
     private int type;
     private Team owner;
     private boolean walkable;
+    private boolean walked;
     private double hp;
     private boolean height;
     private CMap map;
@@ -47,7 +48,7 @@ public class Cell extends Element{
         this.trap = null;
         this.owner = null;
         this.minerSing = false;
-        
+        walked = false;
         }
     
     public void paintComponent(Graphics g) {
@@ -164,7 +165,7 @@ public class Cell extends Element{
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConwell && !unstable;
+            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConway && !unstable;
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
@@ -359,4 +360,11 @@ public class Cell extends Element{
         return minerSing;
     }
 
+    public void setWalked(boolean walked) {
+        this.walked = walked;
+    }
+
+    public boolean isWalked() {
+        return walked;
+    }
 }

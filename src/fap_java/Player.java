@@ -247,6 +247,10 @@ public abstract class Player extends Human {
             this.setJ(current.getJ());
             current.activateCell(this);
             
+            if(!current.isWalked()){
+                current.setWalked(true);
+            }
+            
             //Check frozen cell :
             if(current.isFrozen() && !(this instanceof Booster)){
                 int value = (int)((Params.paramTable.get("dispSpeed")[pc])*Params.frozenFac);
