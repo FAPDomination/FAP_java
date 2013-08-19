@@ -120,21 +120,30 @@ public class FSM{
             }
         }
         //---
+        
+        boolean event = false;
         body.shiftStick(0,0);
         if(body.getCurrent() == nextCell){
             this.tryOut=0;
         }
         else{
             tryOut++;
-            if(tryOut>=maxTryOut){
+            if(tryOut>=maxTryOut && prevState == pathFollow){
                 System.out.println("MAXTRYOUT");
+                event = true;
+                ArrayList<Cell> path = (ArrayList<Cell>) fsm_param;
+                Cell k = path.get(path.size()-1);
+                fsm_param = k;
+                this.fsm_receive_event(ev_thirdDone);
             }
         }
-        if(prevState == pathFollow && fsm_secParam == null){
-            this.fsm_receive_event(ev_secDone);
-        }
-        else{
-            this.fsm_receive_event(ev_done);
+        if(!event){
+            if(prevState == pathFollow && fsm_secParam == null){
+                this.fsm_receive_event(ev_secDone);
+            }
+            else{
+                this.fsm_receive_event(ev_done);
+            }
         }
     }
     
@@ -447,6 +456,7 @@ public class FSM{
         waiting.addTransition(ev_secDone, pathFollow);
         //ev_thirdDone
         analysing.addTransition(ev_thirdDone, pathDefine);
+        shifting.addTransition(ev_thirdDone, pathDefine);
         pathFollow.addTransition(ev_thirdDone, picking);
         //ev_fourthDone
         analysing.addTransition(ev_fourthDone, pathFollow);
