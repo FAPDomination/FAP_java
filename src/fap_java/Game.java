@@ -38,7 +38,7 @@ public class Game extends JPanel implements NeedingFocus {
     private transient KListener kl;
     private transient ScoreBar scoreHandler;
     private transient ArrayList<Team> teams = new ArrayList<Team>();
-    
+
     private int victScore;
     private double victTile;    // in percent
     private int victTime; // in sec
