@@ -136,7 +136,6 @@ public class Game extends JPanel implements NeedingFocus {
         
         for(int j=0;j<anims.size();j++){
             if(thread.getRunning() || anims.get(j) instanceof PauseCountDown){
-                System.out.println(anims.get(j));
                 anims.get(j).paintComponent(g);
             }
         }
