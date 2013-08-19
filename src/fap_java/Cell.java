@@ -5,26 +5,86 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 public class Cell extends Element {
+    /**
+     * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
+     */
     private int did;
+    /**
+     * The image that will be painted as a representation of the cell
+     */
     private Image img;
+    /**
+     * The Type of the cell.
+     * Several types exist :
+     * 1 - normal, wakable, takable
+     * 2 - CountDown Cell
+     * 3 - Neutral that can't be owned (not implemented yet)
+     * 10 - warp
+     * 11 - switch
+     * 12 - NPC exit
+     * 19 - blocking low (river)
+     * 20 - blocking high (rock)
+     */
     private int type;
+    /**
+     * The team that owns this cell
+     */
     private Team owner;
+    /**
+     * The property walkable or not of the cell
+     */
     private boolean walkable;
+    /**
+     * If the cell has ever been walked on (useful to test if a switch was activated)
+     */
     private boolean walked;
+    /**
+     * The number of HealthPoints of the cell
+     */
     private double hp;
+    /**
+     * The property of the cell to be high blocking or low blocking
+     */
     private boolean height;
+    /**
+     * The map in wich the cell lives
+     */
     private CMap map;
+    /**
+     * An additional parameter, such as the cell where a warp will teleport you
+     */
     private String addParam;
 
     //Special params
+    /**
+     * If the cell is a trap, who traped it
+     */
     private Team trap;
+    /**
+     * If the cell is from the Healthy Healthy special tile
+     */
     private boolean healthy;
+    /**
+     * If the cell is unstable : hp will decrease no matter what
+     */
     private boolean unstable;
+    /**
+     * If the cell is frozen : will slow down the player
+    */
     private boolean frozen;
 
+    /**
+     * If the cell is currently being examinated by a miner who wants to teleport
+     */
     private Player minerSelect;
+    /**
+     * If the cursor of the miner is on this cell
+     */
     private boolean minerSing;
 
+    /**
+     * The game in wich the cell is living
+     */
     private Game game;
 
     /**
