@@ -2,12 +2,8 @@ package fap_java;
 
 import characters.Booster;
 
-import characters.Miner;
-
 import java.awt.Color;
 import java.awt.Graphics;
-
-import java.security.Key;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -15,31 +11,118 @@ import java.util.TimerTask;
 
 public abstract class Player extends Human {
 
+    /**
+     * The ID number of the player. Not that it is not avoidable, but it's better to have one
+     */
     private int id;
+    /**
+     * The character class of the player.
+     * Can be :
+     * 0 - Admin (wouldn't work since 0 means not playing)
+     * 1 - Knight
+     * 2 - Old Magician (not implemented anymore)
+     * 3 - Miner
+     * 4 - Warlock
+     * 5 - Archer
+     * 6 - Vampire
+     * 7 - No CHaracter
+     * 8 - Magician
+     * 9 - Booster
+     * 
+     * @see package characters
+     */
     private int pc;
+    /**
+     * The time between two displacements of this player
+     */
     private int tmax;
+    /**
+     * The date of the last displacement
+     */
     private int lastDisplacement;
+    /**
+     * The time between two uses of skill of this player
+     */
     private int skillTime;
+    /**
+     * The date of last skill use
+     */
     private int lastSkill;
+    /**
+     * The orientation (direction of the player)
+     */
     private int ori;
+    /**
+     * The cell the player is currently standing on
+     */
     private Cell current;
+    /**
+     * The cell the player was standing on just before
+     */
     private Cell parent;
+    /**
+     * The "force" the player has to kill a cell. This is the amount of HP the cell decreases per frame
+     */
     private double decLifeForced;
+    /**
+     * The rate at wich the player's cells recover
+     */
     private double recovLifeAuto;
+    /**
+     * The game where the player is playin'
+     */
     private Game game;
+    /**
+     * The color of the player
+     */
     private Color color;
+    /**
+     * The initial amount of HPs the player's cells have
+     */
     private int initHP;
+    /**
+     * The maximum amount of HP the player's cells can go to
+     */
     private int maxHP;
+    /**
+     * The rate at wich the cell gain HPs after passing the intHP level
+     */
     private double gainLife;
+    /**
+     * The rate at wich the player's cells' HPs decrease when they are alone
+     */
     private double decLifeAuto;
+    /**
+     * The gang the player is in (yo)
+     */
     private Team team;
-    //Keys
+    /**
+     * The set of Key the player uses for displacements
+     */
     protected int[][] keys = new int[5][2];
-    //Modification
+    /**
+     * Internal parameter
+     */
     private String param;
-    //FSM
+    /**
+     * The associated artificial intelligence that controls this player (if any)
+     * @see fap_java.FSM
+     */
     private FSM fsm;
 
+    /**
+     * Initializes a Player. Abstract class since the player creation is called by the characters extending this
+     * class.
+     * A player will walk through the game to conquer cells, can be controled either by a human or an Artificial
+     * Intelligence ( see {@link fap_java.FSM} ).
+     * @param id The ID of the soon-to-be-created player
+     * @param c The cell on wich he starts
+     * @param game The game where he is player
+     * @param pc His character class
+     * @param t His team
+     * @param ai The level of his artificial intelligence, if any
+     * @param controler The key set that controls his displacements
+     */
     public Player(int id, Cell c, Game game, int pc, Team t, int ai, int controler) {
         super();
         this.id = id;
@@ -49,6 +132,7 @@ public abstract class Player extends Human {
         this.game = game;
         this.team = t;
         team.addPlayer(this);
+        // Add FSM if needed
         if(ai>0){
             fsm = new FSM(this,ai);
             controler = 1;
@@ -56,24 +140,11 @@ public abstract class Player extends Human {
         else{
             fsm = null;
         }
+        
         this.pc = pc;
 
         color = Params.colorList[id];
-        // 38 40 39 37 : arrow keys
-        /*if (id == 0) {
-            keys[0][0] = 38;
-            keys[1][0] = 40;
-            keys[2][0] = 39;
-            keys[3][0] = 37;
-            keys[4][0] = 35;
-        } else {
-            keys[0][0] = 90;
-            keys[1][0] = 83;
-            keys[2][0] = 68;
-            keys[3][0] = 81;
-            keys[4][0] = 69;
-        }
-        */
+        // If no FSM, get keys for displacement
         if(fsm==null){
             for(int i=0;i<=4;i++){
                keys[i][0] = Params.controlsList[controler][i];
@@ -84,7 +155,8 @@ public abstract class Player extends Human {
         keys[1][1] = 0;
         keys[2][1] = 0;
         keys[3][1] = 0;
-
+        
+        // Init the rest 
         this.initParams();
     }
 
@@ -116,6 +188,10 @@ public abstract class Player extends Human {
         return keys;
     }
 
+    /**
+     * Sets the value of the designated key to "pressed". This system allows us to handle multi- key-pressing
+     * @param i The id of the Key
+     */
     public void keyHigh(int i) {
         keys[i][1] = 1;
         
@@ -127,6 +203,18 @@ public abstract class Player extends Human {
 
     }
     
+    /**
+     * Sets the value of the designated key to "released"
+     * @param i the key ID
+     */
+    public void keyLow(int i) {
+        keys[i][1] = 0;
+        //handleKeys();
+    }
+    
+    /**
+     * Computes the decisions for the currently pressed keys, such as displacements
+     */
     public void handleKeys(){
         //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
         // Hexa displacements :
@@ -199,6 +287,11 @@ public abstract class Player extends Human {
         }
     }
 
+    /**
+     * Moves the player from his cell to another located dx line and dy columns away
+     * @param dx The amount of line to be changed
+     * @param dy The amount of columns to be shifted
+     */
     public void shiftStick(int dx, int dy) {
         // Test if displacement is allowed
         if (game.getThread().getCount() - lastDisplacement >= tmax) {
@@ -219,6 +312,7 @@ public abstract class Player extends Human {
         if (game.isOccupied(c) != null) {
             walkable = false;
         }
+        // Special Walk-on-NPC handling
         /*
             var n:NPC=isNPC(tal2Arr[0],tal2Arr[1]);
             if(n!=null){
@@ -237,7 +331,8 @@ public abstract class Player extends Human {
             current = c;
             this.setI(current.getI());
             this.setJ(current.getJ());
-                current.activateCell(this);
+            // Activate the cell, ie conquer it
+            current.activateCell(this);
             
             if(!current.isWalked()){
                 current.setWalked(true);
@@ -251,9 +346,11 @@ public abstract class Player extends Human {
             
             int[] tab = new int[2];
             
+            // Check for special tiles
             switch (current.getType()) {
             case 10: // Warp
                 
+                // get the cell to be warped at
                 String[] tabS = new String[2];
                 tabS = c.getAddParam().split(",");
                 tab[0] = Integer.parseInt(tabS[0]);
@@ -261,7 +358,9 @@ public abstract class Player extends Human {
 
                 Cell wantedCell = game.getMap().getCell(tab);
                 if (wantedCell != null) {
+                    // If no one stand on it
                     if (game.isOccupied(wantedCell) == null) {
+                        // Warp the player to it
                         current = wantedCell;
                         this.setI(current.getI());
                         this.setJ(current.getJ());
@@ -279,12 +378,13 @@ public abstract class Player extends Human {
                 }
                 break;
             case 11: // Switch
-                //System.out.println(current.getAddParam());
+                // Get the switch parameters
                 String[] tabSw = new String[3];
                 tabSw = c.getAddParam().split(",",3);
                 tab[0] = Integer.parseInt(tabSw[0]);
                 tab[1] = Integer.parseInt(tabSw[1]);
 
+                // The cell to be switched
                 Cell switchedCell = game.getMap().getCell(tab);
                 String code = tabSw[2];
                 
@@ -296,6 +396,7 @@ public abstract class Player extends Human {
                 }
                 //System.out.println(did);
 
+                // Compute new type and properties
                 int t = MapHandler.setTypeWithDid(did, param);
                 switchedCell.setAddParam(param);
                 switchedCell.setDid(did);
@@ -308,23 +409,24 @@ public abstract class Player extends Human {
             }
         }
         }
-        //Test  trap Cell
-        //-----
     };
 
-    // Will be used to have to repeat da key pressing and for H-Displacement
-
-    public void keyLow(int i) {
-        keys[i][1] = 0;
-        //handleKeys();
-    }
-
+    /**
+     * Paints the player (not really implemented yet)
+     * @param g Graphical thing
+     */
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
         paintStick(g, x, y);
     }
     
+    /**
+     * Paints the player (not really implemented yet)
+     * @param g Graphical thing
+     * @param x The x axis position
+     * @param y The y axis position
+     */
     public void paintStick(Graphics g, int x, int y){
         g.setColor(color);
         // Switch on ori
@@ -395,6 +497,9 @@ public abstract class Player extends Human {
         return decLifeAuto;
     }
 
+    /**
+     * Gets the player to go back at his previous tile
+     */
     public void kickBack() {
         //Note : you can't double kickback
         if (game.isOccupied(parent) == null) {
@@ -416,9 +521,14 @@ public abstract class Player extends Human {
     }
 
     public String toString() {
-        return "Player n°" + id + " at " + this.getI() + "," + this.getJ();
+        return "Player no " + id + " at " + this.getI() + "," + this.getJ();
     }
 
+    /**
+     * Blasts a designated number of cells of the player's team. It just destroys a specific number of random cells
+     * that the player owned
+     * @param numberOfCells
+     */
     public void blast(int numberOfCells) {
         // Get the list of the array he owns
         ArrayList<Cell> map = game.getMap().getMyMap();
@@ -451,12 +561,18 @@ public abstract class Player extends Human {
         return team;
     }
     
-    //Make the player wait for "delay" m-seconds
+    /**
+     * Make the player wait for "delay" m-seconds
+     */
     public void makeHimWait(int delay){
         //Modify date of last displacement into the FUTCHA
         this.setLastDisplacement(this.getGame().getThread().getCount()+delay);
     }
     
+    /**
+     * Initializes the parameters for the player. They are gotten from the ParamTable XML
+     * @see fap_java.ParamTableHandler
+     */
     public void initParams(){
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
         //System.out.println(tmax);
@@ -479,6 +595,12 @@ public abstract class Player extends Human {
     public int getOri() {
         return ori;
     }
+    /**
+     * Changes a value of a parameter (displacment speed, healing rate,...) for a specific amount of time
+     * @param wich Wich parameter to be changed
+     * @param newValue The ne value of the parameter
+     * @param time The duration of the modification in ms
+     */
     public void changeParam(String wich, double newValue, int time){
         Timer timer = new Timer();
         this.param = wich;
@@ -502,6 +624,7 @@ public abstract class Player extends Human {
             go = false;
             }
         if(go){
+            // Create a timer that will clock-tick in "time" ms
             timer.schedule(new TimerTask() {
               public void run() {
                   
