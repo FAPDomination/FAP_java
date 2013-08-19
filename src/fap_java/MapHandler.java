@@ -11,18 +11,21 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class MapHandler extends DefaultHandler {
-    private CMap map = new CMap();
+    private CMap map;
     private Cell c;
     private int i = 0;
     private int j = 0;
+    private Game game;
 
     // Flags for the position of the parser
     private boolean inFile, inI, inJ, inStartCell;
     //buffer for retreiving datas
     private StringBuffer buffer;
 
-    public MapHandler() {
+    public MapHandler(Game game) {
         super();
+        this.game = game;
+        map = new CMap(game);
     }
 
 
@@ -73,29 +76,14 @@ public class MapHandler extends DefaultHandler {
             if (tabS.length > 1) {
                 param = tabS[1];
             }
+            //System.out.println(did);
 
-            if (did >= 100 && did < 200) {
-                t = 20;
-            } else if (did >= 200) {
-                t = 19;
-            } else if (param.equals("")) {
-                t = 1;
-            } else if (param.indexOf(',') == -1) {
-                if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
-                    t=1;
-                }
-                else{
-                    t = 2;
-                }
-            } else if (did == 10) {
-                t = 10;
-            } else {
-
-            }
+            t = setTypeWithDid(did, param);
+            
             //int t = Integer.parseInt(buffer.toString());
             inJ = false;
             if (did != 0) {
-                c = new Cell(i, j, t, param, did);
+                c = new Cell(i, j, t, param, did,game);
                 map.addElement(c);
             }
             j++;
@@ -141,5 +129,28 @@ public class MapHandler extends DefaultHandler {
 
     public CMap getMap() {
         return map;
+    }
+    
+    public static int setTypeWithDid(int did,String param){
+        int t=0;
+        if (did >= 100 && did < 200) {
+            t = 20;
+        } else if (did >= 200) {
+            t = 19;
+        } else if (param.equals("")) {
+            t = 1;
+        } else if (param.indexOf(',') == -1) {
+            if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
+                t=1;
+            }
+            else{
+                t = 2;
+            }
+        } else if (did == 10 ||did == 11) {
+            t = did;
+        } else {
+
+        }
+        return t;
     }
 }

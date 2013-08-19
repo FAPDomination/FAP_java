@@ -16,8 +16,23 @@ Exemple : pour le booster
 - Avoid too much calculus with a "parent" cell atribute.
 Démarrer les calculs seulement sur un front montant de current
 
+----- Special Tiles
+Warp, Switch, to be written in separate cell-extended classes ?
+Also DMap Cells ?
+
 ----- FSM
 5 levels of FSM
 1 : starter
 5 : MegaBoss of the death
 
+----- Enlightment and Ambience
+Ça tourne surtout autour du temps / jour / nuit (surcouche bleue, sombre) / heure / éléments de climat (brouillard, neige) / décors (lumières, feu de camp...). Tu dois déjà comprendre de quoi je veux parler, et oui, certains trucs passent pas (genre, qui dit temps qui défile, jour et nuit, dit course du soleil, dit ombres qui se déplacent... C'est l'inconvénient de la fausse 3D iso).
+
+Solution pour les ombres : calcul de l'angle au sol facile, calcul de la taille grâce à une pondération de la taille par un cosinus de l'angle du soleil
+J'ai peur que les surcouches fassent un effet bof par contre
+
+----- Questions générales sur le bousin
+Est-ce qu'on doit laisser le choix aux joueurs (dans versus, s'entend) sur leurs conditions de victoire ? à savoir :
+Pour victScore ?
+Pour victTile ?
+Pour victTime ?
