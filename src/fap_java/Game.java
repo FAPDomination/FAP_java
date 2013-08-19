@@ -110,6 +110,19 @@ public class Game extends JPanel implements NeedingFocus {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        // Background
+        Graphics2D g2d = (Graphics2D)g;
+        
+        int w = this.getWidth();
+        int h = this.getHeight();
+
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
+
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
+        // --- End BG
+        
         map.paintComponent(g);
         for(int j=0;j<objects.size();j++){
             objects.get(j).paintComponent(g);

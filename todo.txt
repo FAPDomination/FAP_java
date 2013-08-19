@@ -150,7 +150,7 @@ V	- Pause CountDown
 P Design
 P	- Change did of countdown cell after end of timer
 	- Pause background
-	- Game Background
+V	- Game Background
 	- Animations
 		- Skills
 		- Warps
