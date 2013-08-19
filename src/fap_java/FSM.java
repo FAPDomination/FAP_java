@@ -492,7 +492,13 @@ public class FSM{
                 Cell warpedCell = body.getGame().getMap().getCell(tab);
                 w = areaWeight(warpedCell, nRings+1);
                 case 11:
-                    w=3;
+                    // if no one switched that switch, the weight is high, else very low
+                    if(c.isWalked()){
+                        w=1;
+                    }
+                    else{
+                        w=12;
+                    }
                     break;
                 
                 default:

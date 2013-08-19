@@ -10,6 +10,7 @@ public class Cell extends Element {
     private int type;
     private Team owner;
     private boolean walkable;
+    private boolean walked;
     private double hp;
     private boolean height;
     private CMap map;
@@ -60,6 +61,8 @@ public class Cell extends Element {
         if (img == null) {
             System.out.println("Null image for this did : " + did);
         }
+        walked = false;
+
     }
 
     /**
@@ -163,38 +166,36 @@ public class Cell extends Element {
      * Recalculates the HP of a Cell, according to Conway's laws or other factors
      * @param game : the game where the cell is
      */
-    public void refreshHealthPoints(Game game) {
-        // Check if the tile is owned
-        if (owner != null) {
-            /*
-             * Check if :
-             * The cell is takable (type 1)
-             * The cell is taken
-             * The cell has enough neighbours
-             * The cell is stable (not lava)
-             */
-            boolean recovB =
-                (type == 1) && owner != null && map.countNeighbours(this) >= Params.nNeighboursConway && !unstable;
-            if (recovB) {
-                // If the cell is wounded (under initHP HPs)
-                if (hp < owner.getFirstPlayer().getInitHP()) {
-                    // The HP will recover slowly up to initHP
-                    hp += owner.getFirstPlayer().getRecovLifeAuto();
-                    // between initHP and maxHP
-                } else if (hp < owner.getFirstPlayer().getMaxHP() || (hp < Params.higherMaxHP && healthy)) {
-                    // The HP will very slowly increase up to the max limit
-                    double gainLifeFactor;
-                    // Special tile : healthy healthy has greater recovering factor
-                    if (healthy) {
-                        gainLifeFactor = Params.gainLifeFactorMultiplier;
-                    } else {
-                        gainLifeFactor = 1;
-                    }
-                    // Update HPs
-                    hp += owner.getFirstPlayer().getGainLife() * gainLifeFactor;
-                } else {
-                    // If the tale isn't lonely or anything, do nothing
-                }
+    
+    public void refreshHealthPoints(Game game){
+        //trace(_root.kco);
+                // Counts the neighbours of the same type of the tale
+                //Note : MyDMap != 8 is for lava floor and unstable cells
+                //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
+        if(owner != null){
+            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConway && !unstable;
+                if (recovB) {
+                        // If the cell is wounded (under initHP HPs)
+                        if (hp<owner.getFirstPlayer().getInitHP()) {
+                                        // The HP will recover slowly up to initHP
+                                        hp += owner.getFirstPlayer().getRecovLifeAuto();
+                                // between initHP and maxHP
+                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
+                                //_root["t"+i].onEnterFrame = function() {
+                                        // The HP will very slowly increase up to the max limit
+                                        double gainLifeFactor;
+                                        if(healthy){
+                                                gainLifeFactor = Params.gainLifeFactorMultiplier;
+                                        }
+                                        else{
+                                                gainLifeFactor = 1;
+                                        }
+                                        hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
+                                //};
+                        } else {
+                                // If the tale isn't lonely or anything, do nothing
+                                //delete _root["t"+i].onEnterFrame;
+                        }
             } else {
                 /* Only enabled when "GameOfLife" level 1 or more is on :
                         the goal here is to decrease the HP of the tale because it's alone.
@@ -430,5 +431,13 @@ public class Cell extends Element {
             b = true;
         }
         return b;
+    }
+
+    public void setWalked(boolean walked) {
+        this.walked = walked;
+    }
+
+    public boolean isWalked() {
+        return walked;
     }
 }

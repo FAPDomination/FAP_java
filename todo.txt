@@ -265,7 +265,7 @@ T			- warp weight
 V				- parse destination cell
 V				- compute zone weight
 V				- Set it as warp weight
-			- Switch weight
+V			- Switch weight
 T		- findGoodCell
 V			- General system
 T			- Available cell (not on island)
