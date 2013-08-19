@@ -10,7 +10,7 @@ V			- Node
 V			- NMap
 V		- Arrow
 		- FSM
-		- Game
+V		- Game
 		- Graph
 		- Human
 		- KListener
@@ -32,7 +32,7 @@ V			- Node
 V			- NMap
 		- Arrow
 		- FSM
-		- Game
+V		- Game
 		- Graph
 		- Human
 		- KListener
