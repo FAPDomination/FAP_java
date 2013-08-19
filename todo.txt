@@ -4,12 +4,12 @@
   What happens to the getI, getJ, etc... ?
   Bugs :
 V	- Type of blocking tiles all to 0 ?
-  Not so good :
+? Not so good :
 V 	- Player l183 : big repaint
 O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
-	- Graph guimg public
+V	- Graph guimg public
 ? Displacement Hexa
 V	- Hexa
 V	- Bug changing
@@ -145,16 +145,20 @@ O	- Way to pass param to the timer
 	- Skills
 	- Warps
 	- Traps
+	- Frozen
+	- Arrow-Touched
 	- Miner Warp
 V	- Pause CountDown
 P Design
 P	- Change did of countdown cell after end of timer
-	- Pause background
-	- Game Background
+~	- Pause background
+~	- Game Background
 	- Animations
 		- Skills
 		- Warps
 		- Traps
+		- Frozen
+		- Arrow-Touched
 		- Miner Warp
 		- Pause CountDown
 	- Cells
@@ -169,9 +173,9 @@ P		- MinerSelect
 V			- Base
 V			- Cursor
 P			- Specific for each player color
-		- Paint Owner
-			- Text in the middle of the cell
-			- Coloured background
+~		- Paint Owner
+V			- Text in the middle of the cell
+?			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
@@ -301,6 +305,8 @@ V		- Node
 V		- Pathfinder
 V	- Test
 V	- Make all static and getable
+	- isOccupied
+	- Warp
 V ScoreBar
 V	- Get nCells
 V	- Update scores

@@ -131,8 +131,7 @@ public class FSM{
             if(tryOut>=maxTryOut && prevState == pathFollow){
                 System.out.println("MAXTRYOUT");
                 event = true;
-                ArrayList<Cell> path = (ArrayList<Cell>) fsm_param;
-                Cell k = path.get(path.size()-1);
+                Cell k = findGoodCell();
                 fsm_param = k;
                 this.fsm_receive_event(ev_thirdDone);
             }
