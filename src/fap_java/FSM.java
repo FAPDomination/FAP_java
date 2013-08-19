@@ -21,6 +21,8 @@ public class FSM{
     
     private Cell nextCell;
     private boolean cellWasTaken;
+    private int tryOut;
+    private int maxTryOut = 5;
     
     private Player body;
     private int level;
@@ -109,6 +111,15 @@ public class FSM{
 
     public void shiftToPicked() {
         body.shiftStick(0,0);
+        if(body.getCurrent() == nextCell){
+            this.tryOut=0;
+        }
+        else{
+            tryOut++;
+            if(tryOut>=maxTryOut){
+                System.out.println("MAXTRYOUT");
+            }
+        }
         if(prevState == pathFollow && fsm_secParam == null){
             this.fsm_receive_event(ev_secDone);
         }
