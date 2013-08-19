@@ -27,11 +27,13 @@ V		- quicker recovery
 V	- Frozen
 V		- Implement
 V		- Booster Imuned
-  Complete shiftStick
-	- Switch on type
+V Complete shiftStick
+V	- Switch on type
 ?		- move to Cell.activateTile ?
 V		- Warp
-		- Switch
+V		- Switch
+V			- Regular
+V			- Generates special tiles
 P		- NPC exit
 V	- TrapCells
 T		- Blast method

@@ -320,19 +320,21 @@ public class Cell extends Element {
             this.type = 19;
             //this.type = 1;
             walkable = false;
-            this.height = false;
         }
         //Countdown cell
         else if (type == 2) {
             this.type = type;
             hp = Integer.parseInt(addParam);
         }
-        else if(type == 1){
-            this.type = 1;
-            walkable = true;
-            this.height = false;
-        }else {
+        else {
             this.type = type;
+        }
+        
+        if(type != 20 && type != 19){
+            walkable = true;
+        }
+        if(type != 20){
+            height = false;
         }
 
         //Healthy Healthy and special tiles
