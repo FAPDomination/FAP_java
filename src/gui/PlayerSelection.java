@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-import gui.versusSelection.characterSelection.*;
 
 import java.awt.Color;
 
@@ -256,7 +255,7 @@ public class PlayerSelection extends FAPanel {
     public void updateErrorText(){
         int onlyTeam=0;
         error = true;
-        message = "Vous devez avoir au moins deux équipes !";
+        message = "Vous devez avoir au moins deux equipes !";
         int fsmCounter = 0;
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
@@ -284,7 +283,7 @@ public class PlayerSelection extends FAPanel {
                 if(ps.getControler()<Params.nPlayersOn1Computer){
                     controlers[ps.getControler()]++;
                     if(controlers[ps.getControler()]>1){
-                        message = "Vous ne pouvez contrôler qu'un personage !";
+                        message = "Vous ne pouvez controler qu'un personage !";
                         error = true;
                         break;
                     }
