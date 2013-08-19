@@ -21,28 +21,78 @@ import javax.swing.JPanel;
 
 public class Game extends JPanel implements NeedingFocus {
 
+    /**
+     * The map of this Game. Contains a grid of cells and a set of methods to play with them
+     */
     private transient CMap map;
+    /**
+     * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
+     */
     private transient TheThread thread;
+    /**
+     * This contains all the player of this game. See also fap_java.Player
+     */
     private transient ArrayList<Player> players = new ArrayList<Player>();
+    /**
+     * The Key Listener that will handle player displacements and pause
+     */
     private transient KListener kl;
+    /**
+     * The scorebars manager
+     */
     private transient ScoreBar scoreHandler;
+    /**
+     * Contains every team of the game
+     */
     private transient ArrayList<Team> teams = new ArrayList<Team>();
     
+    /**
+     * How much points does it take to win the game
+     */
     private int victScore;
+    /**
+     * How much percent of total cells of the map does it take to win the game
+     */
     private double victTile;    // in percent
+    /**
+     * Time before automatically losing the game
+     */
     private int victTime; // in sec
     
+    /**
+     * A boolean indicating if the game is still on or if someone won
+     */
     private boolean gameEnded;
     
+    /**
+     * The Objects of the game, such as arrows
+     */
     private ArrayList<Element> objects = new ArrayList<Element>();
+    /**
+     * The animations of the game, such as explosions
+     */
     private ArrayList<Animation> anims = new ArrayList<Animation>();
     
     //Parameters to be given when starting a new game
-
+    /**
+     * A String indicating wich player is in the game and their skills. Ex : "1,8,0,4"
+     */
     private String whoIsPlaying; // This is linked with skill, here player 1 is magician
+    /**
+     * The no of team the corresponding player is in. Ex : "0,1,1,0"
+     */
     private String wichTeam; // Here player no2 is in team no0
+    /**
+     * Indicating wich player is FSM. Ex : "0,1,1,0"
+     */
     private String isFSM;   // 0 for player, other for FSM level
+    /**
+     * Wich controler (set of keys) controls this player if it's not a FSM
+     */
     private String controlers;
+    /**
+     * If the starting points of the map are mixed or fixed
+     */
     private boolean randStart;
 
     /**
@@ -56,7 +106,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param randStart If the starting points of the map are mixed or fixed
      * @param nmap The number of file the map is in. Maps are stored in "resources/Maps/map"+nmap+".xml"
      * @param victScore How much points does it take to win the game
-     * @param victTile How much percent of cells of the map does it take to win the game
+     * @param victTile How much percent of total cells of the map does it take to win the game
      * @param victTime Time before automatically losing the game
      */
     public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime) {
