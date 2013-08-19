@@ -244,10 +244,12 @@ public abstract class Player extends Human {
                 int value = (int)((Params.paramTable.get("dispSpeed")[pc])*Params.frozenFac);
                 this.changeParam("dispSpeed", value, Params.frozenTime);
             }
-
+            
+            int[] tab = new int[2];
+            
             switch (current.getType()) {
             case 10: // Warp
-                int[] tab = new int[2];
+                
                 String[] tabS = new String[2];
                 tabS = c.getAddParam().split(",");
                 tab[0] = Integer.parseInt(tabS[0]);
@@ -273,6 +275,29 @@ public abstract class Player extends Human {
                 }
                 break;
             case 11: // Switch
+                //System.out.println(current.getAddParam());
+                String[] tabSw = new String[3];
+                tabSw = c.getAddParam().split(",",3);
+                tab[0] = Integer.parseInt(tabSw[0]);
+                tab[1] = Integer.parseInt(tabSw[1]);
+
+                Cell switchedCell = game.getMap().getCell(tab);
+                String code = tabSw[2];
+                
+                String[] tabNewCell = code.split(",", 2);
+                param ="";
+                int did = Integer.parseInt(tabNewCell[0]);
+                if (tabNewCell.length > 1) {
+                    param = tabNewCell[1];
+                }
+                //System.out.println(did);
+
+                int t = MapHandler.setTypeWithDid(did, param);
+                switchedCell.setAddParam(param);
+                switchedCell.setDid(did);
+
+                switchedCell.setType(t);
+                
                 break;
             case 12: // Exit NPC
                 break;

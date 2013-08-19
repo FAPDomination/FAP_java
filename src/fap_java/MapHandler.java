@@ -78,24 +78,8 @@ public class MapHandler extends DefaultHandler {
             }
             //System.out.println(did);
 
-            if (did >= 100 && did < 200) {
-                t = 20;
-            } else if (did >= 200) {
-                t = 19;
-            } else if (param.equals("")) {
-                t = 1;
-            } else if (param.indexOf(',') == -1) {
-                if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
-                    t=1;
-                }
-                else{
-                    t = 2;
-                }
-            } else if (did == 10) {
-                t = 10;
-            } else {
-
-            }
+            t = setTypeWithDid(did, param);
+            
             //int t = Integer.parseInt(buffer.toString());
             inJ = false;
             if (did != 0) {
@@ -145,5 +129,28 @@ public class MapHandler extends DefaultHandler {
 
     public CMap getMap() {
         return map;
+    }
+    
+    public static int setTypeWithDid(int did,String param){
+        int t=0;
+        if (did >= 100 && did < 200) {
+            t = 20;
+        } else if (did >= 200) {
+            t = 19;
+        } else if (param.equals("")) {
+            t = 1;
+        } else if (param.indexOf(',') == -1) {
+            if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
+                t=1;
+            }
+            else{
+                t = 2;
+            }
+        } else if (did == 10 ||did == 11) {
+            t = did;
+        } else {
+
+        }
+        return t;
     }
 }

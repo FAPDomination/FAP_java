@@ -41,6 +41,7 @@ public class Graph {
             cells.put(13, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/minerSelect.png")));
             cells.put(14, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/minerSelectCursor.png")));
             cells.put(10, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/warp.png")));
+            cells.put(11, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/switch.png")));
             cells.put(100, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
             cells.put(102, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
             cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river.png")));
@@ -62,8 +63,9 @@ public class Graph {
             offsetsCells.put(7, new Dimension(-9,-17));
             offsetsCells.put(8, new Dimension(-9,-17));
             offsetsCells.put(9, new Dimension(-9,-17));
-            offsetsCells.put(10, new Dimension(-9,-17));
             offsetsCells.put(13, new Dimension(-9,-20));
+            offsetsCells.put(10, new Dimension(-9,-17));
+            offsetsCells.put(11, new Dimension(-9,-17));
             offsetsCells.put(100, new Dimension(-9,-16));
             offsetsCells.put(102, new Dimension(-34,-122));
             offsetsCells.put(200, new Dimension(-9,-17));

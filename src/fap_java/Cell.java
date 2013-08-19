@@ -326,7 +326,12 @@ public class Cell extends Element {
         else if (type == 2) {
             this.type = type;
             hp = Integer.parseInt(addParam);
-        } else {
+        }
+        else if(type == 1){
+            this.type = 1;
+            walkable = true;
+            this.height = false;
+        }else {
             this.type = type;
         }
 
