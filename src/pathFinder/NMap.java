@@ -12,9 +12,9 @@ public class NMap {
     public NMap(ArrayList<Cell> map) {
         this.convertMap(map);
     }
-    
+
     private ArrayList<Node> myMap = new ArrayList<Node>();
-    
+
     public ArrayList<Node> getMyMap() {
         return myMap;
     }
@@ -25,11 +25,11 @@ public class NMap {
         }
         myMap.add(c);
     }
-    
+
     public void removeElement(Node c) {
         myMap.remove(c);
     }
-    
+
     public int containsNode(Node c) {
         int b = (-1);
         for (int k = 0; k < myMap.size(); k++) {
@@ -41,10 +41,10 @@ public class NMap {
         }
         return b;
     }
-    
+
     public Node getNode(int[] tab) {
         Node c;
-        Node o = new Node(new Cell(tab[0],tab[1],1,1,null));
+        Node o = new Node(new Cell(tab[0], tab[1], 1, 1, null));
         if (tab.length == 2 && containsNode(o) != (-1)) {
             c = myMap.get(containsNode(o));
         } else {
@@ -59,7 +59,7 @@ public class NMap {
         tab[1] = j;
         return getNode(tab);
     }
-    
+
     public ArrayList<Node> surroundingNodes(Node c) {
         ArrayList<Node> surroundingNodes = new ArrayList<Node>(6);
         int i = c.getLine();
@@ -74,11 +74,11 @@ public class NMap {
             o = this.getNode(i - 1, j);
             surroundingNodes.add(o);
         } else {
-            
+
             //surroundingNodes['tl'] = [i-1, j];
             o = this.getNode(i - 1, j);
             surroundingNodes.add(o);
-            
+
             //surroundingNodes['tr'] = [i-1, j+1];
             o = this.getNode(i - 1, j + 1);
             surroundingNodes.add(o);
@@ -108,15 +108,15 @@ public class NMap {
         }
         return surroundingNodes;
     };
-    
-    private ArrayList<Node> convertMap(ArrayList<Cell> map){
+
+    private ArrayList<Node> convertMap(ArrayList<Cell> map) {
         ArrayList<Node> list = new ArrayList<Node>();
         //Do stuff
-        for(int i=0;i<map.size();i++){
+        for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
-            if(c!=null){
-            Node n = new Node(c);
-            this.myMap.add(n);
+            if (c != null) {
+                Node n = new Node(c);
+                this.myMap.add(n);
             }
         }
         return list;

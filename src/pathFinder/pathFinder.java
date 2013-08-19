@@ -1,8 +1,5 @@
 package pathFinder;
 
-import com.sun.org.apache.xpath.internal.operations.Number;
-
-import fap_java.CMap;
 import fap_java.Cell;
 
 import java.util.ArrayList;

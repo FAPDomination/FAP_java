@@ -2,26 +2,26 @@ package pathFinder;
 
 import fap_java.Cell;
 
-public class Node{
-    
-                    private double g;
-                    private double h;
-                    private double f;
-                    private Cell cell;
-                    private int col;
-                    private int line;
-                    private boolean walkable;
-                    private Node parent;
-    
+public class Node {
+
+    private double g;
+    private double h;
+    private double f;
+    private Cell cell;
+    private int col;
+    private int line;
+    private boolean walkable;
+    private Node parent;
+
     public Node(Cell c) {
         //super();
         cell = c;
         col = c.getJ();
         line = c.getI();
         walkable = c.isWalkable();
-        g=0;
-        f=0;
-        h=0;
+        g = 0;
+        f = 0;
+        h = 0;
         parent = this;
     }
 
@@ -92,10 +92,10 @@ public class Node{
     public Node getParent() {
         return parent;
     }
-    
-    public boolean equals(Node c){
+
+    public boolean equals(Node c) {
         boolean b = false;
-        if(this.getLine() == c.getLine() && this.getCol() == c.getCol()){
+        if (this.getLine() == c.getLine() && this.getCol() == c.getCol()) {
             b = true;
         }
         return b;
