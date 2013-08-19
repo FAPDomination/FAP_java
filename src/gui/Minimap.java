@@ -34,7 +34,7 @@ public class Minimap{
     private int w = 147;
     private int h = 208;
 
-    private static Image img = Graph.guimg.get("minimapBG");
+    private static Image img = Graph.getGuimg().get("minimapBG");
     private JPanel panel;
     private String name;
     private boolean isSelected;

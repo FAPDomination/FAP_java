@@ -38,8 +38,8 @@ public abstract class FAPanel extends JPanel {
         super();
         this.prevPanel = prevPanel;
         this.parent = parent;
-        sword = Graph.guimg.get("MM_sword");
-        clouds = Graph.guimg.get("MM_clouds");
+        sword = Graph.getGuimg().get("MM_sword");
+        clouds = Graph.getGuimg().get("MM_clouds");
         
         btnGoBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

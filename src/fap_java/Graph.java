@@ -18,7 +18,7 @@ public class Graph {
     // Cells images
     protected static Map<Integer, Image> cells = new HashMap<Integer, Image>();
     protected static Map<String, Image> list = new HashMap<String, Image>();
-    public static Map<String, Image> guimg = new HashMap<String, Image>();
+    protected static Map<String, Image> guimg = new HashMap<String, Image>();
     protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
     
     // Important factors for drawing cells
@@ -86,5 +86,9 @@ public class Graph {
     }
     
     public Graph() {
+    }
+
+    public static Map<String, Image> getGuimg() {
+        return guimg;
     }
 }
