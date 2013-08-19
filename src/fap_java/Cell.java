@@ -1,7 +1,9 @@
 package fap_java;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 public class Cell extends Element {
@@ -109,13 +111,17 @@ public class Cell extends Element {
         
         // Write the amount of HP of the tile
         if (hp > 0) {
+            String hps = "" + (int)hp;
+            Graphics2D g2d = (Graphics2D)g;
+            FontMetrics fm = g2d.getFontMetrics();
+            int textWidth = fm.stringWidth(hps);
             if(owner !=null){
                 g.setColor(owner.getColor());
             }
             else{
                 g.setColor(Color.black);
             }
-            g.drawString("" + (int)hp, x + 5, y + 10);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
         }
     }
 

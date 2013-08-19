@@ -169,9 +169,9 @@ P		- MinerSelect
 V			- Base
 V			- Cursor
 P			- Specific for each player color
-		- Paint Owner
-			- Text in the middle of the cell
-			- Coloured background
+~		- Paint Owner
+V			- Text in the middle of the cell
+?			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
