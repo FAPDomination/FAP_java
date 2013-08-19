@@ -47,8 +47,8 @@ V		- TheThread
 V		- Tools
 		- XMLParser
 	- Attributes
-		- Cell
-		- CMap
+V		- Cell
+V		- CMap
 		- Pathfinding
 			- Pathfinder
 			- Node

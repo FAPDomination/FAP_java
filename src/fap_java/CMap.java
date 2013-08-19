@@ -3,14 +3,25 @@ package fap_java;
 import java.awt.Graphics;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CMap {
+    /**
+     * A factor that multiplies the sizes of EEEEEEEverything
+     */
     public static final int FAC = 2;
+    /**
+     * Tile Width
+     */
     public static final int TW = 60 / FAC;
+    /**
+     * Tile Height
+     */
     public static final int TH = 35 / FAC;
+    /**
+     * Offset on y that the map has
+     */
     public static final int OFFMAP = 0;
 
     /**
@@ -20,9 +31,17 @@ public class CMap {
         this.game = game;
     }
 
-    //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
+    /**
+     * The arrayList of cells that contains aaaall the cells of the grid
+     */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    /**
+     * The starting points of this map (defined in the XML file)
+     */
     private ArrayList<Cell> startCells = new ArrayList<Cell>();
+    /**
+     * The game where it's happening
+     */
     private Game game;
 
     /**
@@ -102,6 +121,10 @@ public class CMap {
         return myMap;
     }
 
+    /**
+     * Adds a cell to the map and replaces it if needed
+     * @param c the cell to be added
+     */
     public void addElement(Cell c) {
         if (containsCell(c) != -1) {
             myMap.remove(containsCell(c));
