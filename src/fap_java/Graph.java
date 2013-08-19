@@ -72,6 +72,7 @@ public class Graph {
             offsetsCells.put(201, new Dimension(-9,-17));
             // Other images
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
+            //list.put("warp", Toolkit.getDefaultToolkit().getImage(load.getResource("images/animations/teleport.png")));
             //Gui
             guimg.put("MM_sword", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/sword.png")));
             guimg.put("MM_clouds", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/clouds.png")));
@@ -90,5 +91,9 @@ public class Graph {
 
     public static Map<String, Image> getGuimg() {
         return guimg;
+    }
+
+    public static Map<String, Image> getList() {
+        return list;
     }
 }

@@ -1,5 +1,8 @@
 package fap_java;
 
+import animations.Animation;
+import animations.AnimWarp;
+
 import characters.Booster;
 
 import characters.Miner;
@@ -267,6 +270,7 @@ public abstract class Player extends Human {
                         this.setJ(current.getJ());
                         current.activateCell(this);
                         // add a little animation :p
+                        Animation anim = new AnimWarp(200,200,game.getThread());
                     } else {
                         //Restore parent ?
                         /*

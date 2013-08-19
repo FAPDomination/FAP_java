@@ -145,6 +145,8 @@ O	- Way to pass param to the timer
 	- Skills
 	- Warps
 	- Traps
+	- Frozen
+	- Arrow-Touched
 	- Miner Warp
 V	- Pause CountDown
 P Design
@@ -155,6 +157,8 @@ P	- Change did of countdown cell after end of timer
 		- Skills
 		- Warps
 		- Traps
+		- Frozen
+		- Arrow-Touched
 		- Miner Warp
 		- Pause CountDown
 	- Cells
