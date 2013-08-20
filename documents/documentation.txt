@@ -23,6 +23,7 @@ V		- Team
 V		- TheThread
 V		- Tools
 		- XMLParser
+V		- Params
 	- Comments
 V		- Cell
 V		- CMap
@@ -38,7 +39,7 @@ V		- Game
 V		- KListener
 		- MapHandler
 		- NPC
-		- Params
+V		- Params
 		- ParamTableHandler
 V		- Player
 		- ScoreBar
@@ -61,7 +62,7 @@ V		- Game
 V		- KListener
 		- MapHandler
 		- NPC
-		- Params
+V		- Params
 		- ParamTableHandler
 V		- Player
 		- ScoreBar
@@ -84,7 +85,7 @@ V		- Team
 		- KListener
 		- MapHandler
 		- NPC
-		- Params
+V		- Params
 		- ParamTableHandler
 		- Player
 		- ScoreBar
