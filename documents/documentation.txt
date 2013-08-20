@@ -17,9 +17,9 @@ V		- KListener
 		- MapHandler
 		- NPC
 		- ParamTableHandler
-		- Player
+V		- Player
 		- ScoreBar
-		- Team
+V		- Team
 V		- TheThread
 V		- Tools
 		- XMLParser
@@ -40,9 +40,9 @@ V		- KListener
 		- NPC
 		- Params
 		- ParamTableHandler
-		- Player
+V		- Player
 		- ScoreBar
-		- Team
+V		- Team
 V		- TheThread
 V		- Tools
 		- XMLParser
@@ -63,36 +63,13 @@ V		- KListener
 		- NPC
 		- Params
 		- ParamTableHandler
-		- Player
+V		- Player
 		- ScoreBar
-		- Team
+V		- Team
 		- TheThread
 		- Tools
 		- XMLParser
-	- Class Head
-		- Cell
-		- CMap
-		- Pathfinding
-			- Pathfinder
-			- Node
-			- NMap
-		- Arrow
-		- FSM
-		- Game
-		- Graph
-		- Human
-		- KListener
-		- MapHandler
-		- NPC
-		- Params
-		- ParamTableHandler
-		- Player
-		- ScoreBar
-		- Team
-		- TheThread
-		- Tools
-		- XMLParser
-	- See Also
+	- Class Head and See Also
 		- Cell
 		- CMap
 		- Pathfinding
