@@ -141,18 +141,25 @@ V	- Timer
 V	- Implement all params
 O	- Pointer to escape the double switch
 O	- Way to pass param to the timer
+  - Animations
+	- Skills
+V	- Warps
+	- Traps
+P	- Miner Warp
+V		- Implemented
+P		- Alpha
+V	- Pause CountDown
 P Design
 P	- Change did of countdown cell after end of timer
 	- Pause background
 	- Game Background
 	- Animations
 		- Skills
-		- Warps
 		- Traps
-		- Miner Warp
+P~		- Miner Warp
 V			- Implemented
 ~			- Speed
-			- Alpha
+P			- Alpha
 		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
