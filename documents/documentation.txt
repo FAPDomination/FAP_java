@@ -67,8 +67,8 @@ V		- Params
 V		- Player
 		- ScoreBar
 V		- Team
-		- TheThread
-		- Tools
+V		- TheThread
+V		- Tools
 		- XMLParser
 	- Class Head and See Also
 		- Cell
@@ -90,10 +90,8 @@ V		- Params
 		- Player
 		- ScoreBar
 		- Team
-		- TheThread
-		- Tools
+V		- TheThread
+V		- Tools
 		- XMLParser
 	- Not Necessary	
 		- Element
-		- Frame1
-		- Application1
