@@ -14,7 +14,7 @@ V		- Game
 		- Graph
 		- Human
 V		- KListener
-		- MapHandler
+V		- MapHandler
 		- NPC
 		- ParamTableHandler
 V		- Player
@@ -37,7 +37,7 @@ V		- Game
 		- Graph
 		- Human
 V		- KListener
-		- MapHandler
+V		- MapHandler
 		- NPC
 V		- Params
 		- ParamTableHandler
@@ -60,7 +60,7 @@ V		- Game
 		- Graph
 		- Human
 V		- KListener
-		- MapHandler
+V		- MapHandler
 		- NPC
 V		- Params
 		- ParamTableHandler
@@ -83,7 +83,7 @@ V		- XMLParser
 		- Graph
 		- Human
 		- KListener
-		- MapHandler
+V		- MapHandler
 		- NPC
 V		- Params
 		- ParamTableHandler
