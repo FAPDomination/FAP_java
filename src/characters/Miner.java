@@ -1,5 +1,8 @@
 package characters;
 
+import animations.AnimWarp;
+import animations.Animation;
+
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Params;
@@ -100,6 +103,7 @@ public class Miner extends Player{
                        this.setJ(c.getJ());
                        c.activateCell(this);
                        // add a little animation :p
+                       Animation anim = new AnimWarp(this.getCurrent(),this.getGame().getThread());
                    }
                }
                c.setMinerSing(false);

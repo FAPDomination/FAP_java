@@ -369,7 +369,7 @@ public abstract class Player extends Human {
                         this.setJ(current.getJ());
                         current.activateCell(this);
                         // add a little animation :p
-                        Animation anim = new AnimWarp(200,200,game.getThread());
+                        Animation anim = new AnimWarp(current,game.getThread());
                     } else {
                         //Restore parent ?
                         /*

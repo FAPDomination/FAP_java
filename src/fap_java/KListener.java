@@ -75,7 +75,7 @@ public class KListener implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         while (pressed.contains(code)) {
-            pressed.remove(code);
+            pressed.remove((Integer)code);
         }
 
         for (int i = 0; i < players.size(); i++) {
