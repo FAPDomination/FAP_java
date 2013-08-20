@@ -10,19 +10,20 @@ V			- Node
 V			- NMap
 V		- Arrow
 		- FSM
-		- Game
+V		- Game
 		- Graph
 		- Human
-		- KListener
-		- MapHandler
+V		- KListener
+V		- MapHandler
 		- NPC
 		- ParamTableHandler
-		- Player
+V		- Player
 		- ScoreBar
-		- Team
+V		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
+V		- XMLParser
+V		- Params
 	- Comments
 V		- Cell
 V		- CMap
@@ -32,21 +33,65 @@ V			- Node
 V			- NMap
 		- Arrow
 		- FSM
+V		- Game
+		- Graph
+		- Human
+V		- KListener
+V		- MapHandler
+		- NPC
+V		- Params
+		- ParamTableHandler
+V		- Player
+		- ScoreBar
+V		- Team
+V		- TheThread
+V		- Tools
+V		- XMLParser
+	- Attributes
+V		- Cell
+V		- CMap
+		- Pathfinding
+			- Pathfinder
+			- Node
+			- NMap
+		- Arrow
+		- FSM
+V		- Game
+		- Graph
+		- Human
+V		- KListener
+V		- MapHandler
+		- NPC
+V		- Params
+		- ParamTableHandler
+V		- Player
+		- ScoreBar
+V		- Team
+V		- TheThread
+V		- Tools
+V		- XMLParser
+	- Class Head and See Also
+		- Cell
+		- CMap
+		- Pathfinding
+			- Pathfinder
+			- Node
+			- NMap
+		- Arrow
+		- FSM
 		- Game
 		- Graph
 		- Human
 		- KListener
-		- MapHandler
+V		- MapHandler
 		- NPC
-		- Params
+V		- Params
 		- ParamTableHandler
 		- Player
 		- ScoreBar
 		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
-	- Not Necessary
+V		- XMLParser
+	- Not Necessary	
 		- Element
-		- Frame1
-		- Application1
