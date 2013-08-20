@@ -22,7 +22,7 @@ V		- Player
 V		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
+V		- XMLParser
 V		- Params
 	- Comments
 V		- Cell
@@ -46,7 +46,7 @@ V		- Player
 V		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
+V		- XMLParser
 	- Attributes
 V		- Cell
 V		- CMap
@@ -69,7 +69,7 @@ V		- Player
 V		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
+V		- XMLParser
 	- Class Head and See Also
 		- Cell
 		- CMap
@@ -92,6 +92,6 @@ V		- Params
 		- Team
 V		- TheThread
 V		- Tools
-		- XMLParser
+V		- XMLParser
 	- Not Necessary	
 		- Element
