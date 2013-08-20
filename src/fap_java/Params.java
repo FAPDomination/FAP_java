@@ -33,26 +33,26 @@ public class Params {
      * The max HP a special tile "Healthy healthy" can reach. These special tiles don't stop at "maxHP" HealthPoints
      * but go on up to higherMaxHP.
      */
-    public static int higherMaxHP = 200;
+    public static final int higherMaxHP = 200;
     /**
      * The rate at wich the healthy healthy tile recovers
      */
-    public static double gainLifeFactorMultiplier = 1.5;    //For healthy healthy
+    public static final double gainLifeFactorMultiplier = 1.5;    //For healthy healthy
     /**
      * The time the modification given by a frozen cell will be active
      */
-    public static int frozenTime = 4*1000;
+    public static final int frozenTime = 4*1000;
     /**
      * The displacement speed factor ( /3 ) that a player will have if frozen by a frozen cell
      */
-    public static double frozenFac = 3;
+    public static final double frozenFac = 3;
     /**
      * The delay (in ms) between each Thread clock-tick.
      * @see fap_java.TheThread
      */
-    public static int delay = 40;
+    public static final int delay = 40;
     /**
-     * The amount of HP a cell loses when alone
+     * The amount of HP a cell loses when it is a timer-cell
      */
     public static double decLifeCountDown = 1;
     /**
@@ -61,29 +61,29 @@ public class Params {
      * @see fap_java.Cell
      * @see fap_java.MapHandler
      */
-    public static int idBlockingHigh = 100;
+    public static final int idBlockingHigh = 100;
     /**
      * The ID of the first Low-Blocking DID.
      * This represents the first Design ID of cell that is blocking and low, like a river
      * @see fap_java.Cell
      * @see fap_java.MapHandler
      */
-    public static int idblockingLow = 200;
+    public static final int idblockingLow = 200;
     /**
      * Amount of time (in seconds) before the score get updated
      * @see fap_java.ScoreBar
      */
-    public static int giveScore = 2;
+    public static final int giveScore = 2;
     /**
      * How much point per cell the player receives
      * @see fap_java.ScoreBar
      */
-    public static int rPoints = 2;
+    public static final int rPoints = 2;
     
     /**
      * The duration of the pause countdown after resuming the game
      */
-    public static int pauseDuration = 3600;
+    public static final int pauseDuration = 3600;
     
     //Skill-Related Parameters :
     /**
@@ -163,7 +163,7 @@ public class Params {
     /**
      * The time someone should stand waiting after throwing a skill
      */
-    public static int timeAfterSkill = 1000; //in m-second
+    public static final int timeAfterSkill = 1000; //in m-second
     
     /**
      * The forbidden characters ID.
@@ -196,19 +196,19 @@ public class Params {
      * Between each displacements it waits, to seem more "human"
      * @see fap_java.FSM
      */
-    public static int fsmReactionTime = 10;
+    public static final int fsmReactionTime = 10;
     /**
      * The default amount of points a player should have to win a game
      */
-    public static int defaultVictoryScore = 3000;
+    public static final int defaultVictoryScore = 3000;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */
-    public static int nPlayersOn1Computer = 3;
+    public static final int nPlayersOn1Computer = 3;
     /**
      * Maximum number of players in one game
      */
-    public static int maxPlayers = 8;
+    public static final int maxPlayers = 8;
     
     /**
      * The code of the key used to pause the game
