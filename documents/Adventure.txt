@@ -1,0 +1,49 @@
+Réflexions sur le mode Aventure de FAP Domination :
+
+Carte du monde avec cellules disponibles ou non.
+Remporter un combat sur une cellule disponible débloque certaines cellules autour, prédéfinies (1, 2, 3 ou plus)
+- Les villes sont walkable par défaut, mais pas forcément accessibles puisqu'il faut se frayer un chemin
+- Pas obligé de tout conquérir pour gagner, mais plusieurs idées :
+	- Un achievement "Vous avez tout gagné"
+	- Des trucs débloqués contre le boss si on a plus de conquètes (par exemple si on n'a que 50% des maps remportées quand on arrive au boss, on n'a accès qu'à 2 personnages)
+- Divisés en zones (forêt, campagne, montagne, ténèbres, ...), chaque zone débloquant un perso
+- Une zone avec une autre équipe qui va également pour tuer le boss. On nous propose de s'y allier et 
+	- Si on accepte, sur cette zone ils jouent dans notre équipe (une IA en plus avec le joueur)
+	- Si on refuse, chacun pour soi (une IA autre équipe, une IA méchant, le joueur)
+- Des combats à plusieurs
+	- En équipe avec des IA
+	- 1 contre 2 faibles
+	- 2 contre 1 fort
+	- Etc
+
+------------- NPCs et quêtes
+
+Des NPCs en ville ou ailleurs proposent des quêtes qui permettent
+	- De débloquer des persos
+	- D'améliorer des persos (decLifeForced par exemple)
+	- Débloquer des compagnons (+1 IA dans votre équipe pour n combats dans telle ou telle zone)
+
+Les quêtes peuvent être
+	- Combat "surprise"
+	- Conquérir telle zone à 100%
+	- Aller chercher un objet chez/parler à/combattre un NPC dans un autre endroit
+	- Déclencher un mini-jeu ? (type morpion)
+	- Enigme
+ 	- Autre idée ?
+
+------------- Tutoriel
+
+------------- Technique
+
+Un NPC extends Element
+Un NPC possède une liste d'actions qui s'éxécute en entier jusqu'à fin ou sortie
+Actions possibles
+	- Display message
+	- Choix ("Oui/Non")
+	- Tester une variable
+	- Prendre/Donner objet
+	- Switcher interrupteur
+Un NPC est walkable ou non. Si walkable, il se déclenche à l'arrivée du joueur sur la case. si non-walkable, il se déclenche lorsque le joueur tente d'aller sur la case
+
+Un NPC placé sur une propriété "auto-trigger"
+Un NPC a une case, une image à diffuser. Si ces valeurs sont nulles, "auto-trigger" est set à true automatiquement.

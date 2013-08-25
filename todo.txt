@@ -233,7 +233,7 @@ V		- Class File
 ~		- Attributes
 E		- Complete the state-transition table
 		- States
-P			- Picking
+V			- Picking
 V				- Pick random cell as test
 V				- Real  state
 			- Shifting
