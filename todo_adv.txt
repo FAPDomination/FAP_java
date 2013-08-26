@@ -4,4 +4,35 @@ V	- Create attribute for "no-conquest mode"
 V	- Create attribute for "adventure mode"
 T	- Execute (block every battle stuff)
 	- Define manually a cell for the player to start on
-  Full ADV maps should only have one startCell in the XML file
+  General ADV Things
+	- handle NPCs
+		- Make list of NPCs
+		- Check for each displacement
+		- Check for each displacement and hitting SKILL
+	- SKILL Key
+		- Space is also a skill key
+		- Timer
+  Semi-ADV
+	- End game (victory or not)
+  Full-ADV
+P	- maps should only have one startCell in the XML file
+  NPCs
+	- Actions
+		- Display message
+		- Choice ("Y/N" for example)
+		- Test a variable
+		- Give/Take object (=switch a switch)
+		- Switch a switch
+		- Modify another NPC (position, wakable)
+		- Modify a cell (did, walkable)
+		- Start Game
+	- Object
+		- Placement
+		- Execution
+			- One at a time security
+			- Pause game (Special pause for NPC)
+			- Trigger auto-trigger NPC if any
+	- NPC Exit
+		- Create
+		- Implement (not in shiftStick but parse in mapHandler)
+  World map
