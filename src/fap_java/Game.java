@@ -97,6 +97,15 @@ public class Game extends JPanel implements NeedingFocus {
      * If the starting points of the map are mixed or fixed
      */
     private boolean randStart;
+    
+    /* ----- Adventure Related stuff */
+    /**
+     * Tells if the game is in adventure mode
+     * 0 : battle mode (conquest and stuff) launched from versus
+     * 1 : battle mode launched from adventure
+     * 2 : full adventure map (town without battle)
+     */
+    private int adv;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -112,7 +121,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param victTile How much percent of total cells of the map does it take to win the game
      * @param victTime Time before automatically losing the game
      */
-    public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime) {
+    public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime, int adv) {
         this.victScore = victScore;
         this.victTile = victTile;
         this.victTime = victTime;
@@ -121,6 +130,7 @@ public class Game extends JPanel implements NeedingFocus {
         this.isFSM = isFSM;
         this.randStart = randStart;
         this.controlers = controlers;
+        this.adv = adv;
         
         initGame(nmap);
         
@@ -141,17 +151,27 @@ public class Game extends JPanel implements NeedingFocus {
      * @param victTile
      * @param victTime
      */
-    public Game(ArrayList<PlayerSelect> playerSelect, boolean randStart, int mapNumber, int victScore, double victTile, int victTime) {
+    public Game(ArrayList<PlayerSelect> playerSelect, boolean randStart, int mapNumber, int victScore, double victTile, int victTime, int adv) {
         this.victScore = victScore;
         this.victTile = victTile;
         this.victTime = victTime;
         initGame(mapNumber);
         this.randStart = randStart;
+        this.adv = adv;
         
         initTeams(playerSelect);
         initPlayers(playerSelect);
         
         scoreHandler = new ScoreBar(this);
+    }
+    
+    /**
+     * Initializes a full adventure map (whitout battling and stuff), such as a town, qhere the player can peacefully
+     * walk and talk to NPCs.
+     * @param nmap The ID of the map where it's played
+     */
+    public Game(int nmap){
+        this("1","0","0","0",false,nmap,0,0,0,2);
     }
     
     /**
