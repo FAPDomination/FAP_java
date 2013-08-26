@@ -200,7 +200,7 @@ public abstract class Player extends Human {
         
         //handleKeys();
         
-        if (i == 4) { //Skill
+        if (i == 4 && game.getAdv() <2) { //Skill
             this.getSkill();
         }
 
@@ -335,7 +335,9 @@ public abstract class Player extends Human {
             this.setI(current.getI());
             this.setJ(current.getJ());
             // Activate the cell, ie conquer it
-            current.activateCell(this);
+            if(game.getAdv() < 2){
+                current.activateCell(this);
+            }
             
             if(!current.isWalked()){
                 current.setWalked(true);

@@ -117,7 +117,7 @@ public class TheThread implements Runnable{
         }
         
         // When it's time to check scores
-        if(count % (1000 * Params.giveScore) == 0){
+        if(myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0){
             // Scores are updated
             myGame.getScoreHandler().computeScores();
         }

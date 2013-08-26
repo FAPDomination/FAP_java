@@ -139,7 +139,9 @@ public class Game extends JPanel implements NeedingFocus {
         initPlayers();
         
         // Init scores
-        scoreHandler = new ScoreBar(this);
+        if(adv < 2){
+            scoreHandler = new ScoreBar(this);
+        }
     }
 
     /**
@@ -162,7 +164,9 @@ public class Game extends JPanel implements NeedingFocus {
         initTeams(playerSelect);
         initPlayers(playerSelect);
         
-        scoreHandler = new ScoreBar(this);
+        if(adv < 2){
+            scoreHandler = new ScoreBar(this);
+        }
     }
     
     /**
@@ -229,8 +233,10 @@ public class Game extends JPanel implements NeedingFocus {
         for(int j=0;j<objects.size();j++){
             objects.get(j).paintComponent(g);
         }
-        // Repaint the scoreHandler
-        this.scoreHandler.paintComponent(g);
+        if(adv <2){
+            // Repaint the scoreHandler
+            this.scoreHandler.paintComponent(g);
+        }
         
         // Paint black screen if the game is paused
         if(!thread.getRunning()){
@@ -266,10 +272,12 @@ public class Game extends JPanel implements NeedingFocus {
             Cell c = myMap.get(j);
             c.refreshHealthPoints(this);
         }
-        for (int i = 0; i < players.size(); i++) {
-            Player p = players.get(i);
-            Cell c = p.getCurrent();
-            c.activateCell(p);
+        if(adv <2){
+            for (int i = 0; i < players.size(); i++) {
+                Player p = players.get(i);
+                Cell c = p.getCurrent();
+                c.activateCell(p);
+            }
         }
     }
 
@@ -658,4 +666,12 @@ public class Game extends JPanel implements NeedingFocus {
     }
     
 // The game, you just lost
+
+    public void setAdv(int adv) {
+        this.adv = adv;
+    }
+
+    public int getAdv() {
+        return adv;
+    }
 }
