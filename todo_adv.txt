@@ -1,5 +1,7 @@
 Adventure :
-  Game
-	- Create attribute for "no-conquest mode"
-	- Create attribute for "adventure mode"
-	- Execute
+  Game Init
+V	- Create attribute for "no-conquest mode"
+V	- Create attribute for "adventure mode"
+T	- Execute (block every battle stuff)
+	- Define manually a cell for the player to start on
+  Full ADV maps should only have one startCell in the XML file

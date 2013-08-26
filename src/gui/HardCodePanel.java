@@ -50,7 +50,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
             }
         });
         
-        this.jtxtWho.setText("0,0,0,0");
+        this.jtxtWho.setText("5");
         this.jtxtTeam.setText("0,0,0,0");
         this.jtxtisFSM.setText("0,0,0,0");
         this.jtxtControlers.setText("0,0,0,0");
@@ -87,7 +87,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         String isFSM = jtxtisFSM.getText();
         String controlers = jtxtControlers.getText();
         */
-        int nmap = 5;
+        int nmap = Integer.parseInt(jtxtWho.getText());
         Game game = new Game(nmap);
        parent.changePanel(new LoadingScreen(parent,game,this,nmap), BorderLayout.CENTER);
     }

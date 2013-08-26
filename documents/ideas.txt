@@ -19,3 +19,11 @@ Est-ce qu'on doit laisser le choix aux joueurs (dans versus, s'entend) sur leurs
 Pour victScore ?
 Pour victTile ?
 Pour victTime ?
+
+----- FAP LAN
+
+Ce lui qui hoste clique simplement sur host
+Toute personne qui rejoint une partie (dont celui qui hoste) clique sur rejoindre et prend un écran où il peut choisir son personnage.
+Le host a également un écran de sélection des éventuelles IA et de la map
+
+OMG trop bonne idée : pendant cette sélection les persos apparaissent sur une petite map où ils peuvent marcher un peu et voir qui joue, et quel personnage (plus les IAs qui apparaissent avec un skin différent), ainsi que quelle équipe. Cette map reste dans un coin pendant la sélection du perso (char + team) et quand tout le monde est prêt (a cliqué "valider/continuer/commencer") les PlayerSelect sont parsés par le host
