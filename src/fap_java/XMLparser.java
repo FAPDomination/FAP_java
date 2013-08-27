@@ -40,7 +40,7 @@ public class XMLparser {
      */
     public static CMap parseMap(int mapID, Game game){
         // Creates a Handler that will process the datas
-        DefaultHandler dh = new MapHandler(game);
+        DefaultHandler dh = new MapHandler(game, mapID);
         // Call the parse method
         parseXML("Maps/map"+mapID+".xml", dh);
 

@@ -42,10 +42,10 @@ public class MapHandler extends DefaultHandler {
      * Initializes a map Handler
      * @param game the game where it happens
      */
-    public MapHandler(Game game) {
+    public MapHandler(Game game, int fileID) {
         super();
         this.game = game;
-        map = new CMap(game);
+        map = new CMap(game,fileID);
     }
 
     /**

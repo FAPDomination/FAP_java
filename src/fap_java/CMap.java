@@ -27,8 +27,9 @@ public class CMap {
     /**
      * Creates a map with all tools needed.
      */
-    public CMap(Game game) {
+    public CMap(Game game, int fileID) {
         this.game = game;
+        this.fileID = fileID;
     }
 
     /**
@@ -43,6 +44,8 @@ public class CMap {
      * The game where it's happening
      */
     private Game game;
+    
+    private int fileID;
 
     /**
      * Give the position in pixels of a couple a values
@@ -359,5 +362,13 @@ public class CMap {
 
         return ringsOfCells;
 
+    }
+
+    public void setFileID(int fileID) {
+        this.fileID = fileID;
+    }
+
+    public int getFileID() {
+        return fileID;
     }
 }
