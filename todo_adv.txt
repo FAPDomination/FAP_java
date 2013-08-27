@@ -7,8 +7,10 @@ T	- Execute (block every battle stuff)
   General ADV Things
 	- handle NPCs
 		- Make list of NPCs
-		- Check for each displacement
-		- Check for each displacement and hitting SKILL
+		- Check for each displacement IF NOT world map
+		- Check for hitting SKILL
+			- If not world map, look around
+			- If world map, look under
 	- SKILL Key
 		- Space is also a skill key
 		- Timer
@@ -35,4 +37,31 @@ P	- maps should only have one startCell in the XML file
 	- NPC Exit
 		- Create
 		- Implement (not in shiftStick but parse in mapHandler)
+	- NPC World Map blocking
+		- Create
+			- Image
+			- Not walkable
+		- Implement
+	- NPC world Map starting game
+		- Create
+			- Image
+				- Black if not conquered but available
+				- Green if conquered
+			- Walkable
+			- Actions
+				- Do you wanna play ?
+				- Start Game
+		- Implement
+			
   World map
+	- Get list of conquered cells
+	- Parse list of available cells
+	- Create NPCs to cover the designated cells
+		- Not available cells
+		- available cells
+  Game Datas
+	- Decide wich method will be used
+	- Make tests
+	- Lists all game datas to be saved
+	- Make a save/load class
+	- Implement

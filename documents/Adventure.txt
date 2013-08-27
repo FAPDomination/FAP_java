@@ -68,3 +68,23 @@ Seulement UN auto-trigger NPC est autorisé par map (à faire manuellement)
 Il conviendra d'ajouter des constructeurs à Game :
 - Un constructeur pour les maps de type aventure (sans conquète) où on donnera juste un numéro de map qui chargera le design, la position de départ et la liste des NPCs. Ce constructeur désactivera les fonctions de conquète des cellules et les points de vie.
 - Un constructeur pour les maps de type combat MAIS lancées depuis le mode aventure. Il suffira de passer un booléen qui, lors de la fin du match, lancera les actions associées, à savoir afficher l'écran de victoire/défaite approprié et faire les modifications qui vont bien sur la carte du monde. Il charge tout de même une liste de NPCs (par exemple les maps de combat du tutoriel au début auront des NPCs qui diffuseront des messages)
+
+-------------- Sauvegardes
+
+Il y a plusieurs solutions qu'il convient de regarder :
+
+# Solution 1 :
+Ecrire toutes les valeurs à la suite dans un gros fichier tel que c'était prévu à la base, avec un bit ASCII pour chaque valeur, de cette façon on pourra stocker à la suite :
+- Les valeurs des maps de la worldmap
+- Les interrupteurs du jeu
+- Les valeurs des divers trucs débloqués (persos, bonuses, ...)
+De toute façon les joueurs un peu bidouilleurs vont aller modifier ce genre de fichier du coup pas la peine de crypter le machin, si ils veulent cheater c'est leur problème
+
+# Solution 2 :
+La serialization.
+il faut se renseigner sur ce que c'est exactement et comment ça s'opère, mais je dirais que ça permet d'émettre pour un unique objet un unique numéro de série contenant toutes ses infos, et qu'à partir d'un numéro de série java peut parser le tout pour reconstituer cet unique objet.
+Dans ce cas là, on fait une classe "sauvegarde" qui contient toutes les données du jeu, avec un attribut par truc et des accesseurs, et ont stocke son numéro de série quand on sauvegarde, et on le parse quand on veut charger.
+Il faut apprendre à rendre cette classe sérializable.
+http://gamedev.stackexchange.com/questions/2617/game-state-saving-loading
+http://gamedev.stackexchange.com/questions/19046/what-is-a-good-file-format-for-saving-game-data
+"Controlled Binary Serialization"

@@ -176,6 +176,10 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public Game(int nmap){
         this("1","0","0","0",false,nmap,0,0,0,2);
+        // Detect World Map
+        if(nmap == 0){
+            initWorldMap();
+        }
     }
     
     /**
@@ -674,5 +678,11 @@ public class Game extends JPanel implements NeedingFocus {
 
     public int getAdv() {
         return adv;
+    }
+
+    private void initWorldMap() {
+        // Get list of conquered cells
+        // Parse list of available cells
+        // Create NPCs to cover the designated cells
     }
 }
