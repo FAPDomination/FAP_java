@@ -76,7 +76,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         
         initFocus();
         
-        // tests
+        // Loading Game
         GameSave gs = Tools.loadGame();
     }
     
@@ -93,6 +93,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         String controlers = jtxtControlers.getText();
         */
         int nmap = Integer.parseInt(jtxtWho.getText());
+        GameSave gs = Tools.loadGame();
         Game game = new Game(nmap);
        parent.changePanel(new LoadingScreen(parent,game,this,nmap), BorderLayout.CENTER);
     }

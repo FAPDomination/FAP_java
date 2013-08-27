@@ -8,6 +8,7 @@ import characters.*;
 
 import gui.Constants;
 
+import gui.GameSave;
 import gui.NeedingFocus;
 
 import gui.PlayerSelect;
@@ -106,6 +107,8 @@ public class Game extends JPanel implements NeedingFocus {
      * 2 : full adventure map (town without battle)
      */
     private int adv;
+    
+    private GameSave gameSave;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -166,6 +169,10 @@ public class Game extends JPanel implements NeedingFocus {
         
         if(adv < 2){
             scoreHandler = new ScoreBar(this);
+        }
+        
+        if(adv > 0){
+            this.gameSave = Tools.loadGame();
         }
     }
     
@@ -682,7 +689,25 @@ public class Game extends JPanel implements NeedingFocus {
 
     private void initWorldMap() {
         // Get list of conquered cells
+        ArrayList<int[]> mapValues = gameSave.getMapValues();
+        ArrayList<Integer> listJustAvailableCells = new ArrayList<Integer>();
+        ArrayList<Integer> listConqueredCells = new ArrayList<Integer>();
+        ArrayList<Integer> listNotAvailableCells = new ArrayList<Integer>();
         // Parse list of available cells
+        for (int i = 0; i < mapValues.size(); i++) {
+            int[] table = mapValues.get(i);
+            switch (table[1]) {
+            case 1: // available but not conquered
+                listJustAvailableCells.add(table[0]);
+                break;
+            case 2: // Available AND conquered
+                listConqueredCells.add(table[0]);
+                break;
+            default: // Not available
+                listNotAvailableCells.add(table[0]);
+                break;
+            }
+        }
         // Create NPCs to cover the designated cells
     }
 }

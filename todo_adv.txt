@@ -54,8 +54,8 @@ P	- maps should only have one startCell in the XML file
 		- Implement
 			
   World map
-	- Get list of conquered cells
-	- Parse list of available cells
+V	- Get list of conquered cells
+T	- Parse list of available cells
 	- Create NPCs to cover the designated cells
 		- Not available cells
 		- available cells

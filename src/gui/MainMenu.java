@@ -115,7 +115,13 @@ public class MainMenu extends FAPanel implements AnimPanel{
     }
     
     private void btnAdv_actionPerformed() {
-        nextPanel = new HardCodePanel(parent, this);
+        GameSave gs = Tools.loadGame();
+        // If the game is'nt new
+        Game game = new Game(0);
+        // If not, start a new game (cutscene)
+        //TODO
+        //----
+        nextPanel = game;
         this.startSliding(true);
     }
     

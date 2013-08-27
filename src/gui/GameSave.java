@@ -35,4 +35,27 @@ public class GameSave implements Serializable {
         unlockedChars.set(7, true);
     }
 
+    public void setMapValues(ArrayList<int[]> mapValues) {
+        this.mapValues = mapValues;
+    }
+
+    public ArrayList<int[]> getMapValues() {
+        return mapValues;
+    }
+
+    public void setGameSwitches(ArrayList<Boolean> gameSwitches) {
+        this.gameSwitches = gameSwitches;
+    }
+
+    public ArrayList<Boolean> getGameSwitches() {
+        return gameSwitches;
+    }
+
+    public void setUnlockedChars(ArrayList<Boolean> unlockedChars) {
+        this.unlockedChars = unlockedChars;
+    }
+
+    public ArrayList<Boolean> getUnlockedChars() {
+        return unlockedChars;
+    }
 }
