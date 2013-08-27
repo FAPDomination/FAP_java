@@ -109,6 +109,8 @@ public class Game extends JPanel implements NeedingFocus {
     private int adv;
     
     private GameSave gameSave;
+    
+    private ArrayList<NPC> listNPCs;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 

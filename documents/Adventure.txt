@@ -56,7 +56,7 @@ Actions possibles
 Un NPC est walkable ou non. Si walkable, il se déclenche à l'arrivée du joueur sur la case. si non-walkable, il se déclenche lorsque le joueur tente d'aller sur la case.
 Il se déclenche quoi qu'il arrive quand on appuie sur la touche skill sur une map de type aventure (ville) ET que le joueur est à proximité d'un NPC
 
-Un NPC placé sur une propriété "auto-trigger"
+Un NPC placé sur une propriété "auto-trigger" (????)
 Un NPC a une case, une image à diffuser. Si ces DEUX valeurs sont nulles, "auto-trigger" est set à true automatiquement. (On pourra même ajouter un constructeur spécial)
 
 L'execution d'un NPC met le reste du jeu en pause
