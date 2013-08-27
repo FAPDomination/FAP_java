@@ -1,0 +1,4 @@
+Processes :
+
+Implementing a new map in the ADV world map :
+	- update gui.Constants.listAdvMaps

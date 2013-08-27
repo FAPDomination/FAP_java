@@ -13,4 +13,12 @@ public class Constants {
     // Gradient colors
     public static Color top = new Color(80, 140, 255);
     public static Color bottom = new Color(175, 240, 255);
+    
+    // Game datas
+    public static final int numberOfAdvSwitches = 0;
+    public static final int numberOfAdvChars = 10;
+    
+    public static int[] listAdvMaps = {0,5,25};
+    
+    public static String savegameFile = "savegame.leo";
 }

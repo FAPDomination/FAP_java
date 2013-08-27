@@ -59,9 +59,19 @@ P	- maps should only have one startCell in the XML file
 	- Create NPCs to cover the designated cells
 		- Not available cells
 		- available cells
-  Game Datas
-	- Decide wich method will be used
-	- Make tests
-	- Lists all game datas to be saved
-	- Make a save/load class
-	- Implement
+T Game Datas
+V	- Decide wich method will be used
+V	- Make tests
+V	- Lists all game datas to be saved
+V	- Make a save/load method in Tools
+V	- Make every child class Serializable
+V	- Implement
+V		- Load datas when clicking on adventure
+V			- If no data, init new One
+V			- If yes, load
+V		- Save datas
+P	- Game Data init new one
+V		- Maps values all set to 0 except the initial one
+V		- Game switches all set to false
+V		- Unlocked characters all set to false except 1 and 7
+V	- Generate accessors

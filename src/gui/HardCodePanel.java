@@ -4,6 +4,8 @@ import fap_java.Game;
 
 import fap_java.Params;
 
+import fap_java.Tools;
+
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -73,6 +75,9 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         mini = new Minimap(5,300,300,this,"La Riviere");
         
         initFocus();
+        
+        // tests
+        GameSave gs = Tools.loadGame();
     }
     
     public void paintComponent(Graphics g){

@@ -1,11 +1,21 @@
 package fap_java;
 
+import gui.Constants;
+import gui.GameSave;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import java.awt.image.RescaleOp;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 
@@ -101,5 +111,46 @@ public class Tools {
         float[] offsets = new float[4];
         float[] scales = {Rfactor,Gfactor,Bfactor,alpha};
         drawFilteredImage(img, scales, offsets, g,x,y);
+    }
+    
+    // ---------- Save and Load game
+    
+    public static void saveGame(GameSave gs){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(Constants.savegameFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(gs);
+            out.close();
+            fileOut.close();
+            System.out.println("Saved Game in "+Constants.savegameFile);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+    }
+    
+    public static GameSave loadGame(){
+        GameSave gs = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.savegameFile);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            gs = (GameSave)in.readObject();
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.out.println("Couldn't load file, creating new one");
+            gs = new GameSave();
+            Tools.saveGame(gs);
+            return gs;
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            return new GameSave();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Impossibru, class not found");
+            c.printStackTrace();
+            return null;
+        }
+        return gs;
     }
 }

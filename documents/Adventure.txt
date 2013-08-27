@@ -88,3 +88,13 @@ Il faut apprendre à rendre cette classe sérializable.
 http://gamedev.stackexchange.com/questions/2617/game-state-saving-loading
 http://gamedev.stackexchange.com/questions/19046/what-is-a-good-file-format-for-saving-game-data
 "Controlled Binary Serialization"
+http://www.tutorialspoint.com/java/java_serialization.htm
+
+Choix de la méthode 2 parce qu'elle pète sa race.
+
+Les éléments à sauvegarder sont donc :
+- Les valeurs des maps de la worldmap : ArrayList de {IDmap,valeur}
+- Les interrupteurs du jeu : ArrayList<boolean>
+- Les valeurs des divers trucs débloqués (persos, bonuses, ...)
+	- Persos débloqués : ArrayList<boolean>
+	- ...
