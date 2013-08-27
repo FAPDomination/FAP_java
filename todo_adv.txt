@@ -39,9 +39,10 @@ P	- maps should only have one startCell in the XML file
 		- Implement (not in shiftStick but parse in mapHandler)
 	- NPC World Map blocking
 		- Create
+V			- Object
 			- Image
-			- Not walkable
-		- Implement
+V			- Not walkable
+V		- Implement
 	- NPC world Map starting game
 		- Create
 			- Image
@@ -57,15 +58,16 @@ P	- maps should only have one startCell in the XML file
 V	- Get list of conquered cells
 T	- Parse list of available cells
 	- Create NPCs to cover the designated cells
-		- Not available cells
+V		- Not available cells
 		- available cells
+		- Conquered Cells
 V	- Link maps to their cells
 V		- Linking
 ?		- Find a better place for initialization ?
-	- Compute changes and save them
-		- Check for parent cells
-		- Update value
-		- Save
+V	- Compute changes and save them
+V		- Check for parent cells
+V		- Update value
+V		- Save
 T Game Datas
 V	- Decide wich method will be used
 V	- Make tests

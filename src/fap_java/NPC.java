@@ -8,7 +8,7 @@ public class NPC extends Human{
     private Cell position;
     private boolean walkable;
     private boolean autoTrigger;
-    private Image img;
+    protected Image img;
     private boolean running;
     private Game game;
     

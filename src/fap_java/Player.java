@@ -327,9 +327,12 @@ public abstract class Player extends Human {
                     }
             }
             */
-        NPC npc = Tools.checkNPCOnCell(game, c);
-        if(npc != null && !npc.isWalkable()){
-            walkable = false;
+        NPC npc = null;
+        if(c!=null){
+            npc = Tools.checkNPCOnCell(game, c);
+            if(npc != null && !npc.isWalkable()){
+                walkable = false;
+            }
         }
         //Apply walkable
         if (walkable) {

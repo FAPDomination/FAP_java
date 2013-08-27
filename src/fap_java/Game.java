@@ -22,7 +22,11 @@ import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
+import java.util.Collection;
+
 import javax.swing.JPanel;
+
+import npcs.NPCWMBlocking;
 
 public class Game extends JPanel implements NeedingFocus {
 
@@ -696,49 +700,90 @@ public class Game extends JPanel implements NeedingFocus {
         // Linking maps to Cells
         Dimension[] mapList = new Dimension[Constants.highestMapID];
         mapList[20] = new Dimension(18,11);
-        mapList[21] = new Dimension(16,10);
+        mapList[21] = new Dimension(18,10);
         mapList[22] = new Dimension(17,9);
         mapList[23] = new Dimension(17,10);
         mapList[24] = new Dimension(16,10);
         mapList[25] = new Dimension(18,9);
         // Get list of conquered cells
-        ArrayList<int[]> mapValues = gameSave.getMapValues();
-        ArrayList<Integer> listJustAvailableCells = new ArrayList<Integer>();
-        ArrayList<Integer> listConqueredCells = new ArrayList<Integer>();
-        ArrayList<Integer> listNotAvailableCells = new ArrayList<Integer>();
-        // Parse list of available cells
-        for (int i = 0; i < mapValues.size(); i++) {
-            int[] table = mapValues.get(i);
-            switch (table[1]) {
-            case 1: // available but not conquered
-                listJustAvailableCells.add(table[0]);
-                break;
-            case 2: // Available AND conquered
-                listConqueredCells.add(table[0]);
-                break;
-            default: // Not available
-                listNotAvailableCells.add(table[0]);
-                break;
-            }
-        }
+        this.computeWorldMap();
+        ArrayList<Integer> listJustAvailableCells = getListOfWMCells(1);
+        ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
+        ArrayList<Integer> listNotAvailableCells = getListOfWMCells(0);
+        /*System.out.println(listJustAvailableCells);
+        System.out.println(listNotAvailableCells);
+        System.out.println(listConqueredCells);*/
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
             int mapID = listNotAvailableCells.get(i);
             Dimension indexes = mapList[mapID];
             Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-            this.listNPCs.add(new NPC(pos,false,false,null,this));
+            this.listNPCs.add(new NPCWMBlocking(pos));
         }
     }
     
     public void computeWorldMap(){
         //Load game :
-        
+        this.gameSave = Tools.loadGame();
+        // Init map parents
+        ArrayList<ArrayList<Integer>> mapParents = new ArrayList<ArrayList<Integer>>();
+        for(int i=0;i<Constants.highestMapID;i++){
+            mapParents.add(new ArrayList<Integer>());
+        }
+        // Fill map parents
         /*mapParents[20] = [0];
         mapParents[21] = [0];
         mapParents[22] = [1,21,20];
         mapParents[23] = [1,21,22];
         mapParents[24] = [2,23,20];
         mapParents[25] = [0];*/
+        mapParents.get(20).add(0);
+        
+        mapParents.get(21).add(0);
+        
+        mapParents.get(22).add(21);
+        mapParents.get(22).add(0);
+        
+        mapParents.get(23).add(21);
+        mapParents.get(23).add(22);
+        
+        mapParents.get(24).add(23);
+        mapParents.get(24).add(20);
+        
+        mapParents.get(25).add(0);
+        // Get conquered cell
+        ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
+        ArrayList<Integer> mapValues = gameSave.getMapValues();
+        for (int i = 0; i < mapValues.size(); i++) {
+            int mapConquest = mapValues.get(i);
+            ArrayList<Integer> parents = mapParents.get(i);
+            boolean available = true;
+            if (parents != null) {
+                for (int j = 0; j < parents.size(); j++) {
+                    if (!listConqueredCells.contains(parents.get(j))) {
+                        available = false;
+                        break;
+                    }
+                }
+            }
+            if(available && mapConquest == 0){
+                gameSave.getMapValues().set(i, 1);
+            }
+        }
+        Tools.saveGame(this.gameSave);
+    }
+    
+    public ArrayList<Integer> getListOfWMCells(int value){
+        ArrayList<Integer> mapValues = gameSave.getMapValues();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < mapValues.size(); i++) {
+            int mapConquest = mapValues.get(i);
+            //System.out.println(mapConquest);
+            if(mapConquest == value){
+                list.add(i);
+            }
+        }
+        return list;
     }
 
     public void setGameSave(GameSave gameSave) {

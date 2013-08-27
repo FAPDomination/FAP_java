@@ -10,25 +10,28 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GameSave implements Serializable {
-    ArrayList<int[]> mapValues;
+    ArrayList<Integer> mapValues;
     ArrayList<Boolean> gameSwitches;
     ArrayList<Boolean> unlockedChars;
     
     public GameSave() {
-        mapValues =  new ArrayList<int[]>();
+        mapValues =  new ArrayList<Integer>();
+        for(int i=0;i<Constants.highestMapID;i++){
+            mapValues.add(0);
+        }
         gameSwitches = new ArrayList<Boolean>();
         unlockedChars = new ArrayList<Boolean>();
         for(int i=0; i<Constants.listAdvMaps.length;i++){
-            int[] table = new int[2];
-            table[0] = Constants.listAdvMaps[i];
+            int mapID = Constants.listAdvMaps[i];
+            int value;
             //System.out.println(table[0]);
-            if(table[0] == 0){
-                table[1] = 2;
+            if(mapID == 0){
+                value = 2;
             }
             else{
-                table[1] = 0;
+                value = 0;
             }
-            mapValues.add(table);
+            mapValues.set(mapID,value);
             //System.out.println(table[0]+"-"+table[1]);
         }
         for(int j=0;j<Constants.numberOfAdvSwitches;j++){
@@ -41,13 +44,6 @@ public class GameSave implements Serializable {
         unlockedChars.set(7, true);
     }
 
-    public void setMapValues(ArrayList<int[]> mapValues) {
-        this.mapValues = mapValues;
-    }
-
-    public ArrayList<int[]> getMapValues() {
-        return mapValues;
-    }
 
     public void setGameSwitches(ArrayList<Boolean> gameSwitches) {
         this.gameSwitches = gameSwitches;
@@ -63,5 +59,13 @@ public class GameSave implements Serializable {
 
     public ArrayList<Boolean> getUnlockedChars() {
         return unlockedChars;
+    }
+
+    public void setMapValues(ArrayList<Integer> mapValues) {
+        this.mapValues = mapValues;
+    }
+
+    public ArrayList<Integer> getMapValues() {
+        return mapValues;
     }
 }
