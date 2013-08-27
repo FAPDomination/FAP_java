@@ -334,10 +334,6 @@ public abstract class Player extends Human {
             current = c;
             this.setI(current.getI());
             this.setJ(current.getJ());
-            // Activate the cell, ie conquer it
-            if(game.getAdv() < 2){
-                current.activateCell(this);
-            }
             
             if(!current.isWalked()){
                 current.setWalked(true);

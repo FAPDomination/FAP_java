@@ -50,7 +50,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
             }
         });
         
-        this.jtxtWho.setText("5");
+        this.jtxtWho.setText("25");
         this.jtxtTeam.setText("0,0,0,0");
         this.jtxtisFSM.setText("0,0,0,0");
         this.jtxtControlers.setText("0,0,0,0");

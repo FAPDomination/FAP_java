@@ -16,6 +16,8 @@ Remporter un combat sur une cellule disponible débloque certaines cellules autou
 	- 2 contre 1 fort
 	- Etc
 
+Le refreshHealthPoints des cellules est désactivé pour le mode aventure (trop de consommation) ce qui empêche de mettre des cellules countdown dans une ville (mais c'est pas trop grave)
+
 ------------- NPCs et quêtes
 
 Des NPCs en ville ou ailleurs proposent des quêtes qui permettent

@@ -267,12 +267,13 @@ public class Game extends JPanel implements NeedingFocus {
      * Also activate the cell each player is on (killing it, etc...)
      */
     public void refreshHealthPoints() {
-        ArrayList<Cell> myMap = map.getMyMap();
-        for (int j = 0; j < myMap.size(); j++) {
-            Cell c = myMap.get(j);
-            c.refreshHealthPoints(this);
-        }
-        if(adv <2){
+        if (adv < 2) {
+            ArrayList<Cell> myMap = map.getMyMap();
+            for (int j = 0; j < myMap.size(); j++) {
+                Cell c = myMap.get(j);
+                c.refreshHealthPoints(this);
+            }
+
             for (int i = 0; i < players.size(); i++) {
                 Player p = players.get(i);
                 Cell c = p.getCurrent();
