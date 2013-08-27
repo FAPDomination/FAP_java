@@ -95,6 +95,10 @@ public class Cell extends Element {
     public Cell(int i, int j, int type, int did, Game game) {
         this(i, j, type, "", did, game);
     }
+    
+    public Cell(int i, int j){
+        this(i, j, 0, "", 0, null);
+    }
 
     /**
      * A Cell object is an element of the map (grass, water, rock, ...).

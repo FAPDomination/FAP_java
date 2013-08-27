@@ -14,6 +14,7 @@ import gui.NeedingFocus;
 import gui.PlayerSelect;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 
@@ -110,7 +111,7 @@ public class Game extends JPanel implements NeedingFocus {
     
     private GameSave gameSave;
     
-    private ArrayList<NPC> listNPCs;
+    private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -172,10 +173,7 @@ public class Game extends JPanel implements NeedingFocus {
         if(adv < 2){
             scoreHandler = new ScoreBar(this);
         }
-        
-        if(adv > 0){
-            this.gameSave = Tools.loadGame();
-        }
+    
     }
     
     /**
@@ -215,6 +213,10 @@ public class Game extends JPanel implements NeedingFocus {
         thread.setRunning(true);
         
         gameEnded = false;
+        
+        if(adv > 0){
+            this.gameSave = Tools.loadGame();
+        }
         
         //Pause it (so it can be automatically un-paused afterwards)
         pauseGame();
@@ -690,6 +692,15 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     private void initWorldMap() {
+        this.pauseGame();
+        // Linking maps to Cells
+        Dimension[] mapList = new Dimension[Constants.highestMapID];
+        mapList[20] = new Dimension(18,11);
+        mapList[21] = new Dimension(16,10);
+        mapList[22] = new Dimension(17,9);
+        mapList[23] = new Dimension(17,10);
+        mapList[24] = new Dimension(16,10);
+        mapList[25] = new Dimension(18,9);
         // Get list of conquered cells
         ArrayList<int[]> mapValues = gameSave.getMapValues();
         ArrayList<Integer> listJustAvailableCells = new ArrayList<Integer>();
@@ -711,5 +722,38 @@ public class Game extends JPanel implements NeedingFocus {
             }
         }
         // Create NPCs to cover the designated cells
+        for(int i=0;i<listNotAvailableCells.size();i++){
+            int mapID = listNotAvailableCells.get(i);
+            Dimension indexes = mapList[mapID];
+            Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+            this.listNPCs.add(new NPC(pos,false,false,null,this));
+        }
+    }
+    
+    public void computeWorldMap(){
+        //Load game :
+        
+        /*mapParents[20] = [0];
+        mapParents[21] = [0];
+        mapParents[22] = [1,21,20];
+        mapParents[23] = [1,21,22];
+        mapParents[24] = [2,23,20];
+        mapParents[25] = [0];*/
+    }
+
+    public void setGameSave(GameSave gameSave) {
+        this.gameSave = gameSave;
+    }
+
+    public GameSave getGameSave() {
+        return gameSave;
+    }
+
+    public void setListNPCs(ArrayList<NPC> listNPCs) {
+        this.listNPCs = listNPCs;
+    }
+
+    public ArrayList<NPC> getListNPCs() {
+        return listNPCs;
     }
 }

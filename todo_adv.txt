@@ -6,7 +6,7 @@ T	- Execute (block every battle stuff)
 	- Define manually a cell for the player to start on
   General ADV Things
 	- handle NPCs
-		- Make list of NPCs
+V		- Make list of NPCs
 		- Check for each displacement IF NOT world map
 		- Check for hitting SKILL
 			- If not world map, look around
@@ -59,6 +59,13 @@ T	- Parse list of available cells
 	- Create NPCs to cover the designated cells
 		- Not available cells
 		- available cells
+V	- Link maps to their cells
+V		- Linking
+?		- Find a better place for initialization ?
+	- Compute changes and save them
+		- Check for parent cells
+		- Update value
+		- Save
 T Game Datas
 V	- Decide wich method will be used
 V	- Make tests

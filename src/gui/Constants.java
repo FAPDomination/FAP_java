@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.Cell;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -18,7 +20,11 @@ public class Constants {
     public static final int numberOfAdvSwitches = 0;
     public static final int numberOfAdvChars = 10;
     
-    public static int[] listAdvMaps = {0,5,25};
+    public static int[] listAdvMaps = {0,20,21,22,23,24,25};
+    public static int highestMapID = 26;
     
     public static String savegameFile = "savegame.leo";
+    
+    public static Cell initialCellWorldMap = new Cell(18,10);
+    
 }

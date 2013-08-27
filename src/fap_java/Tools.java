@@ -153,4 +153,19 @@ public class Tools {
         }
         return gs;
     }
+    
+    public static NPC checkNPCOnCell(Game game, Cell c) {
+        NPC npc = null;
+        if (game.getAdv() > 0) {
+            ArrayList<NPC> listNPCs = game.getListNPCs();
+            for (int i = 0; i < listNPCs.size(); i++) {
+                NPC np = listNPCs.get(i);
+                if (np.getPosition().equals(c)) {
+                    npc = np;
+                    break;
+                }
+            }
+        }
+        return npc;
+    }
 }

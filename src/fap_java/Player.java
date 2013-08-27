@@ -327,6 +327,10 @@ public abstract class Player extends Human {
                     }
             }
             */
+        NPC npc = Tools.checkNPCOnCell(game, c);
+        if(npc != null && !npc.isWalkable()){
+            walkable = false;
+        }
         //Apply walkable
         if (walkable) {
             // Move the stick
@@ -409,6 +413,9 @@ public abstract class Player extends Human {
             case 12: // Exit NPC
                 break;
             }
+        }
+        if(npc != null && game.getMap().getFileID() != 0){
+            npc.execute();
         }
         }
     };

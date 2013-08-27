@@ -21,7 +21,13 @@ public class GameSave implements Serializable {
         for(int i=0; i<Constants.listAdvMaps.length;i++){
             int[] table = new int[2];
             table[0] = Constants.listAdvMaps[i];
-            table[1] = 0;
+            //System.out.println(table[0]);
+            if(table[0] == 0){
+                table[1] = 2;
+            }
+            else{
+                table[1] = 0;
+            }
             mapValues.add(table);
             //System.out.println(table[0]+"-"+table[1]);
         }
