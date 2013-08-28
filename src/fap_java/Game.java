@@ -847,4 +847,12 @@ public class Game extends JPanel implements NeedingFocus {
             break;
         }
     }
+
+    public void setPauseNPC(boolean pauseNPC) {
+        this.pauseNPC = pauseNPC;
+    }
+
+    public boolean isPauseNPC() {
+        return pauseNPC;
+    }
 }

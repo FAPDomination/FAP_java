@@ -200,8 +200,21 @@ public abstract class Player extends Human {
         
         //handleKeys();
         
-        if (i == 4 && game.getAdv() <2) { //Skill
-            this.getSkill();
+        if (i == 4) { //Skill
+            if(game.getAdv() < 2){
+                this.getSkill();
+            }
+            else if(game.isPauseNPC()){
+                // Execute actions for the NPC
+                // Timer to not mess around
+            }
+            else{
+                //Check for NPC
+                NPC npc = Tools.checkNPCOnCell(game, this.current);
+                if(npc != null){
+                    npc.execute();
+                }
+            }
         }
 
     }
