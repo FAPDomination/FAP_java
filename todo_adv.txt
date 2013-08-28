@@ -71,6 +71,7 @@ V	- Compute changes and save them
 V		- Check for parent cells
 V		- Update value
 V		- Save
+V	- Replace mapValues & co by HashMaps
 T Game Datas
 V	- Decide wich method will be used
 V	- Make tests

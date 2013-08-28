@@ -98,13 +98,13 @@ public class CMap {
         for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);
             c.paintComponent(g);
-            Player p = game.isOccupied(c);
-            if(p!=null){
-                p.paintComponent(g);
-            }
             NPC npc = Tools.checkNPCOnCell(game, c);
             if(npc!=null){
                 npc.paintComponent(g);
+            }
+            Player p = game.isOccupied(c);
+            if(p!=null){
+                p.paintComponent(g);
             }
         }
     }

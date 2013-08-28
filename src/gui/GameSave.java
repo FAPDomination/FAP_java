@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Image;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,22 +10,21 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameSave implements Serializable {
-    ArrayList<Integer> mapValues;
+    Map<Integer, Integer> mapValues;
     ArrayList<Boolean> gameSwitches;
     ArrayList<Boolean> unlockedChars;
     
     public GameSave() {
-        mapValues =  new ArrayList<Integer>();
-        for(int i=0;i<Constants.highestMapID;i++){
-            mapValues.add(0);
-        }
+        mapValues =  new HashMap<Integer, Integer>();
         gameSwitches = new ArrayList<Boolean>();
         unlockedChars = new ArrayList<Boolean>();
         for(int i=0; i<Constants.listAdvMaps.length;i++){
             int mapID = Constants.listAdvMaps[i];
-            mapValues.set(mapID,0);
+            mapValues.put(mapID,0);
             //System.out.println(table[0]+"-"+table[1]);
         }
         for(int j=0;j<Constants.numberOfAdvSwitches;j++){
@@ -53,11 +54,11 @@ public class GameSave implements Serializable {
         return unlockedChars;
     }
 
-    public void setMapValues(ArrayList<Integer> mapValues) {
+    public void setMapValues(Map<Integer, Integer> mapValues) {
         this.mapValues = mapValues;
     }
 
-    public ArrayList<Integer> getMapValues() {
+    public Map<Integer, Integer> getMapValues() {
         return mapValues;
     }
 }

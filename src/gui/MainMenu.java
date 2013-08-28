@@ -117,7 +117,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
     private void btnAdv_actionPerformed() {
         GameSave gs = Tools.loadGame();
         // If the game is'nt new
-        Game game = new Game(25);
+        Game game = new Game(0);
         // If not, start a new game (cutscene)
         //TODO
         //----

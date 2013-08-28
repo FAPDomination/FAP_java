@@ -24,6 +24,10 @@ import java.util.ArrayList;
 
 import java.util.Collection;
 
+import java.util.HashMap;
+
+import java.util.Map;
+
 import javax.swing.JPanel;
 
 import npcs.NPCWMBlocking;
@@ -189,9 +193,7 @@ public class Game extends JPanel implements NeedingFocus {
     public Game(int nmap){
         this("1","0","0","0",false,nmap,0,0,0,2);
         // Detect World Map
-        if(nmap == 0){
-            initWorldMap();
-        }
+        initListNPCs(nmap);
     }
     
     /**
@@ -725,20 +727,20 @@ public class Game extends JPanel implements NeedingFocus {
         
         for(int i=0;i<listJustAvailableCells.size();i++){
             int mapID = listJustAvailableCells.get(i);
-            if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
+            //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList[mapID];
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
                 this.listNPCs.add(new NPCWMStarting(pos,false,this));
-            }
+            //}
         }
         
         for(int i=0;i<listConqueredCells.size();i++){
             int mapID = listConqueredCells.get(i);
-            if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
+            //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList[mapID];
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
                 this.listNPCs.add(new NPCWMStarting(pos,true,this));
-            }
+            //}
         }
     }
     
@@ -746,9 +748,9 @@ public class Game extends JPanel implements NeedingFocus {
         //Load game :
         this.gameSave = Tools.loadGame();
         // Init map parents
-        ArrayList<ArrayList<Integer>> mapParents = new ArrayList<ArrayList<Integer>>();
-        for(int i=0;i<Constants.highestMapID;i++){
-            mapParents.add(new ArrayList<Integer>());
+        Map<Integer,ArrayList<Integer>> mapParents = new HashMap<Integer,ArrayList<Integer>>();
+        for(int i=0;i<Constants.listAdvMaps.length;i++){
+            mapParents.put(Constants.listAdvMaps[i], new ArrayList<Integer>());
         }
         // Fill map parents
         /*mapParents[20] = [0];
@@ -768,12 +770,13 @@ public class Game extends JPanel implements NeedingFocus {
         
         // Get conquered cell
         ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
-        ArrayList<Integer> mapValues = gameSave.getMapValues();
-        for (int i = 0; i < mapValues.size(); i++) {
-            int mapConquest = mapValues.get(i);
-            ArrayList<Integer> parents = mapParents.get(i);
+        Map<Integer, Integer> mapValues = gameSave.getMapValues();
+        for (int i = 0; i < Constants.listAdvMaps.length; i++) {
+            int mapID = Constants.listAdvMaps[i];
+            int mapConquest = mapValues.get(mapID);
+            ArrayList<Integer> parents = mapParents.get(mapID);
             boolean available = true;
-            if (parents != null) {
+            if (parents != null && parents.size() > 0) {
                 for (int j = 0; j < parents.size(); j++) {
                     if (!listConqueredCells.contains(parents.get(j))) {
                         available = false;
@@ -782,20 +785,20 @@ public class Game extends JPanel implements NeedingFocus {
                 }
             }
             if(available && mapConquest == 0){
-                gameSave.getMapValues().set(i, 1);
+                gameSave.getMapValues().put(mapID, 1);
             }
         }
         Tools.saveGame(this.gameSave);
     }
     
     public ArrayList<Integer> getListOfWMCells(int value){
-        ArrayList<Integer> mapValues = gameSave.getMapValues();
+        Map<Integer, Integer> mapValues = gameSave.getMapValues();
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < mapValues.size(); i++) {
-            int mapConquest = mapValues.get(i);
+        for (int i = 0; i < Constants.listAdvMaps.length; i++) {
+            int mapConquest = mapValues.get(Constants.listAdvMaps[i]);
             //System.out.println(mapConquest);
             if(mapConquest == value){
-                list.add(i);
+                list.add(Constants.listAdvMaps[i]);
             }
         }
         return list;
@@ -815,5 +818,17 @@ public class Game extends JPanel implements NeedingFocus {
 
     public ArrayList<NPC> getListNPCs() {
         return listNPCs;
+    }
+
+    private void initListNPCs(int nmap) {
+        //TODO Initialize the list of all NPCs according to the nmap
+        switch(nmap){
+        case 0:
+            initWorldMap();
+            break;
+        default:
+            System.out.println("Couldn't find NPC list for map no "+nmap);
+            break;
+        }
     }
 }
