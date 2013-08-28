@@ -5,12 +5,12 @@ V	- Create attribute for "adventure mode"
 T	- Execute (block every battle stuff)
 	- Define manually a cell for the player to start on
   General ADV Things
-	- handle NPCs
+V	- handle NPCs
 V		- Make list of NPCs
-		- Check for each displacement IF NOT world map
-		- Check for hitting SKILL
-			- If not world map, look around
-			- If world map, look under
+V		- Check for each displacement IF NOT world map
+V		- Check for hitting SKILL
+V			- If not world map, look around
+V			- If world map, look under
 	- SKILL Key
 		- Space is also a skill key
 		- Timer

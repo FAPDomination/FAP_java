@@ -26,4 +26,6 @@ public class NPCWMBlocking extends NPC{
         float[] scales = {0.1f,0.1f,0.1f,(float)0.6};
         Tools.drawFilteredImage((BufferedImage)img, scales, offsets, g, x, y, scaleX, scaleY);
     }
+    
+    public void execute(){};
 }

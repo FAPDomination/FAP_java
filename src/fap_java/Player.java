@@ -210,7 +210,23 @@ public abstract class Player extends Human {
             }
             else{
                 //Check for NPC
-                NPC npc = Tools.checkNPCOnCell(game, this.current);
+                NPC npc = null;
+                if(game.getMap().getFileID() == 0){
+                    npc = Tools.checkNPCOnCell(game, this.current);
+                }
+                else{
+                    ArrayList<Cell> toCheck = game.getMap().surroundingCells(current);
+                    for(int j=0;j<toCheck.size();j++){
+                        Cell c = toCheck.get(j);
+                        if(c!=null){
+                            npc = Tools.checkNPCOnCell(game, c);
+                            if(npc != null){
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 if(npc != null){
                     npc.execute();
                 }
