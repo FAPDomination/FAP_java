@@ -417,8 +417,8 @@ public abstract class Player extends Human {
                 break;
             }
         }
-        //if(npc != null && game.getMap().getFileID() != 0){
-        if(npc != null){
+        if(npc != null && game.getMap().getFileID() != 0){
+        //if(npc != null){
             npc.execute();
         }
         }

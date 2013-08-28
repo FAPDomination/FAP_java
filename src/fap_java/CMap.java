@@ -102,6 +102,10 @@ public class CMap {
             if(p!=null){
                 p.paintComponent(g);
             }
+            NPC npc = Tools.checkNPCOnCell(game, c);
+            if(npc!=null){
+                npc.paintComponent(g);
+            }
         }
     }
     

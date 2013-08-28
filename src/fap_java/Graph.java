@@ -3,8 +3,14 @@ package fap_java;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+
+import java.io.File;
+import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 public class Graph {
     
@@ -26,6 +32,8 @@ public class Graph {
     protected static double facH = CMap.TH/((double)(73-36));
     // key : String, the name of the cell
     // entry : the cell image
+    
+    protected static Image basicCellImage;
     static {
         try {
             cells.put(0, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/dirt.png")));
@@ -82,10 +90,17 @@ public class Graph {
             guimg.put("LS_BGteam", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_team.png")));
             guimg.put("LS_BG8team", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_8Teams.png")));
             guimg.put("pauseScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/pauseScreen.png")));
-
-        } catch (Exception e) {
-            System.out.println("An error occured while trying loading the cell images.");
-        }
+            
+            File location = new File("resources/images/cells/regular.png");
+            basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
+            
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            catch (Exception e) {
+                System.out.println("An error occured while trying loading the cell images.");
+            }
     }
     
     public Graph() {
@@ -97,5 +112,37 @@ public class Graph {
 
     public static Map<String, Image> getList() {
         return list;
+    }
+
+    public static void setOffsetsCells(Map<Integer, Dimension> offsetsCells) {
+        Graph.offsetsCells = offsetsCells;
+    }
+
+    public static Map<Integer, Dimension> getOffsetsCells() {
+        return offsetsCells;
+    }
+
+    public static void setFacW(double facW) {
+        Graph.facW = facW;
+    }
+
+    public static double getFacW() {
+        return facW;
+    }
+
+    public static void setFacH(double facH) {
+        Graph.facH = facH;
+    }
+
+    public static double getFacH() {
+        return facH;
+    }
+
+    public static void setBasicCellImage(Image basicCellImage) {
+        Graph.basicCellImage = basicCellImage;
+    }
+
+    public static Image getBasicCellImage() {
+        return basicCellImage;
     }
 }

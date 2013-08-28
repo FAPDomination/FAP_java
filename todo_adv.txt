@@ -18,6 +18,7 @@ V		- Make list of NPCs
 	- End game (victory or not)
   Full-ADV
 P	- maps should only have one startCell in the XML file
+	- Don't pause and unpause game
   NPCs
 	- Actions
 		- Display message
@@ -29,7 +30,7 @@ P	- maps should only have one startCell in the XML file
 		- Modify a cell (did, walkable)
 		- Start Game
 	- Object
-		- Placement
+P~		- Placement
 		- Execution
 			- One at a time security
 			- Pause game (Special pause for NPC)
@@ -37,10 +38,10 @@ P	- maps should only have one startCell in the XML file
 	- NPC Exit
 		- Create
 		- Implement (not in shiftStick but parse in mapHandler)
-	- NPC World Map blocking
-		- Create
+V	- NPC World Map blocking
+V		- Create
 V			- Object
-			- Image
+V			- Image
 V			- Not walkable
 V		- Implement
 	- NPC world Map starting game
@@ -48,13 +49,12 @@ V		- Implement
 			- Image
 				- Black if not conquered but available
 				- Green if conquered
-			- Walkable
+V			- Walkable
 			- Actions
 				- Do you wanna play ?
 				- Start Game
-		- Implement
-			
-V World map
+V		- Implement			
+T World map
 V	- Get list of conquered cells
 T	- Parse list of available cells
 V	- Create NPCs to cover the designated cells

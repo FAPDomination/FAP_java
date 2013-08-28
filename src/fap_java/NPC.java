@@ -1,5 +1,6 @@
 package fap_java;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -10,14 +11,30 @@ public class NPC extends Human{
     private boolean autoTrigger;
     protected Image img;
     private boolean running;
-    private Game game;
+    protected Game game;
+    protected int x;
+    protected int y;
     
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game) {
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY) {
         this.position = position;
         this.walkable = walkable;
         this.autoTrigger = autoTrigger;
         this.img = img;
         this.game = game;
+        
+        int[] tableXY = CMap.giveTalePosition(position);
+        x = tableXY[0] + offX;
+        y = tableXY[1] + offY;
+    }
+    
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets) {
+        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight());
+    }
+    
+    public void paintComponent(Graphics g){
+        int width = this.img.getWidth(game);
+        int height = this.img.getHeight(game);
+        g.drawImage(this.img,x,y, width, height, game);
     }
 
     public String toString() {
@@ -25,8 +42,6 @@ public class NPC extends Human{
         return "A NPC";
     }
 
-    public void paintComponent(Graphics g) {
-    }
     
     public void execute(){
         game.pauseGame();

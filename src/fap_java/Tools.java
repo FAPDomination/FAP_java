@@ -124,6 +124,15 @@ public class Tools {
         drawFilteredImage(img, scales, offsets, g,x,y);
     }
     
+    public static void drawFilteredImage(BufferedImage img, float[] scales, float[] offsets, Graphics g, int x, int y, double scaleX, double scaleY){
+        RescaleOp rop = new RescaleOp(scales, offsets, null);
+        
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.scale(scaleX, scaleY);
+        g2d.drawImage(img, rop, (int)(x/scaleX), (int)(y/scaleY));
+        g2d.scale(1/scaleX, 1/scaleY);
+    }
+    
     // ---------- Save and Load game
     
     public static void saveGame(GameSave gs){
