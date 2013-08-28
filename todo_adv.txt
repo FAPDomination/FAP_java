@@ -11,8 +11,8 @@ V		- Check for each displacement IF NOT world map
 V		- Check for hitting SKILL
 V			- If not world map, look around
 V			- If world map, look under
-	- SKILL Key
-		- Space is also a skill key
+?	- SKILL Key
+?		- Space is also a skill key
 V		- Timer
   Semi-ADV
 	- End game (victory or not)

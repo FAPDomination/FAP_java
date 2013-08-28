@@ -594,7 +594,7 @@ public class Game extends JPanel implements NeedingFocus {
                 // Parse fsm level if there is
                 int ai = Integer.parseInt(""+isFSM.charAt(i));
                 // Create player
-                Player p = generatePlayer(charac,pid,c,team,ai,controler);
+                Player p = generatePlayer(charac,pid,c,team,ai,controler,this);
                 // Add it
                 players.add(p);
             }
@@ -614,7 +614,7 @@ public class Game extends JPanel implements NeedingFocus {
             Cell c = getStartCell(pid);
             Team team = teams.get(ps.getTeam());
             int ai = ps.getIsFSM();
-            Player p = generatePlayer(charac, pid, c, team, ai, ps.getControler());
+            Player p = generatePlayer(charac, pid, c, team, ai, ps.getControler(),this);
 
             players.add(p);
         }
@@ -663,35 +663,35 @@ public class Game extends JPanel implements NeedingFocus {
      * @param controler His keyboard set
      * @return The created player
      */
-    private Player generatePlayer(int charac, int pid, Cell c, Team team, int ai, int controler){
+    public static Player generatePlayer(int charac, int pid, Cell c, Team team, int ai, int controler, Game game){
         Player p;
         switch(charac){
             case 1:
-                p = new Knight(pid, c, this,team,ai,controler);
+                p = new Knight(pid, c, game,team,ai,controler);
                 break;
             case 3:
-                p = new Miner(pid, c, this,team,ai,controler);
+                p = new Miner(pid, c, game,team,ai,controler);
                 break;
             case 4:
-                p = new Warlock(pid, c, this,team,ai,controler);
+                p = new Warlock(pid, c, game,team,ai,controler);
                 break;
             case 5:
-                p = new Archer(pid, c, this,team,ai,controler);
+                p = new Archer(pid, c, game,team,ai,controler);
                 break;
             case 6:
-                p = new Vampire(pid, c, this,team,ai,controler);
+                p = new Vampire(pid, c, game,team,ai,controler);
                 break;
             case 7:
-                p = new NoCharacter(pid, c, this,team,ai,controler);
+                p = new NoCharacter(pid, c, game,team,ai,controler);
                 break;
             case 8:
-                p = new Magician(pid, c, this,team,ai,controler);
+                p = new Magician(pid, c, game,team,ai,controler);
                 break;
             case 9:
-                p = new Booster(pid, c, this,team,ai,controler);
+                p = new Booster(pid, c, game,team,ai,controler);
                 break;
         default:
-            p = new Knight(pid, c, this,team,ai,controler);
+            p = new Knight(pid, c, game,team,ai,controler);
             break;
         }
         return p;
@@ -716,6 +716,10 @@ public class Game extends JPanel implements NeedingFocus {
         mapList.put(23, new Dimension(17,10));
         mapList.put(24, new Dimension(16,10));
         mapList.put(25, new Dimension(18,9));
+    
+        Map<Integer,Game> gameList = new HashMap<Integer,Game>();
+        gameList.put(25, new Game(25));
+        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,2000,0,0,1));
         /*
         mapList[20] = new Dimension(18,11);
         mapList[21] = new Dimension(18,10);
@@ -745,7 +749,7 @@ public class Game extends JPanel implements NeedingFocus {
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList.get(mapID);
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-                this.listNPCs.add(new NPCWMStarting(pos,false,this));
+                this.listNPCs.add(new NPCWMStarting(pos,false,this,gameList.get(mapID)));
             //}
         }
         
@@ -754,7 +758,7 @@ public class Game extends JPanel implements NeedingFocus {
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList.get(mapID);
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-                this.listNPCs.add(new NPCWMStarting(pos,true,this));
+                this.listNPCs.add(new NPCWMStarting(pos,true,this,gameList.get(mapID)));
             //}
         }
     }

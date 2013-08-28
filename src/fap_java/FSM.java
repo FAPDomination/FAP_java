@@ -555,4 +555,12 @@ public class FSM{
         }
         return c;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }

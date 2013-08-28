@@ -1,7 +1,9 @@
 package gui;
 
+import fap_java.Game;
 import fap_java.KListener;
 import fap_java.Params;
+import fap_java.Player;
 import fap_java.Tools;
 
 import java.awt.Graphics;
@@ -30,9 +32,35 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
     
     private int arroSelectOrigY = -20;
     
+    private Game advGame;
+    
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
         
+        players = ((PlayerSelection)prevPanel).getPlayers();
+        advGame = null;
+        initEverything();
+        
+    }
+    
+    public CharacterSelection(TheFrame theFrame, JPanel jPanel, Game game) {
+        super(theFrame,jPanel);
+        players = new ArrayList<PlayerSelect>();
+        this.advGame = game;
+        for(int i=0;i<advGame.getPlayers().size();i++){
+            Player p = advGame.getPlayers().get(i);
+            PlayerSelect ps = new PlayerSelect(null);
+            ps.setControler(p.getControler());
+            ps.setId(i);
+            if(p.getFsm() != null){
+                ps.setIsFSM(1);
+            }
+            players.add(ps);
+        }
+        initEverything();
+    }
+    
+    public void initEverything(){
         swordX = minxS;
         cloudsX = minxC;
         
@@ -52,12 +80,13 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
             }
         });
         
-        this.add(btnGoBack);
+        if(advGame == null){
+            this.add(btnGoBack);
+        }
         this.add(btnNext);
         this.validate();
         this.repaint();
         
-        players = ((PlayerSelection)prevPanel).getPlayers();
         charList = new ArrayList<CharacterDisplay>();
         arrowList = new ArrayList<ArrowSelect>();
         
@@ -83,7 +112,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
                 arrowList.set(ps.getControler(),as);
             }
         }
-    
+        
         
         initFocus();
         
@@ -111,9 +140,28 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
             if(ps.getIsFSM() != 0){
                 ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
             }
+            if(advGame != null){
+                Player formerP = advGame.getPlayers().get(i);
+                int fsmLevel;
+                if(formerP.getFsm() != null){
+                    fsmLevel = formerP.getFsm().getLevel();
+                }
+                else{
+                    fsmLevel = 0;
+                }
+                Player p = Game.generatePlayer(ps.getPc(), i, formerP.getCurrent(), formerP.getTeam(), fsmLevel, formerP.getControler(), advGame);
+                advGame.getPlayers().set(i, p);
+            }
         }
         // Proceeding to next panel
-        JPanel nextPanel = new MapSelect(parent,this);
+        JPanel nextPanel;
+        if(advGame != null){
+            nextPanel = advGame;
+            advGame.pauseGame();
+        }
+        else{
+            nextPanel = new MapSelect(parent,this);
+        }
         parent.changePanel(nextPanel);
     }
     

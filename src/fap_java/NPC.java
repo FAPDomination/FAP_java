@@ -57,7 +57,7 @@ public class NPC extends Human{
         if(actions.size()>0){
             actions.get(0).execute();
             actions.remove(0);
-            System.out.println(this+" is executing");
+            //System.out.println(this+" is executing");
         }
         else{
             game.pauseGame(true);

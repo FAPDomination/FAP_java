@@ -24,15 +24,14 @@ public class NPCWMStarting extends NPC{
     private boolean conquered;
     private BufferedImage img;
     
-    public NPCWMStarting(Cell pos, boolean conquered, Game game) {
+    public NPCWMStarting(Cell pos, boolean conquered, Game game, Game gameToLaunch) {
         super(pos,true,false,null,game, Graph.getOffsetsCells().get(0),null);
         this.conquered = conquered;
         //TODO Update image and override paintComponent
         //TODO Update list of actions
         //Testing
         actions = new ArrayList<Action>();
-        Game ga = new Game(25);
-        actions.add(new AStartGame(ga));
+        actions.add(new AStartGame(gameToLaunch));
     }
 
     public void paintComponent(Graphics g){

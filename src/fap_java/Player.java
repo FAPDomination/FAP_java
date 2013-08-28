@@ -112,6 +112,8 @@ public abstract class Player extends Human {
      * @see fap_java.FSM
      */
     private FSM fsm;
+    
+    private int controler;
 
     /**
      * Initializes a Player. Abstract class since the player creation is called by the characters extending this
@@ -134,6 +136,7 @@ public abstract class Player extends Human {
         this.setJ(c.getJ());
         this.game = game;
         this.team = t;
+        this.controler = controler;
         team.addPlayer(this);
         // Add FSM if needed
         if(ai>0){
@@ -707,5 +710,21 @@ public abstract class Player extends Human {
 
     public int getPc() {
         return pc;
+    }
+
+    public void setControler(int controler) {
+        this.controler = controler;
+    }
+
+    public int getControler() {
+        return controler;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

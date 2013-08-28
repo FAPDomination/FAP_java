@@ -99,3 +99,12 @@ Les éléments à sauvegarder sont donc :
 - Les valeurs des divers trucs débloqués (persos, bonuses, ...)
 	- Persos débloqués : ArrayList<boolean>
 	- ...
+
+-------------- Processes
+
+En ce qui concerne les Game lancés par les NPCs cellules dans la World Map :
+Faire une HashMap qui à chaque ID de map de jeu (donc linkable avec tout le reste) associe un game.
+De cette façon en ajoutant une map on fera
+gameList.put(mapID, new Game(...));
+Et lors de la création du NPC qui le lance on fera just un get
+Bonus : Exporter cette HashMap en fichier sérialized une fois terminée
