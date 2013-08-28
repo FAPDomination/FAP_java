@@ -46,7 +46,7 @@ public class NPC extends Human{
 
     public String toString() {
         //return "NPC at "+this.getI()+","+this.getJ();
-        return "A NPC";
+        return "A NPC at "+position;
     }
 
     

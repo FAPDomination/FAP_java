@@ -23,7 +23,7 @@ public class AStartGame implements Action {
             panel = gameToLaunch;
         }
         else{
-            panel = new CharacterSelection(frame,new Game(0),gameToLaunch);
+            panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);
         }
         frame.changePanel(panel);
         // add Animation

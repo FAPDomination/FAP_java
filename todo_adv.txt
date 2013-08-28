@@ -16,6 +16,8 @@ V			- If world map, look under
 V		- Timer
   Semi-ADV
 	- End game (victory or not)
+	- Launching with CharacterSelection
+		- Launch loading screen before
   Full-ADV
 P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
@@ -43,7 +45,7 @@ P~		- Placement
 V		- Create
 		- Actions
 			- Do you wanna quit ?
-			- Start World map
+V			- Start World map
 V		- Implement (not in shiftStick but parse in mapHandler)
 V	- NPC World Map blocking
 V		- Create

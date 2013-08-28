@@ -16,6 +16,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
+
 
 public class MainMenu extends FAPanel implements AnimPanel{
     private JButton btnAdventure = new JButton();
@@ -117,7 +119,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
     private void btnAdv_actionPerformed() {
         GameSave gs = Tools.loadGame();
         // If the game is'nt new
-        Game game = new Game(0);
+        Game game = Fapplication.getWorldMap();
         // If not, start a new game (cutscene)
         //TODO
         //----

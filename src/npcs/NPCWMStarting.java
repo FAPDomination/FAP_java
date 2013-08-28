@@ -28,8 +28,6 @@ public class NPCWMStarting extends NPC{
         super(pos,true,false,null,game, Graph.getOffsetsCells().get(0),null);
         this.conquered = conquered;
         //TODO Update image and override paintComponent
-        //TODO Update list of actions
-        //Testing
         actions = new ArrayList<Action>();
         actions.add(new AStartGame(gameToLaunch));
     }

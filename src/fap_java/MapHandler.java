@@ -1,5 +1,7 @@
 package fap_java;
 
+import java.util.ArrayList;
+
 import npcs.NPCExit;
 
 import org.xml.sax.Attributes;

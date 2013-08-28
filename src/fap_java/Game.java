@@ -707,7 +707,7 @@ public class Game extends JPanel implements NeedingFocus {
         return adv;
     }
 
-    private void initWorldMap() {
+    public void initWorldMap() {
         // Linking maps to Cells
         Map<Integer,Dimension> mapList = new HashMap<Integer,Dimension>();
         mapList.put(20, new Dimension(18,11));
@@ -839,14 +839,14 @@ public class Game extends JPanel implements NeedingFocus {
         return listNPCs;
     }
 
-    private void initListNPCs(int nmap) {
+    public void initListNPCs(int nmap) {
         //TODO Initialize the list of all NPCs according to the nmap
         switch(nmap){
         case 0:
             initWorldMap();
             break;
         default:
-            this.listNPCs = new ArrayList<NPC>();
+            //this.listNPCs = new ArrayList<NPC>();
             System.out.println("Couldn't find NPC list for map no "+nmap);
             break;
         }
