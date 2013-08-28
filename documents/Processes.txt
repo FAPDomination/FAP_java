@@ -2,6 +2,5 @@ Processes :
 
 Implementing a new map in the ADV world map :
 	- update gui.Constants.listAdvMaps
-	- update gui.Constants.highestMapID (+1)
 	- update cell position in Game.initWorldMap.mapList
 	- add its parents in Game.computeWorldMap()
