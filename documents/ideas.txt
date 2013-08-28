@@ -27,3 +27,7 @@ Toute personne qui rejoint une partie (dont celui qui hoste) clique sur rejoindr
 Le host a également un écran de sélection des éventuelles IA et de la map
 
 OMG trop bonne idée : pendant cette sélection les persos apparaissent sur une petite map où ils peuvent marcher un peu et voir qui joue, et quel personnage (plus les IAs qui apparaissent avec un skin différent), ainsi que quelle équipe. Cette map reste dans un coin pendant la sélection du perso (char + team) et quand tout le monde est prêt (a cliqué "valider/continuer/commencer") les PlayerSelect sont parsés par le host
+
+------ Stockage des NPCs et des map parentes dans la world map
+
+Pour l'instant c'est de l'ajout à une variable en liste, est-ce qu'il vaudrait pas mieux les mettre dans des fichiers sérializés externes ?

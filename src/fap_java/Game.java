@@ -737,12 +737,8 @@ public class Game extends JPanel implements NeedingFocus {
         mapParents[23] = [1,21,22];
         mapParents[24] = [2,23,20];
         mapParents[25] = [0];*/
-        mapParents.get(20).add(0);
-        
-        mapParents.get(21).add(0);
         
         mapParents.get(22).add(21);
-        mapParents.get(22).add(0);
         
         mapParents.get(23).add(21);
         mapParents.get(23).add(22);
@@ -750,7 +746,6 @@ public class Game extends JPanel implements NeedingFocus {
         mapParents.get(24).add(23);
         mapParents.get(24).add(20);
         
-        mapParents.get(25).add(0);
         // Get conquered cell
         ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
         ArrayList<Integer> mapValues = gameSave.getMapValues();

@@ -23,15 +23,7 @@ public class GameSave implements Serializable {
         unlockedChars = new ArrayList<Boolean>();
         for(int i=0; i<Constants.listAdvMaps.length;i++){
             int mapID = Constants.listAdvMaps[i];
-            int value;
-            //System.out.println(table[0]);
-            if(mapID == 0){
-                value = 2;
-            }
-            else{
-                value = 0;
-            }
-            mapValues.set(mapID,value);
+            mapValues.set(mapID,0);
             //System.out.println(table[0]+"-"+table[1]);
         }
         for(int j=0;j<Constants.numberOfAdvSwitches;j++){
