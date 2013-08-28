@@ -1,5 +1,7 @@
 package fap_java;
 
+import npcs.NPCExit;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -114,11 +116,14 @@ public class MapHandler extends DefaultHandler {
             //System.out.println(did);
 
             t = setTypeWithDid(did, param);
-
+            // This is an exit NPC
             inJ = false;
             if (did != 0) {
                 // Create the cell and add it to the map
                 c = new Cell(i, j, t, param, did,game);
+                if(did == 12){
+                    game.getListNPCs().add(new NPCExit(c,game));
+                }
                 map.addElement(c);
             }
             j++;
@@ -207,7 +212,8 @@ public class MapHandler extends DefaultHandler {
         } else if (did == 10 ||did == 11) {
         // Warp or switch
             t = did;
-        } else {
+        }
+        else {
 
         }
         return t;

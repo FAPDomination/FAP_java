@@ -36,8 +36,11 @@ P~		- Placement
 			- Pause game (Special pause for NPC)
 			- Trigger auto-trigger NPC if any
 	- NPC Exit
-		- Create
-		- Implement (not in shiftStick but parse in mapHandler)
+V		- Create
+		- Actions
+			- Do you wanna quit ?
+			- Start World map
+V		- Implement (not in shiftStick but parse in mapHandler)
 V	- NPC World Map blocking
 V		- Create
 V			- Object
