@@ -58,7 +58,7 @@ public class Miner extends Player{
     public void keyHigh(int i) {
         super.keys[i][1] = 1;
         if(this.selecting){
-            if (this.getGame().getThread().getCount() - this.getLastDisplacement() >= 100) {
+            if (this.getGame().getThread().getCount() - this.getLastDisplacement() >= Params.timeForSelection) {
                 this.setLastDisplacement(this.getGame().getThread().getCount());
                 // If the key LEFT is pressed
                 if (keys[3][1] == 1) {

@@ -13,7 +13,7 @@ V			- If not world map, look around
 V			- If world map, look under
 	- SKILL Key
 		- Space is also a skill key
-		- Timer
+V		- Timer
   Semi-ADV
 	- End game (victory or not)
   Full-ADV

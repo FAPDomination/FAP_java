@@ -204,11 +204,14 @@ public abstract class Player extends Human {
             if(game.getAdv() < 2){
                 this.getSkill();
             }
-            else if(game.isPauseNPC()){
+            else if(game.isPauseNPC() && game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection){
                 // Execute actions for the NPC
                 // Timer to not mess around
+            this.setLastSkill(game.getThread().getCount());
             }
-            else{
+            else if(game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection){
+                // Timer to not mess around
+                this.setLastSkill(game.getThread().getCount());
                 //Check for NPC
                 NPC npc = null;
                 if(game.getMap().getFileID() == 0){

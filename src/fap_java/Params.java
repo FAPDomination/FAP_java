@@ -225,4 +225,6 @@ public class Params {
      * 4 : Skill
      */
     public static int[][] controlsList = new int[nPlayersOn1Computer][5];
+    
+    public static int timeForSelection = 100;
 }
