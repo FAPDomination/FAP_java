@@ -121,6 +121,8 @@ public class Game extends JPanel implements NeedingFocus {
     private GameSave gameSave;
     
     private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
+    
+    private boolean pauseNPC;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -263,7 +265,7 @@ public class Game extends JPanel implements NeedingFocus {
         }
         
         // Paint black screen if the game is paused
-        if(!thread.getRunning()){
+        if(!thread.getRunning() && !pauseNPC){
             g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
         }
         // Paint the animations (warps, explosions, bitches,...)
@@ -538,6 +540,11 @@ public class Game extends JPanel implements NeedingFocus {
      * Pauses or un-pauses the game
      */
     public void pauseGame(){
+        pauseGame(false);
+    }
+    
+    public void pauseGame(boolean isNPC){
+        this.pauseNPC = isNPC;
         // If running, pause
         if(thread.getRunning()){
             thread.setRunning(false);
@@ -545,7 +552,7 @@ public class Game extends JPanel implements NeedingFocus {
             // Display pause
         }
         // Else un-pause if the game is still not finished
-        else if(!gameEnded){
+        else if(!gameEnded || !isNPC){
             // display countdown
             Animation countDown = new PauseCountDown(400,150,Params.pauseDuration,thread);
         }
@@ -835,6 +842,7 @@ public class Game extends JPanel implements NeedingFocus {
             initWorldMap();
             break;
         default:
+            this.listNPCs = new ArrayList<NPC>();
             System.out.println("Couldn't find NPC list for map no "+nmap);
             break;
         }

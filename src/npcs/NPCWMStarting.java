@@ -13,16 +13,26 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
+
+import npcs.actions.AStartGame;
+import npcs.actions.Action;
 
 public class NPCWMStarting extends NPC{
     private boolean conquered;
     private BufferedImage img;
     
     public NPCWMStarting(Cell pos, boolean conquered, Game game) {
-        super(pos,true,false,null,game, Graph.getOffsetsCells().get(0));
+        super(pos,true,false,null,game, Graph.getOffsetsCells().get(0),null);
         this.conquered = conquered;
-        // Update image and override paintComponent
+        //TODO Update image and override paintComponent
+        //TODO Update list of actions
+        //Testing
+        actions = new ArrayList<Action>();
+        Game ga = new Game(25);
+        actions.add(new AStartGame(ga));
     }
 
     public void paintComponent(Graphics g){

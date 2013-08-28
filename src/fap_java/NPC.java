@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import java.util.ArrayList;
+
+import npcs.actions.Action;
+
 public class NPC extends Human{
     
     private Cell position;
@@ -15,20 +19,23 @@ public class NPC extends Human{
     protected int x;
     protected int y;
     
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY) {
+    protected ArrayList<Action> actions;
+    
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY, ArrayList<Action> actions) {
         this.position = position;
         this.walkable = walkable;
         this.autoTrigger = autoTrigger;
         this.img = img;
         this.game = game;
+        this.actions = actions;
         
         int[] tableXY = CMap.giveTalePosition(position);
         x = tableXY[0] + offX;
         y = tableXY[1] + offY;
     }
     
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets) {
-        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight());
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets, ArrayList<Action> actions) {
+        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight(), actions);
     }
     
     public void paintComponent(Graphics g){
@@ -44,8 +51,18 @@ public class NPC extends Human{
 
     
     public void execute(){
-        game.pauseGame();
-        System.out.println(this+" is executing");
+        if(game.getThread().getRunning()){
+            game.pauseGame(true);
+        }
+        if(actions.size()>0){
+            actions.get(0).execute();
+            actions.remove(0);
+            System.out.println(this+" is executing");
+        }
+        else{
+            game.pauseGame(true);
+        }
+        
     }
 
     public void setPosition(Cell position) {

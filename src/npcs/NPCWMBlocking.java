@@ -12,8 +12,8 @@ import java.awt.image.BufferedImage;
 
 public class NPCWMBlocking extends NPC{
     public NPCWMBlocking(Cell pos) {
-        super(pos,false,false,null,null,(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8));
-        // Update image and override paintComponent
+        super(pos,false,false,null,null,(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8),null);
+        //TODO Update image and override paintComponent
         img = Graph.getBasicCellImage();
     }
     

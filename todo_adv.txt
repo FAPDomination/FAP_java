@@ -21,6 +21,7 @@ P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
   NPCs
 	- Actions
+P~		- Object
 		- Display message
 		- Choice ("Y/N" for example)
 		- Test a variable
@@ -28,7 +29,10 @@ V	- Don't pause and unpause game
 		- Switch a switch
 		- Modify another NPC (position, wakable)
 		- Modify a cell (did, walkable)
-		- Start Game
+V		- Start Game
+V			- Get Game
+V			- Launch it
+			- Animation
 	- Object
 P~		- Placement
 		- Execution
