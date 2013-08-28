@@ -54,13 +54,13 @@ V		- Implement
 				- Start Game
 		- Implement
 			
-  World map
+V World map
 V	- Get list of conquered cells
 T	- Parse list of available cells
-	- Create NPCs to cover the designated cells
+V	- Create NPCs to cover the designated cells
 V		- Not available cells
-		- available cells
-		- Conquered Cells
+V		- available cells
+V		- Conquered Cells
 V	- Link maps to their cells
 V		- Linking
 ?		- Find a better place for initialization ?

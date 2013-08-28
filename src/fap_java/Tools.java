@@ -85,6 +85,17 @@ public class Tools {
         return al;
     }
     
+    public static boolean intTableContains(int[] table, int value){
+        boolean b = false;
+        for(int a=0;a<table.length;a++){
+            if(table[a] == value){
+                b = true;
+                break;
+            }
+        }
+        return b;
+    }
+    
     // Graphical tools
     
     public static BufferedImage getImageToFilter(Image image){

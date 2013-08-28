@@ -27,6 +27,7 @@ import java.util.Collection;
 import javax.swing.JPanel;
 
 import npcs.NPCWMBlocking;
+import npcs.NPCWMStarting;
 
 public class Game extends JPanel implements NeedingFocus {
 
@@ -719,6 +720,24 @@ public class Game extends JPanel implements NeedingFocus {
             Dimension indexes = mapList[mapID];
             Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
             this.listNPCs.add(new NPCWMBlocking(pos));
+        }
+        
+        for(int i=0;i<listJustAvailableCells.size();i++){
+            int mapID = listJustAvailableCells.get(i);
+            if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
+                Dimension indexes = mapList[mapID];
+                Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+                this.listNPCs.add(new NPCWMStarting(pos,false,this));
+            }
+        }
+        
+        for(int i=0;i<listConqueredCells.size();i++){
+            int mapID = listConqueredCells.get(i);
+            if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
+                Dimension indexes = mapList[mapID];
+                Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+                this.listNPCs.add(new NPCWMStarting(pos,true,this));
+            }
         }
     }
     
