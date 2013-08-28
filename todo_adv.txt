@@ -18,7 +18,7 @@ V		- Make list of NPCs
 	- End game (victory or not)
   Full-ADV
 P	- maps should only have one startCell in the XML file
-	- Don't pause and unpause game
+V	- Don't pause and unpause game
   NPCs
 	- Actions
 		- Display message

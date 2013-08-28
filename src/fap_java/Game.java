@@ -224,7 +224,9 @@ public class Game extends JPanel implements NeedingFocus {
         }
         
         //Pause it (so it can be automatically un-paused afterwards)
-        pauseGame();
+        if(adv < 2){
+            pauseGame();
+        }
     }
 
     /**
@@ -697,7 +699,6 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     private void initWorldMap() {
-        this.pauseGame();
         // Linking maps to Cells
         Dimension[] mapList = new Dimension[Constants.highestMapID];
         mapList[20] = new Dimension(18,11);
