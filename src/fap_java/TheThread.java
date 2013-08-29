@@ -128,6 +128,12 @@ public class TheThread implements Runnable{
         }
         myGame.computeObjects();
         myGame.executeFSMs();
+        
+        // Testing
+        if(count%600 == 0){
+        //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
+            System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
+        }
     }
 
     public void setMyGame(Game myGame) {

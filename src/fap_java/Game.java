@@ -202,7 +202,7 @@ public class Game extends JPanel implements NeedingFocus {
      * Init common game-related stuff, such as the map, thread, and pauses the game
      * @param nmap The number of the file the map is in
      */
-    private void initGame(int nmap){
+    public void initGame(int nmap){
         // Panel related stuff 
         this.setLayout(null);
         this.setBackground(Color.white);
@@ -228,9 +228,9 @@ public class Game extends JPanel implements NeedingFocus {
         }
         
         //Pause it (so it can be automatically un-paused afterwards)
-        if(adv < 2){
+        //if(adv < 2){
             pauseGame();
-        }
+        //}
     }
 
     /**
@@ -495,6 +495,11 @@ public class Game extends JPanel implements NeedingFocus {
         kl = new KListener(this);
         this.addKeyListener(kl);
     }
+    
+    private void deleteKListener(){
+        this.removeKeyListener(kl);
+        kl = null;
+    }
 
     /**
      * Request the focus so that the K listener works
@@ -503,6 +508,12 @@ public class Game extends JPanel implements NeedingFocus {
         initKListener();
         this.setFocusable(true);
         requestFocus();
+    }
+    
+    public void releaseFocus(){
+        deleteKListener();
+        thread.setRunning(false);
+        this.setFocusable(false);
     }
     
     /**

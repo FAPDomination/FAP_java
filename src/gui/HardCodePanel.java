@@ -102,4 +102,7 @@ public class HardCodePanel extends FAPanel implements NeedingFocus{
         this.setFocusable(true);
         requestFocus();
     }
+
+    public void releaseFocus() {
+    }
 }

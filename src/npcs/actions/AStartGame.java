@@ -21,6 +21,7 @@ public class AStartGame implements Action {
         JPanel panel = null;
         if(gameToLaunch.getAdv() == 2){
             panel = gameToLaunch;
+            gameToLaunch.getThread().setRunning(true);
         }
         else{
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);

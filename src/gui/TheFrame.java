@@ -33,6 +33,9 @@ public class TheFrame extends JFrame {
     
     public void changePanel(JPanel jp, Object layout){
         Component compo = borderLayout1.getLayoutComponent(layout);
+        if(compo instanceof NeedingFocus){
+            ((NeedingFocus) compo).releaseFocus();
+        }
         this.remove(compo);
         compo = jp;
         this.getContentPane().add(compo, layout);
@@ -45,6 +48,7 @@ public class TheFrame extends JFrame {
     }
     
     public void changePanel(JPanel jp){
+        System.out.println("changing");
         changePanel(jp, BorderLayout.CENTER);
     }
 

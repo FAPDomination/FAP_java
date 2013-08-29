@@ -120,6 +120,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
         GameSave gs = Tools.loadGame();
         // If the game is'nt new
         Game game = Fapplication.getWorldMap();
+        game.getThread().setRunning(true);
         // If not, start a new game (cutscene)
         //TODO
         //----

@@ -272,4 +272,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
     public int getArroSelectOrigY() {
         return arroSelectOrigY;
     }
+
+    public void releaseFocus() {
+    }
 }
