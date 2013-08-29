@@ -507,6 +507,7 @@ public class Game extends JPanel implements NeedingFocus {
     public void initFocus() {
         initKListener();
         this.setFocusable(true);
+        this.initListNPCs(map.getFileID());
         requestFocus();
     }
     
@@ -851,15 +852,23 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     public void initListNPCs(int nmap) {
-        //TODO Initialize the list of all NPCs according to the nmap
-        switch(nmap){
-        case 0:
-            initWorldMap();
-            break;
-        default:
-            //this.listNPCs = new ArrayList<NPC>();
-            System.out.println("Couldn't find NPC list for map no "+nmap);
-            break;
+        this.pauseNPC = false;
+        if(this.listNPCs.size()>0){
+            for(int i=0;i<listNPCs.size();i++){
+                listNPCs.get(i).reInit();
+            }
+        }
+        else{
+            //TODO Initialize the list of all NPCs according to the nmap
+            switch(nmap){
+            case 0:
+                initWorldMap();
+                break;
+            default:
+                //this.listNPCs = new ArrayList<NPC>();
+               // System.out.println("Couldn't find NPC list for map no "+nmap);
+                break;
+            }
         }
     }
 

@@ -132,7 +132,7 @@ public class TheThread implements Runnable{
         // Testing
         if(count%600 == 0){
         //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
-            System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
+            //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
         }
     }
 

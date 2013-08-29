@@ -2,6 +2,8 @@ package npcs.actions;
 
 import fap_java.Game;
 
+import fap_java.NPC;
+
 import gui.CharacterSelection;
 import gui.Fapplication;
 import gui.TheFrame;
@@ -16,7 +18,7 @@ public class AStartGame implements Action {
         this.gameToLaunch = gameToLaunch;
     }
 
-    public void execute() {
+    public void execute(NPC whoLaunches) {
         TheFrame frame = (TheFrame)Fapplication.getFrame();
         JPanel panel = null;
         if(gameToLaunch.getAdv() == 2){
@@ -27,6 +29,9 @@ public class AStartGame implements Action {
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);
         }
         frame.changePanel(panel);
+        if(whoLaunches.getIterator() < whoLaunches.getActions().size()){
+            whoLaunches.execute();
+        }
         // add Animation
     }
 }

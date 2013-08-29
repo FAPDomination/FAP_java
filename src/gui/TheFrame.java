@@ -48,7 +48,6 @@ public class TheFrame extends JFrame {
     }
     
     public void changePanel(JPanel jp){
-        System.out.println("changing");
         changePanel(jp, BorderLayout.CENTER);
     }
 

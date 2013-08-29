@@ -43,4 +43,9 @@ public class NPCWMStarting extends NPC{
     public boolean isConquered() {
         return conquered;
     }
+    
+    public String toString(){
+        return super.toString()+" strt";
+    }
+    
 }

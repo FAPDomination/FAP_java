@@ -19,6 +19,8 @@ public class NPC extends Human{
     protected int x;
     protected int y;
     
+    protected int iterator;
+    
     protected ArrayList<Action> actions;
     
     public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY, ArrayList<Action> actions) {
@@ -32,6 +34,8 @@ public class NPC extends Human{
         int[] tableXY = CMap.giveTalePosition(position);
         x = tableXY[0] + offX;
         y = tableXY[1] + offY;
+        
+        this.reInit();
     }
     
     public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets, ArrayList<Action> actions) {
@@ -54,13 +58,15 @@ public class NPC extends Human{
         if(game.getThread().getRunning()){
             game.pauseGame(true);
         }
-        if(actions.size()>0){
-            actions.get(0).execute();
-            actions.remove(0);
+        if(iterator < actions.size()){
+            Action ac = actions.get(iterator);
+            iterator ++;
+            ac.execute(this);
             //System.out.println(this+" is executing");
         }
         else{
             game.pauseGame(true);
+            game.setPauseNPC(false);
         }
         
     }
@@ -111,5 +117,25 @@ public class NPC extends Human{
 
     public Game getGame() {
         return game;
+    }
+    
+    public void reInit(){
+        iterator = 0;
+    }
+
+    public void setIterator(int iterator) {
+        this.iterator = iterator;
+    }
+
+    public int getIterator() {
+        return iterator;
+    }
+
+    public void setActions(ArrayList<Action> actions) {
+        this.actions = actions;
+    }
+
+    public ArrayList<Action> getActions() {
+        return actions;
     }
 }
