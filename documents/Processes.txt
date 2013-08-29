@@ -5,3 +5,4 @@ Implementing a new map in the ADV world map :
 	- update cell position in Game.initWorldMap.mapList
 	- add its parents in Game.computeWorldMap()
 	- fill the game constructor in Game.initWorldMap
+		- Careful ! The player is always team 0

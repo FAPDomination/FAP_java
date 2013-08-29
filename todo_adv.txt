@@ -17,6 +17,12 @@ V		- Timer
 	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
   Semi-ADV
 	- End game (victory or not)
+		- Display Victory
+			- Display
+			- Goback to world Map
+			- GoBack to wherever we were
+V		- Save game
+P		- Delete temporary GobackToWorldMap thing
 V	- Launching with CharacterSelection
 V		- Launch loading screen before
 V		- Double define of players bug

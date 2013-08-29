@@ -8,6 +8,7 @@ import characters.*;
 
 import gui.Constants;
 
+import gui.Fapplication;
 import gui.GameSave;
 import gui.NeedingFocus;
 
@@ -30,8 +31,11 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import npcs.NPCExit;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
+
+import npcs.actions.AStartGame;
 
 public class Game extends JPanel implements NeedingFocus {
 
@@ -578,13 +582,34 @@ public class Game extends JPanel implements NeedingFocus {
         pauseGame();
         gameEnded = true;
         // versus mode
-        if(winner == null){
-            System.out.println("Tie !");
+        if(adv == 0){
+            if(winner == null){
+                System.out.println("Tie !");
+            }
+            else{
+                System.out.println("Winner : "+winner);
+            }
         }
         else{
-            System.out.println("Winner : "+winner);
+            // adventure mode : if the winner isn't the player, then display lost
+            Team thePlayer = teams.get(0);
+            if(thePlayer == winner){
+                // Change and save gameDatas
+                this.gameSave = Tools.loadGame();
+                Map<Integer,Integer> mapValues = gameSave.getMapValues();
+                mapValues.put(map.getFileID(),2);
+                Tools.saveGame(this.gameSave);
+                Fapplication.getWorldMap().initWorldMap();
+                // display victory : (wich will have its own back to world map)
+                System.out.println("Yay, Victory !");
+            }
+            else{
+                // Display defeat :(wich will have its own back to world map)
+                System.out.println("You lost");
+                // Don't change anything
+            }
+            new AStartGame(Fapplication.getWorldMap()).execute(null);
         }
-        // adventure mode : if the winner isn't the player, then display lost
     }
     
     /**
@@ -720,6 +745,7 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     public void initWorldMap() {
+        this.listNPCs = new ArrayList<NPC>();
         // Linking maps to Cells
         Map<Integer,Dimension> mapList = new HashMap<Integer,Dimension>();
         mapList.put(20, new Dimension(18,11));
@@ -731,7 +757,7 @@ public class Game extends JPanel implements NeedingFocus {
     
         Map<Integer,Game> gameList = new HashMap<Integer,Game>();
         gameList.put(25, new Game(25));
-        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,2000,0,0,1));
+        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,1000,0,0,1));
         /*
         mapList[20] = new Dimension(18,11);
         mapList[21] = new Dimension(18,10);
@@ -745,9 +771,9 @@ public class Game extends JPanel implements NeedingFocus {
         ArrayList<Integer> listJustAvailableCells = getListOfWMCells(1);
         ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
         ArrayList<Integer> listNotAvailableCells = getListOfWMCells(0);
-        /*System.out.println(listJustAvailableCells);
-        System.out.println(listNotAvailableCells);
-        System.out.println(listConqueredCells);*/
+        System.out.println("Just Av : "+listJustAvailableCells);
+        System.out.println("Not Av : "+listNotAvailableCells);
+        System.out.println("Conquered : "+listConqueredCells);
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
             int mapID = listNotAvailableCells.get(i);
@@ -791,7 +817,7 @@ public class Game extends JPanel implements NeedingFocus {
         mapParents[24] = [2,23,20];
         mapParents[25] = [0];*/
         
-        mapParents.get(22).add(21);
+        mapParents.get(22).add(20);
         
         mapParents.get(23).add(21);
         mapParents.get(23).add(22);
