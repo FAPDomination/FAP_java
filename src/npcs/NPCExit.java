@@ -18,9 +18,13 @@ import npcs.actions.Action;
 public class NPCExit extends NPC {
     public NPCExit(Cell cell, Game game) {
         super(cell, true, false, null, game, 0,0,null);
-        actions = new ArrayList<Action>();
+        //actions = new ArrayList<Action>();
         //Action ac = new AStartGame(new Game(0));
-        actions.add(new AStartGame(Fapplication.getWorldMap()));
+        //actions.add(new AStartGame(Fapplication.getWorldMap()));
     }
     public void paintComponent(Graphics g){}
+    
+    public void execute(){
+        new AStartGame(Fapplication.getWorldMap()).execute();
+    }
 }

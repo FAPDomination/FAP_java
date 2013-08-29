@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 
 public class Fapplication {
     private static JFrame frame;
-    private static Game worldMap = new Game(0);
+    private static Game worldMap;
     public Fapplication() {
         frame = new TheFrame();
         worldMap = new Game(0);
