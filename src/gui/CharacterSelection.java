@@ -156,7 +156,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         // Proceeding to next panel
         JPanel nextPanel;
         if(advGame != null){
-            nextPanel = advGame;
+            nextPanel = new LoadingScreen(this.parent,advGame,this,advGame.getMap().getFileID());
+            System.out.println(advGame.getPlayers());
             advGame.pauseGame();
         }
         else{

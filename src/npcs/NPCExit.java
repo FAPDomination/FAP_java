@@ -21,21 +21,21 @@ import npcs.actions.AStartGame;
 import npcs.actions.Action;
 
 public class NPCExit extends NPC {
-    boolean done;
     public NPCExit(Cell cell, Game game) {
         super(cell, true, false, null, game, 0,0,new ArrayList<Action>());
-        done = false;
     }
     public void paintComponent(Graphics g){}
     
     public void execute(){
-        if(!done){
-            done = true;
+        if(iterator == 0){
+            // Ask are you sure
+            iterator++;
+            // re-execute
+            this.execute();
+        }
+        else{
+            iterator++;
             new AStartGame(Fapplication.getWorldMap()).execute(this);
         }
-    }
-    
-    public void reInit(){
-        done = false;   
     }
 }

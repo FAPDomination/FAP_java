@@ -204,16 +204,12 @@ public abstract class Player extends Human {
         //handleKeys();
         
         if (i == 4) { //Skill
-            boolean b = (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection);
-            System.out.println("In C "+(b));
             if(game.getAdv() < 2){
-                System.out.println("In D");
                 this.getSkill();
             }
             else if(game.isPauseNPC() && (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection)){
                 // Execute actions for the NPC
                 // Timer to not mess around
-                System.out.println("In E");
                 this.setLastSkill(game.getThread().getCount());
             }
             else if(game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection){
@@ -221,9 +217,7 @@ public abstract class Player extends Human {
                 this.setLastSkill(game.getThread().getCount());
                 //Check for NPC
                 NPC npc = null;
-                System.out.println("In A");
                 if(game.getMap().getFileID() == 0){
-                System.out.println("In B");
                     npc = Tools.checkNPCOnCell(game, this.current);
                 }
                 else{

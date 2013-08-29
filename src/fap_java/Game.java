@@ -498,7 +498,7 @@ public class Game extends JPanel implements NeedingFocus {
     
     private void deleteKListener(){
         this.removeKeyListener(kl);
-        kl = null;
+        kl = new KListener(this);
     }
 
     /**

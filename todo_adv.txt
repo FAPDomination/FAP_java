@@ -14,10 +14,12 @@ V			- If world map, look under
 ?	- SKILL Key
 ?		- Space is also a skill key
 V		- Timer
+	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
   Semi-ADV
 	- End game (victory or not)
 	- Launching with CharacterSelection
 		- Launch loading screen before
+		- Double define of players bug
   Full-ADV
 P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
@@ -35,6 +37,7 @@ V		- Start Game
 V			- Get Game
 V			- Launch it
 			- Animation
+			- Back to this very NPC afterwards
 	- Object
 P~		- Placement
 		- Execution
@@ -61,7 +64,7 @@ V		- Implement
 V			- Walkable
 			- Actions
 				- Do you wanna play ?
-				- Start Game
+V				- Start Game
 V		- Implement			
 T World map
 V	- Get list of conquered cells
