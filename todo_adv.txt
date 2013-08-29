@@ -17,9 +17,9 @@ V		- Timer
 	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
   Semi-ADV
 	- End game (victory or not)
-	- Launching with CharacterSelection
-		- Launch loading screen before
-		- Double define of players bug
+V	- Launching with CharacterSelection
+V		- Launch loading screen before
+V		- Double define of players bug
   Full-ADV
 P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game

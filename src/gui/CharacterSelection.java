@@ -143,6 +143,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
             if(advGame != null){
                 Player formerP = advGame.getPlayers().get(i);
                 int fsmLevel;
+                formerP.getTeam().getPlayersInThisTeam().remove(formerP);
                 if(formerP.getFsm() != null){
                     fsmLevel = formerP.getFsm().getLevel();
                 }
@@ -157,8 +158,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         JPanel nextPanel;
         if(advGame != null){
             nextPanel = new LoadingScreen(this.parent,advGame,this,advGame.getMap().getFileID());
-            System.out.println(advGame.getPlayers());
-            advGame.pauseGame();
         }
         else{
             nextPanel = new MapSelect(parent,this);
