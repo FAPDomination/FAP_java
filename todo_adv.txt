@@ -23,6 +23,7 @@ V		- Timer
 			- GoBack to wherever we were
 V		- Save game
 P		- Delete temporary GobackToWorldMap thing
+P		- Bonus : too heavy to reload the entire world map
 V	- Launching with CharacterSelection
 V		- Launch loading screen before
 V		- Double define of players bug

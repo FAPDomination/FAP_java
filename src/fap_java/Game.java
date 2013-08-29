@@ -758,22 +758,15 @@ public class Game extends JPanel implements NeedingFocus {
         Map<Integer,Game> gameList = new HashMap<Integer,Game>();
         gameList.put(25, new Game(25));
         gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,1000,0,0,1));
-        /*
-        mapList[20] = new Dimension(18,11);
-        mapList[21] = new Dimension(18,10);
-        mapList[22] = new Dimension(17,9);
-        mapList[23] = new Dimension(17,10);
-        mapList[24] = new Dimension(16,10);
-        mapList[25] = new Dimension(18,9);
-        */
+
         // Get list of conquered cells
         this.computeWorldMap();
         ArrayList<Integer> listJustAvailableCells = getListOfWMCells(1);
         ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
         ArrayList<Integer> listNotAvailableCells = getListOfWMCells(0);
-        System.out.println("Just Av : "+listJustAvailableCells);
+        /*System.out.println("Just Av : "+listJustAvailableCells);
         System.out.println("Not Av : "+listNotAvailableCells);
-        System.out.println("Conquered : "+listConqueredCells);
+        System.out.println("Conquered : "+listConqueredCells);*/
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
             int mapID = listNotAvailableCells.get(i);
@@ -823,6 +816,7 @@ public class Game extends JPanel implements NeedingFocus {
         mapParents.get(23).add(22);
         
         mapParents.get(24).add(23);
+        // This line doesn't do much, does it ?
         mapParents.get(24).add(20);
         
         // Get conquered cell
@@ -892,7 +886,7 @@ public class Game extends JPanel implements NeedingFocus {
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
-               // System.out.println("Couldn't find NPC list for map no "+nmap);
+                System.out.println("Couldn't find NPC list for map no "+nmap);
                 break;
             }
         }
