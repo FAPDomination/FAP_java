@@ -186,6 +186,11 @@ V		- Tidy paintComponent
 		- Scorebar's scores
 		- SkillTimes
 		- PauseCountDown
+		- VictoryScreen (PauseScreen.java)
+	- VictoryScreen
+		- Display of the players (placement)
+		- Animation ?
+		- Other decoration picture
 V Depth
 V Minimap
 V	- Object

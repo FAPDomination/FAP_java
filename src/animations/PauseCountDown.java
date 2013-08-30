@@ -1,5 +1,7 @@
 package animations;
 
+import fap_java.Element;
+import fap_java.PauseScreen;
 import fap_java.TheThread;
 
 import java.awt.Color;
@@ -27,6 +29,12 @@ public class PauseCountDown extends Animation {
 
     public void endAnimation() {
         super.endAnimation();
+        for(int j=0;j<thread.getMyGame().getObjects().size();j++){
+            Element e = thread.getMyGame().getObjects().get(j);
+            if(e instanceof PauseScreen){
+                thread.getMyGame().deleteObject(e);
+            }
+        }
         thread.setRunning(true);
     }
 }

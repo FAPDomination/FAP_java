@@ -23,15 +23,12 @@ import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
-import java.util.Collection;
-
 import java.util.HashMap;
 
 import java.util.Map;
 
 import javax.swing.JPanel;
 
-import npcs.NPCExit;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
@@ -259,19 +256,22 @@ public class Game extends JPanel implements NeedingFocus {
         
         // Repaint the map
         map.paintComponent(g);
-        // Repaint the objects (such as arrows)
-        for(int j=0;j<objects.size();j++){
-            objects.get(j).paintComponent(g);
-        }
         if(adv <2){
             // Repaint the scoreHandler
             this.scoreHandler.paintComponent(g);
         }
+        // Repaint the objects (such as arrows)
+        for(int j=0;j<objects.size();j++){
+            objects.get(j).paintComponent(g);
+        }
         
+        
+        /*
         // Paint black screen if the game is paused
         if(!thread.getRunning() && !pauseNPC){
             g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
         }
+        */
         // Paint the animations (warps, explosions, bitches,...)
         for(int j=0;j<anims.size();j++){
             if(thread.getRunning() || anims.get(j) instanceof PauseCountDown){
@@ -566,11 +566,28 @@ public class Game extends JPanel implements NeedingFocus {
             thread.setRunning(false);
             this.repaint();
             // Display pause
+            PauseScreen ps = new PauseScreen(false, this);
+            this.addObject(ps);
         }
         // Else un-pause if the game is still not finished
-        else if(!gameEnded || !isNPC){
+        else if(!gameEnded && !isNPC){
             // display countdown
-            Animation countDown = new PauseCountDown(400,150,Params.pauseDuration,thread);
+            for(int j=0;j<objects.size();j++){
+                Element e = objects.get(j);
+                if(e instanceof PauseScreen){
+                    ((PauseScreen)e).setResuming(true);
+                }
+            }
+            new PauseCountDown(400,150,Params.pauseDuration,thread);
+        }
+        else if(isNPC){
+            for(int j=0;j<objects.size();j++){
+                Element e = objects.get(j);
+                if(e instanceof PauseScreen){
+                    deleteObject(e);
+                }
+            }
+            thread.setRunning(true);
         }
     }
     
@@ -580,17 +597,30 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void endGame(Team winner){
         pauseGame();
+        PauseScreen victoryScreen = null;
+        for(int j=0;j<objects.size();j++){
+            Element e = objects.get(j);
+            if(e instanceof PauseScreen){
+                victoryScreen = (PauseScreen) e;
+            }
+        }
+        victoryScreen.setDisplayVictory(true);
+        victoryScreen.setWinner(winner);
         gameEnded = true;
         // versus mode
         if(adv == 0){
+            victoryScreen.setAdvMode(false);
             if(winner == null){
                 System.out.println("Tie !");
+                //victoryScreen.setMessage("Match Nul !");
             }
             else{
-                System.out.println("Winner : "+winner);
+                victoryScreen.setMessage("Fin du match !");
+                //System.out.println("Winner : "+winner);
             }
         }
         else{
+            victoryScreen.setAdvMode(true);
             // adventure mode : if the winner isn't the player, then display lost
             Team thePlayer = teams.get(0);
             if(thePlayer == winner){
@@ -601,15 +631,19 @@ public class Game extends JPanel implements NeedingFocus {
                 Tools.saveGame(this.gameSave);
                 Fapplication.getWorldMap().initWorldMap();
                 // display victory : (wich will have its own back to world map)
-                System.out.println("Yay, Victory !");
+                victoryScreen.setMessage("Victoire !");
+                //System.out.println("Yay, Victory !");
             }
             else{
                 // Display defeat :(wich will have its own back to world map)
-                System.out.println("You lost");
+                victoryScreen.setMessage("Perdu...");
+                victoryScreen.setWinner(null);
+                //System.out.println("You lost");
                 // Don't change anything
             }
-            new AStartGame(Fapplication.getWorldMap()).execute(null);
+            //new AStartGame(Fapplication.getWorldMap()).execute(null);
         }
+        this.repaint();
     }
     
     /**
@@ -898,5 +932,13 @@ public class Game extends JPanel implements NeedingFocus {
 
     public boolean isPauseNPC() {
         return pauseNPC;
+    }
+
+    public void setObjects(ArrayList<Element> objects) {
+        this.objects = objects;
+    }
+
+    public ArrayList<Element> getObjects() {
+        return objects;
     }
 }

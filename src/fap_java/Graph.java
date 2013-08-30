@@ -90,6 +90,7 @@ public class Graph {
             guimg.put("LS_BGteam", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_team.png")));
             guimg.put("LS_BG8team", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_8Teams.png")));
             guimg.put("pauseScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/pauseScreen.png")));
+            guimg.put("victoryScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/victoryScreen.png")));
             
             File location = new File("resources/images/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));

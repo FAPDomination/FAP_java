@@ -120,7 +120,8 @@ public class MainMenu extends FAPanel implements AnimPanel{
         GameSave gs = Tools.loadGame();
         // If the game is'nt new
         Game game = Fapplication.getWorldMap();
-        game.getThread().setRunning(true);
+        //game.getThread().setRunning(true);
+        game.pauseGame(true);
         // If not, start a new game (cutscene)
         //TODO
         //----
@@ -142,7 +143,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
         // init map
         int[] possibleMaps = { 5, 6, 8, 10, 11 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
-        nmap = 6;
+        //nmap = 6;
         // init skill
         int pcP = Tools.randRange(1, 9, Params.excludedChars);
         int pcF = Tools.randRange(1, 9, Params.excludedChars);

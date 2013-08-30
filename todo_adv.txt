@@ -38,7 +38,7 @@ P~		- Object
 		- Test a variable
 		- Give/Take object (=switch a switch)
 		- Switch a switch
-		- Modify another NPC (position, wakable)
+		- Modify another NPC (position, wakable, actions ?)
 		- Modify a cell (did, walkable)
 V		- Start Game
 V			- Get Game
