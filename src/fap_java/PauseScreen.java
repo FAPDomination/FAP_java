@@ -5,6 +5,11 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -47,6 +52,12 @@ public class PauseScreen extends Element{
         btnMainMenu.setSize(140, 40);
         btnMainMenu.setLocation(20, 200);
         game.add(btnMainMenu);
+        
+        btnResume.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                resumeGame();
+            }
+        });
     }
     
     public void paintComponent(Graphics g) {
@@ -130,5 +141,13 @@ public class PauseScreen extends Element{
 
     public boolean isAdvMode() {
         return advMode;
+    }
+    
+    // Buttons management
+    
+    private void resumeGame() {
+       game.pauseGame();
+       game.releaseFocus();
+       game.initFocus();
     }
 }

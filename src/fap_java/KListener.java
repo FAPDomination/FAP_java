@@ -64,6 +64,7 @@ public class KListener implements KeyListener {
         }
         // Triggers pause
         if (code == Params.pauseKey) {
+            System.out.println("calling");
             game.pauseGame();
         }
     }
@@ -89,5 +90,13 @@ public class KListener implements KeyListener {
             }
         }
 
+    }
+
+    public void setPressed(ArrayList<Integer> pressed) {
+        this.pressed = pressed;
+    }
+
+    public ArrayList<Integer> getPressed() {
+        return pressed;
     }
 }
