@@ -567,12 +567,13 @@ public class Game extends JPanel implements NeedingFocus {
             this.repaint();
             // Display pause
             PauseScreen ps = new PauseScreen(false, this);
-            System.out.println("Making it");
+            if(adv > 0){
+                ps.setAdvMode(true);
+            }
             this.addObject(ps);
         }
         // Else un-pause if the game is still not finished
         else if(!gameEnded && !isNPC){
-            System.out.println("Deleting it");
             // display countdown
             for(int j=0;j<objects.size();j++){
                 Element e = objects.get(j);
@@ -583,6 +584,7 @@ public class Game extends JPanel implements NeedingFocus {
             new PauseCountDown(400,150,Params.pauseDuration,thread);
         }
         else if(isNPC){
+            
             removePauseScreen();
             thread.setRunning(true);
         }
@@ -592,6 +594,7 @@ public class Game extends JPanel implements NeedingFocus {
         for(int j=0;j<objects.size();j++){
             Element e = objects.get(j);
             if(e instanceof PauseScreen){
+                ((PauseScreen) e).setResuming(true);
                 deleteObject(e);
             }
         }

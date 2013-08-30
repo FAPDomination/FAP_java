@@ -1,5 +1,10 @@
 package fap_java;
 
+import gui.Fapplication;
+import gui.MainMenu;
+
+import gui.TheFrame;
+
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -13,6 +18,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 // Also does victory screen
 public class PauseScreen extends Element{
@@ -46,7 +52,6 @@ public class PauseScreen extends Element{
         btnWorldMap.setText("Retour à la carte");
         btnWorldMap.setSize(140, 40);
         btnWorldMap.setLocation(20, 100);
-        game.add(btnWorldMap);
         
         btnMainMenu.setText("Retour au menu");
         btnMainMenu.setSize(140, 40);
@@ -56,6 +61,18 @@ public class PauseScreen extends Element{
         btnResume.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 resumeGame();
+            }
+        });
+        
+        btnMainMenu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gotoMainMenu();
+            }
+        });
+        
+        btnWorldMap.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                gotoWorldMap();
             }
         });
     }
@@ -113,6 +130,8 @@ public class PauseScreen extends Element{
 
     public void setDisplayVictory(boolean displayVictory) {
         this.displayVictory = displayVictory;
+        // Remove Button
+        game.remove(this.btnResume);
     }
 
     public boolean isDisplayVictory() {
@@ -137,6 +156,9 @@ public class PauseScreen extends Element{
 
     public void setAdvMode(boolean advMode) {
         this.advMode = advMode;
+        if(advMode){
+            game.add(btnWorldMap);
+        }
     }
 
     public boolean isAdvMode() {
@@ -149,5 +171,19 @@ public class PauseScreen extends Element{
        game.pauseGame();
        game.releaseFocus();
        game.initFocus();
+    }
+    
+    private void gotoMainMenu(){
+        TheFrame frame = (TheFrame)Fapplication.getFrame();
+        MainMenu panel = new MainMenu(frame,true);
+        
+        frame.changePanel(panel);
+    }
+    
+    private void gotoWorldMap(){
+        TheFrame frame = (TheFrame)Fapplication.getFrame();
+        Game panel = Fapplication.getWorldMap();
+        Fapplication.getWorldMap().pauseGame(true);
+        frame.changePanel(panel);
     }
 }

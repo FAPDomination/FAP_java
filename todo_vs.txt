@@ -213,7 +213,7 @@ V		- Keys
 V		- Victory conditions
 	- Pause/Play
 V		- Get Key from param
-		- Bug multiple pause when keeping Key down
+V		- Bug multiple pause when keeping Key down
 V		- Execute Pause
 V			- Pause
 V			- Display
@@ -224,6 +224,9 @@ V			- With countdown
 			- Pause to menu (give up game)
 ?			- Pause to option (keep game)
 			- Resume button
+		- Big method to init buttons
+			- Placement
+			- Adding/Deleting
 	- Victory
 V		- Check victory
 		- Double timeout bug

@@ -64,7 +64,6 @@ public class KListener implements KeyListener {
         }
         // Triggers pause
         if (code == Params.pauseKey) {
-            System.out.println("calling");
             game.pauseGame();
         }
     }
