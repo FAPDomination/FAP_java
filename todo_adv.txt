@@ -19,10 +19,10 @@ V		- Timer
 	- End game (victory or not)
 		- Display Victory
 V			- Display
-			- Goback to world Map
+V			- Goback to world Map
 			- GoBack to wherever we were
 V		- Save game
-P		- Delete temporary GobackToWorldMap thing
+V		- Delete temporary GobackToWorldMap thing
 P		- Bonus : too heavy to reload the entire world map
 ?			- Yes but what if coming from a pauseScreen mid game ?
 V	- Launching with CharacterSelection
