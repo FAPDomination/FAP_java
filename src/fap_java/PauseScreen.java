@@ -46,17 +46,13 @@ public class PauseScreen extends Element{
         // Init buttons
         btnResume.setText("Continuer");
         btnResume.setSize(140, 40);
-        btnResume.setLocation(20, 20);
-        game.add(btnResume);
+        
         
         btnWorldMap.setText("Retour à la carte");
         btnWorldMap.setSize(140, 40);
-        btnWorldMap.setLocation(20, 100);
         
         btnMainMenu.setText("Retour au menu");
         btnMainMenu.setSize(140, 40);
-        btnMainMenu.setLocation(20, 200);
-        game.add(btnMainMenu);
         
         btnResume.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -75,6 +71,8 @@ public class PauseScreen extends Element{
                 gotoWorldMap();
             }
         });
+        
+        computeButtons();
     }
     
     public void paintComponent(Graphics g) {
@@ -115,13 +113,7 @@ public class PauseScreen extends Element{
 
     public void setResuming(boolean resuming) {
         this.resuming = resuming;
-        
-        if(resuming){
-            //Remove button
-            game.remove(this.btnMainMenu);
-            game.remove(this.btnResume);
-            game.remove(this.btnWorldMap);
-        }
+        computeButtons();
     }
 
     public boolean isResuming() {
@@ -131,7 +123,7 @@ public class PauseScreen extends Element{
     public void setDisplayVictory(boolean displayVictory) {
         this.displayVictory = displayVictory;
         // Remove Button
-        game.remove(this.btnResume);
+        computeButtons();
     }
 
     public boolean isDisplayVictory() {
@@ -156,9 +148,7 @@ public class PauseScreen extends Element{
 
     public void setAdvMode(boolean advMode) {
         this.advMode = advMode;
-        if(advMode){
-            game.add(btnWorldMap);
-        }
+        computeButtons();
     }
 
     public boolean isAdvMode() {
@@ -185,5 +175,40 @@ public class PauseScreen extends Element{
         Game panel = Fapplication.getWorldMap();
         Fapplication.getWorldMap().pauseGame(true);
         frame.changePanel(panel);
+    }
+    
+    private void computeButtons(){
+        //Remove button
+        game.remove(this.btnMainMenu);
+        game.remove(this.btnResume);
+        game.remove(this.btnWorldMap);
+        if(!resuming){
+            int nbuttons=1;     // for gotoMainMenu
+            if(this.advMode && game.getMap().getFileID() != 0){
+                nbuttons++;     // for gotoWorldMap
+            }
+            if(!this.displayVictory){
+                nbuttons++;     // for resume
+            }
+            
+            // Buttons placement and adding
+            int i=0;
+            //Resume
+            if(!this.displayVictory){
+                btnResume.setLocation(20, 20);
+                game.add(btnResume);
+            }
+            //World map
+            if(this.advMode && game.getMap().getFileID() != 0){
+                btnWorldMap.setLocation(20, 100);
+                game.add(btnWorldMap);
+            }
+            // MainMenu
+            btnMainMenu.setLocation(20, 200);
+            game.add(btnMainMenu);
+        }
+        
+        //TODO compute sizes
+        //TODO compute position
     }
 }

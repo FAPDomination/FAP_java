@@ -220,13 +220,13 @@ V			- Display
 V		- Resume
 V			- without countdown
 V			- With countdown
-		- Escape from pause
-			- Pause to menu (give up game)
+V		- Escape from pause
+V			- Pause to menu (give up game)
 ?			- Pause to option (keep game)
-			- Resume button
+V			- Resume button
 		- Big method to init buttons
 			- Placement
-			- Adding/Deleting
+V			- Adding/Deleting
 	- Victory
 V		- Check victory
 		- Double timeout bug
