@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+
 // Also does victory screen
 public class PauseScreen extends Element{
     private boolean displayVictory;
@@ -16,12 +18,35 @@ public class PauseScreen extends Element{
     private String message;
     private Team winner;
     private boolean advMode;
+    
+    // Buttons
+    private JButton btnResume = new JButton();
+    private JButton btnWorldMap = new JButton();
+    private JButton btnMainMenu = new JButton();
+    
+    
     public PauseScreen(boolean dispVict, Game game) {
         super();
         displayVictory = dispVict;
         this.game = game;
         resuming = false;
         message="";
+        
+        // Init buttons
+        btnResume.setText("Continuer");
+        btnResume.setSize(140, 40);
+        btnResume.setLocation(20, 20);
+        game.add(btnResume);
+        
+        btnWorldMap.setText("Retour à la carte");
+        btnWorldMap.setSize(140, 40);
+        btnWorldMap.setLocation(20, 100);
+        game.add(btnWorldMap);
+        
+        btnMainMenu.setText("Retour au menu");
+        btnMainMenu.setSize(140, 40);
+        btnMainMenu.setLocation(20, 200);
+        game.add(btnMainMenu);
     }
     
     public void paintComponent(Graphics g) {
@@ -30,6 +55,7 @@ public class PauseScreen extends Element{
         if(!resuming){
             // Draw buttons
             //System.out.println("I'm drawin' I'm drawin' !");
+            
             // Draw victory
             if(displayVictory){
                 int width = 528;
@@ -61,6 +87,13 @@ public class PauseScreen extends Element{
 
     public void setResuming(boolean resuming) {
         this.resuming = resuming;
+        
+        if(resuming){
+            //Remove button
+            game.remove(this.btnMainMenu);
+            game.remove(this.btnResume);
+            game.remove(this.btnWorldMap);
+        }
     }
 
     public boolean isResuming() {
