@@ -67,6 +67,7 @@ public class NPC extends Human{
         else{
             game.pauseGame(true);
             game.setPauseNPC(false);
+            this.reInit();
         }
         
     }

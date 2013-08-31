@@ -572,11 +572,13 @@ public class Game extends JPanel implements NeedingFocus {
             thread.setRunning(false);
             this.repaint();
             // Display pause
+            if(!isNPC){
             PauseScreen ps = new PauseScreen(false, this);
-            if(adv > 0){
-                ps.setAdvMode(true);
+                if(adv > 0){
+                    ps.setAdvMode(true);
+                }
+                this.addObject(ps);
             }
-            this.addObject(ps);
         }
         // Else un-pause if the game is still not finished
         else if(!gameEnded && !isNPC){

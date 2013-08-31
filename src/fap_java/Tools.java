@@ -171,7 +171,6 @@ public class Tools {
             c.printStackTrace();
             return null;
         }
-        System.out.println(gs.getGameSwitches());
         return gs;
     }
     
