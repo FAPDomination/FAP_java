@@ -39,8 +39,8 @@ V	- Don't pause and unpause game
 P~		- Object
 		- Display message
 		- Choice ("Y/N" for example)
-		- Test a variable
-		- Switch a switch
+V		- Test a variable
+V		- Switch a switch
 		- Modify another NPC (position, wakable, actions ?)
 		- Modify a cell (did, walkable)
 V		- Start Game

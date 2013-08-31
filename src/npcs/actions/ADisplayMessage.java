@@ -20,7 +20,7 @@ public class ADisplayMessage implements Action {
     public void execute(NPC whoLaunches) {
         System.out.println(message);
         //Loop
-        if(whoLaunches != null && whoLaunches.getIterator() < whoLaunches.getActions().size()){
+        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
             whoLaunches.execute();
         }
     }

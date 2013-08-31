@@ -30,7 +30,7 @@ public class AStartGame implements Action {
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);
         }
         frame.changePanel(panel);
-        if(whoLaunches != null && whoLaunches.getIterator() < whoLaunches.getActions().size()){
+        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
             whoLaunches.execute();
         }
         // add Animation

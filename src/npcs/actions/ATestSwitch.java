@@ -31,7 +31,7 @@ public class ATestSwitch implements Action {
             failAction.execute(whoLaunches);
         }
         //Loop
-        if(whoLaunches != null && whoLaunches.getIterator() < whoLaunches.getActions().size()){
+        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
             whoLaunches.execute();
         }
     }
