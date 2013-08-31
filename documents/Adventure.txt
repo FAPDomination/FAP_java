@@ -63,6 +63,7 @@ L'execution d'un NPC met le reste du jeu en pause
 
 Seulement UN auto-trigger NPC est autorisé par map (à faire manuellement)
 Deux NPCs ne doivent pas être à moins de trois cases de distance sinon ils seront déclenchables en même temps
+Can't stack
 
 -------------- Init d'une map
 

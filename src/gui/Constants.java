@@ -17,7 +17,7 @@ public class Constants {
     public static Color bottom = new Color(175, 240, 255);
     
     // Game datas
-    public static final int numberOfAdvSwitches = 0;
+    public static final int numberOfAdvSwitches = 2;
     public static final int numberOfAdvChars = 10;
     
     public static int[] listAdvMaps = {20,21,22,23,24,25};

@@ -32,7 +32,9 @@ import javax.swing.JPanel;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
+import npcs.actions.ASetSwitch;
 import npcs.actions.AStartGame;
+import npcs.actions.Action;
 
 public class Game extends JPanel implements NeedingFocus {
 
@@ -232,6 +234,8 @@ public class Game extends JPanel implements NeedingFocus {
         //if(adv < 2){
             pauseGame();
         //}
+            
+            this.listNPCs = new ArrayList<NPC>();
     }
 
     /**
@@ -815,7 +819,7 @@ public class Game extends JPanel implements NeedingFocus {
             int mapID = listNotAvailableCells.get(i);
             Dimension indexes = mapList.get(mapID);
             Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-            this.listNPCs.add(new NPCWMBlocking(pos));
+            this.addNPC(new NPCWMBlocking(pos));
         }
         
         for(int i=0;i<listJustAvailableCells.size();i++){
@@ -823,7 +827,7 @@ public class Game extends JPanel implements NeedingFocus {
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList.get(mapID);
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-                this.listNPCs.add(new NPCWMStarting(pos,false,this,gameList.get(mapID)));
+                this.addNPC(new NPCWMStarting(pos,false,this,gameList.get(mapID)));
             //}
         }
         
@@ -832,7 +836,7 @@ public class Game extends JPanel implements NeedingFocus {
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
                 Dimension indexes = mapList.get(mapID);
                 Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
-                this.listNPCs.add(new NPCWMStarting(pos,true,this,gameList.get(mapID)));
+                this.addNPC(new NPCWMStarting(pos,true,this,gameList.get(mapID)));
             //}
         }
     }
@@ -914,6 +918,12 @@ public class Game extends JPanel implements NeedingFocus {
         return listNPCs;
     }
 
+    public void addNPC(NPC e){
+        if(!this.listNPCs.contains(e)){
+            listNPCs.add(e);
+        }
+    }
+
     public void initListNPCs(int nmap) {
         this.pauseNPC = false;
         if(this.listNPCs.size()>0){
@@ -922,17 +932,25 @@ public class Game extends JPanel implements NeedingFocus {
             }
         }
         else{
+            
+        }
             //TODO Initialize the list of all NPCs according to the nmap
             switch(nmap){
             case 0:
                 initWorldMap();
+                break;
+            case 25:
+                System.out.println("init 25");
+                ArrayList<Action> list = new ArrayList<Action>();
+                list.add(new ASetSwitch(0,true));
+                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.getBasicCellImage(),this,0,0,list);
+                this.addNPC(npc);
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
                 System.out.println("Couldn't find NPC list for map no "+nmap);
                 break;
             }
-        }
     }
 
     public void setPauseNPC(boolean pauseNPC) {

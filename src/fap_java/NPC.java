@@ -138,4 +138,13 @@ public class NPC extends Human{
     public ArrayList<Action> getActions() {
         return actions;
     }
+    
+    public boolean equals(NPC e) {
+        boolean b = false;
+        // Check if they are on the same spot
+        if (this.position == e.getPosition() && !this.autoTrigger) {
+            b = true;
+        }
+        return b;
+    }
 }
