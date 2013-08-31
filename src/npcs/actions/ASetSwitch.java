@@ -25,5 +25,9 @@ public class ASetSwitch implements Action {
         gameSwitches.set(switchID, newValue);
         //Save datas
         Tools.saveGame(gameSave);
+        //Loop
+        if(whoLaunches != null && whoLaunches.getIterator() < whoLaunches.getActions().size()){
+            whoLaunches.execute();
+        }
     }
 }

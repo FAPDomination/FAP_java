@@ -33,6 +33,8 @@ P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
   NPCs
 	- Bug : doesn't paint ?
+	- NPC pause paints too much
+	- NPC doesn't unpause
 	- Actions
 P~		- Object
 		- Display message

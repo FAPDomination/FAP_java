@@ -32,8 +32,10 @@ import javax.swing.JPanel;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
+import npcs.actions.ADisplayMessage;
 import npcs.actions.ASetSwitch;
 import npcs.actions.AStartGame;
+import npcs.actions.ATestSwitch;
 import npcs.actions.Action;
 
 public class Game extends JPanel implements NeedingFocus {
@@ -943,8 +945,17 @@ public class Game extends JPanel implements NeedingFocus {
                 System.out.println("init 25");
                 ArrayList<Action> list = new ArrayList<Action>();
                 list.add(new ASetSwitch(0,true));
+                list.add(new ADisplayMessage("What ? Cha didn't activate da test switch ? I'ma doing it right now !"));
                 NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.getBasicCellImage(),this,0,0,list);
                 this.addNPC(npc);
+                
+                
+                ADisplayMessage ad = new ADisplayMessage("Ya do not interrest-a me");
+                ArrayList<Action> list2 = new ArrayList<Action>();
+                list2.add(new ATestSwitch(0,ad));
+                list2.add(new ADisplayMessage("Ye have da switch !! Gloria !"));
+                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.getBasicCellImage(),this,0,0,list2);
+                this.addNPC(npc2);
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
