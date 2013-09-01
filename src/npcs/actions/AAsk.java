@@ -8,12 +8,15 @@ public class AAsk implements Action {
     private String noOption;
     private boolean choice;
     private int iterator = 0;
-    public AAsk(String message, String yes, String no) {
+    private Action failAction;
+    
+    public AAsk(String message, String yes, String no, Action failAction) {
         super();
         this.message = message;
         this.yesOption = yes;
         this.noOption = no;
         choice = true;
+        this.failAction = failAction;
     }
 
     public void execute(NPC whoLaunches) {
@@ -21,9 +24,20 @@ public class AAsk implements Action {
             System.out.println(message);
             iterator++;
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
-            System.out.println(choice);
         }
         else{
+            System.out.println("You chose : "+choice);
+            if(choice){
+                //Loop
+                if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+                    whoLaunches.execute();
+                }
+            }
+            else{
+                //End NPC
+                whoLaunches.setIterator(whoLaunches.getActions().size()+2);
+                failAction.execute(whoLaunches);
+            }
             //Loop
             if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
                 this.iterator = 0;
@@ -72,4 +86,8 @@ public class AAsk implements Action {
         return choice;
     }
 
+    public void reinit() {
+        iterator = 0;
+        failAction.reinit();
+    }
 }

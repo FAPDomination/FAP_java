@@ -42,4 +42,8 @@ public class ATestSwitch implements Action {
     public int getSwitchID() {
         return switchID;
     }
+
+    public void reinit() {
+        failAction.reinit();
+    }
 }

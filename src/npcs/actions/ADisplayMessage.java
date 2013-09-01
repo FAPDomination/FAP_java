@@ -41,4 +41,8 @@ public class ADisplayMessage implements Action {
     public int getIterator() {
         return iterator;
     }
+
+    public void reinit() {
+        iterator = 0;
+    }
 }

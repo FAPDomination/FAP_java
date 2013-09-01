@@ -37,7 +37,7 @@ T	- NPC pause paints too much
 V	- NPC doesn't unpause
 V	- NPC not walkable
 ?	- Delete whoLaunches.getIterator() <= whoLaunches.getActions().size() in actions ?
-	- Multiple launch of NPCs bug
+V	- Multiple launch of NPCs bug
 	- Actions
 P~		- Object
 E		- Display message

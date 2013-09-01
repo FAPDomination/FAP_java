@@ -56,7 +56,10 @@ public class NPC extends Human{
     }
     
     public Action getCurrentAction(){
-        Action ac = actions.get(iterator);
+        Action ac = null;
+        if(iterator >=0 && iterator <actions.size()){
+        ac = actions.get(iterator);
+        }
         return ac;
     }
 
@@ -132,12 +135,7 @@ public class NPC extends Human{
         if(actions != null){
         for(int i=0;i<actions.size();i++){
             Action ac = actions.get(i);
-            if(ac instanceof ADisplayMessage){
-                ((ADisplayMessage)ac).setIterator(0);
-            }
-            if(ac instanceof AAsk){
-                ((AAsk)ac).setIterator(0);
-            }
+            ac.reinit();
         }
         }
     }

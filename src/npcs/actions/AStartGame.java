@@ -35,4 +35,7 @@ public class AStartGame implements Action {
         }
         // add Animation
     }
+
+    public void reinit() {
+    }
 }
