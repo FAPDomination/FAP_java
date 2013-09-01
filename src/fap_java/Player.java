@@ -12,12 +12,15 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import npcs.actions.AAsk;
+
 public abstract class Player extends Human {
 
     /**
      * The ID number of the player. Not that it is not avoidable, but it's better to have one
      */
     private int id;
+
     /**
      * The character class of the player.
      * Can be :
@@ -31,88 +34,107 @@ public abstract class Player extends Human {
      * 7 - No CHaracter
      * 8 - Magician
      * 9 - Booster
-     * 
+     *
      * @see package characters
      */
     private int pc;
+
     /**
      * The time between two displacements of this player
      */
     private int tmax;
+
     /**
      * The date of the last displacement
      */
     private int lastDisplacement;
+
     /**
      * The time between two uses of skill of this player
      */
     private int skillTime;
+
     /**
      * The date of last skill use
      */
     private int lastSkill;
+
     /**
      * The orientation (direction of the player)
      */
     private int ori;
+
     /**
      * The cell the player is currently standing on
      */
     private Cell current;
+
     /**
      * The cell the player was standing on just before
      */
     private Cell parent;
+
     /**
      * The "force" the player has to kill a cell. This is the amount of HP the cell decreases per frame
      */
     private double decLifeForced;
+
     /**
      * The rate at wich the player's cells recover
      */
     private double recovLifeAuto;
+
     /**
      * The game where the player is playin'
      */
     private Game game;
+
     /**
      * The color of the player
      */
     private Color color;
+
     /**
      * The initial amount of HPs the player's cells have
      */
     private int initHP;
+
     /**
      * The maximum amount of HP the player's cells can go to
      */
     private int maxHP;
+
     /**
      * The rate at wich the cell gain HPs after passing the intHP level
      */
     private double gainLife;
+
     /**
      * The rate at wich the player's cells' HPs decrease when they are alone
      */
     private double decLifeAuto;
+
     /**
      * The gang the player is in (yo)
      */
     private Team team;
+
     /**
      * The set of Key the player uses for displacements
      */
     protected int[][] keys = new int[5][2];
+
     /**
      * Internal parameter
      */
     private String param;
+
     /**
      * The associated artificial intelligence that controls this player (if any)
      * @see fap_java.FSM
      */
     private FSM fsm;
-    
+
     private int controler;
 
     /**
@@ -139,21 +161,20 @@ public abstract class Player extends Human {
         this.controler = controler;
         team.addPlayer(this);
         // Add FSM if needed
-        if(ai>0){
-            fsm = new FSM(this,ai);
+        if (ai > 0) {
+            fsm = new FSM(this, ai);
             controler = 1;
-        }
-        else{
+        } else {
             fsm = null;
         }
-        
+
         this.pc = pc;
 
         color = Params.colorList[id];
         // If no FSM, get keys for displacement
-        if(fsm==null){
-            for(int i=0;i<=4;i++){
-               keys[i][0] = Params.controlsList[controler][i];
+        if (fsm == null) {
+            for (int i = 0; i <= 4; i++) {
+                keys[i][0] = Params.controlsList[controler][i];
             }
         }
         //Init key pressing
@@ -161,8 +182,8 @@ public abstract class Player extends Human {
         keys[1][1] = 0;
         keys[2][1] = 0;
         keys[3][1] = 0;
-        
-        // Init the rest 
+
+        // Init the rest
         this.initParams();
     }
 
@@ -200,12 +221,11 @@ public abstract class Player extends Human {
      */
     public void keyHigh(int i) {
         keys[i][1] = 1;
-        
+
         //handleKeys();
-        
+
         if (i == 4) { //Skill
-            System.out.println("In A");
-            if(game.getAdv() < 2){
+            if (game.getAdv() < 2) {
                 this.getSkill();
             }
             /*else if(game.isPauseNPC() && (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection)){
@@ -213,37 +233,37 @@ public abstract class Player extends Human {
                 // Timer to not mess around
                 this.setLastSkill(game.getThread().getCount());
             }*/
-            else if(game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection){
-                System.out.println("In B");
+            else if (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection) {
                 // Timer to not mess around
                 this.setLastSkill(game.getThread().getCount());
                 //Check for NPC
                 NPC npc = null;
-                if(game.getMap().getFileID() == 0){
+                if (game.getMap().getFileID() == 0) {
                     npc = Tools.checkNPCOnCell(game, this.current);
-                }
-                else{
-                    ArrayList<Cell> toCheck = game.getMap().surroundingCells(current);
-                    for(int j=0;j<toCheck.size();j++){
-                        Cell c = toCheck.get(j);
-                        if(c!=null){
-                            npc = Tools.checkNPCOnCell(game, c);
-                            if(npc != null){
-                                break;
+                } else {
+                    npc = Tools.checkNPCOnCell(game, this.current);
+                    if (npc == null) {
+                        ArrayList<Cell> toCheck = game.getMap().surroundingCells(current);
+                        for (int j = 0; j < toCheck.size(); j++) {
+                            Cell c = toCheck.get(j);
+                            if (c != null) {
+                                npc = Tools.checkNPCOnCell(game, c);
+                                if (npc != null) {
+                                    break;
+                                }
                             }
                         }
                     }
                 }
 
-                if(npc != null){
-                    System.out.println("In C");
+                if (npc != null) {
                     npc.execute();
                 }
             }
         }
 
     }
-    
+
     /**
      * Sets the value of the designated key to "released"
      * @param i the key ID
@@ -252,12 +272,12 @@ public abstract class Player extends Human {
         keys[i][1] = 0;
         //handleKeys();
     }
-    
+
     /**
      * Computes the decisions for the currently pressed keys, such as displacements
      */
-    public void handleKeys(){
-        if(game.getThread().getRunning()){
+    public void handleKeys() {
+        if (game.getThread().getRunning()) {
             //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
             // Hexa displacements :
             // Left + Down
@@ -314,7 +334,7 @@ public abstract class Player extends Human {
                 if (current.getI() % 2 == 0) {
                     // Move the stick
                     shiftStick(-1, -1);
-    
+
                 } else {
                     shiftStick(0, -1);
                 }
@@ -327,9 +347,34 @@ public abstract class Player extends Human {
                 }
                 ori = 3;
             }
-        }
-        else if(game.isPauseNPC()){
-            
+        } else if (game.isPauseNPC()) {
+            //System.out.println("In D");
+            // test if allowed
+            if (keys[2][1] == 1 || keys[3][1] == 1) {
+                if (game.getThread().getCount() - lastDisplacement >= Params.timeForSelection) {
+                    lastDisplacement = game.getThread().getCount();
+                    // Find NPC
+                    //Check for NPC
+                    NPC npc = null;
+                    npc = Tools.checkNPCOnCell(game, this.current);
+                    if (npc == null) {
+                        ArrayList<Cell> toCheck = game.getMap().surroundingCells(current);
+                        for (int j = 0; j < toCheck.size(); j++) {
+                            Cell c = toCheck.get(j);
+                            if (c != null) {
+                                npc = Tools.checkNPCOnCell(game, c);
+                                if (npc != null) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (npc != null && npc.getCurrentAction() instanceof AAsk) {
+                        AAsk ac = (AAsk)npc.getCurrentAction();
+                        ac.setChoice(!ac.isChoice());
+                    }
+                }
+            }
         }
     }
 
@@ -342,24 +387,23 @@ public abstract class Player extends Human {
         // Test if displacement is allowed
         if (game.getThread().getCount() - lastDisplacement >= tmax) {
             lastDisplacement = game.getThread().getCount();
-        Cell c;
-        if(this.fsm != null){
-            c = fsm.getNextCell();
-        }
-        else{
-            // Get the supposed new position of the stick
-            int[] tal2Arr = new int[2];
-            tal2Arr[0] = current.getI() + dy;
-            tal2Arr[1] = current.getJ() + dx;
-            c = game.getMap().getCell(tal2Arr);
-        }
-        // Adds colisions : one does not simply walk into an occupied tale
-        boolean walkable = c != null && c.isWalkable() == true;
-        if (game.isOccupied(c) != null) {
-            walkable = false;
-        }
-        // Special Walk-on-NPC handling
-        /*
+            Cell c;
+            if (this.fsm != null) {
+                c = fsm.getNextCell();
+            } else {
+                // Get the supposed new position of the stick
+                int[] tal2Arr = new int[2];
+                tal2Arr[0] = current.getI() + dy;
+                tal2Arr[1] = current.getJ() + dx;
+                c = game.getMap().getCell(tal2Arr);
+            }
+            // Adds colisions : one does not simply walk into an occupied tale
+            boolean walkable = c != null && c.isWalkable() == true;
+            if (game.isOccupied(c) != null) {
+                walkable = false;
+            }
+            // Special Walk-on-NPC handling
+            /*
             var n:NPC=isNPC(tal2Arr[0],tal2Arr[1]);
             if(n!=null){
                     if(f != 0){
@@ -370,100 +414,100 @@ public abstract class Player extends Human {
                     }
             }
             */
-        NPC npc = null;
-        if(c!=null){
-            npc = Tools.checkNPCOnCell(game, c);
-            if(npc != null && !npc.isWalkable()){
-                walkable = false;
+            NPC npc = null;
+            if (c != null) {
+                npc = Tools.checkNPCOnCell(game, c);
+                if (npc != null && !npc.isWalkable()) {
+                    walkable = false;
+                }
             }
-        }
-        //Apply walkable
-        if (walkable) {
-            // Move the stick
-            parent = current;
-            current = c;
-            this.setI(current.getI());
-            this.setJ(current.getJ());
-            
-            if(!current.isWalked()){
-                current.setWalked(true);
-            }
-            
-            //Check frozen cell :
-            if(current.isFrozen() && !(this instanceof Booster)){
-                int value = (int)((Params.paramTable.get("dispSpeed")[pc])*Params.frozenFac);
-                this.changeParam("dispSpeed", value, Params.frozenTime);
-            }
-            
-            int[] tab = new int[2];
-            
-            // Check for special tiles
-            switch (current.getType()) {
-            case 10: // Warp
-                
-                // get the cell to be warped at
-                String[] tabS = new String[2];
-                tabS = c.getAddParam().split(",");
-                tab[0] = Integer.parseInt(tabS[0]);
-                tab[1] = Integer.parseInt(tabS[1]);
+            //Apply walkable
+            if (walkable) {
+                // Move the stick
+                parent = current;
+                current = c;
+                this.setI(current.getI());
+                this.setJ(current.getJ());
 
-                Cell wantedCell = game.getMap().getCell(tab);
-                if (wantedCell != null) {
-                    // If no one stand on it
-                    if (game.isOccupied(wantedCell) == null) {
-                        // Warp the player to it
-                        current = wantedCell;
-                        this.setI(current.getI());
-                        this.setJ(current.getJ());
-                        current.activateCell(this);
-                        // add a little animation :p
-                        Animation anim = new AnimWarp(current,game.getThread());
-                    } else {
-                        //Restore parent ?
-                        /*
+                if (!current.isWalked()) {
+                    current.setWalked(true);
+                }
+
+                //Check frozen cell :
+                if (current.isFrozen() && !(this instanceof Booster)) {
+                    int value = (int)((Params.paramTable.get("dispSpeed")[pc]) * Params.frozenFac);
+                    this.changeParam("dispSpeed", value, Params.frozenTime);
+                }
+
+                int[] tab = new int[2];
+
+                // Check for special tiles
+                switch (current.getType()) {
+                case 10: // Warp
+
+                    // get the cell to be warped at
+                    String[] tabS = new String[2];
+                    tabS = c.getAddParam().split(",");
+                    tab[0] = Integer.parseInt(tabS[0]);
+                    tab[1] = Integer.parseInt(tabS[1]);
+
+                    Cell wantedCell = game.getMap().getCell(tab);
+                    if (wantedCell != null) {
+                        // If no one stand on it
+                        if (game.isOccupied(wantedCell) == null) {
+                            // Warp the player to it
+                            current = wantedCell;
+                            this.setI(current.getI());
+                            this.setJ(current.getJ());
+                            current.activateCell(this);
+                            // add a little animation :p
+                            Animation anim = new AnimWarp(current, game.getThread());
+                        } else {
+                            //Restore parent ?
+                            /*
                                     var pPos:Array = stick.prevTale;
                                     var nPos:Array = giveTalePosition(pPos[0], pPos[1]);
                                     stick._x = nPos[0]+offx;
                                     stick._y = nPos[1]+offy;
                                 */
+                        }
                     }
+                    break;
+                case 11: // Switch
+                    // Get the switch parameters
+                    String[] tabSw = new String[3];
+                    tabSw = c.getAddParam().split(",", 3);
+                    tab[0] = Integer.parseInt(tabSw[0]);
+                    tab[1] = Integer.parseInt(tabSw[1]);
+
+                    // The cell to be switched
+                    Cell switchedCell = game.getMap().getCell(tab);
+                    String code = tabSw[2];
+
+                    String[] tabNewCell = code.split(",", 2);
+                    param = "";
+                    int did = Integer.parseInt(tabNewCell[0]);
+                    if (tabNewCell.length > 1) {
+                        param = tabNewCell[1];
+                    }
+                    //System.out.println(did);
+
+                    // Compute new type and properties
+                    int t = MapHandler.setTypeWithDid(did, param);
+                    switchedCell.setAddParam(param);
+                    switchedCell.setDid(did);
+
+                    switchedCell.setType(t);
+
+                    break;
+                case 12: // Exit NPC
+                    break;
                 }
-                break;
-            case 11: // Switch
-                // Get the switch parameters
-                String[] tabSw = new String[3];
-                tabSw = c.getAddParam().split(",",3);
-                tab[0] = Integer.parseInt(tabSw[0]);
-                tab[1] = Integer.parseInt(tabSw[1]);
-
-                // The cell to be switched
-                Cell switchedCell = game.getMap().getCell(tab);
-                String code = tabSw[2];
-                
-                String[] tabNewCell = code.split(",", 2);
-                param ="";
-                int did = Integer.parseInt(tabNewCell[0]);
-                if (tabNewCell.length > 1) {
-                    param = tabNewCell[1];
-                }
-                //System.out.println(did);
-
-                // Compute new type and properties
-                int t = MapHandler.setTypeWithDid(did, param);
-                switchedCell.setAddParam(param);
-                switchedCell.setDid(did);
-
-                switchedCell.setType(t);
-                
-                break;
-            case 12: // Exit NPC
-                break;
             }
-        }
-        if(npc != null && game.getMap().getFileID() != 0){
-        //if(npc != null){
-            npc.execute();
-        }
+            if (npc != null && game.getMap().getFileID() != 0) {
+                //if(npc != null){
+                npc.execute();
+            }
         }
     };
 
@@ -476,14 +520,14 @@ public abstract class Player extends Human {
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
         paintStick(g, x, y);
     }
-    
+
     /**
      * Paints the player (not really implemented yet)
      * @param g Graphical thing
      * @param x The x axis position
      * @param y The y axis position
      */
-    public void paintStick(Graphics g, int x, int y){
+    public void paintStick(Graphics g, int x, int y) {
         g.setColor(color);
         // Switch on ori
         g.fillRect(x, y, 10, 30);
@@ -616,20 +660,20 @@ public abstract class Player extends Human {
     public Team getTeam() {
         return team;
     }
-    
+
     /**
      * Make the player wait for "delay" m-seconds
      */
-    public void makeHimWait(int delay){
+    public void makeHimWait(int delay) {
         //Modify date of last displacement into the FUTCHA
-        this.setLastDisplacement(this.getGame().getThread().getCount()+delay);
+        this.setLastDisplacement(this.getGame().getThread().getCount() + delay);
     }
-    
+
     /**
      * Initializes the parameters for the player. They are gotten from the ParamTable XML
      * @see fap_java.ParamTableHandler
      */
-    public void initParams(){
+    public void initParams() {
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
         //System.out.println(tmax);
         initHP = 100;
@@ -640,8 +684,8 @@ public abstract class Player extends Human {
         decLifeAuto = 1;
         lastDisplacement = 0;
         lastSkill = 0;
-        
-        this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
+
+        this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
     }
 
     public void setOri(int ori) {
@@ -651,56 +695,48 @@ public abstract class Player extends Human {
     public int getOri() {
         return ori;
     }
+
     /**
      * Changes a value of a parameter (displacment speed, healing rate,...) for a specific amount of time
      * @param wich Wich parameter to be changed
      * @param newValue The ne value of the parameter
      * @param time The duration of the modification in ms
      */
-    public void changeParam(String wich, double newValue, int time){
+    public void changeParam(String wich, double newValue, int time) {
         Timer timer = new Timer();
         this.param = wich;
         boolean go = true;
-        if(param.equals("dispSpeed")){
+        if (param.equals("dispSpeed")) {
             tmax = (int)(game.getThread().getDelay() * newValue);
-        }
-        else if(param.equals("maxHP")){
+        } else if (param.equals("maxHP")) {
             maxHP = (int)newValue;
-        }
-        else if(param.equals("decLifeForced")){
+        } else if (param.equals("decLifeForced")) {
             decLifeForced = newValue;
-        }
-        else if(param.equals("recovLifeAuto")){
+        } else if (param.equals("recovLifeAuto")) {
             recovLifeAuto = newValue;
-        }
-        else if(param.equals("skillTime")){
-            this.setSkillTime((int)(newValue*1000));
-        }
-        else{
+        } else if (param.equals("skillTime")) {
+            this.setSkillTime((int)(newValue * 1000));
+        } else {
             go = false;
-            }
-        if(go){
+        }
+        if (go) {
             // Create a timer that will clock-tick in "time" ms
             timer.schedule(new TimerTask() {
-              public void run() {
-                  
-                  if(param.equals("dispSpeed")){
-                      tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
-                  }
-                  else if(param.equals("maxHP")){
-                      maxHP = (int)Params.paramTable.get("maxHP")[pc];
-                  }
-                  else if(param.equals("decLifeForced")){
-                      decLifeForced = Params.paramTable.get("decLifeForced")[pc];
-                  }
-                  else if(param.equals("recovLifeAuto")){
-                      recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
-                  }
-                  else if(param.equals("skillTime")){
-                      setSkillTime((int)(Params.paramTable.get("skillTime")[pc]*1000));
-                  }
-              }
-            }, time);
+                    public void run() {
+
+                        if (param.equals("dispSpeed")) {
+                            tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+                        } else if (param.equals("maxHP")) {
+                            maxHP = (int)Params.paramTable.get("maxHP")[pc];
+                        } else if (param.equals("decLifeForced")) {
+                            decLifeForced = Params.paramTable.get("decLifeForced")[pc];
+                        } else if (param.equals("recovLifeAuto")) {
+                            recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+                        } else if (param.equals("skillTime")) {
+                            setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
+                        }
+                    }
+                }, time);
         }
     }
 

@@ -33,4 +33,12 @@ public class ADisplayMessage implements Action {
             }
         }
     }
+
+    public void setIterator(int iterator) {
+        this.iterator = iterator;
+    }
+
+    public int getIterator() {
+        return iterator;
+    }
 }

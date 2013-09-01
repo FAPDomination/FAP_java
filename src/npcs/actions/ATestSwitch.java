@@ -23,16 +23,15 @@ public class ATestSwitch implements Action {
         ArrayList<Boolean> gameSwitches = gameSave.getGameSwitches();
         boolean value = gameSwitches.get(switchID);
         if(value){
-            
+            //Loop
+            if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+                whoLaunches.execute();
+            }
         }
         else{
             //End NPC
-            whoLaunches.setIterator(whoLaunches.getActions().size());
+            whoLaunches.setIterator(whoLaunches.getActions().size()+2);
             failAction.execute(whoLaunches);
-        }
-        //Loop
-        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
-            whoLaunches.execute();
         }
     }
 

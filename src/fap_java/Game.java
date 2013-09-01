@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
+import npcs.actions.AAsk;
 import npcs.actions.ADisplayMessage;
 import npcs.actions.ASetSwitch;
 import npcs.actions.AStartGame;
@@ -944,11 +945,11 @@ public class Game extends JPanel implements NeedingFocus {
                 initWorldMap();
                 break;
             case 25:
-                System.out.println("init 25");
                 ArrayList<Action> list = new ArrayList<Action>();
+                list.add(new AAsk("Ya want da switch ?","Yeah","Nup"));
                 list.add(new ASetSwitch(0,true));
                 list.add(new ADisplayMessage("What ? Cha didn't activate da test switch ? I'ma doing it right now !"));
-                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.getBasicCellImage(),this,0,0,list);
+                NPC npc = new NPC(map.getCell(10, 10),true,false,Graph.getBasicCellImage(),this,0,0,list);
                 this.addNPC(npc);
                 
                 
