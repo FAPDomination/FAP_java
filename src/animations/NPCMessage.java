@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import npcs.actions.AAsk;
+
 public class NPCMessage extends Animation {
     private boolean ask;
     private String message;
@@ -14,9 +16,11 @@ public class NPCMessage extends Animation {
     private String no;
     private boolean choice;
     private Image img;
-    public NPCMessage(String message, String yes, String no,TheThread thread) {
+    private AAsk launcher;
+    public NPCMessage(String message, String yes, String no,TheThread thread, AAsk launcher) {
         super(0,0,0,thread);
         ask = true;
+        this.launcher = launcher;
         this.message = message;
         this.yes = yes;
         this.no = no;
@@ -26,7 +30,7 @@ public class NPCMessage extends Animation {
     }
     
     public NPCMessage(String message,TheThread thread){
-        this(message,"","",thread);
+        this(message,"","",thread,null);
         ask = false;
         choice = false;
     }
@@ -47,6 +51,7 @@ public class NPCMessage extends Animation {
         g.drawString(message, x+20, y+20);
         if(ask){
             int fac;
+            choice = launcher.isChoice();
             if(choice){
                 fac=0;
             }

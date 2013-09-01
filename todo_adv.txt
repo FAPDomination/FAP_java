@@ -68,10 +68,10 @@ P~		- Placement
 			- One at a time security
 			- Pause game (Special pause for NPC)
 			- Trigger auto-trigger NPC if any
-	- NPC Exit
+V	- NPC Exit
 V		- Create
-		- Actions
-			- Do you wanna quit ?
+V		- Actions
+V			- Do you wanna quit ?
 V			- Start World map
 V		- Implement (not in shiftStick but parse in mapHandler)
 V	- NPC World Map blocking
@@ -86,8 +86,8 @@ V		- Implement
 				- Black if not conquered but available
 				- Green if conquered
 V			- Walkable
-			- Actions
-				- Do you wanna play ?
+V			- Actions
+V				- Do you wanna play ?
 V				- Start Game
 V		- Implement			
 T World map

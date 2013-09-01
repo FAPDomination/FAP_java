@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import npcs.actions.AAsk;
 import npcs.actions.AStartGame;
 import npcs.actions.Action;
 
@@ -29,6 +30,7 @@ public class NPCWMStarting extends NPC{
         this.conquered = conquered;
         //TODO Update image and override paintComponent
         actions = new ArrayList<Action>();
+        actions.add(new AAsk("Lancer la partie ?","Oui","Non",null));
         actions.add(new AStartGame(gameToLaunch));
     }
 
