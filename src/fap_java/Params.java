@@ -196,7 +196,7 @@ public class Params {
      * Between each displacements it waits, to seem more "human"
      * @see fap_java.FSM
      */
-    public static final int fsmReactionTime = 10;
+    public static final int fsmReactionTime = 10;       //10
     /**
      * The default amount of points a player should have to win a game
      */

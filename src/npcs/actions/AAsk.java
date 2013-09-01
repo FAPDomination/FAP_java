@@ -29,23 +29,29 @@ public class AAsk implements Action {
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }
         else{
+            if(npcMessage != null){
+                npcMessage.endAnimation();
+            }
             if(choice){
                 //Loop
                 if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
                     whoLaunches.execute();
+                    this.reinit();
                 }
             }
             else{
                 //End NPC
                 whoLaunches.setIterator(whoLaunches.getActions().size()+2);
                 if(failAction != null){
+                    
                     failAction.execute(whoLaunches);
+                    this.reinit();
                 }
                 else{
                     whoLaunches.execute();
+                    this.reinit();
                 }
             }
-            this.reinit();
         }
     }
 

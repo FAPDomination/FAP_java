@@ -27,14 +27,15 @@ public class AStartGame implements Action {
             if(!gameToLaunch.getThread().getRunning()){
                 gameToLaunch.pauseGame(true);
             }
+            gameToLaunch.setPauseNPC(false);
         }
         else{
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);
         }
         frame.changePanel(panel);
-        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
-            whoLaunches.execute();
-        }
+       // if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+       //     whoLaunches.execute();
+       // }
         // add Animation
     }
 

@@ -800,7 +800,11 @@ public class Game extends JPanel implements NeedingFocus {
     
         Map<Integer,Game> gameList = new HashMap<Integer,Game>();
         gameList.put(25, new Game(25));
-        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,1000,0,0,1));
+        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,500,0,0,1));
+        gameList.put(21, new Game("1,1","0,1","0,1","0,2",false,21,1000,0,0,1));
+        gameList.put(22, new Game("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
+        gameList.put(23, new Game("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
+        gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
 
         // Get list of conquered cells
         this.computeWorldMap();
@@ -936,7 +940,6 @@ public class Game extends JPanel implements NeedingFocus {
                 initWorldMap();
                 break;
             case 25:
-                System.out.println("init 25"+this.listNPCs);
                 ArrayList<Action> list = new ArrayList<Action>();
                 list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
                 list.add(new ASetSwitch(0,true));
