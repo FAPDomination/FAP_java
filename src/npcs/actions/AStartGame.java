@@ -24,7 +24,9 @@ public class AStartGame implements Action {
         if(gameToLaunch.getAdv() == 2){
             panel = gameToLaunch;
             //gameToLaunch.getThread().setRunning(true);
-            gameToLaunch.pauseGame(true);
+            if(!gameToLaunch.getThread().getRunning()){
+                gameToLaunch.pauseGame(true);
+            }
         }
         else{
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);

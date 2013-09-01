@@ -38,7 +38,12 @@ public class AAsk implements Action {
             else{
                 //End NPC
                 whoLaunches.setIterator(whoLaunches.getActions().size()+2);
-                failAction.execute(whoLaunches);
+                if(failAction != null){
+                    failAction.execute(whoLaunches);
+                }
+                else{
+                    whoLaunches.execute();
+                }
             }
             this.reinit();
         }
@@ -92,6 +97,8 @@ public class AAsk implements Action {
             npcMessage.endAnimation();
         }
         iterator = 0;
-        failAction.reinit();
+        if(failAction!=null){
+            failAction.reinit();
+        }
     }
 }

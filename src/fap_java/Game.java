@@ -205,7 +205,7 @@ public class Game extends JPanel implements NeedingFocus {
         // Panel related stuff 
         this.setLayout(null);
         this.setBackground(Color.white);
-        
+        this.listNPCs = new ArrayList<NPC>();
         // Parse the map
         map = new CMap(this,nmap);
         map = XMLparser.parseMap(nmap,this);
@@ -230,8 +230,6 @@ public class Game extends JPanel implements NeedingFocus {
         //if(adv < 2){
             pauseGame();
         //}
-            
-            this.listNPCs = new ArrayList<NPC>();
     }
 
     /**
@@ -938,6 +936,7 @@ public class Game extends JPanel implements NeedingFocus {
                 initWorldMap();
                 break;
             case 25:
+                System.out.println("init 25"+this.listNPCs);
                 ArrayList<Action> list = new ArrayList<Action>();
                 list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
                 list.add(new ASetSwitch(0,true));

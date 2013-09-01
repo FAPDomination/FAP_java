@@ -31,7 +31,12 @@ public class ATestSwitch implements Action {
         else{
             //End NPC
             whoLaunches.setIterator(whoLaunches.getActions().size()+2);
-            failAction.execute(whoLaunches);
+            if(failAction != null){
+                failAction.execute(whoLaunches);
+            }
+            else{
+                whoLaunches.execute();
+            }
         }
     }
 
@@ -44,6 +49,8 @@ public class ATestSwitch implements Action {
     }
 
     public void reinit() {
-        failAction.reinit();
+        if(failAction!=null){
+            failAction.reinit();
+        }
     }
 }

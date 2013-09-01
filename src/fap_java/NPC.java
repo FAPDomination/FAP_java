@@ -133,10 +133,12 @@ public class NPC extends Human{
     public void reInit(){
         iterator = 0;
         if(actions != null){
-        for(int i=0;i<actions.size();i++){
-            Action ac = actions.get(i);
-            ac.reinit();
-        }
+            for(int i=0;i<actions.size();i++){
+                Action ac = actions.get(i);
+                if(ac != null){
+                    ac.reinit();
+                }
+            }
         }
     }
 

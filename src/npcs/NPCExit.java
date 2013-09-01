@@ -17,25 +17,40 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import npcs.actions.AAsk;
 import npcs.actions.AStartGame;
 import npcs.actions.Action;
 
 public class NPCExit extends NPC {
     public NPCExit(Cell cell, Game game) {
         super(cell, true, false, null, game, 0,0,new ArrayList<Action>());
+        actions.add(new AAsk("Retour à la carte du monde ?","Oui","Non",null));
+        actions.add(null);
     }
     public void paintComponent(Graphics g){}
     
     public void execute(){
-        if(iterator == 0){
-            // Ask are you sure
-            iterator++;
-            // re-execute
-            this.execute();
+        System.out.println("exec");
+        if(game.getThread().getRunning()){
+            game.pauseGame(true);
+        }
+        if(iterator < actions.size()){
+            Action ac = actions.get(iterator);
+            iterator ++;
+            if(ac != null){
+                ac.execute(this);
+            }
+            else{
+                new AStartGame(Fapplication.getWorldMap()).execute(this);
+                iterator ++;
+            }
+            //System.out.println(this+" is executing");
         }
         else{
-            iterator++;
-            new AStartGame(Fapplication.getWorldMap()).execute(this);
+            
+            game.pauseGame(true);
+            game.setPauseNPC(false);
+            this.reInit();
         }
     }
 }
