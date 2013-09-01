@@ -584,7 +584,14 @@ public class Game extends JPanel implements NeedingFocus {
             new PauseCountDown(400,150,Params.pauseDuration,thread);
         }
         else if(isNPC){
-            
+            // Get animations
+            for(int j=0;j<anims.size();j++){
+                Animation a = anims.get(j);
+                // Execute them
+                if(a instanceof NPCMessage){
+                    a.endAnimation();
+                }
+            }            
             removePauseScreen();
             thread.setRunning(true);
         }
@@ -938,6 +945,14 @@ public class Game extends JPanel implements NeedingFocus {
             switch(nmap){
             case 0:
                 initWorldMap();
+                break;
+            case 21:
+                ArrayList<Action> list3 = new ArrayList<Action>();
+                list3.add(new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !"));
+                list3.add(new ADisplayMessage("Appuie sur SKILL pour continuer"));
+                list3.add(new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !"));
+                NPC npc21 = new NPC(list3,this);
+                this.addNPC(npc21);
                 break;
             case 25:
                 ArrayList<Action> list = new ArrayList<Action>();

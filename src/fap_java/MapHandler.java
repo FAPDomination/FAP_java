@@ -115,9 +115,9 @@ public class MapHandler extends DefaultHandler {
             if (tabS.length > 1) {
                 param = tabS[1];
             }
-            //System.out.println(did);
-
+            
             t = setTypeWithDid(did, param);
+            
             // This is an exit NPC
             inJ = false;
             if (did != 0) {

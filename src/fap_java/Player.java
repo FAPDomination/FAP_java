@@ -225,7 +225,7 @@ public abstract class Player extends Human {
         //handleKeys();
 
         if (i == 4) { //Skill
-            if (game.getAdv() < 2) {
+            if (game.getAdv() < 2 && !game.isPauseNPC()) {
                 this.getSkill();
             }
             /*else if(game.isPauseNPC() && (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection)){
@@ -256,6 +256,10 @@ public abstract class Player extends Human {
                     }
                 }
 
+                if(npc == null){
+                    // at last, look for auto-trigger ones
+                    npc = Tools.checkAutoTriggerNPC(game);
+                }
                 if (npc != null) {
                     npc.execute();
                 }

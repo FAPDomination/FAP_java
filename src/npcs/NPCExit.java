@@ -30,7 +30,6 @@ public class NPCExit extends NPC {
     public void paintComponent(Graphics g){}
     
     public void execute(){
-        System.out.println("exec");
         if(game.getThread().getRunning()){
             game.pauseGame(true);
         }

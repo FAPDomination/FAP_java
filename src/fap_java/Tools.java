@@ -180,10 +180,24 @@ public class Tools {
             ArrayList<NPC> listNPCs = game.getListNPCs();
             for (int i = 0; i < listNPCs.size(); i++) {
                 NPC np = listNPCs.get(i);
-                if (np.getPosition().equals(c)) {
+                if (np.getPosition()!=null && np.getPosition().equals(c)) {
                     npc = np;
                     break;
                 }
+            }
+        }
+        return npc;
+    }
+    
+    public static NPC checkAutoTriggerNPC(Game game){
+        // Checking for auto-trigger NPC
+        NPC npc = null;
+        ArrayList<NPC> listNPCs = game.getListNPCs();
+        for (int i = 0; i < listNPCs.size(); i++) {
+            NPC np = listNPCs.get(i);
+            if (np.isAutoTrigger()) {
+                npc = np;
+                break;
             }
         }
         return npc;

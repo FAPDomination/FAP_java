@@ -30,7 +30,7 @@ public class ATestSwitch implements Action {
         }
         else{
             //End NPC
-            whoLaunches.setIterator(whoLaunches.getActions().size()+2);
+            whoLaunches.setIterator(whoLaunches.getActions().size()+5);
             if(failAction != null){
                 failAction.execute(whoLaunches);
             }

@@ -25,16 +25,16 @@ public class ADisplayMessage implements Action {
 
     public void execute(NPC whoLaunches) {
         if(iterator == 0){
-            npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
+            this.npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
             iterator++;
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }
         else{
+            this.reinit();
             //Loop
             if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
                 whoLaunches.execute();
             }
-            this.reinit();
         }
     }
 
@@ -51,5 +51,13 @@ public class ADisplayMessage implements Action {
         if(npcMessage != null){
             npcMessage.endAnimation();
         }
+    }
+
+    public void setNpcMessage(NPCMessage npcMessage) {
+        this.npcMessage = npcMessage;
+    }
+
+    public NPCMessage getNpcMessage() {
+        return npcMessage;
     }
 }

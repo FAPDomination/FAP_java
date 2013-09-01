@@ -1,5 +1,7 @@
 package fap_java;
 
+import java.util.ArrayList;
+
 /**
  * This thread will handle everything in updating the Game.
  * it will take care of player displacements, FSM computations, repainting the panel, refreshing HealthPoints
@@ -109,7 +111,14 @@ public class TheThread implements Runnable{
         count += delay;
         // Counts the clockTicks
         int frame = count / delay;
-        
+        if(count == 2*delay){       // actual first frame of the game since 1*delay is init
+            if(myGame.getAdv()>0){
+                NPC npc = Tools.checkAutoTriggerNPC(myGame);
+                if(npc !=null){
+                    npc.execute();
+                }
+            }
+        }
         myGame.repaint();
         if(full){
             // commands to refresh healthPoints

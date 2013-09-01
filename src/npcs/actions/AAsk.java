@@ -24,7 +24,7 @@ public class AAsk implements Action {
 
     public void execute(NPC whoLaunches) {
         if(iterator == 0){
-            npcMessage = new NPCMessage(message,yesOption,noOption, whoLaunches.getGame().getThread(),this);
+            this.npcMessage = new NPCMessage(message,yesOption,noOption, whoLaunches.getGame().getThread(),this);
             iterator++;
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }

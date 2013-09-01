@@ -65,8 +65,8 @@ V			- Launch it
 	- Object
 P~		- Placement
 		- Execution
-			- One at a time security
-			- Pause game (Special pause for NPC)
+X			- One at a time security
+V			- Pause game (Special pause for NPC)
 			- Trigger auto-trigger NPC if any
 V	- NPC Exit
 V		- Create
