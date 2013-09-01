@@ -30,6 +30,7 @@ public class AAsk implements Action {
             if(choice){
                 //Loop
                 if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+                    this.reinit();
                     whoLaunches.execute();
                 }
             }
@@ -37,11 +38,6 @@ public class AAsk implements Action {
                 //End NPC
                 whoLaunches.setIterator(whoLaunches.getActions().size()+2);
                 failAction.execute(whoLaunches);
-            }
-            //Loop
-            if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
-                this.iterator = 0;
-                whoLaunches.execute();
             }
         }
     }

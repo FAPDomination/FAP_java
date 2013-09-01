@@ -51,7 +51,7 @@ V			- Display message
 V			- Multiple Execute
 V			- Wait for SKILL key
 V			- Handle keys for choice
-			- Last action
+V			- Last action
 			- Display properly
 V		- Test a variable
 V		- Switch a switch
