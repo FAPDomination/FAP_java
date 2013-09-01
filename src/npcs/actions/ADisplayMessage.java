@@ -1,10 +1,14 @@
 package npcs.actions;
 
+import animations.NPCMessage;
+
 import fap_java.NPC;
 
 public class ADisplayMessage implements Action {
     private String message;
     private int iterator = 0;
+    private NPCMessage npcMessage;
+    
     public ADisplayMessage(String message) {
         super();
         this.message = message;
@@ -21,16 +25,16 @@ public class ADisplayMessage implements Action {
 
     public void execute(NPC whoLaunches) {
         if(iterator == 0){
-            System.out.println(message);
+            npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
             iterator++;
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }
         else{
             //Loop
             if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
-                this.iterator = 0;
                 whoLaunches.execute();
             }
+            this.reinit();
         }
     }
 
@@ -44,5 +48,8 @@ public class ADisplayMessage implements Action {
 
     public void reinit() {
         iterator = 0;
+        if(npcMessage != null){
+            npcMessage.endAnimation();
+        }
     }
 }

@@ -187,6 +187,7 @@ V		- Tidy paintComponent
 		- SkillTimes
 		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
+		- NPC display message
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?

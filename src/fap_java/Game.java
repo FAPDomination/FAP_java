@@ -1,8 +1,6 @@
 package fap_java;
 
-import animations.Animation;
-
-import animations.PauseCountDown;
+import animations.*;
 
 import characters.*;
 
@@ -32,12 +30,7 @@ import javax.swing.JPanel;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
-import npcs.actions.AAsk;
-import npcs.actions.ADisplayMessage;
-import npcs.actions.ASetSwitch;
-import npcs.actions.AStartGame;
-import npcs.actions.ATestSwitch;
-import npcs.actions.Action;
+import npcs.actions.*;
 
 public class Game extends JPanel implements NeedingFocus {
 
@@ -281,7 +274,7 @@ public class Game extends JPanel implements NeedingFocus {
         */
         // Paint the animations (warps, explosions, bitches,...)
         for(int j=0;j<anims.size();j++){
-            if(thread.getRunning() || anims.get(j) instanceof PauseCountDown){
+            if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){
                 anims.get(j).paintComponent(g);
             }
         }

@@ -1,5 +1,7 @@
 package npcs.actions;
 
+import animations.NPCMessage;
+
 import fap_java.NPC;
 
 public class AAsk implements Action {
@@ -9,6 +11,7 @@ public class AAsk implements Action {
     private boolean choice;
     private int iterator = 0;
     private Action failAction;
+    private NPCMessage npcMessage;
     
     public AAsk(String message, String yes, String no, Action failAction) {
         super();
@@ -21,16 +24,14 @@ public class AAsk implements Action {
 
     public void execute(NPC whoLaunches) {
         if(iterator == 0){
-            System.out.println(message);
+            npcMessage = new NPCMessage(message,yesOption,noOption, whoLaunches.getGame().getThread());
             iterator++;
             whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }
         else{
-            System.out.println("You chose : "+choice);
             if(choice){
                 //Loop
                 if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
-                    this.reinit();
                     whoLaunches.execute();
                 }
             }
@@ -39,6 +40,7 @@ public class AAsk implements Action {
                 whoLaunches.setIterator(whoLaunches.getActions().size()+2);
                 failAction.execute(whoLaunches);
             }
+            this.reinit();
         }
     }
 
@@ -76,6 +78,9 @@ public class AAsk implements Action {
 
     public void setChoice(boolean choice) {
         this.choice = choice;
+        if(npcMessage != null){
+            npcMessage.setChoice(choice);
+        }
     }
 
     public boolean isChoice() {
@@ -83,6 +88,9 @@ public class AAsk implements Action {
     }
 
     public void reinit() {
+        if(npcMessage != null){
+            npcMessage.endAnimation();
+        }
         iterator = 0;
         failAction.reinit();
     }

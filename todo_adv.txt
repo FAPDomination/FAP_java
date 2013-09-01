@@ -40,19 +40,19 @@ V	- NPC not walkable
 V	- Multiple launch of NPCs bug
 	- Actions
 P~		- Object
-E		- Display message
+V		- Display message
 V			- Pause
 V			- Multiple Execute
 V			- Wait for SKILL key
-			- Display properly
+V			- Display properly
 ?			- Multiple page message ?
-		- Choice ("Y/N" for example)
+V		- Choice ("Y/N" for example)
 V			- Display message
 V			- Multiple Execute
 V			- Wait for SKILL key
 V			- Handle keys for choice
 V			- Last action
-			- Display properly
+V			- Display properly
 V		- Test a variable
 V		- Switch a switch
 		- Modify another NPC (position, wakable, actions ?)
