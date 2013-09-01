@@ -75,7 +75,11 @@ public class TheThread implements Runnable{
             // if the thread is running
             if(running){
                 // Execute tasks (generate a clock-tick)
-                execute();
+                execute(true);
+            }
+            else if(myGame.getAdv()>0 && myGame.isPauseNPC()){
+                // Execute some tasks (key handling)
+                execute(false);
             }
             // Always execute the animations
             myGame.computeAnimations();
@@ -100,39 +104,41 @@ public class TheThread implements Runnable{
     /**
      * Execute actions in the game, such as updating values
      */
-    private void execute(){
+    private void execute(boolean full){
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
         int frame = count / delay;
-        // commands to refresh healthPoints
-        myGame.refreshHealthPoints();
         
         myGame.repaint();
-        
-        // Every 4 frames
-        if(frame % 4 == 0){
-            // Count the number of cells a Player has
-            myGame.updateCellsByOwner();
+        if(full){
+            // commands to refresh healthPoints
+            myGame.refreshHealthPoints();
+
+            // Every 4 frames
+            if (frame % 4 == 0) {
+                // Count the number of cells a Player has
+                myGame.updateCellsByOwner();
+            }
+
+            // When it's time to check scores
+            if (myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
+                // Scores are updated
+                myGame.getScoreHandler().computeScores();
+            }
+
+            myGame.computeObjects();
+            myGame.executeFSMs();
+
+            // Testing
+            if (count % 600 == 0) {
+                //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
+                //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
+            }
         }
-        
-        // When it's time to check scores
-        if(myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0){
-            // Scores are updated
-            myGame.getScoreHandler().computeScores();
-        }
-        
         //Execute other objects actions
-        if(count%2 == 0){
+        if (count % 2 == 0) {
             myGame.playerHandleKeys();
-        }
-        myGame.computeObjects();
-        myGame.executeFSMs();
-        
-        // Testing
-        if(count%600 == 0){
-        //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
-            //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
         }
     }
 

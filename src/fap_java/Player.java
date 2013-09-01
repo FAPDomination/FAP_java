@@ -204,15 +204,17 @@ public abstract class Player extends Human {
         //handleKeys();
         
         if (i == 4) { //Skill
+            System.out.println("In A");
             if(game.getAdv() < 2){
                 this.getSkill();
             }
-            else if(game.isPauseNPC() && (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection)){
+            /*else if(game.isPauseNPC() && (game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection)){
                 // Execute actions for the NPC
                 // Timer to not mess around
                 this.setLastSkill(game.getThread().getCount());
-            }
+            }*/
             else if(game.getThread().getCount() - this.getLastSkill() >= Params.timeForSelection){
+                System.out.println("In B");
                 // Timer to not mess around
                 this.setLastSkill(game.getThread().getCount());
                 //Check for NPC
@@ -234,6 +236,7 @@ public abstract class Player extends Human {
                 }
 
                 if(npc != null){
+                    System.out.println("In C");
                     npc.execute();
                 }
             }
@@ -254,74 +257,79 @@ public abstract class Player extends Human {
      * Computes the decisions for the currently pressed keys, such as displacements
      */
     public void handleKeys(){
-        //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
-        // Hexa displacements :
-        // Left + Down
-        if (keys[3][1] == 1 && keys[1][1] == 1) {
-            if (current.getI() % 2 == 0) {
-                shiftStick(-1, 1);
-            } else {
-                shiftStick(0, 1);
+        if(game.getThread().getRunning()){
+            //[Key.UP, Key.DOWN, Key.RIGHT, Key.LEFT, Key.END]
+            // Hexa displacements :
+            // Left + Down
+            if (keys[3][1] == 1 && keys[1][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(-1, 1);
+                } else {
+                    shiftStick(0, 1);
+                }
+                ori = 4;
             }
-            ori = 4;
-        }
-        //Up + Right
-        else if (keys[0][1] == 1 && keys[2][1] == 1) {
-            if (current.getI() % 2 == 0) {
-                shiftStick(0, -1);
-            } else {
-                shiftStick(1, -1);
+            //Up + Right
+            else if (keys[0][1] == 1 && keys[2][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(0, -1);
+                } else {
+                    shiftStick(1, -1);
+                }
+                ori = 1;
             }
-            ori = 1;
-        }
-        //Up + Left
-        else if (keys[0][1] == 1 && keys[3][1] == 1) {
-            if (current.getI() % 2 == 0) {
-                shiftStick(-1, -1);
-            } else {
-                shiftStick(0, -1);
+            //Up + Left
+            else if (keys[0][1] == 1 && keys[3][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(-1, -1);
+                } else {
+                    shiftStick(0, -1);
+                }
+                ori = 0;
             }
-            ori = 0;
-        }
-        // Down + Right
-        else if (keys[1][1] == 1 && keys[2][1] == 1) {
-            if (current.getI() % 2 == 0) {
-                shiftStick(0, 1);
-            } else {
-                shiftStick(1, 1);
+            // Down + Right
+            else if (keys[1][1] == 1 && keys[2][1] == 1) {
+                if (current.getI() % 2 == 0) {
+                    shiftStick(0, 1);
+                } else {
+                    shiftStick(1, 1);
+                }
+                ori = 3;
             }
-            ori = 3;
-        }
-        //Regular
-        // If the key LEFT is pressed
-        else if (keys[3][1] == 1) {
-            // Move the stick
-            shiftStick(-1, 0);
-            // Update the stick's orientation :
-            ori = 5;
-        } else if (keys[2][1] == 1) { // If key RIGHT is pressed
-            shiftStick(1, 0);
-            // If the key1 is pressed
-            ori = 2;
-        } else if (keys[0][1] == 1) { // If key UP is pressed
-            // reset the timer for this stick so the player is not able to move for a little while
-            // Because of the hexa-grid to movings up and down are complicated
-            // find if the stick is on an odd or even number of line
-            if (current.getI() % 2 == 0) {
+            //Regular
+            // If the key LEFT is pressed
+            else if (keys[3][1] == 1) {
                 // Move the stick
-                shiftStick(-1, -1);
-
-            } else {
-                shiftStick(0, -1);
+                shiftStick(-1, 0);
+                // Update the stick's orientation :
+                ori = 5;
+            } else if (keys[2][1] == 1) { // If key RIGHT is pressed
+                shiftStick(1, 0);
+                // If the key1 is pressed
+                ori = 2;
+            } else if (keys[0][1] == 1) { // If key UP is pressed
+                // reset the timer for this stick so the player is not able to move for a little while
+                // Because of the hexa-grid to movings up and down are complicated
+                // find if the stick is on an odd or even number of line
+                if (current.getI() % 2 == 0) {
+                    // Move the stick
+                    shiftStick(-1, -1);
+    
+                } else {
+                    shiftStick(0, -1);
+                }
+                ori = 0;
+            } else if (keys[1][1] == 1) { // If key DOWN is pressed
+                if (current.getI() % 2 == 0) {
+                    shiftStick(0, 1);
+                } else {
+                    shiftStick(1, 1);
+                }
+                ori = 3;
             }
-            ori = 0;
-        } else if (keys[1][1] == 1) { // If key DOWN is pressed
-            if (current.getI() % 2 == 0) {
-                shiftStick(0, 1);
-            } else {
-                shiftStick(1, 1);
-            }
-            ori = 3;
+        }
+        else if(game.isPauseNPC()){
+            
         }
     }
 

@@ -36,9 +36,14 @@ V	- Don't pause and unpause game
 T	- NPC pause paints too much
 V	- NPC doesn't unpause
 	- NPC not walkable
+?	- Delete whoLaunches.getIterator() <= whoLaunches.getActions().size() in actions ?
 	- Actions
 P~		- Object
-		- Display message
+E		- Display message
+V			- Pause
+V			- Multiple Execute
+V			- Wait for SKILL key
+			- Display properly
 		- Choice ("Y/N" for example)
 V		- Test a variable
 V		- Switch a switch
