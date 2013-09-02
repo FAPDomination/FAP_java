@@ -1,5 +1,6 @@
 package fap_java;
 
+import gui.Constants;
 import gui.Fapplication;
 import gui.MainMenu;
 
@@ -45,14 +46,14 @@ public class PauseScreen extends Element{
         
         // Init buttons
         btnResume.setText("Continuer");
-        btnResume.setSize(140, 40);
+        btnResume.setSize(Constants.buttonSize);
         
         
         btnWorldMap.setText("Retour à la carte");
-        btnWorldMap.setSize(140, 40);
+        btnWorldMap.setSize(Constants.buttonSize);
         
         btnMainMenu.setText("Retour au menu");
-        btnMainMenu.setSize(140, 40);
+        btnMainMenu.setSize(Constants.buttonSize);
         
         btnResume.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +79,7 @@ public class PauseScreen extends Element{
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
         g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+        this.computeButtons();
         if(!resuming){
             // Draw buttons
             //System.out.println("I'm drawin' I'm drawin' !");
@@ -178,6 +180,10 @@ public class PauseScreen extends Element{
     }
     
     private void computeButtons(){
+        int offX = (int)(game.getWidth() - 0.1*Constants.buttonSize.getWidth());
+        int offY = (int)(game.getHeight()- 1.3*Constants.buttonSize.getHeight());
+
+        int incrementX = (int)(1.2*Constants.buttonSize.getWidth());
         //Remove button
         game.remove(this.btnMainMenu);
         game.remove(this.btnResume);
@@ -195,20 +201,22 @@ public class PauseScreen extends Element{
             int i=0;
             //Resume
             if(!this.displayVictory){
-                btnResume.setLocation(20, 20);
+                btnResume.setLocation(offX-(i+1)*incrementX, offY);
+                i++;
                 game.add(btnResume);
             }
             //World map
             if(this.advMode && game.getMap().getFileID() != 0){
-                btnWorldMap.setLocation(20, 100);
+                btnWorldMap.setLocation(offX-(i+1)*incrementX, offY);
+                i++;
                 game.add(btnWorldMap);
             }
             // MainMenu
-            btnMainMenu.setLocation(20, 200);
+            btnMainMenu.setLocation(offX-(i+1)*incrementX, offY);
             game.add(btnMainMenu);
+            i++;
         }
         
-        //TODO compute sizes
-        //TODO compute position
+        //TODO compute sizes ?
     }
 }

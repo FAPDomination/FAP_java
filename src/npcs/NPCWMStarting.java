@@ -43,7 +43,6 @@ public class NPCWMStarting extends NPC {
     public NPCWMStarting(Cell pos, boolean conquered, Game game, Game gameToLaunch) {
         super(pos, true, false, null, game, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
-        //TODO Update image and override paintComponent
         actions = new ArrayList<Action>();
         actions.add(new AAsk("Lancer la partie ?", "Oui", "Non", null));
         actions.add(new AStartGame(gameToLaunch));

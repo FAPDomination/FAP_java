@@ -26,4 +26,6 @@ public class Constants {
     
     public static Cell initialCellWorldMap = new Cell(18,10);
     
+    public static Dimension buttonSize = new Dimension(140,40);
+    
 }
