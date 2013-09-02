@@ -57,6 +57,7 @@ public class AnimWarp extends Animation {
 
     public void paintComponent(Graphics g) {
 
+        //TODO alpha
         float alpha;
         alpha = (float)(((double)(flashDuration-position))/duration);
         Tools.drawFilteredImage(img, 1f,1f,1f,alpha, g,x, (int)(y+miny*(((double)position)/flashDuration)));

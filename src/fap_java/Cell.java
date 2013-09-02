@@ -145,7 +145,7 @@ public class Cell extends Element {
         int offY = (int)Graph.offsetsCells.get(0).getHeight();
         int width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
         int height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
-        
+        //TODO only on needed cells
         g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
         
         // Paint did
@@ -158,6 +158,7 @@ public class Cell extends Element {
         
         
         // Special case if the miner is currently selecting the cell
+        //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
             int minerSlectID = 13;
             width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
@@ -165,6 +166,7 @@ public class Cell extends Element {
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
+            //TODO better painting of minor's cursor
             if(this.minerSing){
                 g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
             }
@@ -186,7 +188,10 @@ public class Cell extends Element {
                 g.setColor(Color.black);
             }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            //TODO coloured background ?
         }
+        
+        //TODO Special Healthy Healthy design
     }
 
     /**

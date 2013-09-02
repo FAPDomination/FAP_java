@@ -73,6 +73,7 @@ public class LoadingScreen extends FAPanel {
         int col = 0;
         int nPerCol = 3;
         int triggerNewDispo = 4;
+        //TODO better displaying of teams (with char)
         for(int i=0;i<teams.size();i++){
             int y;
             if(teams.size()>triggerNewDispo){

@@ -50,6 +50,7 @@ public class Vampire extends Player{
                 Cell c = ownArr.get(i);
                 c.setHp(c.getHp()+amountProCell);
             }
+            //TODO add animation Vampire
             
             this.makeHimWait(Params.timeAfterSkill);
         }

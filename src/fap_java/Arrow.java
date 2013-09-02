@@ -114,6 +114,7 @@ public class Arrow extends Element {
      * Initialization of constants about the arrow
      */
     public void initConstants() {
+        //TODO better approx for angle
         double approxAngle = -0.85832;
         switch (course) {
         case 0: //TL

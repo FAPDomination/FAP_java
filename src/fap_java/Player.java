@@ -653,7 +653,7 @@ public abstract class Player extends Human {
             randCell.setOwner(null);
             randCell.setHp(0);
             owned.remove(randCell);
-            //Add animation
+            //TODO Add blast animation
         }
     }
 
@@ -707,6 +707,8 @@ public abstract class Player extends Human {
      * @param time The duration of the modification in ms
      */
     public void changeParam(String wich, double newValue, int time) {
+        //TODO escape the double switch
+        //TODO pass values to the timer without parameters
         Timer timer = new Timer();
         this.param = wich;
         boolean go = true;

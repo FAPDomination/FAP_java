@@ -78,6 +78,7 @@ public class PauseScreen extends Element{
     
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
+        //TODO better background
         g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
         this.computeButtons();
         if(!resuming){
@@ -96,6 +97,7 @@ public class PauseScreen extends Element{
                 Graphics2D g2d = (Graphics2D)g;
                 FontMetrics fm = g2d.getFontMetrics();
                 int textWidth = fm.stringWidth(message);
+                //TODO draw nicer string
                 g.drawString(message, x+(width-textWidth)/2, y+20);
                 
                 if(winner != null){

@@ -1,6 +1,7 @@
 Processes :
 
 Implementing a new map in the ADV world map :
+	- Make sure it only has one startCell (or else...)
 	- update gui.Constants.listAdvMaps
 	- update cell position in Game.initWorldMap.mapList
 	- add its parents in Game.computeWorldMap()

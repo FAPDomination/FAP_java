@@ -1,7 +1,7 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   UTF-8
   Tidy the methods lists
-  What happens to the getI, getJ, etc... ?
+  What happened to the getI, getJ, etc... ?
   Bugs :
 V	- Type of blocking tiles all to 0 ?
   Not so good :
@@ -10,10 +10,10 @@ O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
 	- Graph guimg public
-? Displacement Hexa
+V Displacement Hexa
 V	- Hexa
 V	- Bug changing
-?	- Toggle handleKeys with thread and not keypress ?
+V	- Toggle handleKeys with thread and not keypress ?
 V Same time displacements
 ? Get rid of colors
 V Collisions
@@ -34,18 +34,18 @@ V		- Warp
 V		- Switch
 V			- Regular
 V			- Generates special tiles
-P		- NPC exit
+V		- NPC exit
 V	- TrapCells
-T		- Blast method
-T		- Trap system
+V		- Blast method
+V		- Trap system
 V	- Rewrite properly with objects, you flashy
 V refreshHealthPoints
 V stickActivateTile
-P Depth
+V Depth
 V Kick back player with countdown cell
-T TeamPlay
-T	- Implement teams
-T	- TrapCells
+V TeamPlay
+V	- Implement teams
+V	- TrapCells
 ~	- Warning : the first player sets ALL the params
 ?	- Cleaner initTeams
 V		- Cleaner
@@ -150,9 +150,9 @@ V		- Implemented
 P		- Alpha
 V	- Pause CountDown
 P Design
-P	- Change did of countdown cell after end of timer
+V	- Change did of countdown cell after end of timer
 	- Pause background
-	- Game Background
+?	- Game Background
 	- OFFMAP
 	- Animations
 		- Skills
@@ -175,8 +175,8 @@ V			- Base
 V			- Cursor
 P			- Specific for each player color
 		- Paint Owner
-			- Text in the middle of the cell
-			- Coloured background
+V			- Text in the middle of the cell
+?			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
@@ -203,9 +203,8 @@ V	- PaintComponent
 V		- Cells
 ~		- Name
 ~	- isSelected
-	- Adjustable sizes (fit background to size attribute)
 V	- Make it clickable
-  Game
+V Game
 V	- Get Params
 V		- whoIsPlaying && skills
 V		- wichTeam
@@ -213,7 +212,7 @@ V		- randStart
 V		- isFSM
 V		- Keys
 V		- Victory conditions
-	- Pause/Play
+V	- Pause/Play
 V		- Get Key from param
 V		- Bug multiple pause when keeping Key down
 V		- Execute Pause
@@ -226,18 +225,18 @@ V		- Escape from pause
 V			- Pause to menu (give up game)
 ?			- Pause to option (keep game)
 V			- Resume button
-		- Big method to init buttons
-			- Placement
+V		- Big method to init buttons
+V			- Placement
 V			- Adding/Deleting
-	- Victory
+V	- Victory
 V		- Check victory
-		- Double timeout bug
+T		- Double timeout bug
 V		- endGame method
-		- Display it
-			- General
-			- tie
-			- player win
-P			- player lost (adventure)
+V		- Display it
+V			- General
+V			- tie
+V			- player win
+V			- player lost (adventure)
   AI
 	- Object
 V		- Class File
@@ -336,7 +335,7 @@ V			- rand pc
 V			- rand pc fsm
 V			- teams & stuff
 V			- init
-T			- launch
+V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
@@ -358,8 +357,8 @@ V			- Back
 V		- Bug with the repaint
   Go back buttons EEEEEEEEEEEEE
 V	- Find a place for it and keep it
-?	- Even for OptionMenu ?
-T	- Versus : keep information from one another
+?		- Even for OptionMenu ?
+V	- Versus : keep information from one another
 V Go next button : find place and keep it
 ? Game extends FAPanel ?
   OptionMenu
@@ -367,9 +366,9 @@ V Go next button : find place and keep it
 V		- Back
 		- Controls
 		- Sound
-		- FullScreen
+?		- FullScreen
 		- FAP Editor
-P Init panels with a previous panel instead of always creating a new one
+V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game
 V	- LoadingScreen

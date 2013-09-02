@@ -32,6 +32,7 @@ public class Magician extends Player{
                             //p.blast(10);
                             p.makeHimWait(Params.howLongBlockingMagician*1000);
                             //Add animation
+                            //TODO add animation Magician
                         }
                     }
                 }

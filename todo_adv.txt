@@ -2,7 +2,7 @@ Adventure :
   Game Init
 V	- Create attribute for "no-conquest mode"
 V	- Create attribute for "adventure mode"
-T	- Execute (block every battle stuff)
+V	- Execute (block every battle stuff)
 	- Define manually a cell for the player to start on
   General ADV Things
 V	- handle NPCs
@@ -29,11 +29,11 @@ V	- Launching with CharacterSelection
 V		- Launch loading screen before
 V		- Double define of players bug
 V Full-ADV
-P	- maps should only have one startCell in the XML file
+V	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
   NPCs
 V	- Bug : doesn't paint ?
-T	- NPC pause paints too much
+V	- NPC pause paints too much
 V	- NPC doesn't unpause
 V	- NPC not walkable
 ?	- Delete whoLaunches.getIterator() <= whoLaunches.getActions().size() in actions ?
@@ -62,6 +62,7 @@ V			- Get Game
 V			- Launch it
 			- Animation
 			- Back to this very NPC afterwards
+		- Unlock a character
 V	- Object
 P~		- Placement
 V		- Execution
@@ -92,9 +93,9 @@ V			- Actions
 V				- Do you wanna play ?
 V				- Start Game
 V		- Implement			
-T World map
+V World map
 V	- Get list of conquered cells
-T	- Parse list of available cells
+V	- Parse list of available cells
 V	- Create NPCs to cover the designated cells
 V		- Not available cells
 V		- available cells
@@ -102,6 +103,7 @@ V		- Conquered Cells
 V	- Link maps to their cells
 V		- Linking
 ?		- Find a better place for initialization ?
+?			- Make it in an external file
 V	- Compute changes and save them
 V		- Check for parent cells
 V		- Update value
@@ -118,7 +120,7 @@ V		- Load datas when clicking on adventure
 V			- If no data, init new One
 V			- If yes, load
 V		- Save datas
-P	- Game Data init new one
+V	- Game Data init new one
 V		- Maps values all set to 0 except the initial one
 V		- Game switches all set to false
 V		- Unlocked characters all set to false except 1 and 7

@@ -249,6 +249,7 @@ public class Game extends JPanel implements NeedingFocus {
         GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
 
         g2d.setPaint(gp);
+        //TODO Better background ??
         g2d.fillRect(0, 0, w, h);
         // --- End BG
         
@@ -807,6 +808,7 @@ public class Game extends JPanel implements NeedingFocus {
     public void initWorldMap() {
         this.listNPCs = new ArrayList<NPC>();
         // Linking maps to Cells
+        //TODO put linking in an external file ?
         Params.mapList.put(20, new Cell(18,11));
         Params.mapList.put(21, new Cell(18,10));
         Params.mapList.put(22, new Cell(17,9));
@@ -861,6 +863,7 @@ public class Game extends JPanel implements NeedingFocus {
         //Load game :
         this.gameSave = Tools.loadGame();
         // Init map parents
+        //TODO put parents in an external file ?
         Map<Integer,ArrayList<Integer>> mapParents = new HashMap<Integer,ArrayList<Integer>>();
         for(int i=0;i<Constants.listAdvMaps.length;i++){
             mapParents.put(Constants.listAdvMaps[i], new ArrayList<Integer>());

@@ -141,9 +141,10 @@ public class MainMenu extends FAPanel implements AnimPanel{
 
     private void startQuickPlay() {
         // init map
+        //TODO keep lis of maps updated
         int[] possibleMaps = { 5, 6, 8, 10, 11 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
-        nmap = 5;
+        //nmap = 5;
         // init skill
         int pcP = Tools.randRange(1, 9, Params.excludedChars);
         int pcF = Tools.randRange(1, 9, Params.excludedChars);

@@ -109,6 +109,7 @@ public class CMap {
         }
     }
     
+    //TODO Improvement of this method including gaps
     public ArrayList<Cell> tileOnPath(Cell c, int ori){
         ArrayList<Cell> path = new ArrayList<Cell>();
         boolean bool = true;

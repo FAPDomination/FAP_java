@@ -72,8 +72,9 @@ public class Minimap{
     }
 
     public void paintComponent(Graphics g) {
+        //TODO Size of background for big maps
         g.drawImage(img, x, y, panel);
-        // Special if is selected
+        //TODO Special if is selected
         if(isSelected){
             g.setColor(Color.blue);
             g.fillRect(x, y, 5, 5);

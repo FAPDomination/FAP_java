@@ -51,19 +51,9 @@ public class NPCWMStarting extends NPC {
     public void paintComponent(Graphics g) {
         //Tools.drawFilteredImage((BufferedImage)img, 1f,0.4f,1f, (float)0.5, g,x,y);
         g.setColor(Color.GREEN);
-        /*
-        GameSave gs = game.getGameSave();
-        
-        Map<Integer, Integer> mapValues = gs.getMapValues();
 
-        Map<Integer, Cell> mapList = Params.mapList;
-        //Object[] keyL = mapList.keySet().toArray();
-        Map<Cell, Integer> newmap = new HashMap<Cell, Integer>();
-        for (Map.Entry<Integer, Cell> entry : mapList.entrySet()) {
-            newmap.put(entry.getValue(), entry.getKey());
-        }
-        */
-
+        //TODO better greenZone
+        //TODO greenZone for cities ? (Make them automatically conquered)
         ArrayList<Cell> surrounding = game.getMap().surroundingCells(this.getPosition());
         if (conquered) {
             for (int i = 0; i < surrounding.size(); i++) {
@@ -72,17 +62,6 @@ public class NPCWMStarting extends NPC {
                 if (c == null) {
                     draw = true;
                 }
-                /*else if (mapList.containsValue(c)) {
-                    int mapID = newmap.get(c);
-                    int value = mapValues.get(mapID);
-                    if (value == 2) {
-                        draw = false;
-                    }
-                    else{
-                        draw = true;
-                    }
-                }
-                */
                 else{
                     NPC npc = Tools.checkNPCOnCell(game, c);
                     if(npc !=null && npc instanceof NPCWMStarting){
