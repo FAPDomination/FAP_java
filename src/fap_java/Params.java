@@ -227,4 +227,6 @@ public class Params {
     public static int[][] controlsList = new int[nPlayersOn1Computer][5];
     
     public static int timeForSelection = 100;
+    
+    public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
 }

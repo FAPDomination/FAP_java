@@ -263,6 +263,16 @@ public class Game extends JPanel implements NeedingFocus {
             objects.get(j).paintComponent(g);
         }
         
+        /*
+        if(map.getFileID() == 0){
+            // if world map, paint the npcs with green line
+            for(int i=0;i<listNPCs.size(); i++){
+                NPC npc = listNPCs.get(i);
+                if(npc instanceof NPCWMStarting){
+                    npc.paintComponent(g);
+                }
+            }
+        }*/
         
         /*
         // Paint black screen if the game is paused
@@ -797,13 +807,12 @@ public class Game extends JPanel implements NeedingFocus {
     public void initWorldMap() {
         this.listNPCs = new ArrayList<NPC>();
         // Linking maps to Cells
-        Map<Integer,Dimension> mapList = new HashMap<Integer,Dimension>();
-        mapList.put(20, new Dimension(18,11));
-        mapList.put(21, new Dimension(18,10));
-        mapList.put(22, new Dimension(17,9));
-        mapList.put(23, new Dimension(17,10));
-        mapList.put(24, new Dimension(16,10));
-        mapList.put(25, new Dimension(18,9));
+        Params.mapList.put(20, new Cell(18,11));
+        Params.mapList.put(21, new Cell(18,10));
+        Params.mapList.put(22, new Cell(17,9));
+        Params.mapList.put(23, new Cell(17,10));
+        Params.mapList.put(24, new Cell(16,10));
+        Params.mapList.put(25, new Cell(18,9));
     
         Map<Integer,Game> gameList = new HashMap<Integer,Game>();
         gameList.put(25, new Game(25));
@@ -824,16 +833,16 @@ public class Game extends JPanel implements NeedingFocus {
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
             int mapID = listNotAvailableCells.get(i);
-            Dimension indexes = mapList.get(mapID);
-            Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+            Cell indexes = Params.mapList.get(mapID);
+            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
             this.addNPC(new NPCWMBlocking(pos));
         }
         
         for(int i=0;i<listJustAvailableCells.size();i++){
             int mapID = listJustAvailableCells.get(i);
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-                Dimension indexes = mapList.get(mapID);
-                Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+            Cell indexes = Params.mapList.get(mapID);
+            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
                 this.addNPC(new NPCWMStarting(pos,false,this,gameList.get(mapID)));
             //}
         }
@@ -841,8 +850,8 @@ public class Game extends JPanel implements NeedingFocus {
         for(int i=0;i<listConqueredCells.size();i++){
             int mapID = listConqueredCells.get(i);
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-                Dimension indexes = mapList.get(mapID);
-                Cell pos = this.map.getCell((int)indexes.getWidth(), (int)indexes.getHeight());
+            Cell indexes = Params.mapList.get(mapID);
+            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
                 this.addNPC(new NPCWMStarting(pos,true,this,gameList.get(mapID)));
             //}
         }

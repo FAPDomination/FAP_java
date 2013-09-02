@@ -18,6 +18,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This class contains several tools that can be used wherever.
@@ -202,4 +204,5 @@ public class Tools {
         }
         return npc;
     }
+
 }

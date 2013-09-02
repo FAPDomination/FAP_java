@@ -23,16 +23,16 @@ V			- Goback to world Map
 			- GoBack to wherever we were
 V		- Save game
 V		- Delete temporary GobackToWorldMap thing
-P		- Bonus : too heavy to reload the entire world map
+X		- Bonus : too heavy to reload the entire world map
 ?			- Yes but what if coming from a pauseScreen mid game ?
 V	- Launching with CharacterSelection
 V		- Launch loading screen before
 V		- Double define of players bug
-  Full-ADV
+V Full-ADV
 P	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
   NPCs
-	- Bug : doesn't paint ?
+V	- Bug : doesn't paint ?
 T	- NPC pause paints too much
 V	- NPC doesn't unpause
 V	- NPC not walkable
