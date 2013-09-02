@@ -80,11 +80,13 @@ V			- Object
 V			- Image
 V			- Not walkable
 V		- Implement
-	- NPC world Map starting game
-		- Create
-			- Image
-				- Black if not conquered but available
-				- Green if conquered
+V	- NPC world Map starting game
+V		- Create
+?~			- Image
+X				- Black if not conquered but available
+X				- Green if conquered
+~				- Green Zone
+?				- What about cities ?
 V			- Walkable
 V			- Actions
 V				- Do you wanna play ?

@@ -34,7 +34,6 @@ import npcs.actions.Action;
 
 public class NPCWMStarting extends NPC {
     private boolean conquered;
-    private BufferedImage img;
     private static int offY = 5;
     private static int[][] points =
     { { CMap.TW / 4, 3 * CMap.TH / 4 + offY }, { 3 * CMap.TW / 4, 2 * CMap.TH / 4 + offY },

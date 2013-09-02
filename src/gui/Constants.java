@@ -6,7 +6,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 public class Constants {
-    public static Dimension frameDimension = new Dimension(900, 650);
+    public static Dimension frameDimension = new Dimension(900, 730);
     
     public static int maxxS = -80;
     public static int minxS = -720; 

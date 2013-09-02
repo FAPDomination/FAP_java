@@ -137,7 +137,7 @@ public class Cell extends Element {
      */
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + CMap.OFFMAP;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
 
         
         // Paint dirt

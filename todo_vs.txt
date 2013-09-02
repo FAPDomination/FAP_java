@@ -153,6 +153,7 @@ P Design
 P	- Change did of countdown cell after end of timer
 	- Pause background
 	- Game Background
+	- OFFMAP
 	- Animations
 		- Skills
 		- Traps

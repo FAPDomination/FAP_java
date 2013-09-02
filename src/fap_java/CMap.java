@@ -22,7 +22,7 @@ public class CMap {
     /**
      * Offset on y that the map has
      */
-    public static final int OFFMAP = 0;
+    public static final int OFFMAP = 10;
 
     /**
      * Creates a map with all tools needed.
@@ -57,7 +57,7 @@ public class CMap {
         int[] arr = new int[2];
         // calculate the corresponding position
         arr[0] = j * TW + (TW / 2) * (i % 2);
-        arr[1] = i * (TH) * (1 - 1 / 4) + OFFMAP;
+        arr[1] = i * (TH) * (1 - 1 / 4);
         return arr;
     };
     
@@ -79,7 +79,7 @@ public class CMap {
     public static int[] givePositionTale(int x, int y) {
         int[] arr = new int[2];
         // Undo the calculus of the position
-        arr[0] = Math.round(((y - OFFMAP) / TH) * (4 / 3));
+        arr[0] = Math.round(((y) / TH) * (4 / 3));
         if (arr[0] % 2 == 0) {
             arr[1] = (x / TW);
         } else {
