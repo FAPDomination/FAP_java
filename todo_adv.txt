@@ -14,7 +14,7 @@ V			- If world map, look under
 ?	- SKILL Key
 ?		- Space is also a skill key
 V		- Timer
-	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
+?!T	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
   Semi-ADV
 	- End game (victory or not)
 		- Display Victory
@@ -55,8 +55,8 @@ V			- Last action
 V			- Display properly
 V		- Test a variable
 V		- Switch a switch
-		- Modify another NPC (position, wakable, actions ?)
-		- Modify a cell (did, walkable)
+?		- Modify another NPC (position, wakable, actions ?)
+V		- Modify a cell (did, walkable)
 V		- Start Game
 V			- Get Game
 V			- Launch it

@@ -327,7 +327,7 @@ V	- Display skillTime
 
   MainMenu
 	- Buttons
-		- adv
+V		- adv
 V		- vs
 PT		- quick
 V			- Loading screen
@@ -453,4 +453,4 @@ V		- wait for map to be selected
 V		- generate Game
 V		- Send loading screen
 V		- Better parsing without blank characters (1,0,0,1,1)->(1,1,1)
-  Right Click Menu
+X Right Click Menu

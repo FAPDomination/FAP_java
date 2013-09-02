@@ -976,6 +976,7 @@ public class Game extends JPanel implements NeedingFocus {
                 ArrayList<Action> list2 = new ArrayList<Action>();
                 list2.add(new ATestSwitch(0,ad));
                 list2.add(new ADisplayMessage("Ye have da switch !! Gloria !"));
+                list2.add(new AModifyCell(map.getCell(17,10),"100"));
                 NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,list2);
                 this.addNPC(npc2);
                 break;
