@@ -959,7 +959,7 @@ public class Game extends JPanel implements NeedingFocus {
                 list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
                 list.add(new ASetSwitch(0,true));
                 list.add(new ADisplayMessage("I'ma doing it right now !"));
-                NPC npc = new NPC(map.getCell(10, 10),true,false,Graph.getBasicCellImage(),this,0,0,list);
+                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,list);
                 this.addNPC(npc);
                 
                 
@@ -967,7 +967,7 @@ public class Game extends JPanel implements NeedingFocus {
                 ArrayList<Action> list2 = new ArrayList<Action>();
                 list2.add(new ATestSwitch(0,ad));
                 list2.add(new ADisplayMessage("Ye have da switch !! Gloria !"));
-                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.getBasicCellImage(),this,0,0,list2);
+                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,list2);
                 this.addNPC(npc2);
                 break;
             default:
