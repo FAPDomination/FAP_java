@@ -7,7 +7,9 @@ Implementing a new map in the ADV world map :
 	- add its parents in Game.computeWorldMap()
 	- fill the game constructor in Game.initWorldMap
 		- Careful ! The player is always team 0
+		- Careful ! The Player is always player 0
 
 Addinga new switch
 	- Add +1 in gui.Constants.numberOfAdvSwitches
 	- Update list of switches
+	- delete save

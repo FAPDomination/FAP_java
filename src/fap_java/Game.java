@@ -905,6 +905,13 @@ public class Game extends JPanel implements NeedingFocus {
                 gameSave.getMapValues().put(mapID, 1);
             }
         }
+        
+        //Unlock characters
+        for(int i=1;i<=9;i++){
+            if(gameSave.getGameSwitches().get(i)){
+                gameSave.getUnlockedChars().set(i, true);
+            }
+        }
         Tools.saveGame(this.gameSave);
     }
     
@@ -982,6 +989,18 @@ public class Game extends JPanel implements NeedingFocus {
                 list2.add(new AModifyCell(map.getCell(17,10),"100"));
                 NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,list2);
                 this.addNPC(npc2);
+                
+                ArrayList<Action> list4 = new ArrayList<Action>();
+                list4.add(new ASetSwitch(1,true));
+                list4.add(new ADisplayMessage("I'll activate the knight for ya"));
+                NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,list4);
+                this.addNPC(npc4);
+                
+                ArrayList<Action> list5 = new ArrayList<Action>();
+                list5.add(new ASetSwitch(5,true));
+                list5.add(new ADisplayMessage("I'll activate the Archeeerrr for ya"));
+                NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,list5);
+                this.addNPC(npc5);
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
