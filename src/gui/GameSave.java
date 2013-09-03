@@ -33,7 +33,7 @@ public class GameSave implements Serializable {
         for(int k=0;k<Constants.numberOfAdvChars;k++){
             unlockedChars.add(false);
         }
-        unlockedChars.set(1, true);
+        //unlockedChars.set(1, true);
         unlockedChars.set(7, true);
     }
 

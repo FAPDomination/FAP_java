@@ -57,7 +57,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
             }
             players.add(ps);
         }
-        initEverything();
+        this.initEverything();
     }
     
     public void initEverything(){
@@ -92,7 +92,15 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         
         int k=1;
         for(int i=1;i<10;i++){
-            if(i != 2 && i != 7){
+            boolean b = i != 2 && i != 7;
+            if(advGame != null){
+                GameSave gs = Tools.loadGame();
+                ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+                if(!listUnlockedChars.get(i)){
+                    b=false;
+                }
+            }
+            if(b){
                 charList.add(new CharacterDisplay(this.characDisplayOrigX+k*this.characDisplayIncrement+Tools.randRange(-10, 10),300+Tools.randRange(0,50),i,this));
                 k++;
             }
@@ -107,7 +115,12 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
         for(int j=0;j<players.size();j++){
             PlayerSelect ps = players.get(j);
             if(ps.getIsFSM() == 0){
-                ps.setPc(Tools.randRange(1,9,Params.excludedChars));
+                if(advGame == null){
+                    ps.setPc(Tools.randRange(1,9,Params.excludedChars));
+                }
+                else{
+                    ps.setPc(1);
+                }
                 ArrowSelect as = new ArrowSelect(ps,this);
                 arrowList.set(ps.getControler(),as);
             }
@@ -154,6 +167,9 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
                 advGame.getPlayers().set(i, p);
             }
         }
+        
+        this.theThread.setRunning(false);
+        
         // Proceeding to next panel
         JPanel nextPanel;
         if(advGame != null){
@@ -258,6 +274,22 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
                 }
             }
         }
+        
+        
+        //Check unlocked
+        GameSave gs = Tools.loadGame();
+        ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+        boolean only7 = true;
+        for(int i=0;i<listUnlockedChars.size();i++){
+            if(i != 7 && listUnlockedChars.get(i)){
+                only7 = false;
+            }
+        }
+        if(only7){
+            players.get(0).setPc(7);
+            this.nextFrame();
+        }
+        
         this.repaint();
     }
 

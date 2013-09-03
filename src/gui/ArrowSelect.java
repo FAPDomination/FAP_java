@@ -51,9 +51,14 @@ public class ArrowSelect {
         if(pc>2){
             pc--;
         }
-        CharacterDisplay cd = cs.getCharList().get(pc-1);
-        wantedX = cd.getX()+cd.getW()/2 +Tools.randRange(-5, 5);
-        wantedY = cd.getY()+cs.getArroSelectOrigY() +Tools.randRange(-5, 5);
+        CharacterDisplay cd = null;
+        if(cs.getCharList().size()>0){
+            cd = cs.getCharList().get(pc-1);
+        }
+        if(cd != null){
+            wantedX = cd.getX()+cd.getW()/2 +Tools.randRange(-5, 5);
+            wantedY = cd.getY()+cs.getArroSelectOrigY() +Tools.randRange(-5, 5);
+        }
     }
     
     public void computeSpeed(){
