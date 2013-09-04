@@ -154,7 +154,12 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         for (int i = 0; i < players.size(); i++) {
             PlayerSelect ps = players.get(i);
             if (ps.getIsFSM() != 0) {
-                ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+                if(advGame != null){
+                    ps.setPc(advGame.getPlayers().get(i).getPc());
+                }
+                else{
+                    ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+                }
             }
             if (advGame != null) {
                 Player formerP = advGame.getPlayers().get(i);

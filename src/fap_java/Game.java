@@ -819,7 +819,7 @@ public class Game extends JPanel implements NeedingFocus {
         Map<Integer,Game> gameList = new HashMap<Integer,Game>();
         gameList.put(25, new Game(25));
         gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,500,0,0,1));
-        gameList.put(21, new Game("1,1","0,1","0,1","0,2",false,21,1000,0,0,1));
+        gameList.put(21, new Game("1,5","0,1","0,1","0,2",false,21,1000,0,0,1));
         gameList.put(22, new Game("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
         gameList.put(23, new Game("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
         gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
