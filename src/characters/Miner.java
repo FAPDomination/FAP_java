@@ -1,5 +1,8 @@
 package characters;
 
+import animations.AnimWarp;
+import animations.Animation;
+
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Params;
@@ -55,7 +58,7 @@ public class Miner extends Player{
     public void keyHigh(int i) {
         super.keys[i][1] = 1;
         if(this.selecting){
-            if (this.getGame().getThread().getCount() - this.getLastDisplacement() >= 100) {
+            if (this.getGame().getThread().getCount() - this.getLastDisplacement() >= Params.timeForSelection) {
                 this.setLastDisplacement(this.getGame().getThread().getCount());
                 // If the key LEFT is pressed
                 if (keys[3][1] == 1) {
@@ -100,6 +103,7 @@ public class Miner extends Player{
                        this.setJ(c.getJ());
                        c.activateCell(this);
                        // add a little animation :p
+                       Animation anim = new AnimWarp(this.getCurrent(),this.getGame().getThread());
                    }
                }
                c.setMinerSing(false);

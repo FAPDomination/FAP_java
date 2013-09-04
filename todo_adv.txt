@@ -1,0 +1,135 @@
+Adventure :
+  Game Init
+V	- Create attribute for "no-conquest mode"
+V	- Create attribute for "adventure mode"
+V	- Execute (block every battle stuff)
+	- Define manually a cell for the player to start on
+  General ADV Things
+V	- handle NPCs
+V		- Make list of NPCs
+V		- Check for each displacement IF NOT world map
+V		- Check for hitting SKILL
+V			- If not world map, look around
+V			- If world map, look under
+?	- SKILL Key
+?		- Space is also a skill key
+V		- Timer
+?!T	- KeyListener not removing when doing WM->25->WM->25 (probably WM not releasing)
+  Semi-ADV
+	- End game (victory or not)
+		- Display Victory
+V			- Display
+V			- Goback to world Map
+			- GoBack to wherever we were
+V		- Save game
+V		- Delete temporary GobackToWorldMap thing
+X		- Bonus : too heavy to reload the entire world map
+?			- Yes but what if coming from a pauseScreen mid game ?
+V	- Launching with CharacterSelection
+V		- Launch loading screen before
+V		- Double define of players bug
+V		- Unlocked characters
+V			- Display available
+V			- Init random
+V			- Skipping characSelec when only 7 available
+V			- Arrow displacement
+V				- Find the current
+V				- Get the next
+V Full-ADV
+V	- maps should only have one startCell in the XML file
+V	- Don't pause and unpause game
+  NPCs
+V	- Bug : doesn't paint ?
+V	- NPC pause paints too much
+V	- NPC doesn't unpause
+V	- NPC not walkable
+?	- Delete whoLaunches.getIterator() <= whoLaunches.getActions().size() in actions ?
+V	- Multiple launch of NPCs bug
+	- Actions
+P~		- Object
+V		- Display message
+V			- Pause
+V			- Multiple Execute
+V			- Wait for SKILL key
+V			- Display properly
+?			- Multiple page message ?
+V		- Choice ("Y/N" for example)
+V			- Display message
+V			- Multiple Execute
+V			- Wait for SKILL key
+V			- Handle keys for choice
+V			- Last action
+V			- Display properly
+V		- Test a variable
+V		- Switch a switch
+?		- Modify another NPC (position, wakable, actions ?)
+V		- Modify a cell (did, walkable)
+V		- Start Game
+V			- Get Game
+V			- Launch it
+			- Animation
+			- Back to this very NPC afterwards
+V		- Unlock a character
+V	- Object
+P~		- Placement
+V		- Execution
+X			- One at a time security
+V			- Pause game (Special pause for NPC)
+V			- Trigger auto-trigger NPC if any
+V	- NPC Exit
+V		- Create
+V		- Actions
+V			- Do you wanna quit ?
+V			- Start World map
+V		- Implement (not in shiftStick but parse in mapHandler)
+V	- NPC World Map blocking
+V		- Create
+V			- Object
+V			- Image
+V			- Not walkable
+V		- Implement
+V	- NPC world Map starting game
+V		- Create
+?~			- Image
+X				- Black if not conquered but available
+X				- Green if conquered
+~				- Green Zone
+?				- What about cities ?
+V			- Walkable
+V			- Actions
+V				- Do you wanna play ?
+V				- Start Game
+V		- Implement			
+V World map
+V	- Get list of conquered cells
+V	- Parse list of available cells
+V	- Create NPCs to cover the designated cells
+V		- Not available cells
+V		- available cells
+V		- Conquered Cells
+V	- Link maps to their cells
+V		- Linking
+?		- Find a better place for initialization ?
+?			- Make it in an external file
+V	- Compute changes and save them
+V		- Check for parent cells
+V		- Update value
+V		- Save
+V	- Replace mapValues & co by HashMaps
+T Game Datas
+V	- Decide wich method will be used
+V	- Make tests
+V	- Lists all game datas to be saved
+V	- Make a save/load method in Tools
+V	- Make every child class Serializable
+V	- Implement
+V		- Load datas when clicking on adventure
+V			- If no data, init new One
+V			- If yes, load
+V		- Save datas
+V	- Game Data init new one
+V		- Maps values all set to 0 except the initial one
+V		- Game switches all set to false
+V		- Unlocked characters all set to false except 1 and 7
+V	- Generate accessors
+? HardCodePanel could be deleted

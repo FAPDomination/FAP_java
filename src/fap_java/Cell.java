@@ -1,32 +1,103 @@
 package fap_java;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 
 public class Cell extends Element {
+    /**
+     * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
+     */
     private int did;
+    /**
+     * The image that will be painted as a representation of the cell
+     */
+    private Image img;
+    /**
+     * The Type of the cell.
+     * Several types exist :
+     * 1 - normal, wakable, takable
+     * 2 - CountDown Cell
+     * 3 - Neutral that can't be owned (not implemented yet)
+     * 10 - warp
+     * 11 - switch
+     * 12 - NPC exit
+     * 19 - blocking low (river)
+     * 20 - blocking high (rock)
+     */
     private int type;
+    /**
+     * The team that owns this cell
+     */
     private Team owner;
+    /**
+     * The property walkable or not of the cell
+     */
     private boolean walkable;
+    /**
+     * If the cell has ever been walked on (useful to test if a switch was activated)
+     */
+    private boolean walked;
+    /**
+     * The number of HealthPoints of the cell
+     */
     private double hp;
+    /**
+     * The property of the cell to be high blocking or low blocking
+     */
     private boolean height;
+    /**
+     * The map in wich the cell lives
+     */
     private CMap map;
+    /**
+     * An additional parameter, such as the cell where a warp will teleport you
+     */
     private String addParam;
 
     //Special params
+    /**
+     * If the cell is a trap, who traped it
+     */
     private Team trap;
+    /**
+     * If the cell is from the Healthy Healthy special tile
+     */
     private boolean healthy;
+    /**
+     * If the cell is unstable : hp will decrease no matter what
+     */
     private boolean unstable;
+    /**
+     * If the cell is frozen : will slow down the player
+    */
     private boolean frozen;
 
+    /**
+     * If the cell is currently being examinated by a miner who wants to teleport
+     */
     private Player minerSelect;
+    /**
+     * If the cursor of the miner is on this cell
+     */
     private boolean minerSing;
+
+    /**
+     * The game in wich the cell is living
+     */
+    private Game game;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
      */
-    public Cell(int i, int j, int type, int did) {
-        this(i, j, type, "", did);
+    public Cell(int i, int j, int type, int did, Game game) {
+        this(i, j, type, "", did, game);
+    }
+    
+    public Cell(int i, int j){
+        this(i, j, 0, "", 0, null);
     }
 
     /**
@@ -38,9 +109,9 @@ public class Cell extends Element {
      * @param param : An additional param, such as a property (frozen, unstable, healthy)
      * @param did : the design of the cell (grass, rock, water, lava,...)
      */
-    public Cell(int i, int j, int type, String param, int did) {
+    public Cell(int i, int j, int type, String param, int did, Game game) {
         super();
-
+        this.game = game;
         this.setI(i);
         this.setJ(j);
         this.walkable = true;
@@ -52,6 +123,11 @@ public class Cell extends Element {
         this.trap = null;
         this.owner = null;
         this.minerSing = false;
+        this.img = Graph.cells.get(did);
+        if (img == null) {
+            System.out.println("Null image for this did : " + did);
+        }
+        walked = false;
 
     }
 
@@ -61,36 +137,61 @@ public class Cell extends Element {
      */
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + CMap.OFFMAP;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
 
+        
+        // Paint dirt
+        int offX = (int)Graph.offsetsCells.get(0).getWidth();
+        int offY = (int)Graph.offsetsCells.get(0).getHeight();
+        int width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
+        int height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
+        //TODO only on needed cells
+        g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
+        
+        // Paint did
+        width = (int)(this.img.getWidth(game) * Graph.facW);
+        height = (int)(this.img.getHeight(game) * Graph.facH);
+        offX = (int)Graph.offsetsCells.get(did).getWidth();
+        offY = (int)Graph.offsetsCells.get(did).getHeight();
+        
+        g.drawImage(this.img, x + offX, y + offY, width, height, game);
+        
+        
         // Special case if the miner is currently selecting the cell
+        //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
-            g.setColor(minerSelect.getColor());
-            g.fillRect(x, y, CMap.TW, CMap.TH);
+            int minerSlectID = 13;
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * Graph.facH);
+            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
+            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            if (this.minerSing) {
-                g.setColor(Color.black);
-                g.fillRect(x + CMap.TW / 2, y + CMap.TH / 2, 4, 4);
+            //TODO better painting of minor's cursor
+            if(this.minerSing){
+                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
             }
-        } else {
-            if (owner == null) {
-                g.setColor(Color.BLACK);
-            } else {
-                g.setColor(owner.getColor());
+            else{
+                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
             }
-            if (type == 10) {
-                g.setColor(Color.GREEN);
-            }
-            if (!walkable) {
-                g.setColor(Color.pink);
-            }
-            g.drawRect(x, y, CMap.TW, CMap.TH);
         }
-
+        
         // Write the amount of HP of the tile
         if (hp > 0) {
-            g.drawString("" + (int)hp, x + 5, y + 10);
+            String hps = "" + (int)hp;
+            Graphics2D g2d = (Graphics2D)g;
+            FontMetrics fm = g2d.getFontMetrics();
+            int textWidth = fm.stringWidth(hps);
+            if(owner !=null){
+                g.setColor(owner.getColor());
+            }
+            else{
+                g.setColor(Color.black);
+            }
+            g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            //TODO coloured background ?
         }
+        
+        //TODO Special Healthy Healthy design
     }
 
     /**
@@ -140,38 +241,36 @@ public class Cell extends Element {
      * Recalculates the HP of a Cell, according to Conway's laws or other factors
      * @param game : the game where the cell is
      */
-    public void refreshHealthPoints(Game game) {
-        // Check if the tile is owned
-        if (owner != null) {
-            /*
-             * Check if :
-             * The cell is takable (type 1)
-             * The cell is taken
-             * The cell has enough neighbours
-             * The cell is stable (not lava)
-             */
-            boolean recovB =
-                (type == 1) && owner != null && map.countNeighbours(this) >= Params.nNeighboursConway && !unstable;
-            if (recovB) {
-                // If the cell is wounded (under initHP HPs)
-                if (hp < owner.getFirstPlayer().getInitHP()) {
-                    // The HP will recover slowly up to initHP
-                    hp += owner.getFirstPlayer().getRecovLifeAuto();
-                    // between initHP and maxHP
-                } else if (hp < owner.getFirstPlayer().getMaxHP() || (hp < Params.higherMaxHP && healthy)) {
-                    // The HP will very slowly increase up to the max limit
-                    double gainLifeFactor;
-                    // Special tile : healthy healthy has greater recovering factor
-                    if (healthy) {
-                        gainLifeFactor = Params.gainLifeFactorMultiplier;
-                    } else {
-                        gainLifeFactor = 1;
-                    }
-                    // Update HPs
-                    hp += owner.getFirstPlayer().getGainLife() * gainLifeFactor;
-                } else {
-                    // If the tale isn't lonely or anything, do nothing
-                }
+    
+    public void refreshHealthPoints(Game game){
+        //trace(_root.kco);
+                // Counts the neighbours of the same type of the tale
+                //Note : MyDMap != 8 is for lava floor and unstable cells
+                //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
+        if(owner != null){
+            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConway && !unstable;
+                if (recovB) {
+                        // If the cell is wounded (under initHP HPs)
+                        if (hp<owner.getFirstPlayer().getInitHP()) {
+                                        // The HP will recover slowly up to initHP
+                                        hp += owner.getFirstPlayer().getRecovLifeAuto();
+                                // between initHP and maxHP
+                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
+                                //_root["t"+i].onEnterFrame = function() {
+                                        // The HP will very slowly increase up to the max limit
+                                        double gainLifeFactor;
+                                        if(healthy){
+                                                gainLifeFactor = Params.gainLifeFactorMultiplier;
+                                        }
+                                        else{
+                                                gainLifeFactor = 1;
+                                        }
+                                        hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
+                                //};
+                        } else {
+                                // If the tale isn't lonely or anything, do nothing
+                                //delete _root["t"+i].onEnterFrame;
+                        }
             } else {
                 /* Only enabled when "GameOfLife" level 1 or more is on :
                         the goal here is to decrease the HP of the tale because it's alone.
@@ -193,7 +292,9 @@ public class Cell extends Element {
             // if it's a timer-cell, set it to blocking tile
             if (type == 2) {
                 type = 20;
+                this.setDid(100);
                 walkable = false;
+                this.height = true;
                 // KICK BACK
                 Player p = game.isOccupied(this);
                 if (p != null) {
@@ -286,21 +387,30 @@ public class Cell extends Element {
     public void setType(int type) {
         //Blocking high
         if (type == 20) {
+            this.type = 20;
             walkable = false;
             this.height = true;
         }
         //Blocking low
         else if (type == 19) {
+            this.type = 19;
             //this.type = 1;
             walkable = false;
-            this.height = false;
         }
         //Countdown cell
         else if (type == 2) {
             this.type = type;
             hp = Integer.parseInt(addParam);
-        } else {
+        }
+        else {
             this.type = type;
+        }
+        
+        if(type != 20 && type != 19){
+            walkable = true;
+        }
+        if(type != 20){
+            height = false;
         }
 
         //Healthy Healthy and special tiles
@@ -330,6 +440,7 @@ public class Cell extends Element {
 
     public void setDid(int did) {
         this.did = did;
+        this.img = Graph.cells.get(did);
     }
 
     public void setHp(double hp) {
@@ -395,5 +506,13 @@ public class Cell extends Element {
             b = true;
         }
         return b;
+    }
+
+    public void setWalked(boolean walked) {
+        this.walked = walked;
+    }
+
+    public boolean isWalked() {
+        return walked;
     }
 }

@@ -17,7 +17,7 @@ public class Archer extends Player{
             this.setLastSkill(this.getGame().getThread().getCount());
             //System.out.println("*BANG*");
             //Send Skill :
-            Arrow arr = new Arrow(this.getCurrent(),this.getOri(),this.getGame(),this);
+            new Arrow(this.getCurrent(),this.getOri(),this.getGame(),this);
             
             this.makeHimWait(Params.timeAfterSkill);
         }

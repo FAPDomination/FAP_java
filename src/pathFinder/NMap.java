@@ -44,7 +44,7 @@ public class NMap {
     
     public Node getNode(int[] tab) {
         Node c;
-        Node o = new Node(new Cell(tab[0],tab[1],1,1));
+        Node o = new Node(new Cell(tab[0],tab[1],1,1,null));
         if (tab.length == 2 && containsNode(o) != (-1)) {
             c = myMap.get(containsNode(o));
         } else {

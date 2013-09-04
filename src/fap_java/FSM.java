@@ -108,6 +108,16 @@ public class FSM{
     }
 
     public void shiftToPicked() {
+        //Set ori
+        Cell current = body.getCurrent();
+        ArrayList<Cell> list = body.getGame().getMap().surroundingCells(current);
+        for(int i=0;i<list.size();i++){
+            Cell w = list.get(i);
+            if(w == this.nextCell){
+                body.setOri(i);
+            }
+        }
+        //---
         body.shiftStick(0,0);
         if(prevState == pathFollow && fsm_secParam == null){
             this.fsm_receive_event(ev_secDone);
@@ -194,6 +204,13 @@ public class FSM{
                     }
                     //Totally arbitrary : should also depend on levels
                     if (nCells < 6-level) {
+                        skillWorth = true;
+                    }
+                break;
+                case 5 :            // Archer
+                    ArrayList<Cell> path = this.body.getGame().getMap().tileOnPath(this.body.getCurrent(),this.body.getOri());
+                    //Totally arbitrary : should also depend on levels
+                    if(path.size()>=level+2){
                         skillWorth = true;
                     }
                 break;
@@ -475,7 +492,13 @@ public class FSM{
                 Cell warpedCell = body.getGame().getMap().getCell(tab);
                 w = areaWeight(warpedCell, nRings+1);
                 case 11:
-                    w=3;
+                    // if no one switched that switch, the weight is high, else very low
+                    if(c.isWalked()){
+                        w=1;
+                    }
+                    else{
+                        w=12;
+                    }
                     break;
                 
                 default:
@@ -531,5 +554,13 @@ public class FSM{
             }
         }
         return c;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

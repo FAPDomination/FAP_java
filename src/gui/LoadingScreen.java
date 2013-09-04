@@ -73,19 +73,21 @@ public class LoadingScreen extends FAPanel {
         int col = 0;
         int nPerCol = 3;
         int triggerNewDispo = 4;
+        //TODO better displaying of teams (with char)
         for(int i=0;i<teams.size();i++){
             int y;
             if(teams.size()>triggerNewDispo){
                 y = (origY+(i%nPerCol)*incremY);
-                g.drawImage(Graph.guimg.get("LS_BG8team"), origX+col*increm8X, y, this);
+                g.drawImage(Graph.getGuimg().get("LS_BG8team"), origX+col*increm8X, y, this);
             }
             else{
                 y = (origY+(i)*incremY);
-                g.drawImage(Graph.guimg.get("LS_BGteam"), origX, y, this);
+                g.drawImage(Graph.getGuimg().get("LS_BGteam"), origX, y, this);
             }
             g.setColor(Color.black);
-            g.drawString("Team "+(i+1), origX+20+increm8X*col, y+30);
-            
+            //TODO pick one or the other
+            //g.drawString("Team "+(i+1), origX+20+increm8X*col, y+30);
+            g.drawString(""+teams.get(i), origX+20+increm8X*col, y+30);
             ArrayList<Player> players = teams.get(i).getPlayersInThisTeam();
             for(int j=0;j<players.size();j++){
                 players.get(j).paintStick(g, origX+30+incremPlayerX*j+col*increm8X, y+50);

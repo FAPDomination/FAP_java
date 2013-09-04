@@ -58,7 +58,8 @@ public class MapSelect extends FAPanel implements MouseListener{
             m.setPanel(this);
         }
         
-        selectedMap = mapList.get(0);
+        selectedMap = null;
+        this.btnNext.setEnabled(false);
         this.addMouseListener(this);
         this.repaint();
     }
@@ -67,52 +68,9 @@ public class MapSelect extends FAPanel implements MouseListener{
         // Check if map is selected
         if(selectedMap != null){
             
-            
             ArrayList<PlayerSelect> players = ((CharacterSelection)prevPanel).getPlayers();
-            /*
-            PlayerSelect[] psTable = new PlayerSelect[Params.maxPlayers];
-            
-            String whoIsPlaying = "";
-            String wichTeam = "";
-            String isFSM = "";
-            
-            for(int i=0;i<psTable.length;i++){
-                PlayerSelect play = null;
-                boolean playing = false;
-                for(int j=0;j<players.size();j++){
-                    play = players.get(j);
-                    if(play.getControler() == i){
-                        playing = true;
-                        break;
-                    }
-                    else{
-                        play = null;
-                    }
-                }
-                if(playing){
-                    System.out.println("yop");
-                    
-                    whoIsPlaying+=""+play.getPc()+",";
-                    wichTeam+=""+play.getTeam()+",";
-                    isFSM+=""+play.getIsFSM()+",";
-                }
-                else{
-                    whoIsPlaying+="0,";
-                    wichTeam+="0,";
-                    isFSM+="0,";
-                }
-                //players.contains(ps)
-                //PlayerSelect ps = players.get(i);
-            }
-            whoIsPlaying+="0";
-            wichTeam+="0";
-            isFSM+="0";
-            // Proceeding to next panel
-            System.out.println(whoIsPlaying+"-"+wichTeam+"-"+isFSM);
-            Game game = new Game(whoIsPlaying,wichTeam,isFSM,true,selectedMap.getFileNumber());
-            parent.changePanel(new LoadingScreen(parent,game,this));
-            */
-            Game game = new Game(players,true,selectedMap.getFileNumber(),Params.defaultVictoryScore,0,0);
+
+            Game game = new Game(players,true,selectedMap.getFileNumber(),Params.defaultVictoryScore,0,0,0);
             parent.changePanel(new LoadingScreen(parent,game,this,selectedMap.getFileNumber()));
         }
     }
@@ -123,6 +81,7 @@ public class MapSelect extends FAPanel implements MouseListener{
         int origX = 50;
         int origY = 80;
         int h=0;
+        //TODO better increments
         int incrementX = (this.getWidth()-(2*origX))/nMapPerLine;
         int incrementY = 250;
         for(int i=0;i<mapList.size();i++){
@@ -154,6 +113,9 @@ public class MapSelect extends FAPanel implements MouseListener{
         if(m!=null){
             if(selectedMap != null){
                 selectedMap.setIsSelected(false);
+            }
+            else{
+                this.btnNext.setEnabled(true);
             }
             selectedMap = m;
             selectedMap.setIsSelected(true);

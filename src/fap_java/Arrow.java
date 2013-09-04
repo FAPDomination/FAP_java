@@ -2,6 +2,10 @@ package fap_java;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 public class Arrow extends Element {
 
@@ -29,7 +33,7 @@ public class Arrow extends Element {
         this.current = c;
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0] + (CMap.TW / 2);
-        this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + CMap.OFFMAP + (CMap.TH / 2);
+        this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + (CMap.TH / 2);
         game.addObject(this);
         this.thrower = thrower;
         this.initConstants();
@@ -38,10 +42,8 @@ public class Arrow extends Element {
     public void paintComponent(Graphics g) {
         //int offsetY;
         offsetY = 0;
-
         g.setColor(Color.BLACK);
         g.fillRect(x, y + offsetY, 4, 4);
-
     }
 
     /**
@@ -112,6 +114,7 @@ public class Arrow extends Element {
      * Initialization of constants about the arrow
      */
     public void initConstants() {
+        //TODO better approx for angle
         double approxAngle = -0.85832;
         switch (course) {
         case 0: //TL

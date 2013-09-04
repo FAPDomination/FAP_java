@@ -3,26 +3,49 @@ package fap_java;
 import java.awt.Graphics;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CMap {
+    /**
+     * A factor that multiplies the sizes of EEEEEEEverything
+     */
     public static final int FAC = 2;
+    /**
+     * Tile Width
+     */
     public static final int TW = 60 / FAC;
+    /**
+     * Tile Height
+     */
     public static final int TH = 35 / FAC;
-    public static final int OFFMAP = 0;
+    /**
+     * Offset on y that the map has
+     */
+    public static final int OFFMAP = 10;
 
     /**
      * Creates a map with all tools needed.
      */
-    public CMap() {
-
+    public CMap(Game game, int fileID) {
+        this.game = game;
+        this.fileID = fileID;
     }
 
-    //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
+    /**
+     * The arrayList of cells that contains aaaall the cells of the grid
+     */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    /**
+     * The starting points of this map (defined in the XML file)
+     */
     private ArrayList<Cell> startCells = new ArrayList<Cell>();
+    /**
+     * The game where it's happening
+     */
+    private Game game;
+    
+    private int fileID;
 
     /**
      * Give the position in pixels of a couple a values
@@ -34,7 +57,7 @@ public class CMap {
         int[] arr = new int[2];
         // calculate the corresponding position
         arr[0] = j * TW + (TW / 2) * (i % 2);
-        arr[1] = i * (TH) * (1 - 1 / 4) + OFFMAP;
+        arr[1] = i * (TH) * (1 - 1 / 4);
         return arr;
     };
     
@@ -56,7 +79,7 @@ public class CMap {
     public static int[] givePositionTale(int x, int y) {
         int[] arr = new int[2];
         // Undo the calculus of the position
-        arr[0] = Math.round(((y - OFFMAP) / TH) * (4 / 3));
+        arr[0] = Math.round(((y) / TH) * (4 / 3));
         if (arr[0] % 2 == 0) {
             arr[1] = (x / TW);
         } else {
@@ -75,7 +98,29 @@ public class CMap {
         for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);
             c.paintComponent(g);
+            NPC npc = Tools.checkNPCOnCell(game, c);
+            if(npc!=null){
+                npc.paintComponent(g);
+            }
+            Player p = game.isOccupied(c);
+            if(p!=null){
+                p.paintComponent(g);
+            }
         }
+    }
+    
+    //TODO Improvement of this method including gaps
+    public ArrayList<Cell> tileOnPath(Cell c, int ori){
+        ArrayList<Cell> path = new ArrayList<Cell>();
+        boolean bool = true;
+        while(bool){
+            path.add(c);
+            c = this.surroundingCells(c).get(ori);
+            if(c== null || c.isHeight()){
+                bool = false;
+            }
+        }
+        return path;
     }
 
     //------ Accessors for the map
@@ -84,6 +129,10 @@ public class CMap {
         return myMap;
     }
 
+    /**
+     * Adds a cell to the map and replaces it if needed
+     * @param c the cell to be added
+     */
     public void addElement(Cell c) {
         if (containsCell(c) != -1) {
             myMap.remove(containsCell(c));
@@ -120,7 +169,7 @@ public class CMap {
      */
     public Cell getCell(int[] tab) {
         Cell c;
-        Cell o = new Cell(tab[0], tab[1], 1, 1);
+        Cell o = new Cell(tab[0], tab[1], 1, 1,null);
         if (tab.length == 2 && containsCell(o) != (-1)) {
             c = myMap.get(containsCell(o));
         } else {
@@ -170,7 +219,10 @@ public class CMap {
      */
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
-        ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
+        ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
+        for(int k=0;k<6;k++){
+            surroundingCells.add(null);
+        }
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -178,42 +230,42 @@ public class CMap {
         // not the first line
         if (i % 2 == 0) {
             o = this.getCell(i - 1, j - 1);
-            surroundingCells.add(o);
+            surroundingCells.set(0,o);
             //surroundingCells['tr'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(1,o);
         } else {
             
             //surroundingCells['tl'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(0,o);
             
             //surroundingCells['tr'] = [i-1, j+1];
             o = this.getCell(i - 1, j + 1);
-            surroundingCells.add(o);
+            surroundingCells.set(1,o);
         }
         // cells from the same line
         //surroundingCells['l'] = [i, j-1];
         o = this.getCell(i, j - 1);
-        surroundingCells.add(o);
+        surroundingCells.set(5,o);
         //surroundingCells['r'] = [i, j+1];
         o = this.getCell(i, j + 1);
-        surroundingCells.add(o);
+        surroundingCells.set(2,o);
         // bottom cells (see top cells)
         if (i % 2 == 0) {
             //surroundingCells['bl'] = [i+1, j-1];
             o = this.getCell(i + 1, j - 1);
-            surroundingCells.add(o);
+            surroundingCells.set(4,o);
             //surroundingCells['br'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(3,o);
         } else {
             //surroundingCells['br'] = [i+1, j+1];
             o = this.getCell(i + 1, j + 1);
-            surroundingCells.add(o);
+            surroundingCells.set(3,o);
             //surroundingCells['bl'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.add(o);
+            surroundingCells.set(4,o);
         }
         return surroundingCells;
     };
@@ -315,5 +367,13 @@ public class CMap {
 
         return ringsOfCells;
 
+    }
+
+    public void setFileID(int fileID) {
+        this.fileID = fileID;
+    }
+
+    public int getFileID() {
+        return fileID;
     }
 }

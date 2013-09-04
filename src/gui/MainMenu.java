@@ -16,6 +16,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
+
 
 public class MainMenu extends FAPanel implements AnimPanel{
     private JButton btnAdventure = new JButton();
@@ -115,7 +117,15 @@ public class MainMenu extends FAPanel implements AnimPanel{
     }
     
     private void btnAdv_actionPerformed() {
-        nextPanel = new HardCodePanel(parent, this);
+        GameSave gs = Tools.loadGame();
+        // If the game is'nt new
+        Game game = Fapplication.getWorldMap();
+        //game.getThread().setRunning(true);
+        game.pauseGame(true);
+        // If not, start a new game (cutscene)
+        //TODO
+        //----
+        nextPanel = game;
         this.startSliding(true);
     }
     
@@ -131,13 +141,15 @@ public class MainMenu extends FAPanel implements AnimPanel{
 
     private void startQuickPlay() {
         // init map
+        //TODO keep lis of maps updated
         int[] possibleMaps = { 5, 6, 8, 10, 11 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
+        //nmap = 5;
         // init skill
         int pcP = Tools.randRange(1, 9, Params.excludedChars);
         int pcF = Tools.randRange(1, 9, Params.excludedChars);
 
-        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", true, nmap,Params.defaultVictoryScore,0,0);
+        Game game = new Game("" + pcP + "," + pcF, "0,1", "0,1","0,1", false, nmap,Params.defaultVictoryScore,0,0,0);
         
         nextPanel = new LoadingScreen(parent,game,this,nmap);
         this.startSliding(true);

@@ -1,25 +1,12 @@
 idées pour le code :
 
------ Animations 
-Les animations pourraient être des objets,
-à durée de vie limitée,
-placés sur la scène grâce à des I,J (ou des cells).
-
-Listés dans une arrayList de la scène,
-qui leur demanderait de se repaint en continu
-ils calculeraient leur aspect en fonction de leur temps de vie
-
------ Modification d'un paramètre d'un joueur
-Exemple : pour le booster
-
 ----- Flèche
 - Avoid too much calculus with a "parent" cell atribute.
 Démarrer les calculs seulement sur un front montant de current
 
------ FSM
-5 levels of FSM
-1 : starter
-5 : MegaBoss of the death
+----- Special Tiles
+Warp, Switch, to be written in separate cell-extended classes ?
+Also DMap Cells ?
 
 ----- Enlightment and Ambience
 Ça tourne surtout autour du temps / jour / nuit (surcouche bleue, sombre) / heure / éléments de climat (brouillard, neige) / décors (lumières, feu de camp...). Tu dois déjà comprendre de quoi je veux parler, et oui, certains trucs passent pas (genre, qui dit temps qui défile, jour et nuit, dit course du soleil, dit ombres qui se déplacent... C'est l'inconvénient de la fausse 3D iso).
@@ -32,3 +19,33 @@ Est-ce qu'on doit laisser le choix aux joueurs (dans versus, s'entend) sur leurs
 Pour victScore ?
 Pour victTile ?
 Pour victTime ?
+
+----- FAP LAN
+
+Ce lui qui hoste clique simplement sur host
+Toute personne qui rejoint une partie (dont celui qui hoste) clique sur rejoindre et prend un écran où il peut choisir son personnage.
+Le host a également un écran de sélection des éventuelles IA et de la map
+
+OMG trop bonne idée : pendant cette sélection les persos apparaissent sur une petite map où ils peuvent marcher un peu et voir qui joue, et quel personnage (plus les IAs qui apparaissent avec un skin différent), ainsi que quelle équipe. Cette map reste dans un coin pendant la sélection du perso (char + team) et quand tout le monde est prêt (a cliqué "valider/continuer/commencer") les PlayerSelect sont parsés par le host
+
+------ Stockage des NPCs et des map parentes dans la world map
+
+Pour l'instant c'est de l'ajout à une variable en liste, est-ce qu'il vaudrait pas mieux les mettre dans des fichiers sérializés externes ?
+Oui pour les maps parentes
+Peut-être pour les Game du mode adv
+
+------ Organigramme de structure des NPCs
+
+# NPC sans demande de choix ou validation
+Executer l'action d'une traite et revenir au NPC.execute()
+# NPC avec demande de validation (choix, message)
+L'action a un iterator et execute en deux fois ou plus
+L'action en s'executant rabaisse l'iterator du calling npc pour pouvoir être appelée à nouveau
+
+------ Idée pour le display de la Wm
+
+Sur la carte du monde, les cellules conquéries sont (dans FAP Flash) contourées en vert.
+Il faut reprendre ce principe.
+Ou alors, on pourrait aussi avoir un contour sur toute la zone conquérie (toutes cellules) mais seulement sur la bordure (en gros, les frontières de notre royaume).
+ça serait plus logique en terme de vision de quoi est conquéri ou pas, et moins lourd puisqu'on n'aurait pas chaque cellule en vers mais seulement les bordures
+Idées d'algo : pour chaque cellule conquérie, pour chaque arrête, checker si la cellule voisine est conquérie aussi, et si non, peindre l'arrête

@@ -34,14 +34,14 @@ public class Minimap{
     private int w = 147;
     private int h = 208;
 
-    private static Image img = Graph.guimg.get("minimapBG");
+    private static Image img = Graph.getGuimg().get("minimapBG");
     private JPanel panel;
     private String name;
     private boolean isSelected;
     private int fileNumber;
 
     public Minimap(int map, String name) {
-        CMap theMap = XMLparser.parseMap(map);
+        CMap theMap = XMLparser.parseMap(map,null);
         this.map = theMap.getMyMap();
         this.name = name;
         this.fileNumber = map;
@@ -72,8 +72,9 @@ public class Minimap{
     }
 
     public void paintComponent(Graphics g) {
+        //TODO Size of background for big maps
         g.drawImage(img, x, y, panel);
-        // Special if is selected
+        //TODO Special if is selected
         if(isSelected){
             g.setColor(Color.blue);
             g.fillRect(x, y, 5, 5);
