@@ -69,7 +69,7 @@ V			- Get Game
 V			- Launch it
 			- Animation
 			- Back to this very NPC afterwards
-		- Unlock a character
+V		- Unlock a character
 V	- Object
 P~		- Placement
 V		- Execution

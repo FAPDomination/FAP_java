@@ -908,9 +908,7 @@ public class Game extends JPanel implements NeedingFocus {
         
         //Unlock characters
         for(int i=1;i<=9;i++){
-            if(gameSave.getGameSwitches().get(i)){
-                gameSave.getUnlockedChars().set(i, true);
-            }
+            gameSave.getUnlockedChars().set(i, gameSave.getGameSwitches().get(i));
         }
         Tools.saveGame(this.gameSave);
     }
