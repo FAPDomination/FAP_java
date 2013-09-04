@@ -175,7 +175,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         JPanel nextPanel;
         if (advGame != null) {
             this.remove(this.btnGoBack);
-            nextPanel = new LoadingScreen(this.parent, advGame, new MainMenu(this.parent,true), advGame.getMap().getFileID());
+            nextPanel =
+                    new LoadingScreen(this.parent, advGame, new MainMenu(this.parent, true), advGame.getMap().getFileID());
         } else {
             nextPanel = new MapSelect(parent, this);
         }
@@ -278,17 +279,19 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
 
         //Check unlocked
-        GameSave gs = Tools.loadGame();
-        ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
-        boolean only7 = true;
-        for (int i = 0; i < listUnlockedChars.size(); i++) {
-            if (i != 7 && listUnlockedChars.get(i)) {
-                only7 = false;
+        if (advGame != null) {
+            GameSave gs = Tools.loadGame();
+            ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+            boolean only7 = true;
+            for (int i = 0; i < listUnlockedChars.size(); i++) {
+                if (i != 7 && listUnlockedChars.get(i)) {
+                    only7 = false;
+                }
             }
-        }
-        if (only7) {
-            players.get(0).setPc(7);
-            this.nextFrame();
+            if (only7) {
+                players.get(0).setPc(7);
+                this.nextFrame();
+            }
         }
 
         this.repaint();

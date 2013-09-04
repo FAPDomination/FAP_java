@@ -32,9 +32,9 @@ V		- Double define of players bug
 V			- Display available
 			- Init random
 V			- Skipping characSelec when only 7 available
-			- Arrow displacement
-				- Find the current
-				- Get the next
+V			- Arrow displacement
+V				- Find the current
+V				- Get the next
 V Full-ADV
 V	- maps should only have one startCell in the XML file
 V	- Don't pause and unpause game
