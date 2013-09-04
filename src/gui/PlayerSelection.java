@@ -290,6 +290,7 @@ public class PlayerSelection extends FAPanel {
                 }
             }
         }
+        this.btnNext.setEnabled(!error);
         this.repaint();
     }
 }

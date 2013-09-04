@@ -37,6 +37,7 @@ public class AStartGame implements Action {
        //     whoLaunches.execute();
        // }
         // add Animation
+        //TODO add Animation for panel changing
     }
 
     public void reinit() {
