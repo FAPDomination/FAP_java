@@ -91,6 +91,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         arrowList = new ArrayList<ArrowSelect>();
 
         int k = 1;
+        ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
         for (int i = 1; i < 10; i++) {
             boolean b = i != 2 && i != 7;
             if (advGame != null) {
@@ -103,6 +104,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             if (b) {
                 charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement +
                                                   Tools.randRange(-10, 10), 300 + Tools.randRange(0, 50), i, this));
+                listUnlockedCharsID.add(i);
                 k++;
             }
         }
@@ -119,7 +121,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                 if (advGame == null) {
                     ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
                 } else {
-                    ps.setPc(1);
+                    int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
+                    ps.setPc(listUnlockedCharsID.get(rand));
                 }
                 ArrowSelect as = new ArrowSelect(ps, this);
                 arrowList.set(ps.getControler(), as);

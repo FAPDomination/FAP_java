@@ -28,9 +28,9 @@ X		- Bonus : too heavy to reload the entire world map
 V	- Launching with CharacterSelection
 V		- Launch loading screen before
 V		- Double define of players bug
-		- Unlocked characters
+V		- Unlocked characters
 V			- Display available
-			- Init random
+V			- Init random
 V			- Skipping characSelec when only 7 available
 V			- Arrow displacement
 V				- Find the current
