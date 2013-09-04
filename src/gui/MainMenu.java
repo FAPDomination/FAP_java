@@ -95,6 +95,11 @@ public class MainMenu extends FAPanel implements AnimPanel{
                 btnAdv_actionPerformed();
             }
             });
+        btnCredits.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btnCred_actionPerformed();
+            }
+            });
 
         //-------------- Images
 
@@ -131,6 +136,11 @@ public class MainMenu extends FAPanel implements AnimPanel{
     
     private void btnOption_actionPerformed() {
         nextPanel = new OptionMenu(parent, this);
+        this.startSliding(true);
+    }
+    
+    private void btnCred_actionPerformed() {
+        nextPanel = new CreditsPanel(parent,this);
         this.startSliding(true);
     }
     
