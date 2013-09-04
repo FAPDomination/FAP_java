@@ -58,7 +58,8 @@ public class MapSelect extends FAPanel implements MouseListener{
             m.setPanel(this);
         }
         
-        selectedMap = mapList.get(0);
+        selectedMap = null;
+        this.btnNext.setEnabled(false);
         this.addMouseListener(this);
         this.repaint();
     }
@@ -112,6 +113,9 @@ public class MapSelect extends FAPanel implements MouseListener{
         if(m!=null){
             if(selectedMap != null){
                 selectedMap.setIsSelected(false);
+            }
+            else{
+                this.btnNext.setEnabled(true);
             }
             selectedMap = m;
             selectedMap.setIsSelected(true);
