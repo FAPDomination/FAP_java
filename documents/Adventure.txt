@@ -1,0 +1,111 @@
+Réflexions sur le mode Aventure de FAP Domination :
+
+Carte du monde avec cellules disponibles ou non.
+Remporter un combat sur une cellule disponible débloque certaines cellules autour, prédéfinies (1, 2, 3 ou plus)
+- Les villes sont walkable par défaut, mais pas forcément accessibles puisqu'il faut se frayer un chemin
+- Pas obligé de tout conquérir pour gagner, mais plusieurs idées :
+	- Un achievement "Vous avez tout gagné"
+	- Des trucs débloqués contre le boss si on a plus de conquètes (par exemple si on n'a que 50% des maps remportées quand on arrive au boss, on n'a accès qu'à 2 personnages, ou le boss est plus fort, ...)
+- Divisés en zones (forêt, campagne, montagne, ténèbres, ...), chaque zone débloquant un perso
+- Une zone avec une autre équipe qui va également pour tuer le boss. On nous propose de s'y allier et 
+	- Si on accepte, sur cette zone ils jouent dans notre équipe (une IA en plus avec le joueur)
+	- Si on refuse, chacun pour soi (une IA autre équipe, une IA méchant, le joueur)
+- Des combats à plusieurs
+	- En équipe avec des IA
+	- 1 contre 2 faibles
+	- 2 contre 1 fort
+	- Etc
+
+Le refreshHealthPoints des cellules est désactivé pour le mode aventure (trop de consommation) ce qui empêche de mettre des cellules countdown dans une ville (mais c'est pas trop grave)
+
+------------- NPCs et quêtes
+
+Des NPCs en ville ou ailleurs proposent des quêtes qui permettent
+	- De débloquer des persos
+	- D'améliorer des persos (decLifeForced par exemple)
+	- Débloquer des compagnons (+1 IA dans votre équipe pour n combats dans telle ou telle zone)
+
+Les quêtes peuvent être
+	- Combat "surprise"
+	- Conquérir telle zone à 100%
+	- Aller chercher un objet chez/parler à/combattre un NPC dans un autre endroit
+	- Déclencher un mini-jeu ? (type morpion)
+	- Enigme
+ 	- Autre idée ?
+
+------------- Tutoriel
+
+Une suite de maps de combat avec des NPCs un peu partout qui display des messages explicatifs.
+- Une première map où il faut tout conquérir (~10 cellules) (tout seul sans perso)
+- Une map où on a un temps pour conquérir (tout seul sans perso)
+- Une map avec une IA en face (sans perso)
+- Une map avec une IA et avec un perso
+
+------------- Technique
+
+Un NPC extends Element
+Un NPC possède une liste d'actions qui s'éxécute en entier jusqu'à fin ou sortie
+Actions possibles
+	- Display message
+	- Choix ("Oui/Non")
+	- Tester une variable
+	- Prendre/Donner objet
+	- Switcher interrupteur
+	- Modifier un autre NPC (sa position / sa walkablité)
+	- Modifier une cellule (did, walkable)
+Un NPC est walkable ou non. Si walkable, il se déclenche à l'arrivée du joueur sur la case. si non-walkable, il se déclenche lorsque le joueur tente d'aller sur la case.
+Il se déclenche quoi qu'il arrive quand on appuie sur la touche skill sur une map de type aventure (ville) ET que le joueur est à proximité d'un NPC
+
+Un NPC placé sur une propriété "auto-trigger" (????)
+Un NPC a une case, une image à diffuser. Si ces DEUX valeurs sont nulles, "auto-trigger" est set à true automatiquement. (On pourra même ajouter un constructeur spécial)
+
+L'execution d'un NPC met le reste du jeu en pause
+
+Seulement UN auto-trigger NPC est autorisé par map (à faire manuellement)
+Deux NPCs ne doivent pas être à moins de trois cases de distance sinon ils seront déclenchables en même temps
+Can't stack
+
+-------------- Init d'une map
+
+Il conviendra d'ajouter des constructeurs à Game :
+- Un constructeur pour les maps de type aventure (sans conquète) où on donnera juste un numéro de map qui chargera le design, la position de départ et la liste des NPCs. Ce constructeur désactivera les fonctions de conquète des cellules et les points de vie.
+- Un constructeur pour les maps de type combat MAIS lancées depuis le mode aventure. Il suffira de passer un booléen qui, lors de la fin du match, lancera les actions associées, à savoir afficher l'écran de victoire/défaite approprié et faire les modifications qui vont bien sur la carte du monde. Il charge tout de même une liste de NPCs (par exemple les maps de combat du tutoriel au début auront des NPCs qui diffuseront des messages)
+
+-------------- Sauvegardes
+
+Il y a plusieurs solutions qu'il convient de regarder :
+
+# Solution 1 :
+Ecrire toutes les valeurs à la suite dans un gros fichier tel que c'était prévu à la base, avec un bit ASCII pour chaque valeur, de cette façon on pourra stocker à la suite :
+- Les valeurs des maps de la worldmap
+- Les interrupteurs du jeu
+- Les valeurs des divers trucs débloqués (persos, bonuses, ...)
+De toute façon les joueurs un peu bidouilleurs vont aller modifier ce genre de fichier du coup pas la peine de crypter le machin, si ils veulent cheater c'est leur problème
+
+# Solution 2 :
+La serialization.
+il faut se renseigner sur ce que c'est exactement et comment ça s'opère, mais je dirais que ça permet d'émettre pour un unique objet un unique numéro de série contenant toutes ses infos, et qu'à partir d'un numéro de série java peut parser le tout pour reconstituer cet unique objet.
+Dans ce cas là, on fait une classe "sauvegarde" qui contient toutes les données du jeu, avec un attribut par truc et des accesseurs, et ont stocke son numéro de série quand on sauvegarde, et on le parse quand on veut charger.
+Il faut apprendre à rendre cette classe sérializable.
+http://gamedev.stackexchange.com/questions/2617/game-state-saving-loading
+http://gamedev.stackexchange.com/questions/19046/what-is-a-good-file-format-for-saving-game-data
+"Controlled Binary Serialization"
+http://www.tutorialspoint.com/java/java_serialization.htm
+
+Choix de la méthode 2 parce qu'elle pète sa race.
+
+Les éléments à sauvegarder sont donc :
+- Les valeurs des maps de la worldmap : ArrayList de {IDmap,valeur}
+- Les interrupteurs du jeu : ArrayList<boolean>
+- Les valeurs des divers trucs débloqués (persos, bonuses, ...)
+	- Persos débloqués : ArrayList<boolean>
+	- ...
+
+-------------- Processes
+
+En ce qui concerne les Game lancés par les NPCs cellules dans la World Map :
+Faire une HashMap qui à chaque ID de map de jeu (donc linkable avec tout le reste) associe un game.
+De cette façon en ajoutant une map on fera
+gameList.put(mapID, new Game(...));
+Et lors de la création du NPC qui le lance on fera just un get
+Bonus : Exporter cette HashMap en fichier sérialized une fois terminée

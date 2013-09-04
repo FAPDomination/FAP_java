@@ -33,7 +33,7 @@ public class Arrow extends Element {
         this.current = c;
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0] + (CMap.TW / 2);
-        this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + CMap.OFFMAP + (CMap.TH / 2);
+        this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + (CMap.TH / 2);
         game.addObject(this);
         this.thrower = thrower;
         this.initConstants();
@@ -114,6 +114,7 @@ public class Arrow extends Element {
      * Initialization of constants about the arrow
      */
     public void initConstants() {
+        //TODO better approx for angle
         double approxAngle = -0.85832;
         switch (course) {
         case 0: //TL

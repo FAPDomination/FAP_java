@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.Game;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -7,8 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 public class Fapplication {
+    private static JFrame frame;
+    private static Game worldMap;
     public Fapplication() {
-        JFrame frame = new TheFrame();
+        frame = new TheFrame();
+        worldMap = new Game(0);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = frame.getSize();
         if (frameSize.height > screenSize.height) {
@@ -29,5 +34,21 @@ public class Fapplication {
             e.printStackTrace();
         }
         new Fapplication();
+    }
+
+    public static void setFrame(JFrame frame) {
+        Fapplication.frame = frame;
+    }
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void setWorldMap(Game worldMap) {
+        Fapplication.worldMap = worldMap;
+    }
+
+    public static Game getWorldMap() {
+        return worldMap;
     }
 }

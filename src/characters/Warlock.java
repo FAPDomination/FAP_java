@@ -19,6 +19,7 @@ public class Warlock extends Player{
             Cell current = this.getCurrent();
             current.setTrap(this.getTeam());
             //Add animation
+            //TODO add animation Warlock
             
             this.makeHimWait(Params.timeAfterSkill);
         }

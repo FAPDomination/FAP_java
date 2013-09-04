@@ -1,13 +1,34 @@
 package fap_java;
 
+import java.util.ArrayList;
+
+/**
+ * This thread will handle everything in updating the Game.
+ * it will take care of player displacements, FSM computations, repainting the panel, refreshing HealthPoints
+ * of cells, ...
+ * It is running constantly except if someone pauses the game.
+ * @see Game
+ */
 public class TheThread implements Runnable{
     
-    private Game myGame;
-    private boolean running;
-    private int delay = Params.delay;     // in ms
-    private int count;          // Counts the number of ms of the game
     /**
-     * Initialize Thread
+     * The game where all is played
+     */
+    private Game myGame;
+    /**
+     * Sets if the thread is running (and btw the game)
+     */
+    private boolean running;
+    /**
+     * The delay between each clock-tick
+     */
+    private int delay = Params.delay;     // in ms
+    /**
+     * Counts the number of ms of the game
+     */
+    private int count;          
+    /**
+     * Initializes Thread
      * @param myGame : the game to control
      */
     public TheThread(Game myGame) {
@@ -17,7 +38,7 @@ public class TheThread implements Runnable{
     }
     
     /**
-     * Toggle the running of the thread
+     * Toggles the running of the thread
      * @param running : boolean value
      */
     public void setRunning(boolean running){
@@ -25,7 +46,7 @@ public class TheThread implements Runnable{
     }
     
     /**
-     * Find if the thread is running
+     * Finds if the thread is running
      * @return : boolean value
      */
     public boolean getRunning(){
@@ -41,7 +62,7 @@ public class TheThread implements Runnable{
     }
 
     /**
-     * Get the delay between two clock tick
+     * Get the delay between two clock ticks
      * @return : delay in ms
      */
     public int getDelay() {
@@ -53,13 +74,19 @@ public class TheThread implements Runnable{
      */
     public void run(){
         while(true){        // infinite loop
+            // if the thread is running
             if(running){
-                // Execute tasks
-                execute();
+                // Execute tasks (generate a clock-tick)
+                execute(true);
             }
+            else if(myGame.getAdv()>0 && myGame.isPauseNPC()){
+                // Execute some tasks (key handling)
+                execute(false);
+            }
+            // Always execute the animations
             myGame.computeAnimations();
                 try{
-                    // ait for "delay" ms
+                    // wait for "delay" ms
                     Thread.sleep(delay);
                 } catch (InterruptedException ie){
                     ie.printStackTrace();
@@ -79,28 +106,49 @@ public class TheThread implements Runnable{
     /**
      * Execute actions in the game, such as updating values
      */
-    private void execute(){
+    private void execute(boolean full){
+        // Update the time of the game
         count += delay;
-        int frame = count / delay;      // clock ticks
-        myGame.refreshHealthPoints();
+        // Counts the clockTicks
+        int frame = count / delay;
+        if(count == 2*delay){       // actual first frame of the game since 1*delay is init
+            if(myGame.getAdv()>0){
+                NPC npc = Tools.checkAutoTriggerNPC(myGame);
+                if(npc !=null){
+                    npc.execute();
+                }
+            }
+        }
         myGame.repaint();
-        // Every 4 frames
-        if(frame % 4 == 0){
-            // Count the number of cells a Player has
-            myGame.updateCellsByOwner();
+        if(full){
+            // commands to refresh healthPoints
+            myGame.refreshHealthPoints();
+
+            // Every 4 frames
+            if (frame % 4 == 0) {
+                // Count the number of cells a Player has
+                myGame.updateCellsByOwner();
+            }
+
+            // When it's time to check scores
+            if (myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
+                // Scores are updated
+                myGame.getScoreHandler().computeScores();
+            }
+
+            myGame.computeObjects();
+            myGame.executeFSMs();
+
+            // Testing
+            if (count % 600 == 0) {
+                //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
+                //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
+            }
         }
-        // When it's time to check scores
-        if(count % (1000 * Params.giveScore) == 0){
-            // Scores are updated
-            myGame.getScoreHandler().computeScores();
-        }
-        
         //Execute other objects actions
-        if(count%2 == 0){
+        if (count % 2 == 0) {
             myGame.playerHandleKeys();
         }
-        myGame.computeObjects();
-        myGame.executeFSMs();
     }
 
     public void setMyGame(Game myGame) {

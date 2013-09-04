@@ -1,30 +1,92 @@
 package fap_java;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 public class Cell extends Element {
+    /**
+     * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
+     */
     private int did;
+    /**
+     * The image that will be painted as a representation of the cell
+     */
     private Image img;
+    /**
+     * The Type of the cell.
+     * Several types exist :
+     * 1 - normal, wakable, takable
+     * 2 - CountDown Cell
+     * 3 - Neutral that can't be owned (not implemented yet)
+     * 10 - warp
+     * 11 - switch
+     * 12 - NPC exit
+     * 19 - blocking low (river)
+     * 20 - blocking high (rock)
+     */
     private int type;
+    /**
+     * The team that owns this cell
+     */
     private Team owner;
+    /**
+     * The property walkable or not of the cell
+     */
     private boolean walkable;
+    /**
+     * If the cell has ever been walked on (useful to test if a switch was activated)
+     */
     private boolean walked;
+    /**
+     * The number of HealthPoints of the cell
+     */
     private double hp;
+    /**
+     * The property of the cell to be high blocking or low blocking
+     */
     private boolean height;
+    /**
+     * The map in wich the cell lives
+     */
     private CMap map;
+    /**
+     * An additional parameter, such as the cell where a warp will teleport you
+     */
     private String addParam;
 
     //Special params
+    /**
+     * If the cell is a trap, who traped it
+     */
     private Team trap;
+    /**
+     * If the cell is from the Healthy Healthy special tile
+     */
     private boolean healthy;
+    /**
+     * If the cell is unstable : hp will decrease no matter what
+     */
     private boolean unstable;
+    /**
+     * If the cell is frozen : will slow down the player
+    */
     private boolean frozen;
 
+    /**
+     * If the cell is currently being examinated by a miner who wants to teleport
+     */
     private Player minerSelect;
+    /**
+     * If the cursor of the miner is on this cell
+     */
     private boolean minerSing;
 
+    /**
+     * The game in wich the cell is living
+     */
     private Game game;
 
     /**
@@ -32,6 +94,10 @@ public class Cell extends Element {
      */
     public Cell(int i, int j, int type, int did, Game game) {
         this(i, j, type, "", did, game);
+    }
+    
+    public Cell(int i, int j){
+        this(i, j, 0, "", 0, null);
     }
 
     /**
@@ -71,7 +137,7 @@ public class Cell extends Element {
      */
     public void paintComponent(Graphics g) {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + CMap.OFFMAP;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
 
         
         // Paint dirt
@@ -79,7 +145,7 @@ public class Cell extends Element {
         int offY = (int)Graph.offsetsCells.get(0).getHeight();
         int width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
         int height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
-        
+        //TODO only on needed cells
         g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
         
         // Paint did
@@ -92,6 +158,7 @@ public class Cell extends Element {
         
         
         // Special case if the miner is currently selecting the cell
+        //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
             int minerSlectID = 13;
             width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
@@ -99,6 +166,7 @@ public class Cell extends Element {
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
+            //TODO better painting of minor's cursor
             if(this.minerSing){
                 g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
             }
@@ -109,14 +177,21 @@ public class Cell extends Element {
         
         // Write the amount of HP of the tile
         if (hp > 0) {
+            String hps = "" + (int)hp;
+            Graphics2D g2d = (Graphics2D)g;
+            FontMetrics fm = g2d.getFontMetrics();
+            int textWidth = fm.stringWidth(hps);
             if(owner !=null){
                 g.setColor(owner.getColor());
             }
             else{
                 g.setColor(Color.black);
             }
-            g.drawString("" + (int)hp, x + 5, y + 10);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            //TODO coloured background ?
         }
+        
+        //TODO Special Healthy Healthy design
     }
 
     /**

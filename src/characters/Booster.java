@@ -18,6 +18,7 @@ public class Booster extends Player{
             //Send Skill :
             this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime);
             //this.makeHimWait(Params.timeAfterSkill);
+            //TODO add animation Booster
         }
     }
     }

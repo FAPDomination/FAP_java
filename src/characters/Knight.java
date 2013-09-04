@@ -40,6 +40,7 @@ public class Knight extends Player{
                                             }
                                     }
                                     // Add animation
+                                    //TODO add animation Knight
                                   //  attachAnimation("sKnight", stick._x, stick._y);
             
             this.setLastSkill(this.getGame().getThread().getCount());

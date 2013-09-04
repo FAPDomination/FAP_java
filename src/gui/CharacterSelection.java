@@ -1,7 +1,9 @@
 package gui;
 
+import fap_java.Game;
 import fap_java.KListener;
 import fap_java.Params;
+import fap_java.Player;
 import fap_java.Tools;
 
 import java.awt.Graphics;
@@ -14,118 +16,226 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPanel {
+public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPanel {
     private JButton btnNext = new JButton();
     private ArrayList<CharacterDisplay> charList;
     private ArrayList<ArrowSelect> arrowList;
     private ArrayList<PlayerSelect> players;
     private ArrayList<Integer> timers;
     private StandardKListener kl;
-    
+
     private ThreadGUI theThread;
-    
+
     // Displaying
     private static int characDisplayOrigX = 0;
     private static int characDisplayIncrement = 100;
-    
+
     private int arroSelectOrigY = -20;
-    
+
+    private Game advGame;
+
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
-        
+
+        players = ((PlayerSelection)prevPanel).getPlayers();
+        advGame = null;
+        initEverything();
+
+    }
+
+    public CharacterSelection(TheFrame theFrame, JPanel jPanel, Game game) {
+        super(theFrame, jPanel);
+        players = new ArrayList<PlayerSelect>();
+        this.advGame = game;
+        for (int i = 0; i < advGame.getPlayers().size(); i++) {
+            Player p = advGame.getPlayers().get(i);
+            PlayerSelect ps = new PlayerSelect(null);
+            ps.setControler(p.getControler());
+            ps.setId(i);
+            if (p.getFsm() != null) {
+                ps.setIsFSM(1);
+            }
+            players.add(ps);
+        }
+        this.initEverything();
+    }
+
+    public void initEverything() {
         swordX = minxS;
         cloudsX = minxC;
-        
+
         this.setLayout(null);
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
         btnGoBack.setSize(120, 40);
         btnGoBack.setLocation(20, 20);
-        
+
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);
-        btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
+        btnNext.setLocation(this.getWidth() - 30 - btnNext.getWidth(), 20);
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextFrame();
             }
         });
-        
-        this.add(btnGoBack);
+
+        if (advGame == null) {
+            this.add(btnGoBack);
+        }
         this.add(btnNext);
         this.validate();
         this.repaint();
-        
-        players = ((PlayerSelection)prevPanel).getPlayers();
+
         charList = new ArrayList<CharacterDisplay>();
         arrowList = new ArrayList<ArrowSelect>();
-        
-        int k=1;
-        for(int i=1;i<10;i++){
-            if(i != 2 && i != 7){
-                charList.add(new CharacterDisplay(this.characDisplayOrigX+k*this.characDisplayIncrement+Tools.randRange(-10, 10),300+Tools.randRange(0,50),i,this));
+
+        int k = 1;
+        ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
+        for (int i = 1; i < 10; i++) {
+            boolean b = i != 2 && i != 7;
+            if (advGame != null) {
+                GameSave gs = Tools.loadGame();
+                ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+                if (!listUnlockedChars.get(i)) {
+                    b = false;
+                }
+            }
+            if (b) {
+                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement +
+                                                  Tools.randRange(-10, 10), 300 + Tools.randRange(0, 50), i, this));
+                listUnlockedCharsID.add(i);
                 k++;
             }
         }
-        
+
         timers = new ArrayList<Integer>();
-        for(int r=0;r<Params.nPlayersOn1Computer;r++){
+        for (int r = 0; r < Params.nPlayersOn1Computer; r++) {
             arrowList.add(null);
             timers.add(0);
         }
-        
-        for(int j=0;j<players.size();j++){
+
+        for (int j = 0; j < players.size(); j++) {
             PlayerSelect ps = players.get(j);
-            if(ps.getIsFSM() == 0){
-                ps.setPc(Tools.randRange(1,9,Params.excludedChars));
-                ArrowSelect as = new ArrowSelect(ps,this);
-                arrowList.set(ps.getControler(),as);
+            if (ps.getIsFSM() == 0) {
+                if (advGame == null) {
+                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                    boolean b;
+                    do{
+                        b = false;
+                        newPC=Tools.randRange(1, 9, Params.excludedChars);
+                        for(int m=0;m<players.size();m++){
+                            PlayerSelect ps2 = players.get(m);
+                            
+                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
+                                if(ps2.getPc() == newPC){
+                                    b= true;
+                                }
+                                else{
+                                    break;
+                                }
+                            }
+                        }
+                    }while(b);
+                    ps.setPc(newPC);
+                } else {
+                    int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
+                    ps.setPc(listUnlockedCharsID.get(rand));
+                }
+                ArrowSelect as = new ArrowSelect(ps, this);
+                arrowList.set(ps.getControler(), as);
             }
         }
-    
-        
+
+
         initFocus();
-        
+
         theThread = new ThreadGUI(this);
         theThread.setRunning(false);
         new Thread(this.theThread).start();
         theThread.setRunning(true);
     }
-    
+
     private void initKListener() {
         kl = new StandardKListener();
         this.addKeyListener(kl);
     }
-    
+
     public void initFocus() {
         initKListener();
         this.setFocusable(true);
         requestFocus();
     }
-    
-    public void nextFrame(){
+
+    public void nextFrame() {
         // Set skills for FSMs :
-        for(int i=0;i<players.size();i++){
+        for (int i = 0; i < players.size(); i++) {
             PlayerSelect ps = players.get(i);
-            if(ps.getIsFSM() != 0){
-                ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+            if (ps.getIsFSM() != 0) {
+                if(advGame != null){
+                    ps.setPc(advGame.getPlayers().get(i).getPc());
+                }
+                else{
+                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                    boolean b;
+                    do{
+                        b = false;
+                        newPC=Tools.randRange(1, 9, Params.excludedChars);
+                        for(int m=0;m<players.size();m++){
+                            PlayerSelect ps2 = players.get(m);
+                            
+                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
+                                if(ps2.getPc() == newPC){
+                                    b= true;
+                                }
+                                else{
+                                    break;
+                                }
+                            }
+                        }
+                    }while(b);
+                    ps.setPc(newPC);
+                }
+            }
+            if (advGame != null) {
+                Player formerP = advGame.getPlayers().get(i);
+                int fsmLevel;
+                formerP.getTeam().getPlayersInThisTeam().remove(formerP);
+                if (formerP.getFsm() != null) {
+                    fsmLevel = formerP.getFsm().getLevel();
+                } else {
+                    fsmLevel = 0;
+                }
+                Player p =
+                    Game.generatePlayer(ps.getPc(), i, formerP.getCurrent(), formerP.getTeam(), fsmLevel, formerP.getControler(),
+                                        advGame);
+                advGame.getPlayers().set(i, p);
             }
         }
+
+        this.theThread.setRunning(false);
+
         // Proceeding to next panel
-        JPanel nextPanel = new MapSelect(parent,this);
+        JPanel nextPanel;
+        if (advGame != null) {
+            this.remove(this.btnGoBack);
+            nextPanel =
+                    new LoadingScreen(this.parent, advGame, new MainMenu(this.parent, true), advGame.getMap().getFileID());
+        } else {
+            nextPanel = new MapSelect(parent, this);
+        }
         parent.changePanel(nextPanel);
     }
-    
-    public void paintComponent(Graphics g){
+
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        for(int i=0;i<charList.size();i++){
+
+        for (int i = 0; i < charList.size(); i++) {
             charList.get(i).paintComponent(g);
         }
-        for(int j=0;j<arrowList.size();j++){
+        for (int j = 0; j < arrowList.size(); j++) {
             ArrowSelect ar = arrowList.get(j);
-            if(ar != null){
+            if (ar != null) {
                 ar.paintComponent(g);
             }
         }
@@ -164,42 +274,70 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
     }
 
     public void executeAnim() {
-        for(int i=0;i<timers.size();i++){
-            timers.set(i, timers.get(i)+1);
+        for (int i = 0; i < timers.size(); i++) {
+            timers.set(i, timers.get(i) + 1);
             ArrowSelect ar = this.arrowList.get(i);
-            if(ar!=null && ar.isNeedAnim()){
+            if (ar != null && ar.isNeedAnim()) {
                 ar.executeAnim();
             }
         }
-        
+
         ArrayList<Integer> pressed = kl.getPressed();
-        for(int i=0;i<pressed.size();i++){
+        for (int i = 0; i < pressed.size(); i++) {
             int code = pressed.get(i);
-            for(int j = 0;j<arrowList.size();j++){
+            for (int j = 0; j < arrowList.size(); j++) {
                 ArrowSelect ar = arrowList.get(j);
-                if(ar!=null && timers.get(j)>10){
-                    for(int k=0;k<=4;k++){
-                        if(code == Params.controlsList[ar.getPs().getControler()][k]){
+                if (ar != null && timers.get(j) > 10) {
+                    for (int k = 0; k <= 4; k++) {
+                        if (code == Params.controlsList[ar.getPs().getControler()][k]) {
                             timers.set(j, 0);
                             int pc = ar.getPs().getPc();
                             CharacterDisplay cd = null;
-                            for(int l = 0;l<charList.size();l++){
+                            for (int l = 0; l < charList.size(); l++) {
                                 CharacterDisplay charD = charList.get(l);
-                                if(charD.getPc() == pc){
-                                    if(k==2){
-                                        cd = charList.get((l+1)%charList.size());
-                                    }else if(k==3){
-                                        int id = (l-1);
-                                        if(l==0){
-                                            id = charList.size()-1;
+                                if (charD.getPc() == pc) {
+                                    int id=0;
+                                    if (k == 2) {
+                                        id = (l + 1) % charList.size();
+                                        boolean b;
+                                        do{
+                                            b=false;
+                                            int newPc = charList.get(id).getPc();
+                                            for(int m=0;m<players.size();m++){
+                                                PlayerSelect ps = players.get(m);
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                    id = (id+1)%charList.size();
+                                                    b=true;
+                                                }
+                                            }
+                                        }while(b);
+                                    } else if (k == 3) {
+                                        id = (l - 1);
+                                        if(l == 0){
+                                            id = charList.size() - (1);
                                         }
-                                        cd = charList.get(id);
+                                        boolean b;
+                                        do{
+                                            b=false;
+                                            int newPc = charList.get(id).getPc();
+                                            for(int m=0;m<players.size();m++){
+                                                PlayerSelect ps = players.get(m);
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                    id = id-1;
+                                                    if(id == 0){
+                                                        id = charList.size() - (1);
+                                                    }
+                                                    b=true;
+                                                }
+                                            }
+                                        }while(b);
                                     }
-                                    
+                                    cd = charList.get(id);
+                                    break;
                                 }
                             }
                             // Set new pc  value
-                            if(cd !=null){
+                            if (cd != null) {
                                 ar.getPs().setPc(cd.getPc());
                                 ar.computeWantedPosition();
                                 ar.computeSpeed();
@@ -210,6 +348,24 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
                 }
             }
         }
+
+
+        //Check unlocked
+        if (advGame != null) {
+            GameSave gs = Tools.loadGame();
+            ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+            boolean only7 = true;
+            for (int i = 0; i < listUnlockedChars.size(); i++) {
+                if (i != 7 && listUnlockedChars.get(i)) {
+                    only7 = false;
+                }
+            }
+            if (only7) {
+                players.get(0).setPc(7);
+                this.nextFrame();
+            }
+        }
+
         this.repaint();
     }
 
@@ -223,5 +379,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus,AnimPane
 
     public int getArroSelectOrigY() {
         return arroSelectOrigY;
+    }
+
+    public void releaseFocus() {
     }
 }

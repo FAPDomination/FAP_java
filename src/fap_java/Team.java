@@ -1,13 +1,24 @@
 package fap_java;
 
 import java.awt.Color;
-
 import java.util.ArrayList;
 
 public class Team {
+    /**
+     * Stores the players who play in this team
+     */
     private ArrayList<Player> playersInThisTeam;
+    /**
+     * The number of cells the team owns (ownz ownz ownz)
+     */
     private int nCells;
+    /**
+     * The score of the team
+     */
     private int score;
+    /**
+     * Will generate a new team with blank parameters that will be filled when the game will generate players
+     */
     public Team() {
         super();
         playersInThisTeam = new ArrayList<Player>();
@@ -51,6 +62,6 @@ public class Team {
     }
     
     public String toString(){
-        return "Team : "+getFirstPlayer().getColor()+"\n"+this.playersInThisTeam;
+        return "Equipe "+getFirstPlayer().getColorName();
     }
 }

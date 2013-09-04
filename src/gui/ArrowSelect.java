@@ -44,6 +44,7 @@ public class ArrowSelect {
     }
     
     public void computeWantedPosition(){
+        /*
         int pc = ps.getPc();
         if(pc>7){
             pc--;
@@ -51,9 +52,22 @@ public class ArrowSelect {
         if(pc>2){
             pc--;
         }
-        CharacterDisplay cd = cs.getCharList().get(pc-1);
-        wantedX = cd.getX()+cd.getW()/2 +Tools.randRange(-5, 5);
-        wantedY = cd.getY()+cs.getArroSelectOrigY() +Tools.randRange(-5, 5);
+        */
+        int idCharDisp = 0;
+        for(int i=0;i<cs.getCharList().size();i++){
+            CharacterDisplay lcd = cs.getCharList().get(i);
+            if(lcd.getPc() == ps.getPc()){
+                idCharDisp = i;
+            }
+        }
+        CharacterDisplay cd = null;
+        if(cs.getCharList().size()>0){
+            cd = cs.getCharList().get(idCharDisp);
+        }
+        if(cd != null){
+            wantedX = cd.getX()+cd.getW()/2 +Tools.randRange(-5, 5);
+            wantedY = cd.getY()+cs.getArroSelectOrigY() +Tools.randRange(-5, 5);
+        }
     }
     
     public void computeSpeed(){

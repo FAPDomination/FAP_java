@@ -3,27 +3,49 @@ package fap_java;
 import java.awt.Graphics;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CMap {
+    /**
+     * A factor that multiplies the sizes of EEEEEEEverything
+     */
     public static final int FAC = 2;
+    /**
+     * Tile Width
+     */
     public static final int TW = 60 / FAC;
+    /**
+     * Tile Height
+     */
     public static final int TH = 35 / FAC;
-    public static final int OFFMAP = 0;
+    /**
+     * Offset on y that the map has
+     */
+    public static final int OFFMAP = 10;
 
     /**
      * Creates a map with all tools needed.
      */
-    public CMap(Game game) {
+    public CMap(Game game, int fileID) {
         this.game = game;
+        this.fileID = fileID;
     }
 
-    //private Map<int[], Cell> myMap = new HashMap<int[], Cell>();
+    /**
+     * The arrayList of cells that contains aaaall the cells of the grid
+     */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    /**
+     * The starting points of this map (defined in the XML file)
+     */
     private ArrayList<Cell> startCells = new ArrayList<Cell>();
+    /**
+     * The game where it's happening
+     */
     private Game game;
+    
+    private int fileID;
 
     /**
      * Give the position in pixels of a couple a values
@@ -35,7 +57,7 @@ public class CMap {
         int[] arr = new int[2];
         // calculate the corresponding position
         arr[0] = j * TW + (TW / 2) * (i % 2);
-        arr[1] = i * (TH) * (1 - 1 / 4) + OFFMAP;
+        arr[1] = i * (TH) * (1 - 1 / 4);
         return arr;
     };
     
@@ -57,7 +79,7 @@ public class CMap {
     public static int[] givePositionTale(int x, int y) {
         int[] arr = new int[2];
         // Undo the calculus of the position
-        arr[0] = Math.round(((y - OFFMAP) / TH) * (4 / 3));
+        arr[0] = Math.round(((y) / TH) * (4 / 3));
         if (arr[0] % 2 == 0) {
             arr[1] = (x / TW);
         } else {
@@ -76,6 +98,10 @@ public class CMap {
         for (int i = 0; i < myMap.size(); i++) {
             Cell c = myMap.get(i);
             c.paintComponent(g);
+            NPC npc = Tools.checkNPCOnCell(game, c);
+            if(npc!=null){
+                npc.paintComponent(g);
+            }
             Player p = game.isOccupied(c);
             if(p!=null){
                 p.paintComponent(g);
@@ -83,6 +109,7 @@ public class CMap {
         }
     }
     
+    //TODO Improvement of this method including gaps
     public ArrayList<Cell> tileOnPath(Cell c, int ori){
         ArrayList<Cell> path = new ArrayList<Cell>();
         boolean bool = true;
@@ -102,6 +129,10 @@ public class CMap {
         return myMap;
     }
 
+    /**
+     * Adds a cell to the map and replaces it if needed
+     * @param c the cell to be added
+     */
     public void addElement(Cell c) {
         if (containsCell(c) != -1) {
             myMap.remove(containsCell(c));
@@ -336,5 +367,13 @@ public class CMap {
 
         return ringsOfCells;
 
+    }
+
+    public void setFileID(int fileID) {
+        this.fileID = fileID;
+    }
+
+    public int getFileID() {
+        return fileID;
     }
 }

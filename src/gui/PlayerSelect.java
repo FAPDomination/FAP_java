@@ -7,6 +7,7 @@ public class PlayerSelect{
     private int pc;
     private int team;
     private int isFSM;
+    private int id;
 
     public PlayerSelect(PlayerSelection panel) {
         this.panel = panel;
@@ -65,5 +66,13 @@ public class PlayerSelect{
             b= true;
         }
         return b;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }
