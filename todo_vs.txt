@@ -417,18 +417,19 @@ V		- "2 or more teams"
 V		- 1 controler for 1 player
 P		- DrawString and back to new line
 T	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
-P CharacterSelection
+  CharacterSelection
 V	- Get previous information
-P	- Set character
-P		- Players
+ 	- Set character
+ 		- Players
 V			- Read keys
 V			- Timer displacement
 V			- Set new values for arrows
 V			- Set new values for characters
-P			- Optional
+ 			- Optional
 V				- paint arrows slightly shifted from one another
-V				- init with random chars
-P				- forbid same character in same team
+ 				- init with random chars
+V				- forbid same character in same team
+				- Same for FSM
 V			- Animate
 V				- Make panel animated
 V				- Execute anim for every arrow that needs it

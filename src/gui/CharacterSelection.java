@@ -119,6 +119,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             PlayerSelect ps = players.get(j);
             if (ps.getIsFSM() == 0) {
                 if (advGame == null) {
+                    //TODO remake random init, forbidding same char in same team
                     ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
                 } else {
                     int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
