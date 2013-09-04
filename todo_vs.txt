@@ -372,11 +372,11 @@ V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game
 V	- LoadingScreen
-T LoadingScreen
+V LoadingScreen
 V	- Launch
 V	- Display game datas
 V		- Teams List
-~			- Write team name and specs
+V			- Write team name and specs
 V			- Players list (display character figures)
 V			- Critical Size problem with 8 teams !
 V				- Change BG

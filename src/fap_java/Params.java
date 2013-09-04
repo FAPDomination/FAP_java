@@ -191,6 +191,8 @@ public class Params {
      * First red, second blue, etc...
      */
     public static Color[] colorList = {Color.red,Color.blue, Color.yellow,new Color(0, 200, 0), new Color(0,220,235), new Color(234,0,220), new Color(255,132,0), new Color(156,0,255)};
+    
+    public static String[] colorName = {"rouge","bleue","jaune","verte","azur","rose","orange","violette"};
     /**
      * A factor that defines the reaction time of the Artificial Intelligence.
      * Between each displacements it waits, to seem more "human"

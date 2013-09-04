@@ -625,7 +625,7 @@ public abstract class Player extends Human {
     }
 
     public String toString() {
-        return "Player no " + id + " at " + this.getI() + "," + this.getJ();
+        return "Player "+this.getColorName()+" no " + id + " at " + this.getI() + "," + this.getJ();
     }
 
     /**
@@ -776,5 +776,9 @@ public abstract class Player extends Human {
 
     public int getId() {
         return id;
+    }
+
+    public String getColorName() {
+        return Params.colorName[id];
     }
 }

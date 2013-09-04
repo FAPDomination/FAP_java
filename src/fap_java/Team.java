@@ -62,6 +62,6 @@ public class Team {
     }
     
     public String toString(){
-        return "Team : "+getFirstPlayer().getColor()+"\n"+this.playersInThisTeam;
+        return "Equipe "+getFirstPlayer().getColorName();
     }
 }
