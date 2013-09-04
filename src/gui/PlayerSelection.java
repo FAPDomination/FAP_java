@@ -126,6 +126,8 @@ public class PlayerSelection extends FAPanel {
         super.paintComponent(g);
         
         if(!message.equals("")){
+            //TODO multiline
+            //TODO pretty text
             g.setColor(Color.black);
             g.drawString(message, 600, 300);
         }

@@ -260,16 +260,44 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                             for (int l = 0; l < charList.size(); l++) {
                                 CharacterDisplay charD = charList.get(l);
                                 if (charD.getPc() == pc) {
+                                    int id=0;
                                     if (k == 2) {
-                                        cd = charList.get((l + 1) % charList.size());
+                                        id = (l + 1) % charList.size();
+                                        boolean b;
+                                        do{
+                                            b=false;
+                                            int newPc = charList.get(id).getPc();
+                                            for(int m=0;m<players.size();m++){
+                                                PlayerSelect ps = players.get(m);
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                    id = (id+1)%charList.size();
+                                                    b=true;
+                                                }
+                                            }
+                                        }while(b);
                                     } else if (k == 3) {
-                                        int id = (l - 1);
-                                        if (l == 0) {
-                                            id = charList.size() - 1;
+                                        id = (l - 1);
+                                        if(l == 0){
+                                            id = charList.size() - (1);
                                         }
-                                        cd = charList.get(id);
+                                        boolean b;
+                                        do{
+                                            b=false;
+                                            int newPc = charList.get(id).getPc();
+                                            for(int m=0;m<players.size();m++){
+                                                PlayerSelect ps = players.get(m);
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                    id = id-1;
+                                                    if(id == 0){
+                                                        id = charList.size() - (1);
+                                                    }
+                                                    b=true;
+                                                }
+                                            }
+                                        }while(b);
                                     }
-
+                                    cd = charList.get(id);
+                                    break;
                                 }
                             }
                             // Set new pc  value
