@@ -119,8 +119,25 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             PlayerSelect ps = players.get(j);
             if (ps.getIsFSM() == 0) {
                 if (advGame == null) {
-                    //TODO remake random init, forbidding same char in same team
-                    ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                    boolean b;
+                    do{
+                        b = false;
+                        newPC=Tools.randRange(1, 9, Params.excludedChars);
+                        for(int m=0;m<players.size();m++){
+                            PlayerSelect ps2 = players.get(m);
+                            
+                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
+                                if(ps2.getPc() == newPC){
+                                    b= true;
+                                }
+                                else{
+                                    break;
+                                }
+                            }
+                        }
+                    }while(b);
+                    ps.setPc(newPC);
                 } else {
                     int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
                     ps.setPc(listUnlockedCharsID.get(rand));
@@ -159,7 +176,25 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                     ps.setPc(advGame.getPlayers().get(i).getPc());
                 }
                 else{
-                    ps.setPc(Tools.randRange(1, 9, Params.excludedChars));
+                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                    boolean b;
+                    do{
+                        b = false;
+                        newPC=Tools.randRange(1, 9, Params.excludedChars);
+                        for(int m=0;m<players.size();m++){
+                            PlayerSelect ps2 = players.get(m);
+                            
+                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
+                                if(ps2.getPc() == newPC){
+                                    b= true;
+                                }
+                                else{
+                                    break;
+                                }
+                            }
+                        }
+                    }while(b);
+                    ps.setPc(newPC);
                 }
             }
             if (advGame != null) {
