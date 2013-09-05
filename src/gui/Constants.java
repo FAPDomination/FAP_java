@@ -23,7 +23,7 @@ public class Constants {
     public static int[] listAdvMaps = {20,21,22,23,24,25};
     
     public static String savegameFile = "savegame.leo";
-    public static String controlersFile = "keys.leo";
+    public static String controlersFile = "resources/keys.leo";
     
     public static Cell initialCellWorldMap = new Cell(18,10);
     

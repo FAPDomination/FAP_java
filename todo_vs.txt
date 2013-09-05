@@ -371,9 +371,9 @@ V		- Controls
 V		- Sound
 ?		- FullScreen
 		- FAP Editor
-  ControlsMenu
+V ControlsMenu
 V	- Create panel
-	- Create form
+V	- Create form
   Sound
 	- ON/OFF switch
 P FAPEditor

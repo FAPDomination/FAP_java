@@ -49,16 +49,6 @@ public class XMLparser {
         return dhm.getMap();
     }
     
-    /**
-     * Parses the Options XML that contains, between others, they sets of keys for the human players
-     * @see OptionsParser
-     */
-    public static void parseOptions(){
-        // Creates a Handler that will process the datas
-        OptionsParser dh = new OptionsParser();
-        // Call the parse method
-        parseXML("options.xml", dh);
-    }
     
     /**
      * Parses the map list in order to create minimaps

@@ -215,7 +215,7 @@ public class Params {
     /**
      * The code of the key used to pause the game
      */
-    public static int pauseKey;
+    public static int pauseKey = 27;
     
     public static int numberOfKeys = 5;
     /**
