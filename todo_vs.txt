@@ -328,7 +328,7 @@ V	- Display skillTime
 	- Buttons
 V		- adv
 V		- vs
-PT		- quick
+P		- quick
 V			- Loading screen
 V			- pick map
 V			- rand pc
@@ -339,7 +339,10 @@ V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
-P		- credits
+		- credits
+			- Define type of display (big image, text, whatever)
+			- Create
+			- Display
 ?		- quit
 V			- Quit
 ?			- Dialog ?
@@ -364,10 +367,16 @@ V Go next button : find place and keep it
   OptionMenu
 	- Buttons
 V		- Back
-		- Controls
-		- Sound
+V		- Controls
+V		- Sound
 ?		- FullScreen
 		- FAP Editor
+  ControlsMenu
+	- Create panel
+	- Create form
+  Sound
+	- ON/OFF switch
+P FAPEditor
 V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game
