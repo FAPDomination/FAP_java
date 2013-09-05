@@ -31,8 +31,9 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
         btnGoBack.setLocation(20, 20);
         this.add(btnGoBack);
 
+        //TODO relative
         int incrementX = 200;
-        int initY = 100;
+        int initY = 200;
         listForms = new ArrayList<ControlManager>();
         for (int i = 0; i < Params.nPlayersOn1Computer; i++) {
             listForms.add(new ControlManager(this, i, (i + 1) * incrementX, initY));
@@ -52,6 +53,11 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        for (int i = 0; i < listForms.size(); i++) {
+           listForms.get(i).paintComponent(g);
+        }
+        
+        //TODO put setX and setY for everyone here so it becomes relative
     }
 
     private void initKListener() {

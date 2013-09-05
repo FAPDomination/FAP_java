@@ -4,6 +4,7 @@ import fap_java.Params;
 
 import fap_java.Tools;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +28,8 @@ public class ControlManager{
     private ArrayList<JButton> buttonList;
     
     private int[] keyList;
+    
+    private int incremY = 60;
     
     public ControlManager(ControlsPanel panel, int controler, int x, int y) {
         super();
@@ -58,7 +61,7 @@ public class ControlManager{
         for(int i=0;i<Params.numberOfKeys;i++){
             JButton jb = new JButton();
             jb.setSize(120, 40);
-            jb.setLocation(x, y+60*i);
+            jb.setLocation(x, y+incremY*i);
             buttonList.add(jb);
             //TODO better init text
             jb.setText(""+keyList[i]);
@@ -87,7 +90,24 @@ public class ControlManager{
     
     
     public void paintComponent(Graphics g){
-	
+        int i=0;
+        //TODO Relative
+        //TODO pretty texts
+        int decremX = 55;
+        int initY = 25;
+        g.setColor(Color.BLACK);
+        //Title
+        g.drawString("Player "+(controler+1), x+35, y-40);
+        //Keys
+        g.drawString("Haut", x-decremX, y+initY+incremY*i);
+        i++;
+        g.drawString("Bas", x-decremX, y+initY+incremY*i);
+        i++;
+        g.drawString("Droite", x-decremX, y+initY+incremY*i);
+        i++;
+        g.drawString("Gauche", x-decremX, y+initY+incremY*i);
+        i++;
+        g.drawString("Sort", x-decremX, y+initY+incremY*i);
     }
 
     public void setPanel(ControlsPanel panel) {

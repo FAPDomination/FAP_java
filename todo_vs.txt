@@ -373,7 +373,11 @@ V		- Sound
 		- FAP Editor
 V ControlsMenu
 V	- Create panel
-V	- Create form
+ 	- Create form
+		- Parse name of the key
+		- Display it
+V		- Display controler label
+V		- Display key label
   Sound
 	- ON/OFF switch
 P FAPEditor
