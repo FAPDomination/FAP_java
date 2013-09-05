@@ -4,6 +4,10 @@ import fap_java.Params;
 
 import java.awt.Graphics;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -85,5 +89,26 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
 
     public void endAnim() {
         // NEVAH
+    }
+    
+    public void saveAll(){
+        
+        //Collecting
+        int[][] keyList = new int[listForms.size()][Params.numberOfKeys];
+        for(int i=0;i<listForms.size();i++){
+            keyList[i] = listForms.get(i).getKeyList();
+        }
+        
+        //Saving
+        try {
+            FileOutputStream fileOut = new FileOutputStream(Constants.controlersFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(keyList);
+            out.close();
+            fileOut.close();
+            System.out.println("Saved controls in "+Constants.controlersFile);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
 }

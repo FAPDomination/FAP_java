@@ -9,6 +9,11 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -21,6 +26,8 @@ public class ControlManager{
     private int active;
     private ArrayList<JButton> buttonList;
     
+    private int[] keyList;
+    
     public ControlManager(ControlsPanel panel, int controler, int x, int y) {
         super();
         this.panel = panel;
@@ -28,13 +35,33 @@ public class ControlManager{
         this.x = x;
         this.y = y;
         active = -1;
+        
+        //TODO better init keyList
+        keyList = new int[Params.numberOfKeys];
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.controlersFile);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            keyList = ((int[][])in.readObject())[controler];
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.out.println("Couldn't load keys file");
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Impossibru, class not found");
+        }
+        
         buttonList = new ArrayList<JButton>();
         for(int i=0;i<Params.numberOfKeys;i++){
             JButton jb = new JButton();
             jb.setSize(120, 40);
             jb.setLocation(x, y+60*i);
             buttonList.add(jb);
-            //TODO init text
+            //TODO better init text
+            jb.setText(""+keyList[i]);
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     computeButtons(buttonList.indexOf(e.getSource()));
@@ -42,17 +69,19 @@ public class ControlManager{
             });
             panel.add(jb);
         }
+        
     }
     
     public void receiveInfo(int code){
         if(active != -1){
             panel.setAllEnabled(true);
             JButton jb = buttonList.get(active);
-            //TODO save code
+            keyList[active] = code;
             //TODO Parse code
-            //TODO init text
-            jb.setText("");
+            //TODO better init text
+            jb.setText(""+code);
             active = -1;
+            panel.saveAll();
         }
     }
     
@@ -123,5 +152,13 @@ public class ControlManager{
             panel.setAllEnabled(true);
             //TODO reinit text
         }
+    }
+
+    public void setKeyList(int[] keyList) {
+        this.keyList = keyList;
+    }
+
+    public int[] getKeyList() {
+        return keyList;
     }
 }
