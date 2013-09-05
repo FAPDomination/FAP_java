@@ -64,6 +64,14 @@ public class OptionMenu extends FAPanel {
     }
     
     private void toggleSound(){
+        //TODO toggle sound
+        /*
+         * That could be done with a big boolean parameter stored in gui.Constants
+         * Pressing this button will check the boolean and
+         * start/stop all sound (or set volume to 0 or whatever way is necessary there)
+         * 
+         * If possible, also change the text on the button to do "Sound off" / "Sound on"
+         */
         System.out.println("Toggling sound");
     }
     

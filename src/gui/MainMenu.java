@@ -128,7 +128,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
         //game.getThread().setRunning(true);
         game.pauseGame(true);
         // If not, start a new game (cutscene)
-        //TODO
+        //TODO cutscene ? Or just force the starting of the first adventure map ?
         //----
         nextPanel = game;
         this.startSliding(true);
