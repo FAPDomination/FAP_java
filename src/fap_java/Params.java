@@ -217,6 +217,7 @@ public class Params {
      */
     public static int pauseKey;
     
+    public static int numberOfKeys = 5;
     /**
      * Stores the sets of keys for the human players. Parsed from the options.xml file
      * @see fap_java.OptionsParser
@@ -226,7 +227,7 @@ public class Params {
      * 3 : LEFT
      * 4 : Skill
      */
-    public static int[][] controlsList = new int[nPlayersOn1Computer][5];
+    public static int[][] controlsList = new int[nPlayersOn1Computer][numberOfKeys];
     
     public static int timeForSelection = 100;
     
