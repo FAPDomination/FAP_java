@@ -2,13 +2,13 @@ package gui;
 
 import fap_java.Params;
 
-import fap_java.Tools;
-
 import java.awt.Color;
 import java.awt.Graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.event.KeyEvent;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,8 +38,7 @@ public class ControlManager{
         this.x = x;
         this.y = y;
         active = -1;
-        
-        //TODO better init keyList
+     
         keyList = new int[Params.numberOfKeys];
         try {
             FileInputStream fileIn = new FileInputStream(Constants.controlersFile);
@@ -63,8 +62,8 @@ public class ControlManager{
             jb.setSize(120, 40);
             jb.setLocation(x, y+incremY*i);
             buttonList.add(jb);
-            //TODO better init text
-            jb.setText(""+keyList[i]);
+
+            jb.setText(""+KeyEvent.getKeyText(keyList[i]));
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     computeButtons(buttonList.indexOf(e.getSource()));
@@ -80,9 +79,8 @@ public class ControlManager{
             panel.setAllEnabled(true);
             JButton jb = buttonList.get(active);
             keyList[active] = code;
-            //TODO Parse code
-            //TODO better init text
-            jb.setText(""+code);
+
+            jb.setText(""+KeyEvent.getKeyText(code));
             active = -1;
             panel.saveAll();
         }
@@ -170,7 +168,8 @@ public class ControlManager{
         else{
             active = -1;
             panel.setAllEnabled(true);
-            //TODO reinit text
+
+            jb.setText(""+KeyEvent.getKeyText(keyList[buttonID]));
         }
     }
 
