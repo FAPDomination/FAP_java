@@ -9,7 +9,7 @@ V 	- Player l183 : big repaint
 O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
-	- Graph guimg public
+V	- Graph guimg public
 V Displacement Hexa
 V	- Hexa
 V	- Bug changing
@@ -230,7 +230,7 @@ V			- Placement
 V			- Adding/Deleting
 V	- Victory
 V		- Check victory
-T		- Double timeout bug
+V		- Double timeout bug
 V		- endGame method
 V		- Display it
 V			- General
@@ -341,6 +341,10 @@ P			- Keep list of maps updated
 V		- options
 		- credits
 			- Define type of display (big image, text, whatever)
+			- Define what will be displayed
+				- Game Title ?
+				- Who did what ?
+				- Thanks ?
 			- Create
 			- Display
 ?		- quit
@@ -373,9 +377,9 @@ V		- Sound
 		- FAP Editor
 V ControlsMenu
 V	- Create panel
- 	- Create form
-		- Parse name of the key
-		- Display it
+V	- Create form
+V		- Parse name of the key
+V		- Display it
 V		- Display controler label
 V		- Display key label
   Sound

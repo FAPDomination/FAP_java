@@ -132,4 +132,4 @@ V		- Maps values all set to 0 except the initial one
 V		- Game switches all set to false
 V		- Unlocked characters all set to false except 1 and 7
 V	- Generate accessors
-? HardCodePanel could be deleted
+V HardCodePanel could be deleted
