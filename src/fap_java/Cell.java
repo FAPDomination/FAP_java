@@ -201,7 +201,7 @@ public class Cell extends Element {
      */
     public void activateCell(Player p) {
         // Check if the tile is takable and the property of the player
-        if (owner != p.getTeam() && type == 1) {
+        if (type == 1 && owner != p.getTeam()) {
             // if not, tests if the tale has HP
             if (hp <= 0) {
                 // The tale is empty, sets it as the property of the player, gives HP and draw the according map
