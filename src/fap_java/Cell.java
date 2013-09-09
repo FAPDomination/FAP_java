@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.util.ArrayList;
+
 public class Cell extends Element {
     /**
      * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
@@ -139,15 +141,21 @@ public class Cell extends Element {
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
 
-        
+        int width;
+        int height;
+        int offX;
+        int offY;
         // Paint dirt
-        int offX = (int)Graph.offsetsCells.get(0).getWidth();
-        int offY = (int)Graph.offsetsCells.get(0).getHeight();
-        int width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
-        int height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
-        //TODO only on needed cells
-        g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
-        
+        //test if needed
+        ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
+        if(surrounding.get(3) == null || surrounding.get(4) == null){
+            offX = (int)Graph.offsetsCells.get(0).getWidth();
+            offY = (int)Graph.offsetsCells.get(0).getHeight();
+            width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
+            height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
+
+            g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
+        }
         // Paint did
         width = (int)(this.img.getWidth(game) * Graph.facW);
         height = (int)(this.img.getHeight(game) * Graph.facH);

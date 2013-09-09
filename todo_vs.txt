@@ -164,9 +164,9 @@ P			- Alpha
 		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
-P		- Paint dirt
+V		- Paint dirt
 V			- On all
-P			- Just on specified tiles
+V			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
