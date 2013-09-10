@@ -158,6 +158,18 @@ public class FSM {
             //Find good Cell system
             if (body instanceof Miner) {
                 body.getSkill();
+                Miner me = (Miner)body;
+                int maxW =0;
+                Cell selected = null;
+                for(int i =0;i<me.getRandCells().size();i++){
+                    Cell c = me.getRandCells().get(i);
+                    int w = areaWeight(c, nRings);
+                    if(w>=maxW){
+                        maxW = w;
+                        selected = c;
+                    }
+                }
+                me.setCursor(me.getRandCells().indexOf(selected));
                 body.keyLow(4);
                 fsm_param = (6 - level) * reactTime;
                 this.fsm_receive_event(ev_secDone);

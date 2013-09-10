@@ -18,7 +18,7 @@ V Same time displacements
 ? Get rid of colors
 V Collisions
 V Cleaner define of keys in params
-~ Tile on Path method
+V Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
@@ -69,7 +69,7 @@ V		- get
 V		- 8
 ~		- Yellow
 V CMap :
-X	- MaxI & MaxJ
+V	- MaxI & MaxJ
 V	- Countneighbour with surroundingCell
 V XML
 V	- Understand XML
@@ -290,7 +290,7 @@ V			- compute and return
 V	- Skills (detect if worth)
 V		- General
 V		- Knight
-~		- Miner
+V		- Miner
 V		- Warlock
 T		- Archer
 V		- Vampire

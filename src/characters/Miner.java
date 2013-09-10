@@ -111,4 +111,20 @@ public class Miner extends Player{
            this.randCells = new ArrayList<Cell>();
         }
     }
+
+    public void setRandCells(ArrayList<Cell> randCells) {
+        this.randCells = randCells;
+    }
+
+    public ArrayList<Cell> getRandCells() {
+        return randCells;
+    }
+
+    public void setCursor(int cursor) {
+        this.cursor = cursor;
+    }
+
+    public int getCursor() {
+        return cursor;
+    }
 }

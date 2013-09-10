@@ -170,7 +170,7 @@ public class Params {
      * They correspond to the Old Magician (2), was implemented in the flash version but isn't anymore
      * And to the NoCharacterGuy (7) wich ill be used in the adventure mode
      */
-    public static int[] excludedChars = {2,7,4,5,6,8,9};
+    public static int[] excludedChars = {2,7,4,5,6,8,9,1};
     
     /**
      * The Big Table OF Parameters.
