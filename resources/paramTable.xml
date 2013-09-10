@@ -49,7 +49,7 @@
 	</specParam>
 	<maxHP>
 		<admin>230</admin>
-		<knight>130</knight>
+		<knight>140</knight>
 		<magician>130</magician>
 		<miner>130</miner>
 		<warlock>130</warlock>

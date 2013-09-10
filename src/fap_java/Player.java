@@ -80,11 +80,6 @@ public abstract class Player extends Human {
     private double decLifeForced;
 
     /**
-     * The rate at wich the player's cells recover
-     */
-    private double recovLifeAuto;
-
-    /**
      * The game where the player is playin'
      */
     private Game game;
@@ -98,11 +93,6 @@ public abstract class Player extends Human {
      * The initial amount of HPs the player's cells have
      */
     private int initHP;
-
-    /**
-     * The maximum amount of HP the player's cells can go to
-     */
-    private int maxHP;
 
     /**
      * The rate at wich the cell gain HPs after passing the intHP level
@@ -169,6 +159,8 @@ public abstract class Player extends Human {
         }
 
         this.pc = pc;
+
+        team.initConstants();
 
         color = Params.colorList[id];
         // If no FSM, get keys for displacement
@@ -569,21 +561,6 @@ public abstract class Player extends Human {
         return game;
     }
 
-    public void setRecovLifeAuto(double recovLifeAuto) {
-        this.recovLifeAuto = recovLifeAuto;
-    }
-
-    public double getRecovLifeAuto() {
-        return recovLifeAuto;
-    }
-
-    public void setMaxHP(int maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    public int getMaxHP() {
-        return maxHP;
-    }
 
     public void setGainLife(double gainLife) {
         this.gainLife = gainLife;
@@ -681,9 +658,9 @@ public abstract class Player extends Human {
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
         //System.out.println(tmax);
         initHP = 100;
-        maxHP = (int)Params.paramTable.get("maxHP")[pc];
+        //maxHP = (int)Params.paramTable.get("maxHP")[pc];
         decLifeForced = Params.paramTable.get("decLifeForced")[pc];
-        recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+        
         gainLife = 0.01;
         decLifeAuto = 1;
         lastDisplacement = 0;
@@ -715,11 +692,11 @@ public abstract class Player extends Human {
         if (param.equals("dispSpeed")) {
             tmax = (int)(game.getThread().getDelay() * newValue);
         } else if (param.equals("maxHP")) {
-            maxHP = (int)newValue;
+            team.setMaxHP((int)newValue);
         } else if (param.equals("decLifeForced")) {
             decLifeForced = newValue;
         } else if (param.equals("recovLifeAuto")) {
-            recovLifeAuto = newValue;
+            team.setRecovLifeAuto(newValue);
         } else if (param.equals("skillTime")) {
             this.setSkillTime((int)(newValue * 1000));
         } else {
@@ -733,11 +710,11 @@ public abstract class Player extends Human {
                         if (param.equals("dispSpeed")) {
                             tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
                         } else if (param.equals("maxHP")) {
-                            maxHP = (int)Params.paramTable.get("maxHP")[pc];
+                            team.initConstants();
                         } else if (param.equals("decLifeForced")) {
                             decLifeForced = Params.paramTable.get("decLifeForced")[pc];
                         } else if (param.equals("recovLifeAuto")) {
-                            recovLifeAuto = Params.paramTable.get("recovLifeAuto")[pc];
+                            team.initConstants();
                         } else if (param.equals("skillTime")) {
                             setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
                         }

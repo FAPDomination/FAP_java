@@ -16,6 +16,17 @@ public class Team {
      * The score of the team
      */
     private int score;
+    
+    /**
+     * The maximum amount of HP the player's cells can go to
+     */
+    private int maxHP;
+    
+    /**
+     * The rate at wich the player's cells recover
+     */
+    private double recovLifeAuto;
+    
     /**
      * Will generate a new team with blank parameters that will be filled when the game will generate players
      */
@@ -63,5 +74,32 @@ public class Team {
     
     public String toString(){
         return "Equipe "+getFirstPlayer().getColorName();
+    }
+    
+    public void initConstants(){
+        maxHP = 0;
+        recovLifeAuto = 0;
+        for(int i=0;i<this.playersInThisTeam.size();i++){
+            maxHP += (int)Params.paramTable.get("maxHP")[this.playersInThisTeam.get(i).getPc()];
+            recovLifeAuto += Params.paramTable.get("recovLifeAuto")[this.playersInThisTeam.get(i).getPc()];
+        }
+        maxHP/=this.playersInThisTeam.size();
+        recovLifeAuto/=this.playersInThisTeam.size();
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setRecovLifeAuto(double recovLifeAuto) {
+        this.recovLifeAuto = recovLifeAuto;
+    }
+
+    public double getRecovLifeAuto() {
+        return recovLifeAuto;
     }
 }

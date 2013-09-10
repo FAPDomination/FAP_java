@@ -4,7 +4,7 @@
   What happened to the getI, getJ, etc... ?
   Bugs :
 V	- Type of blocking tiles all to 0 ?
-  Not so good :
+? Not so good :
 V 	- Player l183 : big repaint
 O		- Get a lighter repaint
 X		- Get it inside the walkable block
@@ -18,7 +18,7 @@ V Same time displacements
 ? Get rid of colors
 V Collisions
 V Cleaner define of keys in params
-~ Tile on Path method
+V Tile on Path method
 ? Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
@@ -46,7 +46,7 @@ V Kick back player with countdown cell
 V TeamPlay
 V	- Implement teams
 V	- TrapCells
-~	- Warning : the first player sets ALL the params
+V	- Warning : the first player sets ALL the params
 ?	- Cleaner initTeams
 V		- Cleaner
 ?		- Teams 0,1,3 but not 2 : exception
@@ -69,7 +69,7 @@ V		- get
 V		- 8
 ~		- Yellow
 V CMap :
-X	- MaxI & MaxJ
+V	- MaxI & MaxJ
 V	- Countneighbour with surroundingCell
 V XML
 V	- Understand XML
@@ -164,9 +164,9 @@ P			- Alpha
 		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
-V		- Paint dirt
+P		- Paint dirt
 V			- On all
-V			- Just on specified tiles
+P			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
@@ -230,7 +230,7 @@ V			- Placement
 V			- Adding/Deleting
 V	- Victory
 V		- Check victory
-V		- Double timeout bug
+T		- Double timeout bug
 V		- endGame method
 V		- Display it
 V			- General
@@ -290,7 +290,7 @@ V			- compute and return
 V	- Skills (detect if worth)
 V		- General
 V		- Knight
-~		- Miner
+V		- Miner
 V		- Warlock
 T		- Archer
 V		- Vampire
@@ -315,6 +315,8 @@ V		- Node
 V		- Pathfinder
 V	- Test
 V	- Make all static and getable
+	- isOccupied
+	- Warp
 V ScoreBar
 V	- Get nCells
 V	- Update scores
@@ -328,7 +330,7 @@ V	- Display skillTime
 	- Buttons
 V		- adv
 V		- vs
-P		- quick
+PT		- quick
 V			- Loading screen
 V			- pick map
 V			- rand pc
@@ -339,14 +341,7 @@ V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
-		- credits
-			- Define type of display (big image, text, whatever)
-			- Define what will be displayed
-				- Game Title ?
-				- Who did what ?
-				- Thanks ?
-			- Create
-			- Display
+P		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
@@ -362,7 +357,7 @@ V			- Go
 V			- Back
 ~		- Gradient BG
 V		- Bug with the repaint
-?TGo back buttons EEEEEEEEEEEEE
+  Go back buttons EEEEEEEEEEEEE
 V	- Find a place for it and keep it
 ?		- Even for OptionMenu ?
 V	- Versus : keep information from one another
@@ -371,20 +366,10 @@ V Go next button : find place and keep it
   OptionMenu
 	- Buttons
 V		- Back
-V		- Controls
-V		- Sound
+		- Controls
+		- Sound
 ?		- FullScreen
 		- FAP Editor
-V ControlsMenu
-V	- Create panel
-V	- Create form
-V		- Parse name of the key
-V		- Display it
-V		- Display controler label
-V		- Display key label
-  Sound
-	- ON/OFF switch
-P FAPEditor
 V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
 ?	- Game

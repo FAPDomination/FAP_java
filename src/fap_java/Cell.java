@@ -261,9 +261,9 @@ public class Cell extends Element {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
                                         // The HP will recover slowly up to initHP
-                                        hp += owner.getFirstPlayer().getRecovLifeAuto();
+                                        hp += owner.getRecovLifeAuto();
                                 // between initHP and maxHP
-                        } else if (hp<owner.getFirstPlayer().getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
+                        } else if (hp<owner.getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
                                         double gainLifeFactor;
