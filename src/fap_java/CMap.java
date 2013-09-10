@@ -11,14 +11,17 @@ public class CMap {
      * A factor that multiplies the sizes of EEEEEEEverything
      */
     public static final int FAC = 2;
+
     /**
      * Tile Width
      */
     public static final int TW = 60 / FAC;
+
     /**
      * Tile Height
      */
     public static final int TH = 35 / FAC;
+
     /**
      * Offset on y that the map has
      */
@@ -36,15 +39,17 @@ public class CMap {
      * The arrayList of cells that contains aaaall the cells of the grid
      */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+
     /**
      * The starting points of this map (defined in the XML file)
      */
     private ArrayList<Cell> startCells = new ArrayList<Cell>();
+
     /**
      * The game where it's happening
      */
     private Game game;
-    
+
     private int fileID;
 
     /**
@@ -60,14 +65,14 @@ public class CMap {
         arr[1] = i * (TH) * (1 - 1 / 4);
         return arr;
     };
-    
+
     /**
      * Give the position in pixel of a cell
      * @param c
      * @return : a table [x,y]
      */
-    public static int[] giveTalePosition(Cell c){
-        return giveTalePosition(c.getI(),c.getJ());
+    public static int[] giveTalePosition(Cell c) {
+        return giveTalePosition(c.getI(), c.getJ());
     }
 
     /**
@@ -99,32 +104,111 @@ public class CMap {
             Cell c = myMap.get(i);
             c.paintComponent(g);
             NPC npc = Tools.checkNPCOnCell(game, c);
-            if(npc!=null){
+            if (npc != null) {
                 npc.paintComponent(g);
             }
             Player p = game.isOccupied(c);
-            if(p!=null){
+            if (p != null) {
                 p.paintComponent(g);
             }
         }
     }
-    
+
     //TODO Improvement of this method including gaps
-    public ArrayList<Cell> tileOnPath(Cell c, int ori){
+
+    public ArrayList<Cell> tileOnPath(Cell c, int ori) {
         ArrayList<Cell> path = new ArrayList<Cell>();
+        int i = c.getI();
+        int j = c.getJ();
         boolean bool = true;
-        while(bool){
-            path.add(c);
-            c = this.surroundingCells(c).get(ori);
-            if(c== null || c.isHeight()){
+        int[] maxIJ = this.getMaxIJ();
+        int facI = 0;
+        int facJ = 0;
+
+        while (bool) {
+            i += facI;
+            j += facJ;
+            c = this.getCell(i, j);
+            //c = this.surroundingCells(c).get(ori);
+            if ((c != null && c.isHeight()) || (i < 0 || j < 0) || (i > maxIJ[0] || j > maxIJ[1])) {
                 bool = false;
+            } else {
+                if (c != null) {
+                    path.add(c);
+                }
+                switch (ori) {
+                case 0:
+                    if (i % 2 == 0) {
+                        facI = -1;
+                        facJ = -1;
+                    } else {
+                        facI = -1;
+                        facJ = 0;
+                    }
+                    break;
+                case 1:
+                    if (i % 2 == 0) {
+                        facI = -1;
+                        facJ = 0;
+                    } else {
+                        facI = -1;
+                        facJ = +1;
+                    }
+                    break;
+                case 2:
+                    facI = 0;
+                    facJ = 1;
+                    break;
+                case 3:
+                    if (i % 2 == 0) {
+                        facI = +1;
+                        facJ = 0;
+                    } else {
+                        facI = +1;
+                        facJ = +1;
+                    }
+                    break;
+                case 4:
+                    if (i % 2 == 0) {
+                        facI = +1;
+                        facJ = -1;
+                    } else {
+                        facI = +1;
+                        facJ = 0;
+                    }
+                    break;
+                case 5:
+                    facI = 0;
+                    facJ = -1;
+                    break;
+                }
             }
         }
         return path;
     }
 
     //------ Accessors for the map
-    
+
+    public int[] getMaxIJ() {
+        int[] table = new int[2];
+        int i = 0;
+        int j = 0;
+        for (int k = 0; k < this.myMap.size(); k++) {
+            Cell c = myMap.get(k);
+            if (c != null) {
+                if (c.getI() > i) {
+                    i = c.getI();
+                }
+                if (c.getJ() > j) {
+                    j = c.getJ();
+                }
+            }
+        }
+        table[0] = i;
+        table[1] = j;
+        return table;
+    }
+
     public ArrayList<Cell> getMyMap() {
         return myMap;
     }
@@ -169,7 +253,7 @@ public class CMap {
      */
     public Cell getCell(int[] tab) {
         Cell c;
-        Cell o = new Cell(tab[0], tab[1], 1, 1,null);
+        Cell o = new Cell(tab[0], tab[1], 1, 1, null);
         if (tab.length == 2 && containsCell(o) != (-1)) {
             c = myMap.get(containsCell(o));
         } else {
@@ -199,15 +283,15 @@ public class CMap {
     public int countNeighbours(Cell c) {
         int n = 0;
         Team owns = c.getOwner();
-        
+
         ArrayList<Cell> surround = surroundingCells(c);
-        for(int i=0;i<surround.size();i++){
+        for (int i = 0; i < surround.size(); i++) {
             Cell k = surround.get(i);
-            if(k!=null && k.getOwner() == owns){
+            if (k != null && k.getOwner() == owns) {
                 n++;
             }
         }
-        
+
         // You just lost the game
         return n;
     }
@@ -220,7 +304,7 @@ public class CMap {
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
         ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
-        for(int k=0;k<6;k++){
+        for (int k = 0; k < 6; k++) {
             surroundingCells.add(null);
         }
         int i = c.getI();
@@ -230,42 +314,42 @@ public class CMap {
         // not the first line
         if (i % 2 == 0) {
             o = this.getCell(i - 1, j - 1);
-            surroundingCells.set(0,o);
+            surroundingCells.set(0, o);
             //surroundingCells['tr'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.set(1,o);
+            surroundingCells.set(1, o);
         } else {
-            
+
             //surroundingCells['tl'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            surroundingCells.set(0,o);
-            
+            surroundingCells.set(0, o);
+
             //surroundingCells['tr'] = [i-1, j+1];
             o = this.getCell(i - 1, j + 1);
-            surroundingCells.set(1,o);
+            surroundingCells.set(1, o);
         }
         // cells from the same line
         //surroundingCells['l'] = [i, j-1];
         o = this.getCell(i, j - 1);
-        surroundingCells.set(5,o);
+        surroundingCells.set(5, o);
         //surroundingCells['r'] = [i, j+1];
         o = this.getCell(i, j + 1);
-        surroundingCells.set(2,o);
+        surroundingCells.set(2, o);
         // bottom cells (see top cells)
         if (i % 2 == 0) {
             //surroundingCells['bl'] = [i+1, j-1];
             o = this.getCell(i + 1, j - 1);
-            surroundingCells.set(4,o);
+            surroundingCells.set(4, o);
             //surroundingCells['br'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.set(3,o);
+            surroundingCells.set(3, o);
         } else {
             //surroundingCells['br'] = [i+1, j+1];
             o = this.getCell(i + 1, j + 1);
-            surroundingCells.set(3,o);
+            surroundingCells.set(3, o);
             //surroundingCells['bl'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            surroundingCells.set(4,o);
+            surroundingCells.set(4, o);
         }
         return surroundingCells;
     };
@@ -311,46 +395,48 @@ public class CMap {
     public ArrayList<Cell> getStartCells() {
         return startCells;
     }
-    
+
     /**
      * Get the cells that are located on rings around the designated cell
      * @param c : the cell
      * @param numberOfRings : the number of rings to check
      * @return : per ring a list of cells
      */
-    public Map<Integer, ArrayList<Cell>> ringsSurrounding(Cell c, int numberOfRings){
+    public Map<Integer, ArrayList<Cell>> ringsSurrounding(Cell c, int numberOfRings) {
         Map<Integer, ArrayList<Cell>> ringsOfCells = new HashMap<Integer, ArrayList<Cell>>();
         //ArrayList<Cell>[] ringsOfCells = new ArrayList<Cell>[numberOfRings+1];
-        for(int k=0;k<numberOfRings;k++){
+        for (int k = 0; k < numberOfRings; k++) {
             ringsOfCells.put(k, new ArrayList<Cell>());
         }
         ringsOfCells.get(0).add(c);
-        
+
         int ring = 1;
-        boolean continueRingLoop = true;        // For stopping the loop after a certain number of rings
-        while(continueRingLoop){
-           ringsOfCells.put(ring, new ArrayList<Cell>());
-            int indexRing = 0;            // Index of the array for the current ring
-             
+        boolean continueRingLoop = true; // For stopping the loop after a certain number of rings
+        while (continueRingLoop) {
+            ringsOfCells.put(ring, new ArrayList<Cell>());
+            int indexRing = 0; // Index of the array for the current ring
+
             // Loop : gets the cells of the inferior ring and checks their neighbour cells
-            ArrayList<Cell> previousRing = ringsOfCells.get(ring-1);
-            for(int i = 0; i<previousRing.size(); i++){
-                Cell cell = previousRing.get(i);        // Inferior ring cell
+            ArrayList<Cell> previousRing = ringsOfCells.get(ring - 1);
+            for (int i = 0; i < previousRing.size(); i++) {
+                Cell cell = previousRing.get(i); // Inferior ring cell
                 ArrayList<Cell> aroundCurrentCell = surroundingCells(cell);
-                 
+
                 // Loop : checking if the cells must be added to the current ring array
-                for(int j =0; j<aroundCurrentCell.size();j++){
+                for (int j = 0; j < aroundCurrentCell.size(); j++) {
                     Cell tempCell = aroundCurrentCell.get(j);
                     boolean rejectCell = false;
                     // Loop : is this cell already in the returned array ?
-                    for(int k = ring-2 ; k <= ring ; k++){
-                        if(k < 0){ k = 0; } // Prevents error if ring = 1
+                    for (int k = ring - 2; k <= ring; k++) {
+                        if (k < 0) {
+                            k = 0;
+                        } // Prevents error if ring = 1
                         // use of other function arrayContainsCoords(array, coords)
-                        if((tempCell == null) || ringsOfCells.get(k).contains(tempCell)){
+                        if ((tempCell == null) || ringsOfCells.get(k).contains(tempCell)) {
                             rejectCell = true;
                         }
                     }
-                    if(!rejectCell){
+                    if (!rejectCell) {
                         // Update of returned array and current ring index
                         ringsOfCells.get(ring).add(tempCell);
                         indexRing++;
@@ -358,9 +444,9 @@ public class CMap {
                 }
             }
             ring++;
-             
+
             // Stop condition
-            if(ring > numberOfRings){
+            if (ring > numberOfRings) {
                 continueRingLoop = false;
             }
         }
