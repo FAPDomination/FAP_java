@@ -4,9 +4,13 @@ import gui.MapListHandler;
 
 import gui.Minimap;
 
+import java.awt.Toolkit;
+
 import java.io.File;
 
 import java.io.IOException;
+
+import java.io.InputStream;
 
 import java.util.ArrayList;
 
@@ -88,8 +92,12 @@ public class XMLparser {
                                 SAXParser parseur = fabrique.newSAXParser();
 
                                 // Reading an XML File with a handler
-                                File fichier = new File("resources/"+f);
-                                parseur.parse(fichier, gestionnaire);
+                                //File fichier = new File("resources/"+f);
+                                InputStream is = Graph.load.getResourceAsStream(f);
+                                //is.
+                                //File fichier;
+                                parseur.parse(is, gestionnaire);
+                                //parseur.parse(fichier, gestionnaire);
                         }catch(ParserConfigurationException pce){
                                 System.out.println("Erreur de configuration du parseur");
                                 System.out.println("Lors de l'appel a  newSAXParser()");

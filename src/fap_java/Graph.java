@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 public class Graph {
     
     // used for loading files in this resource class : do "load.getResource(relative path from 'resources')".
-    private static final ClassLoader load = Graph.class.getClassLoader();
+    public static final ClassLoader load = Graph.class.getClassLoader();
 
     /* ******************************************************
      * ********************* IMAGES *************************
