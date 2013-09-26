@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 
+import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +24,7 @@ public class Graph {
      * *****************************************************/
 
     // Cells images
-    protected static Map<Integer, Image> cells = new HashMap<Integer, Image>();
+    protected static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
     protected static Map<String, Image> list = new HashMap<String, Image>();
     protected static Map<String, Image> guimg = new HashMap<String, Image>();
     protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
@@ -36,6 +38,7 @@ public class Graph {
     protected static Image basicCellImage;
     static {
         try {
+            /*
             cells.put(0, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/dirt.png")));
             cells.put(1, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/cell.png")));
             cells.put(2, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
@@ -55,6 +58,29 @@ public class Graph {
             cells.put(102, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
             cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river.png")));
             cells.put(201, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river_lava.png")));
+            */
+            try {
+                cells.put(0,ImageIO.read(new File("resources/images/default/cells/dirt.png")));
+                cells.put(1,ImageIO.read(new File("resources/images/default/cells/cell.png")));
+                cells.put(2,ImageIO.read(new File("resources/images/default/cells/walkable/trail.png")));
+                cells.put(3,ImageIO.read(new File("resources/images/default/cells/walkable/little_rocks.png")));
+                cells.put(4,ImageIO.read(new File("resources/images/default/cells/walkable/paved.png")));
+                cells.put(5,ImageIO.read(new File("resources/images/default/cells/walkable/bridge.png")));
+                cells.put(6,ImageIO.read(new File("resources/images/default/cells/walkable/grass.png")));
+                cells.put(7,ImageIO.read(new File("resources/images/default/cells/walkable/rock_dark.png")));
+                cells.put(8,ImageIO.read(new File("resources/images/default/cells/walkable/lava_rock.png")));
+                cells.put(9,ImageIO.read(new File("resources/images/default/cells/walkable/ice.png")));
+                cells.put(13,ImageIO.read(new File("resources/images/default/cells/walkable/minerSelect.png")));
+                cells.put(14,ImageIO.read(new File("resources/images/default/cells/walkable/minerSelectCursor.png")));
+                cells.put(10,ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
+                cells.put(11,ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
+                cells.put(12,ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
+                cells.put(100,ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
+                cells.put(102,ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
+                cells.put(200,ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
+                cells.put(201,ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
+            } catch (IOException e) {
+            }
             // Offsets
             /*
              * Note : although it's a Dimension array, they are just used as a pair of Integers.
@@ -94,7 +120,7 @@ public class Graph {
             guimg.put("victoryScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/victoryScreen.png")));
             guimg.put("npcDisplayMessage", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/npcDisplayMessage.png")));
                         
-            File location = new File("resources/images/cells/regular.png");
+            File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
             
             }
