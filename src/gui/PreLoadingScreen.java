@@ -1,10 +1,14 @@
 package gui;
 
+import com.sun.jmx.snmp.Timestamp;
+
 import fap_java.Game;
 import fap_java.Graph;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -12,6 +16,8 @@ public class PreLoadingScreen extends FAPanel implements AnimPanel {
     private String message;
     private ThreadGUI theThread;
     private boolean initiated;
+    
+    private long begin;
     
     public PreLoadingScreen(TheFrame theFrame) {
         super(theFrame, null);
@@ -33,6 +39,9 @@ public class PreLoadingScreen extends FAPanel implements AnimPanel {
     public void executeAnim() {
         message = "Loading";
         if(!initiated){
+            Date d = new Date();
+            begin = d.getTime();
+            
             Graph.load(this);
             initiated = true;
         }
@@ -40,6 +49,8 @@ public class PreLoadingScreen extends FAPanel implements AnimPanel {
 
     public void endAnim() {
         //MainMenu menu = new MainMenu(this.parent,false);
+        Date d = new Date();
+        System.out.println(d.getTime()-begin);
         Fapplication.setWorldMap(new Game(0));
         parent.changePanel(new MainMenu(this.parent,false));
         

@@ -96,6 +96,16 @@ public class Graph {
             list.put("arrow", ImageIO.read(new File("resources/images/arrow/arrowL.png")));
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
+            
+            //Fake images to load to see what it's like a big loading time
+            /*
+            list.put("warp", ImageIO.read(new File("resources/images/fake/01.jpg")));
+            list.put("warp", ImageIO.read(new File("resources/images/fake/02.png")));
+            list.put("warp", ImageIO.read(new File("resources/images/fake/03.jpg")));
+            list.put("warp", ImageIO.read(new File("resources/images/fake/04.jpg")));
+            list.put("warp", ImageIO.read(new File("resources/images/fake/05.jpg")));
+            list.put("warp", ImageIO.read(new File("resources/images/fake/06.png")));
+            */
             //list.put("warp", Toolkit.getDefaultToolkit().getImage(load.getResource("images/animations/teleport.png")));
             //Gui
             guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
