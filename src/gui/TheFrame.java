@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel north = new JPanel();
-    private JPanel center = new MainMenu(this,false);
+    private JPanel center = new PreLoadingScreen(this);
     
     public TheFrame() {
         try {

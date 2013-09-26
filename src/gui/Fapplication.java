@@ -13,7 +13,6 @@ public class Fapplication {
     private static Game worldMap;
     public Fapplication() {
         frame = new TheFrame();
-        worldMap = new Game(0);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = frame.getSize();
         if (frameSize.height > screenSize.height) {

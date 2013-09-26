@@ -1,5 +1,7 @@
 package fap_java;
 
+import gui.PreLoadingScreen;
+
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -15,7 +17,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 public class Graph {
-    
+
     // used for loading files in this resource class : do "load.getResource(relative path from 'resources')".
     public static final ClassLoader load = Graph.class.getClassLoader();
 
@@ -27,16 +29,20 @@ public class Graph {
     protected static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
     protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
-    protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
-    
+    protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
+
     // Important factors for drawing cells
-    protected static double facW = CMap.TW/((double)(97-20));
-    protected static double facH = CMap.TH/((double)(73-36));
+    protected static double facW = CMap.TW / ((double)(97 - 20));
+    protected static double facH = CMap.TH / ((double)(73 - 36));
     // key : String, the name of the cell
     // entry : the cell image
-    
+
     protected static Image basicCellImage;
-    static {
+
+    public Graph() {
+    }
+
+    public static void load(PreLoadingScreen pls) {
         try {
             cells.put(0, ImageIO.read(new File("resources/images/default/cells/dirt.png")));
             cells.put(1, ImageIO.read(new File("resources/images/default/cells/cell.png")));
@@ -64,24 +70,24 @@ public class Graph {
              * height is the Y offset
              * /!\ they are both supposed to be negative
              */
-            offsetsCells.put(0, new Dimension(-9,-17));
-            offsetsCells.put(1, new Dimension(-9,-17));
-            offsetsCells.put(2, new Dimension(-9,-17));
-            offsetsCells.put(3, new Dimension(-9,-17));
-            offsetsCells.put(4, new Dimension(-9,-17));
-            offsetsCells.put(5, new Dimension(-9,-17));
-            offsetsCells.put(6, new Dimension(-9,-17));
-            offsetsCells.put(7, new Dimension(-9,-17));
-            offsetsCells.put(8, new Dimension(-9,-17));
-            offsetsCells.put(9, new Dimension(-9,-17));
-            offsetsCells.put(13, new Dimension(-9,-20));
-            offsetsCells.put(10, new Dimension(-9,-17));
-            offsetsCells.put(11, new Dimension(-9,-17));
-            offsetsCells.put(12, new Dimension(-9,-17));
-            offsetsCells.put(100, new Dimension(-9,-16));
-            offsetsCells.put(102, new Dimension(-34,-122));
-            offsetsCells.put(200, new Dimension(-9,-17));
-            offsetsCells.put(201, new Dimension(-9,-17));
+            offsetsCells.put(0, new Dimension(-9, -17));
+            offsetsCells.put(1, new Dimension(-9, -17));
+            offsetsCells.put(2, new Dimension(-9, -17));
+            offsetsCells.put(3, new Dimension(-9, -17));
+            offsetsCells.put(4, new Dimension(-9, -17));
+            offsetsCells.put(5, new Dimension(-9, -17));
+            offsetsCells.put(6, new Dimension(-9, -17));
+            offsetsCells.put(7, new Dimension(-9, -17));
+            offsetsCells.put(8, new Dimension(-9, -17));
+            offsetsCells.put(9, new Dimension(-9, -17));
+            offsetsCells.put(13, new Dimension(-9, -20));
+            offsetsCells.put(10, new Dimension(-9, -17));
+            offsetsCells.put(11, new Dimension(-9, -17));
+            offsetsCells.put(12, new Dimension(-9, -17));
+            offsetsCells.put(100, new Dimension(-9, -16));
+            offsetsCells.put(102, new Dimension(-34, -122));
+            offsetsCells.put(200, new Dimension(-9, -17));
+            offsetsCells.put(201, new Dimension(-9, -17));
             // Other images
             /*
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
@@ -94,28 +100,27 @@ public class Graph {
             //Gui
             guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
             guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
-            guimg.put("minimapBG", ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
+            guimg.put("minimapBG",
+                      ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
             guimg.put("LS_BGteam", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_team.png")));
             guimg.put("LS_BG8team", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_8Teams.png")));
             guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
             guimg.put("victoryScreen", ImageIO.read(new File("resources/images/gui/victoryScreen.png")));
             guimg.put("npcDisplayMessage", ImageIO.read(new File("resources/images/gui/npcDisplayMessage.png")));
-            
+
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
             
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (Exception e) {
-                System.out.println("An error occured while trying loading the cell images.");
-            }
-    }
-    
-    public Graph() {
-    }
+            //Thread.sleep(2000);
+            pls.endAnim();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("An error occured while trying to load the images.");
+            e.printStackTrace();
+        }
+    }
 
     public static void setOffsetsCells(Map<Integer, Dimension> offsetsCells) {
         Graph.offsetsCells = offsetsCells;
