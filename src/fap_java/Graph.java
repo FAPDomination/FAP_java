@@ -25,8 +25,8 @@ public class Graph {
 
     // Cells images
     protected static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
-    protected static Map<String, Image> list = new HashMap<String, Image>();
-    protected static Map<String, Image> guimg = new HashMap<String, Image>();
+    protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
+    protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer,Dimension> offsetsCells = new HashMap<Integer,Dimension>();
     
     // Important factors for drawing cells
@@ -38,49 +38,25 @@ public class Graph {
     protected static Image basicCellImage;
     static {
         try {
-            /*
-            cells.put(0, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/dirt.png")));
-            cells.put(1, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/cell.png")));
-            cells.put(2, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/trail.png")));
-            cells.put(3, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/little_rocks.png")));
-            cells.put(4, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/paved.png")));
-            cells.put(5, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/bridge.png")));
-            cells.put(6, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/grass.png")));
-            cells.put(7, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/rock_dark.png")));
-            cells.put(8, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/lava_rock.png")));
-            cells.put(9, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/ice.png")));
-            cells.put(13, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/minerSelect.png")));
-            cells.put(14, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/minerSelectCursor.png")));
-            cells.put(10, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/warp.png")));
-            cells.put(11, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/switch.png")));
-            cells.put(12, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/walkable/npc_exit.png")));
-            cells.put(100, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/rock.png")));
-            cells.put(102, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/tree_1.png")));
-            cells.put(200, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river.png")));
-            cells.put(201, Toolkit.getDefaultToolkit().getImage(load.getResource("images/cells/blocking/river_lava.png")));
-            */
-            try {
-                cells.put(0,ImageIO.read(new File("resources/images/default/cells/dirt.png")));
-                cells.put(1,ImageIO.read(new File("resources/images/default/cells/cell.png")));
-                cells.put(2,ImageIO.read(new File("resources/images/default/cells/walkable/trail.png")));
-                cells.put(3,ImageIO.read(new File("resources/images/default/cells/walkable/little_rocks.png")));
-                cells.put(4,ImageIO.read(new File("resources/images/default/cells/walkable/paved.png")));
-                cells.put(5,ImageIO.read(new File("resources/images/default/cells/walkable/bridge.png")));
-                cells.put(6,ImageIO.read(new File("resources/images/default/cells/walkable/grass.png")));
-                cells.put(7,ImageIO.read(new File("resources/images/default/cells/walkable/rock_dark.png")));
-                cells.put(8,ImageIO.read(new File("resources/images/default/cells/walkable/lava_rock.png")));
-                cells.put(9,ImageIO.read(new File("resources/images/default/cells/walkable/ice.png")));
-                cells.put(13,ImageIO.read(new File("resources/images/default/cells/walkable/minerSelect.png")));
-                cells.put(14,ImageIO.read(new File("resources/images/default/cells/walkable/minerSelectCursor.png")));
-                cells.put(10,ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
-                cells.put(11,ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
-                cells.put(12,ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
-                cells.put(100,ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
-                cells.put(102,ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
-                cells.put(200,ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
-                cells.put(201,ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
-            } catch (IOException e) {
-            }
+            cells.put(0, ImageIO.read(new File("resources/images/default/cells/dirt.png")));
+            cells.put(1, ImageIO.read(new File("resources/images/default/cells/cell.png")));
+            cells.put(2, ImageIO.read(new File("resources/images/default/cells/walkable/trail.png")));
+            cells.put(3, ImageIO.read(new File("resources/images/default/cells/walkable/little_rocks.png")));
+            cells.put(4, ImageIO.read(new File("resources/images/default/cells/walkable/paved.png")));
+            cells.put(5, ImageIO.read(new File("resources/images/default/cells/walkable/bridge.png")));
+            cells.put(6, ImageIO.read(new File("resources/images/default/cells/walkable/grass.png")));
+            cells.put(7, ImageIO.read(new File("resources/images/default/cells/walkable/rock_dark.png")));
+            cells.put(8, ImageIO.read(new File("resources/images/default/cells/walkable/lava_rock.png")));
+            cells.put(9, ImageIO.read(new File("resources/images/default/cells/walkable/ice.png")));
+            cells.put(13, ImageIO.read(new File("resources/images/default/cells/walkable/minerSelect.png")));
+            cells.put(14, ImageIO.read(new File("resources/images/default/cells/walkable/minerSelectCursor.png")));
+            cells.put(10, ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
+            cells.put(11, ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
+            cells.put(12, ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
+            cells.put(100, ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
+            cells.put(102, ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
+            cells.put(200, ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
+            cells.put(201, ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
             // Offsets
             /*
              * Note : although it's a Dimension array, they are just used as a pair of Integers.
@@ -107,19 +83,24 @@ public class Graph {
             offsetsCells.put(200, new Dimension(-9,-17));
             offsetsCells.put(201, new Dimension(-9,-17));
             // Other images
+            /*
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
             list.put("NPC_sample", Toolkit.getDefaultToolkit().getImage(load.getResource("images/NPCs/sample.png")));
+            */
+            list.put("arrow", ImageIO.read(new File("resources/images/arrow/arrowL.png")));
+            list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
+            list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             //list.put("warp", Toolkit.getDefaultToolkit().getImage(load.getResource("images/animations/teleport.png")));
             //Gui
-            guimg.put("MM_sword", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/sword.png")));
-            guimg.put("MM_clouds", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/mainMenu/clouds.png")));
-            guimg.put("minimapBG", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/versus/mapSelect/minimapBackground.png")));
-            guimg.put("LS_BGteam", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_team.png")));
-            guimg.put("LS_BG8team", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/loadingScreen/BG_8Teams.png")));
-            guimg.put("pauseScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/pauseScreen.png")));
-            guimg.put("victoryScreen", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/victoryScreen.png")));
-            guimg.put("npcDisplayMessage", Toolkit.getDefaultToolkit().getImage(load.getResource("images/gui/npcDisplayMessage.png")));
-                        
+            guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
+            guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
+            guimg.put("minimapBG", ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
+            guimg.put("LS_BGteam", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_team.png")));
+            guimg.put("LS_BG8team", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_8Teams.png")));
+            guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
+            guimg.put("victoryScreen", ImageIO.read(new File("resources/images/gui/victoryScreen.png")));
+            guimg.put("npcDisplayMessage", ImageIO.read(new File("resources/images/gui/npcDisplayMessage.png")));
+            
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
             
@@ -135,13 +116,6 @@ public class Graph {
     public Graph() {
     }
 
-    public static Map<String, Image> getGuimg() {
-        return guimg;
-    }
-
-    public static Map<String, Image> getList() {
-        return list;
-    }
 
     public static void setOffsetsCells(Map<Integer, Dimension> offsetsCells) {
         Graph.offsetsCells = offsetsCells;
@@ -173,5 +147,13 @@ public class Graph {
 
     public static Image getBasicCellImage() {
         return basicCellImage;
+    }
+
+    public static Map<String, BufferedImage> getList() {
+        return list;
+    }
+
+    public static Map<String, BufferedImage> getGuimg() {
+        return guimg;
     }
 }

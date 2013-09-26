@@ -39,12 +39,8 @@ public class AnimWarp extends Animation {
         ys[0] = 1;
         ys[1] = 1;
         ys[2] = 1;
-        File location = new File("resources/images/animations/teleport.png");
-        try {
-            img = Tools.getImageToFilter(ImageIO.read(location));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //File location = new File("resources/images/animations/teleport.png");
+        img = Tools.getImageToFilter(Graph.getList().get("warp"));
     }
     
     public AnimWarp(Cell c, TheThread theThread) {
