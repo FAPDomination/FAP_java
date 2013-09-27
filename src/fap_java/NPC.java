@@ -6,9 +6,7 @@ import java.awt.Image;
 
 import java.util.ArrayList;
 
-import npcs.actions.AAsk;
-import npcs.actions.ADisplayMessage;
-import npcs.actions.Action;
+import npcs.actions.*;
 
 public class NPC extends Human {
 
