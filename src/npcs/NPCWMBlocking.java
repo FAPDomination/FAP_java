@@ -7,12 +7,14 @@ import fap_java.NPC;
 
 import fap_java.Tools;
 
+import gui.Fapplication;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class NPCWMBlocking extends NPC{
     public NPCWMBlocking(Cell pos) {
-        super(pos,false,false,null,null,(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8),null);
+        super(pos,false,false,null,Fapplication.getWorldMap(),(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8),null);
         //TODO Update image and override paintComponent
         img = Graph.getBasicCellImage();
     }
