@@ -54,10 +54,10 @@ public class NPC extends Human {
 
     public void paintComponent(Graphics g) {
         if (img != null) {
-            int width = this.img.getWidth(game);
-            int height = this.img.getHeight(game);
+            int width = this.img.getWidth(game.getDisplayer());
+            int height = this.img.getHeight(game.getDisplayer());
 
-            g.drawImage(this.img, x, y, width, height, game);
+            g.drawImage(this.img, x, y, width, height, game.getDisplayer());
         }
     }
 

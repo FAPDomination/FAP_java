@@ -64,7 +64,7 @@ public class LoadingScreen extends FAPanel {
     
     public void startGame(){
         game.pauseGame();
-        parent.changePanel(game, BorderLayout.CENTER);
+        parent.changePanel(game.getDisplayer(), BorderLayout.CENTER);
     }
     
     public void paintComponent(Graphics g){

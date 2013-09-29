@@ -151,35 +151,35 @@ public class Cell extends Element {
         if(surrounding.get(3) == null || surrounding.get(4) == null){
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
-            width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
-            height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
+            width = (int)(Graph.cells.get(0).getWidth(game.getDisplayer()) * Graph.facW);
+            height = (int)(Graph.cells.get(0).getHeight(game.getDisplayer()) * Graph.facH);
 
-            g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
+            g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game.getDisplayer());
         }
         // Paint did
-        width = (int)(this.img.getWidth(game) * Graph.facW);
-        height = (int)(this.img.getHeight(game) * Graph.facH);
+        width = (int)(this.img.getWidth(game.getDisplayer()) * Graph.facW);
+        height = (int)(this.img.getHeight(game.getDisplayer()) * Graph.facH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
-        g.drawImage(this.img, x + offX, y + offY, width, height, game);
+        g.drawImage(this.img, x + offX, y + offY, width, height, game.getDisplayer());
         
         
         // Special case if the miner is currently selecting the cell
         //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
             int minerSlectID = 13;
-            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
-            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * Graph.facH);
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game.getDisplayer()) * Graph.facW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game.getDisplayer()) * Graph.facH);
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
             //TODO better painting of minor's cursor
             if(this.minerSing){
-                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
+                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game.getDisplayer());
             }
             else{
-                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
+                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game.getDisplayer());
             }
         }
         

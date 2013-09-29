@@ -9,6 +9,7 @@ import gui.Constants;
 import gui.Fapplication;
 import gui.GameSave;
 import gui.NeedingFocus;
+import gui.Displayer;
 
 import gui.PlayerSelect;
 
@@ -32,7 +33,7 @@ import npcs.NPCWMStarting;
 
 import npcs.actions.*;
 
-public class Game extends JPanel implements NeedingFocus {
+public class Game {
 
     /**
      * The map of this Game. Contains a grid of cells and a set of methods to play with them
@@ -46,10 +47,7 @@ public class Game extends JPanel implements NeedingFocus {
      * This contains all the player of this game. See also fap_java.Player
      */
     private transient ArrayList<Player> players = new ArrayList<Player>();
-    /**
-     * The Key Listener that will handle player displacements and pause
-     */
-    private transient KListener kl;
+    
     /**
      * The scorebars manager
      */
@@ -122,6 +120,8 @@ public class Game extends JPanel implements NeedingFocus {
     private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
     
     private boolean pauseNPC;
+    
+    private Displayer displayer;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -202,9 +202,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param nmap The number of the file the map is in
      */
     public void initGame(int nmap){
-        // Panel related stuff 
-        this.setLayout(null);
-        this.setBackground(Color.white);
+        this.displayer = new Displayer(this);
         this.listNPCs = new ArrayList<NPC>();
         // Parse the map
         map = new CMap(this,nmap);
@@ -212,7 +210,6 @@ public class Game extends JPanel implements NeedingFocus {
         
         //Parse ParamTable
         XMLparser.parseParams();
-        this.setSize(Constants.frameDimension);
         
         // Initialize thread
         thread = new TheThread(this);
@@ -230,63 +227,6 @@ public class Game extends JPanel implements NeedingFocus {
         //if(adv < 2){
             pauseGame();
         //}
-    }
-
-    /**
-     * Paint the panel. takes care of background, map, players and other components
-     * @param g Graphical thing that no one really understands
-     */
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        // Background
-        Graphics2D g2d = (Graphics2D)g;
-        
-        int w = this.getWidth();
-        int h = this.getHeight();
-
-        // Paint a gradient from top to bottom
-        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
-
-        g2d.setPaint(gp);
-        //TODO Better background ??
-        g2d.fillRect(0, 0, w, h);
-        // --- End BG
-        
-        // Repaint the map
-        map.paintComponent(g);
-        if(adv <2){
-            // Repaint the scoreHandler
-            this.scoreHandler.paintComponent(g);
-        }
-        // Repaint the objects (such as arrows)
-        for(int j=0;j<objects.size();j++){
-            objects.get(j).paintComponent(g);
-        }
-        
-        /*
-        if(map.getFileID() == 0){
-            // if world map, paint the npcs with green line
-            for(int i=0;i<listNPCs.size(); i++){
-                NPC npc = listNPCs.get(i);
-                if(npc instanceof NPCWMStarting){
-                    npc.paintComponent(g);
-                }
-            }
-        }*/
-        
-        /*
-        // Paint black screen if the game is paused
-        if(!thread.getRunning() && !pauseNPC){
-            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
-        }
-        */
-        // Paint the animations (warps, explosions, bitches,...)
-        for(int j=0;j<anims.size();j++){
-            if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){
-                anims.get(j).paintComponent(g);
-            }
-        }
     }
 
     public ArrayList<Player> getPlayers() {
@@ -369,10 +309,6 @@ public class Game extends JPanel implements NeedingFocus {
 
     public ScoreBar getScoreHandler() {
         return scoreHandler;
-    }
-
-    public int getRWidth() {
-        return this.getWidth();
     }
 
     /**
@@ -501,34 +437,6 @@ public class Game extends JPanel implements NeedingFocus {
         }
     }
 
-    /**
-     * Initializes the Key Listener of the game
-     */
-    private void initKListener() {
-        kl = new KListener(this);
-        this.addKeyListener(kl);
-    }
-    
-    private void deleteKListener(){
-        this.removeKeyListener(kl);
-        kl = new KListener(this);
-    }
-
-    /**
-     * Request the focus so that the K listener works
-     */
-    public void initFocus() {
-        initKListener();
-        this.setFocusable(true);
-        this.initListNPCs(map.getFileID());
-        requestFocus();
-    }
-    
-    public void releaseFocus(){
-        deleteKListener();
-        thread.setRunning(false);
-        this.setFocusable(false);
-    }
     
     /**
      * Tests if the victory was reached by a Team. if yes, returns it
@@ -573,7 +481,7 @@ public class Game extends JPanel implements NeedingFocus {
         // If running, pause
         if(thread.getRunning()){
             thread.setRunning(false);
-            this.repaint();
+            //this.repaint();
             // Display pause
             if(!isNPC){
             PauseScreen ps = new PauseScreen(false, this);
@@ -670,7 +578,7 @@ public class Game extends JPanel implements NeedingFocus {
             }
             //new AStartGame(Fapplication.getWorldMap()).execute(null);
         }
-        this.repaint();
+        //this.repaint();
     }
     
     /**
@@ -1023,11 +931,19 @@ public class Game extends JPanel implements NeedingFocus {
         return objects;
     }
 
-    public void setKl(KListener kl) {
-        this.kl = kl;
+    public void setAnims(ArrayList<Animation> anims) {
+        this.anims = anims;
     }
 
-    public KListener getKl() {
-        return kl;
+    public ArrayList<Animation> getAnims() {
+        return anims;
+    }
+
+    public void setDisplayer(Displayer displayer) {
+        this.displayer = displayer;
+    }
+
+    public Displayer getDisplayer() {
+        return displayer;
     }
 }

@@ -46,18 +46,18 @@ public class ScoreBar {
 
             double percentCell = ((double)nCells)/totalTakable;
             g.setColor(te.getColor());
-            g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
+            g.fillRect(x, 0, (int)(game.getDisplayer().getRWidth()*(double)percentCell), 30);
             g.setColor(Color.white);
             g.drawString(""+score, x+5, 10);
-            x += (int)(game.getRWidth()*(double)percentCell);
+            x += (int)(game.getDisplayer().getRWidth()*(double)percentCell);
 
             
             
             if(i == (nTeams/2-1) && notTaken >=1){
                  percentCell = ((double)notTaken)/totalTakable;
                 g.setColor(Color.GRAY);
-                g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
-                x += (int)(game.getRWidth()*(double)percentCell);
+                g.fillRect(x, 0, (int)(game.getDisplayer().getRWidth()*(double)percentCell), 30);
+                x += (int)(game.getDisplayer().getRWidth()*(double)percentCell);
                 g.setColor(Color.white);
                 g.drawString(""+notTaken, x, 10);
             }

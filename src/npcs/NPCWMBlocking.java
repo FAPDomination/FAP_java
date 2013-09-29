@@ -18,10 +18,10 @@ public class NPCWMBlocking extends NPC{
     }
     
     public void paintComponent(Graphics g){
-        double width = (this.img.getWidth(game) * Graph.getFacW());
-        double height = (this.img.getHeight(game) * Graph.getFacH());
-        double scaleX = width/img.getWidth(game);
-        double scaleY = height/img.getWidth(game);
+        double width = (this.img.getWidth(game.getDisplayer()) * Graph.getFacW());
+        double height = (this.img.getHeight(game.getDisplayer()) * Graph.getFacH());
+        double scaleX = width/img.getWidth(game.getDisplayer());
+        double scaleY = height/img.getWidth(game.getDisplayer());
         float[] offsets = new float[4];
         float[] scales = {0.1f,0.1f,0.1f,(float)0.6};
         Tools.drawFilteredImage((BufferedImage)img, scales, offsets, g, x, y, scaleX, scaleY);

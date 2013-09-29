@@ -43,10 +43,10 @@ public class NPCMessage extends Animation {
         g.setColor(Color.BLACK);
         int width=389;
         int height=77;
-        int x=(thread.getMyGame().getWidth()-width)/2;
-        int y=(thread.getMyGame().getHeight()-height-30);
+        int x=(thread.getMyGame().getDisplayer().getWidth()-width)/2;
+        int y=(thread.getMyGame().getDisplayer().getHeight()-height-30);
 
-        g.drawImage(img,x,y,width,height,thread.getMyGame());
+        g.drawImage(img,x,y,width,height,thread.getMyGame().getDisplayer());
 
         g.drawString(message, x+20, y+20);
         if(ask){

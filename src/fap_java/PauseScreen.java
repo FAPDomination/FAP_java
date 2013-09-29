@@ -79,7 +79,7 @@ public class PauseScreen extends Element{
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
         //TODO better background
-        g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+        g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getDisplayer().getWidth(),game.getDisplayer().getHeight(), game.getDisplayer());
         this.computeButtons();
         if(!resuming){
             // Draw buttons
@@ -89,10 +89,10 @@ public class PauseScreen extends Element{
             if(displayVictory){
                 int width = 528;
                 int height = 444;
-                int x =(game.getWidth()-width)/2;
-                int y =(game.getHeight()-height)/2;
+                int x =(game.getDisplayer().getWidth()-width)/2;
+                int y =(game.getDisplayer().getHeight()-height)/2;
                 //TODO replace w/h with relative
-                g.drawImage(Graph.guimg.get("victoryScreen"), x, y,width,height, game);
+                g.drawImage(Graph.guimg.get("victoryScreen"), x, y,width,height, game.getDisplayer());
                 
                 Graphics2D g2d = (Graphics2D)g;
                 FontMetrics fm = g2d.getFontMetrics();
@@ -163,8 +163,8 @@ public class PauseScreen extends Element{
     
     private void resumeGame() {
        game.pauseGame();
-       game.releaseFocus();
-       game.initFocus();
+       game.getDisplayer().releaseFocus();
+       game.getDisplayer().initFocus();
     }
     
     private void gotoMainMenu(){
@@ -176,20 +176,20 @@ public class PauseScreen extends Element{
     
     private void gotoWorldMap(){
         TheFrame frame = (TheFrame)Fapplication.getFrame();
-        Game panel = Fapplication.getWorldMap();
+        Game newgame = Fapplication.getWorldMap();
         Fapplication.getWorldMap().pauseGame(true);
-        frame.changePanel(panel);
+        frame.changePanel(newgame.getDisplayer());
     }
     
     private void computeButtons(){
-        int offX = (int)(game.getWidth() - 0.1*Constants.buttonSize.getWidth());
-        int offY = (int)(game.getHeight()- 1.3*Constants.buttonSize.getHeight());
+        int offX = (int)(game.getDisplayer().getWidth() - 0.1*Constants.buttonSize.getWidth());
+        int offY = (int)(game.getDisplayer().getHeight()- 1.3*Constants.buttonSize.getHeight());
 
         int incrementX = (int)(1.2*Constants.buttonSize.getWidth());
         //Remove button
-        game.remove(this.btnMainMenu);
-        game.remove(this.btnResume);
-        game.remove(this.btnWorldMap);
+        game.getDisplayer().remove(this.btnMainMenu);
+        game.getDisplayer().remove(this.btnResume);
+        game.getDisplayer().remove(this.btnWorldMap);
         if(!resuming){
             int nbuttons=1;     // for gotoMainMenu
             if(this.advMode && game.getMap().getFileID() != 0){
@@ -205,17 +205,17 @@ public class PauseScreen extends Element{
             if(!this.displayVictory){
                 btnResume.setLocation(offX-(i+1)*incrementX, offY);
                 i++;
-                game.add(btnResume);
+                game.getDisplayer().add(btnResume);
             }
             //World map
             if(this.advMode && game.getMap().getFileID() != 0){
                 btnWorldMap.setLocation(offX-(i+1)*incrementX, offY);
                 i++;
-                game.add(btnWorldMap);
+                game.getDisplayer().add(btnWorldMap);
             }
             // MainMenu
             btnMainMenu.setLocation(offX-(i+1)*incrementX, offY);
-            game.add(btnMainMenu);
+            game.getDisplayer().add(btnMainMenu);
             i++;
         }
         

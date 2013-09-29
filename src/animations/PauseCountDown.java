@@ -35,7 +35,7 @@ public class PauseCountDown extends Animation {
     public void executeAnimation(){
         super.executeAnimation();
         // The only animation that forces the game to repaint
-        thread.getMyGame().repaint();
+        thread.getMyGame().getDisplayer().repaint();
     }
 
     public void endAnimation() {

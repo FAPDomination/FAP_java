@@ -119,7 +119,7 @@ public class TheThread implements Runnable{
                 }
             }
         }
-        myGame.repaint();
+        myGame.getDisplayer().repaint();
         if(full){
             // commands to refresh healthPoints
             myGame.refreshHealthPoints();

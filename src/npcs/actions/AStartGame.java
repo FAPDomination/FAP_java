@@ -22,7 +22,7 @@ public class AStartGame implements Action {
         TheFrame frame = (TheFrame)Fapplication.getFrame();
         JPanel panel = null;
         if(gameToLaunch.getAdv() == 2){
-            panel = gameToLaunch;
+            panel = gameToLaunch.getDisplayer();
             //gameToLaunch.getThread().setRunning(true);
             if(!gameToLaunch.getThread().getRunning()){
                 gameToLaunch.pauseGame(true);
@@ -30,7 +30,7 @@ public class AStartGame implements Action {
             gameToLaunch.setPauseNPC(false);
         }
         else{
-            panel = new CharacterSelection(frame,Fapplication.getWorldMap(),gameToLaunch);
+            panel = new CharacterSelection(frame,Fapplication.getWorldMap().getDisplayer(),gameToLaunch);
         }
         frame.changePanel(panel);
        // if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){

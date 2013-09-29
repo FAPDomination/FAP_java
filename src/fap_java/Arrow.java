@@ -88,8 +88,8 @@ public class Arrow extends Element {
         } else {
             int bound = 10;
             //System.out.println(game.getWidth());
-            if (this.x < -bound || this.x > game.getWidth() + bound || this.y < -bound ||
-                this.y > game.getHeight() + bound) {
+            if (this.x < -bound || this.x > game.getDisplayer().getWidth() + bound || this.y < -bound ||
+                this.y > game.getDisplayer().getHeight() + bound) {
                 this.destroy();
             }
         }
