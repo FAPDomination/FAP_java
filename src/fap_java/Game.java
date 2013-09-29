@@ -481,7 +481,7 @@ public class Game {
         // If running, pause
         if(thread.getRunning()){
             thread.setRunning(false);
-            //this.repaint();
+            displayer.repaint();
             // Display pause
             if(!isNPC){
             PauseScreen ps = new PauseScreen(false, this);
@@ -578,7 +578,7 @@ public class Game {
             }
             //new AStartGame(Fapplication.getWorldMap()).execute(null);
         }
-        //this.repaint();
+        displayer.repaint();
     }
     
     /**
