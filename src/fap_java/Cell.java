@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
 public class Cell extends Element {
@@ -138,8 +140,13 @@ public class Cell extends Element {
      * @param g
      */
     public void paintComponent(Graphics g) {
-        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
+        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
+        int x = thisTilePosition[0];
+        int y = thisTilePosition[1];
+        
+        // Game paint factor
+        double paintFactorW = Graph.facW;
+        double paintFactorH = Graph.facH;
 
         int width;
         int height;
@@ -149,16 +156,17 @@ public class Cell extends Element {
         //test if needed
         ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
         if(surrounding.get(3) == null || surrounding.get(4) == null){
+            BufferedImage dirtImage = Graph.cells.get(0);
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
-            width = (int)(Graph.cells.get(0).getWidth(game) * Graph.facW);
-            height = (int)(Graph.cells.get(0).getHeight(game) * Graph.facH);
+            width = (int)(dirtImage.getWidth(game) * paintFactorW);
+            height = (int)(dirtImage.getHeight(game) * paintFactorH);
 
-            g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game);
+            g.drawImage(dirtImage, x + offX, y + offY, width, height, game);
         }
         // Paint did
-        width = (int)(this.img.getWidth(game) * Graph.facW);
-        height = (int)(this.img.getHeight(game) * Graph.facH);
+        width = (int)(this.img.getWidth(game) * paintFactorW);
+        height = (int)(this.img.getHeight(game) * paintFactorH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
@@ -169,8 +177,8 @@ public class Cell extends Element {
         //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
             int minerSlectID = 13;
-            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * Graph.facW);
-            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * Graph.facH);
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * paintFactorW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * paintFactorH);
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
@@ -393,25 +401,22 @@ public class Cell extends Element {
      * @param type
      */
     public void setType(int type) {
+        
+        this.type = type;
+        
         //Blocking high
         if (type == 20) {
-            this.type = 20;
             walkable = false;
             this.height = true;
         }
         //Blocking low
         else if (type == 19) {
-            this.type = 19;
             //this.type = 1;
             walkable = false;
         }
         //Countdown cell
         else if (type == 2) {
-            this.type = type;
             hp = Integer.parseInt(addParam);
-        }
-        else {
-            this.type = type;
         }
         
         if(type != 20 && type != 19){
