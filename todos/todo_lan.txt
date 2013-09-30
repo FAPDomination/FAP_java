@@ -17,7 +17,8 @@
 		Select map
 		Validate button
 			Generate game
-			Activate boolean for clients
+				Carefull with teams. Once again
+X			Activate boolean for clients
 			8seconds pause before starting
 	General
 		Draw Map
@@ -31,5 +32,11 @@
 	List all possible messages
   TCP Client
 	Class
+		attributes
+			player ID (will be used by KListener and others)
+			Server
 	Send messages
 	List all possible messages
+  KeyListener
+	Cut link with game
+	Send messages
