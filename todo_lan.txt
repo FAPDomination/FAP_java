@@ -1,0 +1,35 @@
+  Lan Panel :
+	List all servers
+		List of threads
+		Join button
+			Block access if too much players
+		List players currently in
+	Refresh Button
+	Host button
+  The Room
+	Chat ?
+	Joiner
+		Choose team
+		Choose character
+	Host
+		Start TCPserver
+		Add/Remove AI
+		Select map
+		Validate button
+			Generate game
+			Activate boolean for clients
+			8seconds pause before starting
+	General
+		Draw Map
+		Be able to generate, add and update players
+		Special repaint : cells under the player take team color
+		Disable conquest
+		AI not moving around
+  TCP Server
+	Class
+	Handle messages
+	List all possible messages
+  TCP Client
+	Class
+	Send messages
+	List all possible messages

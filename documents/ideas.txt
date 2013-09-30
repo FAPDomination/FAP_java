@@ -49,3 +49,20 @@ Il faut reprendre ce principe.
 Ou alors, on pourrait aussi avoir un contour sur toute la zone conquérie (toutes cellules) mais seulement sur la bordure (en gros, les frontières de notre royaume).
 ça serait plus logique en terme de vision de quoi est conquéri ou pas, et moins lourd puisqu'on n'aurait pas chaque cellule en vers mais seulement les bordures
 Idées d'algo : pour chaque cellule conquérie, pour chaque arrête, checker si la cellule voisine est conquérie aussi, et si non, peindre l'arrête
+
+------ FAPLan. Parce qu'à plusieurs, c'est mieux que tout seul
+
+When clicking on Host OR Join :
+Arriving into the Room. The room is a small simple map where all players are initialized and can see who is here, what character they chose, move waiting for the validation, etc.
+Joiner and host : the center of the room is a small map, on the left there's a menu bar where you can choose your team and you character.
+Host only : can add/remove AIs. Can choose the map. When arriving, starts a TCPserver. When validating, starts a game.
+Joiner : constantly asks if the game has started. If yes, proceed to didplay panel
+
+Possibilité #1 :
+Faire une classe fille de Game (qui serait du coup acceptée par le displayer) dont les accesseurs enverraient un message serveur et retourneraient leurs stream.in !
+Avantage : c'est facile et rapide
+Inconvénient (?) : ça multiplie les messages et fait plein de petits appel tous en même temps (get de la map, get des joueurs, get de ... en même temps car dans le paintCompo) au lieu de un gros. A tester
+Inconvénient : les game.getDisplayer. Solution : est-il possible de faire une sorte de g.getSource ?
+
+Possibilité #2 :
+laisser un attribut game à Displayer, et une classe client qui l'update en permanence.
