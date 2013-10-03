@@ -4,11 +4,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import npcs.actions.*;
 
-public class NPC extends Human {
+public class NPC extends Human implements Serializable{
 
     private Cell position;
     private boolean walkable;

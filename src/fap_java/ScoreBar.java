@@ -3,9 +3,11 @@ package fap_java;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class ScoreBar {
+public class ScoreBar implements Serializable{
     
     private int totalTakable;
     private Game game;

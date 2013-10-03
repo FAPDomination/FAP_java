@@ -5,7 +5,9 @@ import fap_java.TheThread;
 
 import java.awt.Graphics;
 
-public abstract class Animation {
+import java.io.Serializable;
+
+public abstract class Animation implements Serializable{
     
     protected int x;
     protected int y;

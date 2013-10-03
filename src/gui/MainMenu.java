@@ -131,6 +131,7 @@ public class MainMenu extends FAPanel implements AnimPanel{
         //TODO cutscene ? Or just force the starting of the first adventure map ?
         //----
         nextPanel = game.getDisplayer();
+        nextPanel = new HardCodePanel(this.parent, this);
         this.startSliding(true);
     }
     

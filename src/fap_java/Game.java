@@ -20,6 +20,8 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -33,7 +35,7 @@ import npcs.NPCWMStarting;
 
 import npcs.actions.*;
 
-public class Game {
+public class Game implements Serializable{
 
     /**
      * The map of this Game. Contains a grid of cells and a set of methods to play with them
@@ -202,7 +204,7 @@ public class Game {
      * @param nmap The number of the file the map is in
      */
     public void initGame(int nmap){
-        this.displayer = new Displayer(this);
+        this.displayer = new Displayer(this,false);
         this.listNPCs = new ArrayList<NPC>();
         // Parse the map
         map = new CMap(this,nmap);

@@ -13,17 +13,21 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import java.io.Serializable;
+
 import javax.swing.JPanel;
 
-public class Displayer extends JPanel implements NeedingFocus {
+public class Displayer extends JPanel implements NeedingFocus,Serializable {
     private Game game;
+    private boolean lanMode;
     /**
      * The Key Listener that will handle player displacements and pause
      */
     private transient KListener kl;
     
-    public Displayer(Game game) {
+    public Displayer(Game game, boolean lanMode) {
         super();
+        this.lanMode = lanMode;
         // Panel related stuff 
         this.setLayout(null);
         this.setBackground(Color.white);
@@ -110,15 +114,20 @@ public class Displayer extends JPanel implements NeedingFocus {
      * Request the focus so that the K listener works
      */
     public void initFocus() {
-        initKListener();
+        if(!lanMode){
+            game.initListNPCs(game.getMap().getFileID());
+            initKListener(); 
+        }
+        else{}
         this.setFocusable(true);
-        game.initListNPCs(game.getMap().getFileID());
         requestFocus();
     }
     
     public void releaseFocus(){
+        if(!lanMode){
         deleteKListener();
         game.getThread().setRunning(false);
+        }
         this.setFocusable(false);
     }
 

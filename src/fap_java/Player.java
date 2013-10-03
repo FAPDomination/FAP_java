@@ -8,13 +8,15 @@ import characters.Booster;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import npcs.actions.AAsk;
 
-public abstract class Player extends Human {
+public abstract class Player extends Human implements Serializable{
 
     /**
      * The ID number of the player. Not that it is not avoidable, but it's better to have one

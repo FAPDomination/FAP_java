@@ -6,9 +6,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Cell extends Element {
+public class Cell extends Element implements Serializable{
     /**
      * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
      */

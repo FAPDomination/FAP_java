@@ -2,7 +2,9 @@ package fap_java;
 
 import java.awt.Graphics;
 
-public abstract class Element {
+import java.io.Serializable;
+
+public abstract class Element implements Serializable{
     private int i;
     private int j;
 

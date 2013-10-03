@@ -2,11 +2,13 @@ package fap_java;
 
 import java.awt.Graphics;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CMap {
+public class CMap implements Serializable{
     /**
      * A factor that multiplies the sizes of EEEEEEEverything
      */

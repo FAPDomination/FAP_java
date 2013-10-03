@@ -1,5 +1,7 @@
 package fap_java;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 /**
@@ -9,7 +11,7 @@ import java.util.ArrayList;
  * It is running constantly except if someone pauses the game.
  * @see Game
  */
-public class TheThread implements Runnable{
+public class TheThread implements Runnable,Serializable{
     
     /**
      * The game where all is played

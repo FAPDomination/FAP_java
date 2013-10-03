@@ -1,9 +1,12 @@
 package fap_java;
 
 import java.awt.Color;
+
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Serializable{
     /**
      * Stores the players who play in this team
      */

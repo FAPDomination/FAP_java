@@ -15,9 +15,11 @@ import java.io.File;
 
 import java.io.IOException;
 
+import java.io.Serializable;
+
 import javax.imageio.ImageIO;
 
-public class PauseCountDown extends Animation {
+public class PauseCountDown extends Animation implements Serializable{
     BufferedImage bufferedImage;
     public PauseCountDown(int x, int y, int duration,TheThread thread) {
         super(x,y,duration, thread);
