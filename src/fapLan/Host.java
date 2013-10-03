@@ -4,8 +4,12 @@ import fap_java.Game;
 
 import fap_java.Params;
 
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
 
 public class Host implements Runnable {
     private Game game;
@@ -17,11 +21,13 @@ public class Host implements Runnable {
 
     public void run() {
         try{
-            ServerSocket serveur = new ServerSocket(Params.port);
+            ServerSocketChannel ssChannel = ServerSocketChannel.open();
             System.out.println("Serveur lancé");
+            ssChannel.configureBlocking(true);
+            ssChannel.socket().bind(new InetSocketAddress(Params.port));
             while(true){
-                Socket client = serveur.accept();
-                GameServer t = new GameServer(client,this);
+                SocketChannel sChannel = ssChannel.accept();
+                GameServer t = new GameServer(sChannel,this);
                 t.start();
             }
         }

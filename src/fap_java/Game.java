@@ -40,24 +40,24 @@ public class Game implements Serializable{
     /**
      * The map of this Game. Contains a grid of cells and a set of methods to play with them
      */
-    private transient CMap map;
+    private CMap map;
     /**
      * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
      */
-    private transient TheThread thread;
+    private TheThread thread;
     /**
      * This contains all the player of this game. See also fap_java.Player
      */
-    private transient ArrayList<Player> players = new ArrayList<Player>();
+    private ArrayList<Player> players = new ArrayList<Player>();
     
     /**
      * The scorebars manager
      */
-    private transient ScoreBar scoreHandler;
+    private ScoreBar scoreHandler;
     /**
      * Contains every team of the game
      */
-    private transient ArrayList<Team> teams = new ArrayList<Team>();
+    private ArrayList<Team> teams = new ArrayList<Team>();
     
     /**
      * How much points does it take to win the game

@@ -19,25 +19,25 @@ import javax.imageio.ImageIO;
 public class Graph {
 
     // used for loading files in this resource class : do "load.getResource(relative path from 'resources')".
-    public static final ClassLoader load = Graph.class.getClassLoader();
+    public transient static final ClassLoader load = Graph.class.getClassLoader();
 
     /* ******************************************************
      * ********************* IMAGES *************************
      * *****************************************************/
 
     // Cells images
-    protected static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
-    protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
-    protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
-    protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
+    protected transient static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
+    protected transient static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
+    protected transient static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
+    protected transient static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
 
     // Important factors for drawing cells
-    protected static double facW = CMap.TW / ((double)(97 - 20));
-    protected static double facH = CMap.TH / ((double)(73 - 36));
+    protected transient static double facW = CMap.TW / ((double)(97 - 20));
+    protected transient static double facH = CMap.TH / ((double)(73 - 36));
     // key : String, the name of the cell
     // entry : the cell image
 
-    protected static Image basicCellImage;
+    protected transient static Image basicCellImage;
 
     public Graph() {
     }

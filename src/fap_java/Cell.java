@@ -18,7 +18,7 @@ public class Cell extends Element implements Serializable{
     /**
      * The image that will be painted as a representation of the cell
      */
-    private Image img;
+    private transient Image img;
     /**
      * The Type of the cell.
      * Several types exist :
@@ -159,12 +159,12 @@ public class Cell extends Element implements Serializable{
             g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game.getDisplayer());
         }
         // Paint did
-        width = (int)(this.img.getWidth(game.getDisplayer()) * Graph.facW);
-        height = (int)(this.img.getHeight(game.getDisplayer()) * Graph.facH);
+        width = (int)(Graph.cells.get(did).getWidth(game.getDisplayer()) * Graph.facW);
+        height = (int)(Graph.cells.get(did).getHeight(game.getDisplayer()) * Graph.facH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
-        g.drawImage(this.img, x + offX, y + offY, width, height, game.getDisplayer());
+        g.drawImage(Graph.cells.get(did), x + offX, y + offY, width, height, game.getDisplayer());
         
         
         // Special case if the miner is currently selecting the cell

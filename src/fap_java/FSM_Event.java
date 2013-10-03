@@ -1,6 +1,8 @@
 package fap_java;
 
-public class FSM_Event {
+import java.io.Serializable;
+
+public class FSM_Event implements Serializable{
     private int value;
     /**
      * Creates a new event that the FSM could encounter

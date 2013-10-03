@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 public class AnimWarp extends Animation {
     private int[] ys;
     private int miny = -15;
-    private BufferedImage img;
+    private transient BufferedImage img;
     private int offX = 1;
     private int offY = 4;
     

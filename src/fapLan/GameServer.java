@@ -7,10 +7,12 @@ import java.io.PrintStream;
 
 import java.net.Socket;
 
+import java.nio.channels.SocketChannel;
+
 public class GameServer extends Thread {
-    private Socket socket;
+    private SocketChannel  socket;
     private Host host;
-    public GameServer(Socket s, Host host){
+    public GameServer(SocketChannel s, Host host){
         socket = s;
         this.host = host;
     }
@@ -24,10 +26,10 @@ public class GameServer extends Thread {
             String message = "";
             //System.out.println("Message de "+socket.getInetAddress());
             // In c'est ce qui arrive du client
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.socket().getInputStream()));
             // out c'est ce que je lui renvoie
             //PrintStream out = new PrintStream(socket.getOutputStream());
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            ObjectOutputStream out = new ObjectOutputStream(socket.socket().getOutputStream());
             message = in.readLine();
             // Teste le type de message
             if(message!=null){

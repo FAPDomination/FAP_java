@@ -84,7 +84,7 @@ public abstract class Player extends Human implements Serializable{
     /**
      * The game where the player is playin'
      */
-    private Game game;
+    private transient Game game;
 
     /**
      * The color of the player

@@ -1,9 +1,11 @@
 package fap_java;
 
+import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class FSM_State {
+public class FSM_State implements Serializable{
     
     private int value;
     private Map<FSM_Event, FSM_State> transitionTable = new HashMap<FSM_Event, FSM_State>();

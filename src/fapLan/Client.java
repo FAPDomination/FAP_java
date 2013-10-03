@@ -11,13 +11,17 @@ import gui.TheFrame;
 import java.awt.BorderLayout;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 
 import java.net.InetAddress;
 
+import java.net.InetSocketAddress;
 import java.net.Socket;
+
+import java.nio.channels.SocketChannel;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,18 +46,19 @@ public class Client {
         timer.schedule(new TimerTask() {
                 public void run() {
                     try {
-                        System.out.println(send("g"));
                         game = askForGame();
                         if (game != null) {
                             game.setDisplayer(Client.disp);
                             Client.disp.setGame(game);
+                            Client.disp.repaint();
                         }
                         if(!init){
                             Client.parent.changePanel(Client.disp, BorderLayout.CENTER);
                             init = true;
                         }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } 
+                    catch (Exception e) {
+                        System.out.println("Perdu un message (et le jeu)");
                         return;
                     }
                 }
@@ -87,21 +92,23 @@ public class Client {
 
     public Game askForGame() {
         // Envoie la string via protocole TCP
-        Socket socket;
+        SocketChannel sChannel;
         try {
+            sChannel = SocketChannel.open();
+            sChannel.configureBlocking(true);
             // Adresse serveur
             //= InetAddress.getByName("192.168.0.13");
             //serveur = InetAddress.getByName("192.168.0.13");
 
             //serveur = InetAddress.getLocalHost();
             // Crée la connexion
-            socket = new Socket(serveur, Params.port);
+            sChannel.connect(new InetSocketAddress(serveur, Params.port));
             // in c'est ce qui revient du serveur après
             //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             // out c'est ce que je lui envoie
-            PrintStream out = new PrintStream(socket.getOutputStream());
+            PrintStream out = new PrintStream(sChannel.socket().getOutputStream());
             out.println("g");
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream in = new ObjectInputStream(sChannel.socket().getInputStream());
             Game ga = (Game)in.readObject();
             return ga;
             //System.out.println(in.readLine());

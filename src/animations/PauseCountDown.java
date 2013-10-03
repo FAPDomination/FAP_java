@@ -20,7 +20,7 @@ import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 public class PauseCountDown extends Animation implements Serializable{
-    BufferedImage bufferedImage;
+    transient BufferedImage bufferedImage;
     public PauseCountDown(int x, int y, int duration,TheThread thread) {
         super(x,y,duration, thread);
     }

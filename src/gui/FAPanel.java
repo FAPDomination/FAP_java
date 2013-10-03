@@ -21,8 +21,8 @@ public abstract class FAPanel extends JPanel {
     protected TheFrame parent;
     protected JPanel prevPanel;
     // Images
-    protected BufferedImage sword;
-    protected BufferedImage clouds;
+    protected transient BufferedImage sword;
+    protected transient BufferedImage clouds;
     // Locations
     protected double swordX;
     protected double cloudsX;

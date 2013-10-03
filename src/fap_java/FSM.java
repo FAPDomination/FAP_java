@@ -2,6 +2,8 @@ package fap_java;
 
 import characters.Miner;
 
+import java.io.Serializable;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -13,7 +15,7 @@ import java.util.Set;
 
 import pathFinder.pathFinder;
 
-public class FSM {
+public class FSM implements Serializable{
 
     private FSM_State currentState;
     private FSM_State prevState;
