@@ -55,7 +55,7 @@ public class Client {
         //System.out.println(send("a"));
 
         timer = new Timer();
-        int time = 300;
+        int time = Params.lanDelay;
         // Ce timer récupère les données constamment
         timer.schedule(new TimerTask() {
                 public void run() {

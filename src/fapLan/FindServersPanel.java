@@ -112,7 +112,7 @@ public class FindServersPanel extends FAPanel {
         }
         Client ci = new Client(srv, parent, h);
 
-        game.pauseGame();
+        game.pauseGame(true);
     }
 
     public void askServer(String address) {

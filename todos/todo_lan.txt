@@ -11,7 +11,11 @@ V	Host button
 	Chat ?
 	Joiner
 		Choose team
+			send update
+			refresh team list
 		Choose character
+V			send update
+			forbid same char in a team
 	Host
 V		Start TCPserver
 		Add/Remove AI
@@ -32,7 +36,7 @@ V		Draw Map
 				If count > max, send -1 and bring them back to selectPanel
 				Game has started
 			Update Team
-			Update Char
+V			Update Char
 		Special repaint : cells under the player take team color
 V		Disable conquest
 		AI not moving around

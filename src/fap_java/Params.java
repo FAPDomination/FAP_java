@@ -235,4 +235,6 @@ public class Params {
     public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
     
     public final static int port = 9632;
+    
+    public final static int lanDelay = 100;
 }

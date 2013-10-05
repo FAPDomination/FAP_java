@@ -67,8 +67,15 @@ public class GameServer extends Thread {
                     int pid = Integer.parseInt(""+message.charAt(1));
                     int keyID = Integer.parseInt(""+message.charAt(2));
                     int pressed = Integer.parseInt(""+message.charAt(3));
-                    int[][] keys = host.getGame().getPlayers().get(pid).getKeys();
-                    keys[keyID][1] = pressed;
+                    //System.out.println(keyID);
+                    if(pressed == 1){
+                        host.getGame().getPlayers().get(pid).keyHigh(keyID);
+                    }
+                    else{
+                        host.getGame().getPlayers().get(pid).keyLow(keyID);
+                    }
+                    //int[][] keys = host.getGame().getPlayers().get(pid).getKeys();
+                    //keys[keyID][1] = pressed;
                 }
                 else if(message.charAt(0) == 's'){
                     //System.out.println("Asked if I was a server");
@@ -78,6 +85,25 @@ public class GameServer extends Thread {
                 else if(message.charAt(0)=='h'){
                     out = new PrintStream(socket.socket().getOutputStream());
                     ((PrintStream)out).println(host.getGame().getPlayers().size());
+                }
+                else if(message.charAt(0)=='u'){
+                    //System.out.println(message);
+                    int pid = Integer.parseInt(""+message.charAt(1));
+                    int type = Integer.parseInt(""+message.charAt(2));
+                    int value = Integer.parseInt(""+message.charAt(3));
+                    if(type == 0){
+                        // Man that's fucked up
+                    }
+                    else{
+                        //host.getGame().getPlayers()
+                        Player p = host.getGame().getPlayers().get(pid);
+                        int ai = 0;
+                        if(p.getFsm() != null){
+                            ai = p.getFsm().getLevel();
+                        }
+                        Player q = host.getGame().generatePlayer(value, pid, p.getCurrent(), p.getTeam(), ai, 0, host.getGame());
+                        host.getGame().getPlayers().set(pid, q);
+                    }
                 }
             }
             if(out != null){
@@ -90,6 +116,7 @@ public class GameServer extends Thread {
         }
         catch(Exception e){
             System.out.println("Exception in GameServer.java : "+e.toString());
+            e.printStackTrace();
         }
         
     }

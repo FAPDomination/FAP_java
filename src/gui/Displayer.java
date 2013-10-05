@@ -12,6 +12,8 @@ import fap_java.Game;
 
 import fap_java.KListener;
 
+import fap_java.Params;
+
 import java.awt.Color;
 
 import java.awt.GradientPaint;
@@ -25,6 +27,7 @@ import java.awt.event.KeyListener;
 import java.io.Serializable;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class Displayer extends JPanel implements NeedingFocus,Serializable {
@@ -33,9 +36,16 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
     private Client client;
     private Host host;
     
+    // Waiting Room Lan Stuff
+    // Host stuff
     private JButton btnStart = new JButton();
     private int nMap = 5;
     private int victScore = 4000;
+    // Client Stuff
+    private JComboBox jcSkill = new JComboBox();
+    private JComboBox jcTeam = new JComboBox();
+    private String[] listSkills = {"Guerrier","Mineur","Enchanteur","Archer", "Vampire", "Magicien","Booster"};
+    private int[] listPCs = {1,3,4,5,6,8,9};
     
     /**
      * The Key Listener that will handle player displacements and pause
@@ -53,8 +63,9 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         
         this.host = host;
         if(lanMode){
+            
             if(host != null){
-                System.out.println("I am da host!");
+                //System.out.println("I am da host!");
                 
                 btnStart.setText("Start");
                 btnStart.setSize(120, 40);
@@ -66,9 +77,26 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
                     }
                 });
             }
-            else{
-                System.out.println("Me not da host :'(");
+            //Init client stuff
+            jcSkill = new JComboBox(this.listSkills);
+            for(int i=0;i<Params.maxPlayers;i++){
+                jcTeam.addItem("Team "+(i+1));
             }
+            
+            jcSkill.setSize(120, 40);
+            jcSkill.setLocation(20, 100);
+            
+            jcTeam.setSize(120, 40);
+            jcTeam.setLocation(20, 160);
+            
+            this.add(jcSkill);
+            this.add(jcTeam);
+            
+            jcSkill.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    jcSkillPerformed(e);
+                }
+            });
         }
         this.game = game;
     }
@@ -79,10 +107,12 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
     
     public void exitWaitingRoom(){
         this.remove(btnStart);
+        this.remove(jcSkill);
+        this.remove(jcTeam);
         game.pauseGame();
         game = new Game(game,nMap,victScore);
         //game.getThread().setLanMode(true);
-
+        this.reInitFocus();
         game.pauseGame();
         host.setGame(game);
         
@@ -189,6 +219,11 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         deleteKListener();
         this.setFocusable(false);
     }
+    
+    public void reInitFocus(){
+        this.releaseFocus();
+        this.initFocus();
+    }
 
     public void setGame(Game game) {
         this.game = game;
@@ -212,5 +247,10 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
 
     public Client getClient() {
         return client;
+    }
+    
+    public void jcSkillPerformed(ActionEvent e){
+        int pc = this.listPCs[jcSkill.getSelectedIndex()];
+        this.client.send("u"+client.getPlayerID()+(""+1)+""+pc);
     }
 }
