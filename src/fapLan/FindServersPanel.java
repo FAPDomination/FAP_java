@@ -149,8 +149,9 @@ public class FindServersPanel extends FAPanel {
         for(int i=0;i<servers.size();i++){
             JButton jb = new JButton();
             InetAddress srv = servers.get(i);
+            int pCount = Integer.parseInt(Client.sendS("h", srv));
             jb.setSize(150, 35);
-            jb.setText(srv.getHostAddress());
+            jb.setText(srv.getHostAddress()+" ("+pCount+")");
             jb.setLocation(50, 150+i*40);
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {

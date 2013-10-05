@@ -106,6 +106,22 @@ public class Client {
         }
         return "error";
     }
+    
+    public static String sendS(String message, InetAddress serveur){
+        Socket socket;
+        try {
+            socket = new Socket(serveur, Params.port);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintStream out = new PrintStream(socket.getOutputStream());
+            out.println(message);
+
+            return in.readLine();
+            //System.out.println(in.readLine());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "error";
+    }
 
     public Game askForGame() {
         // Envoie la string via protocole TCP

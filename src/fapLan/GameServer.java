@@ -75,6 +75,10 @@ public class GameServer extends Thread {
                     out = new PrintStream(socket.socket().getOutputStream());
                     ((PrintStream)out).print(true);
                 }
+                else if(message.charAt(0)=='h'){
+                    out = new PrintStream(socket.socket().getOutputStream());
+                    ((PrintStream)out).println(host.getGame().getPlayers().size());
+                }
             }
             if(out != null){
                 out.close();
