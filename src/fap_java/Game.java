@@ -636,7 +636,7 @@ public class Game implements Serializable{
      * @param pid the id of the player to be placed
      * @return the start Cell for this player
      */
-    private Cell getStartCell(int pid){
+    public Cell getStartCell(int pid){
         ArrayList<Cell> startCellsAL = map.getStartCells();
         Cell c;
         // If the start cells are randomly mixed

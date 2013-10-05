@@ -34,12 +34,17 @@ public class Client {
     private Game game;
     private boolean init = false;
     protected static TheFrame parent;
+    
+    private int playerID;
 
     public Client(Displayer disp, InetAddress serv, TheFrame parent) {
         super();
         this.serveur = serv;
         this.disp = disp;
         this.parent = parent;
+
+        playerID = Integer.parseInt(send("a"));
+        //System.out.println(send("a"));
 
         timer = new Timer();
         int time = 500;

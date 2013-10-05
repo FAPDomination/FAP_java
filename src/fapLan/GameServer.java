@@ -1,14 +1,22 @@
 package fapLan;
 
+import fap_java.Cell;
+import fap_java.Player;
+
+import fap_java.Team;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.InvalidClassException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 
 import java.net.Socket;
 
 import java.nio.channels.SocketChannel;
+
+import java.util.ArrayList;
 
 public class GameServer extends Thread {
     private SocketChannel  socket;
@@ -30,17 +38,34 @@ public class GameServer extends Thread {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.socket().getInputStream()));
             // out c'est ce que je lui renvoie
             //PrintStream out = new PrintStream(socket.getOutputStream());
-            ObjectOutputStream out = new ObjectOutputStream(socket.socket().getOutputStream());
+            OutputStream out = null;
             message = in.readLine();
             // Teste le type de message
             if(message!=null){
                 if(message.charAt(0) == 'g'){
-                    out.writeObject(host.getGame());
+                    out = new ObjectOutputStream(socket.socket().getOutputStream());
+                    ((ObjectOutputStream)out).writeObject(host.getGame());
                     //out.close();
                     //out.print(host.getGame());
                 }
+                else if(message.charAt(0) == 'a'){
+                    ArrayList<Player> players = host.getGame().getPlayers();
+                    int charac = 1;
+                    int pid = players.size();
+                    Cell c = host.getGame().getStartCell(pid);
+                    Team team = host.getGame().getTeams().get(0);
+                    int ai = 0;
+                    Player p = host.getGame().generatePlayer(charac, pid, c, team, ai, 0,host.getGame());
+
+                    players.add(p);
+                    
+                    out = new PrintStream(socket.socket().getOutputStream());
+                    ((PrintStream)out).println(pid);
+                }
             }
-            out.close();
+            if(out != null){
+                out.close();
+            }
             socket.close();
         }
         catch (ClassCastException cc){
