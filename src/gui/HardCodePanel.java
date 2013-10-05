@@ -40,7 +40,7 @@ public class HardCodePanel extends FAPanel {
         });
         
         game = new Game("" + 1 + "," + 1, "0,1", "0,1","0,1", false, 5,Params.defaultVictoryScore,0,0,0);
-        //game = new Game(5);
+        game = new Game();
     }
     
     public void startGame(){

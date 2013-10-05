@@ -203,6 +203,13 @@ public class Game implements Serializable{
     }
     
     /**
+     * Initializes a LAN Waiting Room
+     */
+    public Game(){
+        this("0","0","0","0",true,5,0,0,0,2);
+    }
+    
+    /**
      * Init common game-related stuff, such as the map, thread, and pauses the game
      * @param nmap The number of the file the map is in
      */
