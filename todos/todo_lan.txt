@@ -17,8 +17,12 @@ V		Start TCPserver
 		Add/Remove AI
 		Select map
 		Validate button
+			Block if
+				One player
+				Same team
 			Generate game
 				Carefull with teams. Once again
+				Special constructor
 X			Activate boolean for clients
 			5 seconds pause before starting
 	General
@@ -46,5 +50,7 @@ V	Send messages
 V KeyListener
 V	Cut link with game
 V	Send messages
+---------------------------------
   btnLAN in PlayerSelection : position
   Exceptions everywhere
+  Scorebar Display ?

@@ -64,7 +64,7 @@ public class HardCodePanel extends FAPanel {
             srv = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
         }
-        Client ci = new Client(srv,parent);
+        Client ci = new Client(srv,parent, h);
         
         game.pauseGame();
     }

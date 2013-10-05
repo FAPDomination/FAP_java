@@ -5,6 +5,7 @@ import animations.PauseCountDown;
 
 import fapLan.Client;
 
+import fapLan.Host;
 import fapLan.LListener;
 
 import fap_java.Game;
@@ -17,23 +18,31 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
 import java.io.Serializable;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class Displayer extends JPanel implements NeedingFocus,Serializable {
     private Game game;
     private boolean lanMode;
     private Client client;
-    private boolean host;
+    private Host host;
+    
+    private JButton btnStart = new JButton();
+    private int nMap = 5;
+    private int victScore = 4000;
+    
     /**
      * The Key Listener that will handle player displacements and pause
      */
     private transient KeyListener kl;
     
-    public Displayer(Game game, boolean lanMode, Client client, boolean host) {
+    public Displayer(Game game, boolean lanMode, Client client, Host host) {
         super();
         this.lanMode = lanMode;
         this.client = client;
@@ -44,8 +53,18 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         
         this.host = host;
         if(lanMode){
-            if(host){
+            if(host != null){
                 System.out.println("I am da host!");
+                
+                btnStart.setText("Start");
+                btnStart.setSize(120, 40);
+                btnStart.setLocation(this.getWidth()-30-btnStart.getWidth(), 20);
+                this.add(btnStart);
+                btnStart.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        exitWaitingRoom();
+                    }
+                });
             }
             else{
                 System.out.println("Me not da host :'(");
@@ -55,7 +74,18 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
     }
     
     public Displayer(Game game){
-        this(game,false,null,false);
+        this(game,false,null,null);
+    }
+    
+    public void exitWaitingRoom(){
+        this.remove(btnStart);
+        game.pauseGame();
+        game = new Game(game,nMap,victScore);
+        //game.getThread().setLanMode(true);
+
+        game.pauseGame();
+        host.setGame(game);
+        
     }
     
     /**

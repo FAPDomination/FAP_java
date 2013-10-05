@@ -39,17 +39,10 @@ public class Client {
     
     private int playerID;
 
-    public Client(InetAddress serv, TheFrame parent) {
+    public Client(InetAddress serv, TheFrame parent, Host host) {
         super();
         this.serveur = serv;
-        boolean host = false;
-        try {
-            if(serveur.getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())){
-            host = true;
-        }
-        } catch (UnknownHostException e) {
-            System.out.println("UnknownHostException in Client.java");
-        }
+
         this.disp = new Displayer(null,true,this,host);
         this.parent = parent;
 

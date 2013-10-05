@@ -211,6 +211,48 @@ public class Game implements Serializable{
     }
     
     /**
+     * Initializes a game based on the waiting room, and the new map to load
+     * @param game
+     * @param nMap
+     */
+    public Game(Game game, int nMap, int victScore){
+
+        this.victScore = victScore;
+        this.victTile = 0;
+        this.victTime = 0;
+        initGame(nMap);
+        this.randStart = true;
+        this.adv = 0;
+        
+        players = new ArrayList<Player>();
+        //teams = (ArrayList<Team>)game.getTeams().clone();
+        teams = new ArrayList<Team>();
+        displayer = game.getDisplayer();
+        
+        for(int i=0;i<game.getTeams().size();i++){
+            teams.add(new Team());
+        }
+        
+        for(int i=0;i<game.getPlayers().size();i++){
+            Player p = game.getPlayers().get(i);
+            int ai = 0;
+            if(p.getFsm() != null){
+                ai = p.getFsm().getLevel();
+            }
+            Team t = teams.get(game.getTeams().indexOf(p.getTeam()));
+            Player q = this.generatePlayer(p.getPc(), p.getId(), this.getStartCell(p.getId()), t, ai, 0, this);
+            players.add(q);
+        }
+        //displayer.setGame(this);
+        
+        //TODO place player
+        
+        scoreHandler = new ScoreBar(this);
+        
+        displayer.repaint();
+    }
+    
+    /**
      * Init common game-related stuff, such as the map, thread, and pauses the game
      * @param nmap The number of the file the map is in
      */

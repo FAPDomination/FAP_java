@@ -110,7 +110,7 @@ public class FindServersPanel extends FAPanel {
         } catch (UnknownHostException e) {
             System.out.println("This host doesn't exist ! (FindServersPanel.host())");
         }
-        Client ci = new Client(srv, parent);
+        Client ci = new Client(srv, parent, h);
 
         game.pauseGame();
     }
@@ -185,6 +185,6 @@ public class FindServersPanel extends FAPanel {
         InetAddress srv = servers.get(index);
 
         //Proceed to game
-        Client ci = new Client(srv, parent);
+        Client ci = new Client(srv, parent,null);
     }
 }
