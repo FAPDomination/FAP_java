@@ -28,12 +28,16 @@ public class TheThread implements Runnable,Serializable{
     /**
      * Counts the number of ms of the game
      */
-    private int count;          
+    private int count;
+    
+    private boolean lanMode;
+    
     /**
      * Initializes Thread
      * @param myGame : the game to control
      */
     public TheThread(Game myGame) {
+        lanMode = false;
         this.myGame = myGame;
         this.running = false;
         count = 0;
@@ -112,8 +116,8 @@ public class TheThread implements Runnable,Serializable{
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
-        int frame = count / delay;
-        if(count == 2*delay){       // actual first frame of the game since 1*delay is init
+        int frame = count / delay;  
+        if(!lanMode && count == 2*delay){       // actual first frame of the game since 1*delay is init
             if(myGame.getAdv()>0){
                 NPC npc = Tools.checkAutoTriggerNPC(myGame);
                 if(npc !=null){
@@ -127,13 +131,13 @@ public class TheThread implements Runnable,Serializable{
             myGame.refreshHealthPoints();
 
             // Every 4 frames
-            if (frame % 4 == 0) {
+            if (!lanMode && frame % 4 == 0) {
                 // Count the number of cells a Player has
                 myGame.updateCellsByOwner();
             }
 
             // When it's time to check scores
-            if (myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
+            if (!lanMode && myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
                 // Scores are updated
                 myGame.getScoreHandler().computeScores();
             }
@@ -148,7 +152,7 @@ public class TheThread implements Runnable,Serializable{
             }
         }
         //Execute other objects actions
-        if (count % 2 == 0) {
+        if (!lanMode && count % 2 == 0) {
             myGame.playerHandleKeys();
         }
     }
@@ -159,5 +163,13 @@ public class TheThread implements Runnable,Serializable{
 
     public Game getMyGame() {
         return myGame;
+    }
+
+    public void setLanMode(boolean lanMode) {
+        this.lanMode = lanMode;
+    }
+
+    public boolean isLanMode() {
+        return lanMode;
     }
 }

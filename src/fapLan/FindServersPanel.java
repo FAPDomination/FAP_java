@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -95,8 +96,9 @@ public class FindServersPanel extends FAPanel {
 
     public void host() {
         Game game = new Game();
+        //game = new Game("" + 1 + "," + 1, "0,1", "0,1","0,1", false, 5,Params.defaultVictoryScore,0,0,0);
 
-        System.out.println("tryina launch");
+        //System.out.println("tryina launch");
         Host h = new Host(game);
         Thread th1 = new Thread(h);
         th1.start();
@@ -106,7 +108,7 @@ public class FindServersPanel extends FAPanel {
         try {
             srv = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
-            System.out.println("UnknowHostException in FindPanelServers.java : "+e.toString());
+            System.out.println("This host doesn't exist ! (FindServersPanel.host())");
         }
         Client ci = new Client(srv, parent);
 
@@ -137,7 +139,11 @@ public class FindServersPanel extends FAPanel {
 
             }
             //System.out.println(in.readLine());
-        } catch (Exception e) {
+        }
+        catch(ConnectException c){
+            // Do nothing
+        }
+        catch (Exception e) {
             System.out.println("Exception in FindSercersPanel.java : "+e.toString());
         }
     }

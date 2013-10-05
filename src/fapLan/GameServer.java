@@ -71,7 +71,7 @@ public class GameServer extends Thread {
                     keys[keyID][1] = pressed;
                 }
                 else if(message.charAt(0) == 's'){
-                    System.out.println("Asked if I'm a server");
+                    //System.out.println("Asked if I was a server");
                     out = new PrintStream(socket.socket().getOutputStream());
                     ((PrintStream)out).print(true);
                 }

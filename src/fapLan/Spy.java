@@ -19,7 +19,7 @@ public class Spy implements Runnable{
             InetAddress in;
             in = InetAddress.getByName(i);
             if (in.isReachable(delay)) {
-                System.out.println("IP: "+i + " Hostname: " + in.getHostName());
+                // System.out.println("IP: "+i + " Hostname: " + in.getHostName());
                 client.askServer(i);
                 th.interrupt();
             }

@@ -144,7 +144,7 @@ public class Tools {
             out.writeObject(gs);
             out.close();
             fileOut.close();
-            System.out.println("Saved Game in "+Constants.savegameFile);
+            // System.out.println("Saved Game in "+Constants.savegameFile);
         } catch (IOException i) {
             i.printStackTrace();
         }

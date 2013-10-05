@@ -22,7 +22,7 @@ public class Host implements Runnable {
     public void run() {
         try{
             ServerSocketChannel ssChannel = ServerSocketChannel.open();
-            System.out.println("Serveur lancé");
+            System.out.println("Launched Server");
             ssChannel.configureBlocking(true);
             ssChannel.socket().bind(new InetSocketAddress(Params.port));
             while(true){

@@ -128,7 +128,7 @@ public class Cell extends Element implements Serializable{
         this.owner = null;
         this.minerSing = false;
         this.img = Graph.cells.get(did);
-        if (img == null) {
+        if (img == null && did != 0) {
             System.out.println("Null image for this did : " + did);
         }
         walked = false;
