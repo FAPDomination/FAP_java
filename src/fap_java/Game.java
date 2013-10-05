@@ -37,6 +37,9 @@ import npcs.actions.*;
 
 public class Game implements Serializable{
 
+    @SuppressWarnings("compatibility:-5515731280068496856")
+    private static final long serialVersionUID = 1L;
+
     /**
      * The map of this Game. Contains a grid of cells and a set of methods to play with them
      */
@@ -123,7 +126,7 @@ public class Game implements Serializable{
     
     private boolean pauseNPC;
     
-    private Displayer displayer;
+    private transient Displayer displayer;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 

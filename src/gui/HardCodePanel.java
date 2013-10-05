@@ -44,16 +44,25 @@ public class HardCodePanel extends FAPanel {
     
     public void startGame(){
         //What the host needs
+        
         System.out.println("tryina launch");
         Host h = new Host(game);
         Thread th1 = new Thread(h);
         th1.start();
+        
         InetAddress srv=null;
+        
+        /*
         try {
             srv = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
         }
+        */
         //What the client needs
+        try {
+            srv = InetAddress.getLocalHost();
+        } catch (UnknownHostException e) {
+        }
         Displayer disp = new Displayer(null,true);
         Client ci = new Client(disp,srv,parent);
         

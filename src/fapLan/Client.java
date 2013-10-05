@@ -13,6 +13,7 @@ import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.PrintStream;
 
@@ -49,6 +50,7 @@ public class Client {
                         game = askForGame();
                         if (game != null) {
                             game.setDisplayer(Client.disp);
+                            game.getThread().setRunning(false);
                             Client.disp.setGame(game);
                             Client.disp.repaint();
                         }
@@ -112,7 +114,11 @@ public class Client {
             Game ga = (Game)in.readObject();
             return ga;
             //System.out.println(in.readLine());
-        } catch (Exception e) {
+        } 
+        catch(InvalidClassException k){
+            System.out.println(k.getMessage());
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         return null;
