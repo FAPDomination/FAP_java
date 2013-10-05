@@ -86,10 +86,10 @@ public class GameServer extends Thread {
             socket.close();
         }
         catch (ClassCastException cc){
-            System.out.println("Couldn't cast");
+            System.out.println("Couldn't cast in GameServer.java");
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Exception in GameServer.java : "+e.toString());
         }
         
     }

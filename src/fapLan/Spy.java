@@ -27,7 +27,7 @@ public class Spy implements Runnable{
                 th.interrupt(); 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Exception in Spy.java : "+e.toString());
         }
     }
 

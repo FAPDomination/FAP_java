@@ -32,7 +32,7 @@ public class Host implements Runnable {
             }
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println("Exception in Host.java : "+e.toString());
         }
     }
 

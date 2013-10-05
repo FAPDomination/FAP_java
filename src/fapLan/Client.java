@@ -48,11 +48,17 @@ public class Client {
             host = true;
         }
         } catch (UnknownHostException e) {
+            System.out.println("UnknownHostException in Client.java");
         }
         this.disp = new Displayer(null,true,this,host);
         this.parent = parent;
 
-        playerID = Integer.parseInt(send("a"));
+        try {
+            playerID = Integer.parseInt(send("a"));
+        } catch (Exception e) {
+            System.out.println("Exception in Client.java : "+e.toString());
+            //e.printStackTrace();
+        }
         //System.out.println(send("a"));
 
         timer = new Timer();
@@ -74,7 +80,9 @@ public class Client {
                         }
                     } 
                     catch (Exception e) {
-                        System.out.println("Perdu un message (et le jeu)");
+                        System.out.println("Exception in Client.java : "+e.toString());
+                        //e.printStackTrace();
+                        //System.out.println("Perdu un message (et le jeu)");
                         return;
                     }
                 }
@@ -102,7 +110,7 @@ public class Client {
             return in.readLine();
             //System.out.println(in.readLine());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Exception in Client.java : "+e.toString());
         }
         return "error";
     }
@@ -118,7 +126,7 @@ public class Client {
             return in.readLine();
             //System.out.println(in.readLine());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Exception in Client.java : "+e.toString());
         }
         return "error";
     }
@@ -148,9 +156,10 @@ public class Client {
         } 
         catch(InvalidClassException k){
             System.out.println(k.getMessage());
+            System.out.println("InvalidClassException in Client.java : "+k.getMessage());
         }
         catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Exception in Client.java : "+e.toString());
         }
         return null;
     }

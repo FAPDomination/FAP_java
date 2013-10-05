@@ -47,3 +47,4 @@ V KeyListener
 V	Cut link with game
 V	Send messages
   btnLAN in PlayerSelection : position
+  Exceptions everywhere
