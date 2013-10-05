@@ -40,17 +40,17 @@ public class HardCodePanel extends FAPanel {
         });
         
         game = new Game("" + 1 + "," + 1, "0,1", "0,1","0,1", false, 5,Params.defaultVictoryScore,0,0,0);
-        game = new Game(5);
+        //game = new Game(5);
     }
     
     public void startGame(){
         //What the host needs
-        /*
+        
         System.out.println("tryina launch");
         Host h = new Host(game);
         Thread th1 = new Thread(h);
         th1.start();
-        */
+        
         InetAddress srv=null;
         
         /*
@@ -64,8 +64,7 @@ public class HardCodePanel extends FAPanel {
             srv = InetAddress.getLocalHost();
         } catch (UnknownHostException e) {
         }
-        Displayer disp = new Displayer(null,true);
-        Client ci = new Client(disp,srv,parent);
+        Client ci = new Client(srv,parent);
         
         game.pauseGame();
     }

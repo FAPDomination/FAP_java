@@ -37,17 +37,17 @@ public class Client {
     
     private int playerID;
 
-    public Client(Displayer disp, InetAddress serv, TheFrame parent) {
+    public Client(InetAddress serv, TheFrame parent) {
         super();
         this.serveur = serv;
-        this.disp = disp;
+        this.disp = new Displayer(null,true,this);
         this.parent = parent;
 
         playerID = Integer.parseInt(send("a"));
         //System.out.println(send("a"));
 
         timer = new Timer();
-        int time = 500;
+        int time = 300;
         // Ce timer récupère les données constamment
         timer.schedule(new TimerTask() {
                 public void run() {
@@ -73,6 +73,7 @@ public class Client {
     }
 
     public String send(String message) {
+        //System.out.println("Sending "+message);
         // Envoie la string via protocole TCP
         Socket socket;
         try {
@@ -127,5 +128,13 @@ public class Client {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 }

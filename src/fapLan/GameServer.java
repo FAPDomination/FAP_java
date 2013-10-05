@@ -40,6 +40,7 @@ public class GameServer extends Thread {
             //PrintStream out = new PrintStream(socket.getOutputStream());
             OutputStream out = null;
             message = in.readLine();
+            //System.out.println("Arriving "+message);
             // Teste le type de message
             if(message!=null){
                 if(message.charAt(0) == 'g'){
@@ -61,6 +62,13 @@ public class GameServer extends Thread {
                     
                     out = new PrintStream(socket.socket().getOutputStream());
                     ((PrintStream)out).println(pid);
+                }
+                else if(message.charAt(0) == 'k'){
+                    int pid = Integer.parseInt(""+message.charAt(1));
+                    int keyID = Integer.parseInt(""+message.charAt(2));
+                    int pressed = Integer.parseInt(""+message.charAt(3));
+                    int[][] keys = host.getGame().getPlayers().get(pid).getKeys();
+                    keys[keyID][1] = pressed;
                 }
             }
             if(out != null){

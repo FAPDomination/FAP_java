@@ -207,7 +207,7 @@ public class Game implements Serializable{
      * @param nmap The number of the file the map is in
      */
     public void initGame(int nmap){
-        this.displayer = new Displayer(this,false);
+        this.displayer = new Displayer(this);
         this.listNPCs = new ArrayList<NPC>();
         // Parse the map
         map = new CMap(this,nmap);

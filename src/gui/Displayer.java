@@ -3,6 +3,10 @@ package gui;
 import animations.NPCMessage;
 import animations.PauseCountDown;
 
+import fapLan.Client;
+
+import fapLan.LListener;
+
 import fap_java.Game;
 
 import fap_java.KListener;
@@ -13,6 +17,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import java.awt.event.KeyListener;
+
 import java.io.Serializable;
 
 import javax.swing.JPanel;
@@ -20,20 +26,26 @@ import javax.swing.JPanel;
 public class Displayer extends JPanel implements NeedingFocus,Serializable {
     private Game game;
     private boolean lanMode;
+    private Client client;
     /**
      * The Key Listener that will handle player displacements and pause
      */
-    private transient KListener kl;
+    private transient KeyListener kl;
     
-    public Displayer(Game game, boolean lanMode) {
+    public Displayer(Game game, boolean lanMode, Client client) {
         super();
         this.lanMode = lanMode;
+        this.client = client;
         // Panel related stuff 
         this.setLayout(null);
         this.setBackground(Color.white);
         this.setSize(Constants.frameDimension);
         
         this.game = game;
+    }
+    
+    public Displayer(Game game){
+        this(game,false,null);
     }
     
     /**
@@ -101,33 +113,40 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
      * Initializes the Key Listener of the game
      */
     private void initKListener() {
-        kl = new KListener(game);
+        if(!lanMode){
+            kl = new KListener(game);
+        }
+        else{
+            kl = new LListener(this);
+        }
         this.addKeyListener(kl);
     }
     
     private void deleteKListener(){
-        this.removeKeyListener(kl);
-        kl = new KListener(game);
+        if(kl != null){
+            this.removeKeyListener(kl);
+            kl = new KListener(game);
+        }
     }
     
     /**
      * Request the focus so that the K listener works
      */
     public void initFocus() {
+        //System.out.println("initing focus");
         if(!lanMode){
             game.initListNPCs(game.getMap().getFileID());
-            initKListener(); 
         }
-        else{}
+        initKListener(); 
         this.setFocusable(true);
         requestFocus();
     }
     
     public void releaseFocus(){
         if(!lanMode){
-        deleteKListener();
         game.getThread().setRunning(false);
         }
+        deleteKListener();
         this.setFocusable(false);
     }
 
@@ -137,5 +156,21 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
 
     public Game getGame() {
         return game;
+    }
+
+    public void setKl(KeyListener kl) {
+        this.kl = kl;
+    }
+
+    public KeyListener getKl() {
+        return kl;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
     }
 }
