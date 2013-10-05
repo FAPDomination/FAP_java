@@ -70,6 +70,11 @@ public class GameServer extends Thread {
                     int[][] keys = host.getGame().getPlayers().get(pid).getKeys();
                     keys[keyID][1] = pressed;
                 }
+                else if(message.charAt(0) == 's'){
+                    System.out.println("Asked if I'm a server");
+                    out = new PrintStream(socket.socket().getOutputStream());
+                    ((PrintStream)out).print(true);
+                }
             }
             if(out != null){
                 out.close();

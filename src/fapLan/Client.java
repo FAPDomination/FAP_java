@@ -22,6 +22,8 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import java.net.UnknownHostException;
+
 import java.nio.channels.SocketChannel;
 
 import java.util.Timer;
@@ -40,7 +42,14 @@ public class Client {
     public Client(InetAddress serv, TheFrame parent) {
         super();
         this.serveur = serv;
-        this.disp = new Displayer(null,true,this);
+        boolean host = false;
+        try {
+            if(serveur.getHostAddress().equals(InetAddress.getLocalHost().getHostAddress())){
+            host = true;
+        }
+        } catch (UnknownHostException e) {
+        }
+        this.disp = new Displayer(null,true,this,host);
         this.parent = parent;
 
         playerID = Integer.parseInt(send("a"));

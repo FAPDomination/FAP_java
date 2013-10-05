@@ -1,5 +1,7 @@
 package gui;
 
+import fapLan.FindServersPanel;
+
 import fap_java.NPC;
 import fap_java.Params;
 
@@ -22,6 +24,7 @@ import java.awt.Color;
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
     private JButton btnAdd = new JButton();
+    private JButton btnLAN = new JButton();
     
     private ArrayList<PlayerSelect> players;
     private ArrayList<JComboBox> controlSelecters;
@@ -64,6 +67,10 @@ public class PlayerSelection extends FAPanel {
         btnGoBack.setSize(120, 40);
         btnGoBack.setLocation(20, 20);
         
+        btnLAN.setText("LAN");
+        btnLAN.setSize(120, 40);
+        btnLAN.setLocation(this.getWidth()-30-btnLAN.getWidth(), 70);
+        
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
@@ -83,7 +90,19 @@ public class PlayerSelection extends FAPanel {
             }
         });
         
+        btnLAN.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                btnLAN_ap();
+            }
+        });
+        
         this.repaint();
+    }
+    
+    public void btnLAN_ap(){
+        // Proceeding to next panel
+        JPanel nextPanel = new FindServersPanel(parent,this);
+        parent.changePanel(nextPanel);
     }
     
     public void nextFrame(){
@@ -147,6 +166,7 @@ public class PlayerSelection extends FAPanel {
         this.add(btnNext);
         this.add(btnGoBack);
         this.add(btnAdd);
+        this.add(btnLAN);
         this.validate();
         this.repaint();
         

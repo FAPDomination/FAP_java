@@ -27,12 +27,13 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
     private Game game;
     private boolean lanMode;
     private Client client;
+    private boolean host;
     /**
      * The Key Listener that will handle player displacements and pause
      */
     private transient KeyListener kl;
     
-    public Displayer(Game game, boolean lanMode, Client client) {
+    public Displayer(Game game, boolean lanMode, Client client, boolean host) {
         super();
         this.lanMode = lanMode;
         this.client = client;
@@ -41,11 +42,20 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         this.setBackground(Color.white);
         this.setSize(Constants.frameDimension);
         
+        this.host = host;
+        if(lanMode){
+            if(host){
+                System.out.println("I am da host!");
+            }
+            else{
+                System.out.println("Me not da host :'(");
+            }
+        }
         this.game = game;
     }
     
     public Displayer(Game game){
-        this(game,false,null);
+        this(game,false,null,false);
     }
     
     /**

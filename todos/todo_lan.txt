@@ -21,10 +21,13 @@
 X			Activate boolean for clients
 			8seconds pause before starting
 	General
-		Draw Map
+V		Draw Map
 		Be able to generate, add and update players
+			Add
+			Update Team
+			Update Char
 		Special repaint : cells under the player take team color
-		Disable conquest
+V		Disable conquest
 		AI not moving around
 ~ TCP Server
 V	Class
@@ -40,3 +43,4 @@ V	Send messages
 V KeyListener
 V	Cut link with game
 V	Send messages
+  btnLAN in PlayerSelection : position
