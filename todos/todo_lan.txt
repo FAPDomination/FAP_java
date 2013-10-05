@@ -26,17 +26,17 @@ X			Activate boolean for clients
 		Special repaint : cells under the player take team color
 		Disable conquest
 		AI not moving around
-  TCP Server
-	Class
-	Handle messages
-	List all possible messages
-  TCP Client
-	Class
-		attributes
-			player ID (will be used by KListener and others)
-			Server
-	Send messages
-	List all possible messages
-  KeyListener
-	Cut link with game
-	Send messages
+~ TCP Server
+V	Class
+V	Handle messages
+~	List all possible messages
+~ TCP Client
+V	Class
+V		attributes
+V			player ID (will be used by KListener and others)
+V			Server
+V	Send messages
+~	List all possible messages
+V KeyListener
+V	Cut link with game
+V	Send messages

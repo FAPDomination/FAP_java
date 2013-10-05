@@ -206,7 +206,8 @@ public class Game implements Serializable{
      * Initializes a LAN Waiting Room
      */
     public Game(){
-        this("0","0","0","0",true,5,0,0,0,2);
+        //Map ID 19 is the LAN waiting room
+        this("0","0","0","0",true,19,0,0,0,2);
     }
     
     /**
