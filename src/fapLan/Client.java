@@ -35,6 +35,7 @@ public class Client {
     private static Displayer disp;
     private Game game;
     private boolean init = false;
+    private boolean initPlay = false;
     protected static TheFrame parent;
     
     private int playerID;
@@ -66,6 +67,10 @@ public class Client {
                             game.getThread().setRunning(false);
                             Client.disp.setGame(game);
                             Client.disp.repaint();
+                            if(!initPlay && game.getMap().getFileID() != 19){
+                                initPlay = true;
+                                Client.disp.exitWaitingRoom();
+                            }
                         }
                         if(!init){
                             Client.parent.changePanel(Client.disp, BorderLayout.CENTER);

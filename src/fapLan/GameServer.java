@@ -91,12 +91,16 @@ public class GameServer extends Thread {
                     int pid = Integer.parseInt(""+message.charAt(1));
                     int type = Integer.parseInt(""+message.charAt(2));
                     int value = Integer.parseInt(""+message.charAt(3));
+                    Player p = host.getGame().getPlayers().get(pid);
+                    
                     if(type == 0){
                         // Man that's fucked up
+                        Team t = host.getGame().getTeams().get(value);
+                        p.setTeam(t);
+                        t.addPlayer(p);
                     }
                     else{
                         //host.getGame().getPlayers()
-                        Player p = host.getGame().getPlayers().get(pid);
                         int ai = 0;
                         if(p.getFsm() != null){
                             ai = p.getFsm().getLevel();

@@ -208,6 +208,11 @@ public class Game implements Serializable{
     public Game(){
         //Map ID 19 is the LAN waiting room
         this("0","0","0","0",true,19,0,0,0,2);
+        
+        teams = new ArrayList<Team>();
+        for(int i=0;i<Params.maxPlayers;i++){
+            teams.add(new Team());
+        }
     }
     
     /**
@@ -230,7 +235,13 @@ public class Game implements Serializable{
         displayer = game.getDisplayer();
         
         for(int i=0;i<game.getTeams().size();i++){
-            teams.add(new Team());
+            Team orig = game.getTeams().get(i);
+            if(orig.getPlayersInThisTeam().size() != 0){
+                teams.add(new Team());
+            }
+            else{
+                teams.add(null);
+            }
         }
         
         for(int i=0;i<game.getPlayers().size();i++){
@@ -243,6 +254,8 @@ public class Game implements Serializable{
             Player q = this.generatePlayer(p.getPc(), p.getId(), this.getStartCell(p.getId()), t, ai, 0, this);
             players.add(q);
         }
+        
+        teams = Tools.removeNull(teams);
         //displayer.setGame(this);
         
         //TODO place player

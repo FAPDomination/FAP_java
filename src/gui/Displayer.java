@@ -63,7 +63,6 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         
         this.host = host;
         if(lanMode){
-            
             if(host != null){
                 //System.out.println("I am da host!");
                 
@@ -97,6 +96,11 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
                     jcSkillPerformed(e);
                 }
             });
+            jcTeam.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    jcTeamPerformed(e);
+                }
+            });
         }
         this.game = game;
     }
@@ -109,13 +113,14 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
         this.remove(btnStart);
         this.remove(jcSkill);
         this.remove(jcTeam);
-        game.pauseGame();
-        game = new Game(game,nMap,victScore);
+        if(host != null){
+            game.pauseGame();
+            game = new Game(game,nMap,victScore);
+            game.pauseGame();
+            host.setGame(game);
+        }
         //game.getThread().setLanMode(true);
         this.reInitFocus();
-        game.pauseGame();
-        host.setGame(game);
-        
     }
     
     /**
@@ -252,5 +257,10 @@ public class Displayer extends JPanel implements NeedingFocus,Serializable {
     public void jcSkillPerformed(ActionEvent e){
         int pc = this.listPCs[jcSkill.getSelectedIndex()];
         this.client.send("u"+client.getPlayerID()+(""+1)+""+pc);
+    }
+    
+    public void jcTeamPerformed(ActionEvent e){
+       int team = jcTeam.getSelectedIndex();
+        this.client.send("u"+client.getPlayerID()+(""+0)+""+team);
     }
 }

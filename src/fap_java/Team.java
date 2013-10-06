@@ -44,7 +44,9 @@ public class Team implements Serializable{
     }
     
     public void addPlayer(Player p){
-        playersInThisTeam.add(p);
+        if(!playersInThisTeam.contains(p)){
+            playersInThisTeam.add(p);
+        }
     }
 
     public Player getFirstPlayer(){
