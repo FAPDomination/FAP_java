@@ -20,7 +20,7 @@ Projets futurs
 --------------
 
 <ul>
-<li>OpenGL</li>
-<li>FAP-LAN</li>
-<li>FAPDroid</li>
+<li>OpenGL : Annulé (pas en Java)</li>
+<li>FAP-LAN : En cours</li>
+<li>FAPDroid : Serait possible mais demander tout de même un très gros travail de portage. Et inutile tant que la version LAN n'est pas au point</li>
 </ul>
