@@ -1,0 +1,8 @@
+The world map :
+As said on TBSF and on the first worldmap screen, the worldmap is cut in several zones that each represent more or less a level of difficulty. The more it gets closer to the dark zone, the hardest the AI will be.
+
+A tile in the worldmap represents a fight. The total amount of tiles can change since this version of the map isn't final.
+
+It is not necessary for the player to complete every tile in the world, since there's a simple way to the dark zone and to the boss. However, before being able to enter the "next" zone, the player must have completed at least a certain percentage of cells in the current zone (will be defined for each zone). Then the cell to the next zone will unlock. Therefore is the simple path impossible to take but this picture gives a good image of the global journey.
+
+On the first version of the map, gray paved cells represent cities. Some of them are willingly placed in areas that are not around the simple path
