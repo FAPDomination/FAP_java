@@ -1,12 +1,13 @@
 # General Synopsis
 
+
 # Zones
-The home town
-The home land
-The forest
-The mountains and the flying isles
-The river-ish zone
-The dark zone (lava and stuff)
+0 The home town (tutorial)
+1 The home land (AI 1)
+2 The forest (AI 1 & 2)
+3 The mountains and the flying isles (Various levels)
+4 The river-ish zone (The Other Team) (AI 3 & 4)
+5 The dark zone (Boss and high AI) (AI 4 & 5)
 
 # Towns
 One or two cities per zone
