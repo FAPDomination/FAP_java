@@ -5,4 +5,6 @@ A tile in the worldmap represents a fight. The total amount of tiles can change 
 
 It is not necessary for the player to complete every tile in the world, since there's a simple way to the dark zone and to the boss. However, before being able to enter the "next" zone, the player must have completed at least a certain percentage of cells in the current zone (will be defined for each zone). Then the cell to the next zone will unlock. Therefore is the simple path impossible to take but this picture gives a good image of the global journey.
 
-On the first version of the map, gray paved cells represent cities. Some of them are willingly placed in areas that are not around the simple path
+On the first version of the map, gray paved cells represent cities. Some of them are willingly placed in areas that are not around the simple path.
+
+The ADVMaps maps lists the tile that, to this day, will be containing an Adventure Mode map, such as a town. They are not meant to be cities, they can also just contain an NPC and then trigger a fight, such as the boss will at the end (spoilerz).

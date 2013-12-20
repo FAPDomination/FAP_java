@@ -8,6 +8,7 @@ The Big Story File (TBSF)
 1 The home land (AI 1)
 2 The forest (AI 1 & 2)
 3 The mountains and the flying isles (Various levels)
+3 Icy Zone (Various Levels)
 4 The river-ish zone (The Other Team) (AI 3 & 4)
 5 The dark zone (Boss and high AI) (AI 4 & 5)
 
@@ -19,7 +20,7 @@ Mountains - Miner
 Dark Zone - Warlock
 (Quest) - Archer
 (Not in ADV) - Vampire
-Start of River - Magician
+Icy Zone - Magician
 Forest - Ninja
 
 # Towns
