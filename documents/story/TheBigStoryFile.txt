@@ -11,6 +11,17 @@ The Big Story File (TBSF)
 4 The river-ish zone (The Other Team) (AI 3 & 4)
 5 The dark zone (Boss and high AI) (AI 4 & 5)
 
+Each zone unlocks a character. (The harder the zone, the more powerful the character ?)
+Zone / Character list
+HomeTown - No character
+Homeland - Knight
+Mountains - Miner
+Dark Zone - Warlock
+(Quest) - Archer
+(Not in ADV) - Vampire
+Start of River - Magician
+Forest - Ninja
+
 # Towns
 One or two cities per zone
 
@@ -19,3 +30,16 @@ Get the Archer
 
 --------------------------
 Detailed Synopsis
+
+
+--------------------------
+Detailed map types :
+- 1vs1
+- 1vs2
+- 1vs3
+- 2vs1
+- 2vs2
+- 1vsTimeout
+- 1vsSkill
+
+All these types can exist in score mode and in zone-percentage mode
