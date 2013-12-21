@@ -14,7 +14,7 @@ Je pars.
 Je pars combattre le mal avant qu'il n'atteigne mon pays.
 
 In English, por favor :
-A great disease is spreading through the country. Powerful darkness, killing men and women on its way. The apple fades on the branch and the river drains.
+A great disease is spreading across the country. Powerful darkness, killing men and women on its way. The apple fades on the branch and the river drains.
 No one dares to talk and yet everyone knows. Its name. Aïsan.
 It is said that Aïsan comes from the Forge of the Lost Souls. It is born of the spirit of the volcano and spreads, grows, swallowing everything on its way. It has devoured the mountains and the Flying Isles. It has destroyed the great forest of Esterez and burned down the frozen lands.
 
@@ -53,6 +53,9 @@ Get the Archer
 --------------------------
 Detailed Synopsis
 
+The player is leaving his hometown in order to fight Aïsan, the great disease spreading across the country. He will have to reconquer the entire land and make it recover.
+The player is gifted with the power of heal, and can therefore make the land reborn. As the journey gets on, he will fight the evil an heal the land, area by area. The goal is to conquer every area on the world map and make the disease go ever weaker until the player can approach the Forge of the Lost Souls, source of all darkness. He will there fight the last battle against evil to restore the world as it was before.
+The world map displays black tiles that are not reachable because Aïsan is to strong. The green zone around the player shows the area he has already healed.
 
 --------------------------
 Detailed map types :
