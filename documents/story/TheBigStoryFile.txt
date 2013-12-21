@@ -1,7 +1,28 @@
 The Big Story File (TBSF)
 
-# General Synopsis
+# General Synopsis (introduction)
 
+Le French, baguette :
+Un grand mal s'étend sur le pays. Un mal puissant, foudroyant les hommes et accablant les femmes. La pomme flétrie sur la branche et la rivière s'assèche.
+On n'ose en parler et pourtant chacun sait. Son nom. Aïsan.
+On dit qu'Aïsan vient de la Forge des Âmes Perdues. Qu'il est né du souffle du volcan et s'étend, grandit, avalant tout être sur son passage. Il consumma les montagnes et l'archipel des Îles du Ciel. Il décima la grande forêt D'Esterèze, et englouti les terres gelées.
+
+...
+
+Je pars.
+
+Je pars combattre le mal avant qu'il n'atteigne mon pays.
+
+In English, por favor :
+A great disease is spreading through the country. Powerful darkness, killing men and women on its way. The apple fades on the branch and the river drains.
+No one dares to talk and yet everyone knows. Its name. Aïsan.
+It is said that Aïsan comes from the Forge of the Lost Souls. It is born of the spirit of the volcano and spreads, grows, swallowing everything on its way. It has devoured the mountains and the Flying Isles. It has destroyed the great forest of Esterez and burned down the frozen lands.
+
+...
+
+I am leaving.
+
+Leaving to fight evil before it reaches my homeland.
 
 # Zones
 0 The home town (tutorial)
