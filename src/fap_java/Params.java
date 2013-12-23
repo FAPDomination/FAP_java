@@ -37,7 +37,7 @@ public class Params {
     /**
      * The rate at wich the healthy healthy tile recovers
      */
-    public static final double gainLifeFactorMultiplier = 1.5;    //For healthy healthy
+    public static final double gainLifeFactorMultiplier = 1.8;    //For healthy healthy
     /**
      * The time the modification given by a frozen cell will be active
      */
