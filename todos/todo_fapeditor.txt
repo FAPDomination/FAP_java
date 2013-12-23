@@ -1,1 +1,13 @@
 FAPEditor :
+
+  Make it compatible with the java map version
+	Reorganize Tiles
+	Special effects (u, f, h, HPs)
+		Display mode
+		Add value
+	Check everything
+  Bug : adding outside the boundaries
+  8 characters
+	Character tokens dispenser
+	Parse how many before validating
+  	Parse invalid
