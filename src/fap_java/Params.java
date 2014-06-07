@@ -48,7 +48,7 @@ public class Params {
     public static final double frozenFac = 3;
     /**
      * The delay (in ms) between each Thread clock-tick.
-     * @see fap_java.TheThread
+     * @see fap_java.TheComputingThread
      */
     public static final int delay = 40;
     /**

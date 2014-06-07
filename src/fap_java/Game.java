@@ -41,7 +41,11 @@ public class Game extends JPanel implements NeedingFocus {
     /**
      * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
      */
-    private transient TheThread thread;
+    private transient TheComputingThread thread;
+    /**
+     * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
+     */
+    private transient TheGraphicalThread Gthread;
     /**
      * This contains all the player of this game. See also fap_java.Player
      */
@@ -215,10 +219,16 @@ public class Game extends JPanel implements NeedingFocus {
         this.setSize(Constants.frameDimension);
         
         // Initialize thread
-        thread = new TheThread(this);
+        thread = new TheComputingThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
+        
+        // Initialize thread
+        Gthread = new TheGraphicalThread(this);
+        Gthread.setRunning(false);
+        new Thread(this.Gthread).start();
+        Gthread.setRunning(true);
         
         gameEnded = false;
         
@@ -297,7 +307,7 @@ public class Game extends JPanel implements NeedingFocus {
         return map;
     }
 
-    public TheThread getThread() {
+    public TheComputingThread getThread() {
         return thread;
     }
 

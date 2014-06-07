@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * It is running constantly except if someone pauses the game.
  * @see Game
  */
-public class TheThread implements Runnable{
+public class TheComputingThread implements Runnable{
     
     /**
      * The game where all is played
@@ -31,7 +31,7 @@ public class TheThread implements Runnable{
      * Initializes Thread
      * @param myGame : the game to control
      */
-    public TheThread(Game myGame) {
+    public TheComputingThread(Game myGame) {
         this.myGame = myGame;
         this.running = false;
         count = 0;
@@ -83,15 +83,13 @@ public class TheThread implements Runnable{
                 // Execute some tasks (key handling)
                 execute(false);
             }
-            // Always execute the animations
-            myGame.computeAnimations();
-                try{
-                    // wait for "delay" ms
-                    Thread.sleep(delay);
-                } catch (InterruptedException ie){
-                    ie.printStackTrace();
-                }
             
+            try{
+                // wait for "delay" ms
+                Thread.sleep(delay);
+            } catch (InterruptedException ie){
+                ie.printStackTrace();
+            }
         }
     }
 
