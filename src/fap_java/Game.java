@@ -126,6 +126,7 @@ public class Game extends JPanel implements NeedingFocus {
     private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
     
     private boolean pauseNPC;
+    
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -248,7 +249,7 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+        //long startTime = System.currentTimeMillis();
         // Background
         Graphics2D g2d = (Graphics2D)g;
         
@@ -297,6 +298,8 @@ public class Game extends JPanel implements NeedingFocus {
                 anims.get(j).paintComponent(g);
             }
         }
+        
+        //System.out.println(System.currentTimeMillis() - startTime);
     }
 
     public ArrayList<Player> getPlayers() {
