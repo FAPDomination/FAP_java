@@ -193,6 +193,13 @@ V		- Tidy paintComponent
 		- Display of the players (placement)
 		- Animation ?
 		- Other decoration picture
+	- Characters
+~		- Base Character
+V			- 3D and photoshop File
+~			- 3D Model
+V			- Test Export
+		- Add shadow below the character (seems floating)
+		- Class-specific accessories
 V Depth
 V Minimap
 V	- Object
