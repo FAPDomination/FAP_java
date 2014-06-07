@@ -106,6 +106,7 @@ public class TheComputingThread implements Runnable{
      * Execute actions in the game, such as updating values
      */
     private void execute(boolean full){
+        //long startTime = System.currentTimeMillis();
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
@@ -148,6 +149,7 @@ public class TheComputingThread implements Runnable{
         if (count % 2 == 0) {
             myGame.playerHandleKeys();
         }
+        //System.out.println(System.currentTimeMillis() - startTime);
     }
 
     public void setMyGame(Game myGame) {
