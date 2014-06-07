@@ -83,7 +83,8 @@ public class TheComputingThread implements Runnable{
                 // Execute some tasks (key handling)
                 execute(false);
             }
-            
+            // Always execute the animations
+            myGame.computeAnimations();
             try{
                 // wait for "delay" ms
                 Thread.sleep(delay);

@@ -16,7 +16,7 @@ public class TheGraphicalThread implements Runnable{
     /**
      * The delay between each clock-tick
      */
-    private int delay = Params.delay;     // in ms
+    private int delay = Params.Gdelay;     // in ms
         
     /**
      * Initializes Thread
@@ -69,8 +69,7 @@ public class TheGraphicalThread implements Runnable{
                 // Execute tasks (generate a clock-tick)
                 execute(true);
             }
-            // Always execute the animations
-            myGame.computeAnimations();
+           
                 try{
                     // wait for "delay" ms
                     Thread.sleep(delay);
