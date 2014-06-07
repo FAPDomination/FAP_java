@@ -43,7 +43,7 @@ public class Game extends JPanel implements NeedingFocus {
      */
     private transient TheComputingThread thread;
     /**
-     * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
+     * The thread permanently refreshes the graphics game. Draws map, players, etc...
      */
     private transient TheGraphicalThread Gthread;
     /**

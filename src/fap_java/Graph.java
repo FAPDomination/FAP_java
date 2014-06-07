@@ -2,6 +2,7 @@ package fap_java;
 
 import gui.PreLoadingScreen;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,6 +31,7 @@ public class Graph {
     protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
+    protected static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
     protected static double facW = CMap.TW / ((double)(97 - 20));
@@ -120,6 +122,24 @@ public class Graph {
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
+            
+            // Add base character files
+            //Right
+            basePlayer.put(Params.colorName[0]+"right", ImageIO.read(new File("resources/images/default/characters/base/Red_Right.png")));
+            basePlayer.put(Params.colorName[1]+"right", ImageIO.read(new File("resources/images/default/characters/base/Blue_Right.png")));
+            basePlayer.put(Params.colorName[2]+"right", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Right.png")));
+            // Diag0 (Up left + Bottom Right)
+            basePlayer.put(Params.colorName[0]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag0.png")));
+            basePlayer.put(Params.colorName[1]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag0.png")));
+            basePlayer.put(Params.colorName[2]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag0.png")));
+            //left
+            basePlayer.put(Params.colorName[0]+"left", ImageIO.read(new File("resources/images/default/characters/base/Red_Left.png")));
+            basePlayer.put(Params.colorName[1]+"left", ImageIO.read(new File("resources/images/default/characters/base/Blue_Left.png")));
+            basePlayer.put(Params.colorName[2]+"left", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Left.png")));
+            //Diag1 (top right + bottom left)
+            basePlayer.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
+            basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
+            basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
             
             //Thread.sleep(2000);
             pls.endAnim();
