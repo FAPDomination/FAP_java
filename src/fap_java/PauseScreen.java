@@ -79,7 +79,9 @@ public class PauseScreen extends Element{
     public void paintComponent(Graphics g) {
         g.setColor(Color.black);
         //TODO better background
-        g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+        if(!displayVictory){
+            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+        }
         this.computeButtons();
         if(!resuming){
             // Draw buttons
@@ -87,12 +89,20 @@ public class PauseScreen extends Element{
             
             // Draw victory
             if(displayVictory){
+                g.setColor(Graph.BG_WHITETRANSLUSCENT);
+                g.fillRect(0, 0, game.getWidth(), game.getHeight());
+                g.setColor(Color.black);
+                Color squareColor = Graph.DEFAULT_SQUARE_COLOR;
+                if(winner != null){
+                    squareColor = winner.getFirstPlayer().getColor();
+                }
+                
                 int width = 528;
                 int height = 444;
                 int x =(game.getWidth()-width)/2;
                 int y =(game.getHeight()-height)/2;
                 //TODO replace w/h with relative
-                g.drawImage(Graph.guimg.get("victoryScreen"), x, y,width,height, game);
+                Graph.drawDarkBackgroundRectangle(g, x, y, width, height, squareColor, 40, Graph.BG_DARK);
                 
                 Graphics2D g2d = (Graphics2D)g;
                 FontMetrics fm = g2d.getFontMetrics();

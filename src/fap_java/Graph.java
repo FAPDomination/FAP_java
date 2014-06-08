@@ -53,8 +53,12 @@ public class Graph {
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
+    public static final Color DEFAULT_SQUARE_COLOR=new Color(0,0,0);
     public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
-    public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,100);
+    public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,140);
+    public static final Color BG_DARK = new Color(0,0,0,220);
+    public static final Color BG_WHITETRANSLUSCENT = new Color(255,255,255,(int)(255*0.3));
+    
     
     // Borders :
     public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
@@ -224,12 +228,14 @@ public class Graph {
         g.drawString(label, x,y);
     }
     
-    public static void drawDarkBackgroundRectangle(Graphics g, int x, int y, int w, int h, Color SquareColor, int SquareSize){
-        g.setColor(Graph.BG_DARKTRANSLUSCENT);
+    public static void drawDarkBackgroundRectangle(Graphics g, int x, int y, int w, int h, Color SquareColor, int SquareSize, Color backgrounColor){
+        Color c = g.getColor();
+        g.setColor(backgrounColor);
         g.fillRect(x, y, w, h);
         if(SquareColor != null){
             g.setColor(SquareColor);
             g.fillRect(x+w-(3*SquareSize/4), y-(1*SquareSize/4), SquareSize,SquareSize);
         }
+        g.setColor(c);
     }
 }
