@@ -1,7 +1,7 @@
 package animations;
 
 import fap_java.Graph;
-import fap_java.TheThread;
+import fap_java.TheComputingThread;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,7 +17,7 @@ public class NPCMessage extends Animation {
     private boolean choice;
     private Image img;
     private AAsk launcher;
-    public NPCMessage(String message, String yes, String no,TheThread thread, AAsk launcher) {
+    public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher) {
         super(0,0,0,thread);
         ask = true;
         this.launcher = launcher;
@@ -29,7 +29,7 @@ public class NPCMessage extends Animation {
         thread.getMyGame().addAnim(this);
     }
     
-    public NPCMessage(String message,TheThread thread){
+    public NPCMessage(String message,TheComputingThread thread){
         this(message,"","",thread,null);
         ask = false;
         choice = false;

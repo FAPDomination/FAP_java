@@ -6,7 +6,12 @@ import animations.AnimWarp;
 import characters.Booster;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+
+import java.awt.Image;
+
+import java.awt.Point;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -88,6 +93,8 @@ public abstract class Player extends Human {
      * The color of the player
      */
     private Color color;
+    
+    private String colorName;
 
     /**
      * The initial amount of HPs the player's cells have
@@ -126,6 +133,7 @@ public abstract class Player extends Human {
     private FSM fsm;
 
     private int controler;
+    
 
     /**
      * Initializes a Player. Abstract class since the player creation is called by the characters extending this
@@ -163,6 +171,7 @@ public abstract class Player extends Human {
         team.initConstants();
 
         color = Params.colorList[id];
+        colorName = Params.colorName[id];
         // If no FSM, get keys for displacement
         if (fsm == null) {
             for (int i = 0; i <= 4; i++) {
@@ -524,9 +533,48 @@ public abstract class Player extends Human {
      * @param y The y axis position
      */
     public void paintStick(Graphics g, int x, int y) {
+        /*
         g.setColor(color);
         // Switch on ori
         g.fillRect(x, y, 10, 30);
+        */
+        // Game paint factor
+        double paintFactorW = Graph.facW;
+        double paintFactorH = Graph.facH;
+        // Paint shadow
+        Image img= Graph.basePlayer.get("shadow");
+        int width = (int)(img.getWidth(game) * paintFactorW);
+        int height = (int)(img.getHeight(game) * paintFactorH);
+        Point offset = new Point(-18,4);
+        g.drawImage(img, x +offset.x ,y+offset.y, width,height, game);
+        offset = new Point(-8,-7);
+        
+        switch(ori){
+            case 0:
+            case 3:
+                img= Graph.basePlayer.get(this.colorName+"diag0");
+                offset = new Point(-8,-7);
+            break;
+            case 1:
+            case 4:
+                img= Graph.basePlayer.get(this.colorName+"diag1");
+                offset = new Point(-8,-7);
+            break;
+            case 5:
+                img= Graph.basePlayer.get(this.colorName+"left");
+                offset = new Point(-8,-7);
+            break;
+            case 2:
+                img= Graph.basePlayer.get(this.colorName+"right");
+                offset = new Point(-8,-7);
+            break;
+            default:
+                img= Graph.basePlayer.get(this.colorName+"right");
+                offset = new Point(-8,-7);
+                break;
+        }
+        
+        g.drawImage(img, x +offset.x ,y+offset.y, 26, 40, game);
     }
 
     public void setColor(Color color) {

@@ -253,7 +253,7 @@
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
-		<case>8</case>
+		<case>8,u</case>
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
@@ -275,9 +275,9 @@
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
-		<case>8</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
@@ -299,10 +299,10 @@
 		<case>7</case>
 		<case>201</case>
 		<case>201</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
-		<case>8</case>
+		<case>8,u</case>
 		<case>201</case>
 		<case>7</case>
 		<case>201</case>
@@ -323,11 +323,11 @@
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
-		<case>8</case>
-		<case>8</case>
-		<case>8</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>0</case>
@@ -347,10 +347,10 @@
 		<case>201</case>
 		<case>201</case>
 		<case>201</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
-		<case>8</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
@@ -374,8 +374,8 @@
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>0</case>
@@ -399,7 +399,7 @@
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
-		<case>8</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
@@ -422,8 +422,8 @@
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
@@ -447,8 +447,8 @@
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>0</case>
@@ -469,8 +469,8 @@
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
@@ -493,9 +493,9 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>8</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>0</case>
@@ -516,32 +516,8 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>8</case>
-		<case>8</case>
-		<case>7</case>
-		<case>7</case>
-		<case>7</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>8</case>
-		<case>8</case>
+		<case>8,u</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>
@@ -563,7 +539,31 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>8</case>
+		<case>0</case>
+		<case>8,u</case>
+		<case>8,u</case>
+		<case>7</case>
+		<case>7</case>
+		<case>7</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>8,u</case>
 		<case>7</case>
 		<case>7</case>
 		<case>7</case>

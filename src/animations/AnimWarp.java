@@ -3,7 +3,7 @@ package animations;
 import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Graph;
-import fap_java.TheThread;
+import fap_java.TheComputingThread;
 
 import fap_java.Tools;
 
@@ -28,7 +28,7 @@ public class AnimWarp extends Animation {
     private double startThird;
     private double flashDuration;
     
-    public AnimWarp(int x, int y, TheThread theThread) {
+    public AnimWarp(int x, int y, TheComputingThread theThread) {
         super(x, y, (int)(((double)(14)/24)*1000), theThread);
         startSecond = ((double)4/14)*duration;
         startThird = ((double)7/14)*duration;
@@ -43,7 +43,7 @@ public class AnimWarp extends Animation {
         img = Tools.getImageToFilter(Graph.getList().get("warp"));
     }
     
-    public AnimWarp(Cell c, TheThread theThread) {
+    public AnimWarp(Cell c, TheComputingThread theThread) {
         this(CMap.giveTalePosition(c)[0],CMap.giveTalePosition(c)[1],theThread);
     }
 

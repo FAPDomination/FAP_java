@@ -41,7 +41,11 @@ public class Game extends JPanel implements NeedingFocus {
     /**
      * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
      */
-    private transient TheThread thread;
+    private transient TheComputingThread thread;
+    /**
+     * The thread permanently refreshes the graphics game. Draws map, players, etc...
+     */
+    private transient TheGraphicalThread Gthread;
     /**
      * This contains all the player of this game. See also fap_java.Player
      */
@@ -122,6 +126,7 @@ public class Game extends JPanel implements NeedingFocus {
     private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
     
     private boolean pauseNPC;
+    
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -215,10 +220,16 @@ public class Game extends JPanel implements NeedingFocus {
         this.setSize(Constants.frameDimension);
         
         // Initialize thread
-        thread = new TheThread(this);
+        thread = new TheComputingThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
+        
+        // Initialize thread
+        Gthread = new TheGraphicalThread(this);
+        Gthread.setRunning(false);
+        new Thread(this.Gthread).start();
+        Gthread.setRunning(true);
         
         gameEnded = false;
         
@@ -238,7 +249,7 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+        //long startTime = System.currentTimeMillis();
         // Background
         Graphics2D g2d = (Graphics2D)g;
         
@@ -287,6 +298,8 @@ public class Game extends JPanel implements NeedingFocus {
                 anims.get(j).paintComponent(g);
             }
         }
+        
+        //System.out.println(System.currentTimeMillis() - startTime);
     }
 
     public ArrayList<Player> getPlayers() {
@@ -297,7 +310,7 @@ public class Game extends JPanel implements NeedingFocus {
         return map;
     }
 
-    public TheThread getThread() {
+    public TheComputingThread getThread() {
         return thread;
     }
 

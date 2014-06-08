@@ -2,7 +2,7 @@ package animations;
 
 import fap_java.Element;
 import fap_java.PauseScreen;
-import fap_java.TheThread;
+import fap_java.TheComputingThread;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
 
 public class PauseCountDown extends Animation {
     BufferedImage bufferedImage;
-    public PauseCountDown(int x, int y, int duration,TheThread thread) {
+    public PauseCountDown(int x, int y, int duration,TheComputingThread thread) {
         super(x,y,duration, thread);
     }
 
