@@ -670,6 +670,7 @@ public abstract class Player extends Human {
         decLifeAuto = 1;
         lastDisplacement = 0;
         lastSkill = 0;
+        ori = 3;
 
         this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
     }
