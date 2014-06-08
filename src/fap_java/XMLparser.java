@@ -1,5 +1,6 @@
 package fap_java;
 
+import gui.ClassesDescListHandler;
 import gui.MapListHandler;
 
 import gui.Minimap;
@@ -65,6 +66,13 @@ public class XMLparser {
         // Call the parse method
         parseXML("maps.xml", dh);
         return dh.getList();
+    }
+    
+    public static void parseClassesDescList(){
+        // Creates a Handler that will process the datas
+        ClassesDescListHandler dh = new ClassesDescListHandler();
+        // Call the parse method
+        parseXML("classesDescriptions.xml", dh);
     }
     
     /**

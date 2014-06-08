@@ -36,9 +36,16 @@ public class PauseScreen extends Element{
     private JButton btnWorldMap = new JButton();
     private JButton btnMainMenu = new JButton();
     
+    private static boolean parsedXML = false;
+    
     
     public PauseScreen(boolean dispVict, Game game) {
         super();
+        
+        if(!parsedXML){
+            parsedXML = true;
+            XMLparser.parseClassesDescList();
+        }
         displayVictory = dispVict;
         this.game = game;
         resuming = false;
@@ -80,7 +87,29 @@ public class PauseScreen extends Element{
         g.setColor(Color.black);
         //TODO better background
         if(!displayVictory){
-            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+            g.setColor(Graph.BG_DARKTRANSLUSCENT);
+            g.fillRect(0, 0, game.getWidth(), game.getHeight());
+            
+            g.setColor(Color.black);
+            Color squareColor = Graph.DEFAULT_SQUARE_COLOR;    
+            int width = (int)(game.getWidth()*0.5);
+            int height = (int)(game.getHeight()*0.8);
+            if(width<=500){
+                width=500;
+            }
+            int x =(game.getWidth()-width)/4;
+            int y =(game.getHeight()-height)/5;
+            //TODO replace w/h with relative
+            Graph.drawDarkBackgroundRectangle(g, x, y, width, height, squareColor, 40, Graph.BG_DARK);
+            //g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
+            int randClass = Tools.randRange(0, Params.waitingMessages.length-1);
+            //Draw thumbnail
+            g.drawImage(Graph.thumbnails.get(Params.waitingMessages[randClass][0]), x+50, y, game);
+            
+            //TODO pretty text
+            g.setColor(Color.white);
+            g.drawString(Params.waitingMessages[randClass][1], x+25, y+400);
+            g.setColor(Color.black);
         }
         this.computeButtons();
         if(!resuming){

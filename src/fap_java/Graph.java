@@ -37,6 +37,7 @@ public class Graph {
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
     public static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
+    public static Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
     public static double facW = CMap.TW / ((double)(97 - 20));
@@ -176,6 +177,10 @@ public class Graph {
             
             //Shadow
             basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
+            
+            //Thumbnails
+            thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
+            
             
             //Thread.sleep(2000);
             pls.endAnim();
