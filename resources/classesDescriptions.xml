@@ -1,10 +1,9 @@
 <root>
 <class>
 	<thumbnail>Big_Knight</thumbnail>
-	<desc>Le Chevalier est un couard. Une chiffe molle.\nBonne chance pour réveiller ce gros tas de muscles.\n
-	Quand le Chevalier lance son sort,\nil déclenche une vague de rage infligeant\n
-	des dégâts autour de lui.\n
-	C'est le seul sortilège dont la puissance\n
-	dépend du temps de chargement.</desc>
+	<desc>Le Chevalier est un couard. Une chiffe molle. Bonne chance pour réveiller ce gros tas de muscles.
+	Quand le Chevalier lance son sort,il déclenche une vague de rage infligeant
+	des dégâts autour de lui.
+	C'est le seul sortilège dont la puissance dépend du temps de chargement.</desc>
 </class>
 </root>

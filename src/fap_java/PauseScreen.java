@@ -108,7 +108,8 @@ public class PauseScreen extends Element{
             
             //TODO pretty text
             g.setColor(Color.white);
-            g.drawString(Params.waitingMessages[randClass][1], x+25, y+400);
+            Tools.drawMultilineString(g, Params.waitingMessages[randClass][1], x+25, y+400,20);
+            //g.drawString(Params.waitingMessages[randClass][1], x+25, y+400);
             g.setColor(Color.black);
         }
         this.computeButtons();

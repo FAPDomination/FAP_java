@@ -141,7 +141,6 @@ public class Graph {
             //Gui
             guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
             guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
-            guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
             guimg.put("btn_add", ImageIO.read(new File("resources/images/gui/buttons/btn_Add.png")));
             guimg.put("btn_add_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_Add_hover.png")));
             guimg.put("btn_remove", ImageIO.read(new File("resources/images/gui/buttons/btn_Remove.png")));
