@@ -153,7 +153,7 @@ P Design
 V	- Change did of countdown cell after end of timer
 	- Pause background
 ?	- Game Background
-	- OFFMAP
+X	- OFFMAP
 	- Animations
 		- Skills
 		- Traps
@@ -343,7 +343,7 @@ V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
-P		- credits
+V		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
@@ -364,13 +364,13 @@ V	- Find a place for it and keep it
 ?		- Even for OptionMenu ?
 V	- Versus : keep information from one another
 V Go next button : find place and keep it
-? Game extends FAPanel ?
+X Game extends FAPanel ?
   OptionMenu
 	- Buttons
 V		- Back
 		- Controls
 		- Sound
-?		- FullScreen
+O?		- FullScreen
 		- FAP Editor
 V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
@@ -387,8 +387,8 @@ V				- Change BG
 V				- Change players disposition
 V		- Display Minimap
   General Design
-	- Button for menu
-	- Button for other
+E	- Button for menu
+T	- Button for other
 	- Button remove
 	- Btn add
 	- Everything relative -> resizable + Component locations
@@ -448,9 +448,9 @@ V Map Selection
 V	- Parse map list
 P	- Keep map list updated
 V	- Display map list
-~		- Size of maps
+V		- Size of maps
 ~		- Increments
-?		- more than 8 ?
+		- more than 8 ?
 V	- update map value when clicked
 V	- btn next
 V		- wait for map to be selected
