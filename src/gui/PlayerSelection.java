@@ -61,8 +61,8 @@ public class PlayerSelection extends FAPanel {
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120, 40);
-        btnGoBack.setLocation(20, 20);
+        btnGoBack.setSize(120,60);
+        btnGoBack.setLocation(origX-5, origY-5);
         
         btnNext.setText("Suivant");
         btnNext.setSize(120, 40);

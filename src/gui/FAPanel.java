@@ -56,6 +56,7 @@ public abstract class FAPanel extends JPanel {
         btnGoBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 goBack();
+                ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
             }
         });
         btnGoBack.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -2,6 +2,9 @@ package gui;
 
 import fap_java.Graph;
 
+import fap_java.Params;
+import fap_java.Tools;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -22,6 +25,8 @@ public class Button_SampleUI extends BasicButtonUI {
     
     private static final int MARGIN_VALUE = 40;
     private static final Insets BUTTON_MARGIN = new Insets(MARGIN_VALUE, 0, MARGIN_VALUE, 0);
+    
+    private static Color hsquare= null;
     
     private boolean hover=false;
     
@@ -60,7 +65,11 @@ public class Button_SampleUI extends BasicButtonUI {
         if (isHover()) {
             //button.setBackground(null);
             button.setForeground(Graph.BTN_COLOR_HOVER);
-            square = Color.red;
+            if(hsquare == null){
+                int randColor = Tools.randRange(0, Params.colorList.length-1);
+                hsquare = Params.colorList[randColor];
+            }
+            square = hsquare;
             /*
             final int BWIDTH = button.getWidth();
             final int BHEIGHT = button.getHeight();
