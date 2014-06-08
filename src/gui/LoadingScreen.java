@@ -85,7 +85,7 @@ public class LoadingScreen extends FAPanel {
                 g.drawImage(Graph.getGuimg().get("LS_BGteam"), origX, y, this);
             }
             g.setColor(Color.black);
-            //TODO pick one or the other
+            
             //g.drawString("Team "+(i+1), origX+20+increm8X*col, y+30);
             g.drawString(""+teams.get(i), origX+20+increm8X*col, y+30);
             ArrayList<Player> players = teams.get(i).getPlayersInThisTeam();

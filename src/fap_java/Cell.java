@@ -182,7 +182,7 @@ public class Cell extends Element {
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            //TODO better painting of minor's cursor
+            //TODO better painting of miner's cursor
             if(this.minerSing){
                 g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
             }
@@ -204,7 +204,6 @@ public class Cell extends Element {
                 g.setColor(Color.black);
             }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
-            //TODO coloured background ?
         }
         
         //TODO Special Healthy Healthy design
