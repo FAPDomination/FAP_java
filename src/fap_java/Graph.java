@@ -2,7 +2,9 @@ package fap_java;
 
 import gui.PreLoadingScreen;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -15,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 public class Graph {
 
@@ -41,6 +46,17 @@ public class Graph {
 
     public Graph() {
     }
+    
+    // Colors :
+    public static final Color BG_Blue = Color.blue;
+    public static final Color BG_Red = Color.red;
+    public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
+    
+    // Borders :
+    public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+    
+    // Fonts :
+    public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
 
     public static void load(PreLoadingScreen pls) {
         try {
