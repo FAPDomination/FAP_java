@@ -43,8 +43,8 @@ public class LoadingScreen extends FAPanel {
 
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120, 40);
-        btnGoBack.setLocation(origX, origY);
+        btnGoBack.setSize(120,60);
+        btnGoBack.setLocation(origX-5, origY-5);
         this.add(btnGoBack);
         
         
@@ -53,9 +53,9 @@ public class LoadingScreen extends FAPanel {
         btnPlay.setLocation(630, 370);
         this.add(btnPlay);
         
-        origY = 100;
+        origY = 130;
         
-        minimap = new Minimap(nmap,610,origY,this,"");
+        minimap = new Minimap(nmap,610,origY+5,this,"");
         //LS_BGteam : 322,103
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

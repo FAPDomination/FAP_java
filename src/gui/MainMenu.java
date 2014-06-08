@@ -46,12 +46,6 @@ public class MainMenu extends FAPanel implements AnimPanel {
         this.setSize(Constants.frameDimension);
 
         //------ Buttons
-        btnAdventure.setUI(new Button_MainMenuUI());
-        btnVersus.setUI(new Button_MainMenuUI());
-        btnQuickPlay.setUI(new Button_MainMenuUI());
-        btnOptions.setUI(new Button_MainMenuUI());
-        btnCredits.setUI(new Button_MainMenuUI());
-        btnQuit.setUI(new Button_MainMenuUI());
         
         initMenuBtn(btnAdventure, "Aventure", 32,0);
         initMenuBtn(btnVersus, "Versus", 70,50);

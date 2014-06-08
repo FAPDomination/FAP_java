@@ -50,9 +50,22 @@ public abstract class FAPanel extends JPanel {
         sword = Graph.getGuimg().get("MM_sword");
         clouds = Graph.getGuimg().get("MM_clouds");
         
+        btnGoBack.setUI(new Button_SampleUI());
+        ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
+        btnGoBack.setOpaque(false);
         btnGoBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 goBack();
+            }
+        });
+        btnGoBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_SampleUI)btnGoBack.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
             }
         });
     }

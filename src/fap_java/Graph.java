@@ -61,12 +61,15 @@ public class Graph {
     public static final Color BG_WHITETRANSLUSCENT = new Color(255,255,255,(int)(255*0.3));
     public static final Color MINIMAP_SELECTED_COLOR = Color.BLUE;
     
+    public static final Color BTN_COLOR = new Color(255,255,255,220);
+    public static final Color BTN_COLOR_HOVER = new Color(250,250,250,255);
     
     // Borders :
     public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
     
     // Fonts :
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
+    //public static final Font BTN_SAMPLE_FONT = new Font("Calibri", Font.BOLD, 24);
     public static final Font REGULAR_FONT = new Font("Calibri", Font.PLAIN, 12);
 
     public static void load(PreLoadingScreen pls) {
