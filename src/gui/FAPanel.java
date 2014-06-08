@@ -1,17 +1,21 @@
 package gui;
 
+import fap_java.CMap;
 import fap_java.Graph;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
@@ -68,7 +72,9 @@ public abstract class FAPanel extends JPanel {
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        
     }
+
     
     public void goBack() {
         if(prevPanel instanceof MainMenu){

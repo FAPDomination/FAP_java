@@ -137,6 +137,8 @@ public class Graph {
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
             
+            
+            
             //Thread.sleep(2000);
             pls.endAnim();
 
