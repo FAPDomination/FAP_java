@@ -54,6 +54,7 @@ public class Graph {
     public static final Color BG_Red = Color.red;
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
     public static final Color DEFAULT_SQUARE_COLOR=new Color(0,0,0);
+    public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);
     public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
     public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,140);
     public static final Color BG_DARK = new Color(0,0,0,220);
@@ -137,11 +138,7 @@ public class Graph {
             guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
             guimg.put("minimapBG",
                       ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
-            guimg.put("LS_BGteam", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_team.png")));
-            guimg.put("LS_BG8team", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_8Teams.png")));
             guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
-            guimg.put("victoryScreen", ImageIO.read(new File("resources/images/gui/victoryScreen.png")));
-            guimg.put("npcDisplayMessage", ImageIO.read(new File("resources/images/gui/npcDisplayMessage.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
