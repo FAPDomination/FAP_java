@@ -389,8 +389,8 @@ V		- Display Minimap
   General Design
 E	- Button for menu
 T	- Button for other
-	- Button remove
-	- Btn add
+V	- Button remove
+V	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
 		- Versus menus
