@@ -140,6 +140,8 @@ public class Graph {
             basePlayer.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
             basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
             basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
+            //Shadow
+            basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
             
             //Thread.sleep(2000);
             pls.endAnim();

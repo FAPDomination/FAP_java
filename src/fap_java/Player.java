@@ -538,9 +538,16 @@ public abstract class Player extends Human {
         // Switch on ori
         g.fillRect(x, y, 10, 30);
         */
-        // Switch on ori
-        Image img=null;
-        Point offset = new Point(-8,-7);
+        // Game paint factor
+        double paintFactorW = Graph.facW;
+        double paintFactorH = Graph.facH;
+        // Paint shadow
+        Image img= Graph.basePlayer.get("shadow");
+        int width = (int)(img.getWidth(game) * paintFactorW);
+        int height = (int)(img.getHeight(game) * paintFactorH);
+        Point offset = new Point(-18,4);
+        g.drawImage(img, x +offset.x ,y+offset.y, width,height, game);
+        offset = new Point(-8,-7);
         
         switch(ori){
             case 0:
