@@ -49,8 +49,11 @@ public class LoadingScreen extends FAPanel {
         
         
         btnPlay.setText("Play");
-        btnPlay.setSize(120, 40);
-        btnPlay.setLocation(630, 370);
+        btnPlay.setSize(120, 60);
+        btnPlay.setLocation(630, 400);
+        btnPlay.setUI(new Button_SampleUI());
+        ((Button_SampleUI)btnPlay.getUI()).setHover(false);
+        btnPlay.setOpaque(false);
         this.add(btnPlay);
         
         origY = 130;
@@ -60,6 +63,18 @@ public class LoadingScreen extends FAPanel {
         btnPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 startGame();
+                ((Button_SampleUI)btnPlay.getUI()).setHover(false);
+            }
+        });
+        
+        btnPlay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_SampleUI)btnPlay.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_SampleUI)btnPlay.getUI()).setHover(false);
             }
         });
     }

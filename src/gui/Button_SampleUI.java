@@ -26,7 +26,7 @@ public class Button_SampleUI extends BasicButtonUI {
     private static final int MARGIN_VALUE = 40;
     private static final Insets BUTTON_MARGIN = new Insets(MARGIN_VALUE, 0, MARGIN_VALUE, 0);
     
-    private static Color hsquare= null;
+    private Color hsquare= null;
     
     private boolean hover=false;
     
@@ -62,7 +62,7 @@ public class Button_SampleUI extends BasicButtonUI {
         button.setFont(Graph.BTN_MENU_FONT);
         //button.setVerticalTextPosition();
         Color square = null;
-        if (isHover()) {
+        if (isHover() && button.isEnabled()) {
             //button.setBackground(null);
             button.setForeground(Graph.BTN_COLOR_HOVER);
             if(hsquare == null){

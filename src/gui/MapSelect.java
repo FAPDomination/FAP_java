@@ -43,11 +43,25 @@ public class MapSelect extends FAPanel implements MouseListener{
         origY+=5;
         
         btnNext.setText("Jouer");
-        btnNext.setSize(120, 40);
+        btnNext.setSize(120, 60);
+        btnNext.setUI(new Button_SampleUI());
+        ((Button_SampleUI)btnNext.getUI()).setHover(false);
+        btnNext.setOpaque(false);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextFrame();
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
+            }
+        });
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_SampleUI)btnNext.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
             }
         });
         
