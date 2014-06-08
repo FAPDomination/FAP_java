@@ -234,4 +234,6 @@ public class Params {
     public static int timeForSelection = 100;
     
     public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
+    
+    public static final int displacementAnimationLength = 4;
 }

@@ -136,7 +136,6 @@ public abstract class Player extends Human {
     private int controler;
     
     private int x = -1,y=-1,wantedX=0,wantedY = 0;
-    private int animLength = 4;
     private int animCount;
     private boolean dispComputed = false;
     private int facDispX=0;
@@ -556,14 +555,14 @@ public abstract class Player extends Human {
         
         if((wantedX != x || wantedY !=y) && !dispComputed){
             dispComputed = true;
-            facDispX = -(x-wantedX)/animLength;
-            facDispY = -(y-wantedY)/animLength;
+            facDispX = -(x-wantedX)/Params.displacementAnimationLength;
+            facDispY = -(y-wantedY)/Params.displacementAnimationLength;
             int limit = 10;
             if(facDispX > limit ||facDispY > limit){
                 x = wantedX;
                 y = wantedY;
             }
-            animCount = animLength;
+            animCount = Params.displacementAnimationLength;
         }
         
         if(x == -1 || Math.abs(wantedX - x) < 3 ||animCount <= 0){
