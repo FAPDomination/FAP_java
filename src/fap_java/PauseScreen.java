@@ -49,7 +49,7 @@ public class PauseScreen extends Element{
         btnResume.setSize(Constants.buttonSize);
         
         
-        btnWorldMap.setText("Retour à la carte");
+        btnWorldMap.setText("Retour a la carte");
         btnWorldMap.setSize(Constants.buttonSize);
         
         btnMainMenu.setText("Retour au menu");
