@@ -36,11 +36,11 @@ public class Graph {
     protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
-    protected static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
+    public static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
-    protected static double facW = CMap.TW / ((double)(97 - 20));
-    protected static double facH = CMap.TH / ((double)(73 - 36));
+    public static double facW = CMap.TW / ((double)(97 - 20));
+    public static double facH = CMap.TH / ((double)(73 - 36));
     // key : String, the name of the cell
     // entry : the cell image
 
@@ -166,6 +166,14 @@ public class Graph {
             basePlayer.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
             basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
             basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
+            
+            //Knight
+            for(int j=0;j<3;j++){
+                for(int i=0;i<6;i++){
+                    basePlayer.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
+            
             //Shadow
             basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
             
