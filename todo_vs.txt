@@ -176,11 +176,12 @@ V			- Cursor
 P			- Specific for each player color
 		- Paint Owner
 V			- Text in the middle of the cell
-?			- Coloured background
+			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
 		- Null images dids
+V		- Paint HPs with outline
 	- Scorebar
 	- Texts of all kinds
 		- HPs on cells

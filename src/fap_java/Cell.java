@@ -197,14 +197,23 @@ public class Cell extends Element {
             Graphics2D g2d = (Graphics2D)g;
             FontMetrics fm = g2d.getFontMetrics();
             int textWidth = fm.stringWidth(hps);
+            
+            //TODO coloured background
             if(owner !=null){
                 g.setColor(owner.getColor());
             }
             else{
                 g.setColor(Color.black);
             }
+            
+            g.setColor(Color.WHITE);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2 -1, y + 10 - 1);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2 -1, y + 10 + 1);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2 +1, y + 10 - 1);
+            g.drawString(hps, x + (CMap.TW-textWidth)/2 +1, y + 10 + 1);
+            g.setColor(Color.black);
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
-            //TODO coloured background ?
+            
         }
         
         //TODO Special Healthy Healthy design
