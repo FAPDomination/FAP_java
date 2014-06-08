@@ -31,10 +31,9 @@ public class Minimap{
 
     private int x;
     private int y;
-    private int w = 147;
-    private int h = 208;
+    private int w = 172;
+    private int h = 251;
 
-    private static Image img = Graph.getGuimg().get("minimapBG");
     private JPanel panel;
     private String name;
     private boolean isSelected;
@@ -73,12 +72,13 @@ public class Minimap{
 
     public void paintComponent(Graphics g) {
         //TODO Size of background for big maps
-        g.drawImage(img, x, y, panel);
-        //TODO Special if is selected
+        Color square = null;
+        //g.drawImage(img, x, y, panel);
         if(isSelected){
-            g.setColor(Color.blue);
-            g.fillRect(x, y, 5, 5);
+            square = Graph.MINIMAP_SELECTED_COLOR;
         }
+        Graph.drawDarkBackgroundRectangle(g, x-5, y-5, w, h, square, 15, Graph.BG_WHITETRANSLUSCENT);
+        
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
             g.setColor(colorList[c.getDid()]);
@@ -90,7 +90,8 @@ public class Minimap{
         FontMetrics fm = g2d.getFontMetrics();
         int nameWidth = fm.stringWidth(name);
         int imgWidth = 150;
-        g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 220);
+        //TODO Pretty text
+        g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 235);
     }
 
     public void setIsSelected(boolean isSelected) {

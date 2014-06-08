@@ -174,9 +174,9 @@ P		- MinerSelect
 V			- Base
 V			- Cursor
 P			- Specific for each player color
-		- Paint Owner
+V		- Paint Owner
 V			- Text in the middle of the cell
-			- Coloured background
+V			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
@@ -190,17 +190,11 @@ V		- Paint HPs with outline
 		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
+		- Minimap map name
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?
 		- Other decoration picture
-	- Characters
-~		- Base Character
-V			- 3D and photoshop File
-~			- 3D Model
-V			- Test Export
-~		- Add shadow below the character (seems floating)
-		- Class-specific accessories
 V Depth
 V Minimap
 V	- Object

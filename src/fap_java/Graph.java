@@ -59,6 +59,7 @@ public class Graph {
     public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,140);
     public static final Color BG_DARK = new Color(0,0,0,220);
     public static final Color BG_WHITETRANSLUSCENT = new Color(255,255,255,(int)(255*0.3));
+    public static final Color MINIMAP_SELECTED_COLOR = Color.BLUE;
     
     
     // Borders :
@@ -136,8 +137,6 @@ public class Graph {
             //Gui
             guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
             guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
-            guimg.put("minimapBG",
-                      ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
             guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
 
             File location = new File("resources/images/default/cells/regular.png");

@@ -78,12 +78,11 @@ public class MapSelect extends FAPanel implements MouseListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         int nMapPerLine = 4;
-        int origX = 50;
-        int origY = 80;
+        origY = 100;
         int h=0;
-        //TODO better increments
+        //TODO fit to width
         int incrementX = (this.getWidth()-(2*origX))/nMapPerLine;
-        int incrementY = 250;
+        int incrementY = 270;
         for(int i=0;i<mapList.size();i++){
             Minimap m = mapList.get(i);
             m.setX(origX+(i%nMapPerLine)*incrementX);
