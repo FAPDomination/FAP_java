@@ -1,6 +1,7 @@
 package animations;
 
 import fap_java.Element;
+import fap_java.Graph;
 import fap_java.PauseScreen;
 import fap_java.TheComputingThread;
 
@@ -19,8 +20,10 @@ import javax.imageio.ImageIO;
 
 public class PauseCountDown extends Animation {
     BufferedImage bufferedImage;
-    public PauseCountDown(int x, int y, int duration,TheComputingThread thread) {
-        super(x,y,duration, thread);
+    public PauseCountDown(int duration,TheComputingThread thread) {
+        super(0,0,duration, thread);
+        this.x = thread.getMyGame().getWidth()-200;
+        this.y = thread.getMyGame().getHeight()/5;
     }
 
     public String toString() {
@@ -29,6 +32,8 @@ public class PauseCountDown extends Animation {
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.white);
+        //TODO pretty text
+        g.setFont(Graph.PAUSECOUNTDOWN_FONT);
         g.drawString(""+((duration-position)/1000), x, y);
     }
     
