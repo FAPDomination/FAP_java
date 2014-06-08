@@ -38,6 +38,9 @@ public abstract class FAPanel extends JPanel {
     protected int maxxC = Constants.maxxC;
     protected int minxC = Constants.minxC;
     
+    protected int origX = 30;
+    protected int origY = 30;
+    
     protected JButton btnGoBack = new JButton();
     
     public FAPanel(TheFrame parent, JPanel prevPanel) {

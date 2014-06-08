@@ -5,6 +5,7 @@ import gui.PreLoadingScreen;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -51,13 +52,16 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
+    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
     public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
+    public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,100);
     
     // Borders :
     public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
     
     // Fonts :
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
+    public static final Font REGULAR_FONT = new Font("Calibri", Font.PLAIN, 12);
 
     public static void load(PreLoadingScreen pls) {
         try {
@@ -207,5 +211,25 @@ public class Graph {
 
     public static Map<String, BufferedImage> getGuimg() {
         return guimg;
+    }
+    
+    public static void drawBorderedString(Graphics g,int x,int y, String label, Color borderColor){
+        Color c = g.getColor();
+        g.setColor(borderColor);
+        g.drawString(label, x-1, y- 1);
+        g.drawString(label, x-1, y+ 1);
+        g.drawString(label, x+1, y- 1);
+        g.drawString(label, x+1, y+ 1);
+        g.setColor(c);
+        g.drawString(label, x,y);
+    }
+    
+    public static void drawDarkBackgroundRectangle(Graphics g, int x, int y, int w, int h, Color SquareColor, int SquareSize){
+        g.setColor(Graph.BG_DARKTRANSLUSCENT);
+        g.fillRect(x, y, w, h);
+        if(SquareColor != null){
+            g.setColor(SquareColor);
+            g.fillRect(x+w-(3*SquareSize/4), y-(1*SquareSize/4), SquareSize,SquareSize);
+        }
     }
 }

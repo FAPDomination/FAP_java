@@ -207,13 +207,7 @@ public class Cell extends Element {
                 fillCell(g,x,y,alphaBG);
             }
             
-            g.setColor(Color.WHITE);
-            g.drawString(hps, x + (CMap.TW-textWidth)/2 -1, y + 10 - 1);
-            g.drawString(hps, x + (CMap.TW-textWidth)/2 -1, y + 10 + 1);
-            g.drawString(hps, x + (CMap.TW-textWidth)/2 +1, y + 10 - 1);
-            g.drawString(hps, x + (CMap.TW-textWidth)/2 +1, y + 10 + 1);
-            g.setColor(Color.black);
-            g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Color.WHITE);
             
         }
         
