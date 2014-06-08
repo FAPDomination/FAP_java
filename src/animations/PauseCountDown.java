@@ -23,7 +23,7 @@ public class PauseCountDown extends Animation {
     public PauseCountDown(int duration,TheComputingThread thread) {
         super(0,0,duration, thread);
         this.x = thread.getMyGame().getWidth()-200;
-        this.y = thread.getMyGame().getHeight()/5;
+        this.y = thread.getMyGame().getHeight()/25;
     }
 
     public String toString() {
@@ -31,10 +31,11 @@ public class PauseCountDown extends Animation {
     }
 
     public void paintComponent(Graphics g) {
+        Graph.drawDarkBackgroundRectangle(g, x-30, y, 160, 200, Graph.DEFAULT_SQUARE_COLOR, 20, Graph.BG_DARKTRANSLUSCENT);
         g.setColor(Color.white);
         //TODO pretty text
         g.setFont(Graph.PAUSECOUNTDOWN_FONT);
-        g.drawString(""+((duration-position)/1000), x, y);
+        g.drawString(""+((duration-position)/1000), x, y+150);
     }
     
     public void executeAnimation(){
