@@ -1,7 +1,7 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   UTF-8
   Tidy the methods lists
-  What happened to the getI, getJ, etc... ?
+  Refactor paintStick into a super call
   Bugs :
 V	- Type of blocking tiles all to 0 ?
 ? Not so good :
