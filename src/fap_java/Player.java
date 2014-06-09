@@ -67,7 +67,7 @@ public abstract class Player extends Human {
     /**
      * The orientation (direction of the player)
      */
-    private int ori;
+    protected int ori;
 
     /**
      * The cell the player is currently standing on
@@ -93,9 +93,9 @@ public abstract class Player extends Human {
     /**
      * The color of the player
      */
-    private Color color;
+    protected Color color;
     
-    private String colorName;
+    protected String colorName;
 
     /**
      * The initial amount of HPs the player's cells have
@@ -603,50 +603,7 @@ public abstract class Player extends Human {
      * @param x The x axis position
      * @param y The y axis position
      */
-    public void paintStick(Graphics g, int x, int y) {
-        /*
-        g.setColor(color);
-        // Switch on ori
-        g.fillRect(x, y, 10, 30);
-        */
-        // Game paint factor
-        double paintFactorW = Graph.facW;
-        double paintFactorH = Graph.facH;
-        // Paint shadow
-        Image img= Graph.basePlayer.get("shadow");
-        int width = (int)(img.getWidth(game) * paintFactorW);
-        int height = (int)(img.getHeight(game) * paintFactorH);
-        Point offset = new Point(-18,4);
-        g.drawImage(img, x +offset.x ,y+offset.y, width,height, game);
-        offset = new Point(-8,-7);
-        
-        switch(ori){
-            case 0:
-            case 3:
-                img= Graph.basePlayer.get(this.colorName+"diag0");
-                offset = new Point(-8,-7);
-            break;
-            case 1:
-            case 4:
-                img= Graph.basePlayer.get(this.colorName+"diag1");
-                offset = new Point(-8,-7);
-            break;
-            case 5:
-                img= Graph.basePlayer.get(this.colorName+"left");
-                offset = new Point(-8,-7);
-            break;
-            case 2:
-                img= Graph.basePlayer.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-            break;
-            default:
-                img= Graph.basePlayer.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-                break;
-        }
-        
-        g.drawImage(img, x +offset.x ,y+offset.y, 26, 40, game);
-    }
+    public abstract void paintStick(Graphics g, int x, int y);
 
     public void setColor(Color color) {
         this.color = color;
@@ -784,6 +741,7 @@ public abstract class Player extends Human {
         decLifeAuto = 1;
         lastDisplacement = 0;
         lastSkill = 0;
+        ori = 3;
 
         this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
     }

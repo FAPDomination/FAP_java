@@ -36,15 +36,32 @@ public class MapSelect extends FAPanel implements MouseListener{
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120, 40);
-        btnGoBack.setLocation(20, 20);
+        btnGoBack.setSize(120,60);
+        btnGoBack.setLocation(origX-5, origY-5);
+        
+        origX+=5;
+        origY+=5;
         
         btnNext.setText("Jouer");
-        btnNext.setSize(120, 40);
+        btnNext.setSize(120, 60);
+        btnNext.setUI(new Button_SampleUI());
+        ((Button_SampleUI)btnNext.getUI()).setHover(false);
+        btnNext.setOpaque(false);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextFrame();
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
+            }
+        });
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_SampleUI)btnNext.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
             }
         });
         
@@ -78,12 +95,11 @@ public class MapSelect extends FAPanel implements MouseListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         int nMapPerLine = 4;
-        int origX = 50;
-        int origY = 80;
+        origY = 100;
         int h=0;
-        //TODO better increments
+        //TODO fit to width
         int incrementX = (this.getWidth()-(2*origX))/nMapPerLine;
-        int incrementY = 250;
+        int incrementY = 270;
         for(int i=0;i<mapList.size();i++){
             Minimap m = mapList.get(i);
             m.setX(origX+(i%nMapPerLine)*incrementX);

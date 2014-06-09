@@ -10,6 +10,7 @@ O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
 V	- Graph guimg public
+	- Ability to re-launch the pauseCountdown when already in pauseCountDown
 V Displacement Hexa
 V	- Hexa
 V	- Bug changing
@@ -151,9 +152,9 @@ P		- Alpha
 V	- Pause CountDown
 P Design
 V	- Change did of countdown cell after end of timer
-	- Pause background
+V	- Pause background
 ?	- Game Background
-	- OFFMAP
+X	- OFFMAP
 	- Animations
 		- Skills
 		- Traps
@@ -174,13 +175,14 @@ P		- MinerSelect
 V			- Base
 V			- Cursor
 P			- Specific for each player color
-		- Paint Owner
+V		- Paint Owner
 V			- Text in the middle of the cell
-?			- Coloured background
+V			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
 		- Null images dids
+V		- Paint HPs with outline
 	- Scorebar
 	- Texts of all kinds
 		- HPs on cells
@@ -189,17 +191,14 @@ V		- Tidy paintComponent
 		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
+		- Minimap map name
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?
 		- Other decoration picture
-	- Characters
-~		- Base Character
-V			- 3D and photoshop File
-~			- 3D Model
-V			- Test Export
-~		- Add shadow below the character (seems floating)
-		- Class-specific accessories
+	- PauseScreen
+		- Better text display
+V		- better placement on the y-axis
 V Depth
 V Minimap
 V	- Object
@@ -348,7 +347,7 @@ V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
-P		- credits
+V		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
@@ -369,13 +368,13 @@ V	- Find a place for it and keep it
 ?		- Even for OptionMenu ?
 V	- Versus : keep information from one another
 V Go next button : find place and keep it
-? Game extends FAPanel ?
+X Game extends FAPanel ?
   OptionMenu
 	- Buttons
 V		- Back
 		- Controls
 		- Sound
-?		- FullScreen
+O?		- FullScreen
 		- FAP Editor
 V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
@@ -392,16 +391,17 @@ V				- Change BG
 V				- Change players disposition
 V		- Display Minimap
   General Design
-	- Button for menu
-	- Button for other
-	- Button remove
-	- Btn add
+E	- Button for menu
+T	- Button for other
+V	- Button remove
+V	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
 		- Versus menus
 	- Nice fonts and sizes for texts
 		- LoadingScreen
 		- PlayerSelection
+		- PauseScreen
 P PlayerSelection
 V	- PlayerSelect
 V		- Button remove
@@ -453,9 +453,9 @@ V Map Selection
 V	- Parse map list
 P	- Keep map list updated
 V	- Display map list
-~		- Size of maps
+V		- Size of maps
 ~		- Increments
-?		- more than 8 ?
+		- more than 8 ?
 V	- update map value when clicked
 V	- btn next
 V		- wait for map to be selected

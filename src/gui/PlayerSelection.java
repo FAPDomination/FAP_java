@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
@@ -32,7 +33,7 @@ public class PlayerSelection extends FAPanel {
     
     private int displayOrigX = 140;
     private int displayOrigY = 200;
-    private int displayIncrementY = 50;
+    private int displayIncrementY = 55;
     private int displayHeight = 30;
     
     private boolean error;
@@ -61,25 +62,53 @@ public class PlayerSelection extends FAPanel {
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120, 40);
-        btnGoBack.setLocation(20, 20);
+        btnGoBack.setSize(120,60);
+        btnGoBack.setLocation(origX-5, origY-5);
         
         btnNext.setText("Suivant");
-        btnNext.setSize(120, 40);
+        btnNext.setSize(120, 60);
+        btnNext.setUI(new Button_SampleUI());
+        ((Button_SampleUI)btnNext.getUI()).setHover(false);
+        btnNext.setOpaque(false);
         btnNext.setLocation(this.getWidth()-30-btnNext.getWidth(), 20);
         
-        btnAdd.setText("+");
-        btnAdd.setSize(40,displayHeight);
+        //btnAdd.setText("+");
+        btnAdd.setSize(48,48);
+        btnAdd.setOpaque(false);
+        btnAdd.setUI(new Button_AddRemoveUI("btn_add"));
+        ((Button_AddRemoveUI)btnAdd.getUI()).setHover(false);
         btnAdd.setLocation(displayOrigX,displayOrigY-displayIncrementY);
         btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addPlayerSelecter();
+                ((Button_AddRemoveUI)btnAdd.getUI()).setHover(false);
+            }
+        });
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_AddRemoveUI)btnAdd.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_AddRemoveUI)btnAdd.getUI()).setHover(false);
             }
         });
         
         btnNext.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextFrame();
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
+            }
+        });
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_SampleUI)btnNext.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_SampleUI)btnNext.getUI()).setHover(false);
             }
         });
         
@@ -129,7 +158,7 @@ public class PlayerSelection extends FAPanel {
             //TODO multiline
             //TODO pretty text
             g.setColor(Color.black);
-            g.drawString(message, 600, 300);
+            g.drawString(message, displayOrigX + 80,displayOrigY - 30);
         }
     }
 
@@ -142,6 +171,7 @@ public class PlayerSelection extends FAPanel {
     }
     
     public void organizePlayerSelect(){
+        //TODO Placements of tout ce joli petit monde
         // Reinit buttons and lists
         this.removeAll();
         this.add(btnNext);
@@ -156,7 +186,7 @@ public class PlayerSelection extends FAPanel {
             // Associated controller
             JComboBox combo = this.controlSelecters.get(i);
             combo.setSelectedIndex(ps.getControler());
-            combo.setBounds(displayOrigX+60, displayOrigY + displayIncrementY * i, 150, displayHeight);
+            combo.setBounds(displayOrigX+80, displayOrigY + (displayIncrementY) * i + 10, 150, displayHeight);
             //this.remove(combo);
             this.add(combo);
             combo.addActionListener(new ActionListener() {
@@ -167,7 +197,7 @@ public class PlayerSelection extends FAPanel {
             // Associated Team
             JComboBox team = this.teamSelecters.get(i);
             team.setSelectedIndex(ps.getTeam());
-            team.setBounds(displayOrigX+230, displayOrigY+displayIncrementY*i, 150, displayHeight);
+            team.setBounds(displayOrigX+270, displayOrigY+(displayIncrementY)*i + 10, 150, displayHeight);
             //this.remove(team);
             this.add(team);
             team.addActionListener(new ActionListener() {
@@ -177,9 +207,26 @@ public class PlayerSelection extends FAPanel {
             });
             // Delete button
             JButton jb = this.eraseSelecters.get(i);
-            jb.setText("X");
-            jb.setBounds(displayOrigX, displayOrigY+displayIncrementY*i, 40, displayHeight);
+            //jb.setText("X");
+            jb.setSize(48,48);
+            jb.setOpaque(false);
+            jb.setUI(new Button_AddRemoveUI("btn_remove"));
+            ((Button_AddRemoveUI)jb.getUI()).setHover(false);
+            jb.setLocation(displayOrigX,displayOrigY-displayIncrementY);
+            jb.setBounds(displayOrigX, displayOrigY+displayIncrementY*i, 48,48);
             this.add(jb);
+            
+            jb.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    //LectureFichierSon.lire(Design.sonChtk);
+                    jb_rollover(evt);
+                }
+
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    jb_rollout(evt);
+                }
+            });
+            
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     jb_ActionPerformed(e);
@@ -195,8 +242,22 @@ public class PlayerSelection extends FAPanel {
     
     public void jb_ActionPerformed(ActionEvent e){
         JButton jb = (JButton) e.getSource();
+        ((Button_AddRemoveUI)jb.getUI()).setHover(false);
         this.removePlayerSelecter(this.eraseSelecters.indexOf(jb));
     }
+    
+    public void jb_rollover(MouseEvent e){
+        JButton jb = (JButton) e.getSource();
+        ((Button_AddRemoveUI)jb.getUI()).setHover(true);
+        
+    }
+    
+    public void jb_rollout(MouseEvent e){
+        JButton jb = (JButton) e.getSource();
+        ((Button_AddRemoveUI)jb.getUI()).setHover(false);
+    }
+    
+    
     
     public void combo_ActionPerformed(ActionEvent e){
         JComboBox combo = (JComboBox)e.getSource();

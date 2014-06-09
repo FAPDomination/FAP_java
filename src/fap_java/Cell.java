@@ -197,16 +197,34 @@ public class Cell extends Element {
             Graphics2D g2d = (Graphics2D)g;
             FontMetrics fm = g2d.getFontMetrics();
             int textWidth = fm.stringWidth(hps);
+            
+            //TODO coloured background
+            
+            
             if(owner !=null){
-                g.setColor(owner.getColor());
+                Color c = owner.getColor();
+                Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
+                fillCell(g,x,y,alphaBG);
             }
             else{
                 g.setColor(Color.black);
             }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            
+            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+            
         }
         
         //TODO Special Healthy Healthy design
+    }
+    
+    public static void fillCell(Graphics g,int x, int y, Color c){
+        Color k = g.getColor();
+        g.setColor(c);
+        int[] xs = {x-2,CMap.TW/(2)+x -1,CMap.TW+x +1,CMap.TW+x +1,CMap.TW/2+x -1,x-2};
+        int[] ys = {y,-11/CMap.FAC+y,y,23/CMap.FAC+y,34/CMap.FAC+y,23/CMap.FAC+y};
+        g.fillPolygon(xs, ys, 6);
+        g.setColor(k);
     }
 
     /**

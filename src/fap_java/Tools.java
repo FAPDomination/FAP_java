@@ -205,4 +205,17 @@ public class Tools {
         return npc;
     }
 
+
+    public static void drawMultilineString(Graphics g, String s,int x, int y, int incr){
+        drawMultilineString(g, s.split("\n"),x,y,incr);
+    }
+    
+    public static void drawMultilineString(Graphics g, String[] ss,int x, int y, int incr){
+        //TODO add auto multiline limit based on fontmetrics + maxwidth parameter
+        //TODO compute line height via fontmetrics
+        for(int i=0;i<ss.length;i++){
+            //String s = ss[i].substring(0, ss[i].length()-3);
+            g.drawString(ss[i], x, y+i*incr);
+        }
+    }
 }

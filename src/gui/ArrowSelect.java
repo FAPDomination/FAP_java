@@ -29,7 +29,8 @@ public class ArrowSelect {
     
     public ArrowSelect(PlayerSelect ps, CharacterSelection cs) {
         this.ps = ps;
-        this.color = Params.colorList[ps.getControler()];
+        Color c = Params.colorList[ps.getControler()];
+        this.color = new Color(c.getRed(),c.getGreen(),c.getBlue(),180);
         this.cs = cs;
         computeWantedPosition();
             
@@ -40,7 +41,9 @@ public class ArrowSelect {
     
     public void paintComponent(Graphics g){
         g.setColor(color);
-        g.fillRect(x, y, 4, 4);
+        int[] xs = {x-8,x+8,x};
+        int[] ys ={y-10,y-10,y};
+        g.fillPolygon(xs, ys, 3);
     }
     
     public void computeWantedPosition(){

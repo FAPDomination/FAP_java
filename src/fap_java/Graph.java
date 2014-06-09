@@ -4,6 +4,8 @@ import gui.PreLoadingScreen;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -16,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 public class Graph {
 
@@ -31,18 +36,43 @@ public class Graph {
     protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
-    protected static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
+    public static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
+    public static Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
-    protected static double facW = CMap.TW / ((double)(97 - 20));
-    protected static double facH = CMap.TH / ((double)(73 - 36));
+    public static double facW = CMap.TW / ((double)(97 - 20));
+    public static double facH = CMap.TH / ((double)(73 - 36));
     // key : String, the name of the cell
     // entry : the cell image
 
     protected static Image basicCellImage;
 
     public Graph() {
-    }
+    } 
+    
+    // Colors :
+    public static final Color BG_Blue = Color.blue;
+    public static final Color BG_Red = Color.red;
+    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,160);
+    public static final Color DEFAULT_SQUARE_COLOR=new Color(100,100,100);
+    public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);
+    public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
+    public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,140);
+    public static final Color BG_DARK = new Color(0,0,0,190);
+    public static final Color BG_WHITETRANSLUSCENT = new Color(255,255,255,(int)(255*0.3));
+    public static final Color MINIMAP_SELECTED_COLOR = Color.BLUE;
+    
+    public static final Color BTN_COLOR = new Color(255,255,255,220);
+    public static final Color BTN_COLOR_HOVER = new Color(250,250,250,255);
+    
+    // Borders :
+    public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+    
+    // Fonts :
+    public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
+    //public static final Font BTN_SAMPLE_FONT = new Font("Calibri", Font.BOLD, 24);
+    public static final Font REGULAR_FONT = new Font("Calibri", Font.PLAIN, 12);
+    public static final Font PAUSECOUNTDOWN_FONT = new Font("Verdana", Font.PLAIN, 150);
 
     public static void load(PreLoadingScreen pls) {
         try {
@@ -112,13 +142,10 @@ public class Graph {
             //Gui
             guimg.put("MM_sword", ImageIO.read(new File("resources/images/gui/mainMenu/sword.png")));
             guimg.put("MM_clouds", ImageIO.read(new File("resources/images/gui/mainMenu/clouds.png")));
-            guimg.put("minimapBG",
-                      ImageIO.read(new File("resources/images/gui/versus/mapSelect/minimapBackground.png")));
-            guimg.put("LS_BGteam", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_team.png")));
-            guimg.put("LS_BG8team", ImageIO.read(new File("resources/images/gui/loadingScreen/BG_8Teams.png")));
-            guimg.put("pauseScreen", ImageIO.read(new File("resources/images/gui/pauseScreen.png")));
-            guimg.put("victoryScreen", ImageIO.read(new File("resources/images/gui/victoryScreen.png")));
-            guimg.put("npcDisplayMessage", ImageIO.read(new File("resources/images/gui/npcDisplayMessage.png")));
+            guimg.put("btn_add", ImageIO.read(new File("resources/images/gui/buttons/btn_Add.png")));
+            guimg.put("btn_add_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_Add_hover.png")));
+            guimg.put("btn_remove", ImageIO.read(new File("resources/images/gui/buttons/btn_Remove.png")));
+            guimg.put("btn_remove_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_Remove_hover.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
@@ -140,8 +167,20 @@ public class Graph {
             basePlayer.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
             basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
             basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
+            
+            //Knight
+            for(int j=0;j<3;j++){
+                for(int i=0;i<6;i++){
+                    basePlayer.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
+            
             //Shadow
             basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
+            
+            //Thumbnails
+            thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
+            
             
             //Thread.sleep(2000);
             pls.endAnim();
@@ -192,5 +231,27 @@ public class Graph {
 
     public static Map<String, BufferedImage> getGuimg() {
         return guimg;
+    }
+    
+    public static void drawBorderedString(Graphics g,int x,int y, String label, Color borderColor){
+        Color c = g.getColor();
+        g.setColor(borderColor);
+        g.drawString(label, x-1, y- 1);
+        g.drawString(label, x-1, y+ 1);
+        g.drawString(label, x+1, y- 1);
+        g.drawString(label, x+1, y+ 1);
+        g.setColor(c);
+        g.drawString(label, x,y);
+    }
+    
+    public static void drawDarkBackgroundRectangle(Graphics g, int x, int y, int w, int h, Color SquareColor, int SquareSize, Color backgrounColor){
+        Color c = g.getColor();
+        g.setColor(backgrounColor);
+        g.fillRect(x, y, w, h);
+        if(SquareColor != null){
+            g.setColor(SquareColor);
+            g.fillRect(x+w-(3*SquareSize/4), y-(1*SquareSize/4), SquareSize,SquareSize);
+        }
+        g.setColor(c);
     }
 }

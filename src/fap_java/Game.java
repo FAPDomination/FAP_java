@@ -605,7 +605,7 @@ public class Game extends JPanel implements NeedingFocus {
                     ((PauseScreen)e).setResuming(true);
                 }
             }
-            new PauseCountDown(400,150,Params.pauseDuration,thread);
+            new PauseCountDown(Params.pauseDuration,thread);
         }
         else if(isNPC){
             // Get animations

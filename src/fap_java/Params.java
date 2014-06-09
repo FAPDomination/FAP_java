@@ -84,7 +84,7 @@ public class Params {
     /**
      * The duration of the pause countdown after resuming the game
      */
-    public static final int pauseDuration = 3600;
+    public static final int pauseDuration = 4600;
     
     //Skill-Related Parameters :
     /**
@@ -204,7 +204,7 @@ public class Params {
     /**
      * The default amount of points a player should have to win a game
      */
-    public static final int defaultVictoryScore = 2000;
+    public static final int defaultVictoryScore = 1000;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */
@@ -236,4 +236,7 @@ public class Params {
     public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
     
     public static final int displacementAnimationLength = 3;
+
+    public static String[][] waitingMessages = new String[1][2];
+
 }
