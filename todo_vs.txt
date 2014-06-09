@@ -10,6 +10,7 @@ O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
 V	- Graph guimg public
+	- Ability to re-launch the pauseCountdown when already in pauseCountDown
 V Displacement Hexa
 V	- Hexa
 V	- Bug changing

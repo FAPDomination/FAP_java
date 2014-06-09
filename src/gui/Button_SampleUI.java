@@ -77,7 +77,7 @@ public class Button_SampleUI extends BasicButtonUI {
             g.fillRect(0, 0, BWIDTH, BHEIGHT);
             */
         }
-        Graph.drawDarkBackgroundRectangle(g, 5, 5, button.getWidth()-10, button.getHeight(), square, 15, Graph.BG_DARKTRANSLUSCENT);
+        Graph.drawDarkBackgroundRectangle(g, 5, 5, button.getWidth()-10, button.getHeight(), square, 15, Graph.BG_DARK);
         super.paint(g, button);
     }
 

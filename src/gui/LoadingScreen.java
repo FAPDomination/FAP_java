@@ -100,7 +100,7 @@ public class LoadingScreen extends FAPanel {
                 int w = 161;
                 int h = 102;
                 int squareW = 20;
-                Graph.drawDarkBackgroundRectangle(g, x, y, w, h, teams.get(i).getFirstPlayer().getColor(), squareW, Graph.BG_DARKTRANSLUSCENT);
+                Graph.drawDarkBackgroundRectangle(g, x, y, w, h, teams.get(i).getFirstPlayer().getColor(), squareW, Graph.BG_DARK);
                 //g.drawImage(Graph.getGuimg().get("LS_BG8team"), origX+col*increm8X, y, this);
             }
             else{
@@ -110,7 +110,7 @@ public class LoadingScreen extends FAPanel {
                 int w = 322;
                 int h = 103;
                 int squareW = 20;
-                Graph.drawDarkBackgroundRectangle(g, x, y, w, h, teams.get(i).getFirstPlayer().getColor(), squareW, Graph.BG_DARKTRANSLUSCENT);
+                Graph.drawDarkBackgroundRectangle(g, x, y, w, h, teams.get(i).getFirstPlayer().getColor(), squareW, Graph.BG_DARK);
                 //g.drawImage(Graph.getGuimg().get("LS_BGteam"), origX, y, this);
             }
             g.setColor(Color.black);

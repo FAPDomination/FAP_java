@@ -46,7 +46,7 @@ public class NPCMessage extends Animation {
         int x=(thread.getMyGame().getWidth()-width)/2;
         int y=(thread.getMyGame().getHeight()-height-30);
 
-        Graph.drawDarkBackgroundRectangle(g, x, y, width, height, Graph.NPC_SQUARE_COLOR, 20, Graph.BG_DARKTRANSLUSCENT);
+        Graph.drawDarkBackgroundRectangle(g, x, y, width, height, Graph.NPC_SQUARE_COLOR, 20, Graph.BG_DARK);
         //g.drawImage(img,x,y,width,height,thread.getMyGame());
 
         g.drawString(message, x+20, y+20);

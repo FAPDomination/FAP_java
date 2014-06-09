@@ -264,12 +264,20 @@ public class PauseScreen extends Element {
     }
 
     private void computeButtons() {
-
-        // Placements for victoryDisplay mode
-        int offX = (int)(game.getWidth() * (1 - 0.15) - Constants.buttonSize.getWidth() + 15/4);
-        int offY = (int)(game.getHeight() * (1 - 0.15) + (game.getHeight() * (0.15) - Constants.buttonSize.getHeight()) / 2);
-        int increment = (int)(1.2 * Constants.buttonSize.getWidth());
-
+        int offX = 0;
+        int offY = 0;
+        int increment = 0;
+        if(this.displayVictory){
+            // Placements for victoryDisplay mode
+            offX = (int)(game.getWidth() * (1 - 0.15) - Constants.buttonSize.getWidth() + 15./4);
+            offY = (int)(game.getHeight() * (1 - 0.15) + (game.getHeight() * (0.15) - Constants.buttonSize.getHeight()) / 2);
+            increment = (int)(1.2 * Constants.buttonSize.getWidth());
+        }
+        else{   // Regular pause mode
+            offX = (int)(game.getWidth() - 200 - 35);
+            offY = (int)(game.getHeight() * (1 - 0.15) - Constants.buttonSize.getHeight() - 15./4 -2);
+            increment = (int)(1.2 * Constants.buttonSize.getHeight());
+        }
         //Remove button
         game.remove(this.btnMainMenu);
         game.remove(this.btnResume);
@@ -288,18 +296,28 @@ public class PauseScreen extends Element {
             int i = 0;
             //Resume
             if (!this.displayVictory) {
-                btnResume.setLocation(offX - (i) * increment, offY);
+                btnResume.setLocation(offX, offY - (i) * increment);
                 i++;
                 game.add(btnResume);
             }
             //World map
             if (this.advMode && game.getMap().getFileID() != 0) {
-                btnWorldMap.setLocation(offX - (i) * increment, offY);
+                if(this.displayVictory){
+                    btnWorldMap.setLocation(offX - (i) * increment, offY);
+                }
+                else{
+                    btnWorldMap.setLocation(offX, offY - (i) * increment);
+                }
                 i++;
                 game.add(btnWorldMap);
             }
             // MainMenu
-            btnMainMenu.setLocation(offX - (i) * increment, offY);
+            if(this.displayVictory){
+                btnMainMenu.setLocation(offX - (i) * increment, offY);
+            }
+            else{
+                btnMainMenu.setLocation(offX, offY - (i) * increment);
+            }
             game.add(btnMainMenu);
             i++;
         }

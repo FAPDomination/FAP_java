@@ -31,7 +31,7 @@ public class PauseCountDown extends Animation {
     }
 
     public void paintComponent(Graphics g) {
-        Graph.drawDarkBackgroundRectangle(g, x-30, y, 160, 200, Graph.DEFAULT_SQUARE_COLOR, 20, Graph.BG_DARKTRANSLUSCENT);
+        Graph.drawDarkBackgroundRectangle(g, x-30, y, 160, 200, Graph.DEFAULT_SQUARE_COLOR, 20, Graph.BG_DARK);
         g.setColor(Color.white);
         //TODO pretty text
         g.setFont(Graph.PAUSECOUNTDOWN_FONT);
