@@ -44,6 +44,7 @@ public class ClassesDescListHandler extends DefaultHandler {
         } else if (qName.equals("class")) {
             Params.waitingMessages[counter][0] = thumb;
             Params.waitingMessages[counter][1] = desc;
+            counter++;
         }
         else if(qName.equals("thumbnail")){
             thumb = buffer.toString();    

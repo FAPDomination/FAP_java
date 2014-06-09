@@ -6,4 +6,11 @@
 	des dégâts autour de lui.
 	C'est le seul sortilège dont la puissance dépend du temps de chargement.</desc>
 </class>
+<class>
+	<thumbnail>Big_NoCharacterGuy</thumbnail>
+	<desc>
+	"Mets une écharpe, tu vas attraper froid dehors."
+	
+	- Maman</desc>
+</class>
 </root>

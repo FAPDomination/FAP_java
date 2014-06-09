@@ -732,6 +732,9 @@ public abstract class Player extends Human {
      */
     public void initParams() {
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+        if(game.getAdv() == 2){
+            tmax/=3;
+        }
         //System.out.println(tmax);
         initHP = 100;
         //maxHP = (int)Params.paramTable.get("maxHP")[pc];

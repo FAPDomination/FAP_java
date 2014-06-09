@@ -41,6 +41,8 @@ public class PauseScreen extends Element implements Serializable{
     private JButton btnMainMenu = new JButton();
 
     private static boolean parsedXML = false;
+    
+    private int randClass;
 
 
     public PauseScreen(boolean dispVict, Game game) {
@@ -54,6 +56,7 @@ public class PauseScreen extends Element implements Serializable{
         this.game = game;
         resuming = false;
         message = "";
+        randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
 
         // Init buttons
         btnResume.setText("Continuer");
@@ -148,7 +151,7 @@ public class PauseScreen extends Element implements Serializable{
             //TODO replace w/h with relative
             Graph.drawDarkBackgroundRectangle(g, x, y, width, height, squareColor, 40, Graph.BG_DARK);
             //g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
-            int randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
+            
             //Draw thumbnail
             g.drawImage(Graph.thumbnails.get(Params.waitingMessages[randClass][0]), x + 50, y, game);
 

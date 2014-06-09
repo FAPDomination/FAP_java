@@ -186,6 +186,7 @@ public class Graph {
             
             //Thumbnails
             thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
+            thumbnails.put("Big_NoCharacterGuy", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_NoCharacterGuy.png")));
             
             
             //Thread.sleep(2000);
