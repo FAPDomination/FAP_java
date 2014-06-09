@@ -23,7 +23,7 @@ public class PauseCountDown extends Animation {
     public PauseCountDown(int duration,TheComputingThread thread) {
         super(0,0,duration, thread);
         this.x = thread.getMyGame().getWidth()-200;
-        this.y = thread.getMyGame().getHeight()/25;
+        this.y = (int)(thread.getMyGame().getHeight()*0.1 +1);
     }
 
     public String toString() {

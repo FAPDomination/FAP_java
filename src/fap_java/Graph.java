@@ -53,12 +53,12 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
-    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
+    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,160);
     public static final Color DEFAULT_SQUARE_COLOR=new Color(100,100,100);
     public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);
     public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
     public static final Color BG_DARKTRANSLUSCENT = new Color(0,0,0,140);
-    public static final Color BG_DARK = new Color(0,0,0,220);
+    public static final Color BG_DARK = new Color(0,0,0,190);
     public static final Color BG_WHITETRANSLUSCENT = new Color(255,255,255,(int)(255*0.3));
     public static final Color MINIMAP_SELECTED_COLOR = Color.BLUE;
     

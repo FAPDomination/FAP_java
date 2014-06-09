@@ -207,7 +207,7 @@ public class Cell extends Element {
                 fillCell(g,x,y,alphaBG);
             }
             
-            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Color.WHITE);
+            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
             
         }
         

@@ -152,7 +152,7 @@ P		- Alpha
 V	- Pause CountDown
 P Design
 V	- Change did of countdown cell after end of timer
-	- Pause background
+V	- Pause background
 ?	- Game Background
 X	- OFFMAP
 	- Animations
@@ -196,6 +196,9 @@ V		- Paint HPs with outline
 		- Display of the players (placement)
 		- Animation ?
 		- Other decoration picture
+	- PauseScreen
+		- Better text display
+V		- better placement on the y-axis
 V Depth
 V Minimap
 V	- Object
@@ -398,6 +401,7 @@ V	- Btn add
 	- Nice fonts and sizes for texts
 		- LoadingScreen
 		- PlayerSelection
+		- PauseScreen
 P PlayerSelection
 V	- PlayerSelect
 V		- Button remove

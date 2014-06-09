@@ -141,7 +141,7 @@ public class PauseScreen extends Element {
                 width = 500;
             }
             int x = (game.getWidth() - width) / 4;
-            int y = (game.getHeight() - height) / 5;
+            int y = (game.getHeight() - height) / 2;
             //TODO replace w/h with relative
             Graph.drawDarkBackgroundRectangle(g, x, y, width, height, squareColor, 40, Graph.BG_DARK);
             //g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
@@ -275,7 +275,7 @@ public class PauseScreen extends Element {
         }
         else{   // Regular pause mode
             offX = (int)(game.getWidth() - 200 - 35);
-            offY = (int)(game.getHeight() * (1 - 0.15) - Constants.buttonSize.getHeight() - 15./4 -2);
+            offY = (int)(game.getHeight() * (1 - 0.1) - Constants.buttonSize.getHeight() - 15./4 );
             increment = (int)(1.2 * Constants.buttonSize.getHeight());
         }
         //Remove button
