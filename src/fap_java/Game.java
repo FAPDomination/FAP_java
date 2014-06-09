@@ -201,7 +201,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param nmap The ID of the map where it's played
      */
     public Game(int nmap){
-        this("1","0","0","0",false,nmap,0,0,0,2);
+        this("7","0","0","0",false,nmap,0,0,0,2);
         // Detect World Map
         initListNPCs(nmap);
     }

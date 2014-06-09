@@ -34,33 +34,9 @@ public class NoCharacter extends Player{
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
         Point offset = new Point(-18,4);
         g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
-        offset = new Point(-8,-7);
+        offset = new Point(-10,-11);
         
-        switch(ori){
-            case 0:
-            case 3:
-                img= Graph.basePlayer.get(this.colorName+"diag0");
-                offset = new Point(-8,-7);
-            break;
-            case 1:
-            case 4:
-                img= Graph.basePlayer.get(this.colorName+"diag1");
-                offset = new Point(-8,-7);
-            break;
-            case 5:
-                img= Graph.basePlayer.get(this.colorName+"left");
-                offset = new Point(-8,-7);
-            break;
-            case 2:
-                img= Graph.basePlayer.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-            break;
-            default:
-                img= Graph.basePlayer.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-                break;
-        }
-        
-        g.drawImage(img, x +offset.x ,y+offset.y, 26, 40, this.getGame());
+        img = Graph.basePlayer.get("NoCharacterGuy"+ori+"_"+this.getColorName());
+        g.drawImage(img, x +offset.x ,y+offset.y, 29,45, this.getGame());
     }
 }

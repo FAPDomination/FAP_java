@@ -174,6 +174,12 @@ public class Graph {
                     basePlayer.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
+            //NoCharacterGuy
+            for(int j=0;j<3;j++){
+                for(int i=0;i<6;i++){
+                    basePlayer.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
             
             //Shadow
             basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
