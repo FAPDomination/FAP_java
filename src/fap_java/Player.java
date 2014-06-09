@@ -550,8 +550,7 @@ public abstract class Player extends Human {
      * @param g Graphical thing
      */
     public void paintComponent(Graphics g) {
-        //int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
-        //int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+        // Smooth displacement
         
         if((wantedX != x || wantedY !=y) && !dispComputed){
             dispComputed = true;
@@ -589,6 +588,12 @@ public abstract class Player extends Human {
             animCount --;
         }
         
+        // Comment these three lines and uncomment the rest to have smooth displacement
+        /*
+        drawn = current;
+        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+        */
         paintStick(g, x, y);
     }
 
