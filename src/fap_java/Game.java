@@ -19,6 +19,10 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 
 import java.util.HashMap;
@@ -836,6 +840,19 @@ public class Game extends JPanel implements NeedingFocus {
         gameList.put(22, new Game("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
         gameList.put(23, new Game("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
         gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
+        
+        //Test
+        Game ga = gameList.get(20);
+        try {
+            FileOutputStream fileOut = new FileOutputStream("game.ga");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(ga);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        //-----------
 
         // Get list of conquered cells
         this.computeWorldMap();

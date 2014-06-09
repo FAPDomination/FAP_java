@@ -17,13 +17,16 @@ import java.awt.event.ActionListener;
 
 import java.awt.event.KeyEvent;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 // Also does victory screen
-public class PauseScreen extends Element {
+public class PauseScreen extends Element implements Serializable{
+
     private boolean displayVictory;
     private boolean resuming;
     private Game game;
