@@ -49,4 +49,12 @@ public abstract class Animation {
     public boolean isRunning() {
         return running;
     }
+
+    public void setThread(TheComputingThread thread) {
+        this.thread = thread;
+    }
+
+    public TheComputingThread getThread() {
+        return thread;
+    }
 }

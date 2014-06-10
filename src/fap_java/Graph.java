@@ -128,6 +128,8 @@ public class Graph {
             list.put("arrow", ImageIO.read(new File("resources/images/arrow/arrowL.png")));
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
+            list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
+            
             
             //Fake images to load to see what it's like a big loading time
             /*

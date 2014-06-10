@@ -1,5 +1,10 @@
 package characters;
 
+import animations.AnimFrozen;
+import animations.AnimWarp;
+import animations.Animation;
+
+import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Graph;
@@ -38,7 +43,9 @@ public class Magician extends Player {
                         //p.blast(10);
                         p.makeHimWait(Params.howLongBlockingMagician * 1000);
                         //Add animation
-                        //TODO add animation Magician
+                        int x = CMap.giveTalePosition(p.getCurrent().getI(), p.getCurrent().getJ())[0] + Params.OFFX;
+                        int y = CMap.giveTalePosition(p.getCurrent().getI(), p.getCurrent().getJ())[1] + Params.OFFY;
+                        Animation anim = new AnimFrozen(x,y,this.getGame().getThread());
                     }
                 }
             }
