@@ -180,6 +180,12 @@ public class Graph {
                     basePlayer.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
+            //Magician
+            for(int j=0;j<3;j++){
+                for(int i=0;i<6;i++){
+                    basePlayer.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
             
             //Shadow
             basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
@@ -187,6 +193,7 @@ public class Graph {
             //Thumbnails
             thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
             thumbnails.put("Big_NoCharacterGuy", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_NoCharacterGuy.png")));
+            thumbnails.put("Big_Magician", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Magician.png")));
             
             
             //Thread.sleep(2000);
