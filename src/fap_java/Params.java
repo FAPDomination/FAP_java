@@ -237,6 +237,6 @@ public class Params {
     
     public static final int displacementAnimationLength = 3;
 
-    public static String[][] waitingMessages = new String[3][2];
+    public static String[][] waitingMessages = new String[4][2];
 
 }
