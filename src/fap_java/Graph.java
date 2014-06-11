@@ -170,22 +170,29 @@ public class Graph {
             basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
             basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
             
+            int limitColor = 3;
             //Knight
-            for(int j=0;j<3;j++){
+            for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
                     basePlayer.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             //NoCharacterGuy
-            for(int j=0;j<3;j++){
+            for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
                     basePlayer.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             //Magician
-            for(int j=0;j<3;j++){
+            for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
                     basePlayer.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
+            //Miner
+            for(int j=0;j<limitColor;j++){
+                for(int i=0;i<6;i++){
+                    basePlayer.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             
