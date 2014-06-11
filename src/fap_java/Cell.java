@@ -173,23 +173,7 @@ public class Cell extends Element {
         g.drawImage(this.img, x + offX, y + offY, width, height, game);
         
         
-        // Special case if the miner is currently selecting the cell
-        //TODO better painting of miner selecting depending on player's color
-        if (minerSelect != null) {
-            int minerSlectID = 13;
-            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * paintFactorW);
-            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * paintFactorH);
-            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
-            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
-            //If the miner's cursor is on the cell
-            //TODO better painting of miner's cursor
-            if(this.minerSing){
-                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
-            }
-            else{
-                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
-            }
-        }
+        
         
         // Write the amount of HP of the tile
         if (hp > 0) {
@@ -213,6 +197,24 @@ public class Cell extends Element {
             
             Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
             
+        }
+        
+        // Special case if the miner is currently selecting the cell
+        //TODO better painting of miner selecting depending on player's color
+        if (minerSelect != null) {
+            int minerSlectID = 13;
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * paintFactorW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * paintFactorH);
+            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
+            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
+            //If the miner's cursor is on the cell
+            //TODO better painting of miner's cursor
+            if(this.minerSing){
+                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
+            }
+            else{
+                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
+            }
         }
         
         //TODO Special Healthy Healthy design
