@@ -143,14 +143,14 @@ public class Miner extends Player{
         double paintFactorW = Graph.facW;
         double paintFactorH = Graph.facH;
         // Paint shadow
-        Image img= Graph.basePlayer.get("shadow");
+        Image img= Graph.characters.get("shadow");
         int width = (int)(img.getWidth(this.getGame()) * paintFactorW);
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
         Point offset = new Point(-18,4);
         g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
         offset = new Point(-24,-31);
         
-        img = Graph.basePlayer.get("Miner"+ori+"_"+this.getColorName());
+        img = Graph.characters.get("Miner"+ori+"_"+this.getColorName());
         g.drawImage(img, x +offset.x ,y+offset.y, 58,90, this.getGame());
     }
 }

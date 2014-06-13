@@ -65,14 +65,14 @@ public class Knight extends Player{
         double paintFactorW = Graph.facW;
         double paintFactorH = Graph.facH;
         // Paint shadow
-        Image img= Graph.basePlayer.get("shadow");
+        Image img= Graph.characters.get("shadow");
         int width = (int)(img.getWidth(this.getGame()) * paintFactorW);
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
         Point offset = new Point(-18,4);
         g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
         offset = new Point(-10,-11);
         
-        img = Graph.basePlayer.get("Knight"+ori+"_"+this.getColorName());
+        img = Graph.characters.get("Knight"+ori+"_"+this.getColorName());
         g.drawImage(img, x +offset.x ,y+offset.y, 29,45, this.getGame());
     }
 }

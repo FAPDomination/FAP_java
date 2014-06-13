@@ -36,7 +36,7 @@ public class Graph {
     protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
     protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
-    public static Map<String, BufferedImage> basePlayer = new HashMap<String, BufferedImage>();
+    public static Map<String, BufferedImage> characters = new HashMap<String, BufferedImage>();
     public static Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
@@ -154,50 +154,50 @@ public class Graph {
             
             // Add base character files
             //Right
-            basePlayer.put(Params.colorName[0]+"right", ImageIO.read(new File("resources/images/default/characters/base/Red_Right.png")));
-            basePlayer.put(Params.colorName[1]+"right", ImageIO.read(new File("resources/images/default/characters/base/Blue_Right.png")));
-            basePlayer.put(Params.colorName[2]+"right", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Right.png")));
+            characters.put(Params.colorName[0]+"right", ImageIO.read(new File("resources/images/default/characters/base/Red_Right.png")));
+            characters.put(Params.colorName[1]+"right", ImageIO.read(new File("resources/images/default/characters/base/Blue_Right.png")));
+            characters.put(Params.colorName[2]+"right", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Right.png")));
             // Diag0 (Up left + Bottom Right)
-            basePlayer.put(Params.colorName[0]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag0.png")));
-            basePlayer.put(Params.colorName[1]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag0.png")));
-            basePlayer.put(Params.colorName[2]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag0.png")));
+            characters.put(Params.colorName[0]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag0.png")));
+            characters.put(Params.colorName[1]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag0.png")));
+            characters.put(Params.colorName[2]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag0.png")));
             //left
-            basePlayer.put(Params.colorName[0]+"left", ImageIO.read(new File("resources/images/default/characters/base/Red_Left.png")));
-            basePlayer.put(Params.colorName[1]+"left", ImageIO.read(new File("resources/images/default/characters/base/Blue_Left.png")));
-            basePlayer.put(Params.colorName[2]+"left", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Left.png")));
+            characters.put(Params.colorName[0]+"left", ImageIO.read(new File("resources/images/default/characters/base/Red_Left.png")));
+            characters.put(Params.colorName[1]+"left", ImageIO.read(new File("resources/images/default/characters/base/Blue_Left.png")));
+            characters.put(Params.colorName[2]+"left", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Left.png")));
             //Diag1 (top right + bottom left)
-            basePlayer.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
-            basePlayer.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
-            basePlayer.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
+            characters.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
+            characters.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
+            characters.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
             
             int limitColor = 3;
             //Knight
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
-                    basePlayer.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
+                    characters.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             //NoCharacterGuy
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
-                    basePlayer.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
+                    characters.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             //Magician
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
-                    basePlayer.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
+                    characters.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             //Miner
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
-                    basePlayer.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
+                    characters.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             
             //Shadow
-            basePlayer.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
+            characters.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
             
             //Thumbnails
             thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));

@@ -182,7 +182,6 @@ public class Cell extends Element {
             FontMetrics fm = g2d.getFontMetrics();
             int textWidth = fm.stringWidth(hps);
             
-            //TODO coloured background
             
             
             if(owner !=null){
@@ -200,7 +199,6 @@ public class Cell extends Element {
         }
         
         // Special case if the miner is currently selecting the cell
-        //TODO better painting of miner selecting depending on player's color
         if (minerSelect != null) {
             int minerSlectID = 13;
             width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * paintFactorW);
@@ -208,13 +206,14 @@ public class Cell extends Element {
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            //TODO better painting of miner's cursor
+            Color k = minerSelect.getColor();
+            //int lighterFac = 10;
             if(this.minerSing){
-                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game);
+                minerSlectID++;
             }
-            else{
-                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game);
-            }
+            
+            fillBlock(g,x, y+2, minerSelect.getColor(), 6);
+            g.drawImage(Graph.cells.get(minerSlectID), x + offX+2, y + offY+3, width, height, game);
         }
         
         //TODO Special Healthy Healthy design
@@ -226,6 +225,26 @@ public class Cell extends Element {
         int[] xs = {x-2,CMap.TW/(2)+x -1,CMap.TW+x +1,CMap.TW+x +1,CMap.TW/2+x -1,x-2};
         int[] ys = {y,-11/CMap.FAC+y,y,23/CMap.FAC+y,34/CMap.FAC+y,23/CMap.FAC+y};
         g.fillPolygon(xs, ys, 6);
+        g.setColor(k);
+    }
+    
+    public static void fillBlock(Graphics g,int x, int y, Color c, int h){
+        Color k = g.getColor();
+        g.setColor(c);
+        h*=-1;
+        // Top cell
+        int[] xs = {x+1,CMap.TW/(2)+x,CMap.TW+x-1,CMap.TW+x-1,CMap.TW/2+x,x+1};
+        int[] ys = {y+h,-11/CMap.FAC+y+h,y+h,23/CMap.FAC+y+h,34/CMap.FAC+y+h,23/CMap.FAC+y+h};
+        g.fillPolygon(xs, ys, 6);
+        // First panel
+        int[] x2s = {x+1,CMap.TW/(2)+x,CMap.TW/(2)+x -1,x+1};
+        int[] y2s = {y+h,-11/CMap.FAC+y+h,34/CMap.FAC+y-2,23/CMap.FAC+y};
+        g.fillPolygon(x2s, y2s, 4);
+        // Second panel
+        int[] x3s = {CMap.TW+x-2,CMap.TW+x,CMap.TW/(2)+x,CMap.TW/(2)+x -2};
+        int[] y3s = {y+h,23/CMap.FAC+y,34/CMap.FAC+y-2,34/CMap.FAC+y+h};
+        g.fillPolygon(x3s, y3s, 4);
+        
         g.setColor(k);
     }
 
