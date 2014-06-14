@@ -320,7 +320,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                             int newPc = charList.get(id).getPc();
                                             for(int m=0;m<players.size();m++){
                                                 PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
                                                     id = (id+1)%charList.size();
                                                     b=true;
                                                 }
@@ -337,9 +337,9 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                             int newPc = charList.get(id).getPc();
                                             for(int m=0;m<players.size();m++){
                                                 PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getPc()==newPc){
+                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0  && ps.getPc()==newPc){
                                                     id = id-1;
-                                                    if(id == 0){
+                                                    if(id < 0){
                                                         id = charList.size() - (1);
                                                     }
                                                     b=true;
