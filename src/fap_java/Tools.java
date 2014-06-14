@@ -225,12 +225,15 @@ public class Tools {
         }
     }
     
-    public static void parametrizeJLabel(JLabel theJLabel, String text, Font font, Color c, int width, int height, int sizeX, int sizeY, int x, int y, int valign){
+    public static void parametrizeJLabel(JLabel theJLabel, String text, Font font, Color c, int sizeX, int sizeY, int x, int y, int valign){
         theJLabel.setText("<html>"+text+"</html>");
         theJLabel.setFont(font);
         theJLabel.setForeground(c);
         theJLabel.setSize(sizeX,sizeY);
         theJLabel.setLocation(x, y);
         theJLabel.setVerticalAlignment(valign);
+    }
+    public static void parametrizeJLabel(JLabel theJLabel, String text){
+        theJLabel.setText("<html>"+text+"</html>");
     }
 }

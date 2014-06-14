@@ -1,5 +1,6 @@
 package gui;
 
+import fap_java.Graph;
 import fap_java.NPC;
 import fap_java.Params;
 
@@ -20,6 +21,9 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();
     private JButton btnAdd = new JButton();
@@ -38,6 +42,8 @@ public class PlayerSelection extends FAPanel {
     
     private boolean error;
     private String message;
+    
+    private JLabel errMessage;
 
     public PlayerSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
@@ -48,6 +54,12 @@ public class PlayerSelection extends FAPanel {
         eraseSelecters = new ArrayList<JButton>();
         // testing
 
+
+        errMessage = new JLabel();
+        //TODO update width to be aligned with comboboxes (when they get sized)
+        Tools.parametrizeJLabel(errMessage, "", Graph.REGULAR_FONT, Color.black, 350, 40, displayOrigX + 80, displayOrigY - 50, SwingConstants.TOP);
+        //errMessage.setOpaque(true);
+        
         //
         this.addPlayerSelecter();
         this.addPlayerSelecter();
@@ -153,13 +165,6 @@ public class PlayerSelection extends FAPanel {
     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        
-        if(!message.equals("")){
-            //TODO multiline
-            //TODO pretty text
-            g.setColor(Color.black);
-            g.drawString(message, displayOrigX + 80,displayOrigY - 30);
-        }
     }
 
     public void setPlayers(ArrayList<PlayerSelect> players) {
@@ -319,6 +324,8 @@ public class PlayerSelection extends FAPanel {
         int onlyTeam=0;
         error = true;
         message = "Vous devez avoir au moins deux equipes !";
+        Tools.parametrizeJLabel(errMessage, message);
+        this.add(errMessage);
         int fsmCounter = 0;
         for(int i=0;i<players.size();i++){
             PlayerSelect ps = players.get(i);
@@ -328,6 +335,7 @@ public class PlayerSelection extends FAPanel {
             else if(ps.getTeam() != onlyTeam){
                 message = "";
                 error = false;
+                this.remove(errMessage);
             }
             if(ps.getControler() > Params.nPlayersOn1Computer-1){
                 fsmCounter++;
@@ -335,6 +343,8 @@ public class PlayerSelection extends FAPanel {
         }
         if(!error && fsmCounter == players.size()){
             message = "Vous avez le droit de regarder des ordinateurs se battre.\nMais c'est moins fun.";
+            Tools.parametrizeJLabel(errMessage, message);
+            this.add(errMessage);
         }
         if(!error){
             int[] controlers = new int[Params.nPlayersOn1Computer];
@@ -348,6 +358,8 @@ public class PlayerSelection extends FAPanel {
                     if(controlers[ps.getControler()]>1){
                         message = "Vous ne pouvez controler qu'un personage !";
                         error = true;
+                        Tools.parametrizeJLabel(errMessage, message);
+                        this.add(errMessage);
                         break;
                     }
                 }

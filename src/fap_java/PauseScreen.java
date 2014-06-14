@@ -73,7 +73,7 @@ public class PauseScreen extends Element implements Serializable{
             int y = ((game.getHeight() - height) / 2) +410;
             randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
             thumbnailText = new JLabel();
-            Tools.parametrizeJLabel(thumbnailText, Params.waitingMessages[randClass][1], Graph.REGULAR_FONT, Color.WHITE, width, height, width-2*margins,height-410, x, y, SwingConstants.TOP);
+            Tools.parametrizeJLabel(thumbnailText, Params.waitingMessages[randClass][1], Graph.REGULAR_FONT, Color.WHITE, width-2*margins,height-410, x, y, SwingConstants.TOP);
         }
         // Init buttons
         btnResume.setText("Continuer");
