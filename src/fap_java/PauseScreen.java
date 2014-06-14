@@ -22,7 +22,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 // Also does victory screen
 public class PauseScreen extends Element implements Serializable{
@@ -39,10 +41,13 @@ public class PauseScreen extends Element implements Serializable{
     private JButton btnResume = new JButton();
     private JButton btnWorldMap = new JButton();
     private JButton btnMainMenu = new JButton();
+    
+    private JLabel thumbnailText;
 
     private static boolean parsedXML = false;
     
     private int randClass;
+    
 
 
     public PauseScreen(boolean dispVict, Game game) {
@@ -56,8 +61,25 @@ public class PauseScreen extends Element implements Serializable{
         this.game = game;
         resuming = false;
         message = "";
-        randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
-
+        
+        if(!displayVictory){
+            int width = (int)(game.getWidth() * 0.5);
+            int height = (int)(game.getHeight() * 0.8);
+            if (width <= 500) {
+                width = 500;
+            }
+            int margins = 25;
+            int x = ((game.getWidth() - width) / 4) +margins;
+            int y = ((game.getHeight() - height) / 2) +410;
+            randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
+            thumbnailText = new JLabel("<html>"+Params.waitingMessages[randClass][1]+"</html>");
+            thumbnailText.setFont(Graph.REGULAR_FONT);
+            thumbnailText.setForeground(Color.WHITE);
+            thumbnailText.setSize(width-2*margins,height-410);
+            thumbnailText.setLocation(x, y);
+            //thumbnailText.setVerticalTextPosition(SwingConstants.TOP);
+            thumbnailText.setVerticalAlignment(SwingConstants.TOP);
+        }
         // Init buttons
         btnResume.setText("Continuer");
         btnResume.setSize(Constants.buttonSize);
@@ -156,8 +178,8 @@ public class PauseScreen extends Element implements Serializable{
             g.drawImage(Graph.thumbnails.get(Params.waitingMessages[randClass][0]), x + 50, y, game);
 
             //TODO pretty text
-            g.setColor(Color.white);
-            Tools.drawMultilineString(g, Params.waitingMessages[randClass][1], x + 25, y + 400, 20);
+            //g.setColor(Color.white);
+            //Tools.drawMultilineString(g, Params.waitingMessages[randClass][1], x + 25, y + 400, 20);
             //g.drawString(Params.waitingMessages[randClass][1], x+25, y+400);
             g.setColor(Color.black);
         }
@@ -197,6 +219,7 @@ public class PauseScreen extends Element implements Serializable{
                 }
             }
         }
+        
     }
 
     public String toString() {
@@ -288,6 +311,11 @@ public class PauseScreen extends Element implements Serializable{
         game.remove(this.btnMainMenu);
         game.remove(this.btnResume);
         game.remove(this.btnWorldMap);
+        game.remove(this.thumbnailText);
+        
+        if(!displayVictory){
+            game.add(thumbnailText);
+        }
         
         if (!resuming) {
             int nbuttons = 1; // for gotoMainMenu
@@ -327,5 +355,9 @@ public class PauseScreen extends Element implements Serializable{
             game.add(btnMainMenu);
             i++;
         }
+    }
+    
+    public void exit(){
+        game.remove(this.thumbnailText);
     }
 }

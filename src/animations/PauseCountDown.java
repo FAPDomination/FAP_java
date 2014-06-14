@@ -49,6 +49,7 @@ public class PauseCountDown extends Animation {
         for(int j=0;j<thread.getMyGame().getObjects().size();j++){
             Element e = thread.getMyGame().getObjects().get(j);
             if(e instanceof PauseScreen){
+                ((PauseScreen)e).exit();
                 thread.getMyGame().deleteObject(e);
             }
         }

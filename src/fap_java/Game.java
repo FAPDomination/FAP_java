@@ -131,6 +131,7 @@ public class Game extends JPanel implements NeedingFocus {
     
     private boolean pauseNPC;
     
+    
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -581,6 +582,7 @@ public class Game extends JPanel implements NeedingFocus {
     /**
      * Pauses or un-pauses the game
      */
+    
     public void pauseGame(){
         pauseGame(false);
     }
@@ -593,11 +595,11 @@ public class Game extends JPanel implements NeedingFocus {
             this.repaint();
             // Display pause
             if(!isNPC){
-            PauseScreen ps = new PauseScreen(false, this);
+            PauseScreen pauseScreen = new PauseScreen(false, this);
                 if(adv > 0){
-                    ps.setAdvMode(true);
-                }
-                this.addObject(ps);
+                    pauseScreen.setAdvMode(true);
+                } 
+                this.addObject(pauseScreen);
             }
         }
         // Else un-pause if the game is still not finished

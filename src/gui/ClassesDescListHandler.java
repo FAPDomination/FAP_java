@@ -27,7 +27,10 @@ public class ClassesDescListHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if (qName.equals("root")) {
             inFile = true;
-        } else if (qName.equals("class") || qName.equals("thumbnail") || qName.equals("desc")) {
+        } else if (qName.equals("br") || qName.equals("h2") || qName.equals("p") || qName.equals("class") || qName.equals("thumbnail") || qName.equals("right") || qName.equals("center")) {
+        }
+        else if(qName.equals("desc")){
+            desc="";
         }
         else {
             buffer = new StringBuffer();
@@ -44,18 +47,23 @@ public class ClassesDescListHandler extends DefaultHandler {
         } else if (qName.equals("class")) {
             Params.waitingMessages[counter][0] = thumb;
             Params.waitingMessages[counter][1] = desc;
+            desc="";
             counter++;
         }
         else if(qName.equals("thumbnail")){
             thumb = buffer.toString();    
         }
         else if(qName.equals("desc")){
-            desc = buffer.toString();    
+            desc += buffer.toString();    
+        }
+        else if(qName.equals("br") || qName.equals("h2") || qName.equals("p") || qName.equals("right") || qName.equals("center")){
+            desc += "<"+qName+">"+buffer.toString()+"</"+qName+">";
         }
         else {
             //Error
             throw new SAXException("Unknown tag " + qName + ".");
         }
+        buffer = new StringBuffer();
     }
     //Detecting chars
 

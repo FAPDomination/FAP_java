@@ -71,7 +71,6 @@ public class Minimap{
     }
 
     public void paintComponent(Graphics g) {
-        //TODO Size of background for big maps
         Color square = null;
         //g.drawImage(img, x, y, panel);
         if(isSelected){

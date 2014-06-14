@@ -84,7 +84,8 @@ public class Params {
     /**
      * The duration of the pause countdown after resuming the game
      */
-    public static final int pauseDuration = 4600;
+    //public static final int pauseDuration = 4600;
+    public static final int pauseDuration = 600;
     
     //Skill-Related Parameters :
     /**
