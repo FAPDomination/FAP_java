@@ -1,5 +1,6 @@
 package fap_java;
 
+import animations.AnimLightning;
 import animations.Animation;
 import animations.AnimWarp;
 
@@ -706,7 +707,9 @@ public abstract class Player extends Human {
             randCell.setOwner(null);
             randCell.setHp(0);
             owned.remove(randCell);
-            //TODO Add blast animation
+            int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
+            int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
+            Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
         }
     }
 

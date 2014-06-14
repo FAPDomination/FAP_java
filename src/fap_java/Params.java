@@ -239,4 +239,6 @@ public class Params {
 
     public static String[][] waitingMessages = new String[4][2];
 
+    //Number of available lightning effects
+    public static final int NLIGHTNING_EFFECTS = 2;
 }

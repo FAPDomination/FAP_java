@@ -129,6 +129,14 @@ public class Graph {
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
+            //First Lightning
+            int nbLightnings = Params.NLIGHTNING_EFFECTS;
+            int nbLghtImages = 10;
+            for(int j=0;j<nbLightnings;j++){
+                for(int i=0;i<nbLghtImages;i++){
+                    list.put("Lght"+(j+1)+"_"+(i+1), ImageIO.read(new File("resources/images/default/animations/Warlocks_Lightnings/Lght_"+(j+1)+"/Lght_"+(j+1)+"_"+(i+1)+".png")));
+                }
+            }
             
             
             //Fake images to load to see what it's like a big loading time
