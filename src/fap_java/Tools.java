@@ -3,6 +3,8 @@ package fap_java;
 import gui.Constants;
 import gui.GameSave;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -20,6 +22,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  * This class contains several tools that can be used wherever.
@@ -210,12 +215,22 @@ public class Tools {
         drawMultilineString(g, s.split("\n"),x,y,incr);
     }
     
+    /**
+     * Deprecated : Use JLabel
+     */
     public static void drawMultilineString(Graphics g, String[] ss,int x, int y, int incr){
-        //TODO add auto multiline limit based on fontmetrics + maxwidth parameter
-        //TODO compute line height via fontmetrics
         for(int i=0;i<ss.length;i++){
             //String s = ss[i].substring(0, ss[i].length()-3);
             g.drawString(ss[i], x, y+i*incr);
         }
+    }
+    
+    public static void parametrizeJLabel(JLabel theJLabel, String text, Font font, Color c, int width, int height, int sizeX, int sizeY, int x, int y, int valign){
+        theJLabel.setText("<html>"+text+"</html>");
+        theJLabel.setFont(font);
+        theJLabel.setForeground(c);
+        theJLabel.setSize(sizeX,sizeY);
+        theJLabel.setLocation(x, y);
+        theJLabel.setVerticalAlignment(valign);
     }
 }
