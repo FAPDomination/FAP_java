@@ -1,7 +1,6 @@
 <root>
 <map>
 	<ligne>
-		<case>1</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -22,7 +21,32 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>1</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
 	</ligne>
 	<ligne>
 		<case>0</case>
@@ -54,12 +78,12 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -77,9 +101,133 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>103</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
+		<case>103</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -91,239 +239,19 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
 	</ligne>
 	<ligne>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>103</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>200</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>104</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>200</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>200</case>
-		<case>200</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>103</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>200</case>
-		<case>200</case>
-		<case>200</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>103</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
-		<case>200</case>
-		<case>200</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -341,6 +269,7 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+		<case>0</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -348,7 +277,30 @@
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
-		<case>200</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -372,7 +324,7 @@
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
-		<case>200</case>
+		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -389,31 +341,7 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>0</case>
 		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -436,7 +364,51 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>200</case>
+		<case>200</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
 		<case>0</case>
 		<case>0</case>
 		<case>103</case>
@@ -445,6 +417,34 @@
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
+		<case>200</case>
+		<case>200</case>
+		<case>102</case>
+		<case>200</case>
+		<case>200</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>103</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>200</case>
+		<case>200</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -460,9 +460,81 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -483,14 +555,34 @@
 	<ligne>
 		<case>0</case>
 		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
+	</ligne>
+	<ligne>
 		<case>0</case>
 		<case>0</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
+		<case>0</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -498,6 +590,10 @@
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
@@ -506,103 +602,40 @@
 	</ligne>
 	<ligne>
 		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>0</case>
 		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
+		<case>104</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>103</case>
 		<case>4</case>
 		<case>4</case>
 		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
 		<case>103</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
 		<case>0</case>
+		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>4</case>
 		<case>0</case>
 		<case>0</case>
 	</ligne>
 	<ligne>
 		<case>0</case>
 		<case>0</case>
+		<case>4</case>
+		<case>4</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -612,43 +645,13 @@
 		<case>0</case>
 		<case>4</case>
 		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
 		<case>0</case>
 		<case>0</case>
 	</ligne>
 	<ligne>
 		<case>0</case>
 		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
+		<case>10,27,19</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -659,15 +662,12 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
-		<case>4</case>
 		<case>0</case>
 		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>10,27,3</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -913,7 +913,6 @@
 		<case>0</case>
 	</ligne>
 	<ligne>
-		<case>1</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -934,13 +933,14 @@
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
-		<case>1</case>
+		<case>0</case>
+		<case>0</case>
 	</ligne>
 </map>
 <persos>
-<st2><i>3</i><j>5</j></st2>
-<st3><i>23</i><j>15</j></st3>
-<st4><i>10</i><j>13</j></st4>
-<st5><i>16</i><j>7</j></st5>
+<st2><i>10</i><j>14</j></st2>
+<st3><i>10</i><j>7</j></st3>
+<st4><i>24</i><j>7</j></st4>
+<st5><i>24</i><j>14</j></st5>
 </persos>
 </root>
