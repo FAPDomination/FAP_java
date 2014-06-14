@@ -90,8 +90,12 @@ public class Graph {
             cells.put(10, ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
             cells.put(11, ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
             cells.put(12, ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
+            // High Blocking
             cells.put(100, ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
             cells.put(102, ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
+            cells.put(103, ImageIO.read(new File("resources/images/default/cells/blocking/collumn.png")));
+            cells.put(104, ImageIO.read(new File("resources/images/default/cells/blocking/collumn_broken.png")));
+            // Low Blocking
             cells.put(200, ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
             cells.put(201, ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
             // Offsets
@@ -117,6 +121,8 @@ public class Graph {
             offsetsCells.put(12, new Dimension(-9, -17));
             offsetsCells.put(100, new Dimension(-9, -16));
             offsetsCells.put(102, new Dimension(-34, -122));
+            offsetsCells.put(103, new Dimension(-9, -113));
+            offsetsCells.put(104, new Dimension(-9, -113));
             offsetsCells.put(200, new Dimension(-9, -17));
             offsetsCells.put(201, new Dimension(-9, -17));
             // Other images

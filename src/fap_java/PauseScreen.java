@@ -354,5 +354,6 @@ public class PauseScreen extends Element implements Serializable{
     
     public void exit(){
         game.remove(this.thumbnailText);
+        thumbnailText.setText("");
     }
 }

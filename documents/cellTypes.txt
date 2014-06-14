@@ -9,6 +9,15 @@ type 12 : exit NPC
 type 19 : Blocking low
 type 20 : Blocking High
 
+Types of cells :
+did,number,boolean : Countdown cell (boolean : the cell can be over-taken)
+10,i,j : warp cell
+11,i,j,code : switch : the code of the switched cell (to be tested)
+did,f : frozen
+did,u : unstable
+did,h : healthy healthy
+
+
 Implementing a new tile :
 	- Dont forget to assign this type in the MapHandler.java (~l75)
 	- And in cell.setType too
