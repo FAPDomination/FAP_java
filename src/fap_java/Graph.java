@@ -180,6 +180,7 @@ public class Graph {
             guimg.put("btn_arrow_next_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_arrow_next_hover.png")));
             guimg.put("btn_arrow_prev", ImageIO.read(new File("resources/images/gui/buttons/btn_arrow_prev.png")));
             guimg.put("btn_arrow_prev_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_arrow_prev_hover.png")));
+            guimg.put("skillTimeBar", ImageIO.read(new File("resources/images/gui/skillTimeBar.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));

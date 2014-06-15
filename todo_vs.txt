@@ -190,7 +190,7 @@ V		- Paint HPs with outline
 	- Texts of all kinds
 		- HPs on cells
 		- Scorebar's scores
-		- SkillTimes
+X		- SkillTimes
 		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
