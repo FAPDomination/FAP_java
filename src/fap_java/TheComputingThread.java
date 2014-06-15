@@ -122,7 +122,6 @@ public class TheComputingThread implements Runnable{
                 }
             }
         }
-        myGame.repaint();
         if(full){
             // commands to refresh healthPoints
             myGame.refreshHealthPoints();
@@ -143,10 +142,6 @@ public class TheComputingThread implements Runnable{
             myGame.executeFSMs();
 
             // Testing
-            if (count % 600 == 0) {
-                //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
-                //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
-            }
         }
         //Execute other objects actions
         if (count % 2 == 0) {

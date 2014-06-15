@@ -51,7 +51,7 @@ public class Params {
      * @see fap_java.TheComputingThread
      */
     public static final int delay = 40;
-    public static final int Gdelay = 4*delay;
+    public static final int Gdelay = (int)(1.5*delay);
     /**
      * The amount of HP a cell loses when it is a timer-cell
      */
