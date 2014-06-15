@@ -19,10 +19,8 @@ public class Booster extends Player {
     public void getSkill() {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
-            //System.out.println("*BANG*");
             //Send Skill :
-            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime);
-            //this.makeHimWait(Params.timeAfterSkill);
+            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime*1000);
             //TODO add animation Booster
         }
     }

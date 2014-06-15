@@ -774,6 +774,7 @@ public abstract class Player extends Human {
         boolean go = true;
         if (param.equals("dispSpeed")) {
             tmax = (int)(game.getThread().getDelay() * newValue);
+            System.out.println("Go");
         } else if (param.equals("maxHP")) {
             team.setMaxHP((int)newValue);
         } else if (param.equals("decLifeForced")) {
@@ -789,7 +790,7 @@ public abstract class Player extends Human {
             // Create a timer that will clock-tick in "time" ms
             timer.schedule(new TimerTask() {
                     public void run() {
-
+                        System.out.println("Echeance");
                         if (param.equals("dispSpeed")) {
                             tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
                         } else if (param.equals("maxHP")) {
