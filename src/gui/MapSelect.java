@@ -160,7 +160,6 @@ public class MapSelect extends FAPanel implements MouseListener{
         int nMapPerLine = 4;
         origY = 100;
         int h=0;
-        //TODO fit to width
         int incrementX = (this.getWidth()-(2*origX))/nMapPerLine;
         int incrementY = 270;
         for(int j=mapStart*maxMapsOnPage;j<Math.min((mapStart+1)*maxMapsOnPage,mapList.size());j++){
