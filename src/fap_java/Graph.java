@@ -93,6 +93,9 @@ public class Graph {
             cells.put(10, ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
             cells.put(11, ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
             cells.put(12, ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
+            cells.put(15, ImageIO.read(new File("resources/images/default/cells/walkable/sand_2.png")));
+            cells.put(16, ImageIO.read(new File("resources/images/default/cells/walkable/sand_1.png")));
+            cells.put(17, ImageIO.read(new File("resources/images/default/cells/walkable/sand_3.png")));
             // High Blocking
             cells.put(100, ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
             cells.put(102, ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
@@ -122,6 +125,9 @@ public class Graph {
             offsetsCells.put(10, new Dimension(-9, -17));
             offsetsCells.put(11, new Dimension(-9, -17));
             offsetsCells.put(12, new Dimension(-9, -17));
+            offsetsCells.put(15, new Dimension(-9, -17));
+            offsetsCells.put(16, new Dimension(-9, -17));
+            offsetsCells.put(17, new Dimension(-9, -17));
             offsetsCells.put(100, new Dimension(-9, -16));
             offsetsCells.put(102, new Dimension(-34, -122));
             offsetsCells.put(103, new Dimension(-9, -95));
