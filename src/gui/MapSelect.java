@@ -26,8 +26,16 @@ public class MapSelect extends FAPanel implements MouseListener{
     private ArrayList<Minimap> mapList;
     private Minimap selectedMap;
     
+    private JButton btnNextPage = new JButton();
+    private JButton btnPrevPage = new JButton();
+    
+    private int maxMapsOnPage = 8;
+    private int mapStart = 0;
+    private int nPages=0;
+    
     public MapSelect(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
+
         
         swordX = minxS;
         cloudsX = minxC;
@@ -65,11 +73,66 @@ public class MapSelect extends FAPanel implements MouseListener{
             }
         });
         
+        btnNextPage.setSize(48,48);
+        btnNextPage.setOpaque(false);
+        btnNextPage.setUI(new Button_AddRemoveUI("btn_arrow_next"));
+        ((Button_AddRemoveUI)btnNextPage.getUI()).setHover(false);
+        btnNextPage.setLocation(this.getWidth()-origX -48,this.getHeight()/2 - 55);
+        btnNextPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mapStart++;
+                if(mapStart > nPages){
+                    mapStart--;
+                }
+                repaint();
+                ((Button_AddRemoveUI)btnNextPage.getUI()).setHover(false);
+            }
+        });
+        btnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_AddRemoveUI)btnNextPage.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_AddRemoveUI)btnNextPage.getUI()).setHover(false);
+            }
+        });
+        
+        btnPrevPage.setSize(48,48);
+        btnPrevPage.setOpaque(false);
+        btnPrevPage.setUI(new Button_AddRemoveUI("btn_arrow_prev"));
+        ((Button_AddRemoveUI)btnPrevPage.getUI()).setHover(false);
+        btnPrevPage.setLocation(this.getWidth()-origX -48,this.getHeight()/2 +5);
+        btnPrevPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mapStart--;
+                if(mapStart < 0){
+                    mapStart++;
+                }
+                repaint();
+                ((Button_AddRemoveUI)btnPrevPage.getUI()).setHover(false);
+            }
+        });
+        btnPrevPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_AddRemoveUI)btnPrevPage.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_AddRemoveUI)btnPrevPage.getUI()).setHover(false);
+            }
+        });
+        
+        this.add(btnNextPage);
+        this.add(btnPrevPage);
         this.add(btnGoBack);
         this.add(btnNext);
         this.validate();
         
         mapList = XMLparser.parseMapList();
+        nPages = mapList.size()/this.maxMapsOnPage;
         for(int i=0;i<mapList.size();i++){
             Minimap m = mapList.get(i);
             m.setPanel(this);
@@ -100,8 +163,9 @@ public class MapSelect extends FAPanel implements MouseListener{
         //TODO fit to width
         int incrementX = (this.getWidth()-(2*origX))/nMapPerLine;
         int incrementY = 270;
-        for(int i=0;i<mapList.size();i++){
-            Minimap m = mapList.get(i);
+        for(int j=mapStart*maxMapsOnPage;j<Math.min((mapStart+1)*maxMapsOnPage,mapList.size());j++){
+            int i = j - mapStart*maxMapsOnPage;
+            Minimap m = mapList.get(j);
             m.setX(origX+(i%nMapPerLine)*incrementX);
             m.setY(origY+h*incrementY);
             m.paintComponent(g);
@@ -113,8 +177,8 @@ public class MapSelect extends FAPanel implements MouseListener{
     
     private Minimap whoIsClicked(Point p){
         Minimap m = null;
-        for(int i=0;i<this.mapList.size();i++){
-            Minimap k = mapList.get(i);
+            for(int j=mapStart*maxMapsOnPage;j<Math.min((mapStart+1)*maxMapsOnPage,mapList.size());j++){
+            Minimap k = mapList.get(j);
             if(k.inArea(p)){
                 m = k;
                 break;
