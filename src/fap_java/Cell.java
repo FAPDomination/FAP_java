@@ -93,6 +93,9 @@ public class Cell extends Element {
     private Game game;
     
     private int x,y;
+    
+    // Performance pre-calculated variables :
+    
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -312,7 +315,7 @@ public class Cell extends Element {
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConway && !unstable;
+            boolean recovB = (type == 1) && map.countNeighboursForConway(this) && !unstable;
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
@@ -322,19 +325,16 @@ public class Cell extends Element {
                         } else if (hp<owner.getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
-                                        double gainLifeFactor;
+                                        double gainLifeFactor = 1;
                                         if(healthy){
                                                 gainLifeFactor = Params.gainLifeFactorMultiplier;
                                         }
-                                        else{
-                                                gainLifeFactor = 1;
-                                        }
                                         hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
                                 //};
-                        } else {
+                        } //else {
                                 // If the tale isn't lonely or anything, do nothing
                                 //delete _root["t"+i].onEnterFrame;
-                        }
+                        //}
             } else {
                 /* Only enabled when "GameOfLife" level 1 or more is on :
                         the goal here is to decrease the HP of the tale because it's alone.

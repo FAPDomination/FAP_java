@@ -29,6 +29,7 @@ public class TheComputingThread implements Runnable{
     private int count;     
     
     public static long min=-1,max=-1,moy=0,c=0;
+    public static long timeRefresh=0,timeUpdateCellsByOwner=0,timeHandleKeys=0,timeFSMs=0;
     
     /**
      * Initializes Thread
@@ -110,6 +111,10 @@ public class TheComputingThread implements Runnable{
      */
     private void execute(boolean full){
         long startTime = System.currentTimeMillis();
+        long timeHP=0;
+        long timeUpdateCells=0;
+        long timeFSMs=0;
+        long timeKeys=0;
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
@@ -123,14 +128,25 @@ public class TheComputingThread implements Runnable{
             }
         }
         if(full){
+            timeHP = System.currentTimeMillis();
             // commands to refresh healthPoints
             myGame.refreshHealthPoints();
-
+            timeHP = System.currentTimeMillis() - timeHP;
+            
+            timeUpdateCells = System.currentTimeMillis();
+            for (int i = 0; i < myGame.getPlayers().size(); i++) {
+                Player p = myGame.getPlayers().get(i);
+                Cell c = p.getCurrent();
+                c.activateCell(p);
+            }
+            timeUpdateCells = System.currentTimeMillis() - timeUpdateCells;
+            
             // Every 4 frames
             if (frame % 4 == 0) {
                 // Count the number of cells a Player has
                 myGame.updateCellsByOwner();
             }
+            
 
             // When it's time to check scores
             if (myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
@@ -139,14 +155,18 @@ public class TheComputingThread implements Runnable{
             }
 
             myGame.computeObjects();
+            timeFSMs = System.currentTimeMillis();
             myGame.executeFSMs();
+            timeFSMs = System.currentTimeMillis() - timeFSMs;
 
             // Testing
         }
         //Execute other objects actions
+        timeKeys = System.currentTimeMillis();
         if (count % 2 == 0) {
             myGame.playerHandleKeys();
         }
+        timeKeys = System.currentTimeMillis() - timeKeys;
         
         //Timing :
         long timeMeasure = System.currentTimeMillis() - startTime;
@@ -155,6 +175,10 @@ public class TheComputingThread implements Runnable{
         }
         if(max == -1 || timeMeasure>max){
             max = timeMeasure;
+            this.timeFSMs = timeFSMs;
+            this.timeHandleKeys = timeKeys;
+            this.timeRefresh = timeHP;
+            this.timeUpdateCellsByOwner = timeUpdateCells;
         }
         moy+=timeMeasure;
         if(timeMeasure >0){

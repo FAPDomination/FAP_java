@@ -331,11 +331,7 @@ public class Game extends JPanel implements NeedingFocus {
                 c.refreshHealthPoints(this);
             }
 
-            for (int i = 0; i < players.size(); i++) {
-                Player p = players.get(i);
-                Cell c = p.getCurrent();
-                c.activateCell(p);
-            }
+            
         }
     }
 
@@ -347,7 +343,7 @@ public class Game extends JPanel implements NeedingFocus {
     public Player isOccupied(Cell c) {
         Player p = null;
         // Check if the cell is indeed in the map first
-        if (c != null && map.containsCell(c) != -1) {
+        if (c != null && map.getMyMap().contains(c)) {
             // Check for each player
             for (int i = 0; i < players.size(); i++) {
                 Player q = players.get(i);
@@ -643,6 +639,10 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void endGame(Team winner){
         System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max);
+        System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
+        System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
+        System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
+        System.out.println("FSMs : "+this.thread.timeFSMs+" : "+((double)this.thread.timeFSMs)/this.thread.max);
         
         pauseGame();
         PauseScreen victoryScreen = null;

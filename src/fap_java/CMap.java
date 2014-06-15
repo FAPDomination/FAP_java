@@ -227,8 +227,9 @@ public class CMap {
      * @param c the cell to be added
      */
     public void addElement(Cell c) {
-        if (containsCell(c) != -1) {
-            myMap.remove(containsCell(c));
+        Cell o = containsCell(c);
+        if (o != null) {
+            myMap.remove(o);
         }
         c.setMap(this);
         myMap.add(c);
@@ -243,12 +244,13 @@ public class CMap {
      * @param c
      * @return : -1 if not, the index of the object if yes
      */
-    public int containsCell(Cell c) {
-        int b = (-1);
+    public Cell containsCell(Cell c) {
+        Cell b = null;
+        
         for (int k = 0; k < myMap.size(); k++) {
             Cell o = myMap.get(k);
             if (o.equals(c)) {
-                b = k;
+                b = o;
                 break;
             }
         }
@@ -261,12 +263,10 @@ public class CMap {
      * @return : the cell
      */
     public Cell getCell(int[] tab) {
-        Cell c;
+        Cell c = null;
         Cell o = new Cell(tab[0], tab[1], 1, 1, null);
-        if (tab.length == 2 && containsCell(o) != (-1)) {
-            c = myMap.get(containsCell(o));
-        } else {
-            c = null;
+        if (tab.length == 2) {
+            c = containsCell(o);
         }
         return c;
     }
@@ -304,6 +304,104 @@ public class CMap {
         // You just lost the game
         return n;
     }
+    
+    public boolean countNeighboursForConway(Cell c) {
+        int n = 0;
+        Team owns = c.getOwner();
+        // Check all six cells around
+        
+        int i = c.getI();
+        int j = c.getJ();
+        Cell o;
+        // top cells
+        // not the first line
+        if (i % 2 == 0) {
+            o = this.getCell(i - 1, j - 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+            }
+            //surroundingCells['tr'] = [i-1, j];
+            o = this.getCell(i - 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        } else {
+
+            //surroundingCells['tl'] = [i-1, j];
+            o = this.getCell(i - 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+            }
+
+            //surroundingCells['tr'] = [i-1, j+1];
+            o = this.getCell(i - 1, j + 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        }
+        // cells from the same line
+        //surroundingCells['l'] = [i, j-1];
+        o = this.getCell(i, j - 1);
+        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            n++;
+            if(n>=Params.nNeighboursConway){
+                return true;
+            }
+        }
+        //surroundingCells['r'] = [i, j+1];
+        o = this.getCell(i, j + 1);
+        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            n++;
+            if(n>=Params.nNeighboursConway){
+                return true;
+            }
+        }
+        // bottom cells (see top cells)
+        if (i % 2 == 0) {
+            //surroundingCells['bl'] = [i+1, j-1];
+            o = this.getCell(i + 1, j - 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+            //surroundingCells['br'] = [i+1, j];
+            o = this.getCell(i + 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        } else {
+            //surroundingCells['br'] = [i+1, j+1];
+            o = this.getCell(i + 1, j + 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+            //surroundingCells['bl'] = [i+1, j];
+            o = this.getCell(i + 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        }
+
+        // You just lost the game
+        return false;
+    }
 
     /**
      * Returns the 6 cells surrounding the designated tile
@@ -312,10 +410,12 @@ public class CMap {
      */
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
-        ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
+        ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
+        
         for (int k = 0; k < 6; k++) {
             surroundingCells.add(null);
         }
+        
         int i = c.getI();
         int j = c.getJ();
         Cell o;
