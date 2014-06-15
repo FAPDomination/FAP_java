@@ -428,8 +428,11 @@ public class FSM {
             } catch (NoSuchMethodException e) {
                 System.out.println("No such Method : " + currentState.getAssociatedMethod());
             } catch (IllegalArgumentException e) {
+                e.printStackTrace();
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
         }
     }

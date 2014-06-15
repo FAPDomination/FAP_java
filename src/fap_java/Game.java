@@ -131,6 +131,8 @@ public class Game extends JPanel implements NeedingFocus {
     
     private boolean pauseNPC;
     
+    private ArrayList<FSMThread> fsmThread = new ArrayList<FSMThread>();
+    
     
 
     /**
@@ -510,7 +512,10 @@ public class Game extends JPanel implements NeedingFocus {
             Player p = players.get(i);
             // If this player has a FSM, tell it to execute
             if(p.getFsm() != null){
-                p.getFsm().executeMethod();
+                //fsmThread
+                fsmThread.add(new FSMThread(this,p));
+                fsmThread.get(fsmThread.size()-1).start();
+                //p.getFsm().executeMethod();
             }
         }
     }
@@ -642,7 +647,6 @@ public class Game extends JPanel implements NeedingFocus {
         System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
         System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
         System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
-        System.out.println("FSMs : "+this.thread.timeFSMs+" : "+((double)this.thread.timeFSMs)/this.thread.max);
         
         pauseGame();
         PauseScreen victoryScreen = null;
@@ -1063,5 +1067,13 @@ public class Game extends JPanel implements NeedingFocus {
 
     public KListener getKl() {
         return kl;
+    }
+
+    public void setGameEnded(boolean gameEnded) {
+        this.gameEnded = gameEnded;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
     }
 }

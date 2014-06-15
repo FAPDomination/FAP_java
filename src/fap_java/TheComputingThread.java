@@ -113,7 +113,6 @@ public class TheComputingThread implements Runnable{
         long startTime = System.currentTimeMillis();
         long timeHP=0;
         long timeUpdateCells=0;
-        long timeFSMs=0;
         long timeKeys=0;
         // Update the time of the game
         count += delay;
@@ -126,6 +125,8 @@ public class TheComputingThread implements Runnable{
                     npc.execute();
                 }
             }
+            
+            myGame.executeFSMs();
         }
         if(full){
             timeHP = System.currentTimeMillis();
@@ -155,9 +156,7 @@ public class TheComputingThread implements Runnable{
             }
 
             myGame.computeObjects();
-            timeFSMs = System.currentTimeMillis();
-            myGame.executeFSMs();
-            timeFSMs = System.currentTimeMillis() - timeFSMs;
+            //myGame.executeFSMs();
 
             // Testing
         }
@@ -175,7 +174,6 @@ public class TheComputingThread implements Runnable{
         }
         if(max == -1 || timeMeasure>max){
             max = timeMeasure;
-            this.timeFSMs = timeFSMs;
             this.timeHandleKeys = timeKeys;
             this.timeRefresh = timeHP;
             this.timeUpdateCellsByOwner = timeUpdateCells;
