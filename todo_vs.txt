@@ -159,12 +159,6 @@ V	- Pause background
 ?	- Game Background
 X	- OFFMAP
 	- Animations
-		- Skills
-		- Traps
-P~		- Miner Warp
-V			- Implemented
-~			- Speed
-P			- Alpha
 		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
@@ -202,6 +196,68 @@ X		- SkillTimes
 V	- PauseScreen
 V		- Better text display
 V		- better placement on the y-axis
+	- Characters
+		- Knight
+			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Miner
+P~			- Skill animation
+V				- Implemented
+~				- Speed
+P				- Alpha
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Warlock
+V			- Skill animation
+V				- setting
+V				- unsetting
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Archer
+			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Vampire
+			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Magician
+~			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Booster
+~			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
 V Depth
 V Minimap
 V	- Object

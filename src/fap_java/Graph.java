@@ -152,7 +152,7 @@ public class Graph {
             list.put("booster", ImageIO.read(new File("resources/images/default/animations/booster.png")));
             list.put("warlock_Trap", ImageIO.read(new File("resources/images/default/animations/warlock_Trap.png")));
             list.put("warlock_Disable", ImageIO.read(new File("resources/images/default/animations/warlock_Disable.png")));
-            //First Lightning
+            //Lightnings
             int nbLightnings = Params.NLIGHTNING_EFFECTS;
             int nbLghtImages = 10;
             for(int j=0;j<nbLightnings;j++){
