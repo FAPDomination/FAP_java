@@ -242,7 +242,7 @@ public class CMap {
     /**
      * Checks if the map contains a cell
      * @param c
-     * @return : -1 if not, the index of the object if yes
+     * @return : null if not, the object if yes
      */
     public Cell containsCell(Cell c) {
         Cell b = null;

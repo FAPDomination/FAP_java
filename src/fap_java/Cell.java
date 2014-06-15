@@ -315,14 +315,14 @@ public class Cell extends Element {
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && map.countNeighboursForConway(this) && !unstable;
+            boolean recovB = (type == 1) && !unstable && map.countNeighboursForConway(this);
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
                                         // The HP will recover slowly up to initHP
                                         hp += owner.getRecovLifeAuto();
                                 // between initHP and maxHP
-                        } else if (hp<owner.getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
+                        } else if (hp<owner.getMaxHP() || (healthy && hp<Params.higherMaxHP)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
                                         double gainLifeFactor = 1;
@@ -336,11 +336,11 @@ public class Cell extends Element {
                                 //delete _root["t"+i].onEnterFrame;
                         //}
             } else {
-                /* Only enabled when "GameOfLife" level 1 or more is on :
+                /* Only enabled when "GameOfLife" level 1 or more is on : // Spoiler alert : ALWAYS
                         the goal here is to decrease the HP of the tale because it's alone.
                         Cells need to be in groups to survive
                         */
-                if (Params.gameOfLife == true && type != 2) {
+                if (type != 2) {
                     // The HP will decrease until the cell is dead OR not alone anymore
                     hp -= owner.getFirstPlayer().getDecLifeAuto();
                 }
@@ -365,8 +365,6 @@ public class Cell extends Element {
                     p.kickBack();
                 }
                 //Change did
-            } else {
-                //else it goes back to neutral
             }
             // set the changes in the different variables
             hp = 0;
