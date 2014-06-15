@@ -69,11 +69,19 @@ public class ScoreBar {
             Player p = players.get(i);
             g.setColor(p.getColor());
             //this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()
+            /*
             int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()))/1000 -1;
             if(skillTime<0){
                 skillTime = 0;
             }
             g.drawString(""+skillTime, 15, i*30+100);
+            */
+            int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()));
+            double skillLeft = ((double)skillTime)/(Params.paramTable.get("skillTime")[p.getPc()]*1000);
+            if(skillLeft<0){
+                skillLeft = 0;
+            }
+            g.fillRect(15, i*30+100, (int)(skillLeft*100), 20);
         }
     }
     
