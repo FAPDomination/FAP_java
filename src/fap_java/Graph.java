@@ -149,6 +149,7 @@ public class Graph {
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
+            list.put("booster", ImageIO.read(new File("resources/images/default/animations/booster.png")));
             //First Lightning
             int nbLightnings = Params.NLIGHTNING_EFFECTS;
             int nbLghtImages = 10;
