@@ -150,6 +150,7 @@ public class Graph {
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
             list.put("booster", ImageIO.read(new File("resources/images/default/animations/booster.png")));
+            list.put("warlock_Trap", ImageIO.read(new File("resources/images/default/animations/warlock_Trap.png")));
             //First Lightning
             int nbLightnings = Params.NLIGHTNING_EFFECTS;
             int nbLghtImages = 10;

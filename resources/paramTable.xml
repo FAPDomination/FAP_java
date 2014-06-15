@@ -40,7 +40,7 @@
 		<knight>120,5.5</knight>
 		<magician>4</magician>
 		<miner>3</miner>
-		<warlock>5</warlock>
+		<warlock>5,4</warlock>
 		<archer>7,30</archer>
 		<vampire>3,1</vampire>
 		<NoChar>null</NoChar>
