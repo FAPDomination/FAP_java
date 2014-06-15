@@ -263,12 +263,11 @@ public class CMap {
      * @return : the cell
      */
     public Cell getCell(int[] tab) {
-        Cell c = null;
         Cell o = new Cell(tab[0], tab[1], 1, 1, null);
-        if (tab.length == 2) {
-            c = containsCell(o);
+        if (tab.length == 2 && tab[0] >=0 && tab[1] >=0) {
+            return(containsCell(o));
         }
-        return c;
+        return null;
     }
 
     /**

@@ -542,6 +542,9 @@ public class FSM {
                 }
             }
         }
+        if(nCells == 0){
+            return 0;
+        }
         average /= nCells;
         return average;
     }
