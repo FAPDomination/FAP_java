@@ -101,6 +101,7 @@ public class Graph {
             cells.put(102, ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
             cells.put(103, ImageIO.read(new File("resources/images/default/cells/blocking/collumn.png")));
             cells.put(104, ImageIO.read(new File("resources/images/default/cells/blocking/collumn_broken.png")));
+            cells.put(105, ImageIO.read(new File("resources/images/default/cells/blocking/palm_tree.png")));
             // Low Blocking
             cells.put(200, ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
             cells.put(201, ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
@@ -132,6 +133,7 @@ public class Graph {
             offsetsCells.put(102, new Dimension(-34, -122));
             offsetsCells.put(103, new Dimension(-9, -95));
             offsetsCells.put(104, new Dimension(-9, -95));
+            offsetsCells.put(105, new Dimension(-42, -90));
             offsetsCells.put(200, new Dimension(-9, -17));
             offsetsCells.put(201, new Dimension(-9, -17));
             
