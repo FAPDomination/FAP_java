@@ -642,6 +642,8 @@ public class Game extends JPanel implements NeedingFocus {
      * @param winner the team who won (or null, that would mean tie or lost (for adventure))
      */
     public void endGame(Team winner){
+        System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max);
+        
         pauseGame();
         PauseScreen victoryScreen = null;
         for(int j=0;j<objects.size();j++){

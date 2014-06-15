@@ -19,10 +19,6 @@ public class Cell extends Element {
      */
     private int did;
     /**
-     * The image that will be painted as a representation of the cell
-     */
-    private Image img;
-    /**
      * The Type of the cell.
      * Several types exist :
      * 1 - normal, wakable, takable
@@ -95,6 +91,8 @@ public class Cell extends Element {
      * The game in wich the cell is living
      */
     private Game game;
+    
+    private int x,y;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -130,12 +128,15 @@ public class Cell extends Element {
         this.trap = null;
         this.owner = null;
         this.minerSing = false;
-        this.img = Graph.cells.get(did);
-        if (img == null) {
+        // temporary
+        if (Graph.cells.get(did) == null) {
             System.out.println("Null image for this did : " + did);
         }
         walked = false;
 
+        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
+        x = thisTilePosition[0];
+        y = thisTilePosition[1];
     }
 
     /**
@@ -143,14 +144,10 @@ public class Cell extends Element {
      * @param g
      */
     public void paintComponent(Graphics g) {
-        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
-        int x = thisTilePosition[0];
-        int y = thisTilePosition[1];
         
         // Game paint factor
         double paintFactorW=Graph.facW;
         double paintFactorH =Graph.facH;
-        
 
         int width;
         int height;
@@ -174,13 +171,13 @@ public class Cell extends Element {
             paintFactorW = 1;
             paintFactorH = 1;
         }
-        
-        width = (int)(this.img.getWidth(game) * paintFactorW);
-        height = (int)(this.img.getHeight(game) * paintFactorH);
+        Image img = Graph.cells.get(did);
+        width = (int)(img.getWidth(game) * paintFactorW);
+        height = (int)(img.getHeight(game) * paintFactorH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
-        g.drawImage(this.img, x + offX, y + offY, width, height, game);
+        g.drawImage(img, x + offX, y + offY, width, height, game);
         
         
         
@@ -504,7 +501,6 @@ public class Cell extends Element {
 
     public void setDid(int did) {
         this.did = did;
-        this.img = Graph.cells.get(did);
     }
 
     public void setHp(double hp) {

@@ -26,7 +26,10 @@ public class TheComputingThread implements Runnable{
     /**
      * Counts the number of ms of the game
      */
-    private int count;          
+    private int count;     
+    
+    public static long min=-1,max=-1,moy=0,c=0;
+    
     /**
      * Initializes Thread
      * @param myGame : the game to control
@@ -106,7 +109,7 @@ public class TheComputingThread implements Runnable{
      * Execute actions in the game, such as updating values
      */
     private void execute(boolean full){
-        //long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
@@ -149,7 +152,20 @@ public class TheComputingThread implements Runnable{
         if (count % 2 == 0) {
             myGame.playerHandleKeys();
         }
-        //System.out.println(System.currentTimeMillis() - startTime);
+        
+        //Timing :
+        long timeMeasure = System.currentTimeMillis() - startTime;
+        if(min == -1 || timeMeasure<min){
+            min = timeMeasure;
+        }
+        if(max == -1 || timeMeasure>max){
+            max = timeMeasure;
+        }
+        moy+=timeMeasure;
+        if(timeMeasure >0){
+            c++;
+        }
+        //System.out.println(timeMeasure);
     }
 
     public void setMyGame(Game myGame) {
