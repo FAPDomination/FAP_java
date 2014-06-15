@@ -278,7 +278,7 @@
 		<case>0</case>
 		<case>15</case>
 		<case>15</case>
-		<case>15</case>
+		<case>16</case>
 		<case>15</case>
 		<case>0</case>
 		<case>0</case>
@@ -371,8 +371,8 @@
 		<case>0</case>
 		<case>0</case>
 		<case>15</case>
-		<case>15</case>
-		<case>15</case>
+		<case>16</case>
+		<case>16</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -426,8 +426,32 @@
 		<case>0</case>
 		<case>15</case>
 		<case>15</case>
-		<case>15</case>
+		<case>16</case>
 		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+	</ligne>
+	<ligne>
+		<case>0</case>
+		<case>0</case>
+		<case>0</case>
+		<case>15</case>
+		<case>17</case>
+		<case>15</case>
+		<case>15</case>
+		<case>15</case>
+		<case>15</case>
+		<case>200</case>
+		<case>200</case>
+		<case>200</case>
+		<case>200</case>
+		<case>15</case>
+		<case>15</case>
+		<case>15</case>
+		<case>15</case>
+		<case>16</case>
+		<case>16</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -439,30 +463,6 @@
 		<case>15</case>
 		<case>15</case>
 		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>200</case>
-		<case>200</case>
-		<case>200</case>
-		<case>200</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-	</ligne>
-	<ligne>
-		<case>0</case>
-		<case>0</case>
-		<case>0</case>
-		<case>15</case>
-		<case>15</case>
-		<case>15</case>
 		<case>100</case>
 		<case>100</case>
 		<case>15</case>
@@ -474,7 +474,7 @@
 		<case>0</case>
 		<case>15</case>
 		<case>15</case>
-		<case>15</case>
+		<case>16</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -486,7 +486,7 @@
 		<case>0</case>
 		<case>0</case>
 		<case>15</case>
-		<case>15</case>
+		<case>17</case>
 		<case>0</case>
 		<case>0</case>
 		<case>100</case>
@@ -498,7 +498,7 @@
 		<case>0</case>
 		<case>0</case>
 		<case>15</case>
-		<case>15</case>
+		<case>16</case>
 		<case>0</case>
 		<case>0</case>
 		<case>0</case>
@@ -613,7 +613,7 @@
 		<case>15</case>
 		<case>0</case>
 		<case>15</case>
-		<case>15</case>
+		<case>17</case>
 		<case>15</case>
 		<case>15</case>
 		<case>0</case>

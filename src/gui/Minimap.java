@@ -20,6 +20,9 @@ import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -27,7 +30,7 @@ import javax.swing.JPanel;
 public class Minimap{
     private ArrayList<Cell> map;
     private int size = 5;
-    private Color[] colorList = new Color[300];
+    private static Map<Integer,Color> colorList = new HashMap<Integer,Color>();
 
     private int x;
     private int y;
@@ -45,21 +48,25 @@ public class Minimap{
         this.name = name;
         this.fileNumber = map;
 
-        colorList[1] = new Color(0, 153, 0);
-        colorList[2] = new Color(202, 149, 69);
-        colorList[3] = new Color(150, 150, 150);
-        colorList[4] = new Color(150, 150, 150);
-        colorList[5] = new Color(116, 80, 18);
-        colorList[6] = new Color(0, 204, 0);
-        colorList[7] = new Color(51, 51, 51);
-        colorList[8] = new Color(128, 11, 0);
+        colorList.put(1,new Color(0, 153, 0));
+        colorList.put(2,new Color(202, 149, 69));
+        colorList.put(3,new Color(150, 150, 150));
+        colorList.put(4,new Color(150, 150, 150));
+        colorList.put(5,new Color(116, 80, 18));
+        colorList.put(6,new Color(0, 204, 0));
+        colorList.put(7,new Color(51, 51, 51));
+        colorList.put(8,new Color(128, 11, 0));
+        colorList.put(15,new Color(254, 194, 105));
+        colorList.put(16,new Color(254, 194, 105));
+        colorList.put(17,new Color(254, 194, 105));
 
-        colorList[10] = new Color(106, 255, 102);
-        colorList[11] = new Color(153, 0, 0);
+        colorList.put(10,new Color(106, 255, 102));
+        colorList.put(11,new Color(153, 0, 0));
 
-        colorList[100] = new Color(86, 43, 2);
-        colorList[200] = new Color(46, 159, 200);
-        colorList[201] = new Color(241, 58, 5);
+        colorList.put(100,new Color(86, 43, 2));
+        
+        colorList.put(200,new Color(46, 159, 200));
+        colorList.put(201,new Color(241, 58, 5));
     }
 
     
@@ -80,7 +87,7 @@ public class Minimap{
         
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
-            g.setColor(colorList[c.getDid()]);
+            g.setColor(colorList.get(c.getDid()));
             int width = (int)(size * 1.4);
             g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
         }
