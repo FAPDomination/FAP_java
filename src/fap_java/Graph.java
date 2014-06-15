@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,12 +40,14 @@ public class Graph {
     public static Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
-    public static double facW = CMap.TW / ((double)(97 - 20));
+    public static double facW = CMap.TW / ((double)(97 - 20));  //0,39
     public static double facH = CMap.TH / ((double)(73 - 36));
     // key : String, the name of the cell
     // entry : the cell image
 
     protected static Image basicCellImage;
+    
+    public static ArrayList<Integer> notFactored = new ArrayList<Integer>();
 
     public Graph() {
     } 
@@ -121,10 +124,14 @@ public class Graph {
             offsetsCells.put(12, new Dimension(-9, -17));
             offsetsCells.put(100, new Dimension(-9, -16));
             offsetsCells.put(102, new Dimension(-34, -122));
-            offsetsCells.put(103, new Dimension(-9, -113));
-            offsetsCells.put(104, new Dimension(-9, -113));
+            offsetsCells.put(103, new Dimension(-9, -95));
+            offsetsCells.put(104, new Dimension(-9, -95));
             offsetsCells.put(200, new Dimension(-9, -17));
             offsetsCells.put(201, new Dimension(-9, -17));
+            
+            notFactored.add(103);
+            notFactored.add(104);
+            
             // Other images
             /*
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));

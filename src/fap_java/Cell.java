@@ -145,8 +145,9 @@ public class Cell extends Element {
         int y = thisTilePosition[1];
         
         // Game paint factor
-        double paintFactorW = Graph.facW;
-        double paintFactorH = Graph.facH;
+        double paintFactorW=Graph.facW;
+        double paintFactorH =Graph.facH;
+        
 
         int width;
         int height;
@@ -165,6 +166,12 @@ public class Cell extends Element {
             g.drawImage(dirtImage, x + offX, y + offY, width, height, game);
         }
         // Paint did
+        
+        if(Graph.notFactored.contains(did)){
+            paintFactorW = 1;
+            paintFactorH = 1;
+        }
+        
         width = (int)(this.img.getWidth(game) * paintFactorW);
         height = (int)(this.img.getHeight(game) * paintFactorH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
