@@ -1,5 +1,8 @@
 package fap_java;
 
+import animations.AnimDisableTrap;
+import animations.AnimTrap;
+
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -293,6 +296,9 @@ public class Cell extends Element {
                     trap = null;
                     p.setLastSkill(p.getGame().getThread().getCount());
                     //Add animation
+                    int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+                    int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+                    new AnimDisableTrap(x,y,game.getThread());
                 }
             }
         }
