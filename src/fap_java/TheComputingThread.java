@@ -28,7 +28,7 @@ public class TheComputingThread implements Runnable{
      */
     private int count;     
     
-    public static long min=-1,max=-1,moy=0,c=0;
+    public static long min=-1,max=-1,moy=0,c=1;
     public static long timeRefresh=0,timeUpdateCellsByOwner=0,timeHandleKeys=0,timeFSMs=0;
     
     /**
@@ -125,7 +125,6 @@ public class TheComputingThread implements Runnable{
                     npc.execute();
                 }
             }
-            
             myGame.executeFSMs();
         }
         if(full){
