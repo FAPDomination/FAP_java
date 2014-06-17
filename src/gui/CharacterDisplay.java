@@ -1,5 +1,7 @@
 package gui;
 
+import fap_java.Graph;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,7 +12,7 @@ public class CharacterDisplay {
     
     private int x;
     private int y;
-    private Image img;
+    private Image imgChar;
     private JPanel panel;
     private int pc;
     
@@ -28,8 +30,13 @@ public class CharacterDisplay {
     
     public void paintComponent(Graphics g){
         //g.drawImage(img, x, y, panel);
-        g.setColor(Color.GRAY);
-        g.fillRect(x, y, W, H);
+        //g.setColor(Color.GRAY);
+        //g.fillRect(x, y, W, H);
+        Image img= Graph.characters.get("shadow");
+        int height = img.getHeight(panel);
+        int width = img.getWidth(panel);
+        double fac = 0.75;
+        g.drawImage(img, x-width/8, y+3*H/4, (int)(width*fac), (int)(height*fac), panel);
     }
 
     public static void setW(int W) {
