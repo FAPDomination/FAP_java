@@ -95,7 +95,7 @@ public class Cell extends Element {
     private int x,y;
     
     // Performance pre-calculated variables :
-    
+    private boolean needDirt;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -158,8 +158,7 @@ public class Cell extends Element {
         int offY;
         // Paint dirt
         //test if needed
-        ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
-        if(surrounding.get(3) == null || surrounding.get(4) == null){
+        if(needDirt){
             BufferedImage dirtImage = Graph.cells.get(0);
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
@@ -199,9 +198,6 @@ public class Cell extends Element {
                 Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
                 fillCell(g,x,y,alphaBG);
             }
-            else{
-                g.setColor(Color.black);
-            }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
             
             Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
@@ -216,7 +212,6 @@ public class Cell extends Element {
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            Color k = minerSelect.getColor();
             //int lighterFac = 10;
             if(this.minerSing){
                 minerSlectID++;
@@ -572,5 +567,16 @@ public class Cell extends Element {
 
     public boolean isWalked() {
         return walked;
+    }
+
+    public void setNeedDirt() {
+        ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
+        if(surrounding.get(3) == null || surrounding.get(4) == null){
+            this.needDirt = true;
+        }
+    }
+
+    public boolean isNeedDirt() {
+        return needDirt;
     }
 }

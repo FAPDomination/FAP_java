@@ -222,6 +222,7 @@ public class Game extends JPanel implements NeedingFocus {
         // Parse the map
         map = new CMap(this,nmap);
         map = XMLparser.parseMap(nmap,this);
+        map.initDirts();
         
         //Parse ParamTable
         XMLparser.parseParams();

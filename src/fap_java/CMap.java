@@ -115,11 +115,7 @@ public class CMap {
                     q.paintComponent(g);
                 }
             }
-            /*
-            Player p = game.isOccupied(c);
-            if (p != null) {
-                p.paintComponent(g);
-            }*/
+
         }
     }
 
@@ -569,5 +565,11 @@ public class CMap {
 
     public int getFileID() {
         return fileID;
+    }
+    
+    public void initDirts(){
+        for(int i=0;i<this.myMap.size();i++){
+            this.myMap.get(i).setNeedDirt();
+        }
     }
 }
