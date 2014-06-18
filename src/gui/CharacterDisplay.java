@@ -37,6 +37,12 @@ public class CharacterDisplay {
         int width = img.getWidth(panel);
         double fac = 0.75;
         g.drawImage(img, x-width/8, y+3*H/4, (int)(width*fac), (int)(height*fac), panel);
+        
+         img= Graph.getGuimg().get("star");
+         height = img.getHeight(panel);
+         width = img.getWidth(panel);
+         fac = 0.5;
+        g.drawImage(img, x-8, y, (int)(width*fac), (int)(height*fac), panel);
     }
 
     public static void setW(int W) {
