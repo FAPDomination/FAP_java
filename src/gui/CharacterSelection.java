@@ -8,6 +8,7 @@ import fap_java.Tools;
 
 import java.awt.Graphics;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -108,7 +109,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         int k = 1;
         ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
         for (int i = 1; i < 10; i++) {
-            boolean b = i != 2 && i != 7;
+            boolean m = i != 2 && i != 7;
+            boolean b = true;
             if (advGame != null) {
                 GameSave gs = Tools.loadGame();
                 ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
@@ -116,9 +118,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                     b = false;
                 }
             }
-            if (b) {
-                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement +
-                                                  Tools.randRange(-10, 10), 300 + Tools.randRange(0, 50), i, this));
+            if(m){
+                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, 300 + Tools.randRange(0, 50), i, b, this));
                 listUnlockedCharsID.add(i);
                 k++;
             }
