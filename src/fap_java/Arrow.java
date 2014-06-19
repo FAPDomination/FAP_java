@@ -13,6 +13,8 @@ public class Arrow extends Element {
 
     private int x;
     private int y;
+    private int origX;
+    private int origY;
     private int course;
     private Game game;
     private double angle;
@@ -20,6 +22,9 @@ public class Arrow extends Element {
 
     private int offsetY;
     private int offsetX;
+    
+    private double safety;
+    private int f;
 
     /**
      * Creates an arrow that will autommatically fly across the map
@@ -34,6 +39,9 @@ public class Arrow extends Element {
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0] + (CMap.TW / 2);
         this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + (CMap.TH / 2);
+        this.origX = x;
+        this.origY = y;
+        this.f=0;
         game.addObject(this);
         this.thrower = thrower;
         this.initConstants();
@@ -58,9 +66,18 @@ public class Arrow extends Element {
      * Makes the arrow move and convert cells
      */
     public void effect() {
-        this.y -= Params.arrowSpeed * Math.cos(this.angle);
-        this.x += Params.arrowSpeed * Math.sin(this.angle);
-
+        /*
+        this.y -= ((double)Params.arrowSpeed * Math.cos(this.angle));
+        this.x += ((double)Params.arrowSpeed * Math.sin(this.angle));
+        */
+        /*
+        this.y = this.origY - (int)(Params.arrowSpeed*f*Math.sin(this.angle));
+        this.x = this.origX + (int)(Params.arrowSpeed*f*Math.cos(this.angle));
+        */
+        
+        y = (int)(origY + f*Math.tan(Math.PI - angle));
+        x = (int)(origX + f);
+        
         boolean b = computeCell();
 
         if (b) {
@@ -93,6 +110,8 @@ public class Arrow extends Element {
                 this.destroy();
             }
         }
+        
+        f++;
     }
 
     /**
@@ -115,7 +134,10 @@ public class Arrow extends Element {
      */
     public void initConstants() {
         //TODO better approx for angle
-        double approxAngle = -0.85832;
+        //-0.85832
+        System.out.println(Math.PI/2 - 0.85832);
+        //double approxAngle = -0.7751933735;
+        double approxAngle = -0.84532;
         switch (course) {
         case 0: //TL
             offsetY = 0;
