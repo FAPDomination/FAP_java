@@ -128,7 +128,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
         }
 
-        System.out.println(listUnlockedCharsID);
+        //System.out.println(listUnlockedCharsID);
 
         timers = new ArrayList<Integer>();
         for (int r = 0; r < Params.nPlayersOn1Computer; r++) {
