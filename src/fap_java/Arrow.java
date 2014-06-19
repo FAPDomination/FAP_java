@@ -51,6 +51,10 @@ public class Arrow extends Element {
         //int offsetY;
         offsetY = 0;
         g.setColor(Color.BLACK);
+        
+        //TODO add design of arrow
+        //TODO add graphical offsets according to ori
+        
         g.fillRect(x, y + offsetY, 4, 4);
     }
 
@@ -66,14 +70,6 @@ public class Arrow extends Element {
      * Makes the arrow move and convert cells
      */
     public void effect() {
-        /*
-        this.y -= ((double)Params.arrowSpeed * Math.cos(this.angle));
-        this.x += ((double)Params.arrowSpeed * Math.sin(this.angle));
-        */
-        /*
-        this.y = this.origY - (int)(Params.arrowSpeed*f*Math.sin(this.angle));
-        this.x = this.origX + (int)(Params.arrowSpeed*f*Math.cos(this.angle));
-        */
         
         y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
         x = (int)(origX + fac*f) + offsetX;
@@ -142,12 +138,8 @@ public class Arrow extends Element {
      * Initialization of constants about the arrow
      */
     public void initConstants() {
-        //TODO better approx for angle
         //-0.85832
-        //System.out.println(Math.PI/2 - 0.85832);
-        //double approxAngle = -0.7751933735;
         double approxAngle = -0.84532;
-        //System.out.println(course);
         fac = Params.arrowSpeed;
         switch (course) {
         case 0: //TL
