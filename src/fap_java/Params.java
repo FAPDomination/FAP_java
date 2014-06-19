@@ -210,7 +210,7 @@ public class Params {
     /**
      * The default amount of points a player should have to win a game
      */
-    public static final int defaultVictoryScore = 1000;
+    public static final int defaultVictoryScore = 2000;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */

@@ -75,8 +75,8 @@ public class Arrow extends Element {
         this.x = this.origX + (int)(Params.arrowSpeed*f*Math.cos(this.angle));
         */
         
-        y = (int)(origY + fac*f*Math.tan(angle));
-        x = (int)(origX + fac*f);
+        y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
+        x = (int)(origX + fac*f) + offsetX;
         
         boolean b = computeCell();
 
@@ -120,7 +120,16 @@ public class Arrow extends Element {
      */
     public boolean computeCell() {
         boolean b = false;
-        int[] tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+        int[] tab = null;
+        switch(course){
+        case 4:
+            tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+            break;
+        default:
+            tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+            break;
+        }
+        
         Cell c = game.getMap().getCell(tab);
         if (c != current) {
             current = c;
@@ -149,8 +158,8 @@ public class Arrow extends Element {
             break;
         case 1: //TR
             angle = approxAngle;
-            offsetX = 0;
-            offsetY = 0;
+            offsetY = -8;
+            offsetX = -2;
             break;
         case 2: //R
             angle = Math.PI / 2;
@@ -159,14 +168,14 @@ public class Arrow extends Element {
             break;
         case 3: //BR
             angle =  - approxAngle;
-            offsetY = 0;
-            offsetX = 0;
+            offsetX = -17;
+            offsetY = -5;
             break;
         case 4: //BL
             angle = approxAngle; // In rad, approximation with Maple
             fac *= -1;
-            offsetY = 0;
-            offsetX = 0;
+            offsetY = -1;
+            offsetX = 1;
             break;
         case 5: //L
             angle = -Math.PI / 2;
