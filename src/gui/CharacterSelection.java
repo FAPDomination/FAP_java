@@ -34,6 +34,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     private int arroSelectOrigY = -20;
 
     private Game advGame;
+    
+    private ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
 
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
@@ -107,7 +109,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         arrowList = new ArrayList<ArrowSelect>();
 
         int k = 1;
-        ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
         for (int i = 1; i < 10; i++) {
             boolean m = i != 2 && i != 7;
             boolean b = true;
@@ -120,10 +121,14 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
             if(m){
                 charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, 300 + Tools.randRange(0, 50), i, b, this));
-                listUnlockedCharsID.add(i);
+                if(b){
+                    listUnlockedCharsID.add(i);
+                }
                 k++;
             }
         }
+
+        System.out.println(listUnlockedCharsID);
 
         timers = new ArrayList<Integer>();
         for (int r = 0; r < Params.nPlayersOn1Computer; r++) {
@@ -319,12 +324,22 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                         do{
                                             b=false;
                                             int newPc = charList.get(id).getPc();
-                                            for(int m=0;m<players.size();m++){
-                                                PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
-                                                    id = (id+1)%charList.size();
+                                            if(advGame == null){
+                                                for(int m=0;m<players.size();m++){
+                                                    PlayerSelect ps = players.get(m);
+                                                    if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
+                                                        b=true;
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                if(!this.listUnlockedCharsID.contains(newPc)){
                                                     b=true;
                                                 }
+                                            }
+                                            if(b){
+                                                // Retry
+                                                id = (id+1)%charList.size();
                                             }
                                         }while(b);
                                     } else if (k == 3) {
@@ -336,14 +351,24 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                         do{
                                             b=false;
                                             int newPc = charList.get(id).getPc();
-                                            for(int m=0;m<players.size();m++){
-                                                PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0  && ps.getPc()==newPc){
-                                                    id = id-1;
-                                                    if(id < 0){
-                                                        id = charList.size() - (1);
+                                                if(advGame == null){
+                                                    for(int m=0;m<players.size();m++){
+                                                        PlayerSelect ps = players.get(m);
+                                                        if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
+                                                            b=true;
+                                                        }
                                                     }
-                                                    b=true;
+                                                }
+                                                else{
+                                                    if(!this.listUnlockedCharsID.contains(newPc)){
+                                                        b=true;
+                                                    }
+                                                }
+                                            if(b){
+                                                // Retry
+                                                id = id-1;
+                                                if(id < 0){
+                                                    id = charList.size() - (1);
                                                 }
                                             }
                                         }while(b);
