@@ -23,7 +23,7 @@ public class Arrow extends Element {
     private int offsetY;
     private int offsetX;
     
-    private double safety;
+    private int fac;
     private int f;
 
     /**
@@ -75,8 +75,8 @@ public class Arrow extends Element {
         this.x = this.origX + (int)(Params.arrowSpeed*f*Math.cos(this.angle));
         */
         
-        y = (int)(origY + f*Math.tan(Math.PI - angle));
-        x = (int)(origX + f);
+        y = (int)(origY + fac*f*Math.tan(angle));
+        x = (int)(origX + fac*f);
         
         boolean b = computeCell();
 
@@ -135,17 +135,20 @@ public class Arrow extends Element {
     public void initConstants() {
         //TODO better approx for angle
         //-0.85832
-        System.out.println(Math.PI/2 - 0.85832);
+        //System.out.println(Math.PI/2 - 0.85832);
         //double approxAngle = -0.7751933735;
         double approxAngle = -0.84532;
+        //System.out.println(course);
+        fac = Params.arrowSpeed;
         switch (course) {
         case 0: //TL
             offsetY = 0;
             offsetX = 0;
-            angle = approxAngle; // In rad, approximation with Maple
+            angle = -approxAngle; // In rad, approximation with Maple
+            fac *= -1;
             break;
         case 1: //TR
-            angle = -approxAngle;
+            angle = approxAngle;
             offsetX = 0;
             offsetY = 0;
             break;
@@ -155,12 +158,13 @@ public class Arrow extends Element {
             offsetX = 0;
             break;
         case 3: //BR
-            angle = (Math.PI) + approxAngle;
+            angle =  - approxAngle;
             offsetY = 0;
             offsetX = 0;
             break;
         case 4: //BL
-            angle = (Math.PI) - approxAngle;
+            angle = approxAngle; // In rad, approximation with Maple
+            fac *= -1;
             offsetY = 0;
             offsetX = 0;
             break;
