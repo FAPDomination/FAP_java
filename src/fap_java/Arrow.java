@@ -2,10 +2,6 @@ package fap_java;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
 
 public class Arrow extends Element {
 
@@ -70,10 +66,18 @@ public class Arrow extends Element {
      * Makes the arrow move and convert cells
      */
     public void effect() {
-        
-        y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
-        x = (int)(origX + fac*f) + offsetX;
-        
+        if(course == 2){
+            //RIGHT
+            x+=Params.arrowSpeed;
+        }
+        else if(course == 5){
+            //LEFT
+            x-=Params.arrowSpeed;
+        }
+        else{
+            y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
+            x = (int)(origX + fac*f) + offsetX;
+        }
         boolean b = computeCell();
 
         if (b) {
@@ -154,7 +158,6 @@ public class Arrow extends Element {
             offsetX = -2;
             break;
         case 2: //R
-            angle = Math.PI / 2;
             offsetY = 0;
             offsetX = 0;
             break;
@@ -170,7 +173,6 @@ public class Arrow extends Element {
             offsetX = 1;
             break;
         case 5: //L
-            angle = -Math.PI / 2;
             offsetY = 0;
             offsetX = 0;
             break;
