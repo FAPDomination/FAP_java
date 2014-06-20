@@ -165,7 +165,7 @@ public class Arrow extends Element {
         switch (course) {
         case 0: //TL
             offsetY = 0;
-            offsetX = 0;
+            offsetX = -15;
             angle = -approxAngle; // In rad, approximation with Maple
             fac *= -1;
             offsetShadow = new Point(0,0);
