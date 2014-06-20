@@ -105,6 +105,7 @@ public class Graph {
             // Low Blocking
             cells.put(200, ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
             cells.put(201, ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
+        
             // Offsets
             /*
              * Note : although it's a Dimension array, they are just used as a pair of Integers.
@@ -148,6 +149,7 @@ public class Graph {
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
+            list.put("healthy", ImageIO.read(new File("resources/images/default/cells/HealtHyhealthy.png")));
             list.put("booster", ImageIO.read(new File("resources/images/default/animations/booster.png")));
             list.put("warlock_Trap", ImageIO.read(new File("resources/images/default/animations/warlock_Trap.png")));
             list.put("warlock_Disable", ImageIO.read(new File("resources/images/default/animations/warlock_Disable.png")));

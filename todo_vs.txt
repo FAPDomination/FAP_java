@@ -1,7 +1,7 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   UTF-8
   Tidy the methods lists
-  Refactor paintStick into a super call
+P Refactor paintStick into a super call
   Bugs :
 V	- Type of blocking tiles all to 0 ?
 ? Not so good :
@@ -142,29 +142,28 @@ V	- Timer
 V	- Implement all params
 O	- Pointer to escape the double switch
 O	- Way to pass param to the timer
-  - Animations
-	- Skills
+P - Animations
 V	- Warps
-	- Traps
-		- Placing
+V	- Traps
+V		- Placing
 V		- Blasting
 P	- Miner Warp
 V		- Implemented
 P		- Alpha
 V	- Pause CountDown
 V	- Magician Frozen
-P Design
+  Design
 V	- Change did of countdown cell after end of timer
 V	- Pause background
 ?	- Game Background
 X	- OFFMAP
-	- Animations
-		- Pause CountDown
+V	- Animations
+V		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
-A		- Paint dirt
+V		- Paint dirt
 V			- On all
-A			- Just on specified tiles
+V			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
@@ -176,9 +175,9 @@ V		- Paint Owner
 V			- Text in the middle of the cell
 V			- Coloured background
 V		- Tidy paintComponent
-		- Special tiles
-			- Healthy Healthy
-		- Null images dids
+V		- Special tiles
+~			- Healthy Healthy
+P		- Null images dids
 V		- Paint HPs with outline
 	- Scorebar
 	- Texts of all kinds
@@ -227,7 +226,9 @@ V				- unsetting
 			- Big Thumbnail
 			- CharacterSelection thumbnail
 		- Archer
-			- Skill animation
+P			- Skill animation
+V				- Animation
+P				- Shiny swag
 			- 3D Character
 				- 3D file
 				- 3 colors
