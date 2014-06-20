@@ -8,6 +8,7 @@ import fap_java.Tools;
 
 import java.awt.Graphics;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +34,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     private int arroSelectOrigY = -20;
 
     private Game advGame;
+    
+    private ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
 
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);
@@ -106,9 +109,9 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         arrowList = new ArrayList<ArrowSelect>();
 
         int k = 1;
-        ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
         for (int i = 1; i < 10; i++) {
-            boolean b = i != 2 && i != 7;
+            boolean m = i != 2 && i != 7;
+            boolean b = true;
             if (advGame != null) {
                 GameSave gs = Tools.loadGame();
                 ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
@@ -116,13 +119,16 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                     b = false;
                 }
             }
-            if (b) {
-                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement +
-                                                  Tools.randRange(-10, 10), 300 + Tools.randRange(0, 50), i, this));
-                listUnlockedCharsID.add(i);
+            if(m){
+                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, 300 + Tools.randRange(0, 50), i, b, this));
+                if(b){
+                    listUnlockedCharsID.add(i);
+                }
                 k++;
             }
         }
+
+        //System.out.println(listUnlockedCharsID);
 
         timers = new ArrayList<Integer>();
         for (int r = 0; r < Params.nPlayersOn1Computer; r++) {
@@ -312,37 +318,81 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                 CharacterDisplay charD = charList.get(l);
                                 if (charD.getPc() == pc) {
                                     int id=0;
+                                    // Pressing Key RIGHT
                                     if (k == 2) {
+                                        // Looking for next character
                                         id = (l + 1) % charList.size();
                                         boolean b;
+                                        // This loop is used to search for the next character if this one is unavailable
+                                        // and so on...
                                         do{
                                             b=false;
+                                            // Get the character
                                             int newPc = charList.get(id).getPc();
-                                            for(int m=0;m<players.size();m++){
-                                                PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
-                                                    id = (id+1)%charList.size();
+                                            // If not adventure Mode
+                                            if(advGame == null){
+                                                // Check if a human player on the same team already has this character
+                                                for(int m=0;m<players.size();m++){
+                                                    PlayerSelect ps = players.get(m);
+                                                    if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
+                                                        // If yes activate re-search
+                                                        b=true;
+                                                    }
+                                                }
+                                            }
+                                            // if adventure mode
+                                            else{
+                                                // Just check if this character is unlocked
+                                                if(!this.listUnlockedCharsID.contains(newPc)){
+                                                    // If yes activate re-search
                                                     b=true;
                                                 }
                                             }
+                                            
+                                            if(b){
+                                                // Retry
+                                                id = (id+1)%charList.size();
+                                            }
                                         }while(b);
+                                        
+                                        // Pressing Key  LEFT
                                     } else if (k == 3) {
+                                        // Looking for prev character
                                         id = (l - 1);
                                         if(l == 0){
                                             id = charList.size() - (1);
                                         }
                                         boolean b;
+                                        // This loop is used to search for the prev character if this one is unavailable
+                                        // and so on...
                                         do{
                                             b=false;
+                                            // Get the character
                                             int newPc = charList.get(id).getPc();
-                                            for(int m=0;m<players.size();m++){
-                                                PlayerSelect ps = players.get(m);
-                                                if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0  && ps.getPc()==newPc){
-                                                    id = id-1;
-                                                    if(id < 0){
-                                                        id = charList.size() - (1);
+                                            // If not adventure Mode
+                                                    if(advGame == null){
+                                                        // Check if a human player on the same team already has this character
+                                                        for(int m=0;m<players.size();m++){
+                                                            PlayerSelect ps = players.get(m);
+                                                            if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
+                                                                // If yes activate re-search
+                                                                b=true;
+                                                            }
+                                                        }
                                                     }
-                                                    b=true;
+                                                    // if adventure mode
+                                                    else{
+                                                        // Just check if this character is unlocked
+                                                        if(!this.listUnlockedCharsID.contains(newPc)){
+                                                            // If yes activate re-search
+                                                            b=true;
+                                                        }
+                                                    }
+                                            if(b){
+                                                // Retry
+                                                id = id-1;
+                                                if(id < 0){
+                                                    id = charList.size() - (1);
                                                 }
                                             }
                                         }while(b);

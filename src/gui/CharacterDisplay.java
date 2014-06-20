@@ -1,8 +1,12 @@
 package gui;
 
+import fap_java.Graph;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+
+import java.awt.Point;
 
 import javax.swing.JPanel;
 
@@ -10,26 +14,47 @@ public class CharacterDisplay {
     
     private int x;
     private int y;
-    private Image img;
+    private Image imgChar;
+    private Point offsetsChars;
     private JPanel panel;
     private int pc;
+    private boolean advDisplay;
     
     private static int W = 60;
     private static int H = 120;
     
-    public CharacterDisplay(int x, int y, int pc, CharacterSelection panel) {
+    public CharacterDisplay(int x, int y, int pc, boolean advDisplay, CharacterSelection panel) {
         this.x = x;
         this.y = y;
         this.panel = panel;
         this.pc = pc;
+        this.advDisplay = advDisplay;
         // Get Image from graph
-        // get text from params
+        //this.imgChar = Graph.
+        //this.offsetsChars = Graph.
+        
+        // get text from params ?
     }
     
     public void paintComponent(Graphics g){
         //g.drawImage(img, x, y, panel);
-        g.setColor(Color.GRAY);
-        g.fillRect(x, y, W, H);
+        //g.setColor(Color.GRAY);
+        //g.fillRect(x, y, W, H);
+        Image img= Graph.characters.get("shadow");
+        int height = img.getHeight(panel);
+        int width = img.getWidth(panel);
+        double fac = 0.75;
+        g.drawImage(img, x-width/8, y+3*H/4, (int)(width*fac), (int)(height*fac), panel);
+        
+        if(advDisplay){     // Adventure Mode and character is unlock OR not adventure mode
+            
+        }else{
+         img= Graph.getGuimg().get("star");
+         height = img.getHeight(panel);
+         width = img.getWidth(panel);
+         fac = 0.5;
+         g.drawImage(img, x-8, y, (int)(width*fac), (int)(height*fac), panel);
+        }
     }
 
     public static void setW(int W) {
