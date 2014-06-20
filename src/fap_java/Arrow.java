@@ -13,6 +13,8 @@ public class Arrow extends Element {
 
     private int x;
     private int y;
+    private int origX;
+    private int origY;
     private int course;
     private Game game;
     private double angle;
@@ -20,6 +22,9 @@ public class Arrow extends Element {
 
     private int offsetY;
     private int offsetX;
+    
+    private int fac;
+    private int f;
 
     /**
      * Creates an arrow that will autommatically fly across the map
@@ -34,6 +39,9 @@ public class Arrow extends Element {
         this.game = game;
         this.x = CMap.giveTalePosition(c.getI(), c.getJ())[0] + (CMap.TW / 2);
         this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + (CMap.TH / 2);
+        this.origX = x;
+        this.origY = y;
+        this.f=0;
         game.addObject(this);
         this.thrower = thrower;
         this.initConstants();
@@ -43,6 +51,10 @@ public class Arrow extends Element {
         //int offsetY;
         offsetY = 0;
         g.setColor(Color.BLACK);
+        
+        //TODO add design of arrow
+        //TODO add graphical offsets according to ori
+        
         g.fillRect(x, y + offsetY, 4, 4);
     }
 
@@ -58,9 +70,10 @@ public class Arrow extends Element {
      * Makes the arrow move and convert cells
      */
     public void effect() {
-        this.y -= Params.arrowSpeed * Math.cos(this.angle);
-        this.x += Params.arrowSpeed * Math.sin(this.angle);
-
+        
+        y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
+        x = (int)(origX + fac*f) + offsetX;
+        
         boolean b = computeCell();
 
         if (b) {
@@ -93,6 +106,8 @@ public class Arrow extends Element {
                 this.destroy();
             }
         }
+        
+        f++;
     }
 
     /**
@@ -101,7 +116,16 @@ public class Arrow extends Element {
      */
     public boolean computeCell() {
         boolean b = false;
-        int[] tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+        int[] tab = null;
+        switch(course){
+        case 4:
+            tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+            break;
+        default:
+            tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
+            break;
+        }
+        
         Cell c = game.getMap().getCell(tab);
         if (c != current) {
             current = c;
@@ -114,18 +138,20 @@ public class Arrow extends Element {
      * Initialization of constants about the arrow
      */
     public void initConstants() {
-        //TODO better approx for angle
-        double approxAngle = -0.85832;
+        //-0.85832
+        double approxAngle = -0.84532;
+        fac = Params.arrowSpeed;
         switch (course) {
         case 0: //TL
             offsetY = 0;
             offsetX = 0;
-            angle = approxAngle; // In rad, approximation with Maple
+            angle = -approxAngle; // In rad, approximation with Maple
+            fac *= -1;
             break;
         case 1: //TR
-            angle = -approxAngle;
-            offsetX = 0;
-            offsetY = 0;
+            angle = approxAngle;
+            offsetY = -8;
+            offsetX = -2;
             break;
         case 2: //R
             angle = Math.PI / 2;
@@ -133,14 +159,15 @@ public class Arrow extends Element {
             offsetX = 0;
             break;
         case 3: //BR
-            angle = (Math.PI) + approxAngle;
-            offsetY = 0;
-            offsetX = 0;
+            angle =  - approxAngle;
+            offsetX = -17;
+            offsetY = -5;
             break;
         case 4: //BL
-            angle = (Math.PI) - approxAngle;
-            offsetY = 0;
-            offsetX = 0;
+            angle = approxAngle; // In rad, approximation with Maple
+            fac *= -1;
+            offsetY = -1;
+            offsetX = 1;
             break;
         case 5: //L
             angle = -Math.PI / 2;
