@@ -168,7 +168,7 @@ public class Arrow extends Element {
             offsetX = -15;
             angle = -approxAngle; // In rad, approximation with Maple
             fac *= -1;
-            offsetShadow = new Point(0,0);
+            offsetShadow = new Point(12,0);
             break;
         case 1: //TR
             angle = approxAngle;
@@ -179,7 +179,7 @@ public class Arrow extends Element {
         case 2: //R
             offsetY = 0;
             offsetX = 0;
-            offsetShadow = new Point(0,0);
+            offsetShadow = new Point(-5,-12);
             break;
         case 3: //BR
             angle =  - approxAngle;
@@ -197,7 +197,7 @@ public class Arrow extends Element {
         case 5: //L
             offsetY = 0;
             offsetX = 0;
-            offsetShadow = new Point(0,0);
+            offsetShadow = new Point(-5,-12);
             break;
         default: //TL
             try {
