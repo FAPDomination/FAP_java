@@ -62,11 +62,11 @@ public class Arrow extends Element {
         offsetY = 0;
         g.setColor(Color.BLACK);
         
-        //TODO add graphical offsets according to ori
+        //TODO swaggy arrow ?
         
         g.drawImage(Graph.characters.get("shadow"), x +offsetShadow.x ,y+offsetShadow.y, 30,25, game);
         
-        g.drawImage(img, x, y, width/CMap.FAC, height/CMap.FAC, game);
+        g.drawImage(img, x+GoffsetArrow.x, y+GoffsetArrow.y, width/CMap.FAC, height/CMap.FAC, game);
         
         //g.fillRect(x, y + offsetY, 4, 4);
     }
@@ -85,11 +85,11 @@ public class Arrow extends Element {
     public void effect() {
         if(course == 2){
             //RIGHT
-            x+=Params.arrowSpeed;
+            x+=fac;
         }
         else if(course == 5){
             //LEFT
-            x-=Params.arrowSpeed;
+            x-=fac;
         }
         else{
             y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
@@ -162,6 +162,7 @@ public class Arrow extends Element {
         //-0.85832
         double approxAngle = -0.84532;
         fac = Params.arrowSpeed;
+        
         switch (course) {
         case 0: //TL
             offsetY = 0;
@@ -169,23 +170,27 @@ public class Arrow extends Element {
             angle = -approxAngle; // In rad, approximation with Maple
             fac *= -1;
             offsetShadow = new Point(12,0);
+            GoffsetArrow = new Point(16,-12);
             break;
         case 1: //TR
             angle = approxAngle;
             offsetY = -8;
             offsetX = -2;
             offsetShadow = new Point(-25,0);
+            GoffsetArrow = new Point(-30,-20);
             break;
         case 2: //R
             offsetY = 0;
             offsetX = 0;
             offsetShadow = new Point(-5,-12);
+            GoffsetArrow = new Point(-10,-25);
             break;
         case 3: //BR
             angle =  - approxAngle;
-            offsetX = -17;
+            offsetX = -16;
             offsetY = -5;
             offsetShadow = new Point(10,0);
+            GoffsetArrow = new Point(12,-15);
             break;
         case 4: //BL
             angle = approxAngle; // In rad, approximation with Maple
@@ -193,11 +198,13 @@ public class Arrow extends Element {
             offsetY = -1;
             offsetX = 1;
             offsetShadow = new Point(-25,0);
+            GoffsetArrow = new Point(-22,-20);
             break;
         case 5: //L
             offsetY = 0;
             offsetX = 0;
             offsetShadow = new Point(-5,-12);
+            GoffsetArrow = new Point(-8,-25);
             break;
         default: //TL
             try {
