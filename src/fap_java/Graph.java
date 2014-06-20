@@ -74,6 +74,7 @@ public class Graph {
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
     //public static final Font BTN_SAMPLE_FONT = new Font("Calibri", Font.BOLD, 24);
     public static final Font REGULAR_FONT = new Font("Calibri", Font.PLAIN, 12);
+    public static final Font MINIMAP_FONT = new Font("Calibri", Font.PLAIN, 15);
     public static final Font PAUSECOUNTDOWN_FONT = new Font("Verdana", Font.PLAIN, 150);
 
     public static void load(PreLoadingScreen pls) {

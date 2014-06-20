@@ -159,7 +159,7 @@ V	- Pause background
 X	- OFFMAP
 V	- Animations
 V		- Pause CountDown
-	- Cells
+P~	- Cells
 V		- Modify cells in graph
 V		- Paint dirt
 V			- On all
@@ -181,13 +181,13 @@ P		- Null images dids
 V		- Paint HPs with outline
 	- Scorebar
 	- Texts of all kinds
-		- HPs on cells
+V		- HPs on cells
 		- Scorebar's scores
 X		- SkillTimes
-		- PauseCountDown
+V		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
-		- Minimap map name
+~		- Minimap map name
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?
