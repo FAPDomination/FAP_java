@@ -25,6 +25,10 @@ public class Arrow extends Element {
     
     private int fac;
     private int f;
+    
+    private Image img;
+    private int width;
+    private int height;
 
     /**
      * Creates an arrow that will autommatically fly across the map
@@ -44,6 +48,10 @@ public class Arrow extends Element {
         this.f=0;
         game.addObject(this);
         this.thrower = thrower;
+        
+        img = Graph.getList().get("Arrow_"+course);
+        width = img.getWidth(game);
+        height = img.getHeight(game);
         this.initConstants();
     }
 
@@ -55,7 +63,9 @@ public class Arrow extends Element {
         //TODO add design of arrow
         //TODO add graphical offsets according to ori
         
-        g.fillRect(x, y + offsetY, 4, 4);
+        g.drawImage(img, x, y, width/CMap.FAC, height/CMap.FAC, game);
+        
+        //g.fillRect(x, y + offsetY, 4, 4);
     }
 
     /**

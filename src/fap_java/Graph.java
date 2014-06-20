@@ -145,7 +145,6 @@ public class Graph {
             list.put("arrow", Toolkit.getDefaultToolkit().getImage(load.getResource("images/arrow/arrowL.png")));
             list.put("NPC_sample", Toolkit.getDefaultToolkit().getImage(load.getResource("images/NPCs/sample.png")));
             */
-            list.put("arrow", ImageIO.read(new File("resources/images/arrow/arrowL.png")));
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
             list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
@@ -159,6 +158,10 @@ public class Graph {
                 for(int i=0;i<nbLghtImages;i++){
                     list.put("Lght"+(j+1)+"_"+(i+1), ImageIO.read(new File("resources/images/default/animations/Warlocks_Lightnings/Lght_"+(j+1)+"/Lght_"+(j+1)+"_"+(i+1)+".png")));
                 }
+            }
+            // Arrows
+            for(int j=0;j<6;j++){
+                list.put("Arrow_"+j, ImageIO.read(new File("resources/images/arrow/Arrow_"+j+".png")));
             }
             
             
