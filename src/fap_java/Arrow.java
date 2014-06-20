@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
@@ -22,6 +23,8 @@ public class Arrow extends Element {
 
     private int offsetY;
     private int offsetX;
+    private Point offsetShadow;
+    private Point GoffsetArrow;
     
     private int fac;
     private int f;
@@ -49,6 +52,8 @@ public class Arrow extends Element {
         game.addObject(this);
         this.thrower = thrower;
         
+        
+        
         img = Graph.getList().get("Arrow_"+course);
         width = img.getWidth(game);
         height = img.getHeight(game);
@@ -60,8 +65,9 @@ public class Arrow extends Element {
         offsetY = 0;
         g.setColor(Color.BLACK);
         
-        //TODO add design of arrow
         //TODO add graphical offsets according to ori
+        
+        g.drawImage(Graph.characters.get("shadow"), x +offsetShadow.x ,y+offsetShadow.y, 30,25, game);
         
         g.drawImage(img, x, y, width/CMap.FAC, height/CMap.FAC, game);
         
@@ -157,37 +163,44 @@ public class Arrow extends Element {
             offsetX = 0;
             angle = -approxAngle; // In rad, approximation with Maple
             fac *= -1;
+            offsetShadow = new Point(0,0);
             break;
         case 1: //TR
             angle = approxAngle;
             offsetY = -8;
             offsetX = -2;
+            offsetShadow = new Point(-25,0);
             break;
         case 2: //R
             angle = Math.PI / 2;
             offsetY = 0;
             offsetX = 0;
+            offsetShadow = new Point(0,0);
             break;
         case 3: //BR
             angle =  - approxAngle;
             offsetX = -17;
             offsetY = -5;
+            offsetShadow = new Point(10,0);
             break;
         case 4: //BL
             angle = approxAngle; // In rad, approximation with Maple
             fac *= -1;
             offsetY = -1;
             offsetX = 1;
+            offsetShadow = new Point(-25,0);
             break;
         case 5: //L
             angle = -Math.PI / 2;
             offsetY = 0;
             offsetX = 0;
+            offsetShadow = new Point(0,0);
             break;
         default: //TL
-            angle = approxAngle; // In rad, approximation with Maple
-            offsetY = 0;
-            offsetX = 0;
+            try {
+                throw(new Exception("Wrong ori"));
+            } catch (Exception e) {
+            }
             break;
         }
     }
