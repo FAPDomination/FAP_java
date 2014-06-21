@@ -93,6 +93,11 @@ public class ScoreBar {
             g.fillRect(game.getWidth() - 130, i*30+100, (int)(skillLeft*100), 20);
             g.drawImage(Graph.guimg.get("skillTimeBar"), game.getWidth() - 130, i*30+100, game);
         }
+        
+        // Draw shade
+        g.setColor(new Color(0,0,0,50));
+        g.fillRect(0,0,game.getRWidth(),heightBar);
+        g.drawImage(Graph.guimg.get("ScoreBottom"), 0, heightBar-20,game.getRWidth(),20, game);
     }
     
     public int computeNotTaken(){

@@ -197,6 +197,7 @@ public class Graph {
             guimg.put("star", ImageIO.read(new File("resources/images/gui/charSelect_star.png")));
             guimg.put("ScoreMedalR", ImageIO.read(new File("resources/images/gui/ScoreBar_Medal.png")));
             guimg.put("ScoreMedalL", ImageIO.read(new File("resources/images/gui/ScoreBar_MedalLeft.png")));
+            guimg.put("ScoreBottom", ImageIO.read(new File("resources/images/gui/ScoreBar_bottom.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
