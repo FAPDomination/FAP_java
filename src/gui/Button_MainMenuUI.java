@@ -2,8 +2,10 @@ package gui;
 
 import fap_java.Graph;
 
+import java.awt.Color;
 import java.awt.Dimension;
 
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 import java.awt.Insets;
@@ -13,6 +15,7 @@ import java.awt.Rectangle;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonModel;
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicHTML;
@@ -75,19 +78,23 @@ public class Button_MainMenuUI extends BasicButtonUI {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
 
-        /*
+
+        
         String text = layout(b, SwingUtilities2.getFontMetrics(b, g),
                b.getWidth(), b.getHeight());
 
         clearTextShiftOffset();
-        */
+        
         // perform UI specific press action, e.g. Windows L&F shifts text
         if (model.isArmed() && model.isPressed()) {
             paintButtonPressed(g,b); 
         }
 
-        String text = b.getText();
-        Rectangle textRect = new Rectangle();
+        Color j = g.getColor();
+        g.setColor(new Color(0,0,0,0));
+        //TODO better border
+        Graph.drawBorderedString(g, textRect.getLocation().x,textRect.getLocation().y+21, text, Graph.WHITE_ALPHA_160, 2);
+        g.setColor(j);
 
         if (text != null && !text.equals("")){
             View v = (View) c.getClientProperty(BasicHTML.propertyKey);
@@ -111,5 +118,25 @@ public class Button_MainMenuUI extends BasicButtonUI {
 
     public boolean isHover() {
         return hover;
+    }
+    
+    private String layout(AbstractButton b, FontMetrics fm,
+                          int width, int height) {
+        Insets i = b.getInsets();
+        viewRect.x = i.left;
+        viewRect.y = i.top;
+        viewRect.width = width - (i.right + viewRect.x);
+        viewRect.height = height - (i.bottom + viewRect.y);
+
+        textRect.x = textRect.y = textRect.width = textRect.height = 0;
+        iconRect.x = iconRect.y = iconRect.width = iconRect.height = 0;
+
+        // layout the text and icon
+        return SwingUtilities.layoutCompoundLabel(
+            b, fm, b.getText(), b.getIcon(), 
+            b.getVerticalAlignment(), b.getHorizontalAlignment(),
+            b.getVerticalTextPosition(), b.getHorizontalTextPosition(),
+            viewRect, iconRect, textRect, 
+            b.getText() == null ? 0 : b.getIconTextGap());
     }
 }

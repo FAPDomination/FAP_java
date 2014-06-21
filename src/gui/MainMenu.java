@@ -179,7 +179,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
     
     private void initMenuBtn(JButton jbutt, String label, int offx, int offy){
         int origX = 460;
-        int origY = 150;
+        int origY = 180;
         jbutt.setUI(new Button_MainMenuUI());
         ((Button_MainMenuUI)jbutt.getUI()).setHover(false);
         jbutt.setText(label);
@@ -218,7 +218,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
 
     private void startQuickPlay() {
         // init map
-        //TODO keep lis of maps updated
+        //TODO keep list of maps updated
         int[] possibleMaps = { 5, 6, 8, 10, 11, 12, 13 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
         //nmap = 5;

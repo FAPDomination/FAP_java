@@ -57,6 +57,7 @@ public class Graph {
     public static final Color BG_Red = Color.red;
     public static final Color BLACK = new Color(10,10,20,255);
     public static final Color GREY_DARK = new Color(60,60,70);
+    public static final Color WHITE_ALPHA_160 = new Color(255,255,255,160);
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
     public static final Color DEFAULT_SQUARE_COLOR=new Color(100,100,100);
     public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);
@@ -194,6 +195,8 @@ public class Graph {
             guimg.put("btn_arrow_prev_hover", ImageIO.read(new File("resources/images/gui/buttons/btn_arrow_prev_hover.png")));
             guimg.put("skillTimeBar", ImageIO.read(new File("resources/images/gui/skillTimeBar.png")));
             guimg.put("star", ImageIO.read(new File("resources/images/gui/charSelect_star.png")));
+            guimg.put("ScoreMedalR", ImageIO.read(new File("resources/images/gui/ScoreBar_Medal.png")));
+            guimg.put("ScoreMedalL", ImageIO.read(new File("resources/images/gui/ScoreBar_MedalLeft.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
@@ -303,15 +306,19 @@ public class Graph {
         return guimg;
     }
     
-    public static void drawBorderedString(Graphics g,int x,int y, String label, Color borderColor){
+    public static void drawBorderedString(Graphics g,int x,int y, String label, Color borderColor, int shift){
         Color c = g.getColor();
         g.setColor(borderColor);
-        g.drawString(label, x-1, y- 1);
-        g.drawString(label, x-1, y+ 1);
-        g.drawString(label, x+1, y- 1);
-        g.drawString(label, x+1, y+ 1);
+        g.drawString(label, x-shift, y- shift);
+        g.drawString(label, x-shift, y+ shift);
+        g.drawString(label, x+shift, y- shift);
+        g.drawString(label, x+shift, y+ shift);
         g.setColor(c);
         g.drawString(label, x,y);
+    }
+    
+    public static void drawBorderedString(Graphics g,int x,int y, String label, Color borderColor){
+        drawBorderedString(g,x, y, label, borderColor, 1);
     }
     
     public static void drawDarkBackgroundRectangle(Graphics g, int x, int y, int w, int h, Color SquareColor, int SquareSize, Color backgrounColor){

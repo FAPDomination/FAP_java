@@ -3,17 +3,26 @@ package fap_java;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import java.awt.Image;
+
 import java.util.ArrayList;
 
 public class ScoreBar {
     
     private int totalTakable;
     private Game game;
+    private Image medalR;
+    private Image medalL;
+    private int heightBar=50;
+    private int widthMedal;
     
     public ScoreBar(Game game) {
         super();
         this.game = game;
         totalTakable = game.getMap().getTakableCells().size();
+        medalR = Graph.getGuimg().get("ScoreMedalR");
+        medalL = Graph.getGuimg().get("ScoreMedalL");
+        widthMedal = medalR.getWidth(game)*heightBar/medalR.getHeight(game);
     }
     
     public void computeScores(){
@@ -46,9 +55,12 @@ public class ScoreBar {
 
             double percentCell = ((double)nCells)/totalTakable;
             g.setColor(te.getColor());
-            g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
+            g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), heightBar);
             g.setColor(Color.white);
             g.drawString(""+score, x+5, 10);
+            
+            g.drawImage(medalR, x, 0, widthMedal,heightBar, game);
+            g.drawImage(medalL, x+(int)(game.getRWidth()*(double)percentCell)-widthMedal, 0, widthMedal,heightBar, game);
             x += (int)(game.getRWidth()*(double)percentCell);
 
             
@@ -56,11 +68,13 @@ public class ScoreBar {
             if(i == (nTeams/2-1) && notTaken >=1){
                  percentCell = ((double)notTaken)/totalTakable;
                 g.setColor(Color.GRAY);
-                g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), 30);
+                g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), heightBar);
                 x += (int)(game.getRWidth()*(double)percentCell);
                 g.setColor(Color.white);
                 g.drawString(""+notTaken, x, 10);
             }
+            
+            
         }
         
         //Display skillTimes
