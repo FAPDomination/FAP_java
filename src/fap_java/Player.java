@@ -699,18 +699,20 @@ public abstract class Player extends Human implements Serializable{
             }
         }
 
-        //Blast
-        for (int i = 0; i < numberOfCells; i++) {
-            //Pick random cell
-            int rand = Tools.randRange(0, owned.size() - 1);
-            Cell randCell = owned.get(rand);
-            //KILL IT WITH FIRE !
-            randCell.setOwner(null);
-            randCell.setHp(0);
-            owned.remove(randCell);
-            int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
-            int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
-            Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
+        if(owned.size()>0){
+            //Blast
+            for (int i = 0; i < numberOfCells; i++) {
+                //Pick random cell
+                int rand = Tools.randRange(0, owned.size() - 1);
+                Cell randCell = owned.get(rand);
+                //KILL IT WITH FIRE !
+                randCell.setOwner(null);
+                randCell.setHp(0);
+                owned.remove(randCell);
+                int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
+                int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
+                Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
+            }
         }
     }
 

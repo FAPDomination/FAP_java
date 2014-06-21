@@ -30,7 +30,10 @@ public class TheComputingThread implements Runnable{
      */
     private int count;
     
-    private boolean lanMode;
+    private boolean lanMode;   
+    
+    public static long min=-1,max=-1,moy=0,c=1;
+    public static long timeRefresh=0,timeUpdateCellsByOwner=0,timeHandleKeys=0,timeFSMs=0;
     
     /**
      * Initializes Thread
@@ -113,7 +116,10 @@ public class TheComputingThread implements Runnable{
      * Execute actions in the game, such as updating values
      */
     private void execute(boolean full){
-        //long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
+        long timeHP=0;
+        long timeUpdateCells=0;
+        long timeKeys=0;
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
@@ -125,16 +131,28 @@ public class TheComputingThread implements Runnable{
                     npc.execute();
                 }
             }
+            myGame.executeFSMs();
         }
         if(full){
+            timeHP = System.currentTimeMillis();
             // commands to refresh healthPoints
             myGame.refreshHealthPoints();
-
+            timeHP = System.currentTimeMillis() - timeHP;
+            
+            timeUpdateCells = System.currentTimeMillis();
+            for (int i = 0; i < myGame.getPlayers().size(); i++) {
+                Player p = myGame.getPlayers().get(i);
+                Cell c = p.getCurrent();
+                c.activateCell(p);
+            }
+            timeUpdateCells = System.currentTimeMillis() - timeUpdateCells;
+            
             // Every 4 frames
             if (!lanMode && frame % 4 == 0) {
                 // Count the number of cells a Player has
                 myGame.updateCellsByOwner();
             }
+            
 
             // When it's time to check scores
             if (!lanMode && myGame.getAdv() < 2 && count % (1000 * Params.giveScore) == 0) {
@@ -143,19 +161,32 @@ public class TheComputingThread implements Runnable{
             }
 
             myGame.computeObjects();
-            myGame.executeFSMs();
+            //myGame.executeFSMs();
 
             // Testing
-            if (count % 600 == 0) {
-                //if(myGame.getMap().getFileID() == 0 && count%600 == 0){
-                //System.out.println(this.count+" "+myGame.getMap().getFileID()+" living");
-            }
         }
         //Execute other objects actions
         if (!lanMode && count % 2 == 0) {
             myGame.playerHandleKeys();
         }
-        //System.out.println(System.currentTimeMillis() - startTime);
+        timeKeys = System.currentTimeMillis() - timeKeys;
+        
+        //Timing :
+        long timeMeasure = System.currentTimeMillis() - startTime;
+        if(min == -1 || timeMeasure<min){
+            min = timeMeasure;
+        }
+        if(max == -1 || timeMeasure>max){
+            max = timeMeasure;
+            this.timeHandleKeys = timeKeys;
+            this.timeRefresh = timeHP;
+            this.timeUpdateCellsByOwner = timeUpdateCells;
+        }
+        moy+=timeMeasure;
+        if(timeMeasure >0){
+            c++;
+        }
+        //System.out.println(timeMeasure);
     }
 
     public void setMyGame(Game myGame) {

@@ -51,7 +51,7 @@ public class Params {
      * @see fap_java.TheComputingThread
      */
     public static final int delay = 40;
-    public static final int Gdelay = 4*delay;
+    public static final int Gdelay = (int)(1.5*delay);
     /**
      * The amount of HP a cell loses when it is a timer-cell
      */
@@ -250,4 +250,11 @@ public class Params {
 
     //Number of available lightning effects
     public static final int NLIGHTNING_EFFECTS = 2;
+    
+    // Performances :
+    /**
+     * In order to increase step processing performances, the refresh of healthpoints will be done by separate threads.
+     * This is how many cells each thread will have to handle
+     */
+    public static final int nFragmentsThreadCells = 20;
 }

@@ -136,6 +136,10 @@ public class Game extends JPanel implements Serializable{
     private boolean pauseNPC;
     
     private transient Displayer displayer;
+    private ArrayList<FSMThread> fsmThread = new ArrayList<FSMThread>();
+    
+    // performances
+    public long min=-1,max=-1,moy=0,c=1;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -284,6 +288,7 @@ public class Game extends JPanel implements Serializable{
         // Parse the map
         map = new CMap(this,nmap);
         map = XMLparser.parseMap(nmap,this);
+        map.initDirts();
         
         //Parse ParamTable
         XMLparser.parseParams();
@@ -318,7 +323,7 @@ public class Game extends JPanel implements Serializable{
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        //long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
         // Background
         Graphics2D g2d = (Graphics2D)g;
         
@@ -368,6 +373,18 @@ public class Game extends JPanel implements Serializable{
             }
         }
         
+        //Timing :
+        long timeMeasure = System.currentTimeMillis() - startTime;
+        if(min == -1 || timeMeasure<min){
+            min = timeMeasure;
+        }
+        if(max == -1 || timeMeasure>max){
+            max = timeMeasure;
+        }
+        moy+=timeMeasure;
+        if(timeMeasure >0){
+            c++;
+        }
         //System.out.println(System.currentTimeMillis() - startTime);
     }
 
@@ -395,11 +412,7 @@ public class Game extends JPanel implements Serializable{
                 c.refreshHealthPoints(this);
             }
 
-            for (int i = 0; i < players.size(); i++) {
-                Player p = players.get(i);
-                Cell c = p.getCurrent();
-                c.activateCell(p);
-            }
+            
         }
     }
 
@@ -411,7 +424,7 @@ public class Game extends JPanel implements Serializable{
     public Player isOccupied(Cell c) {
         Player p = null;
         // Check if the cell is indeed in the map first
-        if (c != null && map.containsCell(c) != -1) {
+        if (c != null && map.getMyMap().contains(c)) {
             // Check for each player
             for (int i = 0; i < players.size(); i++) {
                 Player q = players.get(i);
@@ -574,7 +587,10 @@ public class Game extends JPanel implements Serializable{
             Player p = players.get(i);
             // If this player has a FSM, tell it to execute
             if(p.getFsm() != null){
-                p.getFsm().executeMethod();
+                //fsmThread
+                fsmThread.add(new FSMThread(this,p));
+                fsmThread.get(fsmThread.size()-1).start();
+                //p.getFsm().executeMethod();
             }
         }
     }
@@ -674,6 +690,13 @@ public class Game extends JPanel implements Serializable{
      * @param winner the team who won (or null, that would mean tie or lost (for adventure))
      */
     public void endGame(Team winner){
+        System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max);
+        System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
+        System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
+        System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
+        System.out.println("------- Graphical");
+        System.out.println(""+this.min+","+this.moy/this.c+","+this.max);
+        
         pauseGame();
         PauseScreen victoryScreen = null;
         for(int j=0;j<objects.size();j++){
@@ -876,6 +899,7 @@ public class Game extends JPanel implements Serializable{
         gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
         
         //Test
+        /*
         Game ga = gameList.get(20);
         try {
             FileOutputStream fileOut = new FileOutputStream("game.ga");
@@ -886,6 +910,7 @@ public class Game extends JPanel implements Serializable{
         } catch (IOException i) {
             i.printStackTrace();
         }
+        */
         //-----------
 
         // Get list of conquered cells
@@ -1110,4 +1135,5 @@ public class Game extends JPanel implements Serializable{
     public boolean isGameEnded() {
         return gameEnded;
     }
+
 }

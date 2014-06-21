@@ -33,12 +33,12 @@ public class Graph {
 
     protected transient static Image basicCellImage;
     
-    protected static Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
-    protected static Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
-    protected static Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
+    protected static transient Map<Integer, BufferedImage> cells = new HashMap<Integer, BufferedImage>();
+    protected static transient Map<String, BufferedImage> list = new HashMap<String, BufferedImage>();
+    protected static transient Map<String, BufferedImage> guimg = new HashMap<String, BufferedImage>();
     protected static Map<Integer, Dimension> offsetsCells = new HashMap<Integer, Dimension>();
-    public static Map<String, BufferedImage> characters = new HashMap<String, BufferedImage>();
-    public static Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
+    public static transient Map<String, BufferedImage> characters = new HashMap<String, BufferedImage>();
+    public static transient Map<String, BufferedImage> thumbnails = new HashMap<String, BufferedImage>();
 
     // Important factors for drawing cells
     public static double facW = CMap.TW / ((double)(97 - 20));  //0,39

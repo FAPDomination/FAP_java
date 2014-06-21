@@ -22,7 +22,7 @@ import javax.imageio.ImageIO;
 
 
 public class PauseCountDown extends Animation {
-    BufferedImage bufferedImage;
+    private transient BufferedImage bufferedImage;
     public PauseCountDown(int duration,TheComputingThread thread) {
         super(0,0,duration, thread);
         this.x = thread.getMyGame().getWidth()-200;

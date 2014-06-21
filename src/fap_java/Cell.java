@@ -97,6 +97,11 @@ public class Cell extends Element implements Serializable{
      * The game in wich the cell is living
      */
     private Game game;
+    
+    private int x,y;
+    
+    // Performance pre-calculated variables :
+    private boolean needDirt;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -134,25 +139,26 @@ public class Cell extends Element implements Serializable{
         this.minerSing = false;
         this.img = Graph.cells.get(did);
         if (img == null && did != 0) {
+        // temporary
+        if (Graph.cells.get(did) == null) {
             System.out.println("Null image for this did : " + did);
+        }
         }
         walked = false;
 
+        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
+        x = thisTilePosition[0];
+        y = thisTilePosition[1];
     }
-
     /**
      * Allows to paint de Cell in order to have a complete map drawn
      * @param g
      */
     public void paintComponent(Graphics g) {
-        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
-        int x = thisTilePosition[0];
-        int y = thisTilePosition[1];
         
         // Game paint factor
         double paintFactorW=Graph.facW;
         double paintFactorH =Graph.facH;
-        
 
         int width;
         int height;
@@ -160,8 +166,7 @@ public class Cell extends Element implements Serializable{
         int offY;
         // Paint dirt
         //test if needed
-        ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
-        if(surrounding.get(3) == null || surrounding.get(4) == null){
+        if(needDirt){
             BufferedImage dirtImage = Graph.cells.get(0);
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
@@ -177,14 +182,13 @@ public class Cell extends Element implements Serializable{
             paintFactorW = 1;
             paintFactorH = 1;
         }
-        
-        width = (int)(this.img.getWidth(game) * paintFactorW);
-        height = (int)(this.img.getHeight(game) * paintFactorH);
-
+        Image img = Graph.cells.get(did);
+        width = (int)(img.getWidth(game) * paintFactorW);
+        height = (int)(img.getHeight(game) * paintFactorH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
-        g.drawImage(Graph.cells.get(did), x + offX, y + offY, width, height, game.getDisplayer());
+        g.drawImage(img, x + offX, y + offY, width, height, game);
         
         
         // Write the amount of HP of the tile
@@ -201,9 +205,6 @@ public class Cell extends Element implements Serializable{
                 Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
                 fillCell(g,x,y,alphaBG);
             }
-            else{
-                g.setColor(Color.black);
-            }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
             
             Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
@@ -219,7 +220,6 @@ public class Cell extends Element implements Serializable{
             offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
-            Color k = minerSelect.getColor();
             //int lighterFac = 10;
             if(this.minerSing){
                 minerSlectID++;
@@ -320,35 +320,32 @@ public class Cell extends Element implements Serializable{
                 //Note : MyDMap != 8 is for lava floor and unstable cells
                 //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
         if(owner != null){
-            boolean recovB = (type == 1) && owner != null && map.countNeighbours(this)>=Params.nNeighboursConway && !unstable;
+            boolean recovB = (type == 1) && !unstable && map.countNeighboursForConway(this);
                 if (recovB) {
                         // If the cell is wounded (under initHP HPs)
                         if (hp<owner.getFirstPlayer().getInitHP()) {
                                         // The HP will recover slowly up to initHP
                                         hp += owner.getRecovLifeAuto();
                                 // between initHP and maxHP
-                        } else if (hp<owner.getMaxHP() || (hp<Params.higherMaxHP && healthy)) {
+                        } else if (hp<owner.getMaxHP() || (healthy && hp<Params.higherMaxHP)) {
                                 //_root["t"+i].onEnterFrame = function() {
                                         // The HP will very slowly increase up to the max limit
-                                        double gainLifeFactor;
+                                        double gainLifeFactor = 1;
                                         if(healthy){
                                                 gainLifeFactor = Params.gainLifeFactorMultiplier;
                                         }
-                                        else{
-                                                gainLifeFactor = 1;
-                                        }
                                         hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
                                 //};
-                        } else {
+                        } //else {
                                 // If the tale isn't lonely or anything, do nothing
                                 //delete _root["t"+i].onEnterFrame;
-                        }
+                        //}
             } else {
-                /* Only enabled when "GameOfLife" level 1 or more is on :
+                /* Only enabled when "GameOfLife" level 1 or more is on : // Spoiler alert : ALWAYS
                         the goal here is to decrease the HP of the tale because it's alone.
                         Cells need to be in groups to survive
                         */
-                if (Params.gameOfLife == true && type != 2) {
+                if (type != 2) {
                     // The HP will decrease until the cell is dead OR not alone anymore
                     hp -= owner.getFirstPlayer().getDecLifeAuto();
                 }
@@ -373,8 +370,6 @@ public class Cell extends Element implements Serializable{
                     p.kickBack();
                 }
                 //Change did
-            } else {
-                //else it goes back to neutral
             }
             // set the changes in the different variables
             hp = 0;
@@ -509,7 +504,6 @@ public class Cell extends Element implements Serializable{
 
     public void setDid(int did) {
         this.did = did;
-        this.img = Graph.cells.get(did);
     }
 
     public void setHp(double hp) {
@@ -583,5 +577,16 @@ public class Cell extends Element implements Serializable{
 
     public boolean isWalked() {
         return walked;
+    }
+
+    public void setNeedDirt() {
+        ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
+        if(surrounding.get(3) == null || surrounding.get(4) == null){
+            this.needDirt = true;
+        }
+    }
+
+    public boolean isNeedDirt() {
+        return needDirt;
     }
 }

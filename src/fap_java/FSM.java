@@ -430,8 +430,11 @@ public class FSM implements Serializable{
             } catch (NoSuchMethodException e) {
                 System.out.println("No such Method : " + currentState.getAssociatedMethod());
             } catch (IllegalArgumentException e) {
+                e.printStackTrace();
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -540,6 +543,9 @@ public class FSM implements Serializable{
                     nCells++;
                 }
             }
+        }
+        if(nCells == 0){
+            return 0;
         }
         average /= nCells;
         return average;

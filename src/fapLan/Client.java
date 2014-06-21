@@ -50,7 +50,7 @@ public class Client {
         try {
             playerID = Integer.parseInt(send("a"));
         } catch (Exception e) {
-            System.out.println("Exception in Client.java : "+e.toString());
+            System.out.println("Exception in Client.java 53: "+e.toString());
             //e.printStackTrace();
         }
         //System.out.println(send("a"));
@@ -78,7 +78,7 @@ public class Client {
                         }
                     } 
                     catch (Exception e) {
-                        System.out.println("Exception in Client.java : "+e.toString());
+                        System.out.println("Exception in Client.java 81: "+e.toString());
                         //e.printStackTrace();
                         //System.out.println("Perdu un message (et le jeu)");
                         return;
@@ -108,7 +108,7 @@ public class Client {
             return in.readLine();
             //System.out.println(in.readLine());
         } catch (Exception e) {
-            System.out.println("Exception in Client.java : "+e.toString());
+            System.out.println("Exception in Client.java 111: "+e.toString());
         }
         return "error";
     }
@@ -124,7 +124,7 @@ public class Client {
             return in.readLine();
             //System.out.println(in.readLine());
         } catch (Exception e) {
-            System.out.println("Exception in Client.java : "+e.toString());
+            System.out.println("Exception in Client.java 127: "+e.toString());
         }
         return "error";
     }
@@ -157,7 +157,7 @@ public class Client {
             System.out.println("InvalidClassException in Client.java : "+k.getMessage());
         }
         catch (Exception e) {
-            System.out.println("Exception in Client.java : "+e.toString());
+            System.out.println("Exception in Client.java 160: "+e.toString());
         }
         return null;
     }
