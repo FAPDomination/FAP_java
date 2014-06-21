@@ -31,12 +31,14 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
         btnGoBack.setLocation(origX-5, origY-5);
         this.add(btnGoBack);
 
-        //TODO relative
-        int incrementX = 200;
+        //TODO responsive
+        
+        int incrementX = 250;
+        int initX = (this.getWidth()-3*incrementX)/2 + 70;
         int initY = 200;
         listForms = new ArrayList<ControlManager>();
         for (int i = 0; i < Params.nPlayersOn1Computer; i++) {
-            listForms.add(new ControlManager(this, i, (i + 1) * incrementX, initY));
+            listForms.add(new ControlManager(this, i, (i) * incrementX + initX, initY));
         }
 
         initFocus();

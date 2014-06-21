@@ -55,7 +55,7 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
-    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,160);
+    public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
     public static final Color DEFAULT_SQUARE_COLOR=new Color(100,100,100);
     public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);
     public static final Color BG_TRANSPARENT = new Color(0, 0, 0, 0);
@@ -74,7 +74,8 @@ public class Graph {
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
     //public static final Font BTN_SAMPLE_FONT = new Font("Calibri", Font.BOLD, 24);
     public static final Font REGULAR_FONT = new Font("Calibri", Font.PLAIN, 12);
-    public static final Font MINIMAP_FONT = new Font("Calibri", Font.PLAIN, 15);
+    public static final Font SIMPLE_TEXT_FONT = new Font("Arial", Font.PLAIN, 15);
+    public static final Font H2_TITLE_FONT = new Font("Arial", Font.BOLD,18);
     public static final Font PAUSECOUNTDOWN_FONT = new Font("Verdana", Font.PLAIN, 150);
 
     public static void load(PreLoadingScreen pls) {

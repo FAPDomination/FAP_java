@@ -92,7 +92,7 @@ public class Minimap{
             g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
         }
         g.setColor(Color.black);
-        g.setFont(Graph.MINIMAP_FONT);
+        g.setFont(Graph.SIMPLE_TEXT_FONT);
         Graphics2D g2d = (Graphics2D)g;
         FontMetrics fm = g2d.getFontMetrics();
         int nameWidth = fm.stringWidth(name);
