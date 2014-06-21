@@ -50,14 +50,11 @@ public class ScoreBar {
         
         for(int i =0;i<teams.size();i++){
            Team te = teams.get(i);
-            int score = te.getScore();
             int nCells = te.getNCells();
 
             double percentCell = ((double)nCells)/totalTakable;
             g.setColor(te.getColor());
             g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), heightBar);
-            g.setColor(Color.white);
-            g.drawString(""+score, x+5, 10);
             
             g.drawImage(medalR, x, 0, widthMedal,heightBar, game);
             g.drawImage(medalL, x+(int)(game.getRWidth()*(double)percentCell)-widthMedal, 0, widthMedal,heightBar, game);
@@ -70,34 +67,54 @@ public class ScoreBar {
                 g.setColor(Color.GRAY);
                 g.fillRect(x, 0, (int)(game.getRWidth()*(double)percentCell), heightBar);
                 x += (int)(game.getRWidth()*(double)percentCell);
-                g.setColor(Color.white);
-                g.drawString(""+notTaken, x, 10);
             }
             
             
         }
         
         //Display skillTimes
-        ArrayList<Player> players = game.getPlayers();
-        for(int i=0;i<players.size();i++){
-            Player p = players.get(i);
-            g.setColor(p.getColor());
-            int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()));
-            double skillLeft = 1-(((double)skillTime)/(Params.paramTable.get("skillTime")[p.getPc()]*1000));
-            if(skillLeft<0){
-                skillLeft = 0;
+        if(!game.isGameEnded()){
+            ArrayList<Player> players = game.getPlayers();
+            for(int i=0;i<players.size();i++){
+                Player p = players.get(i);
+                g.setColor(p.getColor());
+                int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()));
+                double skillLeft = 1-(((double)skillTime)/(Params.paramTable.get("skillTime")[p.getPc()]*1000));
+                if(skillLeft<0){
+                    skillLeft = 0;
+                }
+                else if(skillLeft > 1){
+                    skillLeft=1;
+                }
+                g.fillRect(game.getWidth() - 130, i*30+100, (int)(skillLeft*100), 20);
+                g.drawImage(Graph.guimg.get("skillTimeBar"), game.getWidth() - 130, i*30+100, game);
             }
-            else if(skillLeft > 1){
-                skillLeft=1;
-            }
-            g.fillRect(game.getWidth() - 130, i*30+100, (int)(skillLeft*100), 20);
-            g.drawImage(Graph.guimg.get("skillTimeBar"), game.getWidth() - 130, i*30+100, game);
         }
         
         // Draw shade
-        g.setColor(new Color(0,0,0,50));
+        g.setColor(new Color(0,0,0,30));
         g.fillRect(0,0,game.getRWidth(),heightBar);
         g.drawImage(Graph.guimg.get("ScoreBottom"), 0, heightBar-20,game.getRWidth(),20, game);
+        
+        // Draw score
+        x=0;
+        for(int i =0;i<teams.size();i++){
+           Team te = teams.get(i);
+            int score = te.getScore();
+            int nCells = te.getNCells();
+
+            double percentCell = ((double)nCells)/totalTakable;
+            g.setColor(Color.white);
+            g.drawString(""+score, x+5, 10);
+            x += (int)(game.getRWidth()*(double)percentCell);
+
+            if(i == (nTeams/2-1) && notTaken >=1){
+                 percentCell = ((double)notTaken)/totalTakable;
+                x += (int)(game.getRWidth()*(double)percentCell);
+            }
+            
+            
+        }
     }
     
     public int computeNotTaken(){

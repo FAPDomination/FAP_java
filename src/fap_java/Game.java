@@ -1062,4 +1062,12 @@ public class Game extends JPanel implements NeedingFocus {
     public KListener getKl() {
         return kl;
     }
+
+    public void setGameEnded(boolean gameEnded) {
+        this.gameEnded = gameEnded;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
+    }
 }
