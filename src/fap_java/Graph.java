@@ -227,6 +227,7 @@ public class Graph {
                     characters.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
+            
             //NoCharacterGuy
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
@@ -243,6 +244,12 @@ public class Graph {
             for(int j=0;j<limitColor;j++){
                 for(int i=0;i<6;i++){
                     characters.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
+                }
+            }
+            //Booster
+            for(int j=0;j<limitColor;j++){
+                for(int i=0;i<6;i++){
+                    characters.put("Booster"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Booster/Booster"+i+"_"+Params.colorName[j]+".png")));
                 }
             }
             
