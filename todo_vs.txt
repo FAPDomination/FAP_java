@@ -254,10 +254,10 @@ V			- Big Thumbnail
 		- Booster
 ~			- Skill animation
 			- 3D Character
-				- 3D file
-				- 3 colors
+V				- 3D file
+V				- 3 colors
 				- All colors
-			- Big Thumbnail
+V			- Big Thumbnail
 			- CharacterSelection thumbnail
 V Depth
 V Minimap

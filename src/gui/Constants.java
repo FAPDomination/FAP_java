@@ -30,4 +30,5 @@ public class Constants {
     
     public static Dimension buttonSize = new Dimension(180,60);
     
+    public static String[] charNames = {"Knight","OldMagician","Miner","Warlock","Archer","Vampire","NoCharacterGuy","Magician","Booster"};
 }

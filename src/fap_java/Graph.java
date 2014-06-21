@@ -1,5 +1,6 @@
 package fap_java;
 
+import gui.Constants;
 import gui.PreLoadingScreen;
 
 import java.awt.Color;
@@ -221,47 +222,27 @@ public class Graph {
             characters.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
             
             int limitColor = 3;
-            //Knight
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
+            //TODO automatic name parsing from Constants.java table
             
-            //NoCharacterGuy
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
+            for(int i=1;i<=Constants.charNames.length;i++){
+                String name = Constants.charNames[i-1];
+                if(i!=2 && i!= 4 && i!=5 && i!=6){
+                    for(int j=0;j<limitColor;j++){
+                        for(int k=0;k<6;k++){
+                            characters.put(name+k+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/"+name+"/"+name+k+"_"+Params.colorName[j]+".png")));
+                        }
+                    }
+                    //Thumbnails
+                    thumbnails.put("Big_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_"+name+".png")));
+                    if(i!=7){
+                        thumbnails.put("CS_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/CharSelect/"+name+".png")));
+                    }
                 }
             }
-            //Magician
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            //Miner
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            //Booster
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Booster"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Booster/Booster"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            
             //Shadow
             characters.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
             
-            //Thumbnails
-            thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
-            thumbnails.put("Big_NoCharacterGuy", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_NoCharacterGuy.png")));
-            thumbnails.put("Big_Magician", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Magician.png")));
-            thumbnails.put("Big_Miner", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Miner.png")));
-            thumbnails.put("Big_Booster", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Booster.png")));
+            
             
             //Thread.sleep(2000);
             pls.endAnim();
