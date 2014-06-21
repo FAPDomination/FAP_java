@@ -70,7 +70,7 @@ public class PauseScreen extends Element implements Serializable{
             }
             int margins = 25;
             int x = ((game.getWidth() - width) / 4) +margins;
-            int y = ((game.getHeight() - height) / 2) +410;
+            int y = ((game.getHeight() - height) / 2) +390;
             randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
             thumbnailText = new JLabel();
             Tools.parametrizeJLabel(thumbnailText, Params.waitingMessages[randClass][1], Graph.REGULAR_FONT, Color.WHITE, width-2*margins,height-410, x, y, SwingConstants.TOP);

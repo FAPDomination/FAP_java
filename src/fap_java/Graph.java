@@ -254,7 +254,7 @@ public class Graph {
             thumbnails.put("Big_NoCharacterGuy", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_NoCharacterGuy.png")));
             thumbnails.put("Big_Magician", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Magician.png")));
             thumbnails.put("Big_Miner", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Miner.png")));
-            
+            thumbnails.put("Big_Booster", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Booster.png")));
             
             //Thread.sleep(2000);
             pls.endAnim();

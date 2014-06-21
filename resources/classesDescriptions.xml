@@ -26,4 +26,12 @@
 	intéressantes et devancer vos adversaires !</p>
 	</desc>
 </class>
+<class>
+	<thumbnail>Big_Booster</thumbnail>
+	<desc><h2>Le Messager</h2>
+	<p>Qui a besoin de bottes, quand on a le style ? Le message parcourt le royaume pour délivrer ses missives, et courre plus vite que quiconque.</p>	
+	<p>En lançant le sortilège du messager, vous décuplerez votre vitesse pendant quelques secondes. Profitez-en pour vous rendre en zone neutre et arriver avant vos adversaires !</p>
+	<p>Ce sprint effreiné vous demandera cependant beaucoup de temps pour récupérer.</p>
+	</desc>
+</class>
 </root>
