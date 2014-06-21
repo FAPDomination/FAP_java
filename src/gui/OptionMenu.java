@@ -36,7 +36,6 @@ public class OptionMenu extends FAPanel {
         this.add(btnSound);
         i++;
         
-        btnGoBack=new JButton();
         initOptionBtn(btnGoBack,"Retour",240+Tools.randRange(-40,40), 160+60*i);
         this.add(btnGoBack);
         i++;
@@ -74,6 +73,7 @@ public class OptionMenu extends FAPanel {
             }
         });
         
+        
         btnSound.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 toggleSound();
@@ -82,6 +82,13 @@ public class OptionMenu extends FAPanel {
         btnControls.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 goToControls();
+            }
+        });
+        
+        btnGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                goBack();
+                ((Button_MainMenuUI)btnGoBack.getUI()).setHover(false);
             }
         });
         
