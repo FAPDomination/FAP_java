@@ -1,14 +1,19 @@
 package fap_java;
 
+import animations.AnimLightning;
 import animations.Animation;
 import animations.AnimWarp;
 
 import characters.Booster;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 
 import java.io.Serializable;
+import java.awt.Image;
+
+import java.awt.Point;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -64,12 +69,13 @@ public abstract class Player extends Human implements Serializable{
     /**
      * The orientation (direction of the player)
      */
-    private int ori;
+    protected int ori;
 
     /**
      * The cell the player is currently standing on
      */
     private Cell current;
+    private Cell drawn;
 
     /**
      * The cell the player was standing on just before
@@ -89,7 +95,9 @@ public abstract class Player extends Human implements Serializable{
     /**
      * The color of the player
      */
-    private Color color;
+    protected Color color;
+    
+    protected String colorName;
 
     /**
      * The initial amount of HPs the player's cells have
@@ -128,6 +136,13 @@ public abstract class Player extends Human implements Serializable{
     private FSM fsm;
 
     private int controler;
+    
+    private int x = -1,y=-1,wantedX=0,wantedY = 0;
+    private int animCount;
+    private boolean dispComputed = false;
+    private int facDispX=0;
+    private int facDispY=0;
+    
 
     /**
      * Initializes a Player. Abstract class since the player creation is called by the characters extending this
@@ -146,6 +161,7 @@ public abstract class Player extends Human implements Serializable{
         super();
         this.id = id;
         current = c;
+        drawn = c;
         this.setI(c.getI());
         this.setJ(c.getJ());
         this.game = game;
@@ -165,6 +181,7 @@ public abstract class Player extends Human implements Serializable{
         team.initConstants();
 
         color = Params.colorList[id];
+        colorName = Params.colorName[id];
         // If no FSM, get keys for displacement
         if (fsm == null) {
             for (int i = 0; i <= 4; i++) {
@@ -280,55 +297,62 @@ public abstract class Player extends Human implements Serializable{
             // Hexa displacements :
             // Left + Down
             if (keys[3][1] == 1 && keys[1][1] == 1) {
+                ori = 4;
                 if (current.getI() % 2 == 0) {
                     shiftStick(-1, 1);
                 } else {
                     shiftStick(0, 1);
                 }
-                ori = 4;
+                
             }
             //Up + Right
             else if (keys[0][1] == 1 && keys[2][1] == 1) {
+                ori = 1;
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, -1);
                 } else {
                     shiftStick(1, -1);
                 }
-                ori = 1;
+                
             }
             //Up + Left
             else if (keys[0][1] == 1 && keys[3][1] == 1) {
+                ori = 0;
                 if (current.getI() % 2 == 0) {
                     shiftStick(-1, -1);
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = 0;
+                
             }
             // Down + Right
             else if (keys[1][1] == 1 && keys[2][1] == 1) {
+                ori = 3;
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, 1);
                 } else {
                     shiftStick(1, 1);
                 }
-                ori = 3;
+               
             }
             //Regular
             // If the key LEFT is pressed
             else if (keys[3][1] == 1) {
-                // Move the stick
-                shiftStick(-1, 0);
                 // Update the stick's orientation :
                 ori = 5;
+                // Move the stick
+                shiftStick(-1, 0);
+                
             } else if (keys[2][1] == 1) { // If key RIGHT is pressed
+                ori = 2;
                 shiftStick(1, 0);
                 // If the key1 is pressed
-                ori = 2;
+                
             } else if (keys[0][1] == 1) { // If key UP is pressed
                 // reset the timer for this stick so the player is not able to move for a little while
                 // Because of the hexa-grid to movings up and down are complicated
                 // find if the stick is on an odd or even number of line
+                ori = 0;
                 if (current.getI() % 2 == 0) {
                     // Move the stick
                     shiftStick(-1, -1);
@@ -336,14 +360,15 @@ public abstract class Player extends Human implements Serializable{
                 } else {
                     shiftStick(0, -1);
                 }
-                ori = 0;
+                
             } else if (keys[1][1] == 1) { // If key DOWN is pressed
+                ori = 3;
                 if (current.getI() % 2 == 0) {
                     shiftStick(0, 1);
                 } else {
                     shiftStick(1, 1);
                 }
-                ori = 3;
+                
             }
         } else if (game.isPauseNPC()) {
             //System.out.println("In D");
@@ -424,8 +449,21 @@ public abstract class Player extends Human implements Serializable{
                 // Move the stick
                 parent = current;
                 current = c;
+                setDrawn(parent);
                 this.setI(current.getI());
                 this.setJ(current.getJ());
+                
+                switch(ori){
+                    case 2:
+                        drawn = current;
+                        break;
+                    case 3:
+                        drawn = current;
+                        break;
+                case 4:
+                    drawn = current;
+                    break;
+                }
 
                 if (!current.isWalked()) {
                     current.setWalked(true);
@@ -514,8 +552,50 @@ public abstract class Player extends Human implements Serializable{
      * @param g Graphical thing
      */
     public void paintComponent(Graphics g) {
+        // Smooth displacement
+        
+        if((wantedX != x || wantedY !=y) && !dispComputed){
+            dispComputed = true;
+            facDispX = -(x-wantedX)/Params.displacementAnimationLength;
+            facDispY = -(y-wantedY)/Params.displacementAnimationLength;
+            int limit = 10;
+            if(facDispX > limit ||facDispY > limit){
+                x = wantedX;
+                y = wantedY;
+            }
+            animCount = Params.displacementAnimationLength;
+        }
+        
+        if(x == -1 || Math.abs(wantedX - x) < 3 ||animCount <= 0){
+            x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+            wantedX = x;
+        }
+        else if(wantedX != x){
+                x+=facDispX;
+        }
+        if(y == -1 ||  Math.abs(wantedY - y) < 3 ||animCount <= 0){
+            y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+            wantedY = y;
+        }
+        else if(wantedY != y){
+                y+=facDispY;
+        }
+        
+        if(wantedX == x && wantedY == y ||animCount <= 0){
+            drawn = current;
+            dispComputed = false;
+        }
+        
+        if(animCount > 0){
+            animCount --;
+        }
+        
+        // Comment these three lines and uncomment the rest to have smooth displacement
+        /*
+        drawn = current;
         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+        */
         paintStick(g, x, y);
     }
 
@@ -525,11 +605,7 @@ public abstract class Player extends Human implements Serializable{
      * @param x The x axis position
      * @param y The y axis position
      */
-    public void paintStick(Graphics g, int x, int y) {
-        g.setColor(color);
-        // Switch on ori
-        g.fillRect(x, y, 10, 30);
-    }
+    public abstract void paintStick(Graphics g, int x, int y);
 
     public void setColor(Color color) {
         this.color = color;
@@ -632,7 +708,9 @@ public abstract class Player extends Human implements Serializable{
             randCell.setOwner(null);
             randCell.setHp(0);
             owned.remove(randCell);
-            //TODO Add blast animation
+            int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
+            int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
+            Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
         }
     }
 
@@ -658,6 +736,9 @@ public abstract class Player extends Human implements Serializable{
      */
     public void initParams() {
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
+        if(game.getAdv() == 2){
+            tmax/=3;
+        }
         //System.out.println(tmax);
         initHP = 100;
         //maxHP = (int)Params.paramTable.get("maxHP")[pc];
@@ -667,6 +748,7 @@ public abstract class Player extends Human implements Serializable{
         decLifeAuto = 1;
         lastDisplacement = 0;
         lastSkill = 0;
+        ori = 3;
 
         this.setSkillTime((int)(Params.paramTable.get("skillTime")[pc] * 1000));
     }
@@ -759,5 +841,31 @@ public abstract class Player extends Human implements Serializable{
 
     public String getColorName() {
         return Params.colorName[id];
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setWantedX(int diffX) {
+        this.wantedX = diffX;
+    }
+
+    public int getWantedX() {
+        return wantedX;
+    }
+
+    public void setDrawn(Cell drawn) {
+        this.drawn = drawn;
+        wantedX = CMap.giveTalePosition(current.getI(), current.getJ())[0] + Params.OFFX;
+        wantedY = CMap.giveTalePosition(current.getI(), current.getJ())[1] + Params.OFFY;
+    }
+
+    public Cell getDrawn() {
+        return drawn;
     }
 }

@@ -1,0 +1,29 @@
+<root>
+<class>
+	<thumbnail>Big_Knight</thumbnail>
+	<desc><h2>Le Chevalier</h2>
+	<p>Le Chevalier est un couard. Une chiffe molle. Bonne chance pour réveiller ce gros tas de muscles.
+	Quand le Chevalier lance son sort,il déclenche une vague de rage infligeant des dégâts autour de lui.</p>
+	<p>C'est le seul sortilège dont la puissance dépend du temps de chargement.</p></desc>
+</class>
+<class>
+	<thumbnail>Big_NoCharacterGuy</thumbnail>
+	<desc><p>"Mets une écharpe, tu vas attraper froid dehors."</p><br />
+	<right><p>- Maman</p></right></desc>
+</class>
+<class>
+	<thumbnail>Big_Magician</thumbnail>
+	<desc><h2>Le Magicien</h2>
+	<p>Sous ce chapeau vieux et sale se cache la sagesse des anciens, combinée à des années de taverne. Le magicien peut s'effondrer ivre mort au milieu d'une bataille ou déchaîner la colère des glaces.</p>
+	<p>Son sortilège favori gèle les adversaires à portée pendant quelques secondes. Utilisez ce temps précieux pour reprendre l'avantage !</p>
+	</desc>
+</class>
+<class>
+	<thumbnail>Big_Miner</thumbnail>
+	<desc><h2>Le Mineur</h2>
+	<p>Le mineur aime creuser. Depuis tout petit. Déjà enfant il avait creusé des douves autour de sa maison, au grand damn de ses parents.</p>	
+	<p>En lançant le sortilège du mineur, il creusera un tunnel vers une région de la carte, au choix parmi plusieurs. Cela vous permettra de vous déplacer rapidement vers les zones
+	intéressantes et devancer vos adversaires !</p>
+	</desc>
+</class>
+</root>

@@ -1,7 +1,7 @@
 package animations;
 
 import fap_java.Element;
-import fap_java.TheThread;
+import fap_java.TheComputingThread;
 
 import java.awt.Graphics;
 
@@ -13,10 +13,10 @@ public abstract class Animation implements Serializable{
     protected int y;
     protected int duration; // in ms
     protected int position; // in ms
-    protected TheThread thread;
+    protected TheComputingThread thread;
     protected boolean running;
     
-    public Animation(int x, int y, int duration, TheThread thread){
+    public Animation(int x, int y, int duration, TheComputingThread thread){
         this.x = x;
         this.y = y;
         
@@ -50,5 +50,13 @@ public abstract class Animation implements Serializable{
 
     public boolean isRunning() {
         return running;
+    }
+
+    public void setThread(TheComputingThread thread) {
+        this.thread = thread;
+    }
+
+    public TheComputingThread getThread() {
+        return thread;
     }
 }

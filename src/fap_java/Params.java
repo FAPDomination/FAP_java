@@ -48,9 +48,10 @@ public class Params {
     public static final double frozenFac = 3;
     /**
      * The delay (in ms) between each Thread clock-tick.
-     * @see fap_java.TheThread
+     * @see fap_java.TheComputingThread
      */
     public static final int delay = 40;
+    public static final int Gdelay = 4*delay;
     /**
      * The amount of HP a cell loses when it is a timer-cell
      */
@@ -83,7 +84,8 @@ public class Params {
     /**
      * The duration of the pause countdown after resuming the game
      */
-    public static final int pauseDuration = 3600;
+    //public static final int pauseDuration = 4600;
+    public static final int pauseDuration = 600;
     
     //Skill-Related Parameters :
     /**
@@ -203,7 +205,7 @@ public class Params {
     /**
      * The default amount of points a player should have to win a game
      */
-    public static final int defaultVictoryScore = 2000;
+    public static final int defaultVictoryScore = 1000;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */
@@ -230,11 +232,17 @@ public class Params {
      */
     public static int[][] controlsList = new int[nPlayersOn1Computer][numberOfKeys];
     
-    public static int timeForSelection = 100;
+    public static final int timeForSelection = 100;
     
     public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
     
     public final static int port = 9632;
     
     public final static int lanDelay = 100;
+    public static final int displacementAnimationLength = 3;
+
+    public static String[][] waitingMessages = new String[4][2];
+
+    //Number of available lightning effects
+    public static final int NLIGHTNING_EFFECTS = 2;
 }

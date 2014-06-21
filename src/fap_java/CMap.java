@@ -109,10 +109,19 @@ public class CMap implements Serializable{
             if (npc != null) {
                 npc.paintComponent(g);
             }
+            
+            for (int j = 0; j < game.getPlayers().size(); j++) {
+                Player q = game.getPlayers().get(j);
+                // Check position
+                if(q.getDrawn() == c){
+                    q.paintComponent(g);
+                }
+            }
+            /*
             Player p = game.isOccupied(c);
             if (p != null) {
                 p.paintComponent(g);
-            }
+            }*/
         }
     }
 

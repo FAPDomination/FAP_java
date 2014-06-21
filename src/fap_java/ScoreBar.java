@@ -70,12 +70,13 @@ public class ScoreBar implements Serializable{
         for(int i=0;i<players.size();i++){
             Player p = players.get(i);
             g.setColor(p.getColor());
-            //this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()
-            int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()))/1000 -1;
-            if(skillTime<0){
-                skillTime = 0;
+            int skillTime = (p.getSkillTime() - (game.getThread().getCount() - p.getLastSkill()));
+            double skillLeft = ((double)skillTime)/(Params.paramTable.get("skillTime")[p.getPc()]*1000);
+            if(skillLeft<0){
+                skillLeft = 0;
             }
-            g.drawString(""+skillTime, 15, i*30+100);
+            g.fillRect(game.getWidth() - 130, i*30+100, (int)(skillLeft*100), 20);
+            g.drawImage(Graph.guimg.get("skillTimeBar"), game.getWidth() - 130, i*30+100, game);
         }
     }
     

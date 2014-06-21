@@ -1,7 +1,7 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   UTF-8
   Tidy the methods lists
-  What happened to the getI, getJ, etc... ?
+  Refactor paintStick into a super call
   Bugs :
 V	- Type of blocking tiles all to 0 ?
 ? Not so good :
@@ -10,6 +10,7 @@ O		- Get a lighter repaint
 X		- Get it inside the walkable block
 V 	- TheThread : static count
 V	- Graph guimg public
+	- Ability to re-launch the pauseCountdown when already in pauseCountDown
 V Displacement Hexa
 V	- Hexa
 V	- Bug changing
@@ -145,15 +146,18 @@ O	- Way to pass param to the timer
 	- Skills
 V	- Warps
 	- Traps
+		- Placing
+V		- Blasting
 P	- Miner Warp
 V		- Implemented
 P		- Alpha
 V	- Pause CountDown
+V	- Magician Frozen
 P Design
 V	- Change did of countdown cell after end of timer
-	- Pause background
+V	- Pause background
 ?	- Game Background
-	- OFFMAP
+X	- OFFMAP
 	- Animations
 		- Skills
 		- Traps
@@ -164,42 +168,47 @@ P			- Alpha
 		- Pause CountDown
 	- Cells
 V		- Modify cells in graph
-P		- Paint dirt
+A		- Paint dirt
 V			- On all
-P			- Just on specified tiles
+A			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
-P		- MinerSelect
-V			- Base
-V			- Cursor
-P			- Specific for each player color
-		- Paint Owner
+~		- MinerSelect
+~			- Base
+~			- Cursor
+~			- Specific for each player color
+V		- Paint Owner
 V			- Text in the middle of the cell
-?			- Coloured background
+V			- Coloured background
 V		- Tidy paintComponent
 		- Special tiles
 			- Healthy Healthy
 		- Null images dids
+V		- Paint HPs with outline
 	- Scorebar
 	- Texts of all kinds
 		- HPs on cells
 		- Scorebar's scores
-		- SkillTimes
+X		- SkillTimes
 		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
+		- Minimap map name
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?
 		- Other decoration picture
+V	- PauseScreen
+V		- Better text display
+V		- better placement on the y-axis
 V Depth
 V Minimap
 V	- Object
 V	- Get map
 V	- PaintComponent
-~		- Background
-~			- Size of background for big maps
+V		- Background
+V			- Size of background for big maps
 V		- Cells
 ~		- Name
 ~	- isSelected
@@ -330,7 +339,7 @@ V	- Display skillTime
 	- Buttons
 V		- adv
 V		- vs
-PT		- quick
+P		- quick
 V			- Loading screen
 V			- pick map
 V			- rand pc
@@ -341,7 +350,7 @@ V			- launch
 V				- Bug no displacement
 P			- Keep list of maps updated
 V		- options
-P		- credits
+V		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
@@ -362,13 +371,13 @@ V	- Find a place for it and keep it
 ?		- Even for OptionMenu ?
 V	- Versus : keep information from one another
 V Go next button : find place and keep it
-? Game extends FAPanel ?
+X Game extends FAPanel ?
   OptionMenu
 	- Buttons
 V		- Back
 		- Controls
 		- Sound
-?		- FullScreen
+O?		- FullScreen
 		- FAP Editor
 V Init panels with a previous panel instead of always creating a new one
 V	- OptionMenu
@@ -385,17 +394,18 @@ V				- Change BG
 V				- Change players disposition
 V		- Display Minimap
   General Design
-	- Button for menu
-	- Button for other
-	- Button remove
-	- Btn add
+E	- Button for menu
+V	- Button for other
+V	- Button remove
+V	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
 		- Versus menus
 	- Nice fonts and sizes for texts
 		- LoadingScreen
 		- PlayerSelection
-P PlayerSelection
+		- PauseScreen
+  PlayerSelection
 V	- PlayerSelect
 V		- Button remove
 V			- Implement
@@ -403,6 +413,7 @@ V			- Dirty id finding
 V			- Exception OutOfBounds -1
 X		- paintCompo
 V		- ComboBoxes
+			- Design
 V			- Control (Player 1,2,3, AI)
 V			- Team
 V		- Placements with attributes
@@ -413,25 +424,25 @@ V			- isFSM
 V			- Nothing more, passing to next panel
 V		- Security on number and order of teams
 V		- Go to next panel
-P	- "Error" textField
+V	- "Error" textField
 V		- textField and block next
 V		- "2 or more teams"
 V		- 1 controler for 1 player
-P		- DrawString and back to new line
+V		- DrawString and back to new line
 T	- Replace getControler>2 by getControler>nMaxPlayeron1Compi
-T CharacterSelection
+V CharacterSelection
 V	- Get previous information
-T 	- Set character
-T		- Players
+V 	- Set character
+V		- Players
 V			- Read keys
 V			- Timer displacement
 V			- Set new values for arrows
 V			- Set new values for characters
-T			- Optional
+V			- Optional
 V				- paint arrows slightly shifted from one another
-T 				- init with random chars
+V 				- init with random chars
 V				- forbid same character in same team
-T				- Same for FSM
+X				- Same for FSM
 V			- Animate
 V				- Make panel animated
 V				- Execute anim for every arrow that needs it
@@ -442,13 +453,13 @@ V					- Compute new speed if needed
 V					- Attribute "I don't need animation"
 V				- Update new values settings
 V		- FSMs
-V Map Selection
+P Map Selection
 V	- Parse map list
 P	- Keep map list updated
 V	- Display map list
-~		- Size of maps
-~		- Increments
-?		- more than 8 ?
+V		- Size of maps
+V		- Increments
+V		- more than 8 ?
 V	- update map value when clicked
 V	- btn next
 V		- wait for map to be selected

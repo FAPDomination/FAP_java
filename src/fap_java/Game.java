@@ -11,6 +11,7 @@ import gui.GameSave;
 import gui.NeedingFocus;
 import gui.Displayer;
 
+import gui.FAPanel;
 import gui.PlayerSelect;
 
 import java.awt.Color;
@@ -21,6 +22,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 
 import java.util.ArrayList;
 
@@ -35,7 +40,7 @@ import npcs.NPCWMStarting;
 
 import npcs.actions.*;
 
-public class Game implements Serializable{
+public class Game extends JPanel implements Serializable{
 
     @SuppressWarnings("compatibility:-5515731280068496856")
     private static final long serialVersionUID = 1L;
@@ -47,7 +52,11 @@ public class Game implements Serializable{
     /**
      * The thread permanently refreshes the game. Updates healthpoints, positions of players, animations, etc...
      */
-    private TheThread thread;
+    private transient TheComputingThread thread;
+    /**
+     * The thread permanently refreshes the graphics game. Draws map, players, etc...
+     */
+    private transient TheGraphicalThread Gthread;
     /**
      * This contains all the player of this game. See also fap_java.Player
      */
@@ -197,7 +206,7 @@ public class Game implements Serializable{
      * @param nmap The ID of the map where it's played
      */
     public Game(int nmap){
-        this("1","0","0","0",false,nmap,0,0,0,2);
+        this("7","0","0","0",false,nmap,0,0,0,2);
         // Detect World Map
         initListNPCs(nmap);
     }
@@ -280,10 +289,16 @@ public class Game implements Serializable{
         XMLparser.parseParams();
         
         // Initialize thread
-        thread = new TheThread(this);
+        thread = new TheComputingThread(this);
         thread.setRunning(false);
         new Thread(this.thread).start();
         thread.setRunning(true);
+        
+        // Initialize thread
+        Gthread = new TheGraphicalThread(this);
+        Gthread.setRunning(false);
+        new Thread(this.Gthread).start();
+        Gthread.setRunning(true);
         
         gameEnded = false;
         
@@ -297,6 +312,65 @@ public class Game implements Serializable{
         //}
     }
 
+    /**
+     * Paint the panel. takes care of background, map, players and other components
+     * @param g Graphical thing that no one really understands
+     */
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        //long startTime = System.currentTimeMillis();
+        // Background
+        Graphics2D g2d = (Graphics2D)g;
+        
+        int w = this.getWidth();
+        int h = this.getHeight();
+
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(0, 0, Constants.top, 0, h, Constants.bottom);
+
+        g2d.setPaint(gp);
+        //TODO Better background ??
+        g2d.fillRect(0, 0, w, h);
+        // --- End BG
+        
+        // Repaint the map
+        map.paintComponent(g);
+        if(adv <2){
+            // Repaint the scoreHandler
+            this.scoreHandler.paintComponent(g);
+        }
+        // Repaint the objects (such as arrows)
+        for(int j=0;j<objects.size();j++){
+            objects.get(j).paintComponent(g);
+        }
+        
+        /*
+        if(map.getFileID() == 0){
+            // if world map, paint the npcs with green line
+            for(int i=0;i<listNPCs.size(); i++){
+                NPC npc = listNPCs.get(i);
+                if(npc instanceof NPCWMStarting){
+                    npc.paintComponent(g);
+                }
+            }
+        }*/
+        
+        /*
+        // Paint black screen if the game is paused
+        if(!thread.getRunning() && !pauseNPC){
+            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
+        }
+        */
+        // Paint the animations (warps, explosions, bitches,...)
+        for(int j=0;j<anims.size();j++){
+            if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){
+                anims.get(j).paintComponent(g);
+            }
+        }
+        
+        //System.out.println(System.currentTimeMillis() - startTime);
+    }
+
     public ArrayList<Player> getPlayers() {
         return players;
     }
@@ -305,7 +379,7 @@ public class Game implements Serializable{
         return map;
     }
 
-    public TheThread getThread() {
+    public TheComputingThread getThread() {
         return thread;
     }
 
@@ -540,6 +614,7 @@ public class Game implements Serializable{
     /**
      * Pauses or un-pauses the game
      */
+    
     public void pauseGame(){
         pauseGame(false);
     }
@@ -552,11 +627,11 @@ public class Game implements Serializable{
             displayer.repaint();
             // Display pause
             if(!isNPC){
-            PauseScreen ps = new PauseScreen(false, this);
+            PauseScreen pauseScreen = new PauseScreen(false, this);
                 if(adv > 0){
-                    ps.setAdvMode(true);
-                }
-                this.addObject(ps);
+                    pauseScreen.setAdvMode(true);
+                } 
+                this.addObject(pauseScreen);
             }
         }
         // Else un-pause if the game is still not finished
@@ -568,7 +643,7 @@ public class Game implements Serializable{
                     ((PauseScreen)e).setResuming(true);
                 }
             }
-            new PauseCountDown(400,150,Params.pauseDuration,thread);
+            new PauseCountDown(Params.pauseDuration,thread);
         }
         else if(isNPC){
             // Get animations
@@ -799,6 +874,19 @@ public class Game implements Serializable{
         gameList.put(22, new Game("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
         gameList.put(23, new Game("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
         gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
+        
+        //Test
+        Game ga = gameList.get(20);
+        try {
+            FileOutputStream fileOut = new FileOutputStream("game.ga");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(ga);
+            out.close();
+            fileOut.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+        //-----------
 
         // Get list of conquered cells
         this.computeWorldMap();

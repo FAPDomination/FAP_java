@@ -1,7 +1,7 @@
 package animations;
 
 import fap_java.Graph;
-import fap_java.TheThread;
+import fap_java.TheComputingThread;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,9 +15,9 @@ public class NPCMessage extends Animation {
     private String yes;
     private String no;
     private boolean choice;
-    private Image img;
+    //private Image img;
     private AAsk launcher;
-    public NPCMessage(String message, String yes, String no,TheThread thread, AAsk launcher) {
+    public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher) {
         super(0,0,0,thread);
         ask = true;
         this.launcher = launcher;
@@ -25,11 +25,11 @@ public class NPCMessage extends Animation {
         this.yes = yes;
         this.no = no;
         choice = true;
-        img = Graph.getGuimg().get("npcDisplayMessage");
+        //img = Graph.getGuimg().get("npcDisplayMessage");
         thread.getMyGame().addAnim(this);
     }
     
-    public NPCMessage(String message,TheThread thread){
+    public NPCMessage(String message,TheComputingThread thread){
         this(message,"","",thread,null);
         ask = false;
         choice = false;
@@ -46,7 +46,8 @@ public class NPCMessage extends Animation {
         int x=(thread.getMyGame().getDisplayer().getWidth()-width)/2;
         int y=(thread.getMyGame().getDisplayer().getHeight()-height-30);
 
-        g.drawImage(img,x,y,width,height,thread.getMyGame().getDisplayer());
+        Graph.drawDarkBackgroundRectangle(g, x, y, width, height, Graph.NPC_SQUARE_COLOR, 20, Graph.BG_DARK);
+        //g.drawImage(img,x,y,width,height,thread.getMyGame());
 
         g.drawString(message, x+20, y+20);
         if(ask){
@@ -62,6 +63,7 @@ public class NPCMessage extends Animation {
             g.drawString(yes, x+(width/4), y+40);       // these positions are bad, to be re-made
             g.drawString(no, x+(3*width/4), y+40);
             //TODO paint cursor
+            g.setColor(Color.WHITE);
             g.fillRect(x+(width/4)-6+fac*2*width/4, y+35, 4,4);       // Whole cursor to be re-made
         }
         

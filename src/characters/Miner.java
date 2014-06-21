@@ -5,11 +5,16 @@ import animations.Animation;
 
 import fap_java.Cell;
 import fap_java.Game;
+import fap_java.Graph;
 import fap_java.Params;
 import fap_java.Player;
 import fap_java.Team;
 
 import fap_java.Tools;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
 
 import java.util.ArrayList;
 
@@ -126,5 +131,26 @@ public class Miner extends Player{
 
     public int getCursor() {
         return cursor;
+    }
+    
+    public void paintStick(Graphics g, int x, int y) {
+        /*
+        g.setColor(color);
+        // Switch on ori
+        g.fillRect(x, y, 10, 30);
+        */
+        // Game paint factor
+        double paintFactorW = Graph.facW;
+        double paintFactorH = Graph.facH;
+        // Paint shadow
+        Image img= Graph.characters.get("shadow");
+        int width = (int)(img.getWidth(this.getGame()) * paintFactorW);
+        int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
+        Point offset = new Point(-18,4);
+        g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
+        offset = new Point(-24,-31);
+        
+        img = Graph.characters.get("Miner"+ori+"_"+this.getColorName());
+        g.drawImage(img, x +offset.x ,y+offset.y, 58,90, this.getGame());
     }
 }

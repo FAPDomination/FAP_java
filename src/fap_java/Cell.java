@@ -8,6 +8,8 @@ import java.awt.Image;
 
 import java.io.Serializable;
 
+import java.awt.image.BufferedImage;
+
 import java.util.ArrayList;
 
 public class Cell extends Element implements Serializable{
@@ -140,8 +142,14 @@ public class Cell extends Element implements Serializable{
      * @param g
      */
     public void paintComponent(Graphics g) {
-        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0];
-        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1];
+        int[] thisTilePosition = CMap.giveTalePosition(this.getI(), this.getJ());
+        int x = thisTilePosition[0];
+        int y = thisTilePosition[1];
+        
+        // Game paint factor
+        double paintFactorW=Graph.facW;
+        double paintFactorH =Graph.facH;
+        
 
         int width;
         int height;
@@ -151,39 +159,30 @@ public class Cell extends Element implements Serializable{
         //test if needed
         ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
         if(surrounding.get(3) == null || surrounding.get(4) == null){
+            BufferedImage dirtImage = Graph.cells.get(0);
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
-            width = (int)(Graph.cells.get(0).getWidth(game.getDisplayer()) * Graph.facW);
-            height = (int)(Graph.cells.get(0).getHeight(game.getDisplayer()) * Graph.facH);
 
-            g.drawImage(Graph.cells.get(0), x + offX, y + offY, width, height, game.getDisplayer());
+            width = (int)(dirtImage.getWidth(game) * paintFactorW);
+            height = (int)(dirtImage.getHeight(game) * paintFactorH);
+
+            g.drawImage(dirtImage, x + offX, y + offY, width, height, game);
         }
         // Paint did
-        width = (int)(Graph.cells.get(did).getWidth(game.getDisplayer()) * Graph.facW);
-        height = (int)(Graph.cells.get(did).getHeight(game.getDisplayer()) * Graph.facH);
+        
+        if(Graph.notFactored.contains(did)){
+            paintFactorW = 1;
+            paintFactorH = 1;
+        }
+        
+        width = (int)(this.img.getWidth(game) * paintFactorW);
+        height = (int)(this.img.getHeight(game) * paintFactorH);
+
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
         
         g.drawImage(Graph.cells.get(did), x + offX, y + offY, width, height, game.getDisplayer());
         
-        
-        // Special case if the miner is currently selecting the cell
-        //TODO better painting of miner selecting depending on player's color
-        if (minerSelect != null) {
-            int minerSlectID = 13;
-            width = (int)(Graph.cells.get(minerSlectID).getWidth(game.getDisplayer()) * Graph.facW);
-            height = (int)(Graph.cells.get(minerSlectID).getHeight(game.getDisplayer()) * Graph.facH);
-            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
-            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
-            //If the miner's cursor is on the cell
-            //TODO better painting of minor's cursor
-            if(this.minerSing){
-                g.drawImage(Graph.cells.get(minerSlectID+1), x + offX, y + offY, width, height, game.getDisplayer());
-            }
-            else{
-                g.drawImage(Graph.cells.get(minerSlectID), x + offX, y + offY, width, height, game.getDisplayer());
-            }
-        }
         
         // Write the amount of HP of the tile
         if (hp > 0) {
@@ -191,17 +190,71 @@ public class Cell extends Element implements Serializable{
             Graphics2D g2d = (Graphics2D)g;
             FontMetrics fm = g2d.getFontMetrics();
             int textWidth = fm.stringWidth(hps);
+            
+            
+            
             if(owner !=null){
-                g.setColor(owner.getColor());
+                Color c = owner.getColor();
+                Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
+                fillCell(g,x,y,alphaBG);
             }
             else{
                 g.setColor(Color.black);
             }
             g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
-            //TODO coloured background ?
+            
+            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+            
+        }
+        
+        // Special case if the miner is currently selecting the cell
+        if (minerSelect != null) {
+            int minerSlectID = 13;
+            width = (int)(Graph.cells.get(minerSlectID).getWidth(game) * paintFactorW);
+            height = (int)(Graph.cells.get(minerSlectID).getHeight(game) * paintFactorH);
+            offX = (int)Graph.offsetsCells.get(minerSlectID).getWidth();
+            offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
+            //If the miner's cursor is on the cell
+            Color k = minerSelect.getColor();
+            //int lighterFac = 10;
+            if(this.minerSing){
+                minerSlectID++;
+            }
+            
+            fillBlock(g,x, y+2, minerSelect.getColor(), 6);
+            g.drawImage(Graph.cells.get(minerSlectID), x + offX+2, y + offY+3, width, height, game);
         }
         
         //TODO Special Healthy Healthy design
+    }
+    
+    public static void fillCell(Graphics g,int x, int y, Color c){
+        Color k = g.getColor();
+        g.setColor(c);
+        int[] xs = {x-2,CMap.TW/(2)+x -1,CMap.TW+x +1,CMap.TW+x +1,CMap.TW/2+x -1,x-2};
+        int[] ys = {y,-11/CMap.FAC+y,y,23/CMap.FAC+y,34/CMap.FAC+y,23/CMap.FAC+y};
+        g.fillPolygon(xs, ys, 6);
+        g.setColor(k);
+    }
+    
+    public static void fillBlock(Graphics g,int x, int y, Color c, int h){
+        Color k = g.getColor();
+        g.setColor(c);
+        h*=-1;
+        // Top cell
+        int[] xs = {x+1,CMap.TW/(2)+x,CMap.TW+x-1,CMap.TW+x-1,CMap.TW/2+x,x+1};
+        int[] ys = {y+h,-11/CMap.FAC+y+h,y+h,23/CMap.FAC+y+h,34/CMap.FAC+y+h,23/CMap.FAC+y+h};
+        g.fillPolygon(xs, ys, 6);
+        // First panel
+        int[] x2s = {x+1,CMap.TW/(2)+x,CMap.TW/(2)+x -1,x+1};
+        int[] y2s = {y+h,-11/CMap.FAC+y+h,34/CMap.FAC+y-2,23/CMap.FAC+y};
+        g.fillPolygon(x2s, y2s, 4);
+        // Second panel
+        int[] x3s = {CMap.TW+x-2,CMap.TW+x,CMap.TW/(2)+x,CMap.TW/(2)+x -2};
+        int[] y3s = {y+h,23/CMap.FAC+y,34/CMap.FAC+y-2,34/CMap.FAC+y+h};
+        g.fillPolygon(x3s, y3s, 4);
+        
+        g.setColor(k);
     }
 
     /**
@@ -211,7 +264,7 @@ public class Cell extends Element implements Serializable{
      */
     public void activateCell(Player p) {
         // Check if the tile is takable and the property of the player
-        if (type == 1 && owner != p.getTeam()) {
+        if (owner != p.getTeam() && type == 1) {
             // if not, tests if the tale has HP
             if (hp <= 0) {
                 // The tale is empty, sets it as the property of the player, gives HP and draw the according map
@@ -395,25 +448,22 @@ public class Cell extends Element implements Serializable{
      * @param type
      */
     public void setType(int type) {
+        
+        this.type = type;
+        
         //Blocking high
         if (type == 20) {
-            this.type = 20;
             walkable = false;
             this.height = true;
         }
         //Blocking low
         else if (type == 19) {
-            this.type = 19;
             //this.type = 1;
             walkable = false;
         }
         //Countdown cell
         else if (type == 2) {
-            this.type = type;
             hp = Integer.parseInt(addParam);
-        }
-        else {
-            this.type = type;
         }
         
         if(type != 20 && type != 19){

@@ -1,5 +1,6 @@
 package fap_java;
 
+import gui.ClassesDescListHandler;
 import gui.MapListHandler;
 
 import gui.Minimap;
@@ -67,6 +68,13 @@ public class XMLparser {
         return dh.getList();
     }
     
+    public static void parseClassesDescList(){
+        // Creates a Handler that will process the datas
+        ClassesDescListHandler dh = new ClassesDescListHandler();
+        // Call the parse method
+        parseXML("classesDescriptions.xml", dh);
+    }
+    
     /**
      * Parses the Big Table Parameter.
      * @see ParamTableHandler
@@ -100,16 +108,16 @@ public class XMLparser {
                                 //parseur.parse(fichier, gestionnaire);
                         }catch(ParserConfigurationException pce){
                                 System.out.println("Erreur de configuration du parseur");
-                                System.out.println("Lors de l'appel a  newSAXParser()");
+                                System.out.println("Lors de l'appel a newSAXParser()");
                         }catch(SAXException se){
                                 System.out.println("Erreur de parsing");
-                                System.out.println("Lors de l'appel a  parse()");
+                                System.out.println("Lors de l'appel a parse()");
                             String message = "Message : "+se.getMessage()+"\n";
                             System.out.println(message);
                                     
                         }catch(IOException ioe){
                                 System.out.println("Erreur d'entree/sortie");
-                                System.out.println("Lors de l'appel a  parse()");
+                                System.out.println("Lors de l'appel a parse()");
                                 
                             String message = "Message : "+ioe.getMessage()+"\n";
                             //message += "Ligne "+ioe.getLineNumber()+", colonne "+ioe.getColumnNumber()+"\n";
