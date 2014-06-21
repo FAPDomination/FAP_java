@@ -29,9 +29,10 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
     // Displaying
     private static int characDisplayOrigX = 0;
+    private static int characDisplayOrigY=250;
     private static int characDisplayIncrement = 100;
 
-    private int arroSelectOrigY = -20;
+    private int arroSelectOrigY = -40;
 
     private Game advGame;
     
@@ -120,7 +121,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                 }
             }
             if(m){
-                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, 300 + Tools.randRange(0, 50), i, b, this));
+                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, characDisplayOrigY + Tools.randRange(0, 50), i, b, this));
                 if(b){
                     listUnlockedCharsID.add(i);
                 }

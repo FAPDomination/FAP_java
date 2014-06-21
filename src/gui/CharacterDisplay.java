@@ -30,7 +30,7 @@ public class CharacterDisplay {
         this.pc = pc;
         this.advDisplay = advDisplay;
         // Get Image from graph
-        //this.imgChar = Graph.
+        this.imgChar = Graph.thumbnails.get("CS_"+Constants.charNames[pc-1]);
         //this.offsetsChars = Graph.
         
         // get text from params ?
@@ -46,8 +46,8 @@ public class CharacterDisplay {
         double fac = 0.75;
         g.drawImage(img, x-width/8, y+3*H/4, (int)(width*fac), (int)(height*fac), panel);
         
-        if(advDisplay){     // Adventure Mode and character is unlock OR not adventure mode
-            
+        if(advDisplay && imgChar != null){     // Adventure Mode and character is unlock OR not adventure mode
+            g.drawImage(imgChar, x-25, y-25, panel);
         }else{
          img= Graph.getGuimg().get("star");
          height = img.getHeight(panel);
