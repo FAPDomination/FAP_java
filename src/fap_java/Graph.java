@@ -55,6 +55,8 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
+    public static final Color BLACK = new Color(10,10,20,255);
+    public static final Color GREY_DARK = new Color(60,60,70);
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
     public static final Color DEFAULT_SQUARE_COLOR=new Color(100,100,100);
     public static final Color NPC_SQUARE_COLOR = new Color(200,200,200);

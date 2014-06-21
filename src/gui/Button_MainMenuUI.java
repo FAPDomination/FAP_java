@@ -51,19 +51,12 @@ public class Button_MainMenuUI extends BasicButtonUI {
         //button.setPreferredSize(Design.MENU_BUTTON_DIM);
         button.setRolloverEnabled(true);
         button.setMargin(BUTTON_MARGIN);
-        button.setForeground(Graph.BG_Blue);
+        button.setForeground(Graph.BLACK);
         button.setBorder(Graph.NO_BORDER);
         button.setFont(Graph.BTN_MENU_FONT);
 
         if (isHover()) {
-            //button.setBackground(null);
-            button.setForeground(Graph.BG_Red);
-            /*
-            final int BWIDTH = button.getWidth();
-            final int BHEIGHT = button.getHeight();
-            g.setColor(Graph.BG_Blue);
-            g.fillRect(0, 0, BWIDTH, BHEIGHT);
-            */
+            button.setForeground(Graph.GREY_DARK);
         }
         super.paint(g, button);
     }
