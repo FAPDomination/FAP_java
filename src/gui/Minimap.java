@@ -92,12 +92,13 @@ public class Minimap{
             g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
         }
         g.setColor(Color.black);
+        g.setFont(Graph.SIMPLE_TEXT_FONT);
         Graphics2D g2d = (Graphics2D)g;
         FontMetrics fm = g2d.getFontMetrics();
         int nameWidth = fm.stringWidth(name);
         int imgWidth = 150;
-        //TODO Pretty text
-        g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 235);
+        Graph.drawBorderedString(g, x + (imgWidth - nameWidth) / 2, y + 238, name, Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        //g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 238);
     }
 
     public void setIsSelected(boolean isSelected) {
