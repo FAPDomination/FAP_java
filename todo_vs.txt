@@ -203,7 +203,7 @@ V				- 3D file
 V				- 3 colors
 				- All colors
 V			- Big Thumbnail
-			- CharacterSelection thumbnail
+V			- CharacterSelection thumbnail
 		- Miner
 P~			- Skill animation
 V				- Implemented
@@ -214,7 +214,7 @@ V				- 3D file
 V				- 3 colors
 				- All colors
 V			- Big Thumbnail
-			- CharacterSelection thumbnail
+V			- CharacterSelection thumbnail
 		- Warlock
 V			- Skill animation
 V				- setting
@@ -250,7 +250,7 @@ V				- 3D file
 V				- 3 colors
 				- All colors
 V			- Big Thumbnail
-			- CharacterSelection thumbnail
+V			- CharacterSelection thumbnail
 		- Booster
 ~			- Skill animation
 			- 3D Character
@@ -258,7 +258,7 @@ V				- 3D file
 V				- 3 colors
 				- All colors
 V			- Big Thumbnail
-			- CharacterSelection thumbnail
+V			- CharacterSelection thumbnail
 V Depth
 V Minimap
 V	- Object

@@ -56,7 +56,9 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
-    public static final Color BLACK = new Color(10,10,20,255);
+    
+    public static final Color WHITE = Color.WHITE;
+    public static final Color BLACK = new Color(17,30,41,255);
     public static final Color GREY_DARK = new Color(60,60,70);
     public static final Color WHITE_ALPHA_160 = new Color(255,255,255,160);
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
@@ -73,6 +75,7 @@ public class Graph {
     
     // Borders :
     public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+    public static final Border BORDERSIMPLE = BorderFactory.createEmptyBorder(2, 2, 2, 2);
     
     // Fonts :
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
@@ -199,6 +202,7 @@ public class Graph {
             guimg.put("ScoreMedalR", ImageIO.read(new File("resources/images/gui/ScoreBar_Medal.png")));
             guimg.put("ScoreMedalL", ImageIO.read(new File("resources/images/gui/ScoreBar_MedalLeft.png")));
             guimg.put("ScoreBottom", ImageIO.read(new File("resources/images/gui/ScoreBar_bottom.png")));
+            guimg.put("iconJCombo", ImageIO.read(new File("resources/images/gui/iconJCombo.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));

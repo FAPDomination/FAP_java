@@ -1,9 +1,12 @@
 package fap_java;
 
 import gui.Constants;
+import gui.FAPComboBoxRenderer;
 import gui.GameSave;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -12,6 +15,7 @@ import java.awt.image.BufferedImage;
 
 import java.awt.image.RescaleOp;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,8 +27,17 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+
+import javax.swing.BorderFactory;
+import javax.swing.CellRendererPane;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.metal.MetalComboBoxButton;
 
 /**
  * This class contains several tools that can be used wherever.
@@ -235,5 +248,28 @@ public class Tools {
     }
     public static void parametrizeJLabel(JLabel theJLabel, String text){
         theJLabel.setText("<html>"+text+"</html>");
+    }
+    
+    public static void tinkerJComboBox(JComboBox jc){
+        jc.setRenderer(new FAPComboBoxRenderer());
+        jc.setBorder(Graph.NO_BORDER);
+        for(int i=0;i<2;i++){
+            Component k = jc.getComponent(i);
+            if(k!=null){
+                if(k instanceof MetalComboBoxButton){
+                    MetalComboBoxButton jb = ((MetalComboBoxButton)k);
+                    jb.setBackground(Graph.BLACK);
+                    jb.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+                    Image img=Graph.getGuimg().get("iconJCombo");
+                    jb.setIconOnly(true);
+                    Icon icon = new ImageIcon(img);
+                    jb.setComboIcon(icon);
+                }
+                /*else{
+                    CellRendererPane crp = (CellRendererPane)k;
+                    crp.setBackground(Graph.BLACK);
+                }*/
+            }
+        }
     }
 }
