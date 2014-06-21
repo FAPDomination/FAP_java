@@ -134,7 +134,7 @@ public class Game extends JPanel implements NeedingFocus {
     private ArrayList<FSMThread> fsmThread = new ArrayList<FSMThread>();
     
     // performances
-    public long min=-1,max=-1,moy=0,c=1;
+    public long min=-1,max=-1,moy=0,c=1,cez=0;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -320,6 +320,7 @@ public class Game extends JPanel implements NeedingFocus {
         if(timeMeasure >0){
             c++;
         }
+        cez++;
         //System.out.println(System.currentTimeMillis() - startTime);
     }
 
@@ -657,12 +658,15 @@ public class Game extends JPanel implements NeedingFocus {
      * @param winner the team who won (or null, that would mean tie or lost (for adventure))
      */
     public void endGame(Team winner){
-        System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max);
+        System.out.println("------- Statistics -------");
+        System.out.println("Min, Moy, Max, countNot0, countTotal");
+        System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max+","+this.thread.c+","+this.thread.cez);
         System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
         System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
         System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
         System.out.println("------- Graphical");
-        System.out.println(""+this.min+","+this.moy/this.c+","+this.max);
+        System.out.println("Min, Moy, Max, countNot0, countTotal");
+        System.out.println(""+this.min+","+this.moy/this.c+","+this.max+","+this.c+","+this.cez);
         
         pauseGame();
         PauseScreen victoryScreen = null;
