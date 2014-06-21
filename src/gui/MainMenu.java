@@ -58,31 +58,37 @@ public class MainMenu extends FAPanel implements AnimPanel {
         btnQuickPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 startQuickPlay();
+                ((Button_MainMenuUI)btnQuickPlay.getUI()).setHover(false);
             }
         });
         btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+                ((Button_MainMenuUI)btnQuit.getUI()).setHover(false);
             }
         });
         btnOptions.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 btnOption_actionPerformed();
+                ((Button_MainMenuUI)btnOptions.getUI()).setHover(false);
             }
         });
         btnVersus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 btnVersus_actionPerformed();
+                ((Button_MainMenuUI)btnVersus.getUI()).setHover(false);
             }
         });
         btnAdventure.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 btnAdv_actionPerformed();
+                ((Button_MainMenuUI)btnAdventure.getUI()).setHover(false);
             }
         });
         btnCredits.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 btnCred_actionPerformed();
+                ((Button_MainMenuUI)btnCredits.getUI()).setHover(false);
             }
         });
         
@@ -173,7 +179,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
     
     private void initMenuBtn(JButton jbutt, String label, int offx, int offy){
         int origX = 460;
-        int origY = 150;
+        int origY = 180;
         jbutt.setUI(new Button_MainMenuUI());
         ((Button_MainMenuUI)jbutt.getUI()).setHover(false);
         jbutt.setText(label);
@@ -213,7 +219,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
 
     private void startQuickPlay() {
         // init map
-        //TODO keep lis of maps updated
+        //TODO keep list of maps updated
         int[] possibleMaps = { 5, 6, 8, 10, 11, 12, 13 };
         int nmap = possibleMaps[Tools.randRange(0, possibleMaps.length - 1)];
         //nmap = 5;

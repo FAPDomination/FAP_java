@@ -107,6 +107,11 @@ public class Params {
      */
     public static int nBlastedTiles;
     /**
+     * How long (in s) the warning for a new trap will stay
+     * visible
+     */
+    public static int timeWarningTrap;
+    /**
      * Special Parameter for the vampire
      * The number of cell rings around the thrower where cells will be vampirized
      * @see characters.Vampire
@@ -205,7 +210,7 @@ public class Params {
     /**
      * The default amount of points a player should have to win a game
      */
-    public static final int defaultVictoryScore = 1000;
+    public static final int defaultVictoryScore = 2000;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */

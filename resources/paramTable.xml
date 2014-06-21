@@ -17,7 +17,7 @@
 		<magician>10</magician>
 		<miner>10</miner>
 		<warlock>10</warlock>
-		<archer>3</archer>
+		<archer>9</archer>
 		<vampire>10</vampire>
 		<NoChar>11</NoChar>
 		<Nmagician>10</Nmagician>
@@ -29,7 +29,7 @@
 		<magician>5</magician>
 		<miner>5</miner>
 		<warlock>5</warlock>
-		<archer>20</archer>
+		<archer>4</archer>
 		<vampire>5</vampire>
 		<NoChar>5</NoChar>
 		<Nmagician>5</Nmagician>
@@ -40,7 +40,7 @@
 		<knight>120,5.5</knight>
 		<magician>4</magician>
 		<miner>3</miner>
-		<warlock>5</warlock>
+		<warlock>5,3</warlock>
 		<archer>7,30</archer>
 		<vampire>3,1</vampire>
 		<NoChar>null</NoChar>

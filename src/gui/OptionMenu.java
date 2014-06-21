@@ -26,23 +26,53 @@ public class OptionMenu extends FAPanel {
         
         int i=0;
         
-        btnControls.setText("Commandes");
-        btnControls.setSize(120, 40);
-        btnControls.setLocation(240+Tools.randRange(-40, 40), 160+60*i);
+        btnControls=new JButton();
         this.add(btnControls);
+        initOptionBtn(btnControls,"Commandes",240+Tools.randRange(-40,40), 160+60*i);
         i++;
         
-        btnSound.setText("Son On");
-        btnSound.setSize(120, 40);
-        btnSound.setLocation(240+Tools.randRange(-40, 40), 160+60*i);
+        btnSound=new JButton();
+        initOptionBtn(btnSound,"Son On",240+Tools.randRange(-40,40), 160+60*i);
         this.add(btnSound);
         i++;
         
-        btnGoBack.setText("Retour");
-        btnGoBack.setSize(120, 40);
-        btnGoBack.setLocation(240+Tools.randRange(-40, 40), 160+60*i);
+        initOptionBtn(btnGoBack,"Retour",240+Tools.randRange(-40,40), 160+60*i);
         this.add(btnGoBack);
         i++;
+        
+        btnControls.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_MainMenuUI)btnControls.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_MainMenuUI)btnControls.getUI()).setHover(false);
+            }
+        });
+        
+        btnSound.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_MainMenuUI)btnSound.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_MainMenuUI)btnSound.getUI()).setHover(false);
+            }
+        });
+        
+        btnGoBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                //LectureFichierSon.lire(Design.sonChtk);
+                ((Button_MainMenuUI)btnGoBack.getUI()).setHover(true);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ((Button_MainMenuUI)btnGoBack.getUI()).setHover(false);
+            }
+        });
+        
         
         btnSound.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,8 +85,24 @@ public class OptionMenu extends FAPanel {
             }
         });
         
+        btnGoBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                goBack();
+                ((Button_MainMenuUI)btnGoBack.getUI()).setHover(false);
+            }
+        });
+        
         this.validate();
         this.repaint();
+    }
+    
+    private void initOptionBtn(JButton jbutt, String label, int posx, int posy){
+        jbutt.setUI(new Button_MainMenuUI());
+        ((Button_MainMenuUI)jbutt.getUI()).setHover(false);
+        jbutt.setText(label);
+        jbutt.setSize(120, 40);
+        jbutt.setLocation(posx, posy);
+        jbutt.setOpaque(false);
     }
     
     public void paintComponent(Graphics g) {

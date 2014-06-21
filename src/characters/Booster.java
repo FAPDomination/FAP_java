@@ -1,5 +1,9 @@
 package characters;
 
+import animations.AnimBooster;
+import animations.Animation;
+
+import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Graph;
@@ -19,11 +23,12 @@ public class Booster extends Player {
     public void getSkill() {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
-            //System.out.println("*BANG*");
             //Send Skill :
-            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime);
-            //this.makeHimWait(Params.timeAfterSkill);
-            //TODO add animation Booster
+            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime*1000);
+            //Add animation
+            int x = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[0] + Params.OFFX;
+            int y = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[1] + Params.OFFY;
+            new AnimBooster(x,y,this.getGame().getThread());
         }
     }
     

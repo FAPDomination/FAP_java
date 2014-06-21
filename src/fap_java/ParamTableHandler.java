@@ -89,7 +89,9 @@ public class ParamTableHandler extends DefaultHandler {
             } else if (qName.equals("miner")) {
                 Params.minerNCells = Integer.parseInt(buffer.toString());
             } else if (qName.equals("warlock")) {
-                Params.nBlastedTiles = Integer.parseInt(buffer.toString());
+                String[] stab = buffer.toString().split(",");
+                Params.nBlastedTiles = Integer.parseInt(stab[0]);
+                Params.timeWarningTrap = Integer.parseInt(stab[1]);
             } else if (qName.equals("archer")) {
                 String[] stab = buffer.toString().split(",");
                 int speed = Integer.parseInt(stab[0]);

@@ -1,5 +1,8 @@
 package characters;
 
+import animations.AnimTrap;
+
+import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Graph;
@@ -24,7 +27,9 @@ public class Warlock extends Player{
             Cell current = this.getCurrent();
             current.setTrap(this.getTeam());
             //Add animation
-            //TODO add animation Warlock
+            int x = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[0] + Params.OFFX;
+            int y = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[1] + Params.OFFY;
+            new AnimTrap(x,y,this.getGame().getThread());
             
             this.makeHimWait(Params.timeAfterSkill);
         }

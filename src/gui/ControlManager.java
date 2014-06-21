@@ -1,5 +1,6 @@
 package gui;
 
+import fap_java.Graph;
 import fap_java.Params;
 
 import java.awt.Color;
@@ -61,6 +62,11 @@ public class ControlManager{
             JButton jb = new JButton();
             jb.setSize(120, 40);
             jb.setLocation(x, y+incremY*i);
+            
+            jb.setUI(new Button_SampleUI());
+            ((Button_SampleUI)jb.getUI()).setHover(false);
+            jb.setOpaque(false);
+            
             buttonList.add(jb);
 
             jb.setText(""+KeyEvent.getKeyText(keyList[i]));
@@ -78,6 +84,7 @@ public class ControlManager{
         if(active != -1){
             panel.setAllEnabled(true);
             JButton jb = buttonList.get(active);
+            ((Button_SampleUI)jb.getUI()).setHover(false);
             keyList[active] = code;
 
             jb.setText(""+KeyEvent.getKeyText(code));
@@ -95,17 +102,19 @@ public class ControlManager{
         int initY = 25;
         g.setColor(Color.BLACK);
         //Title
-        g.drawString("Player "+(controler+1), x+35, y-40);
+        g.setFont(Graph.H2_TITLE_FONT);
+        Graph.drawBorderedString(g, x+25, y-35, "Player "+(controler+1), Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        g.setFont(Graph.SIMPLE_TEXT_FONT);
         //Keys
-        g.drawString("Haut", x-decremX, y+initY+incremY*i);
+        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Haut ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        g.drawString("Bas", x-decremX, y+initY+incremY*i);
+        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Bas ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        g.drawString("Droite", x-decremX, y+initY+incremY*i);
+        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Droite ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        g.drawString("Gauche", x-decremX, y+initY+incremY*i);
+        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Gauche ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        g.drawString("Sort", x-decremX, y+initY+incremY*i);
+        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Sort ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
     }
 
     public void setPanel(ControlsPanel panel) {
@@ -161,6 +170,7 @@ public class ControlManager{
         if(active == -1){
             panel.setAllEnabled(false);
             jb.setEnabled(true);
+            ((Button_SampleUI)jb.getUI()).setHover(true);
             active = buttonID;
             jb.setText("Press Key");
             panel.initFocus();
@@ -168,6 +178,7 @@ public class ControlManager{
         else{
             active = -1;
             panel.setAllEnabled(true);
+            ((Button_SampleUI)jb.getUI()).setHover(false);
 
             jb.setText(""+KeyEvent.getKeyText(keyList[buttonID]));
         }

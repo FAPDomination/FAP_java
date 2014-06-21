@@ -1,7 +1,7 @@
   COMMENT THAT SHIT YOU FILTHY BASTUD
   UTF-8
   Tidy the methods lists
-  Refactor paintStick into a super call
+P Refactor paintStick into a super call
   Bugs :
 V	- Type of blocking tiles all to 0 ?
 ? Not so good :
@@ -16,21 +16,21 @@ V	- Hexa
 V	- Bug changing
 V	- Toggle handleKeys with thread and not keypress ?
 V Same time displacements
-? Get rid of colors
+X Get rid of colors
 V Collisions
 V Cleaner define of keys in params
 V Tile on Path method
-? Special Tiles
+V Special Tiles
 V	- The Floor is Lava
 V	- Healthy Healthy
 V		- Higher maxHP
 V		- quicker recovery
-V	- Frozen
+T	- Frozen
 V		- Implement
 V		- Booster Imuned
 V Complete shiftStick
 V	- Switch on type
-?		- move to Cell.activateTile ?
+V		- move to Cell.activateTile ?
 V		- Warp
 V		- Switch
 V			- Regular
@@ -48,10 +48,10 @@ V TeamPlay
 V	- Implement teams
 V	- TrapCells
 V	- Warning : the first player sets ALL the params
-?	- Cleaner initTeams
+V	- Cleaner initTeams
 V		- Cleaner
-?		- Teams 0,1,3 but not 2 : exception
-~ Player init :
+V		- Teams 0,1,3 but not 2 : exception
+V Player init :
 V	- Cleaner init for position
 V	- Random startCell
 V	- Init skills
@@ -68,7 +68,7 @@ V	- Color
 V		- Param list
 V		- get
 V		- 8
-~		- Yellow
+V		- Yellow
 V CMap :
 V	- MaxI & MaxJ
 V	- Countneighbour with surroundingCell
@@ -103,20 +103,20 @@ V					- handle keyPressing
 V				- Teleport
 T				- SkillTime odd ?
 V		- Warlock
-PT?~		- Archer
-PT?~			- Arrow
+?~		- Archer
+?~			- Arrow
 V				- Class File
-P				- PaintComponent
-P					- Offsets
-~					- Paint
-P					- Change direction f(ori)
-~				- Attributes
+V				- PaintComponent
+V					- Offsets
+V					- Paint
+V					- Change direction f(ori)
+V				- Attributes
 V				- Compute new position
-T?~				- Acting
-T					- Displacement
-T						- Angle
-?						- Tile on path ?
-T						- Speed and compute cell bug
+?~				- Acting
+V					- Displacement
+V						- Angle
+X						- Tile on path ?
+~						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
 ~						- Destroy function
@@ -127,7 +127,7 @@ V						- Dammage the cell
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
-~				- Clear Calculus
+V				- Clear Calculus
 ?				- Matrix Bug
 V			- Implement into class
 V		- Vampire
@@ -142,35 +142,28 @@ V	- Timer
 V	- Implement all params
 O	- Pointer to escape the double switch
 O	- Way to pass param to the timer
-  - Animations
-	- Skills
+P - Animations
 V	- Warps
-	- Traps
-		- Placing
+V	- Traps
+V		- Placing
 V		- Blasting
 P	- Miner Warp
 V		- Implemented
 P		- Alpha
 V	- Pause CountDown
 V	- Magician Frozen
-P Design
+  Design
 V	- Change did of countdown cell after end of timer
 V	- Pause background
 ?	- Game Background
 X	- OFFMAP
-	- Animations
-		- Skills
-		- Traps
-P~		- Miner Warp
-V			- Implemented
-~			- Speed
-P			- Alpha
-		- Pause CountDown
-	- Cells
+V	- Animations
+V		- Pause CountDown
+P~	- Cells
 V		- Modify cells in graph
-A		- Paint dirt
+V		- Paint dirt
 V			- On all
-A			- Just on specified tiles
+V			- Just on specified tiles
 V		- paint image
 V			- put facs in graph
 V			- Write all offsets
@@ -182,19 +175,19 @@ V		- Paint Owner
 V			- Text in the middle of the cell
 V			- Coloured background
 V		- Tidy paintComponent
-		- Special tiles
-			- Healthy Healthy
-		- Null images dids
+V		- Special tiles
+~			- Healthy Healthy
+P		- Null images dids
 V		- Paint HPs with outline
-	- Scorebar
+V	- Scorebar
 	- Texts of all kinds
-		- HPs on cells
+V		- HPs on cells
 		- Scorebar's scores
 X		- SkillTimes
-		- PauseCountDown
+V		- PauseCountDown
 		- VictoryScreen (PauseScreen.java)
 		- NPC display message
-		- Minimap map name
+~		- Minimap map name
 	- VictoryScreen
 		- Display of the players (placement)
 		- Animation ?
@@ -202,6 +195,70 @@ X		- SkillTimes
 V	- PauseScreen
 V		- Better text display
 V		- better placement on the y-axis
+	- Characters
+		- Knight
+			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Miner
+P~			- Skill animation
+V				- Implemented
+~				- Speed
+P				- Alpha
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Warlock
+V			- Skill animation
+V				- setting
+V				- unsetting
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Archer
+P			- Skill animation
+V				- Animation
+P				- Shiny swag
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Vampire
+			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Magician
+~			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Booster
+~			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
 V Depth
 V Minimap
 V	- Object
@@ -210,8 +267,8 @@ V	- PaintComponent
 V		- Background
 V			- Size of background for big maps
 V		- Cells
-~		- Name
-~	- isSelected
+V		- Name
+V	- isSelected
 V	- Make it clickable
 V Game
 V	- Get Params
@@ -232,14 +289,14 @@ V			- without countdown
 V			- With countdown
 V		- Escape from pause
 V			- Pause to menu (give up game)
-?			- Pause to option (keep game)
+X			- Pause to option (keep game)
 V			- Resume button
 V		- Big method to init buttons
 V			- Placement
 V			- Adding/Deleting
 V	- Victory
 V		- Check victory
-T		- Double timeout bug
+V		- Double timeout bug
 V		- endGame method
 V		- Display it
 V			- General
@@ -375,7 +432,7 @@ X Game extends FAPanel ?
   OptionMenu
 	- Buttons
 V		- Back
-		- Controls
+V		- Controls
 		- Sound
 O?		- FullScreen
 		- FAP Editor
@@ -394,13 +451,14 @@ V				- Change BG
 V				- Change players disposition
 V		- Display Minimap
   General Design
-E	- Button for menu
+~	- Button for menu
 V	- Button for other
 V	- Button remove
 V	- Btn add
 	- Everything relative -> resizable + Component locations
 		- LoadingScreen
 		- Versus menus
+		- HAHAHAHA. Ha. ha.
 	- Nice fonts and sizes for texts
 		- LoadingScreen
 		- PlayerSelection

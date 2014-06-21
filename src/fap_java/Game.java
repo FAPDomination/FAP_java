@@ -335,13 +335,13 @@ public class Game extends JPanel implements Serializable{
         
         // Repaint the map
         map.paintComponent(g);
-        if(adv <2){
-            // Repaint the scoreHandler
-            this.scoreHandler.paintComponent(g);
-        }
         // Repaint the objects (such as arrows)
         for(int j=0;j<objects.size();j++){
             objects.get(j).paintComponent(g);
+        }
+        if(adv <2){
+            // Repaint the scoreHandler
+            this.scoreHandler.paintComponent(g);
         }
         
         /*
@@ -1101,5 +1101,13 @@ public class Game extends JPanel implements Serializable{
 
     public Displayer getDisplayer() {
         return displayer;
+    }
+
+    public void setGameEnded(boolean gameEnded) {
+        this.gameEnded = gameEnded;
+    }
+
+    public boolean isGameEnded() {
+        return gameEnded;
     }
 }

@@ -790,7 +790,6 @@ public abstract class Player extends Human implements Serializable{
             // Create a timer that will clock-tick in "time" ms
             timer.schedule(new TimerTask() {
                     public void run() {
-
                         if (param.equals("dispSpeed")) {
                             tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
                         } else if (param.equals("maxHP")) {

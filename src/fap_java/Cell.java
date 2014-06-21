@@ -1,5 +1,8 @@
 package fap_java;
 
+import animations.AnimDisableTrap;
+import animations.AnimTrap;
+
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -205,6 +208,7 @@ public class Cell extends Element implements Serializable{
             
             Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
             
+            
         }
         
         // Special case if the miner is currently selecting the cell
@@ -225,7 +229,9 @@ public class Cell extends Element implements Serializable{
             g.drawImage(Graph.cells.get(minerSlectID), x + offX+2, y + offY+3, width, height, game);
         }
         
-        //TODO Special Healthy Healthy design
+        if(healthy){
+            g.drawImage(Graph.getList().get("healthy"), x -11, y -70, 120/CMap.FAC, 200/CMap.FAC, game);
+        }
     }
     
     public static void fillCell(Graphics g,int x, int y, Color c){
@@ -295,6 +301,9 @@ public class Cell extends Element implements Serializable{
                     trap = null;
                     p.setLastSkill(p.getGame().getThread().getCount());
                     //Add animation
+                    int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+                    int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+                    new AnimDisableTrap(x,y,game.getThread());
                 }
             }
         }
