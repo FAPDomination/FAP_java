@@ -13,6 +13,6 @@ V End Game b > a but a wins because indexOf(a)<indexOf(b)
   Versus->PS->CS->Minimap-<CS = CS isn't working (KeyListener dead ?)
   Multiple slides -> slowing everything
 V Minimap : black dots
-  WorldMap
-	- Suddenly became adv<2
-	- Class description label visible
+V WorldMap
+V	- Suddenly became adv<2
+V	- Class description label visible

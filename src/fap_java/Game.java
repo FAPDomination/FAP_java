@@ -618,6 +618,7 @@ public class Game extends JPanel implements NeedingFocus {
             Element e = objects.get(j);
             if(e instanceof PauseScreen){
                 ((PauseScreen) e).setResuming(true);
+                ((PauseScreen) e).exit();
                 deleteObject(e);
             }
         }
