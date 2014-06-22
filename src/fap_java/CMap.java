@@ -57,6 +57,10 @@ public class CMap {
     private Game game;
 
     private int fileID;
+    
+    // Performances
+    private int mapSize;
+    private Cell painting;
 
     /**
      * Give the position in pixels of a couple a values
@@ -104,6 +108,26 @@ public class CMap {
      * @param g
      */
     public void paintComponent(Graphics g) {
+        //Emergency solution with a collection
+        for (int i = 0; i < myMap.size(); i++) {
+            painting.paintComponent(g);
+            NPC npc = Tools.checkNPCOnCell(game, painting);
+            if (npc != null) {
+                npc.paintComponent(g);
+            }
+            
+            for (int j = 0; j < game.getPlayers().size(); j++) {
+                Player q = game.getPlayers().get(j);
+                // Check position
+                if(q.getDrawn() == painting){
+                    q.paintComponent(g);
+                }
+            }
+            painting = painting.getNextInMap();
+        }
+        //Reset
+        painting = myMap.get(0);
+        /*
         //TODO with a maxI and maxJ methods ??
         //Emergency solution with a collection
         for (int i = 0; i < myMap.size(); i++) {
@@ -123,6 +147,7 @@ public class CMap {
             }
 
         }
+        */  
     }
 
     //TODO Improvement of this method including gaps
@@ -234,7 +259,14 @@ public class CMap {
             myMap.remove(o);
         }
         c.setMap(this);
+        if(myMap.size()>=1){
+            myMap.get(myMap.size()-1).setNextInMap(c);
+        }
+        else{
+            painting = c;
+        }
         myMap.add(c);
+        
         
         hashMap.put(""+c.getI()+","+c.getJ(), c);
     }

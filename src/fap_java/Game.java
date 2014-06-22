@@ -316,8 +316,9 @@ public class Game extends JPanel implements NeedingFocus {
         if(max == -1 || timeMeasure>max){
             max = timeMeasure;
         }
-        moy+=timeMeasure;
-        if(timeMeasure >0){
+        
+        if(timeMeasure >40){
+            moy+=timeMeasure;
             c++;
         }
         cez++;
@@ -637,13 +638,13 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void endGame(Team winner){
         System.out.println("------- Statistics -------");
-        System.out.println("Min, Moy, Max, countNot0, countTotal");
+        System.out.println("Min, Moy, Max, count>40, countTotal");
         System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max+","+this.thread.c+","+this.thread.cez);
         System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
         System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
         System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
         System.out.println("------- Graphical");
-        System.out.println("Min, Moy, Max, countNot0, countTotal");
+        System.out.println("Min, Moy, Max, count>40, countTotal");
         System.out.println(""+this.min+","+this.moy/this.c+","+this.max+","+this.c+","+this.cez);
         
         pauseGame();

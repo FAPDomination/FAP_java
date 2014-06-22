@@ -98,6 +98,8 @@ public class Cell extends Element {
     private boolean needDirt;
     
     private Player occupied;
+    
+    private Cell nextInMap;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -592,5 +594,13 @@ public class Cell extends Element {
 
     public Player getOccupied() {
         return occupied;
+    }
+
+    public void setNextInMap(Cell prevInMap) {
+        this.nextInMap = prevInMap;
+    }
+
+    public Cell getNextInMap() {
+        return nextInMap;
     }
 }

@@ -178,8 +178,8 @@ public class Params {
      * And to the NoCharacterGuy (7) wich ill be used in the adventure mode
      */
 
-    //public static int[] excludedChars = {2,7};
-    public static int[] excludedChars = {1,2,4,6,8,9,7};
+    public static int[] excludedChars = {2,7};
+    //public static int[] excludedChars = {1,2,4,6,8,9,7};
     
     /**
      * The Big Table OF Parameters.
@@ -211,7 +211,7 @@ public class Params {
     /**
      * The default amount of points a player should have to win a game
      */
-    public static final int defaultVictoryScore = 4000;
+    public static final int defaultVictoryScore = 3500;
     /**
      * Maximum number of human players playing on one computer (->one keyboard)
      */

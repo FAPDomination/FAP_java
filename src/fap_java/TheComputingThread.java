@@ -177,8 +177,9 @@ public class TheComputingThread implements Runnable{
             this.timeRefresh = timeHP;
             this.timeUpdateCellsByOwner = timeUpdateCells;
         }
-        moy+=timeMeasure;
-        if(timeMeasure >0){
+        
+        if(timeMeasure >40){
+            moy+=timeMeasure;
             c++;
         }
         cez++;
