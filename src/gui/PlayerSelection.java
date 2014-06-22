@@ -190,6 +190,7 @@ public class PlayerSelection extends FAPanel {
             PlayerSelect ps = players.get(i);
             // Associated controller
             JComboBox combo = this.controlSelecters.get(i);
+            Tools.tinkerJComboBox(combo);
             combo.setSelectedIndex(ps.getControler());
             combo.setBounds(displayOrigX+80, displayOrigY + (displayIncrementY) * i + 10, 150, displayHeight);
             //this.remove(combo);
@@ -201,6 +202,7 @@ public class PlayerSelection extends FAPanel {
             });
             // Associated Team
             JComboBox team = this.teamSelecters.get(i);
+            Tools.tinkerJComboBox(team);
             team.setSelectedIndex(ps.getTeam());
             team.setBounds(displayOrigX+270, displayOrigY+(displayIncrementY)*i + 10, 150, displayHeight);
             //this.remove(team);
@@ -287,8 +289,8 @@ public class PlayerSelection extends FAPanel {
                 ctrl = 3;
             }
             players.add(new PlayerSelect(this,ctrl,players.size()));
-            controlSelecters.add(new JComboBox(listControls));
-            JComboBox teamS = new JComboBox();
+            controlSelecters.add(new FAPComboBox(listControls));
+            JComboBox teamS = new FAPComboBox();
             for(int i=0;i<maxPlayers;i++){
                 teamS.addItem("Team "+(i+1));
             }

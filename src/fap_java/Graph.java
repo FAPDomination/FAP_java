@@ -1,5 +1,6 @@
 package fap_java;
 
+import gui.Constants;
 import gui.PreLoadingScreen;
 
 import java.awt.Color;
@@ -55,7 +56,9 @@ public class Graph {
     // Colors :
     public static final Color BG_Blue = Color.blue;
     public static final Color BG_Red = Color.red;
-    public static final Color BLACK = new Color(10,10,20,255);
+    
+    public static final Color WHITE = Color.WHITE;
+    public static final Color BLACK = new Color(17,30,41,255);
     public static final Color GREY_DARK = new Color(60,60,70);
     public static final Color WHITE_ALPHA_160 = new Color(255,255,255,160);
     public static final Color MENU_TEXT_BORDER_TRANSLUSCENT = new Color(255,255,255,100);
@@ -72,6 +75,7 @@ public class Graph {
     
     // Borders :
     public static final Border NO_BORDER = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+    public static final Border BORDERSIMPLE = BorderFactory.createEmptyBorder(2, 2, 2, 2);
     
     // Fonts :
     public static final Font BTN_MENU_FONT = new Font("Calibri", Font.BOLD, 24);
@@ -198,6 +202,7 @@ public class Graph {
             guimg.put("ScoreMedalR", ImageIO.read(new File("resources/images/gui/ScoreBar_Medal.png")));
             guimg.put("ScoreMedalL", ImageIO.read(new File("resources/images/gui/ScoreBar_MedalLeft.png")));
             guimg.put("ScoreBottom", ImageIO.read(new File("resources/images/gui/ScoreBar_bottom.png")));
+            guimg.put("iconJCombo", ImageIO.read(new File("resources/images/gui/iconJCombo.png")));
 
             File location = new File("resources/images/default/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
@@ -221,39 +226,26 @@ public class Graph {
             characters.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
             
             int limitColor = 3;
-            //Knight
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Knight"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Knight/Knight"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            //NoCharacterGuy
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("NoCharacterGuy"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/NoCharacterGuy/NoCharacterGuy"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            //Magician
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Magician"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Magician/Magician"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
-            //Miner
-            for(int j=0;j<limitColor;j++){
-                for(int i=0;i<6;i++){
-                    characters.put("Miner"+i+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/Miner/Miner"+i+"_"+Params.colorName[j]+".png")));
-                }
-            }
+            //TODO automatic name parsing from Constants.java table
             
+            for(int i=1;i<=Constants.charNames.length;i++){
+                String name = Constants.charNames[i-1];
+                if(i!=2 && i!= 4 && i!=5 && i!=6){
+                    for(int j=0;j<limitColor;j++){
+                        for(int k=0;k<6;k++){
+                            characters.put(name+k+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/"+name+"/"+name+k+"_"+Params.colorName[j]+".png")));
+                        }
+                    }
+                    //Thumbnails
+                    thumbnails.put("Big_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_"+name+".png")));
+                    if(i!=7){
+                        thumbnails.put("CS_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/CharSelect/"+name+".png")));
+                    }
+                }
+            }
             //Shadow
             characters.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
             
-            //Thumbnails
-            thumbnails.put("Big_Knight", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Knight.png")));
-            thumbnails.put("Big_NoCharacterGuy", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_NoCharacterGuy.png")));
-            thumbnails.put("Big_Magician", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Magician.png")));
-            thumbnails.put("Big_Miner", ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_Miner.png")));
             
             
             //Thread.sleep(2000);

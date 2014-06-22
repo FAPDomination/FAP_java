@@ -91,15 +91,12 @@ V		- Knight
 V		- Miner
 V			- Cell
 V				- Special params
-~				- Special paintComponent
 V			- Miner
 V				- Special Param
 V				- Pick random Cells
 V				- Select one
 V					- Override keyHigh
 V					- handle keyPressing
-~					- Cursor
-~						- PaintComponent
 V				- Teleport
 T				- SkillTime odd ?
 V		- Warlock
@@ -142,123 +139,14 @@ V	- Timer
 V	- Implement all params
 O	- Pointer to escape the double switch
 O	- Way to pass param to the timer
-P - Animations
+V - Animations
 V	- Warps
 V	- Traps
 V		- Placing
 V		- Blasting
-P	- Miner Warp
-V		- Implemented
-P		- Alpha
+V	- Miner Warp
 V	- Pause CountDown
 V	- Magician Frozen
-  Design
-V	- Change did of countdown cell after end of timer
-V	- Pause background
-?	- Game Background
-X	- OFFMAP
-V	- Animations
-V		- Pause CountDown
-P~	- Cells
-V		- Modify cells in graph
-V		- Paint dirt
-V			- On all
-V			- Just on specified tiles
-V		- paint image
-V			- put facs in graph
-V			- Write all offsets
-~		- MinerSelect
-~			- Base
-~			- Cursor
-~			- Specific for each player color
-V		- Paint Owner
-V			- Text in the middle of the cell
-V			- Coloured background
-V		- Tidy paintComponent
-V		- Special tiles
-~			- Healthy Healthy
-P		- Null images dids
-V		- Paint HPs with outline
-V	- Scorebar
-	- Texts of all kinds
-V		- HPs on cells
-		- Scorebar's scores
-X		- SkillTimes
-V		- PauseCountDown
-		- VictoryScreen (PauseScreen.java)
-		- NPC display message
-~		- Minimap map name
-	- VictoryScreen
-		- Display of the players (placement)
-		- Animation ?
-		- Other decoration picture
-V	- PauseScreen
-V		- Better text display
-V		- better placement on the y-axis
-	- Characters
-		- Knight
-			- Skill animation
-			- 3D Character
-V				- 3D file
-V				- 3 colors
-				- All colors
-V			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Miner
-P~			- Skill animation
-V				- Implemented
-~				- Speed
-P				- Alpha
-			- 3D Character
-V				- 3D file
-V				- 3 colors
-				- All colors
-V			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Warlock
-V			- Skill animation
-V				- setting
-V				- unsetting
-			- 3D Character
-				- 3D file
-				- 3 colors
-				- All colors
-			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Archer
-P			- Skill animation
-V				- Animation
-P				- Shiny swag
-			- 3D Character
-				- 3D file
-				- 3 colors
-				- All colors
-			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Vampire
-			- Skill animation
-			- 3D Character
-				- 3D file
-				- 3 colors
-				- All colors
-			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Magician
-~			- Skill animation
-			- 3D Character
-V				- 3D file
-V				- 3 colors
-				- All colors
-V			- Big Thumbnail
-			- CharacterSelection thumbnail
-		- Booster
-~			- Skill animation
-			- 3D Character
-				- 3D file
-				- 3 colors
-				- All colors
-			- Big Thumbnail
-			- CharacterSelection thumbnail
 V Depth
 V Minimap
 V	- Object
@@ -393,7 +281,7 @@ V	- Display skillTime
 ---------------------------- GUI
 
   MainMenu
-	- Buttons
+P?	- Buttons
 V		- adv
 V		- vs
 P		- quick
@@ -411,21 +299,9 @@ V		- credits
 ?		- quit
 V			- Quit
 ?			- Dialog ?
-V	- Design
-V		- Implement images
-V			- Sword
-V			- clouds
-X		- Ground manage
-X		- Ground lag
-X		- Delete ground displacement ?
-V		- Sliding effect
-V			- Go
-V			- Back
-~		- Gradient BG
-V		- Bug with the repaint
-  Go back buttons EEEEEEEEEEEEE
+V Go back buttons EEEEEEEEEEEEE
 V	- Find a place for it and keep it
-?		- Even for OptionMenu ?
+X		- Even for OptionMenu ?
 V	- Versus : keep information from one another
 V Go next button : find place and keep it
 X Game extends FAPanel ?
@@ -450,20 +326,7 @@ V			- Critical Size problem with 8 teams !
 V				- Change BG
 V				- Change players disposition
 V		- Display Minimap
-  General Design
-~	- Button for menu
-V	- Button for other
-V	- Button remove
-V	- Btn add
-	- Everything relative -> resizable + Component locations
-		- LoadingScreen
-		- Versus menus
-		- HAHAHAHA. Ha. ha.
-	- Nice fonts and sizes for texts
-		- LoadingScreen
-		- PlayerSelection
-		- PauseScreen
-  PlayerSelection
+V PlayerSelection
 V	- PlayerSelect
 V		- Button remove
 V			- Implement
@@ -471,7 +334,7 @@ V			- Dirty id finding
 V			- Exception OutOfBounds -1
 X		- paintCompo
 V		- ComboBoxes
-			- Design
+V			- Design
 V			- Control (Player 1,2,3, AI)
 V			- Team
 V		- Placements with attributes

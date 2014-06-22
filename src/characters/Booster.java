@@ -47,33 +47,9 @@ public class Booster extends Player {
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
         Point offset = new Point(-18,4);
         g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
-        offset = new Point(-8,-7);
+        offset = new Point(-24,-31);
         
-        switch(ori){
-            case 0:
-            case 3:
-                img= Graph.characters.get(this.colorName+"diag0");
-                offset = new Point(-8,-7);
-            break;
-            case 1:
-            case 4:
-                img= Graph.characters.get(this.colorName+"diag1");
-                offset = new Point(-8,-7);
-            break;
-            case 5:
-                img= Graph.characters.get(this.colorName+"left");
-                offset = new Point(-8,-7);
-            break;
-            case 2:
-                img= Graph.characters.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-            break;
-            default:
-                img= Graph.characters.get(this.colorName+"right");
-                offset = new Point(-8,-7);
-                break;
-        }
-        
-        g.drawImage(img, x +offset.x ,y+offset.y, 26, 40, this.getGame());
+        img = Graph.characters.get("Booster"+ori+"_"+this.getColorName());
+        g.drawImage(img, x +offset.x ,y+offset.y, 58,90, this.getGame());
     }
 }

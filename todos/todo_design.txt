@@ -1,0 +1,126 @@
+  Design IG
+V	- Change did of countdown cell after end of timer
+V	- Pause background
+?	- Game Background
+X	- OFFMAP
+V	- Animations
+V		- Pause CountDown
+P~	- Cells
+V		- Modify cells in graph
+V		- Paint dirt
+V			- On all
+V			- Just on specified tiles
+V		- paint image
+V			- put facs in graph
+V			- Write all offsets
+~		- MinerSelect
+~			- Base
+~			- Cursor
+~			- Specific for each player color
+V		- Paint Owner
+V			- Text in the middle of the cell
+V			- Coloured background
+V		- Tidy paintComponent
+V		- Special tiles
+~			- Healthy Healthy
+P		- Null images dids
+V		- Paint HPs with outline
+V	- Scorebar
+	- Texts of all kinds
+V		- HPs on cells
+		- Scorebar's scores
+X		- SkillTimes
+V		- PauseCountDown
+		- VictoryScreen (PauseScreen.java)
+		- NPC display message
+~		- Minimap map name
+	- VictoryScreen
+		- Display of the players (placement)
+		- Animation ?
+		- Other decoration picture
+V	- PauseScreen
+V		- Better text display
+V		- better placement on the y-axis
+	- Characters
+		- Knight
+			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+V			- CharacterSelection thumbnail
+		- Miner
+P~			- Skill animation
+V				- Implemented
+~				- Speed
+P				- Alpha
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+V			- CharacterSelection thumbnail
+		- Warlock
+V			- Skill animation
+V				- setting
+V				- unsetting
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Archer
+P			- Skill animation
+V				- Animation
+P				- Shiny swag
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Vampire
+			- Skill animation
+			- 3D Character
+				- 3D file
+				- 3 colors
+				- All colors
+			- Big Thumbnail
+			- CharacterSelection thumbnail
+		- Magician
+~			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+V			- CharacterSelection thumbnail
+		- Booster
+~			- Skill animation
+			- 3D Character
+V				- 3D file
+V				- 3 colors
+				- All colors
+V			- Big Thumbnail
+V			- CharacterSelection thumbnail
+------ GUI
+  General Design
+~	- Button for menu
+V	- Button for other
+V	- Button remove
+V	- Btn add
+	- Everything relative -> resizable + Component locations
+		- LoadingScreen
+		- Versus menus
+		- HAHAHAHA. Ha. ha.
+	- Nice fonts and sizes for texts
+		- LoadingScreen
+		- PlayerSelection
+		- PauseScreen
+------- Adventure
+  Start Game animation ?
+  World Map
+~	- Conquered Zone
+	- Forbidden zone

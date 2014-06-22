@@ -67,7 +67,6 @@ V		- Modify a cell (did, walkable)
 V		- Start Game
 V			- Get Game
 V			- Launch it
-			- Animation
 			- Back to this very NPC afterwards
 V		- Unlock a character
 V	- Object
@@ -90,10 +89,9 @@ V			- Not walkable
 V		- Implement
 V	- NPC world Map starting game
 V		- Create
-?~			- Image
+?			- Image
 X				- Black if not conquered but available
 X				- Green if conquered
-~				- Green Zone
 ?				- What about cities ?
 V			- Walkable
 V			- Actions
