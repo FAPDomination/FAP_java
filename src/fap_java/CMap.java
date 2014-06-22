@@ -2,9 +2,13 @@ package fap_java;
 
 import java.awt.Graphics;
 
+import java.awt.List;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class CMap {
     /**
@@ -39,6 +43,8 @@ public class CMap {
      * The arrayList of cells that contains aaaall the cells of the grid
      */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    
+    private Map<String,Cell> hashMap = new HashMap<String,Cell>();
 
     /**
      * The starting points of this map (defined in the XML file)
@@ -229,6 +235,8 @@ public class CMap {
         }
         c.setMap(this);
         myMap.add(c);
+        
+        hashMap.put(""+c.getI()+","+c.getJ(), c);
     }
 
     public void removeElement(Cell c) {
@@ -241,16 +249,7 @@ public class CMap {
      * @return : null if not, the object if yes
      */
     public Cell containsCell(Cell c) {
-        Cell b = null;
-        
-        for (int k = 0; k < myMap.size(); k++) {
-            Cell o = myMap.get(k);
-            if (o.equals(c)) {
-                b = o;
-                break;
-            }
-        }
-        return b;
+        return hashMap.get(""+c.getI()+","+c.getJ());
     }
 
     /**
