@@ -203,8 +203,8 @@ public class Cell extends Element {
                 Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
                 fillCell(g,x,y,alphaBG);
             }
-            g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
-            
+            //g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
+            g.setColor(Color.BLACK);
             Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
             
             

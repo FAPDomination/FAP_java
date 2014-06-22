@@ -59,8 +59,11 @@ public class CMap {
     private int fileID;
     
     // Performances
-    private int mapSize;
+    private int mapSize=0;
     private Cell painting;
+    // One time calculations
+    private ArrayList<Cell> takeableCells = null;
+    private Cell firstCell;
 
     /**
      * Give the position in pixels of a couple a values
@@ -109,7 +112,7 @@ public class CMap {
      */
     public void paintComponent(Graphics g) {
         //Emergency solution with a collection
-        for (int i = 0; i < myMap.size(); i++) {
+        for (int i = 0; i < mapSize; i++) {
             painting.paintComponent(g);
             NPC npc = Tools.checkNPCOnCell(game, painting);
             if (npc != null) {
@@ -229,7 +232,7 @@ public class CMap {
         int[] table = new int[2];
         int i = 0;
         int j = 0;
-        for (int k = 0; k < this.myMap.size(); k++) {
+        for (int k = 0; k < mapSize; k++) {
             Cell c = myMap.get(k);
             if (c != null) {
                 if (c.getI() > i) {
@@ -259,14 +262,15 @@ public class CMap {
             myMap.remove(o);
         }
         c.setMap(this);
-        if(myMap.size()>=1){
+        if(mapSize>=1){
             myMap.get(myMap.size()-1).setNextInMap(c);
         }
         else{
             painting = c;
+            firstCell = c;
         }
         myMap.add(c);
-        
+        mapSize++;
         
         hashMap.put(""+c.getI()+","+c.getJ(), c);
     }
@@ -494,16 +498,20 @@ public class CMap {
      * @return : an arrayList of all takable cells on the grid
      */
     public ArrayList<Cell> getTakableCells() {
-        ArrayList<Cell> cells = new ArrayList<Cell>();
-        for (int i = 0; i < myMap.size(); i++) {
-            Cell c = myMap.get(i);
-            //Check if type 1
-            if (c.getType() == 1) {
-                //If yes add it to list
-                cells.add(c);
+        if(takeableCells == null){
+           takeableCells = new ArrayList<Cell>();
+            Cell c = myMap.get(0);
+            for (int i = 0; i < mapSize; i++) {
+                //Check if type 1
+                if (c.getType() == 1) {
+                    //If yes add it to list
+                    takeableCells.add(c);
+                }
+                c = c.getNextInMap();
             }
+            
         }
-        return cells;
+        return takeableCells;
     }
 
     /**
@@ -511,7 +519,7 @@ public class CMap {
      * @return
      */
     public String toString() {
-        return "Map with " + myMap.size() + " cells";
+        return "Map with " + mapSize + " cells";
     }
 
 
@@ -599,8 +607,26 @@ public class CMap {
     }
     
     public void initDirts(){
-        for(int i=0;i<this.myMap.size();i++){
-            this.myMap.get(i).setNeedDirt();
+        Cell c = this.myMap.get(0);
+        for(int i=0;i<this.mapSize;i++){
+            c.setNeedDirt();
+            c = c.getNextInMap();
         }
+    }
+
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
+    }
+
+    public int getMapSize() {
+        return mapSize;
+    }
+
+    public void setFirstCell(Cell firstCell) {
+        this.firstCell = firstCell;
+    }
+
+    public Cell getFirstCell() {
+        return firstCell;
     }
 }

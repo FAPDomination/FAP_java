@@ -701,13 +701,13 @@ public abstract class Player extends Human {
      */
     public void blast(int numberOfCells) {
         // Get the list of the array he owns
-        ArrayList<Cell> map = game.getMap().getMyMap();
         ArrayList<Cell> owned = new ArrayList<Cell>();
-        for (int i = 0; i < map.size(); i++) {
-            Cell c = map.get(i);
+        Cell c = game.getMap().getFirstCell();
+        for (int i = 0; i < game.getMap().getMapSize(); i++) {
             if (c.getOwner() == this.team) {
                 owned.add(c);
             }
+            c=c.getNextInMap();
         }
 
         if(owned.size()>0){

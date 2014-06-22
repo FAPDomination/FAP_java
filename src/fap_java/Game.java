@@ -343,10 +343,11 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void refreshHealthPoints() {
         if (adv < 2) {
-            ArrayList<Cell> myMap = map.getMyMap();
-            for (int j = 0; j < myMap.size(); j++) {
-                Cell c = myMap.get(j);
+            //ArrayList<Cell> myMap = map.getMyMap();
+            Cell c = map.getFirstCell();
+            for (int j = 0; j < map.getMapSize(); j++) {
                 c.refreshHealthPoints(this);
+                c = c.getNextInMap();
             }
 
             
@@ -363,15 +364,16 @@ public class Game extends JPanel implements NeedingFocus {
             te.setNCells(0);
         }
         // Read the map
-        ArrayList<Cell> cells = map.getMyMap();
-        for (int i = 0; i < cells.size(); i++) {
-            Cell c = cells.get(i);
+        //ArrayList<Cell> cells = map.getMyMap();
+        Cell c = map.getFirstCell();
+        for (int i = 0; i < map.getMapSize(); i++) {
             // Get the owner
             if (c.getOwner() != null) {
                 // Update owner's value
                 Team te = c.getOwner();
                 te.setNCells(te.getNCells() + 1);
             }
+            c = c.getNextInMap();
         }
 
     }
