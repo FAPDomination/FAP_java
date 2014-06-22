@@ -549,7 +549,11 @@ public class Game extends JPanel implements NeedingFocus {
             if (score != 0 && score >= victScore) {
                 //Pass the tile test
                 if (((double)tilesOwned) / totalTile >= victTile) {
-                    p = te;
+                    if(p!=null){
+                        endGame(null);
+                    }else{
+                        p = te;
+                    }
                 }
             }
             //}
