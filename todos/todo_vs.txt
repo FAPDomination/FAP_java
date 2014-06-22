@@ -2,15 +2,6 @@
   UTF-8
   Tidy the methods lists
 P Refactor paintStick into a super call
-  Bugs :
-V	- Type of blocking tiles all to 0 ?
-? Not so good :
-V 	- Player l183 : big repaint
-O		- Get a lighter repaint
-X		- Get it inside the walkable block
-V 	- TheThread : static count
-V	- Graph guimg public
-	- Ability to re-launch the pauseCountdown when already in pauseCountDown
 V Displacement Hexa
 V	- Hexa
 V	- Bug changing
@@ -116,16 +107,15 @@ X						- Tile on path ?
 ~						- Speed and compute cell bug
 V					- Compute Cell
 V					- Effect on it
-~						- Destroy function
+V						- Destroy function
 V						- Dissapear if blocked
 V						- Disapear if out of bounds
 V						- Dammage the cell
-~						- COnstant archerDammage
+V						- COnstant archerDammage
 V						- Hits ennemy
 V							-Disapear
 V							- Make him wait
 V				- Clear Calculus
-?				- Matrix Bug
 V			- Implement into class
 V		- Vampire
 V		- NC
