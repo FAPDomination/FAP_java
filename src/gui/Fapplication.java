@@ -31,7 +31,6 @@ public class Fapplication {
     public static void main(String[] args) {
         try {
             //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            
             UIManager.put("ComboBox.background", Graph.BLACK);
             UIManager.put("ComboBox.selectionBackground", Graph.BLACK);
             UIManager.put("ComboBox.selectionForeground", Graph.BTN_COLOR_HOVER);
@@ -40,27 +39,6 @@ public class Fapplication {
             UIManager.put("ComboBox.buttonHighlight", Graph.BLACK);
             UIManager.put("ComboBox.buttonBackground", Graph.BLACK);
             UIManager.put("ComboBox.foreground", Graph.BTN_COLOR);
-            UIManager.put("List.border", Graph.NO_BORDER);
-            UIManager.put("TextField.border", Graph.NO_BORDER);
-            
-            /*
-            ComboBox.ancestorInputMap
-            ComboBox.background
-            ComboBox.buttonBackground
-            ComboBox.buttonDarkShadow
-            ComboBox.buttonHighlight
-            ComboBox.buttonShadow
-            ComboBox.disabledBackground
-            ComboBox.disabledForeground
-            ComboBox.font
-            ComboBox.foreground
-            ComboBox.isEnterSelectablePopup
-            ComboBox.selectionBackground
-            ComboBox.selectionForeground
-            ComboBox.timeFactor
-            ComboBox.togglePopupText
-            ComboBoxUI
-*/
         } catch (Exception e) {
             e.printStackTrace();
         }

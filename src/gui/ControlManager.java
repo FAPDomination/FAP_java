@@ -42,7 +42,7 @@ public class ControlManager{
      
         keyList = new int[Params.numberOfKeys];
         try {
-            FileInputStream fileIn = new FileInputStream(Constants.controlersFile);
+            FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.controlersFile));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             keyList = ((int[][])in.readObject())[controler];
             in.close();

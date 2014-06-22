@@ -1,6 +1,7 @@
 package gui;
 
 import fap_java.Params;
+import fap_java.Tools;
 import fap_java.XMLparser;
 
 import java.awt.BorderLayout;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel north = new JPanel();
-    private JPanel center = new PreLoadingScreen(this);
+    private JPanel center;
     
     public TheFrame() {
         try {
@@ -30,13 +31,16 @@ public class TheFrame extends JFrame {
     private void jbInit() throws Exception {
         this.getContentPane().setLayout(borderLayout1);
         this.setSize(Constants.frameDimension);
-        //this.getContentPane().add(north, BorderLayout.NORTH);
+        
+        // Parse the configurations of the game
+        Tools.parseOptions();
+        
+        center = new PreLoadingScreen(this);
         this.getContentPane().add(center, BorderLayout.CENTER);
         
-        // Parse the options of the game
-        //XMLparser.parseOptions();
         try {
-            FileInputStream fileIn = new FileInputStream(Constants.controlersFile);
+            
+            FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.controlersFile));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Params.controlsList = ((int[][])in.readObject());
             //Params. = ((int[][])in.readObject());
