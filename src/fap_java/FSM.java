@@ -354,7 +354,6 @@ public class FSM {
         Cell s = body.getCurrent();
         ArrayList<Cell> map = body.getGame().getMap().getMyMap();
         ArrayList<Cell> path = pathFinder.findPath(map, c, s);
-
         fsm_param = path;
 
         //have to define if the path will be direct (no waiting on cell for conquering) or  not

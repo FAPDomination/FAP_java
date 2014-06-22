@@ -3,6 +3,8 @@ package pathFinder;
 import fap_java.Cell;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NMap {
     /**
@@ -14,14 +16,16 @@ public class NMap {
     }
 
     private ArrayList<Node> myMap = new ArrayList<Node>();
+    private Map<String,Node> hashMap = new HashMap<String,Node>();
 
     public ArrayList<Node> getMyMap() {
         return myMap;
     }
 
     public void addElement(Node c) {
-        if (containsNode(c) != -1) {
-            myMap.remove(containsNode(c));
+        Node n = containsNode(c);
+        if (n != null) {
+            myMap.remove(n);
         }
         myMap.add(c);
     }
@@ -30,7 +34,9 @@ public class NMap {
         myMap.remove(c);
     }
 
-    public int containsNode(Node c) {
+    public Node containsNode(Node c) {
+        return hashMap.get(""+c.getCell().getI()+","+c.getCell().getJ());
+        /*
         int b = (-1);
         for (int k = 0; k < myMap.size(); k++) {
             Node o = myMap.get(k);
@@ -40,17 +46,15 @@ public class NMap {
             }
         }
         return b;
+        */
     }
 
     public Node getNode(int[] tab) {
-        Node c;
         Node o = new Node(new Cell(tab[0], tab[1], 1, 1, null));
-        if (tab.length == 2 && containsNode(o) != (-1)) {
-            c = myMap.get(containsNode(o));
-        } else {
-            c = null;
+        if (tab.length == 2 && containsNode(o) != null) {
+            return containsNode(o);
         }
-        return c;
+        return null;
     }
 
     public Node getNode(int i, int j) {
@@ -117,6 +121,7 @@ public class NMap {
             if (c != null) {
                 Node n = new Node(c);
                 this.myMap.add(n);
+                this.hashMap.put(""+c.getI()+","+c.getJ(), n);
             }
         }
         return list;
