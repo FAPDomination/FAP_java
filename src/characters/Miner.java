@@ -102,7 +102,8 @@ public class Miner extends Player{
                c.setMinerSelect(null);
                if(c.isMinerSing()){
                    //Teleport
-                   if (this.getGame().isOccupied(c) == null && c.getType()==1) {
+                   if (c!= null && c.getOccupied() == null && c.getType()==1) {
+                       this.getCurrent().setOccupied(null);
                        this.setCurrent(c);
                        this.setI(c.getI());
                        this.setJ(c.getJ());
