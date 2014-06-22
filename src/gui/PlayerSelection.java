@@ -289,8 +289,8 @@ public class PlayerSelection extends FAPanel {
                 ctrl = 3;
             }
             players.add(new PlayerSelect(this,ctrl,players.size()));
-            controlSelecters.add(new JComboBox(listControls));
-            JComboBox teamS = new JComboBox();
+            controlSelecters.add(new FAPComboBox(listControls));
+            JComboBox teamS = new FAPComboBox();
             for(int i=0;i<maxPlayers;i++){
                 teamS.addItem("Team "+(i+1));
             }
