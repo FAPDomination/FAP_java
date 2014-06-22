@@ -1031,7 +1031,9 @@ public class Game extends JPanel implements NeedingFocus {
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
-                System.out.println("Couldn't find NPC list for map no "+nmap);
+                if(adv>0){
+                    System.err.println("Couldn't find NPC list for map no "+nmap);
+                }
                 break;
             }
     }

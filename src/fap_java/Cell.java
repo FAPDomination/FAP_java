@@ -137,8 +137,8 @@ public class Cell extends Element {
         this.minerSing = false;
         this.occupied = null;
         // temporary
-        if (Graph.cells.get(did) == null) {
-            System.out.println("Null image for this did : " + did);
+        if (did != 0 && Graph.cells.get(did) == null) {
+            System.err.println("Null image for this did : " + did);
         }
         walked = false;
 
