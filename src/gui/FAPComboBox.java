@@ -20,16 +20,16 @@ public class FAPComboBox extends JComboBox{
     }
     
     public void paintComponent(Graphics g){
-        super.paintComponent(g);
+        //super.paintComponent(g);
         g.setColor(Graph.BLACK);
-        g.fillRect(0,0,this.getWidth(),this.getHeight());
+        g.fillRect(0,0,this.getWidth()-33,this.getHeight());
         g.setColor(Graph.WHITE);
         String value = this.getSelectedItem().toString();
         g.setFont(Graph.SIMPLE_TEXT_FONT);
         Graphics2D g2d = (Graphics2D)g;
         FontMetrics fm = g2d.getFontMetrics();
         int textWidth = fm.stringWidth(value);
-        g.drawString(value, (this.getWidth()-textWidth)/2, (2*this.getHeight() - 20)/2);
+        g.drawString(value, (this.getWidth()-33-textWidth)/2, (2*this.getHeight() - 20)/2);
         
     }
 }
