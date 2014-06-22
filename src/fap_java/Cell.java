@@ -267,41 +267,43 @@ public class Cell extends Element {
      * @param p : the player
      */
     public void activateCell(Player p) {
-        // Check if the tile is takable and the property of the player
-        if (owner != p.getTeam() && type == 1) {
-            // if not, tests if the tale has HP
-            if (hp <= 0) {
-                // The tale is empty, sets it as the property of the player, gives HP and draw the according map
-
-                //If the tile became unwakable, the player is sent back to his previous cell
-                if (walkable == false) {
-                    p.kickBack();
+        if(game.getAdv()<2){
+            // Check if the tile is takable and the property of the player
+            if (owner != p.getTeam() && type == 1) {
+                // if not, tests if the tale has HP
+                if (hp <= 0) {
+                    // The tale is empty, sets it as the property of the player, gives HP and draw the according map
+    
+                    //If the tile became unwakable, the player is sent back to his previous cell
+                    if (walkable == false) {
+                        p.kickBack();
+                    } else {
+                        // The tile becomes his property
+                        owner = p.getTeam();
+                        hp = p.getInitHP();
+                    }
                 } else {
-                    // The tile becomes his property
-                    owner = p.getTeam();
-                    hp = p.getInitHP();
+                    // Else forces the healthpoints of the tale to decrease (Attack)
+                    hp -= p.getDecLifeForced();
                 }
-            } else {
-                // Else forces the healthpoints of the tale to decrease (Attack)
-                hp -= p.getDecLifeForced();
             }
-        }
-
-        // Activate the trap system if needed
-        if (trap != null) {
-            if (trap != p.getTeam()) {
-                // Blast that guy
-                p.blast(Params.nBlastedTiles);
-                trap = null;
-                // Add animation
-            } else { // Disable the bomb if the warlock walks onto his own trap-cell
-                if (p.getGame().getThread().getCount() - p.getLastSkill() >= p.getSkillTime()) {
+    
+            // Activate the trap system if needed
+            if (trap != null) {
+                if (trap != p.getTeam()) {
+                    // Blast that guy
+                    p.blast(Params.nBlastedTiles);
                     trap = null;
-                    p.setLastSkill(p.getGame().getThread().getCount());
-                    //Add animation
-                    int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
-                    int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-                    new AnimDisableTrap(x,y,game.getThread());
+                    // Add animation
+                } else { // Disable the bomb if the warlock walks onto his own trap-cell
+                    if (p.getGame().getThread().getCount() - p.getLastSkill() >= p.getSkillTime()) {
+                        trap = null;
+                        p.setLastSkill(p.getGame().getThread().getCount());
+                        //Add animation
+                        int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
+                        int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
+                        new AnimDisableTrap(x,y,game.getThread());
+                    }
                 }
             }
         }
