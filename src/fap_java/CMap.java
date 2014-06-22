@@ -353,6 +353,9 @@ public class CMap {
             o = this.getCell(i - 1, j - 1);
             if(o!=null && o.getOwner() != null && o.getOwner()==owns){
                 n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
             }
             //surroundingCells['tr'] = [i-1, j];
             o = this.getCell(i - 1, j);
@@ -368,6 +371,9 @@ public class CMap {
             o = this.getCell(i - 1, j);
             if(o!=null && o.getOwner() != null && o.getOwner()==owns){
                 n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
             }
 
             //surroundingCells['tr'] = [i-1, j+1];

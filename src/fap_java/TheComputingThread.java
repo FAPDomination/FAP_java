@@ -110,10 +110,12 @@ public class TheComputingThread implements Runnable{
      * Execute actions in the game, such as updating values
      */
     private void execute(boolean full){
+        /*
         long startTime = System.currentTimeMillis();
         long timeHP=0;
         long timeUpdateCells=0;
         long timeKeys=0;
+        */
         // Update the time of the game
         count += delay;
         // Counts the clockTicks
@@ -128,18 +130,18 @@ public class TheComputingThread implements Runnable{
             myGame.executeFSMs();
         }
         if(full){
-            timeHP = System.currentTimeMillis();
+            //timeHP = System.currentTimeMillis();
             // commands to refresh healthPoints
             myGame.refreshHealthPoints();
-            timeHP = System.currentTimeMillis() - timeHP;
+            //timeHP = System.currentTimeMillis() - timeHP;
             
-            timeUpdateCells = System.currentTimeMillis();
+            //timeUpdateCells = System.currentTimeMillis();
             for (int i = 0; i < myGame.getPlayers().size(); i++) {
                 Player p = myGame.getPlayers().get(i);
                 Cell c = p.getCurrent();
                 c.activateCell(p);
             }
-            timeUpdateCells = System.currentTimeMillis() - timeUpdateCells;
+            //timeUpdateCells = System.currentTimeMillis() - timeUpdateCells;
             
             // Every 4 frames
             if (frame % 4 == 0) {
@@ -160,13 +162,14 @@ public class TheComputingThread implements Runnable{
             // Testing
         }
         //Execute other objects actions
-        timeKeys = System.currentTimeMillis();
+        //timeKeys = System.currentTimeMillis();
         if (count % 2 == 0) {
             myGame.playerHandleKeys();
         }
-        timeKeys = System.currentTimeMillis() - timeKeys;
+        //timeKeys = System.currentTimeMillis() - timeKeys;
         
         //Timing :
+        /*
         long timeMeasure = System.currentTimeMillis() - startTime;
         if(min == -1 || timeMeasure<min){
             min = timeMeasure;
@@ -184,6 +187,7 @@ public class TheComputingThread implements Runnable{
         }
         cez++;
         //System.out.println(timeMeasure);
+        */
     }
 
     public void setMyGame(Game myGame) {

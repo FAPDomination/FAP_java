@@ -258,7 +258,7 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        long startTime = System.currentTimeMillis();
+        //long startTime = System.currentTimeMillis();
         // Background
         Graphics2D g2d = (Graphics2D)g;
         
@@ -284,23 +284,6 @@ public class Game extends JPanel implements NeedingFocus {
             this.scoreHandler.paintComponent(g);
         }
         
-        /*
-        if(map.getFileID() == 0){
-            // if world map, paint the npcs with green line
-            for(int i=0;i<listNPCs.size(); i++){
-                NPC npc = listNPCs.get(i);
-                if(npc instanceof NPCWMStarting){
-                    npc.paintComponent(g);
-                }
-            }
-        }*/
-        
-        /*
-        // Paint black screen if the game is paused
-        if(!thread.getRunning() && !pauseNPC){
-            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
-        }
-        */
         // Paint the animations (warps, explosions, bitches,...)
         for(int j=0;j<anims.size();j++){
             if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){
@@ -309,6 +292,7 @@ public class Game extends JPanel implements NeedingFocus {
         }
         
         //Timing :
+        /*
         long timeMeasure = System.currentTimeMillis() - startTime;
         if(min == -1 || timeMeasure<min){
             min = timeMeasure;
@@ -323,6 +307,7 @@ public class Game extends JPanel implements NeedingFocus {
         }
         cez++;
         //System.out.println(System.currentTimeMillis() - startTime);
+        */
     }
 
     public ArrayList<Player> getPlayers() {
@@ -639,6 +624,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param winner the team who won (or null, that would mean tie or lost (for adventure))
      */
     public void endGame(Team winner){
+        /*
         System.out.println("------- Statistics -------");
         System.out.println("Min, Moy, Max, count>40, countTotal");
         System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max+","+this.thread.c+","+this.thread.cez);
@@ -648,7 +634,7 @@ public class Game extends JPanel implements NeedingFocus {
         System.out.println("------- Graphical");
         System.out.println("Min, Moy, Max, count>40, countTotal");
         System.out.println(""+this.min+","+this.moy/this.c+","+this.max+","+this.c+","+this.cez);
-        
+        */
         pauseGame();
         PauseScreen victoryScreen = null;
         for(int j=0;j<objects.size();j++){
