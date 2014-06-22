@@ -199,6 +199,7 @@ public abstract class Player extends Human {
 
     public void setCurrent(Cell current) {
         this.current = current;
+        current.setOccupied(this);
     }
 
     public Cell getCurrent() {
@@ -414,14 +415,11 @@ public abstract class Player extends Human {
                 c = fsm.getNextCell();
             } else {
                 // Get the supposed new position of the stick
-                int[] tal2Arr = new int[2];
-                tal2Arr[0] = current.getI() + dy;
-                tal2Arr[1] = current.getJ() + dx;
-                c = game.getMap().getCell(tal2Arr);
+                c = game.getMap().getCell(current.getI() + dy,current.getJ() + dx);
             }
             // Adds colisions : one does not simply walk into an occupied tale
             boolean walkable = c != null && c.isWalkable() == true;
-            if (game.isOccupied(c) != null) {
+            if (c!=null && c.getOccupied() != null) {
                 walkable = false;
             }
             // Special Walk-on-NPC handling
@@ -447,7 +445,9 @@ public abstract class Player extends Human {
             if (walkable) {
                 // Move the stick
                 parent = current;
+                parent.setOccupied(null);
                 current = c;
+                current.setOccupied(this);
                 setDrawn(parent);
                 this.setI(current.getI());
                 this.setJ(current.getJ());
@@ -489,9 +489,11 @@ public abstract class Player extends Human {
                     Cell wantedCell = game.getMap().getCell(tab);
                     if (wantedCell != null) {
                         // If no one stand on it
-                        if (game.isOccupied(wantedCell) == null) {
+                        if (wantedCell.getOccupied() == null) {
                             // Warp the player to it
+                            current.setOccupied(null);
                             current = wantedCell;
+                            current.setOccupied(this);
                             this.setI(current.getI());
                             this.setJ(current.getJ());
                             current.activateCell(this);
@@ -660,11 +662,21 @@ public abstract class Player extends Human {
      */
     public void kickBack() {
         //Note : you can't double kickback
-        if (game.isOccupied(parent) == null) {
+        if (parent.getOccupied() == null) {
             current = parent;
+            current.setOccupied(null);
+            parent.setOccupied(this);
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
+        }
+        else{
+            try {
+                throw(new Exception("Can't kickback ! Parent occupied"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
         }
     }
 

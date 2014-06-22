@@ -38,7 +38,10 @@ public class Magician extends Player {
                     Cell c = theRing.get(j);
                     //c.setOwner(this.getTeam());
                     //c.setHp(this.getInitHP());
-                    Player p = this.getGame().isOccupied(c);
+                    Player p = null;
+                    if(c!=null){
+                        p = c.getOccupied();
+                    }
                     if (p != null && p.getTeam() != this.getTeam()) {
                         //p.blast(10);
                         p.makeHimWait(Params.howLongBlockingMagician * 1000);

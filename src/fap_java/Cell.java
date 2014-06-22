@@ -96,6 +96,8 @@ public class Cell extends Element {
     
     // Performance pre-calculated variables :
     private boolean needDirt;
+    
+    private Player occupied;
 
     /**
      * cf Cell(int i, int j, int type, String param, int did)
@@ -131,6 +133,7 @@ public class Cell extends Element {
         this.trap = null;
         this.owner = null;
         this.minerSing = false;
+        this.occupied = null;
         // temporary
         if (Graph.cells.get(did) == null) {
             System.out.println("Null image for this did : " + did);
@@ -358,7 +361,7 @@ public class Cell extends Element {
                 walkable = false;
                 this.height = true;
                 // KICK BACK
-                Player p = game.isOccupied(this);
+                Player p = this.getOccupied();
                 if (p != null) {
                     p.kickBack();
                 }
@@ -581,5 +584,13 @@ public class Cell extends Element {
 
     public boolean isNeedDirt() {
         return needDirt;
+    }
+
+    public void setOccupied(Player occupied) {
+        this.occupied = occupied;
+    }
+
+    public Player getOccupied() {
+        return occupied;
     }
 }

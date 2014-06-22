@@ -293,9 +293,11 @@ public class FSM {
                             Cell a = theRing.get(j);
                             //c.setOwner(this.getTeam());
                             //c.setHp(this.getInitHP());
-                            Player p = game.isOccupied(a);
-                            if (p != null) {
-                                skillWorth = true;
+                            if(a != null){
+                                Player p = a.getOccupied();
+                                if (p != null) {
+                                    skillWorth = true;
+                                }
                             }
                         }
                     }

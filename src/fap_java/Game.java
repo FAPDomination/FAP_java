@@ -353,28 +353,6 @@ public class Game extends JPanel implements NeedingFocus {
     }
 
     /**
-     * Checks is the designated cell is occupied (someone stands on it)
-     * @param c The cell that needs to be tested
-     * @return the player that stand on it (or null)
-     */
-    public Player isOccupied(Cell c) {
-        Player p = null;
-        // Check if the cell is indeed in the map first
-        if (c != null && map.getMyMap().contains(c)) {
-            // Check for each player
-            for (int i = 0; i < players.size(); i++) {
-                Player q = players.get(i);
-                // Check position
-                if (q.getI() == c.getI() && q.getJ() == c.getJ()) {
-                    p = q;
-                    break;      // Escape !
-                }
-            }
-        }
-        return p;
-    }
-
-    /**
      * Updates the number of cell each team has
      */
     public void updateCellsByOwner() {
@@ -787,7 +765,7 @@ public class Game extends JPanel implements NeedingFocus {
                 ArrayList<Cell> takable = map.getTakableCells();
                 do {
                     c = takable.get(Tools.randRange(0, takable.size() - 1));
-                } while (this.isOccupied(c) != null);
+                } while (c.getOccupied() != null);
             }
         } else {
             // The start cells are for a designated player, get him his cell
