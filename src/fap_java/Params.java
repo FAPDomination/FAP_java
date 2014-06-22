@@ -179,7 +179,7 @@ public class Params {
      */
 
     public static int[] excludedChars = {2,7};
-    //public static int[] excludedChars = {1,2,4,6,8,9,7};
+    //public static int[] excludedChars = {1,2,3,4,6,8,9,7};
     
     /**
      * The Big Table OF Parameters.

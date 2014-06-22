@@ -64,6 +64,7 @@ public class CMap {
     // One time calculations
     private ArrayList<Cell> takeableCells = null;
     private Cell firstCell;
+    private int[] maxIJ = null;
 
     /**
      * Give the position in pixels of a couple a values
@@ -129,7 +130,7 @@ public class CMap {
             painting = painting.getNextInMap();
         }
         //Reset
-        painting = myMap.get(0);
+        painting = firstCell;
         /*
         //TODO with a maxI and maxJ methods ??
         //Emergency solution with a collection
@@ -229,23 +230,26 @@ public class CMap {
     //------ Accessors for the map
 
     public int[] getMaxIJ() {
-        int[] table = new int[2];
-        int i = 0;
-        int j = 0;
-        for (int k = 0; k < mapSize; k++) {
-            Cell c = myMap.get(k);
-            if (c != null) {
-                if (c.getI() > i) {
-                    i = c.getI();
+        if(maxIJ == null){
+            maxIJ = new int[2];
+            int i = 0;
+            int j = 0;
+            Cell c = firstCell;
+            for (int k = 0; k < mapSize; k++) {
+                if (c != null) {
+                    if (c.getI() > i) {
+                        i = c.getI();
+                    }
+                    if (c.getJ() > j) {
+                        j = c.getJ();
+                    }
                 }
-                if (c.getJ() > j) {
-                    j = c.getJ();
-                }
+                c = c.getNextInMap();
             }
+            maxIJ[0] = i;
+            maxIJ[1] = j;
         }
-        table[0] = i;
-        table[1] = j;
-        return table;
+            return maxIJ;
     }
 
     public ArrayList<Cell> getMyMap() {
@@ -500,7 +504,7 @@ public class CMap {
     public ArrayList<Cell> getTakableCells() {
         if(takeableCells == null){
            takeableCells = new ArrayList<Cell>();
-            Cell c = myMap.get(0);
+            Cell c = firstCell;
             for (int i = 0; i < mapSize; i++) {
                 //Check if type 1
                 if (c.getType() == 1) {
@@ -607,7 +611,7 @@ public class CMap {
     }
     
     public void initDirts(){
-        Cell c = this.myMap.get(0);
+        Cell c = firstCell;
         for(int i=0;i<this.mapSize;i++){
             c.setNeedDirt();
             c = c.getNextInMap();
