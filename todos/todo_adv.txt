@@ -107,8 +107,9 @@ V		- available cells
 V		- Conquered Cells
 V	- Link maps to their cells
 V		- Linking
-?		- Find a better place for initialization ?
-?			- Make it in an external file
+X		- Find a better place for initialization ?
+X			- Make it in an external file
+		- Build a special structure that won't launch games but store parameters
 V	- Compute changes and save them
 V		- Check for parent cells
 V		- Update value
