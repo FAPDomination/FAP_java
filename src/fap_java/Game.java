@@ -291,24 +291,6 @@ public class Game extends JPanel implements NeedingFocus {
             ps.paintComponent(g);
         }
         
-        
-        /*
-        if(map.getFileID() == 0){
-            // if world map, paint the npcs with green line
-            for(int i=0;i<listNPCs.size(); i++){
-                NPC npc = listNPCs.get(i);
-                if(npc instanceof NPCWMStarting){
-                    npc.paintComponent(g);
-                }
-            }
-        }*/
-        
-        /*
-        // Paint black screen if the game is paused
-        if(!thread.getRunning() && !pauseNPC){
-            g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,this.getWidth(),this.getHeight(), this);
-        }
-        */
         // Paint the animations (warps, explosions, bitches,...)
         for(int j=0;j<anims.size();j++){
             if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){

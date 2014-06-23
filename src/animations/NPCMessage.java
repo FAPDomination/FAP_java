@@ -1,11 +1,17 @@
 package animations;
 
 import fap_java.Graph;
+import fap_java.Params;
 import fap_java.TheComputingThread;
+
+import fap_java.Tools;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import npcs.actions.AAsk;
 
@@ -17,6 +23,13 @@ public class NPCMessage extends Animation {
     private boolean choice;
     //private Image img;
     private AAsk launcher;
+    private JLabel npcLabel;
+    private int width=389;
+    private int height=77;
+    private int margins = 10;
+    
+    private int x;
+    private int y;
     public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher) {
         super(0,0,0,thread);
         ask = true;
@@ -25,6 +38,13 @@ public class NPCMessage extends Animation {
         this.yes = yes;
         this.no = no;
         choice = true;
+        npcLabel = new JLabel();
+        
+        x=(thread.getMyGame().getWidth()-width)/2;
+        y=(thread.getMyGame().getHeight()-height-30);
+        
+        Tools.parametrizeJLabel(npcLabel, message, Graph.REGULAR_FONT, Color.WHITE, width-2*margins,height-2*margins, x+margins, y+margins, SwingConstants.TOP);
+        thread.getMyGame().add(npcLabel);
         //img = Graph.getGuimg().get("npcDisplayMessage");
         thread.getMyGame().addAnim(this);
     }
@@ -41,15 +61,11 @@ public class NPCMessage extends Animation {
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.BLACK);
-        int width=389;
-        int height=77;
-        int x=(thread.getMyGame().getWidth()-width)/2;
-        int y=(thread.getMyGame().getHeight()-height-30);
 
         Graph.drawDarkBackgroundRectangle(g, x, y, width, height, Graph.NPC_SQUARE_COLOR, 20, Graph.BG_DARK);
         //g.drawImage(img,x,y,width,height,thread.getMyGame());
 
-        g.drawString(message, x+20, y+20);
+        //g.drawString(message, x+20, y+20);
         if(ask){
             int fac;
             choice = launcher.isChoice();
@@ -60,11 +76,12 @@ public class NPCMessage extends Animation {
                 fac = 1;
             }
             
-            g.drawString(yes, x+(width/4), y+40);       // these positions are bad, to be re-made
-            g.drawString(no, x+(3*width/4), y+40);
-            //TODO paint cursor
             g.setColor(Color.WHITE);
-            g.fillRect(x+(width/4)-6+fac*2*width/4, y+35, 4,4);       // Whole cursor to be re-made
+            //TODO positions
+            g.drawString(yes, x+(width/4), y+50);       // these positions are bad, to be re-made
+            g.drawString(no, x+(3*width/4), y+50);
+            //TODO paint cursor
+            g.fillRect(x+(width/4)-6+fac*2*width/4, y+45, 4,4);       // Whole cursor to be re-made
         }
         
         //TODO multiline
@@ -79,5 +96,10 @@ public class NPCMessage extends Animation {
 
     public boolean isChoice() {
         return choice;
+    }
+    
+    public void endAnimation(){
+        thread.getMyGame().remove(npcLabel);
+        super.endAnimation();
     }
 }
