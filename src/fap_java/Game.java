@@ -36,6 +36,8 @@ import npcs.NPCWMStarting;
 
 import npcs.actions.*;
 
+import pathFinder.pathFinder;
+
 public class Game extends JPanel implements NeedingFocus {
 
     /**
@@ -131,7 +133,10 @@ public class Game extends JPanel implements NeedingFocus {
     
     private boolean pauseNPC;
     
+    private ArrayList<FSMThread> fsmThread = new ArrayList<FSMThread>();
     
+    // performances
+    public long min=-1,max=-1,moy=0,c=1,cez=0;
 
     /**
      * Initializes a game. extends JPanel so it draws everything that is game-related. It initalizes the teams, 
@@ -219,6 +224,7 @@ public class Game extends JPanel implements NeedingFocus {
         // Parse the map
         map = new CMap(this,nmap);
         map = XMLparser.parseMap(nmap,this);
+        map.initDirts();
         
         //Parse ParamTable
         XMLparser.parseParams();
@@ -290,7 +296,6 @@ public class Game extends JPanel implements NeedingFocus {
         if(ps != null){
             ps.paintComponent(g);
         }
-        
         // Paint the animations (warps, explosions, bitches,...)
         for(int j=0;j<anims.size();j++){
             if(thread.getRunning() || anims.get(j) instanceof PauseCountDown || anims.get(j) instanceof NPCMessage){
@@ -298,7 +303,23 @@ public class Game extends JPanel implements NeedingFocus {
             }
         }
         
+        //Timing :
+        /*
+        long timeMeasure = System.currentTimeMillis() - startTime;
+        if(min == -1 || timeMeasure<min){
+            min = timeMeasure;
+        }
+        if(max == -1 || timeMeasure>max){
+            max = timeMeasure;
+        }
+        
+        if(timeMeasure >40){
+            moy+=timeMeasure;
+            c++;
+        }
+        cez++;
         //System.out.println(System.currentTimeMillis() - startTime);
+        */
     }
 
     public ArrayList<Player> getPlayers() {
@@ -319,40 +340,15 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void refreshHealthPoints() {
         if (adv < 2) {
-            ArrayList<Cell> myMap = map.getMyMap();
-            for (int j = 0; j < myMap.size(); j++) {
-                Cell c = myMap.get(j);
+            //ArrayList<Cell> myMap = map.getMyMap();
+            Cell c = map.getFirstCell();
+            for (int j = 0; j < map.getMapSize(); j++) {
                 c.refreshHealthPoints(this);
+                c = c.getNextInMap();
             }
 
-            for (int i = 0; i < players.size(); i++) {
-                Player p = players.get(i);
-                Cell c = p.getCurrent();
-                c.activateCell(p);
-            }
+            
         }
-    }
-
-    /**
-     * Checks is the designated cell is occupied (someone stands on it)
-     * @param c The cell that needs to be tested
-     * @return the player that stand on it (or null)
-     */
-    public Player isOccupied(Cell c) {
-        Player p = null;
-        // Check if the cell is indeed in the map first
-        if (c != null && map.containsCell(c) != -1) {
-            // Check for each player
-            for (int i = 0; i < players.size(); i++) {
-                Player q = players.get(i);
-                // Check position
-                if (q.getI() == c.getI() && q.getJ() == c.getJ()) {
-                    p = q;
-                    break;      // Escape !
-                }
-            }
-        }
-        return p;
     }
 
     /**
@@ -365,15 +361,16 @@ public class Game extends JPanel implements NeedingFocus {
             te.setNCells(0);
         }
         // Read the map
-        ArrayList<Cell> cells = map.getMyMap();
-        for (int i = 0; i < cells.size(); i++) {
-            Cell c = cells.get(i);
+        //ArrayList<Cell> cells = map.getMyMap();
+        Cell c = map.getFirstCell();
+        for (int i = 0; i < map.getMapSize(); i++) {
             // Get the owner
             if (c.getOwner() != null) {
                 // Update owner's value
                 Team te = c.getOwner();
                 te.setNCells(te.getNCells() + 1);
             }
+            c = c.getNextInMap();
         }
 
     }
@@ -508,7 +505,10 @@ public class Game extends JPanel implements NeedingFocus {
             Player p = players.get(i);
             // If this player has a FSM, tell it to execute
             if(p.getFsm() != null){
-                p.getFsm().executeMethod();
+                //fsmThread
+                fsmThread.add(new FSMThread(this,p));
+                fsmThread.get(fsmThread.size()-1).start();
+                //p.getFsm().executeMethod();
             }
         }
     }
@@ -561,7 +561,11 @@ public class Game extends JPanel implements NeedingFocus {
             if (score != 0 && score >= victScore) {
                 //Pass the tile test
                 if (((double)tilesOwned) / totalTile >= victTile) {
-                    p = te;
+                    if(p!=null){
+                        endGame(null);
+                    }else{
+                        p = te;
+                    }
                 }
             }
             //}
@@ -602,10 +606,14 @@ public class Game extends JPanel implements NeedingFocus {
             for(int j=0;j<objects.size();j++){
                 Element e = objects.get(j);
                 if(e instanceof PauseScreen){
-                    ((PauseScreen)e).setResuming(true);
+                    PauseScreen ps = (PauseScreen)e;
+                    if(!ps.isResuming()){
+                        ps.setResuming(true);
+                        new PauseCountDown(Params.pauseDuration,thread);
+                    }
                 }
             }
-            new PauseCountDown(Params.pauseDuration,thread);
+            
         }
         else if(isNPC){
             // Get animations
@@ -626,6 +634,7 @@ public class Game extends JPanel implements NeedingFocus {
             Element e = objects.get(j);
             if(e instanceof PauseScreen){
                 ((PauseScreen) e).setResuming(true);
+                ((PauseScreen) e).exit();
                 deleteObject(e);
             }
         }
@@ -636,6 +645,17 @@ public class Game extends JPanel implements NeedingFocus {
      * @param winner the team who won (or null, that would mean tie or lost (for adventure))
      */
     public void endGame(Team winner){
+        /*
+        System.out.println("------- Statistics -------");
+        System.out.println("Min, Moy, Max, count>40, countTotal");
+        System.out.println(this.thread.min+","+this.thread.moy/this.thread.c+","+this.thread.max+","+this.thread.c+","+this.thread.cez);
+        System.out.println("Refresh HP : "+this.thread.timeRefresh+" : "+((double)this.thread.timeRefresh)/this.thread.max);
+        System.out.println("Update Cells : "+this.thread.timeUpdateCellsByOwner+" : "+((double)this.thread.timeUpdateCellsByOwner)/this.thread.max);
+        System.out.println("Keys : "+this.thread.timeHandleKeys+" : "+((double)this.thread.timeHandleKeys)/this.thread.max);
+        System.out.println("------- Graphical");
+        System.out.println("Min, Moy, Max, count>40, countTotal");
+        System.out.println(""+this.min+","+this.moy/this.c+","+this.max+","+this.c+","+this.cez);
+        */
         pauseGame();
         PauseScreen victoryScreen = null;
         for(int j=0;j<objects.size();j++){
@@ -647,6 +667,10 @@ public class Game extends JPanel implements NeedingFocus {
         victoryScreen.setDisplayVictory(true);
         victoryScreen.setWinner(winner);
         gameEnded = true;
+        
+        //Reset pathfinding static map
+        pathFinder.setTheMap(null);
+        
         // versus mode
         if(adv == 0){
             victoryScreen.setAdvMode(false);
@@ -755,7 +779,7 @@ public class Game extends JPanel implements NeedingFocus {
                 ArrayList<Cell> takable = map.getTakableCells();
                 do {
                     c = takable.get(Tools.randRange(0, takable.size() - 1));
-                } while (this.isOccupied(c) != null);
+                } while (c.getOccupied() != null);
             }
         } else {
             // The start cells are for a designated player, get him his cell
@@ -1028,7 +1052,9 @@ public class Game extends JPanel implements NeedingFocus {
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
-                System.out.println("Couldn't find NPC list for map no "+nmap);
+                if(adv>0){
+                    System.err.println("Couldn't find NPC list for map no "+nmap);
+                }
                 break;
             }
     }

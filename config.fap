@@ -1,0 +1,15 @@
+#############################
+# Configuration file
+# Feel free to change whatever you want
+# But be careful and save a copy of the original first
+#############################
+
+# Change this file to have several save file
+SAVEGAME_FILE=savegame.leo
+
+CONTROLS_FILE=resources/keys.leo
+
+# If you want to change the pictures (characters, cells),
+# create your own folder and link to it here
+GRAPH_SET=resources/images/default/
+

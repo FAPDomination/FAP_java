@@ -199,6 +199,7 @@ public abstract class Player extends Human {
 
     public void setCurrent(Cell current) {
         this.current = current;
+        current.setOccupied(this);
     }
 
     public Cell getCurrent() {
@@ -414,14 +415,11 @@ public abstract class Player extends Human {
                 c = fsm.getNextCell();
             } else {
                 // Get the supposed new position of the stick
-                int[] tal2Arr = new int[2];
-                tal2Arr[0] = current.getI() + dy;
-                tal2Arr[1] = current.getJ() + dx;
-                c = game.getMap().getCell(tal2Arr);
+                c = game.getMap().getCell(current.getI() + dy,current.getJ() + dx);
             }
             // Adds colisions : one does not simply walk into an occupied tale
             boolean walkable = c != null && c.isWalkable() == true;
-            if (game.isOccupied(c) != null) {
+            if (c!=null && c.getOccupied() != null) {
                 walkable = false;
             }
             // Special Walk-on-NPC handling
@@ -447,7 +445,9 @@ public abstract class Player extends Human {
             if (walkable) {
                 // Move the stick
                 parent = current;
+                parent.setOccupied(null);
                 current = c;
+                current.setOccupied(this);
                 setDrawn(parent);
                 this.setI(current.getI());
                 this.setJ(current.getJ());
@@ -489,9 +489,11 @@ public abstract class Player extends Human {
                     Cell wantedCell = game.getMap().getCell(tab);
                     if (wantedCell != null) {
                         // If no one stand on it
-                        if (game.isOccupied(wantedCell) == null) {
+                        if (wantedCell.getOccupied() == null) {
                             // Warp the player to it
+                            current.setOccupied(null);
                             current = wantedCell;
+                            current.setOccupied(this);
                             this.setI(current.getI());
                             this.setJ(current.getJ());
                             current.activateCell(this);
@@ -660,11 +662,21 @@ public abstract class Player extends Human {
      */
     public void kickBack() {
         //Note : you can't double kickback
-        if (game.isOccupied(parent) == null) {
+        if (parent.getOccupied() == null) {
             current = parent;
+            current.setOccupied(null);
+            parent.setOccupied(this);
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
+        }
+        else{
+            try {
+                throw(new Exception("Can't kickback ! Parent occupied"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
         }
     }
 
@@ -689,27 +701,29 @@ public abstract class Player extends Human {
      */
     public void blast(int numberOfCells) {
         // Get the list of the array he owns
-        ArrayList<Cell> map = game.getMap().getMyMap();
         ArrayList<Cell> owned = new ArrayList<Cell>();
-        for (int i = 0; i < map.size(); i++) {
-            Cell c = map.get(i);
+        Cell c = game.getMap().getFirstCell();
+        for (int i = 0; i < game.getMap().getMapSize(); i++) {
             if (c.getOwner() == this.team) {
                 owned.add(c);
             }
+            c=c.getNextInMap();
         }
 
-        //Blast
-        for (int i = 0; i < numberOfCells; i++) {
-            //Pick random cell
-            int rand = Tools.randRange(0, owned.size() - 1);
-            Cell randCell = owned.get(rand);
-            //KILL IT WITH FIRE !
-            randCell.setOwner(null);
-            randCell.setHp(0);
-            owned.remove(randCell);
-            int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
-            int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
-            Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
+        if(owned.size()>0){
+            //Blast
+            for (int i = 0; i < numberOfCells; i++) {
+                //Pick random cell
+                int rand = Tools.randRange(0, owned.size() - 1);
+                Cell randCell = owned.get(rand);
+                //KILL IT WITH FIRE !
+                randCell.setOwner(null);
+                randCell.setHp(0);
+                owned.remove(randCell);
+                int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
+                int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
+                Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
+            }
         }
     }
 

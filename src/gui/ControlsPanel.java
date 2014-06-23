@@ -109,12 +109,12 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
         
         //Saving
         try {
-            FileOutputStream fileOut = new FileOutputStream(Constants.controlersFile);
+            FileOutputStream fileOut = new FileOutputStream(Constants.c.get(Constants.controlersFile));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(keyList);
             out.close();
             fileOut.close();
-            System.out.println("Saved controls in "+Constants.controlersFile);
+            System.out.println("Saved controls in "+Constants.c.get(Constants.controlersFile));
         } catch (IOException i) {
             i.printStackTrace();
         }

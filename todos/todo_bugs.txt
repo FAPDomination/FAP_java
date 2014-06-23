@@ -1,0 +1,20 @@
+List of known bugs :
+  FSM
+	- Doesn't always stay frozen by wizzard
+	- Doesn't always validate miner selection
+T	- OutOfMemoryError
+	- Method call fail
+V Ability to re-launch the pauseCountdown when already in pauseCountDown
+  Archer
+	- Compute cell
+	- Matrix bug
+V End Game b > a but a wins because indexOf(a)<indexOf(b)
+X A few Game object creating when loading the app
+V Versus->PS->CS->Minimap-<CS = CS isn't working (KeyListener dead ?)
+V Character Selection : kill GUI thread
+V Multiple slides -> slowing everything
+V Minimap : black dots
+V WorldMap
+V	- Suddenly became adv<2
+V	- Class description label visible
+  ADV : can't move when back to world map from game

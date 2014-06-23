@@ -56,6 +56,7 @@ public class Minimap{
         colorList.put(6,new Color(0, 204, 0));
         colorList.put(7,new Color(51, 51, 51));
         colorList.put(8,new Color(128, 11, 0));
+        colorList.put(9,new Color(76, 189, 230));
         colorList.put(15,new Color(254, 194, 105));
         colorList.put(16,new Color(254, 194, 105));
         colorList.put(17,new Color(254, 194, 105));
@@ -64,6 +65,10 @@ public class Minimap{
         colorList.put(11,new Color(153, 0, 0));
 
         colorList.put(100,new Color(86, 43, 2));
+        colorList.put(102,new Color(86, 43, 2));
+        colorList.put(103,new Color(130,130,130));
+        colorList.put(104,new Color(130,130,130));
+        colorList.put(105,new Color(20,153,0));
         
         colorList.put(200,new Color(46, 159, 200));
         colorList.put(201,new Color(241, 58, 5));
@@ -87,9 +92,17 @@ public class Minimap{
         
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
-            g.setColor(colorList.get(c.getDid()));
-            int width = (int)(size * 1.4);
-            g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
+            Color k = colorList.get(c.getDid());
+            if(k != null){
+                g.setColor(k);
+                int width = (int)(size * 1.4);
+                g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
+            }
+            else{
+                System.err.println("No minimap color for "+c.getDid());
+                // Fill the gap so the err console doesn't get flood (dirty)
+                 colorList.put(c.getDid(), new Color(255,0,0));
+            }
         }
         g.setColor(Color.black);
         g.setFont(Graph.SIMPLE_TEXT_FONT);

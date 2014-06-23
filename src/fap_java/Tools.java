@@ -25,6 +25,7 @@ import java.io.ObjectOutputStream;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 import javax.imageio.ImageIO;
@@ -157,12 +158,12 @@ public class Tools {
     
     public static void saveGame(GameSave gs){
         try {
-            FileOutputStream fileOut = new FileOutputStream(Constants.savegameFile);
+            FileOutputStream fileOut = new FileOutputStream(Constants.c.get(Constants.savegameFile));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(gs);
             out.close();
             fileOut.close();
-            System.out.println("Saved Game in "+Constants.savegameFile);
+            System.out.println("Saved Game in "+Constants.c.get(Constants.savegameFile));
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -171,7 +172,7 @@ public class Tools {
     public static GameSave loadGame(){
         GameSave gs = null;
         try {
-            FileInputStream fileIn = new FileInputStream(Constants.savegameFile);
+            FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.savegameFile));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             gs = (GameSave)in.readObject();
             in.close();
@@ -271,5 +272,61 @@ public class Tools {
                 }*/
             }
         }
+    }
+    
+    //-------------
+    
+    public static void parseOptions(){
+        try {
+            Scanner scan = new Scanner(new File(Constants.configFileName));
+            try {
+                while (scan.hasNextLine()) {
+                    String s = scan.nextLine();
+                    if(!(s.equals("")||s.charAt(0)=='#')){
+                        String[] ss = s.split("=");
+                        //System.out.println(ss[0]+"--"+ss[1]);
+                        Constants.c.put(ss[0], ss[1]);
+                    }
+                }
+            } finally {
+                scan.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur dans la methode lectureFichier de la classe d'Outils :");
+            e.printStackTrace();
+        }
+    }
+    
+    public static void memoryMonitor(){
+            double mb = 1024*1024;
+             
+            //Getting the runtime reference from system
+            Runtime runtime = Runtime.getRuntime();
+             
+            System.out.println("##### Heap utilization statistics [MB] #####");
+             
+            //Print used memory
+            System.out.println("Used Memory:"
+                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+     
+            //Print free memory
+            System.out.println("Free Memory:"
+                + runtime.freeMemory() / mb);
+             
+            //Print total available memory
+            System.out.println("Total Memory:" + runtime.totalMemory() / mb);
+     
+            //Print Maximum available memory
+            System.out.println("Max Memory:" + runtime.maxMemory() / mb);
+            
+            // THreads 
+            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+            Thread[] threadArray = threadSet.toArray(new Thread[threadSet.size()]);
+            /*
+            for(int i=0;i<threadArray.length;i++){
+                System.out.println(threadArray[i]);
+            }
+            */
+            System.out.println("Threads : "+threadArray.length);
     }
 }

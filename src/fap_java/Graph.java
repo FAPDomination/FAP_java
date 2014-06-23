@@ -87,33 +87,33 @@ public class Graph {
 
     public static void load(PreLoadingScreen pls) {
         try {
-            cells.put(0, ImageIO.read(new File("resources/images/default/cells/dirt.png")));
-            cells.put(1, ImageIO.read(new File("resources/images/default/cells/cell.png")));
-            cells.put(2, ImageIO.read(new File("resources/images/default/cells/walkable/trail.png")));
-            cells.put(3, ImageIO.read(new File("resources/images/default/cells/walkable/little_rocks.png")));
-            cells.put(4, ImageIO.read(new File("resources/images/default/cells/walkable/paved.png")));
-            cells.put(5, ImageIO.read(new File("resources/images/default/cells/walkable/bridge.png")));
-            cells.put(6, ImageIO.read(new File("resources/images/default/cells/walkable/grass.png")));
-            cells.put(7, ImageIO.read(new File("resources/images/default/cells/walkable/rock_dark.png")));
-            cells.put(8, ImageIO.read(new File("resources/images/default/cells/walkable/lava_rock.png")));
-            cells.put(9, ImageIO.read(new File("resources/images/default/cells/walkable/ice.png")));
-            cells.put(13, ImageIO.read(new File("resources/images/default/cells/walkable/minerSelect.png")));
-            cells.put(14, ImageIO.read(new File("resources/images/default/cells/walkable/minerSelectCursor.png")));
-            cells.put(10, ImageIO.read(new File("resources/images/default/cells/walkable/warp.png")));
-            cells.put(11, ImageIO.read(new File("resources/images/default/cells/walkable/switch.png")));
-            cells.put(12, ImageIO.read(new File("resources/images/default/cells/walkable/npc_exit.png")));
-            cells.put(15, ImageIO.read(new File("resources/images/default/cells/walkable/sand_2.png")));
-            cells.put(16, ImageIO.read(new File("resources/images/default/cells/walkable/sand_1.png")));
-            cells.put(17, ImageIO.read(new File("resources/images/default/cells/walkable/sand_3.png")));
+            cells.put(0, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/dirt.png")));
+            cells.put(1, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/cell.png")));
+            cells.put(2, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/trail.png")));
+            cells.put(3, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/little_rocks.png")));
+            cells.put(4, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/paved.png")));
+            cells.put(5, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/bridge.png")));
+            cells.put(6, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/grass.png")));
+            cells.put(7, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/rock_dark.png")));
+            cells.put(8, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/lava_rock.png")));
+            cells.put(9, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/ice.png")));
+            cells.put(13, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/minerSelect.png")));
+            cells.put(14, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/minerSelectCursor.png")));
+            cells.put(10, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/warp.png")));
+            cells.put(11, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/switch.png")));
+            cells.put(12, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/npc_exit.png")));
+            cells.put(15, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/sand_2.png")));
+            cells.put(16, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/sand_1.png")));
+            cells.put(17, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/walkable/sand_3.png")));
             // High Blocking
-            cells.put(100, ImageIO.read(new File("resources/images/default/cells/blocking/rock.png")));
-            cells.put(102, ImageIO.read(new File("resources/images/default/cells/blocking/tree_1.png")));
-            cells.put(103, ImageIO.read(new File("resources/images/default/cells/blocking/collumn.png")));
-            cells.put(104, ImageIO.read(new File("resources/images/default/cells/blocking/collumn_broken.png")));
-            cells.put(105, ImageIO.read(new File("resources/images/default/cells/blocking/palm_tree.png")));
+            cells.put(100, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/rock.png")));
+            cells.put(102, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/tree_1.png")));
+            cells.put(103, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/collumn.png")));
+            cells.put(104, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/collumn_broken.png")));
+            cells.put(105, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/palm_tree.png")));
             // Low Blocking
-            cells.put(200, ImageIO.read(new File("resources/images/default/cells/blocking/river.png")));
-            cells.put(201, ImageIO.read(new File("resources/images/default/cells/blocking/river_lava.png")));
+            cells.put(200, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/river.png")));
+            cells.put(201, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/blocking/river_lava.png")));
         
             // Offsets
             /*
@@ -156,18 +156,18 @@ public class Graph {
             list.put("NPC_sample", Toolkit.getDefaultToolkit().getImage(load.getResource("images/NPCs/sample.png")));
             */
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
-            list.put("warp", ImageIO.read(new File("resources/images/default/animations/teleport.png")));
-            list.put("frozen", ImageIO.read(new File("resources/images/default/animations/frozen.png")));
-            list.put("healthy", ImageIO.read(new File("resources/images/default/cells/HealtHyhealthy.png")));
-            list.put("booster", ImageIO.read(new File("resources/images/default/animations/booster.png")));
-            list.put("warlock_Trap", ImageIO.read(new File("resources/images/default/animations/warlock_Trap.png")));
-            list.put("warlock_Disable", ImageIO.read(new File("resources/images/default/animations/warlock_Disable.png")));
+            list.put("warp", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/teleport.png")));
+            list.put("frozen", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/frozen.png")));
+            list.put("healthy", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/HealtHyhealthy.png")));
+            list.put("booster", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/booster.png")));
+            list.put("warlock_Trap", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/warlock_Trap.png")));
+            list.put("warlock_Disable", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/warlock_Disable.png")));
             //Lightnings
             int nbLightnings = Params.NLIGHTNING_EFFECTS;
             int nbLghtImages = 10;
             for(int j=0;j<nbLightnings;j++){
                 for(int i=0;i<nbLghtImages;i++){
-                    list.put("Lght"+(j+1)+"_"+(i+1), ImageIO.read(new File("resources/images/default/animations/Warlocks_Lightnings/Lght_"+(j+1)+"/Lght_"+(j+1)+"_"+(i+1)+".png")));
+                    list.put("Lght"+(j+1)+"_"+(i+1), ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/Warlocks_Lightnings/Lght_"+(j+1)+"/Lght_"+(j+1)+"_"+(i+1)+".png")));
                 }
             }
             // Arrows
@@ -204,26 +204,26 @@ public class Graph {
             guimg.put("ScoreBottom", ImageIO.read(new File("resources/images/gui/ScoreBar_bottom.png")));
             guimg.put("iconJCombo", ImageIO.read(new File("resources/images/gui/iconJCombo.png")));
 
-            File location = new File("resources/images/default/cells/regular.png");
+            File location = new File(Constants.c.get(Constants.pictureSet)+"/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
             
             // Add base character files
             //Right
-            characters.put(Params.colorName[0]+"right", ImageIO.read(new File("resources/images/default/characters/base/Red_Right.png")));
-            characters.put(Params.colorName[1]+"right", ImageIO.read(new File("resources/images/default/characters/base/Blue_Right.png")));
-            characters.put(Params.colorName[2]+"right", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Right.png")));
+            characters.put(Params.colorName[0]+"right", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Red_Right.png")));
+            characters.put(Params.colorName[1]+"right", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Blue_Right.png")));
+            characters.put(Params.colorName[2]+"right", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Yellow_Right.png")));
             // Diag0 (Up left + Bottom Right)
-            characters.put(Params.colorName[0]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag0.png")));
-            characters.put(Params.colorName[1]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag0.png")));
-            characters.put(Params.colorName[2]+"diag0", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag0.png")));
+            characters.put(Params.colorName[0]+"diag0", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Red_Diag0.png")));
+            characters.put(Params.colorName[1]+"diag0", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Blue_Diag0.png")));
+            characters.put(Params.colorName[2]+"diag0", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Yellow_Diag0.png")));
             //left
-            characters.put(Params.colorName[0]+"left", ImageIO.read(new File("resources/images/default/characters/base/Red_Left.png")));
-            characters.put(Params.colorName[1]+"left", ImageIO.read(new File("resources/images/default/characters/base/Blue_Left.png")));
-            characters.put(Params.colorName[2]+"left", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Left.png")));
+            characters.put(Params.colorName[0]+"left", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Red_Left.png")));
+            characters.put(Params.colorName[1]+"left", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Blue_Left.png")));
+            characters.put(Params.colorName[2]+"left", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Yellow_Left.png")));
             //Diag1 (top right + bottom left)
-            characters.put(Params.colorName[0]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Red_Diag1.png")));
-            characters.put(Params.colorName[1]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Blue_Diag1.png")));
-            characters.put(Params.colorName[2]+"diag1", ImageIO.read(new File("resources/images/default/characters/base/Yellow_Diag1.png")));
+            characters.put(Params.colorName[0]+"diag1", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Red_Diag1.png")));
+            characters.put(Params.colorName[1]+"diag1", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Blue_Diag1.png")));
+            characters.put(Params.colorName[2]+"diag1", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/base/Yellow_Diag1.png")));
             
             int limitColor = 3;
             //TODO automatic name parsing from Constants.java table
@@ -233,18 +233,18 @@ public class Graph {
                 if(i!=2 && i!= 4 && i!=5 && i!=6){
                     for(int j=0;j<limitColor;j++){
                         for(int k=0;k<6;k++){
-                            characters.put(name+k+"_"+Params.colorName[j], ImageIO.read(new File("resources/images/default/characters/"+name+"/"+name+k+"_"+Params.colorName[j]+".png")));
+                            characters.put(name+k+"_"+Params.colorName[j], ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/"+name+"/"+name+k+"_"+Params.colorName[j]+".png")));
                         }
                     }
                     //Thumbnails
-                    thumbnails.put("Big_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/Big_"+name+".png")));
+                    thumbnails.put("Big_"+name, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/Thumbnails/Big_"+name+".png")));
                     if(i!=7){
-                        thumbnails.put("CS_"+name, ImageIO.read(new File("resources/images/default/characters/Thumbnails/CharSelect/"+name+".png")));
+                        thumbnails.put("CS_"+name, ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/Thumbnails/CharSelect/"+name+".png")));
                     }
                 }
             }
             //Shadow
-            characters.put("shadow", ImageIO.read(new File("resources/images/default/characters/shadow.png")));
+            characters.put("shadow", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/characters/shadow.png")));
             
             
             

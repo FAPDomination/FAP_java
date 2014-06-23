@@ -2,9 +2,13 @@ package fap_java;
 
 import java.awt.Graphics;
 
+import java.awt.List;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class CMap {
     /**
@@ -39,6 +43,8 @@ public class CMap {
      * The arrayList of cells that contains aaaall the cells of the grid
      */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
+    
+    private Map<String,Cell> hashMap = new HashMap<String,Cell>();
 
     /**
      * The starting points of this map (defined in the XML file)
@@ -51,6 +57,14 @@ public class CMap {
     private Game game;
 
     private int fileID;
+    
+    // Performances
+    private int mapSize=0;
+    private Cell painting;
+    // One time calculations
+    private ArrayList<Cell> takeableCells = null;
+    private Cell firstCell;
+    private int[] maxIJ = null;
 
     /**
      * Give the position in pixels of a couple a values
@@ -98,6 +112,26 @@ public class CMap {
      * @param g
      */
     public void paintComponent(Graphics g) {
+        //Emergency solution with a collection
+        for (int i = 0; i < mapSize; i++) {
+            painting.paintComponent(g);
+            NPC npc = Tools.checkNPCOnCell(game, painting);
+            if (npc != null) {
+                npc.paintComponent(g);
+            }
+            
+            for (int j = 0; j < game.getPlayers().size(); j++) {
+                Player q = game.getPlayers().get(j);
+                // Check position
+                if(q.getDrawn() == painting){
+                    q.paintComponent(g);
+                }
+            }
+            painting = painting.getNextInMap();
+        }
+        //Reset
+        painting = firstCell;
+        /*
         //TODO with a maxI and maxJ methods ??
         //Emergency solution with a collection
         for (int i = 0; i < myMap.size(); i++) {
@@ -115,12 +149,9 @@ public class CMap {
                     q.paintComponent(g);
                 }
             }
-            /*
-            Player p = game.isOccupied(c);
-            if (p != null) {
-                p.paintComponent(g);
-            }*/
+
         }
+        */  
     }
 
     //TODO Improvement of this method including gaps
@@ -199,23 +230,26 @@ public class CMap {
     //------ Accessors for the map
 
     public int[] getMaxIJ() {
-        int[] table = new int[2];
-        int i = 0;
-        int j = 0;
-        for (int k = 0; k < this.myMap.size(); k++) {
-            Cell c = myMap.get(k);
-            if (c != null) {
-                if (c.getI() > i) {
-                    i = c.getI();
+        if(maxIJ == null){
+            maxIJ = new int[2];
+            int i = 0;
+            int j = 0;
+            Cell c = firstCell;
+            for (int k = 0; k < mapSize; k++) {
+                if (c != null) {
+                    if (c.getI() > i) {
+                        i = c.getI();
+                    }
+                    if (c.getJ() > j) {
+                        j = c.getJ();
+                    }
                 }
-                if (c.getJ() > j) {
-                    j = c.getJ();
-                }
+                c = c.getNextInMap();
             }
+            maxIJ[0] = i;
+            maxIJ[1] = j;
         }
-        table[0] = i;
-        table[1] = j;
-        return table;
+            return maxIJ;
     }
 
     public ArrayList<Cell> getMyMap() {
@@ -227,11 +261,22 @@ public class CMap {
      * @param c the cell to be added
      */
     public void addElement(Cell c) {
-        if (containsCell(c) != -1) {
-            myMap.remove(containsCell(c));
+        Cell o = containsCell(c);
+        if (o != null) {
+            myMap.remove(o);
         }
         c.setMap(this);
+        if(mapSize>=1){
+            myMap.get(myMap.size()-1).setNextInMap(c);
+        }
+        else{
+            painting = c;
+            firstCell = c;
+        }
         myMap.add(c);
+        mapSize++;
+        
+        hashMap.put(""+c.getI()+","+c.getJ(), c);
     }
 
     public void removeElement(Cell c) {
@@ -241,18 +286,10 @@ public class CMap {
     /**
      * Checks if the map contains a cell
      * @param c
-     * @return : -1 if not, the index of the object if yes
+     * @return : null if not, the object if yes
      */
-    public int containsCell(Cell c) {
-        int b = (-1);
-        for (int k = 0; k < myMap.size(); k++) {
-            Cell o = myMap.get(k);
-            if (o.equals(c)) {
-                b = k;
-                break;
-            }
-        }
-        return b;
+    public Cell containsCell(Cell c) {
+        return hashMap.get(""+c.getI()+","+c.getJ());
     }
 
     /**
@@ -261,14 +298,11 @@ public class CMap {
      * @return : the cell
      */
     public Cell getCell(int[] tab) {
-        Cell c;
         Cell o = new Cell(tab[0], tab[1], 1, 1, null);
-        if (tab.length == 2 && containsCell(o) != (-1)) {
-            c = myMap.get(containsCell(o));
-        } else {
-            c = null;
+        if (tab.length == 2 && tab[0] >=0 && tab[1] >=0) {
+            return(containsCell(o));
         }
-        return c;
+        return null;
     }
 
     /**
@@ -304,6 +338,110 @@ public class CMap {
         // You just lost the game
         return n;
     }
+    
+    public boolean countNeighboursForConway(Cell c) {
+        int n = 0;
+        Team owns = c.getOwner();
+        // Check all six cells around
+        
+        int i = c.getI();
+        int j = c.getJ();
+        Cell o;
+        // top cells
+        // not the first line
+        if (i % 2 == 0) {
+            o = this.getCell(i - 1, j - 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+            //surroundingCells['tr'] = [i-1, j];
+            o = this.getCell(i - 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        } else {
+
+            //surroundingCells['tl'] = [i-1, j];
+            o = this.getCell(i - 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+
+            //surroundingCells['tr'] = [i-1, j+1];
+            o = this.getCell(i - 1, j + 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        }
+        // cells from the same line
+        //surroundingCells['l'] = [i, j-1];
+        o = this.getCell(i, j - 1);
+        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            n++;
+            if(n>=Params.nNeighboursConway){
+                return true;
+            }
+        }
+        //surroundingCells['r'] = [i, j+1];
+        o = this.getCell(i, j + 1);
+        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            n++;
+            if(n>=Params.nNeighboursConway){
+                return true;
+            }
+        }
+        // bottom cells (see top cells)
+        if (i % 2 == 0) {
+            //surroundingCells['bl'] = [i+1, j-1];
+            o = this.getCell(i + 1, j - 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+            //surroundingCells['br'] = [i+1, j];
+            o = this.getCell(i + 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        } else {
+            //surroundingCells['br'] = [i+1, j+1];
+            o = this.getCell(i + 1, j + 1);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+            //surroundingCells['bl'] = [i+1, j];
+            o = this.getCell(i + 1, j);
+            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+                n++;
+                if(n>=Params.nNeighboursConway){
+                    return true;
+                }
+            }
+        }
+
+        // You just lost the game
+        return false;
+    }
 
     /**
      * Returns the 6 cells surrounding the designated tile
@@ -312,10 +450,12 @@ public class CMap {
      */
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
-        ArrayList<Cell> surroundingCells = new ArrayList<Cell>();
+        ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
+        
         for (int k = 0; k < 6; k++) {
             surroundingCells.add(null);
         }
+        
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -368,16 +508,20 @@ public class CMap {
      * @return : an arrayList of all takable cells on the grid
      */
     public ArrayList<Cell> getTakableCells() {
-        ArrayList<Cell> cells = new ArrayList<Cell>();
-        for (int i = 0; i < myMap.size(); i++) {
-            Cell c = myMap.get(i);
-            //Check if type 1
-            if (c.getType() == 1) {
-                //If yes add it to list
-                cells.add(c);
+        if(takeableCells == null){
+           takeableCells = new ArrayList<Cell>();
+            Cell c = firstCell;
+            for (int i = 0; i < mapSize; i++) {
+                //Check if type 1
+                if (c.getType() == 1) {
+                    //If yes add it to list
+                    takeableCells.add(c);
+                }
+                c = c.getNextInMap();
             }
+            
         }
-        return cells;
+        return takeableCells;
     }
 
     /**
@@ -385,7 +529,7 @@ public class CMap {
      * @return
      */
     public String toString() {
-        return "Map with " + myMap.size() + " cells";
+        return "Map with " + mapSize + " cells";
     }
 
 
@@ -470,5 +614,29 @@ public class CMap {
 
     public int getFileID() {
         return fileID;
+    }
+    
+    public void initDirts(){
+        Cell c = firstCell;
+        for(int i=0;i<this.mapSize;i++){
+            c.setNeedDirt();
+            c = c.getNextInMap();
+        }
+    }
+
+    public void setMapSize(int mapSize) {
+        this.mapSize = mapSize;
+    }
+
+    public int getMapSize() {
+        return mapSize;
+    }
+
+    public void setFirstCell(Cell firstCell) {
+        this.firstCell = firstCell;
+    }
+
+    public Cell getFirstCell() {
+        return firstCell;
     }
 }

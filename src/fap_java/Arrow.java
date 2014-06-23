@@ -99,11 +99,12 @@ public class Arrow extends Element {
 
         if (b) {
             //Detect ennemy
-            Player p;
-            p = game.isOccupied(current);
-            if (p != null && p != thrower) {
-                p.makeHimWait((Params.howLongBlockingMagician * 1000) / 2);
-                this.destroy();
+            if(current != null){
+                Player p = current.getOccupied();
+                if (p != null && p != thrower) {
+                    p.makeHimWait((Params.howLongBlockingMagician * 1000) / 2);
+                    this.destroy();
+                }
             }
         }
         //Detect ennemy's cell

@@ -293,9 +293,11 @@ public class FSM {
                             Cell a = theRing.get(j);
                             //c.setOwner(this.getTeam());
                             //c.setHp(this.getInitHP());
-                            Player p = game.isOccupied(a);
-                            if (p != null) {
-                                skillWorth = true;
+                            if(a != null){
+                                Player p = a.getOccupied();
+                                if (p != null) {
+                                    skillWorth = true;
+                                }
                             }
                         }
                     }
@@ -354,7 +356,6 @@ public class FSM {
         Cell s = body.getCurrent();
         ArrayList<Cell> map = body.getGame().getMap().getMyMap();
         ArrayList<Cell> path = pathFinder.findPath(map, c, s);
-
         fsm_param = path;
 
         //have to define if the path will be direct (no waiting on cell for conquering) or  not
@@ -428,8 +429,11 @@ public class FSM {
             } catch (NoSuchMethodException e) {
                 System.out.println("No such Method : " + currentState.getAssociatedMethod());
             } catch (IllegalArgumentException e) {
+                e.printStackTrace();
             } catch (IllegalAccessException e) {
+                e.printStackTrace();
             } catch (InvocationTargetException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -538,6 +542,9 @@ public class FSM {
                     nCells++;
                 }
             }
+        }
+        if(nCells == 0){
+            return 0;
         }
         average /= nCells;
         return average;

@@ -67,7 +67,7 @@ public class TheGraphicalThread implements Runnable{
             // if the thread is running
             if(running){
                 // Execute tasks (generate a clock-tick)
-                execute(true);
+                execute();
             }
            
                 try{
@@ -84,7 +84,7 @@ public class TheGraphicalThread implements Runnable{
     /**
      * Execute actions in the game, such as updating values
      */
-    private void execute(boolean full){
+    private void execute(){
         myGame.repaint();
     }
 

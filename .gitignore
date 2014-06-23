@@ -1,0 +1,12 @@
+*.jpr
+
+# FAP Domination save files
+*.leo
+
+classes/
+
+Ignore/
+
+# Specific
+fake/
+documents/CreditsScreen.fla

@@ -1,6 +1,7 @@
 package gui;
 
 import fap_java.Params;
+import fap_java.Tools;
 import fap_java.XMLparser;
 
 import java.awt.BorderLayout;
@@ -16,8 +17,7 @@ import javax.swing.JPanel;
 
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
-    private JPanel north = new JPanel();
-    private JPanel center = new PreLoadingScreen(this);
+    private JPanel center;
     
     public TheFrame() {
         try {
@@ -30,13 +30,17 @@ public class TheFrame extends JFrame {
     private void jbInit() throws Exception {
         this.getContentPane().setLayout(borderLayout1);
         this.setSize(Constants.frameDimension);
-        //this.getContentPane().add(north, BorderLayout.NORTH);
+        
+        // Parse the configurations of the game
+        Tools.parseOptions();
+        //Tools.memoryMonitor();
+        
+        center = new PreLoadingScreen(this);
         this.getContentPane().add(center, BorderLayout.CENTER);
         
-        // Parse the options of the game
-        //XMLparser.parseOptions();
         try {
-            FileInputStream fileIn = new FileInputStream(Constants.controlersFile);
+            
+            FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.controlersFile));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Params.controlsList = ((int[][])in.readObject());
             //Params. = ((int[][])in.readObject());
@@ -53,24 +57,21 @@ public class TheFrame extends JFrame {
         }
     }
     
-    public void changePanel(JPanel jp, Object layout){
-        Component compo = borderLayout1.getLayoutComponent(layout);
-        if(compo instanceof NeedingFocus){
-            ((NeedingFocus) compo).releaseFocus();
+    public void changePanel(JPanel jp){
+        
+        if(center instanceof NeedingFocus){
+            ((NeedingFocus) center).releaseFocus();
         }
-        this.remove(compo);
-        compo = jp;
-        this.getContentPane().add(compo, layout);
-        compo.setFocusable(true);
-        if(compo instanceof NeedingFocus){
-            ((NeedingFocus) compo).initFocus();
+        this.remove(center);
+        center = jp;
+        this.getContentPane().add(center);
+        center.setFocusable(true);
+        if(center instanceof NeedingFocus){
+            ((NeedingFocus) center).initFocus();
         }
         this.validate();
         this.repaint();
     }
-    
-    public void changePanel(JPanel jp){
-        changePanel(jp, BorderLayout.CENTER);
-    }
+
 
 }

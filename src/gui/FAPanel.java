@@ -25,8 +25,8 @@ public abstract class FAPanel extends JPanel {
     protected TheFrame parent;
     protected JPanel prevPanel;
     // Images
-    protected BufferedImage sword;
-    protected BufferedImage clouds;
+    protected static BufferedImage sword;
+    protected static BufferedImage clouds;
     // Locations
     protected double swordX;
     protected double cloudsX;
@@ -47,9 +47,10 @@ public abstract class FAPanel extends JPanel {
         super();
         this.prevPanel = prevPanel;
         this.parent = parent;
-        sword = Graph.getGuimg().get("MM_sword");
-        clouds = Graph.getGuimg().get("MM_clouds");
-        
+        if(sword == null){
+            sword = Graph.getGuimg().get("MM_sword");
+            clouds = Graph.getGuimg().get("MM_clouds");
+        }
         if(!(this instanceof OptionMenu)){
             btnGoBack.setUI(new Button_SampleUI());
             ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
@@ -88,10 +89,10 @@ public abstract class FAPanel extends JPanel {
         g2d.fillRect(0, 0, w, h);
 
         // Sword & clouds
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         
     }
 
@@ -102,6 +103,6 @@ public abstract class FAPanel extends JPanel {
             pp.setNextPanel(null);
             pp.startSliding(false);
         }
-        parent.changePanel(prevPanel, BorderLayout.CENTER);
+        parent.changePanel(prevPanel);
     }
 }
