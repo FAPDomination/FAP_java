@@ -74,9 +74,7 @@ import java.util.Collections;
 public class pathFinder {
 
     private static int ndv = 10;
-    private static ArrayList<Node> openList;
-    private static ArrayList<Node> closeList;
-    
+
     private static NMap theMap;
     private static long lastGenerationDate;
     public static final long pathfindingMapGenerationFrequency = 5*1000;
@@ -95,6 +93,9 @@ public class pathFinder {
             lastGenerationDate = System.currentTimeMillis();
             theMap = new NMap(map);
         }
+        
+         
+        
        
         Node nstart = new Node(start);
         Node nend = new Node(end);
@@ -116,11 +117,11 @@ public class pathFinder {
      * @param param_end : the end node
      * @return : the node path
      */
-    public static ArrayList<Node> findPath(NMap param_graphe, Node param_start, Node param_end) {
+    public static ArrayList<Node> findPath(NMap param_graphe, Node param_start, Node param_end){
         // Creating closed and open lists
         // on cree les listes fermees et les listes ouvertes
-        openList = new ArrayList<Node>();
-        closeList = new ArrayList<Node>();
+        ArrayList<Node> openList = new ArrayList<Node>();
+        ArrayList<Node> closeList= new ArrayList<Node>();
 
         for (int i = 0; i < param_graphe.getMyMap().size(); i++) {
             Node n = param_graphe.getMyMap().get(i);
@@ -136,7 +137,7 @@ public class pathFinder {
 
         ArrayList<Node> finalPath = new ArrayList<Node>();
 
-        addToOpenList(param_start);
+        addToOpenList(param_start,openList,closeList);
         Node currentNode = null;
 
         //Stop the loop of the open list is empty
@@ -144,7 +145,7 @@ public class pathFinder {
         while (openList.size() > 0) {
             // a. get the node with the smallest F in the open list. name it CURRENT
             // a. Recuperation du node avec le plus petit F contenu dans la liste ouverte. On le nommera CURRENT.
-            currentNode = getCurrentNode();
+            currentNode = getCurrentNode(openList,closeList);
 
             //  stop the loop if the end node is added to closed list
             //  stopper la boucle si n ajoute le noeud d'arrivee a la liste fermee
@@ -153,7 +154,7 @@ public class pathFinder {
 
             // b. Place CURRENT in the closed list
             // b. Basculer CURRENT dans la liste fermee.
-            addToCloseList(currentNode);
+            addToCloseList(currentNode,openList,closeList);
 
             //  get neighbours of CURRENT
             //  recuperation des voisins de CURRENT
@@ -206,7 +207,7 @@ public class pathFinder {
                         //If the node isn't in the open list, add it to this list. Calculate F,G,H
                         //Si le node n'est pas dans la liste ouverte, ajoutez-le a la dite liste et faites de CURRENT son parent(P).
                         //Calculez et enregistrez ses proprietes F, G et H.
-                        addToOpenList(node);
+                        addToOpenList(node,openList,closeList);
                         node.setParent(currentNode);
                         node.setG(newG);
                         node.setH(newH);
@@ -228,6 +229,7 @@ public class pathFinder {
         // Soit on maintenant on construit le chemin a rebours;
 
         Node lastNode = param_end;
+        long i=0;
         while (lastNode != param_start) {
             // trace( lastNode.parent );
             finalPath.add(lastNode);
@@ -241,19 +243,19 @@ public class pathFinder {
     }
 
 
-    private static void addToCloseList(Node param_node) {
+    private static void addToCloseList(Node param_node, ArrayList<Node> openList, ArrayList<Node> closeList) {
         openList.remove(param_node);
         closeList.add(param_node);
     }
 
-    private static void addToOpenList(Node param_node) {
+    private static void addToOpenList(Node param_node, ArrayList<Node> openList, ArrayList<Node> closeList) {
         closeList.remove(param_node);
         openList.add(param_node);
     }
 
-    private static Node getCurrentNode() {
+    private static Node getCurrentNode(ArrayList<Node> openList, ArrayList<Node> closeList) {
         int maximum = openList.size();
-        int minF = 1000000;
+        int minF = Integer.MAX_VALUE;
         Node curNode = null;
 
         for (int i = 0; i < maximum; i++) {

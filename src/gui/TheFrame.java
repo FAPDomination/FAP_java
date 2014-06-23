@@ -33,6 +33,7 @@ public class TheFrame extends JFrame {
         
         // Parse the configurations of the game
         Tools.parseOptions();
+        Tools.memoryMonitor();
         
         center = new PreLoadingScreen(this);
         this.getContentPane().add(center, BorderLayout.CENTER);
