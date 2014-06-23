@@ -61,7 +61,6 @@ public class TheFrame extends JFrame {
         if(center instanceof NeedingFocus){
             ((NeedingFocus) center).releaseFocus();
         }
-        center.removeAll();
         this.remove(center);
         center = jp;
         this.getContentPane().add(center);

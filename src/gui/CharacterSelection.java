@@ -172,10 +172,13 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
         initFocus();
 
+        //launchThread();
+    }
+    
+    private void launchThread(){
         theThread = new ThreadGUI(this);
-        theThread.setRunning(false);
-        new Thread(this.theThread).start();
         theThread.setRunning(true);
+        new Thread(this.theThread).start();
     }
 
     private void initKListener() {
@@ -185,6 +188,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
     public void initFocus() {
         initKListener();
+        launchThread();
         this.setFocusable(true);
         requestFocus();
     }
@@ -436,7 +440,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
 
     public void endAnim() {
-        // NEVAH !
+        theThread.setRunning(false);
     }
 
     public void setArroSelectOrigY(int arroSelectOrigY) {
@@ -448,5 +452,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
 
     public void releaseFocus() {
+        this.removeKeyListener(kl);
     }
 }

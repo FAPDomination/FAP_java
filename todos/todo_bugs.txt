@@ -10,7 +10,8 @@ V Ability to re-launch the pauseCountdown when already in pauseCountDown
 	- Matrix bug
 V End Game b > a but a wins because indexOf(a)<indexOf(b)
 X A few Game object creating when loading the app
-  Versus->PS->CS->Minimap-<CS = CS isn't working (KeyListener dead ?)
+V Versus->PS->CS->Minimap-<CS = CS isn't working (KeyListener dead ?)
+V Character Selection : kill GUI thread
 V Multiple slides -> slowing everything
 V Minimap : black dots
 V WorldMap
