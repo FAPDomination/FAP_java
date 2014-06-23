@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();
-    private JPanel north = new JPanel();
     private JPanel center;
     
     public TheFrame() {
@@ -57,24 +56,21 @@ public class TheFrame extends JFrame {
         }
     }
     
-    public void changePanel(JPanel jp, Object layout){
-        Component compo = borderLayout1.getLayoutComponent(layout);
-        if(compo instanceof NeedingFocus){
-            ((NeedingFocus) compo).releaseFocus();
+    public void changePanel(JPanel jp){
+        
+        if(center instanceof NeedingFocus){
+            ((NeedingFocus) center).releaseFocus();
         }
-        this.remove(compo);
-        compo = jp;
-        this.getContentPane().add(compo, layout);
-        compo.setFocusable(true);
-        if(compo instanceof NeedingFocus){
-            ((NeedingFocus) compo).initFocus();
+        this.remove(center);
+        center = jp;
+        this.getContentPane().add(center);
+        center.setFocusable(true);
+        if(center instanceof NeedingFocus){
+            ((NeedingFocus) center).initFocus();
         }
         this.validate();
         this.repaint();
     }
-    
-    public void changePanel(JPanel jp){
-        changePanel(jp, BorderLayout.CENTER);
-    }
+
 
 }

@@ -287,7 +287,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
         Tools.memoryMonitor();
         theThread.setRunning(false);
         if (nextPanel != null) {
-            parent.changePanel(nextPanel, BorderLayout.CENTER);
+            parent.changePanel(nextPanel);
             nextPanel = null;
         } else {
             addButtons();

@@ -103,6 +103,6 @@ public abstract class FAPanel extends JPanel {
             pp.setNextPanel(null);
             pp.startSliding(false);
         }
-        parent.changePanel(prevPanel, BorderLayout.CENTER);
+        parent.changePanel(prevPanel);
     }
 }
