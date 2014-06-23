@@ -17,3 +17,4 @@ V Minimap : black dots
 V WorldMap
 V	- Suddenly became adv<2
 V	- Class description label visible
+  ADV : can't move when back to world map from game

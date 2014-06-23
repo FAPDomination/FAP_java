@@ -76,6 +76,10 @@ public class pathFinder {
     private static int ndv = 10;
     private static ArrayList<Node> openList;
     private static ArrayList<Node> closeList;
+    
+    private static NMap theMap;
+    private static long lastGenerationDate;
+    public static final long pathfindingMapGenerationFrequency = 5*1000;
 
     /**
      * Find the path from a starting cell to another
@@ -86,11 +90,16 @@ public class pathFinder {
      */
     public static ArrayList<Cell> findPath(ArrayList<Cell> map, Cell start, Cell end) {
         //Convert the Cell map into Node Map
-        NMap nmap = new NMap(map);
+        long diff = System.currentTimeMillis() - lastGenerationDate;
+        if(theMap == null || diff > pathfindingMapGenerationFrequency){
+            lastGenerationDate = System.currentTimeMillis();
+            theMap = new NMap(map);
+        }
+       
         Node nstart = new Node(start);
         Node nend = new Node(end);
         // Get the path
-        ArrayList<Node> nodePath = findPath(nmap, nstart, nend);
+        ArrayList<Node> nodePath = findPath(theMap, nstart, nend);
         ArrayList<Cell> cellPath = new ArrayList<Cell>();
         //Convert into cell
         for (int i = 0; i < nodePath.size(); i++) {
@@ -257,5 +266,13 @@ public class pathFinder {
         }
 
         return curNode;
+    }
+
+    public static void setTheMap(NMap theMap) {
+        pathFinder.theMap = theMap;
+    }
+
+    public static NMap getTheMap() {
+        return theMap;
     }
 }

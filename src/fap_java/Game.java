@@ -36,6 +36,8 @@ import npcs.NPCWMStarting;
 
 import npcs.actions.*;
 
+import pathFinder.pathFinder;
+
 public class Game extends JPanel implements NeedingFocus {
 
     /**
@@ -655,6 +657,10 @@ public class Game extends JPanel implements NeedingFocus {
         victoryScreen.setDisplayVictory(true);
         victoryScreen.setWinner(winner);
         gameEnded = true;
+        
+        //Reset pathfinding static map
+        pathFinder.setTheMap(null);
+        
         // versus mode
         if(adv == 0){
             victoryScreen.setAdvMode(false);
