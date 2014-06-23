@@ -594,10 +594,14 @@ public class Game extends JPanel implements NeedingFocus {
             for(int j=0;j<objects.size();j++){
                 Element e = objects.get(j);
                 if(e instanceof PauseScreen){
-                    ((PauseScreen)e).setResuming(true);
+                    PauseScreen ps = (PauseScreen)e;
+                    if(!ps.isResuming()){
+                        ps.setResuming(true);
+                        new PauseCountDown(Params.pauseDuration,thread);
+                    }
                 }
             }
-            new PauseCountDown(Params.pauseDuration,thread);
+            
         }
         else if(isNPC){
             // Get animations
