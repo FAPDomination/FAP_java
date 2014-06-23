@@ -278,13 +278,13 @@ public class MainMenu extends FAPanel implements AnimPanel {
         }
 
         theThread = new ThreadGUI(this);
-        theThread.setRunning(false);
-        new Thread(this.theThread).start();
         theThread.setRunning(true);
+        new Thread(this.theThread).start();
+        
     }
 
     public void endAnim() {
-        Tools.memoryMonitor();
+        //Tools.memoryMonitor();
         theThread.setRunning(false);
         if (nextPanel != null) {
             parent.changePanel(nextPanel);

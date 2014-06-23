@@ -11,7 +11,7 @@ T	- OutOfMemoryError
 V End Game b > a but a wins because indexOf(a)<indexOf(b)
 X A few Game object creating when loading the app
   Versus->PS->CS->Minimap-<CS = CS isn't working (KeyListener dead ?)
-  Multiple slides -> slowing everything
+V Multiple slides -> slowing everything
 V Minimap : black dots
 V WorldMap
 V	- Suddenly became adv<2

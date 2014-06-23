@@ -54,8 +54,7 @@ public class ThreadGUI implements Runnable{
      * Handle animation and controls of the game
      */
     public void run(){
-        while(true){        // infinite loop
-            if(running){
+        while(running){        // infinite loop
                 // Execute tasks
                 panel.executeAnim();
                 try{
@@ -64,7 +63,6 @@ public class ThreadGUI implements Runnable{
                 } catch (InterruptedException ie){
                     ie.printStackTrace();
                 }
-            }
         }
     }
 
