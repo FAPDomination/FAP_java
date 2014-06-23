@@ -318,5 +318,15 @@ public class Tools {
      
             //Print Maximum available memory
             System.out.println("Max Memory:" + runtime.maxMemory() / mb);
+            
+            // THreads 
+            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+            Thread[] threadArray = threadSet.toArray(new Thread[threadSet.size()]);
+            /*
+            for(int i=0;i<threadArray.length;i++){
+                System.out.println(threadArray[i]);
+            }
+            */
+            System.out.println("Threads : "+threadArray.length);
     }
 }
