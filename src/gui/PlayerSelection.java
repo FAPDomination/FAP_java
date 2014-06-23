@@ -35,10 +35,15 @@ public class PlayerSelection extends FAPanel {
     private String[] listControls = {"Player 1","Player 2","Player 3","AI Low", "AI Middle", "AI High"};
     private int maxPlayers = Params.maxPlayers;
     
-    private int displayOrigX = 140;
-    private int displayOrigY = 200;
     private int displayIncrementY = 55;
+    private int displayWidth = 150;
+    private int buttonSize = 48;
     private int displayHeight = 30;
+    private int marginX = 40;
+    
+    private int totalWidth = buttonSize+2*(displayWidth + marginX) + 4;
+    private int displayOrigX;
+    private int displayOrigY;
     
     private boolean error;
     private String message;
@@ -54,6 +59,8 @@ public class PlayerSelection extends FAPanel {
         eraseSelecters = new ArrayList<JButton>();
         // testing
 
+        displayOrigX = (theFrame.getWidth()-totalWidth)/2;
+        displayOrigY = 170;
 
         errMessage = new JLabel();
         //TODO update width to be aligned with comboboxes (when they get sized)
@@ -185,6 +192,9 @@ public class PlayerSelection extends FAPanel {
         this.validate();
         this.repaint();
         
+        
+        
+        
         for(int i=0;i<this.players.size();i++){
             // PlayerSelect
             PlayerSelect ps = players.get(i);
@@ -192,7 +202,7 @@ public class PlayerSelection extends FAPanel {
             JComboBox combo = this.controlSelecters.get(i);
             Tools.tinkerJComboBox(combo);
             combo.setSelectedIndex(ps.getControler());
-            combo.setBounds(displayOrigX+80, displayOrigY + (displayIncrementY) * i + 10, 150, displayHeight);
+            combo.setBounds(displayOrigX+48+marginX, displayOrigY + (displayIncrementY) * i + 10, displayWidth, displayHeight);
             //this.remove(combo);
             this.add(combo);
             combo.addActionListener(new ActionListener() {
@@ -204,7 +214,7 @@ public class PlayerSelection extends FAPanel {
             JComboBox team = this.teamSelecters.get(i);
             Tools.tinkerJComboBox(team);
             team.setSelectedIndex(ps.getTeam());
-            team.setBounds(displayOrigX+270, displayOrigY+(displayIncrementY)*i + 10, 150, displayHeight);
+            team.setBounds(displayOrigX+displayWidth+buttonSize+2*marginX +4, displayOrigY+(displayIncrementY)*i + 10, displayWidth, displayHeight);
             //this.remove(team);
             this.add(team);
             team.addActionListener(new ActionListener() {
@@ -215,12 +225,12 @@ public class PlayerSelection extends FAPanel {
             // Delete button
             JButton jb = this.eraseSelecters.get(i);
             //jb.setText("X");
-            jb.setSize(48,48);
+            jb.setSize(buttonSize,buttonSize);
             jb.setOpaque(false);
             jb.setUI(new Button_AddRemoveUI("btn_remove"));
             ((Button_AddRemoveUI)jb.getUI()).setHover(false);
             jb.setLocation(displayOrigX,displayOrigY-displayIncrementY);
-            jb.setBounds(displayOrigX, displayOrigY+displayIncrementY*i, 48,48);
+            jb.setBounds(displayOrigX, displayOrigY+displayIncrementY*i, buttonSize,buttonSize);
             this.add(jb);
             
             jb.addMouseListener(new java.awt.event.MouseAdapter() {
