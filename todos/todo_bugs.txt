@@ -4,7 +4,7 @@ List of known bugs :
 	- Doesn't always validate miner selection
 T	- OutOfMemoryError
 	- Method call fail
-  Ability to re-launch the pauseCountdown when already in pauseCountDown
+V Ability to re-launch the pauseCountdown when already in pauseCountDown
   Archer
 	- Compute cell
 	- Matrix bug
