@@ -105,6 +105,9 @@ V				- 3 colors
 				- All colors
 V			- Big Thumbnail
 V			- CharacterSelection thumbnail
+	- Layers
+		- PauseScreen above all
+		- other objects at their cells layer
 ------ GUI
   General Design
 ~	- Button for menu

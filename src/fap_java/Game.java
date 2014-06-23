@@ -271,14 +271,26 @@ public class Game extends JPanel implements NeedingFocus {
         
         // Repaint the map
         map.paintComponent(g);
+        PauseScreen ps = null;
         // Repaint the objects (such as arrows)
         for(int j=0;j<objects.size();j++){
-            objects.get(j).paintComponent(g);
+            Element e = objects.get(j);
+            if(e instanceof PauseScreen){
+                ps = (PauseScreen) e;
+            }
+            else{
+                objects.get(j).paintComponent(g);
+            }
         }
         if(adv <2){
             // Repaint the scoreHandler
             this.scoreHandler.paintComponent(g);
         }
+        
+        if(ps != null){
+            ps.paintComponent(g);
+        }
+        
         
         /*
         if(map.getFileID() == 0){
