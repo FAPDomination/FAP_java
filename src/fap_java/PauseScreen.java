@@ -12,6 +12,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,8 @@ import java.awt.event.KeyEvent;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -203,7 +206,28 @@ public class PauseScreen extends Element implements Serializable{
                 FontMetrics fm = g2d.getFontMetrics();
                 int textWidth = fm.stringWidth(message);
                 //TODO draw nicer string
-                g.drawString(message, x + (width - textWidth) / 2, y + 20);
+                g.setColor(Color.WHITE);
+                g.drawString(message, x + (width - textWidth) / 2, y + 400);
+
+                    if(winner == null && game.getAdv()==0){
+                        // Tie Banner
+                        Image img = Graph.getGuimg().get("TieBanner");
+                        g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
+                    }
+                    else{
+                        
+                        Team thePlayer = game.getTeams().get(0);
+                        if(thePlayer == winner){
+                            // VictoryBanner
+                            Image img = Graph.getGuimg().get("VictoryBanner");
+                            g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
+                        }
+                        else{
+                            //defeatBanner
+                            Image img = Graph.getGuimg().get("DefeatBanner");
+                            g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
+                        }
+                    }
 
                 if (winner != null) {
                     ArrayList<Player> players = winner.getPlayersInThisTeam();
@@ -211,6 +235,8 @@ public class PauseScreen extends Element implements Serializable{
                         //TODO player placement (center and space)
                         players.get(j).paintStick(g, x + 20 + j * 30, y + 100);
                     }
+                    
+                    
                 }
             }
         }

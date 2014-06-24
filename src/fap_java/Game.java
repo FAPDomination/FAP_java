@@ -135,6 +135,8 @@ public class Game extends JPanel implements NeedingFocus {
     
     private ArrayList<FSMThread> fsmThread = new ArrayList<FSMThread>();
     
+    private boolean quickPlay = false;
+    
     // performances
     public long min=-1,max=-1,moy=0,c=1,cez=0;
 
@@ -1089,5 +1091,13 @@ public class Game extends JPanel implements NeedingFocus {
 
     public boolean isGameEnded() {
         return gameEnded;
+    }
+
+    public void setQuickPlay(boolean quickPlay) {
+        this.quickPlay = quickPlay;
+    }
+
+    public boolean isQuickPlay() {
+        return quickPlay;
     }
 }
