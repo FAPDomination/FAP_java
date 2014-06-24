@@ -170,7 +170,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         }
 
 
-        initFocus();
+        //initFocus();
 
         //launchThread();
     }
