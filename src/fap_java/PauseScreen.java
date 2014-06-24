@@ -39,6 +39,7 @@ public class PauseScreen extends Element implements Serializable{
     private String message;
     private Team winner;
     private boolean advMode;
+    private boolean quickPlayMode;
 
     // Buttons
     private JButton btnResume = new JButton();
@@ -217,7 +218,7 @@ public class PauseScreen extends Element implements Serializable{
                     else{
                         
                         Team thePlayer = game.getTeams().get(0);
-                        if(thePlayer == winner){
+                        if((thePlayer == winner ) || (game.getAdv()==0 && !this.quickPlayMode)){
                             // VictoryBanner
                             Image img = Graph.getGuimg().get("VictoryBanner");
                             g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
@@ -381,5 +382,13 @@ public class PauseScreen extends Element implements Serializable{
     public void exit(){
         game.remove(this.thumbnailText);
         thumbnailText.setText("");
+    }
+
+    public void setQuickPlayMode(boolean quickPlayMode) {
+        this.quickPlayMode = quickPlayMode;
+    }
+
+    public boolean isQuickPlayMode() {
+        return quickPlayMode;
     }
 }

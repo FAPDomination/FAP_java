@@ -548,7 +548,7 @@ public class Game extends JPanel implements NeedingFocus {
      * Tests if the victory was reached by a Team. if yes, returns it
      * @return the winner team (or null)
      */
-    public Team testVictory() {
+    public void testVictory() {
         Team p= null;
         //test for each player
         for (int i = 0; i < teams.size(); i++) {
@@ -565,6 +565,7 @@ public class Game extends JPanel implements NeedingFocus {
                 if (((double)tilesOwned) / totalTile >= victTile) {
                     if(p!=null){
                         endGame(null);
+                        return;
                     }else{
                         p = te;
                     }
@@ -574,9 +575,15 @@ public class Game extends JPanel implements NeedingFocus {
             if (victTime != 0 && this.getThread().getCount() > victTime * 1000) {
                 System.out.println("Time out !");
                 endGame(null);
+                return;
             }
         }
-        return p;
+        
+        
+        if(p != null){
+            endGame(p);
+            return;
+        }
     }
     
     /**
@@ -667,6 +674,7 @@ public class Game extends JPanel implements NeedingFocus {
             }
         }
         victoryScreen.setDisplayVictory(true);
+        victoryScreen.setQuickPlayMode(this.quickPlay);
         victoryScreen.setWinner(winner);
         gameEnded = true;
         
