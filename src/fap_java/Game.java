@@ -678,7 +678,7 @@ public class Game extends JPanel implements NeedingFocus {
             victoryScreen.setAdvMode(false);
             if(winner == null){
                 System.out.println("Tie !");
-                //victoryScreen.setMessage("Match Nul !");
+                victoryScreen.setMessage("Match Nul !");
             }
             else{
                 victoryScreen.setMessage("Fin du match !");

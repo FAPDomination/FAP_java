@@ -205,8 +205,8 @@ public class Graph {
             guimg.put("iconJCombo", ImageIO.read(new File("resources/images/gui/iconJCombo.png")));
             //VictoryScreen
             guimg.put("VictoryBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/VictoryBanner.png")));
-            guimg.put("DefeatBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/VictoryBanner.png")));
-            guimg.put("TieBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/VictoryBanner.png")));
+            guimg.put("DefeatBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/DefeatBanner.png")));
+            guimg.put("TieBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/TieBanner.png")));
 
             File location = new File(Constants.c.get(Constants.pictureSet)+"/cells/regular.png");
             basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
