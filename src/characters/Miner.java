@@ -3,6 +3,7 @@ package characters;
 import animations.AnimWarp;
 import animations.Animation;
 
+import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Game;
 import fap_java.Graph;
@@ -105,6 +106,9 @@ public class Miner extends Player{
                    if (c!= null && c.getOccupied() == null && c.getType()==1) {
                        this.getCurrent().setOccupied(null);
                        this.setCurrent(c);
+                       this.setDrawn(c);
+                       this.setX( CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[0] + Params.OFFX);
+                       this.setY( CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[1] + Params.OFFY);
                        this.setI(c.getI());
                        this.setJ(c.getJ());
                        c.activateCell(this);

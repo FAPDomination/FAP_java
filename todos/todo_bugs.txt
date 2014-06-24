@@ -4,6 +4,7 @@ List of known bugs :
 	- Doesn't always validate miner selection
 T	- OutOfMemoryError
 	- Method call fail
+	- Warp weight recursive loop
 V Ability to re-launch the pauseCountdown when already in pauseCountDown
   Archer
 	- Compute cell
@@ -16,5 +17,10 @@ V Multiple slides -> slowing everything
 V Minimap : black dots
 V WorldMap
 V	- Suddenly became adv<2
-V	- Class description label visible
-  ADV : can't move when back to world map from game
+V	- Class description label visible 
+  NPC message overlaping
+  NPC exception with asker
+V Bug with progressive displacement and warp
+  ADV :
+	can't move when back to world map from game
+	VictoryScreen doesn't last
