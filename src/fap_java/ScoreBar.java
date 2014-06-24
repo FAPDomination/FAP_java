@@ -34,10 +34,10 @@ public class ScoreBar {
             te.setScore(score);
         }
         //Check victory
-        Team winner = game.testVictory();
-        if(winner != null){
+        game.testVictory();
+        /*if(winner != null){
             game.endGame(winner);
-        }
+        }*/
     }
     
     public void paintComponent(Graphics g) {
