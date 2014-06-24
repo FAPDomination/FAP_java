@@ -49,3 +49,12 @@ Il faut reprendre ce principe.
 Ou alors, on pourrait aussi avoir un contour sur toute la zone conquérie (toutes cellules) mais seulement sur la bordure (en gros, les frontières de notre royaume).
 ça serait plus logique en terme de vision de quoi est conquéri ou pas, et moins lourd puisqu'on n'aurait pas chaque cellule en vers mais seulement les bordures
 Idées d'algo : pour chaque cellule conquérie, pour chaque arrête, checker si la cellule voisine est conquérie aussi, et si non, peindre l'arrête
+
+------ Specs pour l'executable
+Doit être capable de
+	- Lancer le jar avec des options custom
+	- Faire du plein écran
+	- En mode plein écran d'adapter la résolution de l'écran
+	- D'adapter la taille du jeu sans modifier le rapport, quitte à mettre des bandes noires
+Penser à changer les valeurs de mémoires pour la VM avec -Xmx512m par exemple
+Une version linux ?
