@@ -279,7 +279,6 @@ public class MainMenu extends FAPanel implements AnimPanel {
         }
 
         theThread = new ThreadGUI(this);
-        theThread.setRunning(true);
         new Thread(this.theThread).start();
         
     }
