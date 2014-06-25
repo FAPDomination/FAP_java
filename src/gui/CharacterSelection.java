@@ -36,6 +36,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
     private Game advGame;
     
+    private boolean continuing=false;
+    
     private ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
 
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
@@ -124,6 +126,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             if (only7) {
                 players.get(0).setPc(7);
                 this.nextFrame();
+                this.continuing = true;
                 return;
             }
         }
@@ -204,9 +207,14 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
     
     private void launchThread(){
-        theThread = new ThreadGUI(this);
-        theThread.setRunning(true);
-        new Thread(this.theThread).start();
+        if(!continuing){
+            theThread = new ThreadGUI(this);
+            theThread.setRunning(true);
+            new Thread(this.theThread).start();
+        }
+        else{
+            this.continuing = false;
+        }
     }
 
     private void initKListener() {
