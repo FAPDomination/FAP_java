@@ -902,27 +902,9 @@ public class Game extends JPanel implements NeedingFocus {
         //Load game :
         this.gameSave = Tools.loadGame();
         // Init map parents
-        //TODO put parents in an external file ?
-        Map<String,ArrayList<String>> mapParents = new HashMap<String,ArrayList<String>>();
-        for(int i=0;i<Constants.listAdvMaps.length;i++){
-            mapParents.put(Constants.listAdvMaps[i], new ArrayList<String>());
-        }
-        // Fill map parents
-        /*
-         * {"18,11","18,10","17,9","17,10","16,10","18,9"};
-        mapParents["18,11"] = [0];
-        mapParents["18,10"] = [0];
-        mapParents[22] = [1,"18,10","18,11"];
-        mapParents[23] = [1,"18,10",22];
-        mapParents[24] = [2,23,20];
-        mapParents[25] = [0];*/
         
-        mapParents.get("17,9").add("18,11");
+        Map<String,ArrayList<String>> mapParents = Tools.loadWMParentCells();
         
-        mapParents.get("17,10").add("18,10");
-        mapParents.get("17,10").add("17,9");
-        
-        mapParents.get("16,10").add("17,10");
         
         
         // Get conquered cell

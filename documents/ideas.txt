@@ -49,3 +49,9 @@ Il faut reprendre ce principe.
 Ou alors, on pourrait aussi avoir un contour sur toute la zone conquérie (toutes cellules) mais seulement sur la bordure (en gros, les frontières de notre royaume).
 ça serait plus logique en terme de vision de quoi est conquéri ou pas, et moins lourd puisqu'on n'aurait pas chaque cellule en vers mais seulement les bordures
 Idées d'algo : pour chaque cellule conquérie, pour chaque arrête, checker si la cellule voisine est conquérie aussi, et si non, peindre l'arrête
+
+------ Générateurs de conf :
+Si il y en a plus d'un (comme celui qui génère le fichier contenant les paramètres des jeux de la World Map), ils pourraient être lancés soit :
+- Au premier démarrage de l'application
+- Lors de l'installation
+- à la main par moi-même et le fichiers générés seront copiés par l'installeur

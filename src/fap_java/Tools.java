@@ -224,6 +224,34 @@ public class Tools {
         return mapList;
     }
     
+    public static Map<String,ArrayList<String>> loadWMParentCells(){
+        Map<String,ArrayList<String>> parentCells = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.wmParentCells);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            parentCells = (Map<String,ArrayList<String>>)in.readObject();
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.err.println("Couldn't find parent cells configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            System.err.println("Couldn't load parent cells configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.err.println("Impossibru, class not found");
+            Fapplication.exitOnError();
+            c.printStackTrace();
+            return null;
+        }
+        return parentCells;
+    }
+    
     public static NPC checkNPCOnCell(Game game, Cell c) {
         NPC npc = null;
         if (game.getAdv() > 0) {
