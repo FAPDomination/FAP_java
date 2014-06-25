@@ -454,14 +454,10 @@ public abstract class Player extends Human {
                 
                 switch(ori){
                     case 2:
-                        drawn = current;
-                        break;
                     case 3:
+                    case 4:
                         drawn = current;
                         break;
-                case 4:
-                    drawn = current;
-                    break;
                 }
 
                 if (!current.isWalked()) {
@@ -479,7 +475,6 @@ public abstract class Player extends Human {
                 // Check for special tiles
                 switch (current.getType()) {
                 case 10: // Warp
-
                     // get the cell to be warped at
                     String[] tabS = new String[2];
                     tabS = c.getAddParam().split(",");
@@ -494,6 +489,12 @@ public abstract class Player extends Human {
                             current.setOccupied(null);
                             current = wantedCell;
                             current.setOccupied(this);
+                            
+                            
+                            x = CMap.giveTalePosition(current.getI(), current.getJ())[0] + Params.OFFX;
+                            y = CMap.giveTalePosition(current.getI(), current.getJ())[1] + Params.OFFY;
+                            setDrawn(current);
+                            
                             this.setI(current.getI());
                             this.setJ(current.getJ());
                             current.activateCell(this);
@@ -879,5 +880,13 @@ public abstract class Player extends Human {
 
     public Cell getDrawn() {
         return drawn;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getY() {
+        return y;
     }
 }

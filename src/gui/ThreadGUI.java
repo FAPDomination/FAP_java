@@ -14,7 +14,7 @@ public class ThreadGUI implements Runnable{
      */
     public ThreadGUI(AnimPanel panel) {
         this.panel = panel;
-        this.running = false;
+        this.running = true;
         count = 0;
     }
     

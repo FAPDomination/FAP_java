@@ -170,14 +170,13 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         }
 
 
-        initFocus();
+        //initFocus();
 
         //launchThread();
     }
     
     private void launchThread(){
         theThread = new ThreadGUI(this);
-        theThread.setRunning(true);
         new Thread(this.theThread).start();
     }
 

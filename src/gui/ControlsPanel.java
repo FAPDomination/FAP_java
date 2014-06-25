@@ -47,10 +47,8 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
         this.repaint();
 
         theThread = new ThreadGUI(this);
-        theThread.setRunning(false);
         theThread.setDelay(100);
         new Thread(this.theThread).start();
-        theThread.setRunning(true);
     }
 
     public void paintComponent(Graphics g) {

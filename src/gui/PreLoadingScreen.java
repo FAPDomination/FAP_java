@@ -25,9 +25,7 @@ public class PreLoadingScreen extends FAPanel implements AnimPanel {
         initiated = false;
         
         theThread = new ThreadGUI(this);
-        theThread.setRunning(false);
         new Thread(this.theThread).start();
-        theThread.setRunning(true);
     }
     
     public void paintComponent(Graphics g){
