@@ -3,6 +3,7 @@ package npcs;
 import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Game;
+import fap_java.GameConfig;
 import fap_java.Graph;
 import fap_java.NPC;
 
@@ -40,7 +41,7 @@ public class NPCWMStarting extends NPC {
       { 5 * CMap.TW / 4 , 3 * CMap.TH / 4 + offY + 1 }, { 5 * CMap.TW / 4 , 6 * CMap.TH / 4 + offY + 1 },
       { 3 * CMap.TW / 4, 7 * CMap.TH / 4 + offY + 2 }, { CMap.TW / 4, 6 * CMap.TH / 4 + offY } };
 
-    public NPCWMStarting(Cell pos, boolean conquered, Game game, Game gameToLaunch) {
+    public NPCWMStarting(Cell pos, boolean conquered, Game game, GameConfig gameToLaunch) {
         super(pos, true, false, null, game, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
         actions = new ArrayList<Action>();

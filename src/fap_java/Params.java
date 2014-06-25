@@ -240,7 +240,7 @@ public class Params {
     
     public static final int timeForSelection = 100;
     
-    public static Map<Integer,Cell> mapList = new HashMap<Integer,Cell>();
+    public static Map<String,GameConfig> mapList = new HashMap<String,GameConfig>();
     
     public static final int displacementAnimationLength = 3;
 

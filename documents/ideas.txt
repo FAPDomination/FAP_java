@@ -58,3 +58,10 @@ Doit être capable de
 	- D'adapter la taille du jeu sans modifier le rapport, quitte à mettre des bandes noires
 Penser à changer les valeurs de mémoires pour la VM avec -Xmx512m par exemple
 Une version linux ?
+
+------ Générateurs de conf :
+Si il y en a plus d'un (comme celui qui génère le fichier contenant les paramètres des jeux de la World Map), ils pourraient être lancés soit :
+- Au premier démarrage de l'application
+- Lors de l'installation
+- à la main par moi-même et le fichiers générés seront copiés par l'installeur
+

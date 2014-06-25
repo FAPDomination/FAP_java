@@ -36,6 +36,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
     private Game advGame;
     
+    private boolean continuing=false;
+    
     private ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
 
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
@@ -109,6 +111,27 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         charList = new ArrayList<CharacterDisplay>();
         arrowList = new ArrayList<ArrowSelect>();
 
+
+        
+        //Check unlocked
+        if (advGame != null) {
+            GameSave gs = Tools.loadGame();
+            ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
+            boolean only7 = true;
+            for (int i = 0; i < listUnlockedChars.size(); i++) {
+                if (i != 7 && listUnlockedChars.get(i)) {
+                    only7 = false;
+                }
+            }
+            if (only7) {
+                players.get(0).setPc(7);
+                this.continuing = true;
+                return;
+            }
+        }
+
+
+
         int k = 1;
         for (int i = 1; i < 10; i++) {
             boolean m = i != 2 && i != 7;
@@ -161,14 +184,21 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                     }while(b);
                     ps.setPc(newPC);
                 } else {
-                    int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
-                    ps.setPc(listUnlockedCharsID.get(rand));
+                    if(listUnlockedCharsID.size()>0){
+                        int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
+                        ps.setPc(listUnlockedCharsID.get(rand));
+                    }
+                    else{
+                        
+                    }
                 }
                 ArrowSelect as = new ArrowSelect(ps, this);
                 arrowList.set(ps.getControler(), as);
             }
         }
 
+
+        
 
         //initFocus();
 
@@ -186,10 +216,16 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
 
     public void initFocus() {
-        initKListener();
-        launchThread();
-        this.setFocusable(true);
-        requestFocus();
+        if(!continuing){
+            initKListener();
+            launchThread();
+            this.setFocusable(true);
+            requestFocus();
+        }
+        else{
+            this.nextFrame();
+            this.continuing = false;
+        }
     }
 
     public void nextFrame() {
@@ -238,8 +274,9 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
         }
 
-        this.theThread.setRunning(false);
-
+        if(theThread != null){
+            this.theThread.setRunning(false);
+        }
         // Proceeding to next panel
         JPanel nextPanel;
         if (advGame != null) {
@@ -418,22 +455,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
         }
 
-
-        //Check unlocked
-        if (advGame != null) {
-            GameSave gs = Tools.loadGame();
-            ArrayList<Boolean> listUnlockedChars = gs.getUnlockedChars();
-            boolean only7 = true;
-            for (int i = 0; i < listUnlockedChars.size(); i++) {
-                if (i != 7 && listUnlockedChars.get(i)) {
-                    only7 = false;
-                }
-            }
-            if (only7) {
-                players.get(0).setPc(7);
-                this.nextFrame();
-            }
-        }
 
         this.repaint();
     }

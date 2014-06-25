@@ -27,12 +27,14 @@ public class Constants {
     public static final int numberOfAdvSwitches = 10;
     public static final int numberOfAdvChars = 10;
     
-    public static int[] listAdvMaps = {20,21,22,23,24,25};
+    public static String[] listAdvMaps = {"18,11","18,10","17,9","17,10","16,10","18,9"};
     
     public static String savegameFile = "SAVEGAME_FILE";
     public static String controlersFile = "CONTROLS_FILE";
     public static String pictureSet = "GRAPH_SET";
     
+    public static String wmGameConfigMap = "resources/wmGCM.adv";
+    public static String wmParentCells = "resources/wmPC.adv";
     
     public static Cell initialCellWorldMap = new Cell(18,10);
     

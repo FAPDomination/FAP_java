@@ -109,7 +109,8 @@ V	- Link maps to their cells
 V		- Linking
 X		- Find a better place for initialization ?
 X			- Make it in an external file
-		- Build a special structure that won't launch games but store parameters
+V		- Build a special structure that won't launch games but store parameters
+V		- Better link between map id and gameConfig
 V	- Compute changes and save them
 V		- Check for parent cells
 V		- Update value

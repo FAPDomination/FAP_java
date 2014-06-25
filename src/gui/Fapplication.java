@@ -60,4 +60,8 @@ public class Fapplication {
     public static Game getWorldMap() {
         return worldMap;
     }
+    
+    public static void exitOnError(){
+        System.exit(2);
+    }
 }

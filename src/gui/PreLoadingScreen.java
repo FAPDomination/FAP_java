@@ -47,7 +47,7 @@ public class PreLoadingScreen extends FAPanel implements AnimPanel {
 
     public void endAnim() {
         //MainMenu menu = new MainMenu(this.parent,false);
-        Date d = new Date();
+        //Date d = new Date();
         //System.out.println("Resources loaded in "+(d.getTime()-begin)+"ms");
         Fapplication.setWorldMap(new Game(0));
         parent.changePanel(new MainMenu(this.parent,false));
