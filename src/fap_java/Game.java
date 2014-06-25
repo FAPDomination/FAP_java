@@ -137,6 +137,8 @@ public class Game extends JPanel implements NeedingFocus {
     
     private boolean quickPlay = false;
     
+    private String WMcellHash;
+    
     // performances
     public long min=-1,max=-1,moy=0,c=1,cez=0;
 
@@ -701,8 +703,8 @@ public class Game extends JPanel implements NeedingFocus {
             if(thePlayer == winner){
                 // Change and save gameDatas
                 this.gameSave = Tools.loadGame();
-                Map<Integer,Integer> mapValues = gameSave.getMapValues();
-                mapValues.put(map.getFileID(),2);
+                Map<String,Integer> mapValues = gameSave.getMapValues();
+                mapValues.put(this.WMcellHash,2);
                 Tools.saveGame(this.gameSave);
                 Fapplication.getWorldMap().initWorldMap();
                 // display victory : (wich will have its own back to world map)
@@ -857,67 +859,46 @@ public class Game extends JPanel implements NeedingFocus {
         this.listNPCs = new ArrayList<NPC>();
         // Linking maps to Cells
         //TODO put linking in an external file ?
-        Params.mapList.put(20, new Cell(18,11));
-        Params.mapList.put(21, new Cell(18,10));
-        Params.mapList.put(22, new Cell(17,9));
-        Params.mapList.put(23, new Cell(17,10));
-        Params.mapList.put(24, new Cell(16,10));
-        Params.mapList.put(25, new Cell(18,9));
+        Params.mapList.put("18,11", new GameConfig("1,1","0,1","0,1","0,2",false,20,500,0,0,1,"18,11"));
+        Params.mapList.put("18,10", new GameConfig("1,5","0,1","0,1","0,2",false,21,1000,0,0,1,"18,10"));
+        Params.mapList.put("17,9", new GameConfig("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1,"17,9"));
+        Params.mapList.put("17,10", new GameConfig("1,1","0,1","0,1","0,2",false,23,1000,0,0,1,"17,10"));
+        Params.mapList.put("16,10", new GameConfig("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1,"16,10"));
+        Params.mapList.put("18,9", new GameConfig(25,"18,9"));
     
-        Map<Integer,GameConfig> gameList = new HashMap<Integer,GameConfig>();
-        gameList.put(25, new GameConfig(25));
-        gameList.put(20, new GameConfig("1,1","0,1","0,1","0,2",false,20,500,0,0,1));
-        gameList.put(21, new GameConfig("1,5","0,1","0,1","0,2",false,21,1000,0,0,1));
-        gameList.put(22, new GameConfig("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
-        gameList.put(23, new GameConfig("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
-        gameList.put(24, new GameConfig("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
-        
-        //Test
-        /*
-        Game ga = gameList.get(20).createGame();
-        try {
-            FileOutputStream fileOut = new FileOutputStream("game.ga");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(ga);
-            out.close();
-            fileOut.close();
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
-        */
-        //-----------
+
 
         // Get list of conquered cells
         this.computeWorldMap();
-        ArrayList<Integer> listJustAvailableCells = getListOfWMCells(1);
-        ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
-        ArrayList<Integer> listNotAvailableCells = getListOfWMCells(0);
+        ArrayList<String> listJustAvailableCells = getListOfWMCells(1);
+        ArrayList<String> listConqueredCells = getListOfWMCells(2);
+        ArrayList<String> listNotAvailableCells = getListOfWMCells(0);
         /*System.out.println("Just Av : "+listJustAvailableCells);
         System.out.println("Not Av : "+listNotAvailableCells);
         System.out.println("Conquered : "+listConqueredCells);*/
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
-            int mapID = listNotAvailableCells.get(i);
-            Cell indexes = Params.mapList.get(mapID);
-            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
+            String cellHash = listNotAvailableCells.get(i);
+            String[] coords = cellHash.split(",");
+            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
             this.addNPC(new NPCWMBlocking(pos));
         }
         
         for(int i=0;i<listJustAvailableCells.size();i++){
-            int mapID = listJustAvailableCells.get(i);
+            String cellHash = listJustAvailableCells.get(i);
+            String[] coords = cellHash.split(",");
+            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-            Cell indexes = Params.mapList.get(mapID);
-            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
-                this.addNPC(new NPCWMStarting(pos,false,this,gameList.get(mapID)));
+                this.addNPC(new NPCWMStarting(pos,false,this,Params.mapList.get(cellHash)));
             //}
         }
         
         for(int i=0;i<listConqueredCells.size();i++){
-            int mapID = listConqueredCells.get(i);
+            String cellHash = listConqueredCells.get(i);
+            String[] coords = cellHash.split(",");
+            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-            Cell indexes = Params.mapList.get(mapID);
-            Cell pos = this.map.getCell((int)indexes.getI(), (int)indexes.getJ());
-                this.addNPC(new NPCWMStarting(pos,true,this,gameList.get(mapID)));
+                this.addNPC(new NPCWMStarting(pos,true,this,Params.mapList.get(cellHash)));
             //}
         }
     }
@@ -927,34 +908,35 @@ public class Game extends JPanel implements NeedingFocus {
         this.gameSave = Tools.loadGame();
         // Init map parents
         //TODO put parents in an external file ?
-        Map<Integer,ArrayList<Integer>> mapParents = new HashMap<Integer,ArrayList<Integer>>();
+        Map<String,ArrayList<String>> mapParents = new HashMap<String,ArrayList<String>>();
         for(int i=0;i<Constants.listAdvMaps.length;i++){
-            mapParents.put(Constants.listAdvMaps[i], new ArrayList<Integer>());
+            mapParents.put(Constants.listAdvMaps[i], new ArrayList<String>());
         }
         // Fill map parents
-        /*mapParents[20] = [0];
-        mapParents[21] = [0];
-        mapParents[22] = [1,21,20];
-        mapParents[23] = [1,21,22];
+        /*
+         * {"18,11","18,10","17,9","17,10","16,10","18,9"};
+        mapParents["18,11"] = [0];
+        mapParents["18,10"] = [0];
+        mapParents[22] = [1,"18,10","18,11"];
+        mapParents[23] = [1,"18,10",22];
         mapParents[24] = [2,23,20];
         mapParents[25] = [0];*/
         
-        mapParents.get(22).add(20);
+        mapParents.get("17,9").add("18,11");
         
-        mapParents.get(23).add(21);
-        mapParents.get(23).add(22);
+        mapParents.get("17,10").add("18,10");
+        mapParents.get("17,10").add("17,9");
         
-        mapParents.get(24).add(23);
-        // This line doesn't do much, does it ?
-        mapParents.get(24).add(20);
+        mapParents.get("16,10").add("17,10");
+        
         
         // Get conquered cell
-        ArrayList<Integer> listConqueredCells = getListOfWMCells(2);
-        Map<Integer, Integer> mapValues = gameSave.getMapValues();
+        ArrayList<String> listConqueredCells = getListOfWMCells(2);
+        Map<String, Integer> mapValues = gameSave.getMapValues();
         for (int i = 0; i < Constants.listAdvMaps.length; i++) {
-            int mapID = Constants.listAdvMaps[i];
-            int mapConquest = mapValues.get(mapID);
-            ArrayList<Integer> parents = mapParents.get(mapID);
+            String cellHash = Constants.listAdvMaps[i];
+            int mapConquest = mapValues.get(cellHash);
+            ArrayList<String> parents = mapParents.get(cellHash);
             boolean available = true;
             if (parents != null && parents.size() > 0) {
                 for (int j = 0; j < parents.size(); j++) {
@@ -965,7 +947,7 @@ public class Game extends JPanel implements NeedingFocus {
                 }
             }
             if(available && mapConquest == 0){
-                gameSave.getMapValues().put(mapID, 1);
+                gameSave.getMapValues().put(cellHash, 1);
             }
         }
         
@@ -976,9 +958,9 @@ public class Game extends JPanel implements NeedingFocus {
         Tools.saveGame(this.gameSave);
     }
     
-    public ArrayList<Integer> getListOfWMCells(int value){
-        Map<Integer, Integer> mapValues = gameSave.getMapValues();
-        ArrayList<Integer> list = new ArrayList<Integer>();
+    public ArrayList<String> getListOfWMCells(int value){
+        Map<String, Integer> mapValues = gameSave.getMapValues();
+        ArrayList<String> list = new ArrayList<String>();
         for (int i = 0; i < Constants.listAdvMaps.length; i++) {
             int mapConquest = mapValues.get(Constants.listAdvMaps[i]);
             //System.out.println(mapConquest);
@@ -1110,5 +1092,13 @@ public class Game extends JPanel implements NeedingFocus {
 
     public boolean isQuickPlay() {
         return quickPlay;
+    }
+
+    public void setWMcellHash(String WMcellHash) {
+        this.WMcellHash = WMcellHash;
+    }
+
+    public String getWMcellHash() {
+        return WMcellHash;
     }
 }

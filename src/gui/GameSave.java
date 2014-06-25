@@ -14,17 +14,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameSave implements Serializable {
-    Map<Integer, Integer> mapValues;
+    Map<String, Integer> mapValues;
     ArrayList<Boolean> gameSwitches;
     ArrayList<Boolean> unlockedChars;
     
     public GameSave() {
-        mapValues =  new HashMap<Integer, Integer>();
+        mapValues =  new HashMap<String, Integer>();
         gameSwitches = new ArrayList<Boolean>();
         unlockedChars = new ArrayList<Boolean>();
         for(int i=0; i<Constants.listAdvMaps.length;i++){
-            int mapID = Constants.listAdvMaps[i];
-            mapValues.put(mapID,0);
+            String cellHash = Constants.listAdvMaps[i];
+            mapValues.put(cellHash,0);
             //System.out.println(table[0]+"-"+table[1]);
         }
         for(int j=0;j<Constants.numberOfAdvSwitches;j++){
@@ -54,11 +54,11 @@ public class GameSave implements Serializable {
         return unlockedChars;
     }
 
-    public void setMapValues(Map<Integer, Integer> mapValues) {
+    public void setMapValues(Map<String, Integer> mapValues) {
         this.mapValues = mapValues;
     }
 
-    public Map<Integer, Integer> getMapValues() {
+    public Map<String, Integer> getMapValues() {
         return mapValues;
     }
 }

@@ -48,7 +48,9 @@ public class GameConfig {
     
     private int nmap;
     
-    public GameConfig(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime, int adv) {
+    private String WMCellHash;
+    
+    public GameConfig(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime, int adv, String WMCellHash) {
         this.victScore = victScore;
         this.victTile = victTile;
         this.victTime = victTime;
@@ -60,13 +62,24 @@ public class GameConfig {
         this.adv = adv;
         
         this.nmap = nmap;
+        this.WMCellHash = WMCellHash;
     }
     
-    public GameConfig(int nmap){
-        this("7","0","0","0",false,nmap,0,0,0,2);
+    public GameConfig(int nmap,String WMCellHash){
+        this("7","0","0","0",false,nmap,0,0,0,2,WMCellHash);
     }
     
     public Game createGame(){
-        return new Game(whoIsPlaying, wichTeam, controlers, isFSM, randStart, nmap, victScore, victTile, victTime, adv);
+        Game g = new Game(whoIsPlaying, wichTeam, controlers, isFSM, randStart, nmap, victScore, victTile, victTime, adv);
+        g.setWMcellHash(this.WMCellHash);
+        return g;
+    }
+
+    public void setNmap(int nmap) {
+        this.nmap = nmap;
+    }
+
+    public int getNmap() {
+        return nmap;
     }
 }
