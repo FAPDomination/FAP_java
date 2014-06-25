@@ -1,6 +1,8 @@
 package fap_java;
 
-public class GameConfig {
+import java.io.Serializable;
+
+public class GameConfig implements Serializable{
     
     /**
      * How much points does it take to win the game

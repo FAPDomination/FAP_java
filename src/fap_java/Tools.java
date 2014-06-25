@@ -2,6 +2,7 @@ package fap_java;
 
 import gui.Constants;
 import gui.FAPComboBoxRenderer;
+import gui.Fapplication;
 import gui.GameSave;
 
 import java.awt.BasicStroke;
@@ -193,6 +194,34 @@ public class Tools {
             return null;
         }
         return gs;
+    }
+    
+    public static Map<String,GameConfig> loadWMGameConfigMap(){
+        Map<String,GameConfig> mapList = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.wmGameConfigMap);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            mapList = (Map<String,GameConfig>)in.readObject();
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.err.println("Couldn't find World Map configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            System.err.println("Couldn't load World Map configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.err.println("Impossibru, class not found");
+            Fapplication.exitOnError();
+            c.printStackTrace();
+            return null;
+        }
+        return mapList;
     }
     
     public static NPC checkNPCOnCell(Game game, Cell c) {

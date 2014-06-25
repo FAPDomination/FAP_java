@@ -33,6 +33,8 @@ public class Constants {
     public static String controlersFile = "CONTROLS_FILE";
     public static String pictureSet = "GRAPH_SET";
     
+    public static String wmGameConfigMap = "resources/wmGCM.adv";
+    
     
     public static Cell initialCellWorldMap = new Cell(18,10);
     
