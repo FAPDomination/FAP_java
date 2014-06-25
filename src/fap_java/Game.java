@@ -873,6 +873,7 @@ public class Game extends JPanel implements NeedingFocus {
         gameList.put(24, new GameConfig("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
         
         //Test
+        /*
         Game ga = gameList.get(20).createGame();
         try {
             FileOutputStream fileOut = new FileOutputStream("game.ga");
@@ -883,6 +884,7 @@ public class Game extends JPanel implements NeedingFocus {
         } catch (IOException i) {
             i.printStackTrace();
         }
+        */
         //-----------
 
         // Get list of conquered cells
