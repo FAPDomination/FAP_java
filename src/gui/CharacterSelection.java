@@ -125,7 +125,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
             if (only7) {
                 players.get(0).setPc(7);
-                this.nextFrame();
                 this.continuing = true;
                 return;
             }
@@ -207,14 +206,11 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
     
     private void launchThread(){
-        if(!continuing){
+        
             theThread = new ThreadGUI(this);
             theThread.setRunning(true);
             new Thread(this.theThread).start();
-        }
-        else{
-            this.continuing = false;
-        }
+
     }
 
     private void initKListener() {
@@ -223,10 +219,16 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
 
     public void initFocus() {
-        initKListener();
-        launchThread();
-        this.setFocusable(true);
-        requestFocus();
+        if(!continuing){
+            initKListener();
+            launchThread();
+            this.setFocusable(true);
+            requestFocus();
+        }
+        else{
+            this.nextFrame();
+            this.continuing = false;
+        }
     }
 
     public void nextFrame() {
