@@ -155,6 +155,7 @@ public class Game extends JPanel implements NeedingFocus {
      * @param victTime Time before automatically losing the game
      */
     public Game(String whoIsPlaying, String wichTeam, String controlers, String isFSM, boolean randStart, int nmap, int victScore, double victTile, int victTime, int adv) {
+        System.out.println("Creating game");
         this.victScore = victScore;
         this.victTile = victTile;
         this.victTime = victTime;
@@ -863,16 +864,16 @@ public class Game extends JPanel implements NeedingFocus {
         Params.mapList.put(24, new Cell(16,10));
         Params.mapList.put(25, new Cell(18,9));
     
-        Map<Integer,Game> gameList = new HashMap<Integer,Game>();
-        gameList.put(25, new Game(25));
-        gameList.put(20, new Game("1,1","0,1","0,1","0,2",false,20,500,0,0,1));
-        gameList.put(21, new Game("1,5","0,1","0,1","0,2",false,21,1000,0,0,1));
-        gameList.put(22, new Game("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
-        gameList.put(23, new Game("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
-        gameList.put(24, new Game("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
+        Map<Integer,GameConfig> gameList = new HashMap<Integer,GameConfig>();
+        gameList.put(25, new GameConfig(25));
+        gameList.put(20, new GameConfig("1,1","0,1","0,1","0,2",false,20,500,0,0,1));
+        gameList.put(21, new GameConfig("1,5","0,1","0,1","0,2",false,21,1000,0,0,1));
+        gameList.put(22, new GameConfig("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1));
+        gameList.put(23, new GameConfig("1,1","0,1","0,1","0,2",false,23,1000,0,0,1));
+        gameList.put(24, new GameConfig("1,1,1","0,1,2","0,1,1","0,1,2",false,24,1000,0,0,1));
         
         //Test
-        Game ga = gameList.get(20);
+        Game ga = gameList.get(20).createGame();
         try {
             FileOutputStream fileOut = new FileOutputStream("game.ga");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);

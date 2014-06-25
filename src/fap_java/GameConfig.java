@@ -65,4 +65,8 @@ public class GameConfig {
     public GameConfig(int nmap){
         this("7","0","0","0",false,nmap,0,0,0,2);
     }
+    
+    public Game createGame(){
+        return new Game(whoIsPlaying, wichTeam, controlers, isFSM, randStart, nmap, victScore, victTile, victTime, adv);
+    }
 }
