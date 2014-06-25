@@ -228,7 +228,8 @@ public class MainMenu extends FAPanel implements AnimPanel {
 
         Game game =
             new Game("" + pcP + "," + pcF, "0,1", "0,1", "0,1", false, nmap, Params.defaultVictoryScore, 0, 0, 0);
-
+        game.setQuickPlay(true);
+        
         nextPanel = new LoadingScreen(parent, game, this, nmap);
         this.startSliding(true);
     }

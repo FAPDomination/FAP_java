@@ -77,7 +77,7 @@ public class TheComputingThread implements Runnable{
      * Handle animation and controls of the game
      */
     public void run(){
-        while(true){        // infinite loop
+        while(!myGame.isGameEnded()){        // infinite loop
             // if the thread is running
             if(running){
                 // Execute tasks (generate a clock-tick)
