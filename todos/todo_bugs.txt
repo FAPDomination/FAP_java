@@ -21,7 +21,7 @@ V	- Class description label visible
   NPC message overlaping
   NPC exception with asker
 V Bug with progressive displacement and warp
-V CharacterSelection probably double threading
+V CharacterSelection probably double threading (was indeed)
   ADV :
 	can't move when back to world map from game
 	VictoryScreen doesn't last

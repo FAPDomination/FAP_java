@@ -116,6 +116,7 @@ V		- Update value
 V		- Save
 V	- Replace mapValues & co by HashMaps
 T Game Datas
+	- Too much loading and saving
 V	- Decide wich method will be used
 V	- Make tests
 V	- Lists all game datas to be saved

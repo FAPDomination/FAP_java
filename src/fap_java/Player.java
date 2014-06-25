@@ -475,7 +475,6 @@ public abstract class Player extends Human {
                 // Check for special tiles
                 switch (current.getType()) {
                 case 10: // Warp
-
                     // get the cell to be warped at
                     String[] tabS = new String[2];
                     tabS = c.getAddParam().split(",");
