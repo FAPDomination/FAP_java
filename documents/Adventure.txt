@@ -65,6 +65,19 @@ Seulement UN auto-trigger NPC est autorisé par map (à faire manuellement)
 Deux NPCs ne doivent pas être à moins de trois cases de distance sinon ils seront déclenchables en même temps
 Can't stack
 
+Nouveau système :
+- Les actions ont un paramètre Next pour en faire des listes chaînées. Elles contiennent également un champ NextInit qui contient la valeur initiale de Next et une méthode reinit() qui permet de le rétablir
+- Ainsi un NPC contient une liste chaînée d'actions, et on peut insérer un NPC dans un autre en modifiant leurs listes comme suit :
+A0->A1-A2->B0	       A3->A4...
+	   B0->B1->B2->A3
+A la fin d'un NPC on appelle récursivement reinit() sur toutes les actions pour remettre les listes de NPCs dans leur état.
+- Il y a également une liste de NPCs "Backlog" qui sont des NPCs qui se basent sur des switches. Comme des ouvertures de porte, des cellules rendues bloquantes si un switch est activé,... Ces NPCs vérifient à toutes vitesse et font leurs actions. Ils sont lancés :
+	- A l'entrée d'une map pour bien la générer avec sa couche objet
+	- A chaque événement sur les switches
+	- Appellés en concaténation par un autre NPC
+Ils gèrent donc les switches et la persistence de leurs actions.
+- Les NPCs ont deux modes d'execution : rapide et step. Rapide s'execute sans pause car cela ne concerne que des actions de traitement, step pour devoir valider chaque action avec la touche skill
+- Toutes les actions et les NPCs doivent être serializable
 -------------- Init d'une map
 
 Il conviendra d'ajouter des constructeurs à Game :
