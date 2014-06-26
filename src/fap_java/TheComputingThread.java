@@ -110,6 +110,9 @@ public class TheComputingThread implements Runnable{
      * Execute actions in the game, such as updating values
      */
     private void execute(boolean full){
+        if(!myGame.hasFocus()){
+            myGame.requestFocus();
+        }
         /*
         long startTime = System.currentTimeMillis();
         long timeHP=0;

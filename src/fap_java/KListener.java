@@ -42,7 +42,6 @@ public class KListener implements KeyListener {
      */
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        //System.out.println(code);
         // check if game is paused
         if (game.getThread().getRunning() || (!game.getThread().getRunning() && game.isPauseNPC())) {
             // Check for each player

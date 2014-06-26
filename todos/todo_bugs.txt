@@ -23,5 +23,6 @@ V	- Class description label visible
 V Bug with progressive displacement and warp
 V CharacterSelection probably double threading (was indeed)
   ADV :
-	can't move when back to world map from game
+V	can't move when back to world map from game
 	VictoryScreen doesn't last
+	Scores and skillTime continue when NPC pause

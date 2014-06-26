@@ -311,6 +311,7 @@ public class PauseScreen extends Element implements Serializable{
         TheFrame frame = (TheFrame)Fapplication.getFrame();
         Game panel = Fapplication.getWorldMap();
         Fapplication.getWorldMap().pauseGame(true);
+        panel.setPauseNPC(false);
         frame.changePanel(panel);
     }
 

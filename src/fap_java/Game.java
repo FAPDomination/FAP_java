@@ -522,6 +522,7 @@ public class Game extends JPanel implements NeedingFocus {
      * Initializes the Key Listener of the game
      */
     private void initKListener() {
+        deleteKListener();
         kl = new KListener(this);
         this.addKeyListener(kl);
     }
@@ -538,7 +539,7 @@ public class Game extends JPanel implements NeedingFocus {
         initKListener();
         this.setFocusable(true);
         this.initListNPCs(map.getFileID());
-        requestFocus();
+        this.requestFocus();
     }
     
     public void releaseFocus(){
