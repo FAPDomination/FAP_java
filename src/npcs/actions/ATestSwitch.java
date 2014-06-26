@@ -5,11 +5,14 @@ import fap_java.Tools;
 
 import gui.GameSave;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class ATestSwitch implements Action {
+public class ATestSwitch implements Action, Serializable {
     private int switchID;
     private Action failAction;
+    
     public ATestSwitch(int switchID, Action failAction) {
         super();
         this.switchID = switchID;

@@ -4,7 +4,9 @@ import fap_java.Cell;
 import fap_java.MapHandler;
 import fap_java.NPC;
 
-public class AModifyCell implements Action {
+import java.io.Serializable;
+
+public class AModifyCell implements Action, Serializable {
     private Cell c;
     private String newGenerator;
     public AModifyCell(Cell c, String newGenerator) {

@@ -4,7 +4,9 @@ import animations.NPCMessage;
 
 import fap_java.NPC;
 
-public class ADisplayMessage implements Action {
+import java.io.Serializable;
+
+public class ADisplayMessage implements Action, Serializable {
     private String message;
     private int iterator = 0;
     private NPCMessage npcMessage;

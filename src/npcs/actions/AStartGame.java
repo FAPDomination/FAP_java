@@ -9,26 +9,26 @@ import gui.CharacterSelection;
 import gui.Fapplication;
 import gui.TheFrame;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class AStartGame implements Action {
+public class AStartGame implements Action, Serializable {
     private GameConfig gameToLaunch;
-    private Game worldMap;
     public AStartGame(GameConfig gameToLaunch) {
         this.gameToLaunch = gameToLaunch;
     }
     
-    public AStartGame(Game worldMap){
+    public AStartGame(){
         gameToLaunch = null;
-        this.worldMap = worldMap;
     }
 
     public void execute(NPC whoLaunches) {
         TheFrame frame = (TheFrame)Fapplication.getFrame();
         JPanel panel = null;
-        Game game = worldMap;
+        Game game = Fapplication.getWorldMap();
         if(gameToLaunch !=null){
             game = gameToLaunch.createGame();
         }

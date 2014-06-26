@@ -4,7 +4,9 @@ import animations.NPCMessage;
 
 import fap_java.NPC;
 
-public class AAsk implements Action {
+import java.io.Serializable;
+
+public class AAsk implements Action, Serializable {
     private String message;
     private String yesOption;
     private String noOption;

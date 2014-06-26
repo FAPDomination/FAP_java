@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import java.io.Serializable;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 

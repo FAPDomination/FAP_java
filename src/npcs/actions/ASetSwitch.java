@@ -5,9 +5,11 @@ import fap_java.Tools;
 
 import gui.GameSave;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class ASetSwitch implements Action {
+public class ASetSwitch implements Action, Serializable {
     private int switchID;
     private boolean newValue;
     
