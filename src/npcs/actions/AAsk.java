@@ -41,14 +41,14 @@ public class AAsk implements Action, Serializable {
             }
             if(choice){
                 //Loop
-                if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+                if(whoLaunches != null){
                     whoLaunches.execute();
                     this.reinit();
                 }
             }
             else{
                 //End NPC
-                whoLaunches.setIterator(whoLaunches.getActions().size()+2);
+                //whoLaunches.setIterator(whoLaunches.getActions().size()+2);
                 if(failAction != null){
                     
                     failAction.execute(whoLaunches);

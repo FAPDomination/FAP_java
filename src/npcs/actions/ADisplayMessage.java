@@ -40,7 +40,7 @@ public class ADisplayMessage implements Action, Serializable {
         else{
             this.reinit();
             //Loop
-            if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+            if(whoLaunches != null){
                 whoLaunches.execute();
             }
         }

@@ -8,4 +8,6 @@ import java.io.Serializable;
 public interface Action{
     public void execute(NPC whoLaunches);
     public void reinit();
+    public void setNext(Action next);
+    public Action getNext();
 }

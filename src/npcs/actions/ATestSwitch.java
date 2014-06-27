@@ -33,13 +33,13 @@ public class ATestSwitch implements Action, Serializable {
         boolean value = gameSwitches.get(switchID);
         if(value){
             //Loop
-            if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+            if(whoLaunches != null){
                 whoLaunches.execute();
             }
         }
         else{
             //End NPC
-            whoLaunches.setIterator(whoLaunches.getActions().size()+5);
+            //whoLaunches.setIterator(whoLaunches.getActions().size()+5);
             if(failAction != null){
                 failAction.execute(whoLaunches);
             }

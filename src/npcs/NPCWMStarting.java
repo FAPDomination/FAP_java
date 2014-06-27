@@ -44,7 +44,6 @@ public class NPCWMStarting extends NPC {
     public NPCWMStarting(Cell pos, boolean conquered, Game game, GameConfig gameToLaunch) {
         super(pos, true, false, null, game, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
-        actions = new ArrayList<Action>();
         
         Action sg = new AStartGame(gameToLaunch);
         firstAction = new AAsk("Lancer la partie ?", "Oui", "Non", null, sg);

@@ -22,8 +22,8 @@ public class NPC extends Human {
     protected int iterator;
     
     protected Action firstAction;
+    protected Action currentAction;
 
-    protected ArrayList<Action> actions;
 
     public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY,
                Action firstAction) {
@@ -38,6 +38,7 @@ public class NPC extends Human {
             y = tableXY[1] + offY;
         }
         this.firstAction = firstAction;
+        this.currentAction = firstAction;
         this.reInit();
     }
 
@@ -66,7 +67,7 @@ public class NPC extends Human {
         //return "NPC at "+this.getI()+","+this.getJ();
         return "A NPC at " + position;
     }
-
+/*
     public Action getCurrentAction() {
         Action ac = null;
         if (iterator >= 0 && iterator < actions.size()) {
@@ -74,19 +75,20 @@ public class NPC extends Human {
         }
         return ac;
     }
-
+*/
 
     public void execute() {
         if (game.getThread().getRunning()) {
             game.pauseGame(true);
         }
-        if (iterator < actions.size()) {
-            Action ac = actions.get(iterator);
+        if (currentAction.getNext() != null) {
+            currentAction = currentAction.getNext();
             iterator++;
-            ac.execute(this);
+            currentAction.execute(this);
             //System.out.println(this+" is executing");
         } else {
             this.reInit();
+            //TODO ?
             game.pauseGame(true);
             game.setPauseNPC(false);
         }
@@ -143,14 +145,11 @@ public class NPC extends Human {
 
     public void reInit() {
         iterator = 0;
-        if (actions != null) {
-            for (int i = 0; i < actions.size(); i++) {
-                Action ac = actions.get(i);
-                if (ac != null) {
-                    ac.reinit();
+            for (Action a = firstAction; a!=null; a=a.getNext()) {
+                if (a != null) {
+                    a.reinit();
                 }
             }
-        }
     }
 
     public void setIterator(int iterator) {
@@ -161,13 +160,6 @@ public class NPC extends Human {
         return iterator;
     }
 
-    public void setActions(ArrayList<Action> actions) {
-        this.actions = actions;
-    }
-
-    public ArrayList<Action> getActions() {
-        return actions;
-    }
 
     public boolean equals(NPC e) {
         boolean b = false;
@@ -176,5 +168,13 @@ public class NPC extends Human {
             b = true;
         }
         return b;
+    }
+
+    public void setCurrentAction(Action currentAction) {
+        this.currentAction = currentAction;
+    }
+
+    public Action getCurrentAction() {
+        return currentAction;
     }
 }

@@ -106,6 +106,9 @@ V		- Implement
 P			- Serializable
 				- Get transient values
 			- Trigger Backlogs
+			- Repairs :
+				- ATestSwitch line 42
+				- AAsk line 51
 		- Changes in NPC
 			- Creations
 			- Chained list

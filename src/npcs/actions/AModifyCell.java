@@ -37,7 +37,7 @@ public class AModifyCell implements Action, Serializable {
 
         c.setType(t);
         //Loop
-        if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
+        if(whoLaunches != null){
             whoLaunches.execute();
         }
     }

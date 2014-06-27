@@ -31,20 +31,16 @@ public class NPCExit extends NPC {
         if(game.getThread().getRunning()){
             game.pauseGame(true);
         }
-        if(iterator < actions.size()){
-            Action ac = actions.get(iterator);
-            iterator ++;
-            if(ac != null){
-                ac.execute(this);
-            }
-            else{
-                new AStartGame().execute(this);
-                iterator ++;
-            }
+        if (currentAction.getNext() != null) {
+                currentAction = currentAction.getNext();
+                iterator++;
+                currentAction.execute(this);
+                
             //System.out.println(this+" is executing");
         }
         else{
-            
+            new AStartGame().execute(this);
+            iterator ++;
             game.pauseGame(true);
             game.setPauseNPC(false);
             this.reInit();
