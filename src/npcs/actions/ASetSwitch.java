@@ -13,10 +13,14 @@ public class ASetSwitch implements Action, Serializable {
     private int switchID;
     private boolean newValue;
     
-    public ASetSwitch(int switchID, boolean newValue) {
+    private Action next;
+    private Action origNext;
+    public ASetSwitch(int switchID, boolean newValue, Action next){
         super();
         this.switchID = switchID;
         this.newValue = newValue;
+        this.next = next;
+        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -34,5 +38,22 @@ public class ASetSwitch implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
+    }
+    
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }

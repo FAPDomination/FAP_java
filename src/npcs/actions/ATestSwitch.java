@@ -13,10 +13,16 @@ public class ATestSwitch implements Action, Serializable {
     private int switchID;
     private Action failAction;
     
-    public ATestSwitch(int switchID, Action failAction) {
+    private Action next;
+    private Action origNext;
+    
+    public ATestSwitch(int switchID, Action failAction, Action next) {
         super();
         this.switchID = switchID;
         this.failAction = failAction;
+        
+        this.next = next;
+        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -52,8 +58,25 @@ public class ATestSwitch implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
         if(failAction!=null){
             failAction.reinit();
         }
+    }
+
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }

@@ -24,7 +24,7 @@ import npcs.actions.Action;
 public class NPCExit extends NPC {
     public NPCExit(Cell cell, Game game) {
         super(cell, true, false, null, game, 0,0,new ArrayList<Action>());
-        actions.add(new AAsk("Retour a la carte du monde ?","Oui","Non",null));
+        actions.add(new AAsk("Retour a la carte du monde ?","Oui","Non",null,null));
         actions.add(null);
     }
     public void paintComponent(Graphics g){}
@@ -40,7 +40,7 @@ public class NPCExit extends NPC {
                 ac.execute(this);
             }
             else{
-                new AStartGame(Fapplication.getWorldMap()).execute(this);
+                new AStartGame().execute(this);
                 iterator ++;
             }
             //System.out.println(this+" is executing");

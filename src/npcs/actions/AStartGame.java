@@ -17,12 +17,16 @@ import javax.swing.JPanel;
 
 public class AStartGame implements Action, Serializable {
     private GameConfig gameToLaunch;
+    private Action next;
+    private Action origNext;
     public AStartGame(GameConfig gameToLaunch) {
         this.gameToLaunch = gameToLaunch;
+        this.next = null;
+        this.origNext = null;
     }
     
     public AStartGame(){
-        gameToLaunch = null;
+        this(null);
     }
 
     public void execute(NPC whoLaunches) {
@@ -52,5 +56,22 @@ public class AStartGame implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
+    }
+
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }

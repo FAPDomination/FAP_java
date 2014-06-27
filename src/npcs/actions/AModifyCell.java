@@ -8,11 +8,15 @@ import java.io.Serializable;
 
 public class AModifyCell implements Action, Serializable {
     private Cell c;
-    private String newGenerator;
-    public AModifyCell(Cell c, String newGenerator) {
+    private String newGenerator;    
+    private Action next;
+    private Action origNext;
+    public AModifyCell(Cell c, String newGenerator, Action next) {
         super();
         this.c = c;
-        this.newGenerator = newGenerator;
+        this.newGenerator = newGenerator;        
+        this.next = next;
+        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -39,6 +43,7 @@ public class AModifyCell implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
     }
 
     public void setC(Cell c) {
@@ -56,5 +61,22 @@ public class AModifyCell implements Action, Serializable {
 
     public String getNewGenerator() {
         return newGenerator;
+    }
+    
+    
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }

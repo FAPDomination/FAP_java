@@ -15,13 +15,18 @@ public class AAsk implements Action, Serializable {
     private Action failAction;
     private NPCMessage npcMessage;
     
-    public AAsk(String message, String yes, String no, Action failAction) {
+    private Action next;
+    private Action origNext;
+    
+    public AAsk(String message, String yes, String no, Action failAction, Action next) {
         super();
         this.message = message;
         this.yesOption = yes;
         this.noOption = no;
         choice = true;
         this.failAction = failAction;
+        this.next = next;
+        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -101,6 +106,7 @@ public class AAsk implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
         if(npcMessage != null){
             npcMessage.endAnimation();
         }
@@ -108,5 +114,21 @@ public class AAsk implements Action, Serializable {
         if(failAction!=null){
             failAction.reinit();
         }
+    }
+
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }

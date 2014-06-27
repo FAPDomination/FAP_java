@@ -110,6 +110,8 @@ P			- Serializable
 			- Creations
 			- Chained list
 			- insert(NPC) function
+			- reinit() function with actionLists reinit
+				- Bottom-UP or Top-DOWN ?
 		- Backlog NPCs
 			- Type
 			- List for each map

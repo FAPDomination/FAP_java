@@ -11,10 +11,16 @@ public class ADisplayMessage implements Action, Serializable {
     private int iterator = 0;
     private NPCMessage npcMessage;
     
-    public ADisplayMessage(String message) {
+    private Action next;
+    private Action origNext;
+    
+    public ADisplayMessage(String message, Action next) {
         super();
         this.message = message;
         this.iterator =0;
+        
+        this.next = next;
+        this.origNext = next;
     }
 
     public void setMessage(String message) {
@@ -49,6 +55,7 @@ public class ADisplayMessage implements Action, Serializable {
     }
 
     public void reinit() {
+        next = origNext;
         iterator = 0;
         if(npcMessage != null){
             npcMessage.endAnimation();
@@ -61,5 +68,21 @@ public class ADisplayMessage implements Action, Serializable {
 
     public NPCMessage getNpcMessage() {
         return npcMessage;
+    }
+    
+    public void setNext(Action next) {
+        this.next = next;
+    }
+
+    public Action getNext() {
+        return next;
+    }
+
+    public void setOrigNext(Action origNext) {
+        this.origNext = origNext;
+    }
+
+    public Action getOrigNext() {
+        return origNext;
     }
 }
