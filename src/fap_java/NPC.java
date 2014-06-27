@@ -20,36 +20,37 @@ public class NPC extends Human {
     protected int y;
 
     protected int iterator;
+    
+    protected Action firstAction;
 
     protected ArrayList<Action> actions;
 
     public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY,
-               ArrayList<Action> actions) {
+               Action firstAction) {
         this.position = position;
         this.walkable = walkable;
         this.autoTrigger = autoTrigger;
         this.img = img;
         this.game = game;
-        this.actions = actions;
         if (position != null) {
             int[] tableXY = CMap.giveTalePosition(position);
             x = tableXY[0] + offX;
             y = tableXY[1] + offY;
         }
+        this.firstAction = firstAction;
         this.reInit();
     }
 
     public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets,
-               ArrayList<Action> actions) {
-        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight(), actions);
+               Action firstAction) {
+        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight(), firstAction);
     }
 
     /**
      * Creates an auto-trigger NPC
-     * @param actions The list of actions
      */
-    public NPC(ArrayList<Action> actions, Game game) {
-        this(null, false, true, null, game, 0, 0, actions);
+    public NPC(Action firstAction, Game game) {
+        this(null, false, true, null, game, 0, 0, firstAction);
     }
 
     public void paintComponent(Graphics g) {

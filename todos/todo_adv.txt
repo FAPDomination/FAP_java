@@ -112,12 +112,14 @@ P			- Serializable
 			- insert(NPC) function
 			- reinit() function with actionLists reinit
 				- Bottom-UP or Top-DOWN ?
+			- Delete action AL
 		- Backlog NPCs
 			- Type
 			- List for each map
 			- Extra Thread for backlog NPCs
 				- Special Action that just creates it
 				- Non-loop
+		- Repair NPC initialization
 V World map
 V	- Get list of conquered cells
 V	- Parse list of available cells

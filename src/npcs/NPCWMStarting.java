@@ -45,8 +45,10 @@ public class NPCWMStarting extends NPC {
         super(pos, true, false, null, game, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
         actions = new ArrayList<Action>();
-        actions.add(new AAsk("Lancer la partie ?", "Oui", "Non", null));
-        actions.add(new AStartGame(gameToLaunch));
+        
+        Action sg = new AStartGame(gameToLaunch);
+        firstAction = new AAsk("Lancer la partie ?", "Oui", "Non", null, sg);
+
     }
 
     public void paintComponent(Graphics g) {

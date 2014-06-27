@@ -981,6 +981,7 @@ public class Game extends JPanel implements NeedingFocus {
         else{
             
         }
+        /*
             //TODO Initialize the list of all NPCs according to the nmap
             switch(nmap){
             case 0:
@@ -1030,6 +1031,7 @@ public class Game extends JPanel implements NeedingFocus {
                 }
                 break;
             }
+*/
     }
 
     public void setPauseNPC(boolean pauseNPC) {
