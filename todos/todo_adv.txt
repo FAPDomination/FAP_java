@@ -97,7 +97,25 @@ V			- Walkable
 V			- Actions
 V				- Do you wanna play ?
 V				- Start Game
-V		- Implement			
+V		- Implement
+	- New NPC System
+		- Changes in Actions
+			- Next, NextInit, Reinit()
+			- QuickMode and StepMode
+			- Adapt already existing code
+P			- Serializable
+				- Get transient values
+			- Trigger Backlogs
+		- Changes in NPC
+			- Creations
+			- Chained list
+			- insert(NPC) function
+		- Backlog NPCs
+			- Type
+			- List for each map
+			- Extra Thread for backlog NPCs
+				- Special Action that just creates it
+				- Non-loop
 V World map
 V	- Get list of conquered cells
 V	- Parse list of available cells
