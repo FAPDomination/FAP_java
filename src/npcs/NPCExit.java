@@ -23,19 +23,21 @@ import npcs.actions.Action;
 
 public class NPCExit extends NPC {
     public NPCExit(Cell cell, Game game) {
-        super(cell, true, false, null, game, 0,0,new AAsk("Retour a la carte du monde ?","Oui","Non",null,null));
+        super(cell, true, false, null, game, 0,0,null);
+        
+        Action sg = new AStartGame();
+        firstAction = new AAsk("Retour a la carte du monde ?","Oui","Non",null,sg);
+        currentAction = firstAction;
     }
     public void paintComponent(Graphics g){}
-    
+    /*
     public void execute(){
         if(game.getThread().getRunning()){
             game.pauseGame(true);
         }
-        if (currentAction.getNext() != null) {
-                currentAction = currentAction.getNext();
-                iterator++;
-                currentAction.execute(this);
-                
+        if (currentAction != null) {
+            iterator++;
+            currentAction.execute(this);
             //System.out.println(this+" is executing");
         }
         else{
@@ -46,4 +48,5 @@ public class NPCExit extends NPC {
             this.reInit();
         }
     }
+*/
 }
