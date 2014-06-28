@@ -989,13 +989,16 @@ public class Game extends JPanel implements NeedingFocus {
                 initWorldMap();
                 break;
             case 21:
+                {
                 Action a = new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !",null);
                 Action b = new ADisplayMessage("Appuie sur SKILL pour continuer",a);
                 Action c = new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !",b);
                 NPC npc21 = new NPC(c,this);
                 this.addNPC(npc21);
+                }
                 break;
             case 25:
+                {
                 /*
                 ArrayList<Action> list = new ArrayList<Action>();
                 list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
@@ -1012,19 +1015,20 @@ public class Game extends JPanel implements NeedingFocus {
                 list2.add(new AModifyCell(map.getCell(17,10),"100"));
                 NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,list2);
                 this.addNPC(npc2);
-                
-                ArrayList<Action> list4 = new ArrayList<Action>();
-                list4.add(new ASetSwitch(1,true));
-                list4.add(new ADisplayMessage("I'll activate the knight for ya"));
-                NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,list4);
+                */
+                Action b = new ASetSwitch(1,true,null);
+                Action a = new ADisplayMessage("I'll activate the knight for ya",b);
+
+                NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc4);
-                
+                /*
                 ArrayList<Action> list5 = new ArrayList<Action>();
                 list5.add(new ASetSwitch(5,true));
                 list5.add(new ADisplayMessage("I'll activate the Archeeerrr for ya"));
                 NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,list5);
                 this.addNPC(npc5);
 */
+                }
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();

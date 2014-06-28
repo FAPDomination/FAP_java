@@ -32,9 +32,9 @@ public class ASetSwitch implements Action, Serializable {
         //Save datas
         Tools.saveGame(gameSave);
         //Loop
-        if(whoLaunches != null){
-            whoLaunches.execute();
-        }
+        whoLaunches.gotoNextAction();
+        whoLaunches.execute();
+        
     }
 
     public void reinit() {
