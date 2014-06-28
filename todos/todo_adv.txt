@@ -103,11 +103,11 @@ V		- Implement
 V			- Next, NextInit, Reinit()
 X			- QuickMode and StepMode
 V			- Adapt already existing code
-P			- Serializable
-				- Make everything serializable
-				- Generate File
-				- Load
-				- Set transient values after load
+V			- Serializable
+V				- Make everything serializable
+V				- Generate File
+V				- Load
+V				- Set transient values after load
 V			- Trigger Backlogs
 V			- Repairs :
 V				- ATestSwitch line 42
