@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 
-public class ATestMapValue implements Action, Serializable {
+public class ATestMapValue implements Action {
+    @SuppressWarnings("compatibility:5999795561692079931")
+    private static final long serialVersionUID = -5479495726056275598L;
     private String mapHash;
     private Action failAction;
     

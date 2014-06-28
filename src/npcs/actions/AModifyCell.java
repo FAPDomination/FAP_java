@@ -6,8 +6,10 @@ import fap_java.NPC;
 
 import java.io.Serializable;
 
-public class AModifyCell implements Action, Serializable {
-    private Cell c;
+public class AModifyCell implements Action {
+    @SuppressWarnings("compatibility:5766958403485029236")
+    private static final long serialVersionUID = -8946279837403401252L;
+    private transient Cell c;
     private String newGenerator;    
     private Action next;
     private Action origNext;

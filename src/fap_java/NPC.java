@@ -4,18 +4,22 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import npcs.actions.*;
 
-public class NPC extends Human {
+public class NPC extends Human implements Serializable {
 
-    private Cell position;
+    @SuppressWarnings("compatibility:8918283573792917910")
+    private static final long serialVersionUID = -2618102038212575413L;
+    private transient Cell position;
     private boolean walkable;
     private boolean autoTrigger;
-    protected Image img;
+    protected String img;
     private boolean running;
-    protected Game game;
+    protected transient Game game;
     protected int x;
     protected int y;
 
@@ -24,7 +28,7 @@ public class NPC extends Human {
     protected Action currentAction;
 
 
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, int offX, int offY,
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, String img, Game game, int offX, int offY,
                Action firstAction) {
         this.position = position;
         this.walkable = walkable;
@@ -41,7 +45,7 @@ public class NPC extends Human {
         this.reInit();
     }
 
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, Image img, Game game, Dimension offsets,
+    public NPC(Cell position, boolean walkable, boolean autoTrigger, String img, Game game, Dimension offsets,
                Action firstAction) {
         this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight(), firstAction);
     }
@@ -55,10 +59,11 @@ public class NPC extends Human {
 
     public void paintComponent(Graphics g) {
         if (img != null) {
-            int width = this.img.getWidth(game);
-            int height = this.img.getHeight(game);
+            Image bild = Graph.getList().get(img);
+            int width = bild.getWidth(game);
+            int height = bild.getHeight(game);
 
-            g.drawImage(this.img, x, y, width, height, game);
+            g.drawImage(bild, x, y, width, height, game);
         }
     }
 
@@ -116,13 +121,6 @@ public class NPC extends Human {
         return autoTrigger;
     }
 
-    public void setImg(Image img) {
-        this.img = img;
-    }
-
-    public Image getImg() {
-        return img;
-    }
 
     public void setRunning(boolean running) {
         this.running = running;

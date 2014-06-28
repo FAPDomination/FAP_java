@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 
-public class ASetSwitch implements Action, Serializable {
+public class ASetSwitch implements Action {
+    @SuppressWarnings("compatibility:8501619799060970234")
+    private static final long serialVersionUID = 1692640727158343575L;
     private int switchID;
     private boolean newValue;
     

@@ -6,9 +6,11 @@ import fap_java.NPC;
 
 import java.io.Serializable;
 
-public class ADisplayMessage implements Action, Serializable {
+public class ADisplayMessage implements Action {
+    @SuppressWarnings("compatibility:-6029349740440906725")
+    private static final long serialVersionUID = -7274855256989454061L;
     private String message;
-    private NPCMessage npcMessage;
+    private transient NPCMessage npcMessage;
     
     private Action next;
     private Action origNext;

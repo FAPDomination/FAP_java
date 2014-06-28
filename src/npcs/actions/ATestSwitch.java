@@ -9,7 +9,9 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 
-public class ATestSwitch implements Action, Serializable {
+public class ATestSwitch implements Action {
+    @SuppressWarnings("compatibility:-1135605901586841164")
+    private static final long serialVersionUID = 8332904318881077569L;
     private int switchID;
     private Action failAction;
     

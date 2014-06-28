@@ -15,7 +15,9 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class AStartGame implements Action, Serializable {
+public class AStartGame implements Action {
+    @SuppressWarnings("compatibility:4605680557614444226")
+    private static final long serialVersionUID = -6097939611199271001L;
     private GameConfig gameToLaunch;
     private Action next;
     private Action origNext;

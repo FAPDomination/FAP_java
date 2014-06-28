@@ -1039,7 +1039,7 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ASetSwitch(0,true,c);
                 a = new AAsk("Ya want da switch ?","Yeah","Nup", f,b);
                 
-                npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
+                npc = new NPC(map.getCell(10, 10),false,false,"NPC_sample",this,6,-17,a);
                 this.addNPC(npc);
                 
                 
@@ -1048,7 +1048,7 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ADisplayMessage("Ye have da switch !! Gloria !",c);
                 a = new ATestSwitch(0,f,b);
 
-                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
+                NPC npc2 = new NPC(map.getCell(15, 8),false,false,"NPC_sample",this,6,-17,a);
                 this.addNPC(npc2);
                 
                 
@@ -1059,13 +1059,13 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ADisplayMessage("I'll activate the bullshit for ya",c);
                 a = new ADisplayMessage("I'll activate the knight for ya",b);
 
-                NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
+                NPC npc4 = new NPC(map.getCell(20, 9),false,false,"NPC_sample",this,6,-17,a);
                 this.addNPC(npc4);
 
                 b = new ASetSwitch(5,true,null);
                 a = new ADisplayMessage("I'll activate the arrrcher for ya",b);
 
-                NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
+                NPC npc5 = new NPC(map.getCell(27, 19),false,false,"NPC_sample",this,6,-17,a);
                 this.addNPC(npc5);
                 }
                 break;

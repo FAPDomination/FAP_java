@@ -22,6 +22,9 @@ import npcs.actions.AStartGame;
 import npcs.actions.Action;
 
 public class NPCExit extends NPC {
+    @SuppressWarnings("compatibility:-9179486704078853616")
+    private static final long serialVersionUID = 746096623204554497L;
+
     public NPCExit(Cell cell, Game game) {
         super(cell, true, false, null, game, 0,0,null);
         

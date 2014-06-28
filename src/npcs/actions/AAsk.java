@@ -6,14 +6,16 @@ import fap_java.NPC;
 
 import java.io.Serializable;
 
-public class AAsk implements Action, Serializable {
+public class AAsk implements Action {
+    @SuppressWarnings("compatibility:-8993081133612564402")
+    private static final long serialVersionUID = 5191498145528206298L;
     private String message;
     private String yesOption;
     private String noOption;
     private boolean choice;
     private int iterator = 0;
     private Action failAction;
-    private NPCMessage npcMessage;
+    private transient NPCMessage npcMessage;
     
     private Action next;
     private Action origNext;

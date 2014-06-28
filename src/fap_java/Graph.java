@@ -46,7 +46,6 @@ public class Graph {
     // key : String, the name of the cell
     // entry : the cell image
 
-    protected static Image basicCellImage;
     
     public static ArrayList<Integer> notFactored = new ArrayList<Integer>();
 
@@ -156,6 +155,7 @@ public class Graph {
             list.put("NPC_sample", Toolkit.getDefaultToolkit().getImage(load.getResource("images/NPCs/sample.png")));
             */
             list.put("NPC_sample", ImageIO.read(new File("resources/images/NPCs/sample.png")));
+            list.put("basicCellImage", Tools.getImageToFilter(ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/regular.png"))));
             list.put("warp", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/teleport.png")));
             list.put("frozen", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/animations/frozen.png")));
             list.put("healthy", ImageIO.read(new File(Constants.c.get(Constants.pictureSet)+"/cells/HealtHyhealthy.png")));
@@ -208,8 +208,7 @@ public class Graph {
             guimg.put("DefeatBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/DefeatBanner.png")));
             guimg.put("TieBanner", ImageIO.read(new File("resources/images/gui/VictoryScreen/TieBanner.png")));
 
-            File location = new File(Constants.c.get(Constants.pictureSet)+"/cells/regular.png");
-            basicCellImage = Tools.getImageToFilter(ImageIO.read(location));
+            
             
             // Add base character files
             //Right
@@ -287,13 +286,6 @@ public class Graph {
         return facH;
     }
 
-    public static void setBasicCellImage(Image basicCellImage) {
-        Graph.basicCellImage = basicCellImage;
-    }
-
-    public static Image getBasicCellImage() {
-        return basicCellImage;
-    }
 
     public static Map<String, BufferedImage> getList() {
         return list;

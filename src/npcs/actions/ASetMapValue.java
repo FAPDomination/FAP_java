@@ -5,9 +5,9 @@ import fap_java.Tools;
 
 import gui.GameSave;
 
-import java.io.Serializable;
-
-public class ASetMapValue implements Action, Serializable {
+public class ASetMapValue implements Action {
+    @SuppressWarnings("compatibility:-5854713175065024116")
+    private static final long serialVersionUID = 8646952569855326525L;
     private String mapHash;
     private int newValue;
     

@@ -34,6 +34,8 @@ import npcs.actions.AStartGame;
 import npcs.actions.Action;
 
 public class NPCWMStarting extends NPC {
+    @SuppressWarnings("compatibility:-9003127236683247915")
+    private static final long serialVersionUID = -441251255864270036L;
     private boolean conquered;
     private static int offY = 5;
     private static int[][] points =
