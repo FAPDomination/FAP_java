@@ -29,8 +29,12 @@ public class ASetSwitch implements Action, Serializable {
         //Set datas
         ArrayList<Boolean> gameSwitches = gameSave.getGameSwitches();
         gameSwitches.set(switchID, newValue);
+        
         //Save datas
         Tools.saveGame(gameSave);
+        // Retrigger trigger NPCs (with this updated setting)
+        whoLaunches.getGame().triggerTriggerNPCs();
+        
         //Loop
         whoLaunches.gotoNextAction();
         whoLaunches.execute();
