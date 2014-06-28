@@ -25,8 +25,8 @@ public class NPCExit extends NPC {
     @SuppressWarnings("compatibility:-9179486704078853616")
     private static final long serialVersionUID = 746096623204554497L;
 
-    public NPCExit(Cell cell, Game game) {
-        super(cell, true, false, null, game, 0,0,null);
+    public NPCExit(String cellHash) {
+        super(cellHash, true, false, null, 0,0,null);
         
         Action sg = new AStartGame();
         firstAction = new AAsk("Retour a la carte du monde ?","Oui","Non",null,sg);

@@ -76,4 +76,7 @@ public class AStartGame implements Action {
     public Action getOrigNext() {
         return origNext;
     }
+
+    public void setTransientValues(Game g) {
+    }
 }

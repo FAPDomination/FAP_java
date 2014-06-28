@@ -1,6 +1,7 @@
 package npcs.actions;
 
 import fap_java.Cell;
+import fap_java.Game;
 import fap_java.MapHandler;
 import fap_java.NPC;
 
@@ -10,12 +11,14 @@ public class AModifyCell implements Action {
     @SuppressWarnings("compatibility:5766958403485029236")
     private static final long serialVersionUID = -8946279837403401252L;
     private transient Cell c;
+    private String cellHash;
     private String newGenerator;    
     private Action next;
     private Action origNext;
     public AModifyCell(Cell c, String newGenerator, Action next) {
         super();
         this.c = c;
+        this.cellHash = c.getHash();
         this.newGenerator = newGenerator;        
         this.next = next;
         this.origNext = next;
@@ -81,5 +84,9 @@ public class AModifyCell implements Action {
 
     public Action getOrigNext() {
         return origNext;
+    }
+
+    public void setTransientValues(Game g) {
+        this.c = g.getMap().getCell(this.cellHash);
     }
 }

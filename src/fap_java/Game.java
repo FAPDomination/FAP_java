@@ -881,26 +881,20 @@ public class Game extends JPanel implements NeedingFocus {
         // Create NPCs to cover the designated cells
         for(int i=0;i<listNotAvailableCells.size();i++){
             String cellHash = listNotAvailableCells.get(i);
-            String[] coords = cellHash.split(",");
-            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-            this.addNPC(new NPCWMBlocking(pos));
+            this.addNPC(new NPCWMBlocking(cellHash));
         }
         
         for(int i=0;i<listJustAvailableCells.size();i++){
             String cellHash = listJustAvailableCells.get(i);
-            String[] coords = cellHash.split(",");
-            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-                this.addNPC(new NPCWMStarting(pos,false,this,Params.mapList.get(cellHash)));
+                this.addNPC(new NPCWMStarting(cellHash,false,Params.mapList.get(cellHash)));
             //}
         }
         
         for(int i=0;i<listConqueredCells.size();i++){
             String cellHash = listConqueredCells.get(i);
-            String[] coords = cellHash.split(",");
-            Cell pos = this.map.getCell(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
             //if(Tools.intTableContains(Constants.listAdvMaps, mapID)){
-                this.addNPC(new NPCWMStarting(pos,true,this,Params.mapList.get(cellHash)));
+                this.addNPC(new NPCWMStarting(cellHash,true,Params.mapList.get(cellHash)));
             //}
         }
     }
@@ -993,24 +987,33 @@ public class Game extends JPanel implements NeedingFocus {
             
         }
         
+        if(nmap == 0){
+            initWorldMap();
+        }
+        else{
+        
+            Map<Integer,ArrayList<NPC>> npcBank = new HashMap<Integer,ArrayList<NPC>>();
+            Map<Integer,ArrayList<NPC>> npcBacklogBank = new HashMap<Integer,ArrayList<NPC>>();
+        
             //TODO Initialize the list of all NPCs according to the nmap
             // Last action to first action (chained list)
-            switch(nmap){
-            case 0:
-                initWorldMap();
-                break;
-            case 21:
+            //Map 21:
                 {
+                ArrayList<NPC> theList = new ArrayList<NPC>();
+                ArrayList<NPC> theBLList = new ArrayList<NPC>();
                 Action c = new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !",null);
                 Action b = new ADisplayMessage("Appuie sur SKILL pour continuer",c);
                 Action a = new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !",b);
-                NPC npc21 = new NPC(a,this);
-                this.addNPC(npc21);
-                }
-                break;
-            case 25:
-                {
+                NPC npc21 = new NPC(a);
                 
+                theList.add(npc21);
+                npcBank.put(21, theList);
+                npcBacklogBank.put(21, theBLList);
+                }
+            //Map 25:
+                {
+                    ArrayList<NPC> theList = new ArrayList<NPC>();
+                    ArrayList<NPC> theBLList = new ArrayList<NPC>();
                 Action a;
                 Action b;
                 Action c;
@@ -1021,17 +1024,17 @@ public class Game extends JPanel implements NeedingFocus {
                 
                 b = new AModifyCell(map.getCell(17,10),"100",null);
                 a = new ATestSwitch(20,null,b);
-                npc = new NPC(null,false,false,null,this,0,0,a);
-                this.addTriggerNPC(npc);
+                npc = new NPC(null,false,false,null,0,0,a);
+                theBLList.add(npc);
                 
                 a =  new ASetMapValue("18,9",2,null);
-                npc = new NPC(null,false,false,null,this,0,0,a);
-                this.addTriggerNPC(npc);
+                npc = new NPC(null,false,false,null,0,0,a);
+                theBLList.add(npc);
                 
                 b = new AModifyCell(map.getCell(18,13),"100",null);
                 a =  new ATestMapValue("18,11",null,b);
-                npc = new NPC(null,false,false,null,this,0,0,a);
-                this.addTriggerNPC(npc);
+                npc = new NPC(null,false,false,null,0,0,a);
+                theBLList.add(npc);
                     
                 e = new ADisplayMessage("You're missing something here, you now ?!",null);
                 f =  new ADisplayMessage("Wat a sheime",e);
@@ -1039,8 +1042,8 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ASetSwitch(0,true,c);
                 a = new AAsk("Ya want da switch ?","Yeah","Nup", f,b);
                 
-                npc = new NPC(map.getCell(10, 10),false,false,"NPC_sample",this,6,-17,a);
-                this.addNPC(npc);
+                npc = new NPC("10,10",false,false,"NPC_sample",6,-17,a);
+                theList.add(npc);
                 
                 
                 f = new ADisplayMessage("Ya do not interrest-a me",null);
@@ -1048,8 +1051,8 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ADisplayMessage("Ye have da switch !! Gloria !",c);
                 a = new ATestSwitch(0,f,b);
 
-                NPC npc2 = new NPC(map.getCell(15, 8),false,false,"NPC_sample",this,6,-17,a);
-                this.addNPC(npc2);
+                NPC npc2 = new NPC("15,8",false,false,"NPC_sample",6,-17,a);
+                theList.add(npc2);
                 
                 
                 
@@ -1059,24 +1062,39 @@ public class Game extends JPanel implements NeedingFocus {
                 b = new ADisplayMessage("I'll activate the bullshit for ya",c);
                 a = new ADisplayMessage("I'll activate the knight for ya",b);
 
-                NPC npc4 = new NPC(map.getCell(20, 9),false,false,"NPC_sample",this,6,-17,a);
-                this.addNPC(npc4);
+                NPC npc4 = new NPC("20,9",false,false,"NPC_sample",6,-17,a);
+                theList.add(npc4);
 
                 b = new ASetSwitch(5,true,null);
                 a = new ADisplayMessage("I'll activate the arrrcher for ya",b);
 
-                NPC npc5 = new NPC(map.getCell(27, 19),false,false,"NPC_sample",this,6,-17,a);
-                this.addNPC(npc5);
+                NPC npc5 = new NPC("27,19",false,false,"NPC_sample",6,-17,a);
+                theList.add(npc5);
+                
+                    npcBank.put(25, theList);
+                    npcBacklogBank.put(25, theBLList);
                 }
-                break;
-            default:
+                
+                ArrayList<NPC> secList = npcBank.get(nmap);
+                for(int i=0;i<secList.size();i++){
+                    this.addNPC(secList.get(i));
+                }
+                ArrayList<NPC> secBList = npcBacklogBank.get(nmap);
+                for(int i=0;i<secBList.size();i++){
+                    this.addTriggerNPC(secBList.get(i));
+                }
                 //this.listNPCs = new ArrayList<NPC>();
-                if(adv>0){
+                
+                if(this.listNPCs == null && adv>0){
                     System.err.println("Couldn't find NPC list for map no "+nmap);
                 }
-                break;
             }
-
+        for(int i=0;i<listNPCs.size();i++){
+            this.listNPCs.get(i).setTransientValues(this);
+        }
+        for(int i=0;i<listTriggerNPCs.size();i++){
+            this.listTriggerNPCs.get(i).setTransientValues(this);
+        }
     }
 
     public void setPauseNPC(boolean pauseNPC) {

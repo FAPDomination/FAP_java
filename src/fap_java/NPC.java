@@ -14,7 +14,9 @@ public class NPC extends Human implements Serializable {
 
     @SuppressWarnings("compatibility:8918283573792917910")
     private static final long serialVersionUID = -2618102038212575413L;
+    
     private transient Cell position;
+    private String cellPositionHash;
     private boolean walkable;
     private boolean autoTrigger;
     protected String img;
@@ -22,40 +24,37 @@ public class NPC extends Human implements Serializable {
     protected transient Game game;
     protected int x;
     protected int y;
+    protected int offX,offY;
 
     
     protected Action firstAction;
     protected Action currentAction;
 
 
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, String img, Game game, int offX, int offY,
+    public NPC(String cellPositionHash, boolean walkable, boolean autoTrigger, String img, int offX, int offY,
                Action firstAction) {
-        this.position = position;
+        this.cellPositionHash = cellPositionHash;
         this.walkable = walkable;
         this.autoTrigger = autoTrigger;
         this.img = img;
-        this.game = game;
-        if (position != null) {
-            int[] tableXY = CMap.giveTalePosition(position);
-            x = tableXY[0] + offX;
-            y = tableXY[1] + offY;
-        }
+        this.offX = offX;
+        this.offY = offY;
+        
         this.firstAction = firstAction;
         this.currentAction = firstAction;
         this.reInit();
     }
-
-    public NPC(Cell position, boolean walkable, boolean autoTrigger, String img, Game game, Dimension offsets,
-               Action firstAction) {
-        this(position, walkable, autoTrigger, img, game, (int)offsets.getWidth(), (int)offsets.getHeight(), firstAction);
+    public NPC(String cellPositionHash, boolean walkable, boolean autoTrigger, String img, Dimension offsets, Action firstAction) {
+        this(cellPositionHash,walkable,autoTrigger,img,(int)offsets.getWidth(),(int)offsets.getHeight(),firstAction);
     }
-
+    
     /**
      * Creates an auto-trigger NPC
      */
-    public NPC(Action firstAction, Game game) {
-        this(null, false, true, null, game, 0, 0, firstAction);
+    public NPC(Action firstAction) {
+        this("", false, true, null, 0, 0, firstAction);
     }
+
 
     public void paintComponent(Graphics g) {
         if (img != null) {
@@ -171,5 +170,17 @@ public class NPC extends Human implements Serializable {
     
     public void setNextAction(Action a){
         currentAction.setNext(a);
+    }
+    
+    public void setTransientValues(Game game){
+        this.game = game;
+        if(cellPositionHash != null && !cellPositionHash.equals("")){
+            position = game.getMap().getCell(cellPositionHash);
+            if (position != null) {
+                int[] tableXY = CMap.giveTalePosition(position);
+                x = tableXY[0] + offX;
+                y = tableXY[1] + offY;
+            }
+        }
     }
 }

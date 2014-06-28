@@ -43,8 +43,8 @@ public class NPCWMStarting extends NPC {
       { 5 * CMap.TW / 4 , 3 * CMap.TH / 4 + offY + 1 }, { 5 * CMap.TW / 4 , 6 * CMap.TH / 4 + offY + 1 },
       { 3 * CMap.TW / 4, 7 * CMap.TH / 4 + offY + 2 }, { CMap.TW / 4, 6 * CMap.TH / 4 + offY } };
 
-    public NPCWMStarting(Cell pos, boolean conquered, Game game, GameConfig gameToLaunch) {
-        super(pos, true, false, null, game, Graph.getOffsetsCells().get(0), null);
+    public NPCWMStarting(String cellHash, boolean conquered, GameConfig gameToLaunch) {
+        super(cellHash, true, false, null, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
         
         Action sg = new AStartGame(gameToLaunch);

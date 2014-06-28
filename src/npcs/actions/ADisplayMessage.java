@@ -2,6 +2,7 @@ package npcs.actions;
 
 import animations.NPCMessage;
 
+import fap_java.Game;
 import fap_java.NPC;
 
 import java.io.Serializable;
@@ -77,5 +78,8 @@ public class ADisplayMessage implements Action {
 
     public Action getOrigNext() {
         return origNext;
+    }
+
+    public void setTransientValues(Game g) {
     }
 }

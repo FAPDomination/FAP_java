@@ -291,6 +291,10 @@ public class CMap {
     public Cell containsCell(Cell c) {
         return hashMap.get(""+c.getI()+","+c.getJ());
     }
+    
+    public Cell getCell(String hash) {
+        return hashMap.get(hash);
+    }
 
     /**
      * Gets the cell in the map  for a couple of values [i,j]

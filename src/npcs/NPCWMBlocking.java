@@ -15,8 +15,8 @@ public class NPCWMBlocking extends NPC{
     @SuppressWarnings("compatibility:5909433600382951811")
     private static final long serialVersionUID = -1529764395083968508L;
 
-    public NPCWMBlocking(Cell pos) {
-        super(pos,false,false,null,null,(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8),null);
+    public NPCWMBlocking(String cellHash) {
+        super(cellHash,false,false,null,(int)Graph.getOffsetsCells().get(0).getWidth()+1,(int)(Graph.getOffsetsCells().get(0).getWidth()-8),null);
         //TODO Update image and override paintComponent
         img = "basicCellImage";
     }
@@ -33,4 +33,5 @@ public class NPCWMBlocking extends NPC{
     }
     
     public void execute(){};
+    
 }

@@ -124,7 +124,9 @@ public class MapHandler extends DefaultHandler {
                 // Create the cell and add it to the map
                 c = new Cell(i, j, t, param, did,game);
                 if(did == 12){
-                    game.getListNPCs().add(new NPCExit(c,game));
+                    NPCExit n = new NPCExit(c.getHash());
+                    n.setTransientValues(game);
+                    game.getListNPCs().add(n);
                 }
                 map.addElement(c);
             }

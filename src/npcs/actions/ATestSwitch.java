@@ -1,5 +1,6 @@
 package npcs.actions;
 
+import fap_java.Game;
 import fap_java.NPC;
 import fap_java.Tools;
 
@@ -75,5 +76,8 @@ public class ATestSwitch implements Action {
 
     public Action getOrigNext() {
         return origNext;
+    }
+
+    public void setTransientValues(Game g) {
     }
 }

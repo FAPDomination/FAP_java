@@ -556,6 +556,10 @@ public class Cell extends Element {
         }
         return s;
     }
+    
+    public String getHash(){
+        return (""+this.getI()+","+this.getJ());
+    }
 
     /**
      * Check if the cell is equal to another (ie on the same spot)

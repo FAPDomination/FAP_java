@@ -10,4 +10,5 @@ public interface Action extends Serializable{
     public void reinit();
     public void setNext(Action next);
     public Action getNext();
+    public void setTransientValues(Game g);
 }
