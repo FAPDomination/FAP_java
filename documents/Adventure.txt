@@ -76,6 +76,7 @@ A la fin d'un NPC on appelle récursivement reinit() sur toutes les actions pour 
 	- A chaque événement sur les switches
 	- Appellés en concaténation par un autre NPC
 Ils gèrent donc les switches et la persistence de leurs actions.
+Ils peuvent contenir une action nécessitant un appui de touche à condition de ne pas pouvoir être déclenchés par un NPC présent sur leur map, pour éviter les conflicts.
 - Les NPCs ont deux modes d'execution : rapide et step. Rapide s'execute sans pause car cela ne concerne que des actions de traitement, step pour devoir valider chaque action avec la touche skill
 - Toutes les actions et les NPCs doivent être serializable
 -------------- Init d'une map

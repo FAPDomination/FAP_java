@@ -150,7 +150,6 @@ public class NPC extends Human {
     }
 
 
-
     public boolean equals(NPC e) {
         boolean b = false;
         // Check if they are on the same spot

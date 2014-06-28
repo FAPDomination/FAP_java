@@ -129,6 +129,10 @@ public class TheComputingThread implements Runnable{
                 if(npc !=null){
                     npc.execute();
                 }
+                ArrayList<NPC> listTriggerNPCs = myGame.getListTriggerNPCs();
+                for(int i=0;i<listTriggerNPCs.size();i++){
+                    listTriggerNPCs.get(i).execute();
+                }
             }
             myGame.executeFSMs();
         }

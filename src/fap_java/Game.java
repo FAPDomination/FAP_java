@@ -130,6 +130,7 @@ public class Game extends JPanel implements NeedingFocus {
     private GameSave gameSave;
     
     private ArrayList<NPC> listNPCs = new ArrayList<NPC>();
+    private ArrayList<NPC> listTriggerNPCs = new ArrayList<NPC>();
     
     private boolean pauseNPC;
     
@@ -976,6 +977,11 @@ public class Game extends JPanel implements NeedingFocus {
             listNPCs.add(e);
         }
     }
+    public void addTriggerNPC(NPC e){
+        if(!this.listTriggerNPCs.contains(e)){
+            listTriggerNPCs.add(e);
+        }
+    }
 
     public void initListNPCs(int nmap) {
         this.pauseNPC = false;
@@ -1012,18 +1018,25 @@ public class Game extends JPanel implements NeedingFocus {
                 Action d;
                 Action e;
                 Action f;
+                NPC npc;
                 
-                f =  new ADisplayMessage("Wat a sheime",null);
+                b = new AModifyCell(map.getCell(17,10),"100",null);
+                a = new ATestSwitch(20,null,b);
+                npc = new NPC(null,false,false,null,this,0,0,a);
+                this.addTriggerNPC(npc);
+                
+                e = new ADisplayMessage("You're missing something here, you now ?!",null);
+                f =  new ADisplayMessage("Wat a sheime",e);
                 c = new ADisplayMessage("I'ma doing it right now !",null);
                 b = new ASetSwitch(0,true,c);
                 a = new AAsk("Ya want da switch ?","Yeah","Nup", f,b);
                 
-                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
+                npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc);
                 
                 
                 f = new ADisplayMessage("Ya do not interrest-a me",null);
-                c = new AModifyCell(map.getCell(17,10),"100",null);
+                c = new ASetSwitch(20,true,null);
                 b = new ADisplayMessage("Ye have da switch !! Gloria !",c);
                 a = new ATestSwitch(0,f,b);
 
@@ -1104,5 +1117,13 @@ public class Game extends JPanel implements NeedingFocus {
 
     public String getWMcellHash() {
         return WMcellHash;
+    }
+
+    public void setListTriggerNPCs(ArrayList<NPC> listTriggerNPCs) {
+        this.listTriggerNPCs = listTriggerNPCs;
+    }
+
+    public ArrayList<NPC> getListTriggerNPCs() {
+        return listTriggerNPCs;
     }
 }
