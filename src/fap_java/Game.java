@@ -1027,6 +1027,11 @@ public class Game extends JPanel implements NeedingFocus {
                 a =  new ASetMapValue("18,9",2,null);
                 npc = new NPC(null,false,false,null,this,0,0,a);
                 this.addTriggerNPC(npc);
+                
+                b = new AModifyCell(map.getCell(18,13),"100",null);
+                a =  new ATestMapValue("18,11",null,b);
+                npc = new NPC(null,false,false,null,this,0,0,a);
+                this.addTriggerNPC(npc);
                     
                 e = new ADisplayMessage("You're missing something here, you now ?!",null);
                 f =  new ADisplayMessage("Wat a sheime",e);
