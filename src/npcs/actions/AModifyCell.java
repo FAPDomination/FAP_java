@@ -37,9 +37,10 @@ public class AModifyCell implements Action, Serializable {
 
         c.setType(t);
         //Loop
-        if(whoLaunches != null){
-            whoLaunches.execute();
-        }
+        
+        whoLaunches.gotoNextAction();
+        whoLaunches.execute();
+
     }
 
     public void reinit() {

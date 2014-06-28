@@ -999,35 +999,40 @@ public class Game extends JPanel implements NeedingFocus {
                 break;
             case 25:
                 {
-                /*
-                ArrayList<Action> list = new ArrayList<Action>();
-                list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
-                list.add(new ASetSwitch(0,true));
-                list.add(new ADisplayMessage("I'ma doing it right now !"));
-                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,list);
+                
+                Action a;
+                Action b;
+                Action c;
+                
+                c = new ADisplayMessage("I'ma doing it right now !",null);
+                b = new ASetSwitch(0,true,c);
+                a = new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime",null),b);
+                
+                NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc);
                 
                 
-                ADisplayMessage ad = new ADisplayMessage("Ya do not interrest-a me");
-                ArrayList<Action> list2 = new ArrayList<Action>();
-                list2.add(new ATestSwitch(0,ad));
-                list2.add(new ADisplayMessage("Ye have da switch !! Gloria !"));
-                list2.add(new AModifyCell(map.getCell(17,10),"100"));
-                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,list2);
+                ADisplayMessage ad = new ADisplayMessage("Ya do not interrest-a me",null);
+                c = new AModifyCell(map.getCell(17,10),"100",null);
+                b = new ADisplayMessage("Ye have da switch !! Gloria !",c);
+                a = new ATestSwitch(0,ad,b);
+
+                NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc2);
-                */
-                Action b = new ASetSwitch(1,true,null);
-                Action a = new ADisplayMessage("I'll activate the knight for ya",b);
+                
+                
+                
+                b = new ASetSwitch(1,true,null);
+                a = new ADisplayMessage("I'll activate the knight for ya",b);
 
                 NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc4);
-                /*
-                ArrayList<Action> list5 = new ArrayList<Action>();
-                list5.add(new ASetSwitch(5,true));
-                list5.add(new ADisplayMessage("I'll activate the Archeeerrr for ya"));
-                NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,list5);
+
+                b = new ASetSwitch(5,true,null);
+                a = new ADisplayMessage("I'll activate the arrrcher for ya",b);
+
+                NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc5);
-*/
                 }
                 break;
             default:
