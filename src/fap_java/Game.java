@@ -866,7 +866,6 @@ public class Game extends JPanel implements NeedingFocus {
     public void initWorldMap() {
         this.listNPCs = new ArrayList<NPC>();
         // Linking maps to Cells
-        //TODO put linking in an external file ?
         
         Params.mapList = Tools.loadWMGameConfigMap();
 
@@ -1025,6 +1024,10 @@ public class Game extends JPanel implements NeedingFocus {
                 npc = new NPC(null,false,false,null,this,0,0,a);
                 this.addTriggerNPC(npc);
                 
+                a =  new ASetMapValue("18,9",2,null);
+                npc = new NPC(null,false,false,null,this,0,0,a);
+                this.addTriggerNPC(npc);
+                    
                 e = new ADisplayMessage("You're missing something here, you now ?!",null);
                 f =  new ADisplayMessage("Wat a sheime",e);
                 c = new ADisplayMessage("I'ma doing it right now !",null);

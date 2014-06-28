@@ -26,3 +26,4 @@ V CharacterSelection probably double threading (was indeed)
 V	can't move when back to world map from game
 	VictoryScreen doesn't last
 	Scores and skillTime continue when NPC pause
+	Recursive TriggerNPC
