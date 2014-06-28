@@ -15,10 +15,9 @@ public class AModifyCell implements Action {
     private String newGenerator;    
     private Action next;
     private Action origNext;
-    public AModifyCell(Cell c, String newGenerator, Action next) {
+    public AModifyCell(String hash, String newGenerator, Action next) {
         super();
-        this.c = c;
-        this.cellHash = c.getHash();
+        this.cellHash = hash;
         this.newGenerator = newGenerator;        
         this.next = next;
         this.origNext = next;

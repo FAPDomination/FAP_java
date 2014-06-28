@@ -2,6 +2,7 @@ package fap_java;
 
 import java.awt.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -256,5 +257,7 @@ public class Params {
      */
     public static final int nFragmentsThreadCells = 20;
     
+    public static Map<Integer,ArrayList<NPC>> npcBank;
+    public static Map<Integer,ArrayList<NPC>> npcBacklogBank;
     
 }

@@ -35,6 +35,8 @@ public class Constants {
     
     public static String wmGameConfigMap = "resources/wmGCM.adv";
     public static String wmParentCells = "resources/wmPC.adv";
+    public static String wmNPCBank = "resources/wmNB.adv";
+    public static String wmNPCBacklogBank = "resources/wmNBLB.adv";
     
     public static Cell initialCellWorldMap = new Cell(18,10);
     

@@ -252,6 +252,62 @@ public class Tools {
         return parentCells;
     }
     
+    public static Map<Integer,ArrayList<NPC>> loadWMNPCBank(){
+        Map<Integer,ArrayList<NPC>> bank = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.wmNPCBank);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            bank = (Map<Integer,ArrayList<NPC>>)in.readObject();
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.err.println("Couldn't find NPC configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            System.err.println("Couldn't load NPC configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.err.println("Impossibru, class not found");
+            Fapplication.exitOnError();
+            c.printStackTrace();
+            return null;
+        }
+        return bank;
+    }
+    
+    public static Map<Integer,ArrayList<NPC>> loadWMNPCBLBank(){
+        Map<Integer,ArrayList<NPC>> bank = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(Constants.wmNPCBacklogBank);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            bank = (Map<Integer,ArrayList<NPC>>)in.readObject();
+            in.close();
+            fileIn.close();
+        } 
+        catch(FileNotFoundException e){
+            System.err.println("Couldn't find NPC configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            System.err.println("Couldn't load NPC configuration file, exiting");
+            Fapplication.exitOnError();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.err.println("Impossibru, class not found");
+            Fapplication.exitOnError();
+            c.printStackTrace();
+            return null;
+        }
+        return bank;
+    }
+    
     public static NPC checkNPCOnCell(Game game, Cell c) {
         NPC npc = null;
         if (game.getAdv() > 0) {

@@ -182,5 +182,11 @@ public class NPC extends Human implements Serializable {
                 y = tableXY[1] + offY;
             }
         }
+        
+        for (Action a = firstAction; a!=null; a=a.getNext()) {
+            if (a != null) {
+                a.setTransientValues(game);
+            }
+        }
     }
 }
