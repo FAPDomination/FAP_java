@@ -448,8 +448,18 @@ public class Game extends JPanel implements NeedingFocus {
      */
     public void computeAnimations(){
         // Get animations
+        Animation npcmessage = null;
         for(int j=0;j<anims.size();j++){
             Animation a = anims.get(j);
+            
+            // Detect double NPC messages
+            if(a instanceof NPCMessage){
+                if(npcmessage != null){
+                    npcmessage.endAnimation();
+                    System.out.println("Found and destroyed");
+                }
+                npcmessage = a;
+            }
             // Execute them
             if(a.isRunning()){
                 a.executeAnimation();
@@ -990,10 +1000,10 @@ public class Game extends JPanel implements NeedingFocus {
                 break;
             case 21:
                 {
-                Action a = new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !",null);
-                Action b = new ADisplayMessage("Appuie sur SKILL pour continuer",a);
-                Action c = new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !",b);
-                NPC npc21 = new NPC(c,this);
+                Action c = new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !",null);
+                Action b = new ADisplayMessage("Appuie sur SKILL pour continuer",c);
+                Action a = new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !",b);
+                NPC npc21 = new NPC(a,this);
                 this.addNPC(npc21);
                 }
                 break;
@@ -1003,6 +1013,8 @@ public class Game extends JPanel implements NeedingFocus {
                 Action a;
                 Action b;
                 Action c;
+                Action d;
+                Action e;
                 Action f;
                 
                 f =  new ADisplayMessage("Wat a sheime",null);
@@ -1024,7 +1036,10 @@ public class Game extends JPanel implements NeedingFocus {
                 
                 
                 
-                b = new ASetSwitch(1,true,null);
+                e = new ASetSwitch(1,true,null);
+                d = new ADisplayMessage("I'll activate the ooh yeah for ya",e);
+                c = new ADisplayMessage("I'll activate the ah aon for ya",d);
+                b = new ADisplayMessage("I'll activate the bullshit for ya",c);
                 a = new ADisplayMessage("I'll activate the knight for ya",b);
 
                 NPC npc4 = new NPC(map.getCell(20, 9),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);

@@ -30,14 +30,16 @@ public class ADisplayMessage implements Action, Serializable {
     }
 
     public void execute(NPC whoLaunches) {
-        System.out.println("Exec");
         if(this.npcMessage == null){
             this.npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
         }
         else{
+            if(npcMessage != null){
+                npcMessage.endAnimation();
+            }
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
-            this.reinit();
+            
         }
     }
 

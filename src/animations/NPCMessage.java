@@ -48,7 +48,7 @@ public class NPCMessage extends Animation {
         Tools.parametrizeJLabel(npcLabel, message, Graph.REGULAR_FONT, Color.WHITE, width-2*margins,height-2*margins, x+margins, y+margins, SwingConstants.TOP);
         thread.getMyGame().add(npcLabel);
         //img = Graph.getGuimg().get("npcDisplayMessage");
-        thread.getMyGame().addAnim(this);
+        //thread.getMyGame().addAnim(this);
     }
     
     public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher){

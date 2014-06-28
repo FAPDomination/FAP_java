@@ -50,6 +50,9 @@ public class AAsk implements Action, Serializable {
                 //End NPC
                 whoLaunches.setCurrentAction(failAction);
                 whoLaunches.execute();
+                if(npcMessage != null){
+                    npcMessage.endAnimation();
+                }
                 //this.reinit();
 
             }
