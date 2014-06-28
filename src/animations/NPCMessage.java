@@ -32,9 +32,9 @@ public class NPCMessage extends Animation {
     
     private int x;
     private int y;
-    public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher) {
+    public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher, boolean bAsk) {
         super(0,0,0,thread);
-        ask = true;
+        ask = bAsk;
         this.launcher = launcher;
         this.message = message;
         this.yes = yes;
@@ -51,8 +51,12 @@ public class NPCMessage extends Animation {
         thread.getMyGame().addAnim(this);
     }
     
+    public NPCMessage(String message, String yes, String no,TheComputingThread thread, AAsk launcher){
+        this(message, yes, no,thread, launcher, true);
+    }
+    
     public NPCMessage(String message,TheComputingThread thread){
-        this(message,"","",thread,null);
+        this(message,"","",thread,null,false);
         ask = false;
         choice = false;
     }

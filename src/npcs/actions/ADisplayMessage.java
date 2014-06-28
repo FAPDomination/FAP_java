@@ -35,14 +35,12 @@ public class ADisplayMessage implements Action, Serializable {
         if(iterator == 0){
             this.npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
             iterator++;
-            whoLaunches.setIterator(whoLaunches.getIterator()-1);
+            
         }
         else{
             this.reinit();
-            //Loop
-            if(whoLaunches != null){
-                whoLaunches.execute();
-            }
+            whoLaunches.gotoNextAction();
+            whoLaunches.execute();
         }
     }
 
