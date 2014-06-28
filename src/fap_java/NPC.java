@@ -81,8 +81,7 @@ public class NPC extends Human {
         if (game.getThread().getRunning()) {
             game.pauseGame(true);
         }
-        if (currentAction.getNext() != null) {
-            currentAction = currentAction.getNext();
+        if (currentAction != null) {
             iterator++;
             currentAction.execute(this);
             //System.out.println(this+" is executing");
@@ -150,6 +149,7 @@ public class NPC extends Human {
                     a.reinit();
                 }
             }
+        currentAction = firstAction;
     }
 
     public void setIterator(int iterator) {
@@ -176,5 +176,9 @@ public class NPC extends Human {
 
     public Action getCurrentAction() {
         return currentAction;
+    }
+    
+    public void gotoNextAction(){
+        currentAction=currentAction.getNext();
     }
 }

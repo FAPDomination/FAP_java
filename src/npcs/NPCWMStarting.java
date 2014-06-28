@@ -47,7 +47,7 @@ public class NPCWMStarting extends NPC {
         
         Action sg = new AStartGame(gameToLaunch);
         firstAction = new AAsk("Lancer la partie ?", "Oui", "Non", null, sg);
-
+        currentAction = firstAction;
     }
 
     public void paintComponent(Graphics g) {

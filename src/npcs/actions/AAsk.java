@@ -33,7 +33,6 @@ public class AAsk implements Action, Serializable {
         if(iterator == 0){
             this.npcMessage = new NPCMessage(message,yesOption,noOption, whoLaunches.getGame().getThread(),this);
             iterator++;
-            whoLaunches.setIterator(whoLaunches.getIterator()-1);
         }
         else{
             if(npcMessage != null){
@@ -42,22 +41,27 @@ public class AAsk implements Action, Serializable {
             if(choice){
                 //Loop
                 if(whoLaunches != null){
+                    whoLaunches.gotoNextAction();
                     whoLaunches.execute();
                     this.reinit();
                 }
             }
             else{
                 //End NPC
-                //whoLaunches.setIterator(whoLaunches.getActions().size()+2);
+                whoLaunches.setCurrentAction(failAction);
+                whoLaunches.execute();
+                this.reinit();
+                /*
                 if(failAction != null){
-                    
                     failAction.execute(whoLaunches);
                     this.reinit();
                 }
                 else{
+                    whoLaunches.gotoNextAction();
                     whoLaunches.execute();
                     this.reinit();
                 }
+                */
             }
         }
     }

@@ -981,21 +981,22 @@ public class Game extends JPanel implements NeedingFocus {
         else{
             
         }
-        /*
+        
             //TODO Initialize the list of all NPCs according to the nmap
+            // Last action to first action (chained list)
             switch(nmap){
             case 0:
                 initWorldMap();
                 break;
             case 21:
-                ArrayList<Action> list3 = new ArrayList<Action>();
-                list3.add(new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !"));
-                list3.add(new ADisplayMessage("Appuie sur SKILL pour continuer"));
-                list3.add(new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !"));
-                NPC npc21 = new NPC(list3,this);
+                Action a = new ADisplayMessage("Ah mais chui con ! Tu viens de le faire !",null);
+                Action b = new ADisplayMessage("Appuie sur SKILL pour continuer",a);
+                Action c = new ADisplayMessage("Willkommen dans l'aventure, jeune fougeux !",b);
+                NPC npc21 = new NPC(c,this);
                 this.addNPC(npc21);
                 break;
             case 25:
+                /*
                 ArrayList<Action> list = new ArrayList<Action>();
                 list.add(new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime")));
                 list.add(new ASetSwitch(0,true));
@@ -1023,6 +1024,7 @@ public class Game extends JPanel implements NeedingFocus {
                 list5.add(new ADisplayMessage("I'll activate the Archeeerrr for ya"));
                 NPC npc5 = new NPC(map.getCell(27, 19),false,false,Graph.list.get("NPC_sample"),this,6,-17,list5);
                 this.addNPC(npc5);
+*/
                 break;
             default:
                 //this.listNPCs = new ArrayList<NPC>();
@@ -1031,7 +1033,7 @@ public class Game extends JPanel implements NeedingFocus {
                 }
                 break;
             }
-*/
+
     }
 
     public void setPauseNPC(boolean pauseNPC) {
