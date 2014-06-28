@@ -53,7 +53,6 @@ public class AAsk implements Action, Serializable {
                 if(npcMessage != null){
                     npcMessage.endAnimation();
                 }
-                //this.reinit();
 
             }
         }

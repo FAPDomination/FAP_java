@@ -100,22 +100,22 @@ V				- Start Game
 V		- Implement
 	- New NPC System
 		- Changes in Actions
-			- Next, NextInit, Reinit()
+V			- Next, NextInit, Reinit()
 			- QuickMode and StepMode
-			- Adapt already existing code
+V			- Adapt already existing code
 P			- Serializable
 				- Get transient values
 			- Trigger Backlogs
-			- Repairs :
-				- ATestSwitch line 42
-				- AAsk line 51
+V			- Repairs :
+V				- ATestSwitch line 42
+V				- AAsk line 51
 		- Changes in NPC
-			- Creations
-			- Chained list
+V			- Creations
+V			- Chained list
 			- insert(NPC) function
-			- reinit() function with actionLists reinit
-				- Bottom-UP or Top-DOWN ?
-			- Delete action AL
+V			- reinit() function with actionLists reinit
+V				- Bottom-UP or Top-DOWN ?
+V			- Delete action AL
 		- Backlog NPCs
 			- Type
 			- List for each map

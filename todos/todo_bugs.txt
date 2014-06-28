@@ -18,13 +18,11 @@ V Minimap : black dots
 V WorldMap
 V	- Suddenly became adv<2
 V	- Class description label visible 
-  NPC message overlaping
-  NPC exception with asker
+V NPC message overlaping
+V NPC exception with asker
 V Bug with progressive displacement and warp
 V CharacterSelection probably double threading (was indeed)
   ADV :
 V	can't move when back to world map from game
 	VictoryScreen doesn't last
 	Scores and skillTime continue when NPC pause
-	New NPC system
-		Make everything serializable

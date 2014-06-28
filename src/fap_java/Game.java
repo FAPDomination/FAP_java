@@ -454,10 +454,6 @@ public class Game extends JPanel implements NeedingFocus {
             
             // Detect double NPC messages
             if(a instanceof NPCMessage){
-                if(npcmessage != null){
-                    npcmessage.endAnimation();
-                    System.out.println("Found and destroyed");
-                }
                 npcmessage = a;
             }
             // Execute them
