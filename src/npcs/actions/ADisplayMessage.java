@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 public class ADisplayMessage implements Action, Serializable {
     private String message;
-    private int iterator = 0;
     private NPCMessage npcMessage;
     
     private Action next;
@@ -17,7 +16,6 @@ public class ADisplayMessage implements Action, Serializable {
     public ADisplayMessage(String message, Action next) {
         super();
         this.message = message;
-        this.iterator =0;
         
         this.next = next;
         this.origNext = next;
@@ -32,32 +30,25 @@ public class ADisplayMessage implements Action, Serializable {
     }
 
     public void execute(NPC whoLaunches) {
-        if(iterator == 0){
+        System.out.println("Exec");
+        if(this.npcMessage == null){
             this.npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
-            iterator++;
-            
         }
         else{
-            this.reinit();
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
+            this.reinit();
         }
     }
 
-    public void setIterator(int iterator) {
-        this.iterator = iterator;
-    }
-
-    public int getIterator() {
-        return iterator;
-    }
 
     public void reinit() {
         next = origNext;
-        iterator = 0;
+        
         if(npcMessage != null){
             npcMessage.endAnimation();
         }
+        npcMessage = null;
     }
 
     public void setNpcMessage(NPCMessage npcMessage) {

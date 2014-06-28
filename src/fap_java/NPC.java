@@ -19,7 +19,6 @@ public class NPC extends Human {
     protected int x;
     protected int y;
 
-    protected int iterator;
     
     protected Action firstAction;
     protected Action currentAction;
@@ -82,7 +81,6 @@ public class NPC extends Human {
             game.pauseGame(true);
         }
         if (currentAction != null) {
-            iterator++;
             currentAction.execute(this);
             //System.out.println(this+" is executing");
         } else {
@@ -143,7 +141,6 @@ public class NPC extends Human {
     }
 
     public void reInit() {
-        iterator = 0;
             for (Action a = firstAction; a!=null; a=a.getNext()) {
                 if (a != null) {
                     a.reinit();
@@ -152,13 +149,6 @@ public class NPC extends Human {
         currentAction = firstAction;
     }
 
-    public void setIterator(int iterator) {
-        this.iterator = iterator;
-    }
-
-    public int getIterator() {
-        return iterator;
-    }
 
 
     public boolean equals(NPC e) {
@@ -180,5 +170,9 @@ public class NPC extends Human {
     
     public void gotoNextAction(){
         currentAction=currentAction.getNext();
+    }
+    
+    public void setNextAction(Action a){
+        currentAction.setNext(a);
     }
 }

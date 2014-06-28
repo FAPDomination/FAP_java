@@ -35,13 +35,12 @@ public class ATestSwitch implements Action, Serializable {
             //Loop
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
-            
         }
         else{
             //End NPC
             whoLaunches.setCurrentAction(failAction);
             whoLaunches.execute();
-            this.reinit();
+            //this.reinit();
         }
     }
 

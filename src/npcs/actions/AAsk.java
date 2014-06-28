@@ -50,18 +50,8 @@ public class AAsk implements Action, Serializable {
                 //End NPC
                 whoLaunches.setCurrentAction(failAction);
                 whoLaunches.execute();
-                this.reinit();
-                /*
-                if(failAction != null){
-                    failAction.execute(whoLaunches);
-                    this.reinit();
-                }
-                else{
-                    whoLaunches.gotoNextAction();
-                    whoLaunches.execute();
-                    this.reinit();
-                }
-                */
+                //this.reinit();
+
             }
         }
     }

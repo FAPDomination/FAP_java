@@ -1003,19 +1003,21 @@ public class Game extends JPanel implements NeedingFocus {
                 Action a;
                 Action b;
                 Action c;
+                Action f;
                 
+                f =  new ADisplayMessage("Wat a sheime",null);
                 c = new ADisplayMessage("I'ma doing it right now !",null);
                 b = new ASetSwitch(0,true,c);
-                a = new AAsk("Ya want da switch ?","Yeah","Nup", new ADisplayMessage("Wat a sheime",null),b);
+                a = new AAsk("Ya want da switch ?","Yeah","Nup", f,b);
                 
                 NPC npc = new NPC(map.getCell(10, 10),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc);
                 
                 
-                ADisplayMessage ad = new ADisplayMessage("Ya do not interrest-a me",null);
+                f = new ADisplayMessage("Ya do not interrest-a me",null);
                 c = new AModifyCell(map.getCell(17,10),"100",null);
                 b = new ADisplayMessage("Ye have da switch !! Gloria !",c);
-                a = new ATestSwitch(0,ad,b);
+                a = new ATestSwitch(0,f,b);
 
                 NPC npc2 = new NPC(map.getCell(15, 8),false,false,Graph.list.get("NPC_sample"),this,6,-17,a);
                 this.addNPC(npc2);
