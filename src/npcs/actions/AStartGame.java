@@ -50,6 +50,10 @@ public class AStartGame implements Action {
             panel = new CharacterSelection(frame,Fapplication.getWorldMap(),game);
         }
         frame.changePanel(panel);
+        /*
+        whoLaunches.gotoNextAction();
+        whoLaunches.execute();
+        */
        // if(whoLaunches != null && whoLaunches.getIterator() <= whoLaunches.getActions().size()){
        //     whoLaunches.execute();
        // }

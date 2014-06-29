@@ -22,6 +22,7 @@ V NPC message overlaping
 V NPC exception with asker
 V Bug with progressive displacement and warp
 V CharacterSelection probably double threading (was indeed)
+  UTF8 text
   ADV :
 V	can't move when back to world map from game
 	VictoryScreen doesn't last

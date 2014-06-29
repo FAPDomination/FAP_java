@@ -127,6 +127,8 @@ X				- Special Action that just creates it
 X				- Non-loop
 V		- Repair NPC initialization
 V World map
+	- Better setting for maps. Avoid big list of all maps in the Constants file
+	- If no map, no suggestion to launch
 V	- Get list of conquered cells
 V	- Parse list of available cells
 V	- Create NPCs to cover the designated cells
