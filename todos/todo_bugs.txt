@@ -27,4 +27,5 @@ V CharacterSelection probably double threading (was indeed)
 V	can't move when back to world map from game
 	VictoryScreen doesn't last
 	Scores and skillTime continue when NPC pause
-	Recursive TriggerNPC
+	Recursive TriggerNPC when setting switch or mapVal
+	AModifyCell : when creating a cell from null -> exception

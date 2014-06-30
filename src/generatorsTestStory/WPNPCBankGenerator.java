@@ -104,8 +104,9 @@ public class WPNPCBankGenerator {
             
             c = new ADisplayMessage("Mais laisse-moi donc tranquille, j'ai à faire !",null);
             
-            d = new ADisplayMessage("J'ai une mission pour toi. De l'autre côté du pont se trouve un marchand, qui détient une fiole. Va me la chercher et je te récompenserai",null);
-            b = new ADisplayMessage("Ah, enfin te voilà ! J'ai réparé le pont, tu n'as plus qu'à l'emprunter !",null);
+            h = new ASetSwitch(19,true,null);
+            d = new ADisplayMessage("J'ai une mission pour toi. De l'autre côté du pont se trouve un marchand, qui détient une fiole. Va me la chercher et je te récompenserai",h);
+            b = new ADisplayMessage("Ah, enfin te voilà ! J'ai réparé le pont, tu n'as plus qu'à l'emprunter !",d);
             
             g = new ADisplayMessage("Quoi ? Une récompense... Hmmm... Tiens, je t'apprends les secrets de l'archérie ! Tu pourras maintenant combattre tel un vrai archer", null);
             f = new ADisplayMessage("Ah voilà ma fiole ! Merci bien, jeune aventurier. Maintenant ouste, disparaît !",g);
@@ -118,6 +119,38 @@ public class WPNPCBankGenerator {
             
             npcBank.put(31, theList);
             npcBacklogBank.put(31, theBLList);
+        }
+        // Map 33:
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            Action c;
+            Action d;
+            Action e;
+            Action f;
+            Action g;
+            Action h;
+            NPC npc;
+            
+            
+            d = new AModifyCell("12,11","2",null);
+            c = new AModifyCell("13,11","2",d);
+            b = new AModifyCell("14,12","2",c);
+            e = new ASetMapValue("17,8",2,b);
+            a = new ATestSwitch(19,null,e);
+            npc = new NPC(null,false,false,null,0,0,a);
+            theBLList.add(npc);
+            
+            b = new ASetSwitch(17,true,null);
+            a = new ATestSwitch(17,b,null);
+            npc = new NPC(null,false,true,null,0,0,a);
+            theList.add(npc);
+            
+            
+            npcBank.put(33, theList);
+            npcBacklogBank.put(33, theBLList);
         }
         /*
         //Map 21:
