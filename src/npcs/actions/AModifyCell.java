@@ -36,6 +36,13 @@ public class AModifyCell implements Action {
 
         // Compute new type and properties
         int t = MapHandler.setTypeWithDid(did, param);
+        if(c == null){
+            String[] tab = cellHash.split(",");
+            c = new Cell(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),t,param,did,whoLaunches.getGame());
+            whoLaunches.getGame().getMap().insertCell(c);
+            c = whoLaunches.getGame().getMap().getCell(cellHash);
+        }
+        
         c.setAddParam(param);
         c.setDid(did);
 

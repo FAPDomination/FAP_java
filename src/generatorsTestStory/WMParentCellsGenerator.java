@@ -51,7 +51,7 @@ public class WMParentCellsGenerator {
         // Side quest
         mapParents.get("17,8").add("17,9");
         mapParents.get("17,7").add("17,8");
-        mapParents.get("17,4").add("17,7");
+        mapParents.get("17,6").add("17,7");
         /*
         mapParents.get("17,9").add("18,11");
         

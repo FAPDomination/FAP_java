@@ -278,6 +278,34 @@ public class CMap {
         
         hashMap.put(""+c.getI()+","+c.getJ(), c);
     }
+    
+    public void insertCell(Cell c){
+        Cell o = containsCell(c);
+        if (o != null) {
+            myMap.remove(o);
+        }
+        
+        c.setNeedDirt();
+        
+        c.setMap(this);
+        myMap.add(c);
+        mapSize++;
+        hashMap.put(""+c.getI()+","+c.getJ(), c);
+        c = this.getCell(c.getHash());
+        
+        o = firstCell;
+        for(int i=0;i<this.mapSize;i++){
+            //TODO : won't work on the edges of the map
+            if(o.getI() == c.getI() && o.getJ() == c.getJ()-1){
+                c.setNextInMap(o.getNextInMap());
+                o.setNextInMap(c);
+                break;
+            }
+            o = o.getNextInMap();
+        }
+        
+        
+    }
 
     public void removeElement(Cell c) {
         myMap.remove(c);
