@@ -92,6 +92,7 @@ public class WPNPCBankGenerator {
             Action f;
             Action g;
             Action h;
+            Action i;
             NPC npc;
             
             // Columns
@@ -108,7 +109,8 @@ public class WPNPCBankGenerator {
             d = new ADisplayMessage("J'ai une mission pour toi. De l'autre côté du pont se trouve un marchand, qui détient une fiole. Va me la chercher et je te récompenserai",h);
             b = new ADisplayMessage("Ah, enfin te voilà ! J'ai réparé le pont, tu n'as plus qu'à l'emprunter !",d);
             
-            g = new ADisplayMessage("Quoi ? Une récompense... Hmmm... Tiens, je t'apprends les secrets de l'archérie ! Tu pourras maintenant combattre tel un vrai archer", null);
+            i = new ASetSwitch(5,true,null);
+            g = new ADisplayMessage("Quoi ? Une récompense... Hmmm... Tiens, je t'apprends les secrets de l'archerie ! Tu pourras maintenant combattre tel un vrai archer", i);
             f = new ADisplayMessage("Ah voilà ma fiole ! Merci bien, jeune aventurier. Maintenant ouste, disparaît !",g);
             
             e = new ATestSwitch(18,b,f);
@@ -152,6 +154,27 @@ public class WPNPCBankGenerator {
             npcBank.put(33, theList);
             npcBacklogBank.put(33, theBLList);
         }
+        //Map 35:
+            {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+           
+                Action a;
+                Action b;
+                Action c;
+                Action d;
+                Action e;
+                
+                e = new ASetMapValue("17,6",2,null);
+                a = new ADisplayMessage("... Disons qu'il connaît quelqu'un qui a des problèmes avec ça. Hem. Bref, la voici, ne la perd pas !", e);
+                c = new ADisplayMessage("Ah, c'est donc toi que le vieux Michou a envoyé pour récupérer sa fiole de... enfin...", a);
+                b = new ASetSwitch(18,true,c);
+                NPC npc = new NPC("7,6",false,false,"NPC_sample",6,-17,b);
+                theList.add(npc);
+           
+            npcBank.put(35, theList);
+            npcBacklogBank.put(35, theBLList);
+            }
         /*
         //Map 21:
             {
