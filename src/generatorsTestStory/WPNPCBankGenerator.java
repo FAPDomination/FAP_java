@@ -50,8 +50,8 @@ public class WPNPCBankGenerator {
             Action f;
             NPC npc;
             
-            b = new ADisplayMessage("Alors que vous vous approchez de l'une d'entre elles, vous réalisez que ces colonnes sont vivantes ! Elles ont quelque chose à vous dire...",null);
-            a = new ADisplayMessage("Vous vous réveillez dans une étrange salle. Des colonnes tout autour de vous.",b);
+            b = new ADisplayMessage("Alors que vous vous approchez de l'une d'entre elles, vous r&eacute;alisez que ces colonnes sont vivantes ! Elles ont quelque chose &agrave; vous dire...",null);
+            a = new ADisplayMessage("Vous vous r&eacute;veillez dans une &eacute;trange salle. Des colonnes tout autour de vous.",b);
             e = new ASetSwitch(15,true,a);
             d = new ATestSwitch(15,e,null);
             NPC npc21 = new NPC(d);
@@ -60,9 +60,9 @@ public class WPNPCBankGenerator {
             // Columns
             //17,14, 17,8
             a = new ASetMapValue("18,10",2,null);
-            e = new ADisplayMessage("Aide-nous à sauver Le Graphiste et à rétablir la paix visuelle de FAP-Land® (Un pays où il fait bon fapper)!",a);
-            f =  new ADisplayMessage("Un affreux sorcier a capturé le graphiste et l'a enfermé dans sa forteresse des montagnes ! Il a ensuite remplacé tous les graphismes des personnages du jeu par ces affreux batons !",e);
-            c = new ADisplayMessage("Au secours ! Un mal terrible s'est attaqué au royaume !",f);
+            e = new ADisplayMessage("Aide-nous &agrave; sauver Le Graphiste et &agrave; r&eacute;tablir la paix visuelle de FAP-Land&copy; (Un pays o&ugrave; il fait bon fapper)!",a);
+            f =  new ADisplayMessage("Un affreux sorcier a captur&eacute; le graphiste et l'a enferm&eacute; dans sa forteresse des montagnes ! Il a ensuite remplac&eacute; tous les graphismes des personnages du jeu par ces affreux batons !",e);
+            c = new ADisplayMessage("Au secours ! Un mal terrible s'est attaqu&eacute; au royaume !",f);
             
             npc = new NPC("17,8",false,false,"NPC_sample",6,-17,c);
             theList.add(npc);
@@ -72,8 +72,8 @@ public class WPNPCBankGenerator {
             theList.add(npc);
             
             c = new ASetSwitch(1,true,null);
-            b = new ADisplayMessage("Tiens, je t'enseigne mon savoir, puisse-t-il t'aider dans ta quête et te permettre de délivrer le royaume de cette horrible malédiction",c);
-            a = new ADisplayMessage("Avant d'être réduit à l'état de baton, j'étais un puissant chevalier.",b);
+            b = new ADisplayMessage("Tiens, je t'enseigne mon savoir, puisse-t-il t'aider dans ta qu&ecirc;te et te permettre de d&eacute;livrer le royaume de cette horrible mal&eacute;diction",c);
+            a = new ADisplayMessage("Avant d'&ecirc;tre r&eacute;duit &agrave; l'&eacute;tat de baton, j'&eacute;tais un puissant chevalier.",b);
             npc = new NPC("17,13",false,false,"NPC_sample",6,-17,a);
             theList.add(npc);
             
@@ -98,20 +98,20 @@ public class WPNPCBankGenerator {
             // Columns
             //17,14, 17,8
             c = new ADisplayMessage("C'est affreux, qu'allons-nous faire ?",null);
-            b = new ADisplayMessage("Merci d'avoir libéré Le Graphiste ! Maintenant tout va pouvoir rentrer dans l'ordre !",null);
+            b = new ADisplayMessage("Merci d'avoir lib&eacute;r&eacute; Le Graphiste ! Maintenant tout va pouvoir rentrer dans l'ordre !",null);
             a = new ATestSwitch(16,c,b);
             npc = new NPC("19,11",false,false,"NPC_sample",6,-17,a);
             theList.add(npc);
             
-            c = new ADisplayMessage("Mais laisse-moi donc tranquille, j'ai à faire !",null);
+            c = new ADisplayMessage("Mais laisse-moi donc tranquille, j'ai &agrave; faire !",null);
             
             h = new ASetSwitch(19,true,null);
-            d = new ADisplayMessage("J'ai une mission pour toi. De l'autre côté du pont se trouve un marchand, qui détient une fiole. Va me la chercher et je te récompenserai",h);
-            b = new ADisplayMessage("Ah, enfin te voilà ! J'ai réparé le pont, tu n'as plus qu'à l'emprunter !",d);
+            d = new ADisplayMessage("J'ai une mission pour toi. De l'autre c&ocirc;t&eacute; du pont se trouve un marchand, qui d&eacute;tient une fiole. Va me la chercher et je te r&eacute;compenserai",h);
+            b = new ADisplayMessage("Ah, enfin te voil&agrave; ! J'ai r&eacute;par&eacute; le pont, tu n'as plus qu'&agrave; l'emprunter !",d);
             
             i = new ASetSwitch(5,true,null);
-            g = new ADisplayMessage("Quoi ? Une récompense... Hmmm... Tiens, je t'apprends les secrets de l'archerie ! Tu pourras maintenant combattre tel un vrai archer", i);
-            f = new ADisplayMessage("Ah voilà ma fiole ! Merci bien, jeune aventurier. Maintenant ouste, disparaît !",g);
+            g = new ADisplayMessage("Quoi ? Une r&eacute;compense... Hmmm... Tiens, je t'apprends les secrets de l'archerie ! Tu pourras maintenant combattre tel un vrai archer", i);
+            f = new ADisplayMessage("Ah voil&agrave; ma fiole ! Merci bien, jeune aventurier. Maintenant ouste, dispara&icirc;t !",g);
             
             e = new ATestSwitch(18,b,f);
             a = new ATestSwitch(17,c,e);
@@ -166,8 +166,8 @@ public class WPNPCBankGenerator {
                 Action e;
                 
                 e = new ASetMapValue("17,6",2,null);
-                a = new ADisplayMessage("... Disons qu'il connaît quelqu'un qui a des problèmes avec ça. Hem. Bref, la voici, ne la perd pas !", e);
-                c = new ADisplayMessage("Ah, c'est donc toi que le vieux Michou a envoyé pour récupérer sa fiole de... enfin...", a);
+                a = new ADisplayMessage("... Disons qu'il conna&icirc;t quelqu'un qui a des probl&egrave;mes avec &#0231;a. Hem. Bref, la voici, ne la perd pas !", e);
+                c = new ADisplayMessage("Ah, c'est donc toi que le vieux Michou a envoy&eacute; pour r&eacute;cup&eacute;rer sa fiole de... enfin...", a);
                 b = new ASetSwitch(18,true,c);
                 NPC npc = new NPC("7,6",false,false,"NPC_sample",6,-17,b);
                 theList.add(npc);
@@ -175,6 +175,26 @@ public class WPNPCBankGenerator {
             npcBank.put(35, theList);
             npcBacklogBank.put(35, theBLList);
             }
+        // Map 36 :
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            Action c;
+            Action d;
+            Action e;
+            Action f;
+            NPC npc;
+            
+            b = new ADisplayMessage("Elle régénèrent plus vite et ont plus de points de vie.",null);
+            a = new ADisplayMessage("Certaines parties de cette carte sont innondées de lumière. Elles sont bénies par Petruchka, déesse de la nature et des chatons perdus.",b);
+            npc = new NPC(a);
+            theList.add(npc);
+            
+            npcBank.put(36, theList);
+            npcBacklogBank.put(36, theBLList);
+        }
         /*
         //Map 21:
             {
