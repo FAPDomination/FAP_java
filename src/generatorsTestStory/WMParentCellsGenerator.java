@@ -30,7 +30,7 @@ public class WMParentCellsGenerator {
         mapParents.get("16,10").add("17,10");
         
         mapParents.get("15,9").add("16,9");
-        mapParents.get("15,9").add("16,11");
+        //mapParents.get("15,9").add("16,11");
         
         mapParents.get("15,10").add("16,10");
         //mapParents.get("15,10").add("16,11");

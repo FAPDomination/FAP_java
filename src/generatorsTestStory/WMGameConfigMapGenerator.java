@@ -27,6 +27,9 @@ public class WMGameConfigMapGenerator implements Serializable{
         mapList.put("17,7", new GameConfig("1,7","0,1","0,1","0,1",false,34,1200,0,0,1,"17,7"));
         mapList.put("17,6", new GameConfig(35,"17,6"));
         mapList.put("16,9", new GameConfig("1,7","0,1","0,1","0,1",false,36,1200,0,0,1,"16,9"));
+        mapList.put("17,10", new GameConfig("1,7","0,1","0,1","0,1",false,37,1200,0,0,1,"17,10"));
+        mapList.put("16,10", new GameConfig("1,7","0,1","0,1","0,1",false,38,1200,0,0,1,"16,10"));
+        mapList.put("15,9", new GameConfig("1,7","0,1","0,1","0,1",false,39,1200,0,0,1,"15,9"));
         //mapList.put("17,9", new GameConfig("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1,"17,9"));
         
         
