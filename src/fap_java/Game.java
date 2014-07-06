@@ -897,6 +897,8 @@ public class Game extends JPanel implements NeedingFocus {
                 this.addNPC(new NPCWMStarting(cellHash,true,Params.mapList.get(cellHash)));
             //}
         }
+        
+        this.triggerTriggerNPCs();
     }
     
     public void computeWorldMap(){
