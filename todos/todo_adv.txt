@@ -165,3 +165,7 @@ V		- Unlocked characters all set to false except 1 and 7
 V	- Generate accessors
 V HardCodePanel could be deleted
   Button "restart" for a game
+  Boolean that decides if the character selection is allowed or not
+  Display VictTime
+  Display VictTile
+  VictTile should be one time binding
