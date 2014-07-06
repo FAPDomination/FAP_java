@@ -195,6 +195,22 @@ public class WPNPCBankGenerator {
             npcBank.put(36, theList);
             npcBacklogBank.put(36, theBLList);
         }
+        // Map 41 :
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            NPC npc;
+            
+            b = new ADisplayMessage("Tu r'marqueras que les cellules craquelées de lave sont instables. Rien n'y pousse et rien ni reste bien longtemps, que diou !",null);
+            a = new ADisplayMessage("Crévindiou' ! C'esti moi, Igor de la Butte aux Cerfs ! J'm'en vins t'aider à combattre c'te vermine ! Allez, courage, jeune fougueux !",b);
+            npc = new NPC(a);
+            theList.add(npc);
+            
+            npcBank.put(41, theList);
+            npcBacklogBank.put(41, theBLList);
+        }
         /*
         //Map 21:
             {
