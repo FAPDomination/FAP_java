@@ -27,7 +27,7 @@ public class Constants {
     public static final int numberOfAdvSwitches = 25;
     public static final int numberOfAdvChars = 10;
     
-    public static String[] listAdvMaps = {"18,10","19,9","17,9","17,10","16,9","16,11","15,9","16,10","15,10","14,10","13,10","13,9","12,10","12,9","12,11","17,9","17,8","17,7","17,6"};
+    public static String[] listAdvMaps = {"18,10","19,9","17,9","17,10","16,9","16,11","15,9","16,10","15,10","14,10","13,10","13,9","12,10","17,9","17,8","17,7","17,6"};
     
     public static String savegameFile = "SAVEGAME_FILE";
     public static String controlersFile = "CONTROLS_FILE";

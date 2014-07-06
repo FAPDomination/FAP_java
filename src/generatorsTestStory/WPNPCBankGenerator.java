@@ -187,15 +187,30 @@ public class WPNPCBankGenerator {
             Action f;
             NPC npc;
             
-            b = new ADisplayMessage("Elle régénèrent plus vite et ont plus de points de vie.",null);
-            a = new ADisplayMessage("Certaines parties de cette carte sont innondées de lumière. Elles sont bénies par Petruchka, déesse de la nature et des chatons perdus.",b);
+            a = new ASetVictory();
+            npc = new NPC("8,4",true,false,null,6,-17,a);
+            theList.add(npc);
+            
+            npcBank.put(42, theList);
+            npcBacklogBank.put(42, theBLList);
+        }
+        // Map 41 :
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            NPC npc;
+            
+            b = new ADisplayMessage("Tu r'marqueras que les cellules craquelées de lave sont instables. Rien n'y pousse et rien ni reste bien longtemps, que diou !",null);
+            a = new ADisplayMessage("Crévindiou' ! C'esti moi, Igor de la Butte aux Cerfs ! J'm'en vins t'aider à combattre c'te vermine ! Allez, courage, jeune fougueux !",b);
             npc = new NPC(a);
             theList.add(npc);
             
-            npcBank.put(36, theList);
-            npcBacklogBank.put(36, theBLList);
+            npcBank.put(41, theList);
+            npcBacklogBank.put(41, theBLList);
         }
-        // Map 41 :
+        // Map 42 :
         {
             ArrayList<NPC> theList = new ArrayList<NPC>();
             ArrayList<NPC> theBLList = new ArrayList<NPC>();

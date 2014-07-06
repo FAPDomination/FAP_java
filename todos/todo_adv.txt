@@ -164,3 +164,4 @@ V		- Game switches all set to false
 V		- Unlocked characters all set to false except 1 and 7
 V	- Generate accessors
 V HardCodePanel could be deleted
+  Button "restart" for a game

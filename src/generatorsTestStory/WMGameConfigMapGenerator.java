@@ -32,6 +32,7 @@ public class WMGameConfigMapGenerator implements Serializable{
         mapList.put("15,9", new GameConfig("1,7","0,1","0,1","0,1",false,39,1200,0,0,1,"15,9"));
         mapList.put("15,10", new GameConfig("1,7","0,1","0,1","0,1",false,40,1200,0,0,1,"15,10"));
         mapList.put("14,10", new GameConfig("1,1,7,7","0,1,0,1","0,1,1,1","0,1,1,1",false,41,2000,0,0,1,"14,10"));
+        mapList.put("13,9", new GameConfig("1","0","0","0",false,42,2000,0,30,1,"13,9"));
         //mapList.put("17,9", new GameConfig("1,1,1","0,1,1","0,1,1","0,1,1",false,22,1000,0,0,1,"17,9"));
         
         
@@ -41,7 +42,7 @@ public class WMGameConfigMapGenerator implements Serializable{
             out.writeObject(mapList);
             out.close();
             fileOut.close();
-            System.out.println("Saved map cell linking in "+Constants.wmGameConfigMap);
+            System.out.println("Saved map game configs in "+Constants.wmGameConfigMap);
         } catch (IOException i) {
             i.printStackTrace();
         }
