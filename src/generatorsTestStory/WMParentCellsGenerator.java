@@ -39,13 +39,9 @@ public class WMParentCellsGenerator {
         mapParents.get("14,10").add("15,10");
         
         mapParents.get("13,9").add("14,10");
-        mapParents.get("12,9").add("14,10");
-        mapParents.get("12,11").add("14,10");
         mapParents.get("13,10").add("14,10");
         
         mapParents.get("12,10").add("13,9");
-        mapParents.get("12,10").add("12,9");
-        mapParents.get("12,10").add("12,11");
         mapParents.get("12,10").add("13,10");
         
         // Side quest

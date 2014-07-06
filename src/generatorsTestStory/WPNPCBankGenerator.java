@@ -227,6 +227,78 @@ public class WPNPCBankGenerator {
             npcBacklogBank.put(41, theBLList);
         }
         
+        // Map 45 :
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            NPC npc;
+            
+            b = new ADisplayMessage("Tu ne perds rien pour attendre ! Jamais tu ne libéreras le graphiste ! YAAAAAAAH !",null);
+            a = new ADisplayMessage("Ah ! Vermine ! Charogne ! Tu oses me défier, moi, le gros big boss de la fin du jeu ?",b);
+            npc = new NPC(a);
+            theList.add(npc);
+            
+            npcBank.put(45, theList);
+            npcBacklogBank.put(45, theBLList);
+        }
+        
+        // World Map 
+        {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+            Action a;
+            Action b;
+            Action c;
+            Action d;
+            Action e;
+            Action f;
+            Action g;
+            Action h;
+            NPC npc;
+            
+            
+            c = new AModifyCell("11,10","7",null);
+            b = new AModifyCell("11,9","7",c);
+            e = new ATestMapValue("12,10",null,b);
+            npc = new NPC(null,false,false,null,0,0,e);
+            theBLList.add(npc);
+            
+            npcBank.put(0, theList);
+            npcBacklogBank.put(0, theBLList);
+        }
+        
+        //Map 46: Final
+            {
+            ArrayList<NPC> theList = new ArrayList<NPC>();
+            ArrayList<NPC> theBLList = new ArrayList<NPC>();
+           
+                Action a;
+                Action b;
+                Action c;
+                Action d;
+                Action e;
+                
+                d = new ASetSwitch(16,true,null);
+                c = new ADisplayMessage("Je suis le Graphiste. Merci de m'avoir libéré ! Tout va pouvoir rentrer dans l'ordre !", d);
+                b = new ASetSwitch(16,true,c);
+                NPC npc = new NPC("14,8",false,false,"NPC_sample",6,-17,b);
+                theList.add(npc);
+                
+                c = new ASetSwitch(20,true,null);
+                npc = new NPC("25,13",true,false,null,6,-17,c);
+                theList.add(npc);
+                
+                a = new AModifyCell("20,11","7",null);
+                b = new ATestSwitch(20,null,a);
+                npc = new NPC(null,false,false,null,0,0,b);
+                theBLList.add(npc);
+           
+            npcBank.put(46, theList);
+            npcBacklogBank.put(46, theBLList);
+            }
+        
         /*
         //Map 21:
             {

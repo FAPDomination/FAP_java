@@ -29,4 +29,6 @@ V	can't move when back to world map from game
 	Scores and skillTime continue when NPC pause
 	Recursive TriggerNPC when setting switch or mapVal
 	AModifyCell : when creating a cell from null -> exception
+	NPC message flashes at 0,0 before placing
+	WorldMap : recompute BackLogList
   When just one player, the neutral gray scorebar doesn't show

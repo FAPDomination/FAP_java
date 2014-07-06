@@ -990,7 +990,8 @@ public class Game extends JPanel implements NeedingFocus {
         if(nmap == 0){
             initWorldMap();
         }
-        else{
+
+
             if(Params.npcBank == null){
                 Params.npcBank = Tools.loadWMNPCBank();
                 Params.npcBacklogBank = Tools.loadWMNPCBLBank();
@@ -1012,7 +1013,7 @@ public class Game extends JPanel implements NeedingFocus {
             //this.listNPCs = new ArrayList<NPC>();
             }
             
-        }
+        
         for(int i=0;i<listNPCs.size();i++){
             this.listNPCs.get(i).setTransientValues(this);
         }
