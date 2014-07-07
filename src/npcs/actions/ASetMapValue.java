@@ -7,20 +7,22 @@ import fap_java.Tools;
 import gui.GameSave;
 
 
-public class ASetMapValue implements Action {
-    @SuppressWarnings("compatibility:-5854713175065024116")
+public class ASetMapValue extends Action {
+    @SuppressWarnings("compatibility")
     private static final long serialVersionUID = 8646952569855326525L;
     private String mapHash;
     private int newValue;
     
-    private Action next;
-    private Action origNext;
+    /**
+     * Creates an NPC action that will set the state of a map in the worldMap (0 : unavailable, 1 : available, 2 : conquered).
+     * @param mapHash the hash of the designated cell in the worldMap. Ex : "18,5"
+     * @param newValue the new value for this map : (0 : unavailable, 1 : available, 2 : conquered)
+     * @param next the next action to be executed by the NPC
+     */
     public ASetMapValue(String mapHash, int newValue, Action next){
-        super();
+        super(next);
         this.mapHash = mapHash;
         this.newValue = newValue;
-        this.next = next;
-        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -36,26 +38,6 @@ public class ASetMapValue implements Action {
         whoLaunches.gotoNextAction();
         whoLaunches.execute();
         
-    }
-
-    public void reinit() {
-        next = origNext;
-    }
-    
-    public void setNext(Action next) {
-        this.next = next;
-    }
-
-    public Action getNext() {
-        return next;
-    }
-
-    public void setOrigNext(Action origNext) {
-        this.origNext = origNext;
-    }
-
-    public Action getOrigNext() {
-        return origNext;
     }
 
     public void setTransientValues(Game g) {

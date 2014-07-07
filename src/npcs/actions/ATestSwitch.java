@@ -9,22 +9,23 @@ import gui.GameSave;
 import java.util.ArrayList;
 
 
-public class ATestSwitch implements Action {
-    @SuppressWarnings("compatibility:-1135605901586841164")
+public class ATestSwitch extends Action {
+    @SuppressWarnings("compatibility")
     private static final long serialVersionUID = 8332904318881077569L;
     private int switchID;
     private Action failAction;
     
-    private Action next;
-    private Action origNext;
-    
+    /**
+     * Creates an NPC action that will test the state of a switch
+     * @param switchID the ID of the switch to test
+     * @param failAction the action to execute if the test fails
+     * @param next the next action to be executed by the NPC
+     */
     public ATestSwitch(int switchID, Action failAction, Action next) {
-        super();
+        super(next);
         this.switchID = switchID;
         this.failAction = failAction;
         
-        this.next = next;
-        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -55,26 +56,10 @@ public class ATestSwitch implements Action {
     }
 
     public void reinit() {
-        next = origNext;
+        super.reinit();
         if(failAction!=null){
             failAction.reinit();
         }
-    }
-
-    public void setNext(Action next) {
-        this.next = next;
-    }
-
-    public Action getNext() {
-        return next;
-    }
-
-    public void setOrigNext(Action origNext) {
-        this.origNext = origNext;
-    }
-
-    public Action getOrigNext() {
-        return origNext;
     }
 
     public void setTransientValues(Game g) {

@@ -6,35 +6,38 @@ import fap_java.MapHandler;
 import fap_java.NPC;
 
 
-public class AModifyCell implements Action {
-    @SuppressWarnings("compatibility:5766958403485029236")
+public class AModifyCell extends Action {
+    @SuppressWarnings("compatibility")
     private static final long serialVersionUID = -8946279837403401252L;
     private transient Cell c;
     private String cellHash;
-    private String newGenerator;    
-    private Action next;
-    private Action origNext;
+    private String newGenerator;
+    
+    /**
+     * Creates an NPC action that will replace a cell of the map by another (or create it). Useful to make a tile blocking for example
+     * @param hash the hash of the cell that shall be modified. Ex : "18,5"
+     * @param newGenerator the new value for the cell. did and type will be computed from it
+     * @param next the next action to be executed by the NPC
+     */
     public AModifyCell(String hash, String newGenerator, Action next) {
-        super();
+        super(next);
         this.cellHash = hash;
-        this.newGenerator = newGenerator;        
-        this.next = next;
-        this.origNext = next;
+        this.newGenerator = newGenerator;
     }
 
     public void execute(NPC whoLaunches) {
         //Modify cell
 
+        // Compute new type and properties
         String[] tabNewCell = newGenerator.split(",", 2);
         String param = "";
         int did = Integer.parseInt(tabNewCell[0]);
         if (tabNewCell.length > 1) {
             param = tabNewCell[1];
         }
-        //System.out.println(did);
 
-        // Compute new type and properties
         int t = MapHandler.setTypeWithDid(did, param);
+        // If the cell doesn't exist (void in map), create it
         if(c == null){
             String[] tab = cellHash.split(",");
             c = new Cell(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),t,param,did,whoLaunches.getGame());
@@ -46,49 +49,11 @@ public class AModifyCell implements Action {
         c.setDid(did);
 
         c.setType(t);
-        //Loop
         
+        //Loop
         whoLaunches.gotoNextAction();
         whoLaunches.execute();
 
-    }
-
-    public void reinit() {
-        next = origNext;
-    }
-
-    public void setC(Cell c) {
-        this.c = c;
-    }
-
-    public Cell getC() {
-        return c;
-    }
-
-
-    public void setNewGenerator(String newGenerator) {
-        this.newGenerator = newGenerator;
-    }
-
-    public String getNewGenerator() {
-        return newGenerator;
-    }
-    
-    
-    public void setNext(Action next) {
-        this.next = next;
-    }
-
-    public Action getNext() {
-        return next;
-    }
-
-    public void setOrigNext(Action origNext) {
-        this.origNext = origNext;
-    }
-
-    public Action getOrigNext() {
-        return origNext;
     }
 
     public void setTransientValues(Game g) {

@@ -22,8 +22,8 @@ ASetMapValue : will set the state of a map in the worldMap (0 : unavailable, 1 :
 ASetSwitch : will set the state of a switch (when an NPC gives the player an object, for example)
 ASetVictory : will trigger victory on the current game
 AStartGame : will start a game according to the given parameters
-ATestMapValue : will test the state of a map in the worldMap (0 : unavailable, 1 : available, 2 : conquered)
-ATestSwitch : will set the state of a switch
+ATestMapValue : will test the state of a map in the worldMap (true if conquered)
+ATestSwitch : will test the state of a switch
 
 The last parameter of an Action's constructor is the next Action to be executed in the list.
 

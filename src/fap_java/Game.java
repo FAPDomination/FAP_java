@@ -5,14 +5,7 @@ import animations.Animation;
 import animations.NPCMessage;
 import animations.PauseCountDown;
 
-import characters.Archer;
-import characters.Booster;
-import characters.Knight;
-import characters.Magician;
-import characters.Miner;
-import characters.NoCharacter;
-import characters.Vampire;
-import characters.Warlock;
+import characters.*;
 
 import gui.Constants;
 import gui.Fapplication;

@@ -6,10 +6,13 @@ import animations.NPCMessage;
 import fap_java.Game;
 import fap_java.NPC;
 
-
-public class AAsk implements Action {
-    @SuppressWarnings("compatibility:-8993081133612564402")
+/**
+ * Will display a yes/no choice. The message and the "yes"/"no" options can be changed. selection is done using the SKILL key
+ */
+public class AAsk extends Action {
+    @SuppressWarnings("compatibility")
     private static final long serialVersionUID = 5191498145528206298L;
+
     private String message;
     private String yesOption;
     private String noOption;
@@ -17,43 +20,48 @@ public class AAsk implements Action {
     private int iterator = 0;
     private Action failAction;
     private transient NPCMessage npcMessage;
-    
-    private Action next;
-    private Action origNext;
-    
+
+
+    /**
+     * Creates an NPC action that will display a yes/no choice. The message and the "yes"/"no" options can be changed. selection is done using the SKILL key
+     * @param message the question message
+     * @param yes the validation message
+     * @param no the cancel message
+     * @param failAction the action to follow if the player uses the "no" option
+     * @param next the action to follow if the player uses the "yes" option
+     */
     public AAsk(String message, String yes, String no, Action failAction, Action next) {
-        super();
+        super(next);
         this.message = message;
         this.yesOption = yes;
         this.noOption = no;
         choice = true;
         this.failAction = failAction;
-        this.next = next;
-        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
-        if(iterator == 0){
-            this.npcMessage = new NPCMessage(message,yesOption,noOption, whoLaunches.getGame().getThread(),this);
+        // First passage, display the message
+        if (iterator == 0) {
+            this.npcMessage = new NPCMessage(message, yesOption, noOption, whoLaunches.getGame().getThread(), this);
             iterator++;
         }
-        else{
-            if(npcMessage != null){
+        // When the choice is validated, proceed to next action
+        else {
+            if (npcMessage != null) {
                 npcMessage.endAnimation();
             }
-            if(choice){
+            if (choice) { // If the "yes" option was selected
                 //Loop
-                if(whoLaunches != null){
+                if (whoLaunches != null) {
                     whoLaunches.gotoNextAction();
                     whoLaunches.execute();
                     this.reinit();
                 }
-            }
-            else{
+            } else {
                 //End NPC
                 whoLaunches.setCurrentAction(failAction);
                 whoLaunches.execute();
-                if(npcMessage != null){
+                if (npcMessage != null) {
                     npcMessage.endAnimation();
                 }
 
@@ -61,41 +69,9 @@ public class AAsk implements Action {
         }
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setYesOption(String yesOption) {
-        this.yesOption = yesOption;
-    }
-
-    public String getYesOption() {
-        return yesOption;
-    }
-
-    public void setNoOption(String noOption) {
-        this.noOption = noOption;
-    }
-
-    public String getNoOption() {
-        return noOption;
-    }
-
-    public void setIterator(int iterator) {
-        this.iterator = iterator;
-    }
-
-    public int getIterator() {
-        return iterator;
-    }
-
     public void setChoice(boolean choice) {
         this.choice = choice;
-        if(npcMessage != null){
+        if (npcMessage != null) {
             npcMessage.setChoice(choice);
         }
     }
@@ -105,30 +81,14 @@ public class AAsk implements Action {
     }
 
     public void reinit() {
-        next = origNext;
-        if(npcMessage != null){
+        super.reinit();
+        if (npcMessage != null) {
             npcMessage.endAnimation();
         }
         iterator = 0;
-        if(failAction!=null){
+        if (failAction != null) {
             failAction.reinit();
         }
-    }
-
-    public void setNext(Action next) {
-        this.next = next;
-    }
-
-    public Action getNext() {
-        return next;
-    }
-
-    public void setOrigNext(Action origNext) {
-        this.origNext = origNext;
-    }
-
-    public Action getOrigNext() {
-        return origNext;
     }
 
     public void setTransientValues(Game g) {

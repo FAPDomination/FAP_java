@@ -7,22 +7,23 @@ import fap_java.Tools;
 import gui.GameSave;
 
 
-public class ATestMapValue implements Action {
-    @SuppressWarnings("compatibility:5999795561692079931")
+public class ATestMapValue extends Action {
+    @SuppressWarnings("compatibility")
     private static final long serialVersionUID = -5479495726056275598L;
     private String mapHash;
     private Action failAction;
     
-    private Action next;
-    private Action origNext;
-    
+    /**
+     * Creates an NPC action that will test the state of a map in the worldMap (true if conquered)
+     * @param mapHash the hash of the designated cell in the worldMap. Ex : "18,5"
+     * @param failAction the action to execute if the test fails
+     * @param next the next action to be executed by the NPC
+     */
     public ATestMapValue(String mapHash, Action failAction, Action next) {
-        super();
+        super(next);
         this.mapHash = mapHash;
         this.failAction = failAction;
         
-        this.next = next;
-        this.origNext = next;
     }
 
     public void execute(NPC whoLaunches) {
@@ -44,27 +45,12 @@ public class ATestMapValue implements Action {
     }
 
     public void reinit() {
-        next = origNext;
+        super.reinit();
         if(failAction!=null){
             failAction.reinit();
         }
     }
 
-    public void setNext(Action next) {
-        this.next = next;
-    }
-
-    public Action getNext() {
-        return next;
-    }
-
-    public void setOrigNext(Action origNext) {
-        this.origNext = origNext;
-    }
-
-    public Action getOrigNext() {
-        return origNext;
-    }
 
     public void setTransientValues(Game g) {
     }

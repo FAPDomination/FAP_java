@@ -31,4 +31,5 @@ V	Recursive TriggerNPC when setting switch or mapVal
 V	AModifyCell : when creating a cell from null -> exception
 T	NPC message flashes at 0,0 before placing
 T	WorldMap : recompute BackLogList
+	Propagate action reinit in failActions for test actions
   When just one player, the neutral gray scorebar doesn't show
