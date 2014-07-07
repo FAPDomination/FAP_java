@@ -1,0 +1,37 @@
+##################################
+##				##
+##	How to Create a NPC	##
+##				##
+##################################
+
+A NPC is a chained list of actions. This list will be executed after the NPC is called and will pause the game if needed.
+There are two kinds of NPCs :
+- Regular NPCs : those NPCs are linked to a cell, and can have a picture, thus representing someone/something. Or just be triggered as the player walks onto the cell.
+- Backlog NPCs : those NPCs are purely virtual, ie have no representation on the map. They run in the background when needed and update some stuff according to other stuff. Example : a backlog NPC that opens a door when the corresponding switch is toggled. The Backlog NPC will execute when entenring the map, and when toggling the switch, thus opening the door when needed. A backlog NPC can also be used as a background voice that starts when launching the game.
+
+For constrtuctors cf NPC.java
+
+Actions
+----
+Different types of actions can be used inside the actions list of an NPC :
+
+AAsk : will display a yes/no choice. The message and the "yes"/"no" options can be changed. selection is done using the SKILL key
+ADisplayMessage : will display a message on screen that lasts until the SKILL key is pressed
+AModifyCell : will replace a cell of the map by another (or create it). Useful to make a tile blocking for example
+ASetMapValue : will set the state of a map in the worldMap (0 : unavailable, 1 : available, 2 : conquered)
+ASetSwitch : will set the state of a switch (when an NPC gives the player an object, for example)
+ASetVictory : will trigger victory on the current game
+AStartGame : will start a game according to the given parameters
+ATestMapValue : will test the state of a map in the worldMap (0 : unavailable, 1 : available, 2 : conquered)
+ATestSwitch : will set the state of a switch
+
+The last parameter of an Action's constructor is the next Action to be executed in the list.
+
+Branching
+----
+Some actions, such as
+AAsk, ATestMapValue and ATestSwitch
+will use branching. The chained list can be split in two : the one that will be followed if the test succeeds and the one that will be followed if the test fails.
+Branches can converge or diverge. Careful with loops ! Especially with actions that don't need to use the SKILL key, because that'd trigger and infinite CPU loop.
+
+Examples of NPCs can be found in the NPCBankGenerator of the test story.
