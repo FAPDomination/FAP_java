@@ -1,5 +1,6 @@
 package characters;
 
+
 import animations.AnimTrap;
 
 import fap_java.CMap;
@@ -13,6 +14,7 @@ import fap_java.Team;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+
 
 public class Warlock extends Player{
     public Warlock(int id, Cell c, Game game,Team t,int ai, int controler) {

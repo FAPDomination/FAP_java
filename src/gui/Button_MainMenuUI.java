@@ -4,12 +4,9 @@ import fap_java.Graph;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-
 import java.awt.Insets;
-
 import java.awt.Rectangle;
 
 import javax.swing.AbstractButton;
@@ -22,6 +19,7 @@ import javax.swing.plaf.basic.BasicHTML;
 import javax.swing.text.View;
 
 import sun.swing.SwingUtilities2;
+
 
 public class Button_MainMenuUI extends BasicButtonUI {
     

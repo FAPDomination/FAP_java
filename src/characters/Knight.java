@@ -5,15 +5,14 @@ import fap_java.Game;
 import fap_java.Graph;
 import fap_java.Params;
 import fap_java.Player;
-
 import fap_java.Team;
 
 import java.awt.Graphics;
-
 import java.awt.Image;
 import java.awt.Point;
 
 import java.util.ArrayList;
+
 
 public class Knight extends Player{
     

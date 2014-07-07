@@ -21,6 +21,7 @@ import npcs.actions.ATestMapValue;
 import npcs.actions.ATestSwitch;
 import npcs.actions.Action;
 
+
 public class WPNPCBankGenerator {
     public static void main(String[] args){
         Map<Integer,ArrayList<NPC>> npcBank = new HashMap<Integer,ArrayList<NPC>>();

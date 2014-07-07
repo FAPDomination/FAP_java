@@ -4,22 +4,18 @@ import fap_java.Game;
 import fap_java.Params;
 import fap_java.XMLparser;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
-
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
 
-import java.util.Collections;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 public class MapSelect extends FAPanel implements MouseListener{
     private JButton btnNext = new JButton();

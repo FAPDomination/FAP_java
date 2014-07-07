@@ -3,11 +3,11 @@ package animations;
 import fap_java.Graph;
 import fap_java.Params;
 import fap_java.TheComputingThread;
-
 import fap_java.Tools;
 
 import java.awt.Graphics;
 import java.awt.Image;
+
 
 public class AnimLightning extends Animation {
     private int randLght;

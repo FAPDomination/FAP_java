@@ -2,10 +2,8 @@ package gui;
 
 import fap_java.Params;
 import fap_java.Tools;
-import fap_java.XMLparser;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +12,7 @@ import java.io.ObjectInputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 
 public class TheFrame extends JFrame {
     private BorderLayout borderLayout1 = new BorderLayout();

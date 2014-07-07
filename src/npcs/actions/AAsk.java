@@ -1,11 +1,11 @@
 package npcs.actions;
 
+
 import animations.NPCMessage;
 
 import fap_java.Game;
 import fap_java.NPC;
 
-import java.io.Serializable;
 
 public class AAsk implements Action {
     @SuppressWarnings("compatibility:-8993081133612564402")

@@ -4,30 +4,24 @@ import gui.Button_SampleUI;
 import gui.Constants;
 import gui.Fapplication;
 import gui.MainMenu;
-
 import gui.TheFrame;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.awt.event.KeyEvent;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 
-import java.util.Map;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 
 // Also does victory screen
 public class PauseScreen extends Element implements Serializable{

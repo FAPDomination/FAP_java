@@ -1,7 +1,6 @@
 package gui;
 
 import fap_java.Params;
-
 import fap_java.Tools;
 
 import java.awt.Color;

@@ -1,7 +1,6 @@
 package npcs.actions;
 
 import fap_java.Game;
-
 import fap_java.GameConfig;
 import fap_java.NPC;
 
@@ -9,11 +8,8 @@ import gui.CharacterSelection;
 import gui.Fapplication;
 import gui.TheFrame;
 
-import java.io.Serializable;
-
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
+
 
 public class AStartGame implements Action {
     @SuppressWarnings("compatibility:4605680557614444226")

@@ -1,21 +1,19 @@
 package gui;
 
 import fap_java.Graph;
-
 import fap_java.Params;
 import fap_java.Tools;
 
 import java.awt.Color;
 import java.awt.Dimension;
-
 import java.awt.Graphics;
-
 import java.awt.Insets;
 
 import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
+
 
 public class Button_SampleUI extends BasicButtonUI {
     

@@ -4,18 +4,11 @@ import fap_java.CMap;
 import fap_java.Cell;
 import fap_java.Graph;
 import fap_java.TheComputingThread;
-
 import fap_java.Tools;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import java.io.File;
-
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class AnimWarp extends Animation {
     private int[] ys;

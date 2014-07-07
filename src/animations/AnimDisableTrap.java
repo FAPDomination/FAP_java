@@ -1,11 +1,11 @@
 package animations;
 
 import fap_java.Graph;
-import fap_java.Params;
 import fap_java.TheComputingThread;
 
 import java.awt.Graphics;
 import java.awt.Image;
+
 
 public class AnimDisableTrap extends Animation{
     private Image img;

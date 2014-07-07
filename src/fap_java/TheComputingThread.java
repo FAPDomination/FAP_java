@@ -1,6 +1,5 @@
 package fap_java;
 
-import java.util.ArrayList;
 
 /**
  * This thread will handle everything in updating the Game.

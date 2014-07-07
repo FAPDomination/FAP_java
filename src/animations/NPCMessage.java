@@ -1,21 +1,17 @@
 package animations;
 
 import fap_java.Graph;
-import fap_java.Params;
 import fap_java.TheComputingThread;
-
 import fap_java.Tools;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-
-import java.io.Serializable;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import npcs.actions.AAsk;
+
 
 public class NPCMessage extends Animation {
     private boolean ask;

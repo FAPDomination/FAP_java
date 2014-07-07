@@ -1,7 +1,5 @@
 package fap_java;
 
-import java.util.ArrayList;
-
 
 public class TheGraphicalThread implements Runnable{
     

@@ -2,36 +2,20 @@ package npcs;
 
 import fap_java.CMap;
 import fap_java.Cell;
-import fap_java.Game;
 import fap_java.GameConfig;
 import fap_java.Graph;
 import fap_java.NPC;
-
-import fap_java.Params;
 import fap_java.Tools;
-
-import gui.GameSave;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-
-import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import java.util.Set;
-
-import javax.imageio.ImageIO;
 
 import npcs.actions.AAsk;
 import npcs.actions.AStartGame;
 import npcs.actions.Action;
+
 
 public class NPCWMStarting extends NPC {
     @SuppressWarnings("compatibility:-9003127236683247915")

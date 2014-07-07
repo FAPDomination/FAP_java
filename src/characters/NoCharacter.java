@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
+
 public class NoCharacter extends Player{
     public NoCharacter(int id, Cell c, Game game, Team t, int ai, int controler) {
         super(id, c, game, 7, t, ai, controler);

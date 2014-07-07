@@ -1,32 +1,31 @@
 package fap_java;
 
-import animations.*;
 
-import characters.*;
+import animations.Animation;
+import animations.NPCMessage;
+import animations.PauseCountDown;
+
+import characters.Archer;
+import characters.Booster;
+import characters.Knight;
+import characters.Magician;
+import characters.Miner;
+import characters.NoCharacter;
+import characters.Vampire;
+import characters.Warlock;
 
 import gui.Constants;
-
 import gui.Fapplication;
 import gui.GameSave;
 import gui.NeedingFocus;
-
 import gui.PlayerSelect;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
-
 import java.awt.Graphics2D;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 import java.util.ArrayList;
-
-import java.util.HashMap;
-
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -34,9 +33,8 @@ import javax.swing.JPanel;
 import npcs.NPCWMBlocking;
 import npcs.NPCWMStarting;
 
-import npcs.actions.*;
-
 import pathFinder.pathFinder;
+
 
 public class Game extends JPanel implements NeedingFocus {
 

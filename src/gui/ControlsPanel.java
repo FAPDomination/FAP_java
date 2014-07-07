@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+
 public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
     ArrayList<ControlManager> listForms;
     private StandardKListener kl;

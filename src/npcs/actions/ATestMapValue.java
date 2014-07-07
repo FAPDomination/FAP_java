@@ -6,9 +6,6 @@ import fap_java.Tools;
 
 import gui.GameSave;
 
-import java.io.Serializable;
-
-import java.util.ArrayList;
 
 public class ATestMapValue implements Action {
     @SuppressWarnings("compatibility:5999795561692079931")

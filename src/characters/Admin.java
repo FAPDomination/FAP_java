@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
+
 public class Admin extends Player{
     
     public Admin(int id, Cell c, Game game, Team t, int ai, int controler) {

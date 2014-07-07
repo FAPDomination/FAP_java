@@ -7,6 +7,7 @@ import fap_java.TheComputingThread;
 import java.awt.Graphics;
 import java.awt.Image;
 
+
 public class AnimFrozen extends Animation{
     private int appearing; //frames
     private Image img;

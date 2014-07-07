@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * This class is just storing static and "final" parameters that will be used all over the game.
  * Simply modifying stuff here can change the entire game.

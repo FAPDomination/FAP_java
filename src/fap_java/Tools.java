@@ -5,7 +5,6 @@ import gui.FAPComboBoxRenderer;
 import gui.Fapplication;
 import gui.GameSave;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -13,7 +12,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-
 import java.awt.image.RescaleOp;
 
 import java.io.File;
@@ -29,17 +27,13 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-import javax.imageio.ImageIO;
-
 import javax.swing.BorderFactory;
-import javax.swing.CellRendererPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.metal.MetalComboBoxButton;
+
 
 /**
  * This class contains several tools that can be used wherever.

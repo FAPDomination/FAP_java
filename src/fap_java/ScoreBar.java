@@ -2,10 +2,10 @@ package fap_java;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.Image;
 
 import java.util.ArrayList;
+
 
 public class ScoreBar {
     

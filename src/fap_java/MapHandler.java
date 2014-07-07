@@ -1,12 +1,11 @@
 package fap_java;
 
-import java.util.ArrayList;
-
 import npcs.NPCExit;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
 
 /**
  * This class process all the datas concerning a map.

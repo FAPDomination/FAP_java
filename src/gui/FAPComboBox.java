@@ -2,13 +2,12 @@ package gui;
 
 import fap_java.Graph;
 
-import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-
 import java.awt.Graphics2D;
 
 import javax.swing.JComboBox;
+
 
 public class FAPComboBox extends JComboBox{
     public FAPComboBox(Object[] listV) {

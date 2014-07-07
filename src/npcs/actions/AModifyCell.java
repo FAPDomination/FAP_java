@@ -5,7 +5,6 @@ import fap_java.Game;
 import fap_java.MapHandler;
 import fap_java.NPC;
 
-import java.io.Serializable;
 
 public class AModifyCell implements Action {
     @SuppressWarnings("compatibility:5766958403485029236")

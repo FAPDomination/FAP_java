@@ -7,11 +7,11 @@ import gui.Constants;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
 import java.io.Serializable;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class WMGameConfigMapGenerator implements Serializable{
 

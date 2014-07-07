@@ -7,16 +7,8 @@ import fap_java.TheComputingThread;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.image.BufferedImage;
 
-import java.io.ByteArrayInputStream;
-
-import java.io.File;
-
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class PauseCountDown extends Animation {
     BufferedImage bufferedImage;

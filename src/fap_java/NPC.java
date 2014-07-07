@@ -6,9 +6,8 @@ import java.awt.Image;
 
 import java.io.Serializable;
 
-import java.util.ArrayList;
+import npcs.actions.Action;
 
-import npcs.actions.*;
 
 public class NPC extends Human implements Serializable {
 

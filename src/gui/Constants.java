@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Constants {
     
     public static final String configFileName="config.fap";

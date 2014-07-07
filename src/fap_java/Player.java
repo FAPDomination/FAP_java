@@ -1,24 +1,21 @@
 package fap_java;
 
+
 import animations.AnimLightning;
-import animations.Animation;
 import animations.AnimWarp;
+import animations.Animation;
 
 import characters.Booster;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-
-import java.awt.Image;
-
-import java.awt.Point;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import npcs.actions.AAsk;
+
 
 public abstract class Player extends Human {
 

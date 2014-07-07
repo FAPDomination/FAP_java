@@ -1,28 +1,23 @@
 package gui;
 
 import fap_java.Graph;
-import fap_java.NPC;
 import fap_java.Params;
-
 import fap_java.Tools;
 
+import java.awt.Color;
 import java.awt.Graphics;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
-
-
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 
 public class PlayerSelection extends FAPanel {
     private JButton btnNext = new JButton();

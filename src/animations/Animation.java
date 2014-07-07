@@ -1,9 +1,9 @@
 package animations;
 
-import fap_java.Element;
 import fap_java.TheComputingThread;
 
 import java.awt.Graphics;
+
 
 public abstract class Animation {
     

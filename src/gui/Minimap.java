@@ -2,30 +2,21 @@ package gui;
 
 import fap_java.CMap;
 import fap_java.Cell;
-
 import fap_java.Graph;
 import fap_java.XMLparser;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-
 import java.awt.Graphics2D;
-import java.awt.Image;
-
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
+
 
 public class Minimap{
     private ArrayList<Cell> map;

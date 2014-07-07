@@ -2,21 +2,15 @@ package gui;
 
 
 import fap_java.Game;
-
 import fap_java.Params;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import fap_java.Tools;
-
-import java.awt.BorderLayout;
 
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 
 public class MainMenu extends FAPanel implements AnimPanel {

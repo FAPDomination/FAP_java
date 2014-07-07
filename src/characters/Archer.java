@@ -12,7 +12,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
-import java.util.ArrayList;
 
 public class Archer extends Player{
     public Archer(int id, Cell c, Game game, Team t, int ai, int controler) {

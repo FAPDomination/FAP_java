@@ -1,7 +1,9 @@
 package fap_java;
 
 import java.awt.Color;
+
 import java.util.ArrayList;
+
 
 public class Team {
     /**

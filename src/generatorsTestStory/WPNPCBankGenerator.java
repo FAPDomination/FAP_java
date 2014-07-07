@@ -12,7 +12,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import npcs.actions.*;
+import npcs.actions.ADisplayMessage;
+import npcs.actions.AModifyCell;
+import npcs.actions.ASetMapValue;
+import npcs.actions.ASetSwitch;
+import npcs.actions.ASetVictory;
+import npcs.actions.ATestMapValue;
+import npcs.actions.ATestSwitch;
+import npcs.actions.Action;
+
 
 public class WPNPCBankGenerator {
     public static void main(String[] args){

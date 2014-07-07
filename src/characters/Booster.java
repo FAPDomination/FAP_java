@@ -1,7 +1,7 @@
 package characters;
 
+
 import animations.AnimBooster;
-import animations.Animation;
 
 import fap_java.CMap;
 import fap_java.Cell;
@@ -14,6 +14,7 @@ import fap_java.Team;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+
 
 public class Booster extends Player {
     public Booster(int id, Cell c, Game game, Team t, int ai, int controler) {

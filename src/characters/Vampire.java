@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Map;
 
+
 public class Vampire extends Player{
     public Vampire(int id, Cell c, Game game, Team t, int ai, int controler) {
         super(id, c, game, 6,t, ai, controler);

@@ -2,13 +2,10 @@ package fap_java;
 
 import java.awt.Graphics;
 
-import java.awt.List;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+
 
 public class CMap {
     /**

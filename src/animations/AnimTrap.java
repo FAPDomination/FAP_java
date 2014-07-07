@@ -7,6 +7,7 @@ import fap_java.TheComputingThread;
 import java.awt.Graphics;
 import java.awt.Image;
 
+
 public class AnimTrap extends Animation{
     private Image img;
     private int height=40;

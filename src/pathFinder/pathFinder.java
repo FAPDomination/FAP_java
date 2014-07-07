@@ -5,6 +5,7 @@ import fap_java.Cell;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 /*
 	Class: Pathfinder
 	The pathfinding algorithm. It is based on the A* algorithm.

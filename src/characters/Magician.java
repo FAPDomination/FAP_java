@@ -1,7 +1,7 @@
 package characters;
 
+
 import animations.AnimFrozen;
-import animations.AnimWarp;
 import animations.Animation;
 
 import fap_java.CMap;
@@ -18,6 +18,7 @@ import java.awt.Point;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 
 public class Magician extends Player {
     public Magician(int id, Cell c, Game game, Team t, int ai, int controler) {

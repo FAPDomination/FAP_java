@@ -1,5 +1,6 @@
 package fap_java;
 
+
 import characters.Miner;
 
 import java.lang.reflect.InvocationTargetException;
@@ -9,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import pathFinder.pathFinder;
+
 
 public class FSM {
 

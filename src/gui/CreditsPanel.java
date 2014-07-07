@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+
 public class CreditsPanel extends FAPanel {
     public CreditsPanel(TheFrame theFrame, JPanel jPanel) {
         super(theFrame, jPanel);

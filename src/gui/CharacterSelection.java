@@ -1,14 +1,11 @@
 package gui;
 
 import fap_java.Game;
-import fap_java.KListener;
 import fap_java.Params;
 import fap_java.Player;
 import fap_java.Tools;
 
 import java.awt.Graphics;
-
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPanel {
     private JButton btnNext = new JButton();

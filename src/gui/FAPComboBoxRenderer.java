@@ -5,14 +5,13 @@ import fap_java.Graph;
 
 import java.awt.Color;
 import java.awt.Component;
-
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
+
 
 public class FAPComboBoxRenderer extends BasicComboBoxRenderer implements ListCellRenderer {
     public FAPComboBoxRenderer() {

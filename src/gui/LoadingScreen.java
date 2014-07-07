@@ -1,12 +1,9 @@
 package gui;
 
 import fap_java.Game;
-
 import fap_java.Graph;
 import fap_java.Player;
 import fap_java.Team;
-
-import java.awt.BorderLayout;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -17,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 public class LoadingScreen extends FAPanel {
     private Game game;

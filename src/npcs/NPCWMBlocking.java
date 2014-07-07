@@ -1,15 +1,13 @@
 package npcs;
 
-import fap_java.Cell;
-import fap_java.Game;
 import fap_java.Graph;
 import fap_java.NPC;
-
 import fap_java.Tools;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
 
 public class NPCWMBlocking extends NPC{
     @SuppressWarnings("compatibility:5909433600382951811")

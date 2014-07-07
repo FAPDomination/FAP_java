@@ -1,11 +1,11 @@
 package animations;
 
 import fap_java.Graph;
-import fap_java.Params;
 import fap_java.TheComputingThread;
 
 import java.awt.Graphics;
 import java.awt.Image;
+
 
 public class AnimBooster extends Animation{
     private int appearing=8; //frames

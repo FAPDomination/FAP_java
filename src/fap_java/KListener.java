@@ -1,7 +1,10 @@
 package fap_java;
 
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import java.util.ArrayList;
+
 
 public class KListener implements KeyListener {
 

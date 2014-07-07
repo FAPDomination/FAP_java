@@ -6,9 +6,8 @@ import fap_java.Tools;
 
 import gui.GameSave;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
+
 
 public class ASetSwitch implements Action {
     @SuppressWarnings("compatibility:8501619799060970234")

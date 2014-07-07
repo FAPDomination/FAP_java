@@ -1,25 +1,17 @@
 package gui;
 
-import fap_java.CMap;
 import fap_java.Graph;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 public abstract class FAPanel extends JPanel {
     protected TheFrame parent;

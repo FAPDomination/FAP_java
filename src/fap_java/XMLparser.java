@@ -2,15 +2,9 @@ package fap_java;
 
 import gui.ClassesDescListHandler;
 import gui.MapListHandler;
-
 import gui.Minimap;
 
-import java.awt.Toolkit;
-
-import java.io.File;
-
 import java.io.IOException;
-
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -21,6 +15,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
 
 /**
  * This Class handles everything that is XML related.

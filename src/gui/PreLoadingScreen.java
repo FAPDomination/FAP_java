@@ -1,6 +1,5 @@
 package gui;
 
-import com.sun.jmx.snmp.Timestamp;
 
 import fap_java.Game;
 import fap_java.Graph;
@@ -10,7 +9,6 @@ import java.awt.Graphics;
 
 import java.util.Date;
 
-import javax.swing.JPanel;
 
 public class PreLoadingScreen extends FAPanel implements AnimPanel {
     private String message;
