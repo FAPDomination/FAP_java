@@ -1082,7 +1082,10 @@ public class Game extends JPanel implements NeedingFocus {
     
     public void triggerTriggerNPCs(){
         for(int i=0;i<listTriggerNPCs.size();i++){
-            listTriggerNPCs.get(i).execute();
+            NPC trig = listTriggerNPCs.get(i);
+            if(!trig.isExecuting()){
+                trig.execute();
+            }
         }
     }
 }

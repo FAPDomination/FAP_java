@@ -148,7 +148,7 @@ public class WPNPCBankGenerator {
             b = new ASetSwitch(17,true,null);
             a = new ATestSwitch(17,b,null);
             npc = new NPC(null,false,true,null,0,0,a);
-            theList.add(npc);
+            theBLList.add(npc);
             
             
             npcBank.put(33, theList);

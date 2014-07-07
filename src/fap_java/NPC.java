@@ -20,7 +20,6 @@ public class NPC extends Human implements Serializable {
     private boolean walkable;
     private boolean autoTrigger;
     protected String img;
-    private boolean running;
     protected transient Game game;
     protected int x;
     protected int y;
@@ -29,6 +28,7 @@ public class NPC extends Human implements Serializable {
     
     protected Action firstAction;
     protected Action currentAction;
+    protected boolean executing;
 
 
     public NPC(String cellPositionHash, boolean walkable, boolean autoTrigger, String img, int offX, int offY,
@@ -81,6 +81,7 @@ public class NPC extends Human implements Serializable {
 */
 
     public void execute() {
+        this.executing = true;
         if (game.getThread().getRunning()) {
             game.pauseGame(true);
         }
@@ -121,14 +122,6 @@ public class NPC extends Human implements Serializable {
     }
 
 
-    public void setRunning(boolean running) {
-        this.running = running;
-    }
-
-    public boolean isRunning() {
-        return running;
-    }
-
     public void setGame(Game game) {
         this.game = game;
     }
@@ -143,6 +136,7 @@ public class NPC extends Human implements Serializable {
                     a.reinit();
                 }
             }
+        this.executing = false;
         currentAction = firstAction;
     }
 
@@ -188,5 +182,13 @@ public class NPC extends Human implements Serializable {
                 a.setTransientValues(game);
             }
         }
+    }
+
+    public void setExecuting(boolean executing) {
+        this.executing = executing;
+    }
+
+    public boolean isExecuting() {
+        return executing;
     }
 }
