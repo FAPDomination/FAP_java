@@ -40,8 +40,8 @@ public class CMap {
      * The arrayList of cells that contains aaaall the cells of the grid
      */
     private ArrayList<Cell> myMap = new ArrayList<Cell>();
-    
-    private Map<String,Cell> hashMap = new HashMap<String,Cell>();
+
+    private Map<String, Cell> hashMap = new HashMap<String, Cell>();
 
     /**
      * The starting points of this map (defined in the XML file)
@@ -54,9 +54,9 @@ public class CMap {
     private Game game;
 
     private int fileID;
-    
+
     // Performances
-    private int mapSize=0;
+    private int mapSize = 0;
     private Cell painting;
     // One time calculations
     private ArrayList<Cell> takeableCells = null;
@@ -116,11 +116,11 @@ public class CMap {
             if (npc != null) {
                 npc.paintComponent(g);
             }
-            
+
             for (int j = 0; j < game.getPlayers().size(); j++) {
                 Player q = game.getPlayers().get(j);
                 // Check position
-                if(q.getDrawn() == painting){
+                if (q.getDrawn() == painting) {
                     q.paintComponent(g);
                 }
             }
@@ -138,7 +138,7 @@ public class CMap {
             if (npc != null) {
                 npc.paintComponent(g);
             }
-            
+
             for (int j = 0; j < game.getPlayers().size(); j++) {
                 Player q = game.getPlayers().get(j);
                 // Check position
@@ -148,7 +148,7 @@ public class CMap {
             }
 
         }
-        */  
+        */
     }
 
     //TODO Improvement of this method including gaps
@@ -227,7 +227,7 @@ public class CMap {
     //------ Accessors for the map
 
     public int[] getMaxIJ() {
-        if(maxIJ == null){
+        if (maxIJ == null) {
             maxIJ = new int[2];
             int i = 0;
             int j = 0;
@@ -246,7 +246,7 @@ public class CMap {
             maxIJ[0] = i;
             maxIJ[1] = j;
         }
-            return maxIJ;
+        return maxIJ;
     }
 
     public ArrayList<Cell> getMyMap() {
@@ -263,45 +263,44 @@ public class CMap {
             myMap.remove(o);
         }
         c.setMap(this);
-        if(mapSize>=1){
-            myMap.get(myMap.size()-1).setNextInMap(c);
-        }
-        else{
+        if (mapSize >= 1) {
+            myMap.get(myMap.size() - 1).setNextInMap(c);
+        } else {
             painting = c;
             firstCell = c;
         }
         myMap.add(c);
         mapSize++;
-        
-        hashMap.put(""+c.getI()+","+c.getJ(), c);
+
+        hashMap.put("" + c.getI() + "," + c.getJ(), c);
     }
-    
-    public void insertCell(Cell c){
+
+    public void insertCell(Cell c) {
         Cell o = containsCell(c);
         if (o != null) {
             myMap.remove(o);
         }
-        
+
         c.setNeedDirt();
-        
+
         c.setMap(this);
         myMap.add(c);
         mapSize++;
-        hashMap.put(""+c.getI()+","+c.getJ(), c);
+        hashMap.put("" + c.getI() + "," + c.getJ(), c);
         c = this.getCell(c.getHash());
-        
+
         o = firstCell;
-        for(int i=0;i<this.mapSize;i++){
+        for (int i = 0; i < this.mapSize; i++) {
             //TODO : won't work on the edges of the map
-            if(o.getI() == c.getI() && o.getJ() == c.getJ()-1){
+            if (o.getI() == c.getI() && o.getJ() == c.getJ() - 1) {
                 c.setNextInMap(o.getNextInMap());
                 o.setNextInMap(c);
                 break;
             }
             o = o.getNextInMap();
         }
-        
-        
+
+
     }
 
     public void removeElement(Cell c) {
@@ -314,9 +313,9 @@ public class CMap {
      * @return : null if not, the object if yes
      */
     public Cell containsCell(Cell c) {
-        return hashMap.get(""+c.getI()+","+c.getJ());
+        return hashMap.get("" + c.getI() + "," + c.getJ());
     }
-    
+
     public Cell getCell(String hash) {
         return hashMap.get(hash);
     }
@@ -328,8 +327,8 @@ public class CMap {
      */
     public Cell getCell(int[] tab) {
         Cell o = new Cell(tab[0], tab[1], 1, 1, null);
-        if (tab.length == 2 && tab[0] >=0 && tab[1] >=0) {
-            return(containsCell(o));
+        if (tab.length == 2 && tab[0] >= 0 && tab[1] >= 0) {
+            return (containsCell(o));
         }
         return null;
     }
@@ -367,12 +366,12 @@ public class CMap {
         // You just lost the game
         return n;
     }
-    
+
     public boolean countNeighboursForConway(Cell c) {
         int n = 0;
         Team owns = c.getOwner();
         // Check all six cells around
-        
+
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -380,17 +379,17 @@ public class CMap {
         // not the first line
         if (i % 2 == 0) {
             o = this.getCell(i - 1, j - 1);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
             //surroundingCells['tr'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
@@ -398,18 +397,18 @@ public class CMap {
 
             //surroundingCells['tl'] = [i-1, j];
             o = this.getCell(i - 1, j);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
 
             //surroundingCells['tr'] = [i-1, j+1];
             o = this.getCell(i - 1, j + 1);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
@@ -417,17 +416,17 @@ public class CMap {
         // cells from the same line
         //surroundingCells['l'] = [i, j-1];
         o = this.getCell(i, j - 1);
-        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+        if (o != null && o.getOwner() != null && o.getOwner() == owns) {
             n++;
-            if(n>=Params.nNeighboursConway){
+            if (n >= Params.nNeighboursConway) {
                 return true;
             }
         }
         //surroundingCells['r'] = [i, j+1];
         o = this.getCell(i, j + 1);
-        if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+        if (o != null && o.getOwner() != null && o.getOwner() == owns) {
             n++;
-            if(n>=Params.nNeighboursConway){
+            if (n >= Params.nNeighboursConway) {
                 return true;
             }
         }
@@ -435,34 +434,34 @@ public class CMap {
         if (i % 2 == 0) {
             //surroundingCells['bl'] = [i+1, j-1];
             o = this.getCell(i + 1, j - 1);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
             //surroundingCells['br'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
         } else {
             //surroundingCells['br'] = [i+1, j+1];
             o = this.getCell(i + 1, j + 1);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
             //surroundingCells['bl'] = [i+1, j];
             o = this.getCell(i + 1, j);
-            if(o!=null && o.getOwner() != null && o.getOwner()==owns){
+            if (o != null && o.getOwner() != null && o.getOwner() == owns) {
                 n++;
-                if(n>=Params.nNeighboursConway){
+                if (n >= Params.nNeighboursConway) {
                     return true;
                 }
             }
@@ -480,11 +479,11 @@ public class CMap {
     public ArrayList<Cell> surroundingCells(Cell c) {
         // Check all six cells around
         ArrayList<Cell> surroundingCells = new ArrayList<Cell>(6);
-        
+
         for (int k = 0; k < 6; k++) {
             surroundingCells.add(null);
         }
-        
+
         int i = c.getI();
         int j = c.getJ();
         Cell o;
@@ -537,8 +536,8 @@ public class CMap {
      * @return : an arrayList of all takable cells on the grid
      */
     public ArrayList<Cell> getTakableCells() {
-        if(takeableCells == null){
-           takeableCells = new ArrayList<Cell>();
+        if (takeableCells == null) {
+            takeableCells = new ArrayList<Cell>();
             Cell c = firstCell;
             for (int i = 0; i < mapSize; i++) {
                 //Check if type 1
@@ -548,7 +547,7 @@ public class CMap {
                 }
                 c = c.getNextInMap();
             }
-            
+
         }
         return takeableCells;
     }
@@ -644,10 +643,10 @@ public class CMap {
     public int getFileID() {
         return fileID;
     }
-    
-    public void initDirts(){
+
+    public void initDirts() {
         Cell c = firstCell;
-        for(int i=0;i<this.mapSize;i++){
+        for (int i = 0; i < this.mapSize; i++) {
             c.setNeedDirt();
             c = c.getNextInMap();
         }

@@ -51,7 +51,7 @@ public class ParamTableHandler extends DefaultHandler {
         } else if (qName.equals("skillTime") || qName.equals("dispSpeed") || qName.equals("decLifeForced") ||
                    qName.equals("specParam") || qName.equals("maxHP") || qName.equals("recovLifeAuto")) {
             Params.paramTable.put(whereAreWe, datas);
-        }else if(whereAreWe != "specParam"){
+        } else if (whereAreWe != "specParam") {
             if (qName.equals("admin")) {
                 datas[0] = Double.parseDouble(buffer.toString());
             } else if (qName.equals("knight")) {
@@ -73,15 +73,15 @@ public class ParamTableHandler extends DefaultHandler {
                 datas[9] = Double.parseDouble(buffer.toString());
             } else if (qName.equals("NoChar")) {
                 datas[7] = Double.parseDouble(buffer.toString());
-            } 
-        }else if(whereAreWe == "specParam"){
+            }
+        } else if (whereAreWe == "specParam") {
             if (qName.equals("admin")) {
-               
+
             } else if (qName.equals("knight")) {
                 String[] stab = buffer.toString().split(",");
                 int fac = Integer.parseInt(stab[0]);
                 double pow = Double.parseDouble(stab[1]);
-                Params.warriorDammage = fac/Math.pow(pow*1000, 2);
+                Params.warriorDammage = fac / Math.pow(pow * 1000, 2);
             } else if (qName.equals("Nmagician")) {
                 String[] stab = buffer.toString().split(",");
                 Params.howManyRingsIstheMagicianActive = Integer.parseInt(stab[0]);
@@ -102,31 +102,30 @@ public class ParamTableHandler extends DefaultHandler {
                 String[] stab = buffer.toString().split(",");
                 int nRings = Integer.parseInt(stab[0]);
                 int gain = Integer.parseInt(stab[1]);
-                
+
                 Params.ringsVampirismTakes = nRings;
                 Params.rateVampirismGains = gain;
             } else if (qName.equals("booster")) {
                 String[] stab = buffer.toString().split(",");
                 int newSpeed = Integer.parseInt(stab[0]);
                 int time = Integer.parseInt(stab[1]);
-                
+
                 Params.boosterSpeed = newSpeed;
                 Params.boosterTime = time;
             } else if (qName.equals("NoChar")) {
                 // You lost the FAP
-            } 
-        }
-        else {
+            }
+        } else {
             //Error
             throw new SAXException("Unknown tag " + qName + ".");
         }
     }
     //Detecting chars
 
-    public void characters(char[] ch,int start, int length)
-                    throws SAXException{
-            String lecture = new String(ch,start,length);
-            if(buffer != null) buffer.append(lecture);       
+    public void characters(char[] ch, int start, int length) throws SAXException {
+        String lecture = new String(ch, start, length);
+        if (buffer != null)
+            buffer.append(lecture);
     }
     //Parsing starting
 

@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
 
 
 // Also does victory screen
-public class PauseScreen extends Element implements Serializable{
+public class PauseScreen extends Element implements Serializable {
 
     private boolean displayVictory;
     private boolean resuming;
@@ -39,13 +39,12 @@ public class PauseScreen extends Element implements Serializable{
     private JButton btnResume = new JButton();
     private JButton btnWorldMap = new JButton();
     private JButton btnMainMenu = new JButton();
-    
+
     private JLabel thumbnailText;
 
     private static boolean parsedXML = false;
-    
+
     private int randClass;
-    
 
 
     public PauseScreen(boolean dispVict, Game game) {
@@ -59,19 +58,20 @@ public class PauseScreen extends Element implements Serializable{
         this.game = game;
         resuming = false;
         message = "";
-        
-        if(!displayVictory){
+
+        if (!displayVictory) {
             int width = (int)(game.getWidth() * 0.5);
             int height = (int)(game.getHeight() * 0.8);
             if (width <= 500) {
                 width = 500;
             }
             int margins = 25;
-            int x = ((game.getWidth() - width) / 4) +margins;
-            int y = ((game.getHeight() - height) / 2) +390;
+            int x = ((game.getWidth() - width) / 4) + margins;
+            int y = ((game.getHeight() - height) / 2) + 390;
             randClass = Tools.randRange(0, Params.waitingMessages.length - 1);
             thumbnailText = new JLabel();
-            Tools.parametrizeJLabel(thumbnailText, Params.waitingMessages[randClass][1], Graph.REGULAR_FONT, Color.WHITE, width-2*margins,height-410, x, y, SwingConstants.TOP);
+            Tools.parametrizeJLabel(thumbnailText, Params.waitingMessages[randClass][1], Graph.REGULAR_FONT,
+                                    Color.WHITE, width - 2 * margins, height - 410, x, y, SwingConstants.TOP);
         }
         // Init buttons
         btnResume.setText("Continuer");
@@ -166,7 +166,7 @@ public class PauseScreen extends Element implements Serializable{
             //TODO replace w/h with relative
             Graph.drawDarkBackgroundRectangle(g, x, y, width, height, squareColor, 40, Graph.BG_DARK);
             //g.drawImage(Graph.guimg.get("pauseScreen"), 0, 0,game.getWidth(),game.getHeight(), game);
-            
+
             //Draw thumbnail
             g.drawImage(Graph.thumbnails.get(Params.waitingMessages[randClass][0]), x + 50, y, game);
 
@@ -204,25 +204,23 @@ public class PauseScreen extends Element implements Serializable{
                 g.setColor(Color.WHITE);
                 g.drawString(message, x + (width - textWidth) / 2, y + 400);
 
-                    if(winner == null && game.getAdv()==0){
-                        // Tie Banner
-                        Image img = Graph.getGuimg().get("TieBanner");
-                        g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
+                if (winner == null && game.getAdv() == 0) {
+                    // Tie Banner
+                    Image img = Graph.getGuimg().get("TieBanner");
+                    g.drawImage(img, x + (width - 470) / 2, y - 50, 470, 166, game);
+                } else {
+
+                    Team thePlayer = game.getTeams().get(0);
+                    if ((thePlayer == winner) || (game.getAdv() == 0 && !this.quickPlayMode)) {
+                        // VictoryBanner
+                        Image img = Graph.getGuimg().get("VictoryBanner");
+                        g.drawImage(img, x + (width - 470) / 2, y - 50, 470, 166, game);
+                    } else {
+                        //defeatBanner
+                        Image img = Graph.getGuimg().get("DefeatBanner");
+                        g.drawImage(img, x + (width - 470) / 2, y - 50, 470, 166, game);
                     }
-                    else{
-                        
-                        Team thePlayer = game.getTeams().get(0);
-                        if((thePlayer == winner ) || (game.getAdv()==0 && !this.quickPlayMode)){
-                            // VictoryBanner
-                            Image img = Graph.getGuimg().get("VictoryBanner");
-                            g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
-                        }
-                        else{
-                            //defeatBanner
-                            Image img = Graph.getGuimg().get("DefeatBanner");
-                            g.drawImage(img, x+(width-470)/2, y-50, 470,166, game);
-                        }
-                    }
+                }
 
                 if (winner != null) {
                     ArrayList<Player> players = winner.getPlayersInThisTeam();
@@ -230,12 +228,12 @@ public class PauseScreen extends Element implements Serializable{
                         //TODO player placement (center and space)
                         players.get(j).paintStick(g, x + 20 + j * 30, y + 100);
                     }
-                    
-                    
+
+
                 }
             }
         }
-        
+
     }
 
     public String toString() {
@@ -313,15 +311,15 @@ public class PauseScreen extends Element implements Serializable{
         int offX = 0;
         int offY = 0;
         int increment = 0;
-        if(this.displayVictory){
+        if (this.displayVictory) {
             // Placements for victoryDisplay mode
-            offX = (int)(game.getWidth() * (1 - 0.15) - Constants.buttonSize.getWidth() + 15./4);
-            offY = (int)(game.getHeight() * (1 - 0.15) + (game.getHeight() * (0.15) - Constants.buttonSize.getHeight()) / 2);
+            offX = (int)(game.getWidth() * (1 - 0.15) - Constants.buttonSize.getWidth() + 15. / 4);
+            offY =
+(int)(game.getHeight() * (1 - 0.15) + (game.getHeight() * (0.15) - Constants.buttonSize.getHeight()) / 2);
             increment = (int)(1.2 * Constants.buttonSize.getWidth());
-        }
-        else{   // Regular pause mode
+        } else { // Regular pause mode
             offX = (int)(game.getWidth() - 200 - 35);
-            offY = (int)(game.getHeight() * (1 - 0.1) - Constants.buttonSize.getHeight() - 15./4 );
+            offY = (int)(game.getHeight() * (1 - 0.1) - Constants.buttonSize.getHeight() - 15. / 4);
             increment = (int)(1.2 * Constants.buttonSize.getHeight());
         }
         //Remove button
@@ -329,11 +327,11 @@ public class PauseScreen extends Element implements Serializable{
         game.remove(this.btnResume);
         game.remove(this.btnWorldMap);
         game.remove(this.thumbnailText);
-        
-        if(!displayVictory){
+
+        if (!displayVictory) {
             game.add(thumbnailText);
         }
-        
+
         if (!resuming) {
             int nbuttons = 1; // for gotoMainMenu
             if (this.advMode && game.getMap().getFileID() != 0) {
@@ -353,28 +351,26 @@ public class PauseScreen extends Element implements Serializable{
             }
             //World map
             if (this.advMode && game.getMap().getFileID() != 0) {
-                if(this.displayVictory){
+                if (this.displayVictory) {
                     btnWorldMap.setLocation(offX - (i) * increment, offY);
-                }
-                else{
+                } else {
                     btnWorldMap.setLocation(offX, offY - (i) * increment);
                 }
                 i++;
                 game.add(btnWorldMap);
             }
             // MainMenu
-            if(this.displayVictory){
+            if (this.displayVictory) {
                 btnMainMenu.setLocation(offX - (i) * increment, offY);
-            }
-            else{
+            } else {
                 btnMainMenu.setLocation(offX, offY - (i) * increment);
             }
             game.add(btnMainMenu);
             i++;
         }
     }
-    
-    public void exit(){
+
+    public void exit() {
         game.remove(this.thumbnailText);
         thumbnailText.setText("");
     }

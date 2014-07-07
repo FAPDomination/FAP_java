@@ -19,18 +19,22 @@ public class MapHandler extends DefaultHandler {
      * The resulting map
      */
     private CMap map;
+
     /**
      * A cell field that will be used all along
      */
     private Cell c;
+
     /**
      * Line index in the grid
      */
     private int i = 0;
+
     /**
      * Column index in the grid
      */
     private int j = 0;
+
     /**
      * The game that you lost
      */
@@ -38,6 +42,7 @@ public class MapHandler extends DefaultHandler {
 
     /** Flags for the position of the parser */
     private boolean inFile, inI, inJ, inStartCell;
+
     /** buffer for retreiving datas */
     private StringBuffer buffer;
 
@@ -48,7 +53,7 @@ public class MapHandler extends DefaultHandler {
     public MapHandler(Game game, int fileID) {
         super();
         this.game = game;
-        map = new CMap(game,fileID);
+        map = new CMap(game, fileID);
     }
 
     /**
@@ -83,7 +88,7 @@ public class MapHandler extends DefaultHandler {
         }
         buffer = new StringBuffer();
     }
-    
+
     /**
      * Closing tag
      * @param uri Unused
@@ -114,15 +119,15 @@ public class MapHandler extends DefaultHandler {
             if (tabS.length > 1) {
                 param = tabS[1];
             }
-            
+
             t = setTypeWithDid(did, param);
-            
+
             // This is an exit NPC
             inJ = false;
             if (did != 0) {
                 // Create the cell and add it to the map
-                c = new Cell(i, j, t, param, did,game);
-                if(did == 12){
+                c = new Cell(i, j, t, param, did, game);
+                if (did == 12) {
                     NPCExit n = new NPCExit(c.getHash());
                     n.setTransientValues(game);
                     game.getListNPCs().add(n);
@@ -149,7 +154,7 @@ public class MapHandler extends DefaultHandler {
             throw new SAXException("Unknown tag " + qName + ".");
         }
     }
-    
+
     /**
      * This method detetcs the characters. BlackBox
      * @param ch BlackBox
@@ -162,14 +167,14 @@ public class MapHandler extends DefaultHandler {
         if (buffer != null)
             buffer.append(lecture);
     }
-    
+
     /**
      * Actions executed when starting parsing
      * @throws SAXException throws exception
      */
     public void startDocument() throws SAXException {
     }
-    
+
     /**
      * Actions executed when ending parsing
      * @throws SAXException throws exception
@@ -185,19 +190,19 @@ public class MapHandler extends DefaultHandler {
     public CMap getMap() {
         return map;
     }
-    
+
     /**
      * Computes the type of the cell with the Did and the special parameters of the cell
      * @param did the design id of the cell
      * @param param the additional param of the cell
      * @return the calculated type
      */
-    public static int setTypeWithDid(int did,String param){
-        int t=0;
+    public static int setTypeWithDid(int did, String param) {
+        int t = 0;
         // If blocking high
         if (did >= Params.idBlockingHigh && did < Params.idblockingLow) {
             t = 20;
-        // If blocking low
+            // If blocking low
         } else if (did >= Params.idblockingLow) {
             t = 19;
         } else if (param.equals("")) {
@@ -205,18 +210,16 @@ public class MapHandler extends DefaultHandler {
         }
         // If special tile (healthy, frozen, unstable)
         else if (param.indexOf(',') == -1) {
-            if(param.matches("[a-z]")){ // Healthy Healthy and special tiles
-                t=1;
-            }
-            else{
+            if (param.matches("[a-z]")) { // Healthy Healthy and special tiles
+                t = 1;
+            } else {
                 // countdown cell
                 t = 2;
             }
-        } else if (did == 10 ||did == 11) {
-        // Warp or switch
+        } else if (did == 10 || did == 11) {
+            // Warp or switch
             t = did;
-        }
-        else {
+        } else {
 
         }
         return t;

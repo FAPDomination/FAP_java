@@ -27,15 +27,15 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
 
     // Displaying
     private static int characDisplayOrigX = 0;
-    private static int characDisplayOrigY=250;
+    private static int characDisplayOrigY = 250;
     private static int characDisplayIncrement = 100;
 
     private int arroSelectOrigY = -40;
 
     private Game advGame;
-    
-    private boolean continuing=false;
-    
+
+    private boolean continuing = false;
+
     private ArrayList<Integer> listUnlockedCharsID = new ArrayList<Integer>();
 
     public CharacterSelection(TheFrame theFrame, JPanel jPanel) {
@@ -72,8 +72,8 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120,60);
-        btnGoBack.setLocation(origX-5, origY-5);
+        btnGoBack.setSize(120, 60);
+        btnGoBack.setLocation(origX - 5, origY - 5);
 
         btnNext.setText("Suivant");
         btnNext.setSize(120, 60);
@@ -110,7 +110,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         arrowList = new ArrayList<ArrowSelect>();
 
 
-        
         //Check unlocked
         if (advGame != null) {
             GameSave gs = Tools.loadGame();
@@ -129,7 +128,6 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         }
 
 
-
         int k = 1;
         for (int i = 1; i < 10; i++) {
             boolean m = i != 2 && i != 7;
@@ -141,9 +139,10 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                     b = false;
                 }
             }
-            if(m){
-                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement, characDisplayOrigY + Tools.randRange(0, 50), i, b, this));
-                if(b){
+            if (m) {
+                charList.add(new CharacterDisplay(this.characDisplayOrigX + k * this.characDisplayIncrement,
+                                                  characDisplayOrigY + Tools.randRange(0, 50), i, b, this));
+                if (b) {
                     listUnlockedCharsID.add(i);
                 }
                 k++;
@@ -162,32 +161,31 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             PlayerSelect ps = players.get(j);
             if (ps.getIsFSM() == 0) {
                 if (advGame == null) {
-                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                    int newPC = Tools.randRange(1, 9, Params.excludedChars);
                     boolean b;
-                    do{
+                    do {
                         b = false;
-                        newPC=Tools.randRange(1, 9, Params.excludedChars);
-                        for(int m=0;m<players.size();m++){
+                        newPC = Tools.randRange(1, 9, Params.excludedChars);
+                        for (int m = 0; m < players.size(); m++) {
                             PlayerSelect ps2 = players.get(m);
-                            
-                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
-                                if(ps2.getPc() == newPC){
-                                    b= true;
-                                }
-                                else{
+
+                            if (ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 &&
+                                ps2.getTeam() == ps.getTeam()) {
+                                if (ps2.getPc() == newPC) {
+                                    b = true;
+                                } else {
                                     break;
                                 }
                             }
                         }
-                    }while(b);
+                    } while (b);
                     ps.setPc(newPC);
                 } else {
-                    if(listUnlockedCharsID.size()>0){
-                        int rand = Tools.randRange(0,listUnlockedCharsID.size()-1);
+                    if (listUnlockedCharsID.size() > 0) {
+                        int rand = Tools.randRange(0, listUnlockedCharsID.size() - 1);
                         ps.setPc(listUnlockedCharsID.get(rand));
-                    }
-                    else{
-                        
+                    } else {
+
                     }
                 }
                 ArrowSelect as = new ArrowSelect(ps, this);
@@ -196,14 +194,12 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         }
 
 
-        
-
         //initFocus();
 
         //launchThread();
     }
-    
-    private void launchThread(){
+
+    private void launchThread() {
         theThread = new ThreadGUI(this);
         new Thread(this.theThread).start();
     }
@@ -214,13 +210,12 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
     }
 
     public void initFocus() {
-        if(!continuing){
+        if (!continuing) {
             initKListener();
             launchThread();
             this.setFocusable(true);
             requestFocus();
-        }
-        else{
+        } else {
             this.nextFrame();
             this.continuing = false;
         }
@@ -231,28 +226,27 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
         for (int i = 0; i < players.size(); i++) {
             PlayerSelect ps = players.get(i);
             if (ps.getIsFSM() != 0) {
-                if(advGame != null){
+                if (advGame != null) {
                     ps.setPc(advGame.getPlayers().get(i).getPc());
-                }
-                else{
-                    int newPC=Tools.randRange(1, 9, Params.excludedChars);
+                } else {
+                    int newPC = Tools.randRange(1, 9, Params.excludedChars);
                     boolean b;
-                    do{
+                    do {
                         b = false;
-                        newPC=Tools.randRange(1, 9, Params.excludedChars);
-                        for(int m=0;m<players.size();m++){
+                        newPC = Tools.randRange(1, 9, Params.excludedChars);
+                        for (int m = 0; m < players.size(); m++) {
                             PlayerSelect ps2 = players.get(m);
-                            
-                            if(ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 && ps2.getTeam() == ps.getTeam()){
-                                if(ps2.getPc() == newPC){
-                                    b= true;
-                                }
-                                else{
+
+                            if (ps.getControler() != ps2.getControler() && ps2.getIsFSM() == 0 &&
+                                ps2.getTeam() == ps.getTeam()) {
+                                if (ps2.getPc() == newPC) {
+                                    b = true;
+                                } else {
                                     break;
                                 }
                             }
                         }
-                    }while(b);
+                    } while (b);
                     ps.setPc(newPC);
                 }
             }
@@ -272,7 +266,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
             }
         }
 
-        if(theThread != null){
+        if (theThread != null) {
             this.theThread.setRunning(false);
         }
         // Proceeding to next panel
@@ -356,7 +350,7 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                             for (int l = 0; l < charList.size(); l++) {
                                 CharacterDisplay charD = charList.get(l);
                                 if (charD.getPc() == pc) {
-                                    int id=0;
+                                    int id = 0;
                                     // Pressing Key RIGHT
                                     if (k == 2) {
                                         // Looking for next character
@@ -364,77 +358,79 @@ public class CharacterSelection extends FAPanel implements NeedingFocus, AnimPan
                                         boolean b;
                                         // This loop is used to search for the next character if this one is unavailable
                                         // and so on...
-                                        do{
-                                            b=false;
+                                        do {
+                                            b = false;
                                             // Get the character
                                             int newPc = charList.get(id).getPc();
                                             // If not adventure Mode
-                                            if(advGame == null){
+                                            if (advGame == null) {
                                                 // Check if a human player on the same team already has this character
-                                                for(int m=0;m<players.size();m++){
+                                                for (int m = 0; m < players.size(); m++) {
                                                     PlayerSelect ps = players.get(m);
-                                                    if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
+                                                    if (ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM() == 0 &&
+                                                        ps.getPc() == newPc) {
                                                         // If yes activate re-search
-                                                        b=true;
+                                                        b = true;
                                                     }
                                                 }
                                             }
                                             // if adventure mode
-                                            else{
+                                            else {
                                                 // Just check if this character is unlocked
-                                                if(!this.listUnlockedCharsID.contains(newPc)){
+                                                if (!this.listUnlockedCharsID.contains(newPc)) {
                                                     // If yes activate re-search
-                                                    b=true;
+                                                    b = true;
                                                 }
                                             }
-                                            
-                                            if(b){
+
+                                            if (b) {
                                                 // Retry
-                                                id = (id+1)%charList.size();
+                                                id = (id + 1) % charList.size();
                                             }
-                                        }while(b);
-                                        
+                                        } while (b);
+
                                         // Pressing Key  LEFT
                                     } else if (k == 3) {
                                         // Looking for prev character
                                         id = (l - 1);
-                                        if(l == 0){
+                                        if (l == 0) {
                                             id = charList.size() - (1);
                                         }
                                         boolean b;
                                         // This loop is used to search for the prev character if this one is unavailable
                                         // and so on...
-                                        do{
-                                            b=false;
+                                        do {
+                                            b = false;
                                             // Get the character
                                             int newPc = charList.get(id).getPc();
                                             // If not adventure Mode
-                                                    if(advGame == null){
-                                                        // Check if a human player on the same team already has this character
-                                                        for(int m=0;m<players.size();m++){
-                                                            PlayerSelect ps = players.get(m);
-                                                            if(ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM()==0 && ps.getPc()==newPc){
-                                                                // If yes activate re-search
-                                                                b=true;
-                                                            }
-                                                        }
+                                            if (advGame == null) {
+                                                // Check if a human player on the same team already has this character
+                                                for (int m = 0; m < players.size(); m++) {
+                                                    PlayerSelect ps = players.get(m);
+                                                    if (ps.getTeam() == ar.getPs().getTeam() && ps.getIsFSM() == 0 &&
+                                                        ps.getPc() == newPc) {
+                                                        // If yes activate re-search
+                                                        b = true;
                                                     }
-                                                    // if adventure mode
-                                                    else{
-                                                        // Just check if this character is unlocked
-                                                        if(!this.listUnlockedCharsID.contains(newPc)){
-                                                            // If yes activate re-search
-                                                            b=true;
-                                                        }
-                                                    }
-                                            if(b){
+                                                }
+                                            }
+                                            // if adventure mode
+                                            else {
+                                                // Just check if this character is unlocked
+                                                if (!this.listUnlockedCharsID.contains(newPc)) {
+                                                    // If yes activate re-search
+                                                    b = true;
+                                                }
+                                            }
+                                            if (b) {
                                                 // Retry
-                                                id = id-1;
-                                                if(id < 0){
+                                                id = id - 1;
+                                                if (id < 0) {
                                                     id = charList.size() - (1);
                                                 }
                                             }
-                                        }while(b);
+                                        } while (b);
                                     }
                                     cd = charList.get(id);
                                     break;

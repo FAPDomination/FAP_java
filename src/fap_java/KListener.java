@@ -12,17 +12,19 @@ public class KListener implements KeyListener {
      * The players in this game
      */
     private ArrayList<Player> players;
+
     /**
      * The keys that are currently pressed
      */
     private ArrayList<Integer> pressed = new ArrayList<Integer>();
+
     /**
      * The game where all is played
      */
     private Game game;
 
     /**
-     * Initializes a Key Listener for the game. It will get all information about the keys that are pressed and trigger 
+     * Initializes a Key Listener for the game. It will get all information about the keys that are pressed and trigger
      * handling for the related players
      * @param game the game where it happens
      */

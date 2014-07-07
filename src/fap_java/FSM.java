@@ -160,12 +160,12 @@ public class FSM {
             if (body instanceof Miner) {
                 body.getSkill();
                 Miner me = (Miner)body;
-                int maxW =0;
+                int maxW = 0;
                 Cell selected = null;
-                for(int i =0;i<me.getRandCells().size();i++){
+                for (int i = 0; i < me.getRandCells().size(); i++) {
                     Cell c = me.getRandCells().get(i);
                     int w = areaWeight(c, nRings);
-                    if(w>=maxW){
+                    if (w >= maxW) {
                         maxW = w;
                         selected = c;
                     }
@@ -294,7 +294,7 @@ public class FSM {
                             Cell a = theRing.get(j);
                             //c.setOwner(this.getTeam());
                             //c.setHp(this.getInitHP());
-                            if(a != null){
+                            if (a != null) {
                                 Player p = a.getOccupied();
                                 if (p != null) {
                                     skillWorth = true;
@@ -544,7 +544,7 @@ public class FSM {
                 }
             }
         }
-        if(nCells == 0){
+        if (nCells == 0) {
             return 0;
         }
         average /= nCells;

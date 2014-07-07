@@ -24,13 +24,13 @@ public class NPCWMStarting extends NPC {
     private static int offY = 5;
     private static int[][] points =
     { { CMap.TW / 4, 3 * CMap.TH / 4 + offY }, { 3 * CMap.TW / 4, 2 * CMap.TH / 4 + offY },
-      { 5 * CMap.TW / 4 , 3 * CMap.TH / 4 + offY + 1 }, { 5 * CMap.TW / 4 , 6 * CMap.TH / 4 + offY + 1 },
+      { 5 * CMap.TW / 4, 3 * CMap.TH / 4 + offY + 1 }, { 5 * CMap.TW / 4, 6 * CMap.TH / 4 + offY + 1 },
       { 3 * CMap.TW / 4, 7 * CMap.TH / 4 + offY + 2 }, { CMap.TW / 4, 6 * CMap.TH / 4 + offY } };
 
     public NPCWMStarting(String cellHash, boolean conquered, GameConfig gameToLaunch) {
         super(cellHash, true, false, null, Graph.getOffsetsCells().get(0), null);
         this.conquered = conquered;
-        
+
         Action sg = new AStartGame(gameToLaunch);
         firstAction = new AAsk("Lancer la partie ?", "Oui", "Non", null, sg);
         currentAction = firstAction;
@@ -49,23 +49,20 @@ public class NPCWMStarting extends NPC {
                 boolean draw = false;
                 if (c == null) {
                     draw = true;
-                }
-                else{
+                } else {
                     NPC npc = Tools.checkNPCOnCell(game, c);
-                    if(npc !=null && npc instanceof NPCWMStarting){
+                    if (npc != null && npc instanceof NPCWMStarting) {
                         boolean value = ((NPCWMStarting)npc).isConquered();
-                        if(value){
-                            draw = false;   
-                        }
-                        else{
+                        if (value) {
+                            draw = false;
+                        } else {
                             draw = true;
                         }
-                    }
-                    else{
+                    } else {
                         draw = true;
                     }
                 }
-                
+
                 if (draw) {
                     g.drawLine(x + points[i][0], y + points[i][1], x + points[(i + 1) % 6][0],
                                y + points[(i + 1) % 6][1]);

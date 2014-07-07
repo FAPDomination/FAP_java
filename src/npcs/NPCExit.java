@@ -14,13 +14,15 @@ public class NPCExit extends NPC {
     private static final long serialVersionUID = 746096623204554497L;
 
     public NPCExit(String cellHash) {
-        super(cellHash, true, false, null, 0,0,null);
-        
+        super(cellHash, true, false, null, 0, 0, null);
+
         Action sg = new AStartGame();
-        firstAction = new AAsk("Retour a la carte du monde ?","Oui","Non",null,sg);
+        firstAction = new AAsk("Retour a la carte du monde ?", "Oui", "Non", null, sg);
         currentAction = firstAction;
     }
-    public void paintComponent(Graphics g){}
+
+    public void paintComponent(Graphics g) {
+    }
     /*
     public void execute(){
         if(game.getThread().getRunning()){

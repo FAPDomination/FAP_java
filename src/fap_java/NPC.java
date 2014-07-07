@@ -13,7 +13,7 @@ public class NPC extends Human implements Serializable {
 
     @SuppressWarnings("compatibility:8918283573792917910")
     private static final long serialVersionUID = -2618102038212575413L;
-    
+
     private transient Cell position;
     private String cellPositionHash;
     private boolean walkable;
@@ -22,9 +22,9 @@ public class NPC extends Human implements Serializable {
     protected transient Game game;
     protected int x;
     protected int y;
-    protected int offX,offY;
+    protected int offX, offY;
 
-    
+
     protected Action firstAction;
     protected Action currentAction;
     protected boolean executing;
@@ -38,15 +38,18 @@ public class NPC extends Human implements Serializable {
         this.img = img;
         this.offX = offX;
         this.offY = offY;
-        
+
         this.firstAction = firstAction;
         this.currentAction = firstAction;
         this.reInit();
     }
-    public NPC(String cellPositionHash, boolean walkable, boolean autoTrigger, String img, Dimension offsets, Action firstAction) {
-        this(cellPositionHash,walkable,autoTrigger,img,(int)offsets.getWidth(),(int)offsets.getHeight(),firstAction);
+
+    public NPC(String cellPositionHash, boolean walkable, boolean autoTrigger, String img, Dimension offsets,
+               Action firstAction) {
+        this(cellPositionHash, walkable, autoTrigger, img, (int)offsets.getWidth(), (int)offsets.getHeight(),
+             firstAction);
     }
-    
+
     /**
      * Creates an auto-trigger NPC
      */
@@ -69,7 +72,7 @@ public class NPC extends Human implements Serializable {
         //return "NPC at "+this.getI()+","+this.getJ();
         return "A NPC at " + position;
     }
-/*
+    /*
     public Action getCurrentAction() {
         Action ac = null;
         if (iterator >= 0 && iterator < actions.size()) {
@@ -130,11 +133,11 @@ public class NPC extends Human implements Serializable {
     }
 
     public void reInit() {
-            for (Action a = firstAction; a!=null; a=a.getNext()) {
-                if (a != null) {
-                    a.reinit();
-                }
+        for (Action a = firstAction; a != null; a = a.getNext()) {
+            if (a != null) {
+                a.reinit();
             }
+        }
         this.executing = false;
         currentAction = firstAction;
     }
@@ -156,18 +159,18 @@ public class NPC extends Human implements Serializable {
     public Action getCurrentAction() {
         return currentAction;
     }
-    
-    public void gotoNextAction(){
-        currentAction=currentAction.getNext();
+
+    public void gotoNextAction() {
+        currentAction = currentAction.getNext();
     }
-    
-    public void setNextAction(Action a){
+
+    public void setNextAction(Action a) {
         currentAction.setNext(a);
     }
-    
-    public void setTransientValues(Game game){
+
+    public void setTransientValues(Game game) {
         this.game = game;
-        if(cellPositionHash != null && !cellPositionHash.equals("")){
+        if (cellPositionHash != null && !cellPositionHash.equals("")) {
             position = game.getMap().getCell(cellPositionHash);
             if (position != null) {
                 int[] tableXY = CMap.giveTalePosition(position);
@@ -175,8 +178,8 @@ public class NPC extends Human implements Serializable {
                 y = tableXY[1] + offY;
             }
         }
-        
-        for (Action a = firstAction; a!=null; a=a.getNext()) {
+
+        for (Action a = firstAction; a != null; a = a.getNext()) {
             if (a != null) {
                 a.setTransientValues(game);
             }

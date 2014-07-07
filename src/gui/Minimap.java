@@ -18,10 +18,10 @@ import java.util.Map;
 import javax.swing.JPanel;
 
 
-public class Minimap{
+public class Minimap {
     private ArrayList<Cell> map;
     private int size = 5;
-    private static Map<Integer,Color> colorList = new HashMap<Integer,Color>();
+    private static Map<Integer, Color> colorList = new HashMap<Integer, Color>();
 
     private int x;
     private int y;
@@ -34,40 +34,40 @@ public class Minimap{
     private int fileNumber;
 
     public Minimap(int map, String name) {
-        CMap theMap = XMLparser.parseMap(map,null);
+        CMap theMap = XMLparser.parseMap(map, null);
         this.map = theMap.getMyMap();
         this.name = name;
         this.fileNumber = map;
 
-        colorList.put(1,new Color(0, 153, 0));
-        colorList.put(2,new Color(202, 149, 69));
-        colorList.put(3,new Color(150, 150, 150));
-        colorList.put(4,new Color(150, 150, 150));
-        colorList.put(5,new Color(116, 80, 18));
-        colorList.put(6,new Color(0, 204, 0));
-        colorList.put(7,new Color(51, 51, 51));
-        colorList.put(8,new Color(128, 11, 0));
-        colorList.put(9,new Color(76, 189, 230));
-        colorList.put(15,new Color(254, 194, 105));
-        colorList.put(16,new Color(254, 194, 105));
-        colorList.put(17,new Color(254, 194, 105));
+        colorList.put(1, new Color(0, 153, 0));
+        colorList.put(2, new Color(202, 149, 69));
+        colorList.put(3, new Color(150, 150, 150));
+        colorList.put(4, new Color(150, 150, 150));
+        colorList.put(5, new Color(116, 80, 18));
+        colorList.put(6, new Color(0, 204, 0));
+        colorList.put(7, new Color(51, 51, 51));
+        colorList.put(8, new Color(128, 11, 0));
+        colorList.put(9, new Color(76, 189, 230));
+        colorList.put(15, new Color(254, 194, 105));
+        colorList.put(16, new Color(254, 194, 105));
+        colorList.put(17, new Color(254, 194, 105));
 
-        colorList.put(10,new Color(106, 255, 102));
-        colorList.put(11,new Color(153, 0, 0));
+        colorList.put(10, new Color(106, 255, 102));
+        colorList.put(11, new Color(153, 0, 0));
 
-        colorList.put(100,new Color(86, 43, 2));
-        colorList.put(102,new Color(86, 43, 2));
-        colorList.put(103,new Color(130,130,130));
-        colorList.put(104,new Color(130,130,130));
-        colorList.put(105,new Color(20,153,0));
-        
-        colorList.put(200,new Color(46, 159, 200));
-        colorList.put(201,new Color(241, 58, 5));
+        colorList.put(100, new Color(86, 43, 2));
+        colorList.put(102, new Color(86, 43, 2));
+        colorList.put(103, new Color(130, 130, 130));
+        colorList.put(104, new Color(130, 130, 130));
+        colorList.put(105, new Color(20, 153, 0));
+
+        colorList.put(200, new Color(46, 159, 200));
+        colorList.put(201, new Color(241, 58, 5));
     }
 
-    
+
     public Minimap(int map, int x, int y, JPanel panel, String name) {
-        this(map,name);
+        this(map, name);
         this.panel = panel;
         this.x = x;
         this.y = y;
@@ -76,23 +76,22 @@ public class Minimap{
     public void paintComponent(Graphics g) {
         Color square = null;
         //g.drawImage(img, x, y, panel);
-        if(isSelected){
+        if (isSelected) {
             square = Graph.MINIMAP_SELECTED_COLOR;
         }
-        Graph.drawDarkBackgroundRectangle(g, x-5, y-5, w, h, square, 15, Graph.BG_WHITETRANSLUSCENT);
-        
+        Graph.drawDarkBackgroundRectangle(g, x - 5, y - 5, w, h, square, 15, Graph.BG_WHITETRANSLUSCENT);
+
         for (int i = 0; i < map.size(); i++) {
             Cell c = map.get(i);
             Color k = colorList.get(c.getDid());
-            if(k != null){
+            if (k != null) {
                 g.setColor(k);
                 int width = (int)(size * 1.4);
                 g.fillRect(x + c.getJ() * width, y + c.getI() * size, width, size);
-            }
-            else{
-                System.err.println("No minimap color for "+c.getDid());
+            } else {
+                System.err.println("No minimap color for " + c.getDid());
                 // Fill the gap so the err console doesn't get flood (dirty)
-                 colorList.put(c.getDid(), new Color(255,0,0));
+                colorList.put(c.getDid(), new Color(255, 0, 0));
             }
         }
         g.setColor(Color.black);
@@ -101,7 +100,8 @@ public class Minimap{
         FontMetrics fm = g2d.getFontMetrics();
         int nameWidth = fm.stringWidth(name);
         int imgWidth = 150;
-        Graph.drawBorderedString(g, x + (imgWidth - nameWidth) / 2, y + 238, name, Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x + (imgWidth - nameWidth) / 2, y + 238, name,
+                                 Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         //g.drawString(name, x + (imgWidth - nameWidth) / 2, y + 238);
     }
 
@@ -144,8 +144,8 @@ public class Minimap{
     public int getFileNumber() {
         return fileNumber;
     }
-    
-    public int[] getArea(){
+
+    public int[] getArea() {
         int[] table = new int[4];
         table[0] = x;
         table[1] = y;
@@ -153,23 +153,23 @@ public class Minimap{
         table[3] = h;
         return table;
     }
-    
-    public boolean inArea(double u, double v){
+
+    public boolean inArea(double u, double v) {
         boolean b = true;
-        if(!(u>=this.x && u<=this.x+this.w)){
+        if (!(u >= this.x && u <= this.x + this.w)) {
             b = false;
         }
-        if(!(v>=this.y && v<=this.y+this.h)){
+        if (!(v >= this.y && v <= this.y + this.h)) {
             b = false;
         }
         return b;
     }
-    
-    public boolean inArea(Point p){
-        return this.inArea(p.getX(),p.getY());
+
+    public boolean inArea(Point p) {
+        return this.inArea(p.getX(), p.getY());
     }
-    
-    public String toString(){
-        return "Minimap for the file "+this.fileNumber;
+
+    public String toString() {
+        return "Minimap for the file " + this.fileNumber;
     }
 }

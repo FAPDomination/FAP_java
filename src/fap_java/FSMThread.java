@@ -1,23 +1,24 @@
 package fap_java;
 
-public class FSMThread extends Thread{
+public class FSMThread extends Thread {
     private Player p;
     private Game game;
+
     public FSMThread(Game myGame, Player p) {
         super();
         this.p = p;
         this.game = myGame;
     }
-    
-    public void run(){
-        while(!game.isGameEnded()){
-            if(game.getThread().getRunning()){
+
+    public void run() {
+        while (!game.isGameEnded()) {
+            if (game.getThread().getRunning()) {
                 p.getFsm().executeMethod();
-                
-                try{
+
+                try {
                     // wait for "delay" ms
                     Thread.sleep(game.getThread().getDelay());
-                } catch (InterruptedException ie){
+                } catch (InterruptedException ie) {
                     ie.printStackTrace();
                 }
             }

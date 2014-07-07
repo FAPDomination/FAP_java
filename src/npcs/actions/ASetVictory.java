@@ -15,13 +15,13 @@ public class ASetVictory extends Action {
     public ASetVictory() {
         super(null);
     }
-    
+
     public void execute(NPC whoLaunches) {
         //Load datas
         Game game = whoLaunches.getGame();
         game.pauseGame(true);
         game.endGame(game.getTeams().get(0));
-        
+
     }
 
     public void setTransientValues(Game g) {

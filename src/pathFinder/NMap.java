@@ -17,7 +17,7 @@ public class NMap {
     }
 
     private ArrayList<Node> myMap = new ArrayList<Node>();
-    private Map<String,Node> hashMap = new HashMap<String,Node>();
+    private Map<String, Node> hashMap = new HashMap<String, Node>();
 
     public ArrayList<Node> getMyMap() {
         return myMap;
@@ -36,7 +36,7 @@ public class NMap {
     }
 
     public Node containsNode(Node c) {
-        return hashMap.get(""+c.getCell().getI()+","+c.getCell().getJ());
+        return hashMap.get("" + c.getCell().getI() + "," + c.getCell().getJ());
         /*
         int b = (-1);
         for (int k = 0; k < myMap.size(); k++) {
@@ -122,7 +122,7 @@ public class NMap {
             if (c != null) {
                 Node n = new Node(c);
                 this.myMap.add(n);
-                this.hashMap.put(""+c.getI()+","+c.getJ(), n);
+                this.hashMap.put("" + c.getI() + "," + c.getJ(), n);
             }
         }
         return list;

@@ -13,6 +13,7 @@ import javax.swing.UIManager;
 public class Fapplication {
     private static JFrame frame;
     private static Game worldMap;
+
     public Fapplication() {
         frame = new TheFrame();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,8 +24,8 @@ public class Fapplication {
         if (frameSize.width > screenSize.width) {
             frameSize.width = screenSize.width;
         }
-        frame.setLocation( ( screenSize.width - frameSize.width ) / 2, ( screenSize.height - frameSize.height ) / 2 );
-        frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 
@@ -60,8 +61,8 @@ public class Fapplication {
     public static Game getWorldMap() {
         return worldMap;
     }
-    
-    public static void exitOnError(){
+
+    public static void exitOnError() {
         System.exit(2);
     }
 }

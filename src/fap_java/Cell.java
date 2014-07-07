@@ -18,6 +18,7 @@ public class Cell extends Element {
      * The Design ID of the cell. Is used to call the right image to display (1 is normal, 2 is dirt, 3 rock, etc..)
      */
     private int did;
+
     /**
      * The Type of the cell.
      * Several types exist :
@@ -31,57 +32,69 @@ public class Cell extends Element {
      * 20 - blocking high (rock)
      */
     private int type;
+
     /**
      * The team that owns this cell
      */
     private Team owner;
+
     /**
      * The property walkable or not of the cell
      */
     private boolean walkable;
+
     /**
      * If the cell has ever been walked on (useful to test if a switch was activated)
      */
     private boolean walked;
+
     /**
      * The number of HealthPoints of the cell
      */
     private double hp;
+
     /**
      * The property of the cell to be high blocking or low blocking
      */
     private boolean height;
+
     /**
      * The map in wich the cell lives
      */
     private CMap map;
+
     /**
      * An additional parameter, such as the cell where a warp will teleport you
      */
     private String addParam;
 
     //Special params
+
     /**
      * If the cell is a trap, who traped it
      */
     private Team trap;
+
     /**
      * If the cell is from the Healthy Healthy special tile
      */
     private boolean healthy;
+
     /**
      * If the cell is unstable : hp will decrease no matter what
      */
     private boolean unstable;
+
     /**
      * If the cell is frozen : will slow down the player
-    */
+     */
     private boolean frozen;
 
     /**
      * If the cell is currently being examinated by a miner who wants to teleport
      */
     private Player minerSelect;
+
     /**
      * If the cursor of the miner is on this cell
      */
@@ -91,14 +104,14 @@ public class Cell extends Element {
      * The game in wich the cell is living
      */
     private Game game;
-    
-    private int x,y;
-    
+
+    private int x, y;
+
     // Performance pre-calculated variables :
     private boolean needDirt;
-    
+
     private Player occupied;
-    
+
     private Cell nextInMap;
 
     /**
@@ -107,8 +120,8 @@ public class Cell extends Element {
     public Cell(int i, int j, int type, int did, Game game) {
         this(i, j, type, "", did, game);
     }
-    
-    public Cell(int i, int j){
+
+    public Cell(int i, int j) {
         this(i, j, 0, "", 0, null);
     }
 
@@ -152,10 +165,10 @@ public class Cell extends Element {
      * @param g
      */
     public void paintComponent(Graphics g) {
-        
+
         // Game paint factor
-        double paintFactorW=Graph.facW;
-        double paintFactorH =Graph.facH;
+        double paintFactorW = Graph.facW;
+        double paintFactorH = Graph.facH;
 
         int width;
         int height;
@@ -163,7 +176,7 @@ public class Cell extends Element {
         int offY;
         // Paint dirt
         //test if needed
-        if(needDirt){
+        if (needDirt) {
             BufferedImage dirtImage = Graph.cells.get(0);
             offX = (int)Graph.offsetsCells.get(0).getWidth();
             offY = (int)Graph.offsetsCells.get(0).getHeight();
@@ -173,8 +186,8 @@ public class Cell extends Element {
             g.drawImage(dirtImage, x + offX, y + offY, width, height, game);
         }
         // Paint did
-        
-        if(Graph.notFactored.contains(did)){
+
+        if (Graph.notFactored.contains(did)) {
             paintFactorW = 1;
             paintFactorH = 1;
         }
@@ -183,33 +196,31 @@ public class Cell extends Element {
         height = (int)(img.getHeight(game) * paintFactorH);
         offX = (int)Graph.offsetsCells.get(did).getWidth();
         offY = (int)Graph.offsetsCells.get(did).getHeight();
-        
+
         g.drawImage(img, x + offX, y + offY, width, height, game);
-        
-        
-        
-        
+
+
         // Write the amount of HP of the tile
         if (hp > 0) {
             String hps = "" + (int)hp;
             Graphics2D g2d = (Graphics2D)g;
             FontMetrics fm = g2d.getFontMetrics();
             int textWidth = fm.stringWidth(hps);
-            
-            
-            
-            if(owner !=null){
+
+
+            if (owner != null) {
                 Color c = owner.getColor();
-                Color alphaBG = new Color(c.getRed(),c.getGreen(),c.getBlue(),110);
-                fillCell(g,x,y,alphaBG);
+                Color alphaBG = new Color(c.getRed(), c.getGreen(), c.getBlue(), 110);
+                fillCell(g, x, y, alphaBG);
             }
             //g.drawString(hps, x + (CMap.TW-textWidth)/2, y + 10);
             g.setColor(Color.BLACK);
-            Graph.drawBorderedString(g, x + (CMap.TW-textWidth)/2, y + 10, hps,Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
-            
-            
+            Graph.drawBorderedString(g, x + (CMap.TW - textWidth) / 2, y + 10, hps,
+                                     Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+
+
         }
-        
+
         // Special case if the miner is currently selecting the cell
         if (minerSelect != null) {
             int minerSlectID = 13;
@@ -219,45 +230,46 @@ public class Cell extends Element {
             offY = (int)Graph.offsetsCells.get(minerSlectID).getHeight();
             //If the miner's cursor is on the cell
             //int lighterFac = 10;
-            if(this.minerSing){
+            if (this.minerSing) {
                 minerSlectID++;
             }
-            
-            fillBlock(g,x, y+2, minerSelect.getColor(), 6);
-            g.drawImage(Graph.cells.get(minerSlectID), x + offX+2, y + offY+3, width, height, game);
+
+            fillBlock(g, x, y + 2, minerSelect.getColor(), 6);
+            g.drawImage(Graph.cells.get(minerSlectID), x + offX + 2, y + offY + 3, width, height, game);
         }
-        
-        if(healthy){
-            g.drawImage(Graph.getList().get("healthy"), x -11, y -70, 120/CMap.FAC, 200/CMap.FAC, game);
+
+        if (healthy) {
+            g.drawImage(Graph.getList().get("healthy"), x - 11, y - 70, 120 / CMap.FAC, 200 / CMap.FAC, game);
         }
     }
-    
-    public static void fillCell(Graphics g,int x, int y, Color c){
+
+    public static void fillCell(Graphics g, int x, int y, Color c) {
         Color k = g.getColor();
         g.setColor(c);
-        int[] xs = {x-2,CMap.TW/(2)+x -1,CMap.TW+x +1,CMap.TW+x +1,CMap.TW/2+x -1,x-2};
-        int[] ys = {y,-11/CMap.FAC+y,y,23/CMap.FAC+y,34/CMap.FAC+y,23/CMap.FAC+y};
+        int[] xs = { x - 2, CMap.TW / (2) + x - 1, CMap.TW + x + 1, CMap.TW + x + 1, CMap.TW / 2 + x - 1, x - 2 };
+        int[] ys = { y, -11 / CMap.FAC + y, y, 23 / CMap.FAC + y, 34 / CMap.FAC + y, 23 / CMap.FAC + y };
         g.fillPolygon(xs, ys, 6);
         g.setColor(k);
     }
-    
-    public static void fillBlock(Graphics g,int x, int y, Color c, int h){
+
+    public static void fillBlock(Graphics g, int x, int y, Color c, int h) {
         Color k = g.getColor();
         g.setColor(c);
-        h*=-1;
+        h *= -1;
         // Top cell
-        int[] xs = {x+1,CMap.TW/(2)+x,CMap.TW+x-1,CMap.TW+x-1,CMap.TW/2+x,x+1};
-        int[] ys = {y+h,-11/CMap.FAC+y+h,y+h,23/CMap.FAC+y+h,34/CMap.FAC+y+h,23/CMap.FAC+y+h};
+        int[] xs = { x + 1, CMap.TW / (2) + x, CMap.TW + x - 1, CMap.TW + x - 1, CMap.TW / 2 + x, x + 1 };
+        int[] ys =
+        { y + h, -11 / CMap.FAC + y + h, y + h, 23 / CMap.FAC + y + h, 34 / CMap.FAC + y + h, 23 / CMap.FAC + y + h };
         g.fillPolygon(xs, ys, 6);
         // First panel
-        int[] x2s = {x+1,CMap.TW/(2)+x,CMap.TW/(2)+x -1,x+1};
-        int[] y2s = {y+h,-11/CMap.FAC+y+h,34/CMap.FAC+y-2,23/CMap.FAC+y};
+        int[] x2s = { x + 1, CMap.TW / (2) + x, CMap.TW / (2) + x - 1, x + 1 };
+        int[] y2s = { y + h, -11 / CMap.FAC + y + h, 34 / CMap.FAC + y - 2, 23 / CMap.FAC + y };
         g.fillPolygon(x2s, y2s, 4);
         // Second panel
-        int[] x3s = {CMap.TW+x-2,CMap.TW+x,CMap.TW/(2)+x,CMap.TW/(2)+x -2};
-        int[] y3s = {y+h,23/CMap.FAC+y,34/CMap.FAC+y-2,34/CMap.FAC+y+h};
+        int[] x3s = { CMap.TW + x - 2, CMap.TW + x, CMap.TW / (2) + x, CMap.TW / (2) + x - 2 };
+        int[] y3s = { y + h, 23 / CMap.FAC + y, 34 / CMap.FAC + y - 2, 34 / CMap.FAC + y + h };
         g.fillPolygon(x3s, y3s, 4);
-        
+
         g.setColor(k);
     }
 
@@ -267,13 +279,13 @@ public class Cell extends Element {
      * @param p : the player
      */
     public void activateCell(Player p) {
-        if(game.getAdv()<2){
+        if (game.getAdv() < 2) {
             // Check if the tile is takable and the property of the player
             if (owner != p.getTeam() && type == 1) {
                 // if not, tests if the tale has HP
                 if (hp <= 0) {
                     // The tale is empty, sets it as the property of the player, gives HP and draw the according map
-    
+
                     //If the tile became unwakable, the player is sent back to his previous cell
                     if (walkable == false) {
                         p.kickBack();
@@ -287,7 +299,7 @@ public class Cell extends Element {
                     hp -= p.getDecLifeForced();
                 }
             }
-    
+
             // Activate the trap system if needed
             if (trap != null) {
                 if (trap != p.getTeam()) {
@@ -302,7 +314,7 @@ public class Cell extends Element {
                         //Add animation
                         int x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
                         int y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
-                        new AnimDisableTrap(x,y,game.getThread());
+                        new AnimDisableTrap(x, y, game.getThread());
                     }
                 }
             }
@@ -313,33 +325,33 @@ public class Cell extends Element {
      * Recalculates the HP of a Cell, according to Conway's laws or other factors
      * @param game : the game where the cell is
      */
-    
-    public void refreshHealthPoints(Game game){
+
+    public void refreshHealthPoints(Game game) {
         //trace(_root.kco);
-                // Counts the neighbours of the same type of the tale
-                //Note : MyDMap != 8 is for lava floor and unstable cells
-                //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
-        if(owner != null){
+        // Counts the neighbours of the same type of the tale
+        //Note : MyDMap != 8 is for lava floor and unstable cells
+        //var recovB:Boolean = myDMap[vi][vj] != 8 && healthPoints[i][0] !=1 && countNeighbours(myMap, vi, vj, healthPoints[i][0])>=nNeighboursConwell;
+        if (owner != null) {
             boolean recovB = (type == 1) && !unstable && map.countNeighboursForConway(this);
-                if (recovB) {
-                        // If the cell is wounded (under initHP HPs)
-                        if (hp<owner.getFirstPlayer().getInitHP()) {
-                                        // The HP will recover slowly up to initHP
-                                        hp += owner.getRecovLifeAuto();
-                                // between initHP and maxHP
-                        } else if (hp<owner.getMaxHP() || (healthy && hp<Params.higherMaxHP)) {
-                                //_root["t"+i].onEnterFrame = function() {
-                                        // The HP will very slowly increase up to the max limit
-                                        double gainLifeFactor = 1;
-                                        if(healthy){
-                                                gainLifeFactor = Params.gainLifeFactorMultiplier;
-                                        }
-                                        hp += owner.getFirstPlayer().getGainLife()*gainLifeFactor;
-                                //};
-                        } //else {
-                                // If the tale isn't lonely or anything, do nothing
-                                //delete _root["t"+i].onEnterFrame;
-                        //}
+            if (recovB) {
+                // If the cell is wounded (under initHP HPs)
+                if (hp < owner.getFirstPlayer().getInitHP()) {
+                    // The HP will recover slowly up to initHP
+                    hp += owner.getRecovLifeAuto();
+                    // between initHP and maxHP
+                } else if (hp < owner.getMaxHP() || (healthy && hp < Params.higherMaxHP)) {
+                    //_root["t"+i].onEnterFrame = function() {
+                    // The HP will very slowly increase up to the max limit
+                    double gainLifeFactor = 1;
+                    if (healthy) {
+                        gainLifeFactor = Params.gainLifeFactorMultiplier;
+                    }
+                    hp += owner.getFirstPlayer().getGainLife() * gainLifeFactor;
+                    //};
+                } //else {
+                // If the tale isn't lonely or anything, do nothing
+                //delete _root["t"+i].onEnterFrame;
+                //}
             } else {
                 /* Only enabled when "GameOfLife" level 1 or more is on : // Spoiler alert : ALWAYS
                         the goal here is to decrease the HP of the tale because it's alone.
@@ -452,9 +464,9 @@ public class Cell extends Element {
      * @param type
      */
     public void setType(int type) {
-        
+
         this.type = type;
-        
+
         //Blocking high
         if (type == 20) {
             walkable = false;
@@ -469,11 +481,11 @@ public class Cell extends Element {
         else if (type == 2) {
             hp = Integer.parseInt(addParam);
         }
-        
-        if(type != 20 && type != 19){
+
+        if (type != 20 && type != 19) {
             walkable = true;
         }
-        if(type != 20){
+        if (type != 20) {
             height = false;
         }
 
@@ -556,9 +568,9 @@ public class Cell extends Element {
         }
         return s;
     }
-    
-    public String getHash(){
-        return (""+this.getI()+","+this.getJ());
+
+    public String getHash() {
+        return ("" + this.getI() + "," + this.getJ());
     }
 
     /**
@@ -585,7 +597,7 @@ public class Cell extends Element {
 
     public void setNeedDirt() {
         ArrayList<Cell> surrounding = game.getMap().surroundingCells(this);
-        if(surrounding.get(3) == null || surrounding.get(4) == null){
+        if (surrounding.get(3) == null || surrounding.get(4) == null) {
             this.needDirt = true;
         }
     }

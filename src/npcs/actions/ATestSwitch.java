@@ -14,7 +14,7 @@ public class ATestSwitch extends Action {
     private static final long serialVersionUID = 8332904318881077569L;
     private int switchID;
     private Action failAction;
-    
+
     /**
      * Creates an NPC action that will test the state of a switch
      * @param switchID the ID of the switch to test
@@ -25,7 +25,7 @@ public class ATestSwitch extends Action {
         super(next);
         this.switchID = switchID;
         this.failAction = failAction;
-        
+
     }
 
     public void execute(NPC whoLaunches) {
@@ -34,12 +34,11 @@ public class ATestSwitch extends Action {
         //Get datas
         ArrayList<Boolean> gameSwitches = gameSave.getGameSwitches();
         boolean value = gameSwitches.get(switchID);
-        if(value){
+        if (value) {
             //Loop
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
-        }
-        else{
+        } else {
             //End NPC
             whoLaunches.setCurrentAction(failAction);
             whoLaunches.execute();
@@ -57,7 +56,7 @@ public class ATestSwitch extends Action {
 
     public void reinit() {
         super.reinit();
-        if(failAction!=null){
+        if (failAction != null) {
             failAction.reinit();
         }
     }

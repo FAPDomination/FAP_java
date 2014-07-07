@@ -12,7 +12,7 @@ public class ADisplayMessage extends Action {
     private static final long serialVersionUID = -7274855256989454061L;
     private String message;
     private transient NPCMessage npcMessage;
-    
+
     /**
      * Creates an NPC that will display a message on screen that lasts until the SKILL key is pressed
      * @param message the message to display
@@ -21,29 +21,29 @@ public class ADisplayMessage extends Action {
     public ADisplayMessage(String message, Action next) {
         super(next);
         this.message = message;
-        
+
     }
 
     public void execute(NPC whoLaunches) {
         // First passage : display the message
-        if(this.npcMessage == null){
-            this.npcMessage = new NPCMessage(message,whoLaunches.getGame().getThread());
+        if (this.npcMessage == null) {
+            this.npcMessage = new NPCMessage(message, whoLaunches.getGame().getThread());
         }
         // Second : remove the message and go on
-        else{
-            if(npcMessage != null){
+        else {
+            if (npcMessage != null) {
                 npcMessage.endAnimation();
             }
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
-            
+
         }
     }
 
     public void reinit() {
         super.reinit();
-        
-        if(npcMessage != null){
+
+        if (npcMessage != null) {
             npcMessage.endAnimation();
         }
         npcMessage = null;

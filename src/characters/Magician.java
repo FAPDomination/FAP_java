@@ -40,7 +40,7 @@ public class Magician extends Player {
                     //c.setOwner(this.getTeam());
                     //c.setHp(this.getInitHP());
                     Player p = null;
-                    if(c!=null){
+                    if (c != null) {
                         p = c.getOccupied();
                     }
                     if (p != null && p.getTeam() != this.getTeam()) {
@@ -49,7 +49,7 @@ public class Magician extends Player {
                         //Add animation
                         int x = CMap.giveTalePosition(p.getCurrent().getI(), p.getCurrent().getJ())[0] + Params.OFFX;
                         int y = CMap.giveTalePosition(p.getCurrent().getI(), p.getCurrent().getJ())[1] + Params.OFFY;
-                        Animation anim = new AnimFrozen(x,y,this.getGame().getThread());
+                        Animation anim = new AnimFrozen(x, y, this.getGame().getThread());
                     }
                 }
             }
@@ -67,14 +67,14 @@ public class Magician extends Player {
         double paintFactorW = Graph.facW;
         double paintFactorH = Graph.facH;
         // Paint shadow
-        Image img= Graph.characters.get("shadow");
+        Image img = Graph.characters.get("shadow");
         int width = (int)(img.getWidth(this.getGame()) * paintFactorW);
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
-        Point offset = new Point(-18,4);
-        g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
-        offset = new Point(-24,-31);
-        
-        img = Graph.characters.get("Magician"+ori+"_"+this.getColorName());
-        g.drawImage(img, x +offset.x ,y+offset.y, 58,90, this.getGame());
+        Point offset = new Point(-18, 4);
+        g.drawImage(img, x + offset.x, y + offset.y, width, height, this.getGame());
+        offset = new Point(-24, -31);
+
+        img = Graph.characters.get("Magician" + ori + "_" + this.getColorName());
+        g.drawImage(img, x + offset.x, y + offset.y, 58, 90, this.getGame());
     }
 }

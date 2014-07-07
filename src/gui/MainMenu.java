@@ -40,14 +40,14 @@ public class MainMenu extends FAPanel implements AnimPanel {
         this.setSize(Constants.frameDimension);
 
         //------ Buttons
-        
-        initMenuBtn(btnAdventure, "Aventure", 32,0);
-        initMenuBtn(btnVersus, "Versus", 70,50);
-        initMenuBtn(btnQuickPlay, "Partie Rapide", 38,100);
-        initMenuBtn(btnOptions, "Options", 0,150);
-        initMenuBtn(btnCredits, "Credits", 68,200);
-        initMenuBtn(btnQuit, "Quitter", 50,250);
-        
+
+        initMenuBtn(btnAdventure, "Aventure", 32, 0);
+        initMenuBtn(btnVersus, "Versus", 70, 50);
+        initMenuBtn(btnQuickPlay, "Partie Rapide", 38, 100);
+        initMenuBtn(btnOptions, "Options", 0, 150);
+        initMenuBtn(btnCredits, "Credits", 68, 200);
+        initMenuBtn(btnQuit, "Quitter", 50, 250);
+
         // Effects
         btnQuickPlay.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +85,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnCredits.getUI()).setHover(false);
             }
         });
-        
+
         btnAdventure.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -96,7 +96,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnAdventure.getUI()).setHover(false);
             }
         });
-        
+
         btnVersus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -107,7 +107,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnVersus.getUI()).setHover(false);
             }
         });
-        
+
         btnQuickPlay.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -118,7 +118,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnQuickPlay.getUI()).setHover(false);
             }
         });
-        
+
         btnOptions.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -129,7 +129,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnOptions.getUI()).setHover(false);
             }
         });
-        
+
         btnCredits.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -140,7 +140,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
                 ((Button_MainMenuUI)btnCredits.getUI()).setHover(false);
             }
         });
-        
+
         btnQuit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 //LectureFichierSon.lire(Design.sonChtk);
@@ -170,8 +170,8 @@ public class MainMenu extends FAPanel implements AnimPanel {
 
         //this.startSliding(false);
     }
-    
-    private void initMenuBtn(JButton jbutt, String label, int offx, int offy){
+
+    private void initMenuBtn(JButton jbutt, String label, int offx, int offy) {
         int origX = 460;
         int origY = 180;
         jbutt.setUI(new Button_MainMenuUI());
@@ -223,7 +223,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
         Game game =
             new Game("" + pcP + "," + pcF, "0,1", "0,1", "0,1", false, nmap, Params.defaultVictoryScore, 0, 0, 0);
         game.setQuickPlay(true);
-        
+
         nextPanel = new LoadingScreen(parent, game, this, nmap);
         this.startSliding(true);
     }
@@ -274,7 +274,7 @@ public class MainMenu extends FAPanel implements AnimPanel {
 
         theThread = new ThreadGUI(this);
         new Thread(this.theThread).start();
-        
+
     }
 
     public void endAnim() {

@@ -60,39 +60,38 @@ public class Tools {
      * @exclude The ints that shall be excluded of the random picking
      * @return : a random integer between min and max
      */
-    public static int randRange(int min, int max, int[] exclude){
+    public static int randRange(int min, int max, int[] exclude) {
         int rand;
         boolean b = true;
-        do{
-            b=true;
+        do {
+            b = true;
             // Pick a random number
-            rand = randRange(min,max);
+            rand = randRange(min, max);
             // Check if it's supposed to be excluded
-            for(int i=0;i<exclude.length;i++){
+            for (int i = 0; i < exclude.length; i++) {
                 int a = exclude[i];
-                if(a==rand){
+                if (a == rand) {
                     // If yes, start again
                     b = false;
                 }
             }
-        }
-        while(!b);
+        } while (!b);
         return rand;
     }
-    
+
     /**
      * Removes the null values from an ArrayList, and their slots
      * @param al The designated ArrayList to purge
      * @return The purged arrayList
      */
-    public static ArrayList removeNull(ArrayList al){
+    public static ArrayList removeNull(ArrayList al) {
         // Loop on
-        while(al.contains(null)){
+        while (al.contains(null)) {
             // Read the AL
-            for(int i=0;i<al.size();i++){
+            for (int i = 0; i < al.size(); i++) {
                 // Get the object
                 Object o = al.get(i);
-                if(o==null){
+                if (o == null) {
                     // If it's null, remove it
                     al.remove(o);
                 }
@@ -100,71 +99,74 @@ public class Tools {
         }
         return al;
     }
-    
-    public static boolean intTableContains(int[] table, int value){
+
+    public static boolean intTableContains(int[] table, int value) {
         boolean b = false;
-        for(int a=0;a<table.length;a++){
-            if(table[a] == value){
+        for (int a = 0; a < table.length; a++) {
+            if (table[a] == value) {
                 b = true;
                 break;
             }
         }
         return b;
     }
-    
+
     // Graphical tools
-    
-    public static BufferedImage getImageToFilter(Image image){
+
+    public static BufferedImage getImageToFilter(Image image) {
         BufferedImage img = (BufferedImage)image;
-        
+
         int w = img.getWidth(null);
         int h = img.getHeight(null);
         BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        
+
         Graphics gBi = bi.getGraphics();
         gBi.drawImage(img, 0, 0, null);
-        
+
         return bi;
     }
-    
-    public static void drawFilteredImage(BufferedImage img, float[] scales, float[] offsets, Graphics g, int x, int y){
+
+    public static void drawFilteredImage(BufferedImage img, float[] scales, float[] offsets, Graphics g, int x,
+                                         int y) {
         RescaleOp rop = new RescaleOp(scales, offsets, null);
-        
-        Graphics2D g2d = (Graphics2D) g;
+
+        Graphics2D g2d = (Graphics2D)g;
         g2d.drawImage(img, rop, x, y);
     }
-    
-    public static void drawFilteredImage(BufferedImage img, float Rfactor, float Gfactor, float Bfactor, float alpha, Graphics g, int x, int y){
+
+    public static void drawFilteredImage(BufferedImage img, float Rfactor, float Gfactor, float Bfactor, float alpha,
+                                         Graphics g, int x, int y) {
         float[] offsets = new float[4];
-        float[] scales = {Rfactor,Gfactor,Bfactor,alpha};
-        drawFilteredImage(img, scales, offsets, g,x,y);
+        float[] scales = { Rfactor, Gfactor, Bfactor, alpha };
+        drawFilteredImage(img, scales, offsets, g, x, y);
     }
-    
-    public static void drawFilteredImage(BufferedImage img, float[] scales, float[] offsets, Graphics g, int x, int y, double scaleX, double scaleY){
+
+    public static void drawFilteredImage(BufferedImage img, float[] scales, float[] offsets, Graphics g, int x, int y,
+                                         double scaleX, double scaleY) {
         RescaleOp rop = new RescaleOp(scales, offsets, null);
-        
-        Graphics2D g2d = (Graphics2D) g;
+
+        Graphics2D g2d = (Graphics2D)g;
         g2d.scale(scaleX, scaleY);
-        g2d.drawImage(img, rop, (int)(x/scaleX), (int)(y/scaleY));
-        g2d.scale(1/scaleX, 1/scaleY);
+        g2d.drawImage(img, rop, (int)(x / scaleX), (int)(y / scaleY));
+        g2d.scale(1 / scaleX, 1 / scaleY);
     }
-    
+
     // ---------- Save and Load game
-    
-    public static void saveGame(GameSave gs){
+
+    public static void saveGame(GameSave gs) {
         try {
             FileOutputStream fileOut = new FileOutputStream(Constants.c.get(Constants.savegameFile));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(gs);
             out.close();
             fileOut.close();
-            System.out.println("Saved Game in "+Constants.c.get(Constants.savegameFile));
+            System.out.println("Saved Game in " + Constants.c.get(Constants.savegameFile));
         } catch (IOException i) {
             i.printStackTrace();
         }
     }
-    
-    public static GameSave loadGame(){
+
+    public static GameSave loadGame() {
         GameSave gs = null;
         try {
             FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.savegameFile));
@@ -172,14 +174,12 @@ public class Tools {
             gs = (GameSave)in.readObject();
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Couldn't load file, creating new one");
             gs = new GameSave();
             Tools.saveGame(gs);
             return gs;
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             return new GameSave();
         } catch (ClassNotFoundException c) {
@@ -189,22 +189,20 @@ public class Tools {
         }
         return gs;
     }
-    
-    public static Map<String,GameConfig> loadWMGameConfigMap(){
-        Map<String,GameConfig> mapList = null;
+
+    public static Map<String, GameConfig> loadWMGameConfigMap() {
+        Map<String, GameConfig> mapList = null;
         try {
             FileInputStream fileIn = new FileInputStream(Constants.wmGameConfigMap);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            mapList = (Map<String,GameConfig>)in.readObject();
+            mapList = (Map<String, GameConfig>)in.readObject();
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Couldn't find World Map configuration file, exiting");
             Fapplication.exitOnError();
             return null;
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             System.err.println("Couldn't load World Map configuration file, exiting");
             Fapplication.exitOnError();
@@ -217,22 +215,20 @@ public class Tools {
         }
         return mapList;
     }
-    
-    public static Map<String,ArrayList<String>> loadWMParentCells(){
-        Map<String,ArrayList<String>> parentCells = null;
+
+    public static Map<String, ArrayList<String>> loadWMParentCells() {
+        Map<String, ArrayList<String>> parentCells = null;
         try {
             FileInputStream fileIn = new FileInputStream(Constants.wmParentCells);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            parentCells = (Map<String,ArrayList<String>>)in.readObject();
+            parentCells = (Map<String, ArrayList<String>>)in.readObject();
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Couldn't find parent cells configuration file, exiting");
             Fapplication.exitOnError();
             return null;
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             System.err.println("Couldn't load parent cells configuration file, exiting");
             Fapplication.exitOnError();
@@ -245,22 +241,20 @@ public class Tools {
         }
         return parentCells;
     }
-    
-    public static Map<Integer,ArrayList<NPC>> loadWMNPCBank(){
-        Map<Integer,ArrayList<NPC>> bank = null;
+
+    public static Map<Integer, ArrayList<NPC>> loadWMNPCBank() {
+        Map<Integer, ArrayList<NPC>> bank = null;
         try {
             FileInputStream fileIn = new FileInputStream(Constants.wmNPCBank);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            bank = (Map<Integer,ArrayList<NPC>>)in.readObject();
+            bank = (Map<Integer, ArrayList<NPC>>)in.readObject();
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Couldn't find NPC configuration file, exiting");
             Fapplication.exitOnError();
             return null;
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             System.err.println("Couldn't load NPC configuration file, exiting");
             Fapplication.exitOnError();
@@ -273,22 +267,20 @@ public class Tools {
         }
         return bank;
     }
-    
-    public static Map<Integer,ArrayList<NPC>> loadWMNPCBLBank(){
-        Map<Integer,ArrayList<NPC>> bank = null;
+
+    public static Map<Integer, ArrayList<NPC>> loadWMNPCBLBank() {
+        Map<Integer, ArrayList<NPC>> bank = null;
         try {
             FileInputStream fileIn = new FileInputStream(Constants.wmNPCBacklogBank);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            bank = (Map<Integer,ArrayList<NPC>>)in.readObject();
+            bank = (Map<Integer, ArrayList<NPC>>)in.readObject();
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.err.println("Couldn't find NPC configuration file, exiting");
             Fapplication.exitOnError();
             return null;
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
             System.err.println("Couldn't load NPC configuration file, exiting");
             Fapplication.exitOnError();
@@ -301,14 +293,14 @@ public class Tools {
         }
         return bank;
     }
-    
+
     public static NPC checkNPCOnCell(Game game, Cell c) {
         NPC npc = null;
         if (game.getAdv() > 0) {
             ArrayList<NPC> listNPCs = game.getListNPCs();
             for (int i = 0; i < listNPCs.size(); i++) {
                 NPC np = listNPCs.get(i);
-                if (np.getPosition()!=null && np.getPosition().equals(c)) {
+                if (np.getPosition() != null && np.getPosition().equals(c)) {
                     npc = np;
                     break;
                 }
@@ -316,8 +308,8 @@ public class Tools {
         }
         return npc;
     }
-    
-    public static NPC checkAutoTriggerNPC(Game game){
+
+    public static NPC checkAutoTriggerNPC(Game game) {
         // Checking for auto-trigger NPC
         NPC npc = null;
         ArrayList<NPC> listNPCs = game.getListNPCs();
@@ -332,43 +324,45 @@ public class Tools {
     }
 
 
-    public static void drawMultilineString(Graphics g, String s,int x, int y, int incr){
-        drawMultilineString(g, s.split("\n"),x,y,incr);
+    public static void drawMultilineString(Graphics g, String s, int x, int y, int incr) {
+        drawMultilineString(g, s.split("\n"), x, y, incr);
     }
-    
+
     /**
      * Deprecated : Use JLabel
      */
-    public static void drawMultilineString(Graphics g, String[] ss,int x, int y, int incr){
-        for(int i=0;i<ss.length;i++){
+    public static void drawMultilineString(Graphics g, String[] ss, int x, int y, int incr) {
+        for (int i = 0; i < ss.length; i++) {
             //String s = ss[i].substring(0, ss[i].length()-3);
-            g.drawString(ss[i], x, y+i*incr);
+            g.drawString(ss[i], x, y + i * incr);
         }
     }
-    
-    public static void parametrizeJLabel(JLabel theJLabel, String text, Font font, Color c, int sizeX, int sizeY, int x, int y, int valign){
-        theJLabel.setText("<html>"+text+"</html>");
+
+    public static void parametrizeJLabel(JLabel theJLabel, String text, Font font, Color c, int sizeX, int sizeY,
+                                         int x, int y, int valign) {
+        theJLabel.setText("<html>" + text + "</html>");
         theJLabel.setFont(font);
         theJLabel.setForeground(c);
-        theJLabel.setSize(sizeX,sizeY);
+        theJLabel.setSize(sizeX, sizeY);
         theJLabel.setLocation(x, y);
         theJLabel.setVerticalAlignment(valign);
     }
-    public static void parametrizeJLabel(JLabel theJLabel, String text){
-        theJLabel.setText("<html>"+text+"</html>");
+
+    public static void parametrizeJLabel(JLabel theJLabel, String text) {
+        theJLabel.setText("<html>" + text + "</html>");
     }
-    
-    public static void tinkerJComboBox(JComboBox jc){
+
+    public static void tinkerJComboBox(JComboBox jc) {
         jc.setRenderer(new FAPComboBoxRenderer());
         jc.setBorder(Graph.NO_BORDER);
-        for(int i=0;i<2;i++){
+        for (int i = 0; i < 2; i++) {
             Component k = jc.getComponent(i);
-            if(k!=null){
-                if(k instanceof MetalComboBoxButton){
+            if (k != null) {
+                if (k instanceof MetalComboBoxButton) {
                     MetalComboBoxButton jb = ((MetalComboBoxButton)k);
                     jb.setBackground(Graph.BLACK);
                     jb.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-                    Image img=Graph.getGuimg().get("iconJCombo");
+                    Image img = Graph.getGuimg().get("iconJCombo");
                     jb.setIconOnly(true);
                     Icon icon = new ImageIcon(img);
                     jb.setComboIcon(icon);
@@ -380,16 +374,16 @@ public class Tools {
             }
         }
     }
-    
+
     //-------------
-    
-    public static void parseOptions(){
+
+    public static void parseOptions() {
         try {
             Scanner scan = new Scanner(new File(Constants.configFileName));
             try {
                 while (scan.hasNextLine()) {
                     String s = scan.nextLine();
-                    if(!(s.equals("")||s.charAt(0)=='#')){
+                    if (!(s.equals("") || s.charAt(0) == '#')) {
                         String[] ss = s.split("=");
                         //System.out.println(ss[0]+"--"+ss[1]);
                         Constants.c.put(ss[0], ss[1]);
@@ -403,37 +397,35 @@ public class Tools {
             e.printStackTrace();
         }
     }
-    
-    public static void memoryMonitor(){
-            double mb = 1024*1024;
-             
-            //Getting the runtime reference from system
-            Runtime runtime = Runtime.getRuntime();
-             
-            System.out.println("##### Heap utilization statistics [MB] #####");
-             
-            //Print used memory
-            System.out.println("Used Memory:"
-                + (runtime.totalMemory() - runtime.freeMemory()) / mb);
-     
-            //Print free memory
-            System.out.println("Free Memory:"
-                + runtime.freeMemory() / mb);
-             
-            //Print total available memory
-            System.out.println("Total Memory:" + runtime.totalMemory() / mb);
-     
-            //Print Maximum available memory
-            System.out.println("Max Memory:" + runtime.maxMemory() / mb);
-            
-            // THreads 
-            Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
-            Thread[] threadArray = threadSet.toArray(new Thread[threadSet.size()]);
-            /*
+
+    public static void memoryMonitor() {
+        double mb = 1024 * 1024;
+
+        //Getting the runtime reference from system
+        Runtime runtime = Runtime.getRuntime();
+
+        System.out.println("##### Heap utilization statistics [MB] #####");
+
+        //Print used memory
+        System.out.println("Used Memory:" + (runtime.totalMemory() - runtime.freeMemory()) / mb);
+
+        //Print free memory
+        System.out.println("Free Memory:" + runtime.freeMemory() / mb);
+
+        //Print total available memory
+        System.out.println("Total Memory:" + runtime.totalMemory() / mb);
+
+        //Print Maximum available memory
+        System.out.println("Max Memory:" + runtime.maxMemory() / mb);
+
+        // THreads
+        Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+        Thread[] threadArray = threadSet.toArray(new Thread[threadSet.size()]);
+        /*
             for(int i=0;i<threadArray.length;i++){
                 System.out.println(threadArray[i]);
             }
             */
-            System.out.println("Threads : "+threadArray.length);
+        System.out.println("Threads : " + threadArray.length);
     }
 }

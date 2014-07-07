@@ -13,35 +13,36 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 
 public class Button_AddRemoveUI extends BasicButtonUI {
-    
+
     // Dimension par défaut
     public static final int BUTTON_WIDTH = 80;
     public static final int BUTTON_HEIGHT = 30;
-    
+
     private static final int MARGIN_VALUE = 40;
     private static final Insets BUTTON_MARGIN = new Insets(MARGIN_VALUE, 0, MARGIN_VALUE, 0);
-    
-    private boolean hover=false;
+
+    private boolean hover = false;
     String type;
+
     public static ComponentUI createUI(JComponent b) {
         b.setVisible(true);
         b.setOpaque(false);
         return new Button_AddRemoveUI("");
     }
-    
+
     public Button_AddRemoveUI(String type) {
         super();
         this.type = type;
     }
-    
+
     public Dimension getPreferredSize(JComponent c) {
         AbstractButton button = (AbstractButton)c;
         int width = Math.max(button.getWidth(), BUTTON_WIDTH);
         int height = Math.max(button.getHeight(), BUTTON_HEIGHT);
         return new Dimension(width, height);
     }
-    
-    
+
+
     public void paint(Graphics g, JComponent c) {
         AbstractButton button = (AbstractButton)c;
 
@@ -53,11 +54,10 @@ public class Button_AddRemoveUI extends BasicButtonUI {
         button.setMargin(BUTTON_MARGIN);
         button.setBorder(Graph.NO_BORDER);
         //button.setVerticalTextPosition();
-        
+
         if (isHover() && button.isEnabled()) {
-            g.drawImage(Graph.getGuimg().get(this.type+"_hover"), 0, 0, null);
-        }
-        else{
+            g.drawImage(Graph.getGuimg().get(this.type + "_hover"), 0, 0, null);
+        } else {
             g.drawImage(Graph.getGuimg().get(this.type), 0, 0, null);
         }
         super.paint(g, button);

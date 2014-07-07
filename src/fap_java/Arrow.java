@@ -22,10 +22,10 @@ public class Arrow extends Element {
     private int offsetX;
     private Point offsetShadow;
     private Point GoffsetArrow;
-    
+
     private int fac;
     private int f;
-    
+
     private Image img;
     private int width;
     private int height;
@@ -45,13 +45,12 @@ public class Arrow extends Element {
         this.y = CMap.giveTalePosition(c.getI(), c.getJ())[1] + (CMap.TH / 2);
         this.origX = x;
         this.origY = y;
-        this.f=0;
+        this.f = 0;
         game.addObject(this);
         this.thrower = thrower;
-        
-        
-        
-        img = Graph.getList().get("Arrow_"+course);
+
+
+        img = Graph.getList().get("Arrow_" + course);
         width = img.getWidth(game);
         height = img.getHeight(game);
         this.initConstants();
@@ -61,13 +60,13 @@ public class Arrow extends Element {
         //int offsetY;
         offsetY = 0;
         g.setColor(Color.BLACK);
-        
+
         //TODO swaggy arrow ?
-        
-        g.drawImage(Graph.characters.get("shadow"), x +offsetShadow.x ,y+offsetShadow.y, 30,25, game);
-        
-        g.drawImage(img, x+GoffsetArrow.x, y+GoffsetArrow.y, width/CMap.FAC, height/CMap.FAC, game);
-        
+
+        g.drawImage(Graph.characters.get("shadow"), x + offsetShadow.x, y + offsetShadow.y, 30, 25, game);
+
+        g.drawImage(img, x + GoffsetArrow.x, y + GoffsetArrow.y, width / CMap.FAC, height / CMap.FAC, game);
+
         //g.fillRect(x, y + offsetY, 4, 4);
     }
 
@@ -83,23 +82,21 @@ public class Arrow extends Element {
      * Makes the arrow move and convert cells
      */
     public void effect() {
-        if(course == 2){
+        if (course == 2) {
             //RIGHT
-            x+=fac;
-        }
-        else if(course == 5){
+            x += fac;
+        } else if (course == 5) {
             //LEFT
-            x-=fac;
-        }
-        else{
-            y = (int)(origY + fac*f*Math.tan(angle)) + offsetY;
-            x = (int)(origX + fac*f) + offsetX;
+            x -= fac;
+        } else {
+            y = (int)(origY + fac * f * Math.tan(angle)) + offsetY;
+            x = (int)(origX + fac * f) + offsetX;
         }
         boolean b = computeCell();
 
         if (b) {
             //Detect ennemy
-            if(current != null){
+            if (current != null) {
                 Player p = current.getOccupied();
                 if (p != null && p != thrower) {
                     p.makeHimWait((Params.howLongBlockingMagician * 1000) / 2);
@@ -128,7 +125,7 @@ public class Arrow extends Element {
                 this.destroy();
             }
         }
-        
+
         f++;
     }
 
@@ -139,7 +136,7 @@ public class Arrow extends Element {
     public boolean computeCell() {
         boolean b = false;
         int[] tab = null;
-        switch(course){
+        switch (course) {
         case 4:
             tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
             break;
@@ -147,7 +144,7 @@ public class Arrow extends Element {
             tab = CMap.givePositionTale(x, y - (CMap.TH / 2));
             break;
         }
-        
+
         Cell c = game.getMap().getCell(tab);
         if (c != current) {
             current = c;
@@ -163,53 +160,53 @@ public class Arrow extends Element {
         //-0.85832
         double approxAngle = -0.84532;
         fac = Params.arrowSpeed;
-        
+
         switch (course) {
         case 0: //TL
             offsetY = 0;
             offsetX = -15;
             angle = -approxAngle; // In rad, approximation with Maple
             fac *= -1;
-            offsetShadow = new Point(12,0);
-            GoffsetArrow = new Point(16,-12);
+            offsetShadow = new Point(12, 0);
+            GoffsetArrow = new Point(16, -12);
             break;
         case 1: //TR
             angle = approxAngle;
             offsetY = -8;
             offsetX = -2;
-            offsetShadow = new Point(-25,0);
-            GoffsetArrow = new Point(-30,-20);
+            offsetShadow = new Point(-25, 0);
+            GoffsetArrow = new Point(-30, -20);
             break;
         case 2: //R
             offsetY = 0;
             offsetX = 0;
-            offsetShadow = new Point(-5,-12);
-            GoffsetArrow = new Point(-10,-25);
+            offsetShadow = new Point(-5, -12);
+            GoffsetArrow = new Point(-10, -25);
             break;
         case 3: //BR
-            angle =  - approxAngle;
+            angle = -approxAngle;
             offsetX = -16;
             offsetY = -5;
-            offsetShadow = new Point(10,0);
-            GoffsetArrow = new Point(12,-15);
+            offsetShadow = new Point(10, 0);
+            GoffsetArrow = new Point(12, -15);
             break;
         case 4: //BL
             angle = approxAngle; // In rad, approximation with Maple
             fac *= -1;
             offsetY = -1;
             offsetX = 1;
-            offsetShadow = new Point(-25,0);
-            GoffsetArrow = new Point(-22,-20);
+            offsetShadow = new Point(-25, 0);
+            GoffsetArrow = new Point(-22, -20);
             break;
         case 5: //L
             offsetY = 0;
             offsetX = 0;
-            offsetShadow = new Point(-5,-12);
-            GoffsetArrow = new Point(-8,-25);
+            offsetShadow = new Point(-5, -12);
+            GoffsetArrow = new Point(-8, -25);
             break;
         default: //TL
             try {
-                throw(new Exception("Wrong ori"));
+                throw (new Exception("Wrong ori"));
             } catch (Exception e) {
             }
             break;

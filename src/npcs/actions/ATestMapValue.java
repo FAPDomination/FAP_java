@@ -12,7 +12,7 @@ public class ATestMapValue extends Action {
     private static final long serialVersionUID = -5479495726056275598L;
     private String mapHash;
     private Action failAction;
-    
+
     /**
      * Creates an NPC action that will test the state of a map in the worldMap (true if conquered)
      * @param mapHash the hash of the designated cell in the worldMap. Ex : "18,5"
@@ -23,7 +23,7 @@ public class ATestMapValue extends Action {
         super(next);
         this.mapHash = mapHash;
         this.failAction = failAction;
-        
+
     }
 
     public void execute(NPC whoLaunches) {
@@ -31,12 +31,11 @@ public class ATestMapValue extends Action {
         GameSave gameSave = Tools.loadGame();
         //Get datas
         int value = gameSave.getMapValues().get(mapHash);
-        if(value == 2){ // conquered
+        if (value == 2) { // conquered
             //Loop
             whoLaunches.gotoNextAction();
             whoLaunches.execute();
-        }
-        else{
+        } else {
             //End NPC
             whoLaunches.setCurrentAction(failAction);
             whoLaunches.execute();
@@ -46,7 +45,7 @@ public class ATestMapValue extends Action {
 
     public void reinit() {
         super.reinit();
-        if(failAction!=null){
+        if (failAction != null) {
             failAction.reinit();
         }
     }

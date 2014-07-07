@@ -12,7 +12,7 @@ public class AModifyCell extends Action {
     private transient Cell c;
     private String cellHash;
     private String newGenerator;
-    
+
     /**
      * Creates an NPC action that will replace a cell of the map by another (or create it). Useful to make a tile blocking for example
      * @param hash the hash of the cell that shall be modified. Ex : "18,5"
@@ -38,18 +38,18 @@ public class AModifyCell extends Action {
 
         int t = MapHandler.setTypeWithDid(did, param);
         // If the cell doesn't exist (void in map), create it
-        if(c == null){
+        if (c == null) {
             String[] tab = cellHash.split(",");
-            c = new Cell(Integer.parseInt(tab[0]),Integer.parseInt(tab[1]),t,param,did,whoLaunches.getGame());
+            c = new Cell(Integer.parseInt(tab[0]), Integer.parseInt(tab[1]), t, param, did, whoLaunches.getGame());
             whoLaunches.getGame().getMap().insertCell(c);
             c = whoLaunches.getGame().getMap().getCell(cellHash);
         }
-        
+
         c.setAddParam(param);
         c.setDid(did);
 
         c.setType(t);
-        
+
         //Loop
         whoLaunches.gotoNextAction();
         whoLaunches.execute();

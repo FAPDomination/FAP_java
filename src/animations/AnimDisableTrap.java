@@ -7,34 +7,35 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 
-public class AnimDisableTrap extends Animation{
+public class AnimDisableTrap extends Animation {
     private Image img;
-    private int height=40;
-    private int width=40;
+    private int height = 40;
+    private int width = 40;
     private int offX = -15;
     private int offY = -5;
     private double origFac = 0.5;
     private double fac;
     private int durationMovement = 8;
-    
+
     public AnimDisableTrap(int x, int y, TheComputingThread theThread) {
         super(x, y, 2000, theThread);
         img = Graph.getList().get("warlock_Disable");
-        this.x+=offX;
-        this.y+=offY;
+        this.x += offX;
+        this.y += offY;
     }
-    
+
     public String toString() {
         return "A curse creating a trap";
     }
 
     public void paintComponent(Graphics g) {
-        int frame = (int)(((double)this.position)/thread.getDelay());
-        fac = origFac * (1- ((double)frame)/durationMovement);
-        if(fac < 1){
+        int frame = (int)(((double)this.position) / thread.getDelay());
+        fac = origFac * (1 - ((double)frame) / durationMovement);
+        if (fac < 1) {
             fac = 1;
         }
 
-        g.drawImage(img, x-(int)((fac-1)/2*width), y-(int)((fac-1)/2*height), (int)(width*fac), (int)(height*fac), this.getThread().getMyGame());
+        g.drawImage(img, x - (int)((fac - 1) / 2 * width), y - (int)((fac - 1) / 2 * height), (int)(width * fac),
+                    (int)(height * fac), this.getThread().getMyGame());
     }
 }

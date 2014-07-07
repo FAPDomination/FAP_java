@@ -28,14 +28,14 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
         this.setSize(Constants.frameDimension);
 
         btnGoBack.setText("Retour");
-        btnGoBack.setSize(120,60);
-        btnGoBack.setLocation(origX-5, origY-5);
+        btnGoBack.setSize(120, 60);
+        btnGoBack.setLocation(origX - 5, origY - 5);
         this.add(btnGoBack);
 
         //TODO responsive
-        
+
         int incrementX = 250;
-        int initX = (this.getWidth()-3*incrementX)/2 + 70;
+        int initX = (this.getWidth() - 3 * incrementX) / 2 + 70;
         int initY = 200;
         listForms = new ArrayList<ControlManager>();
         for (int i = 0; i < Params.nPlayersOn1Computer; i++) {
@@ -55,9 +55,9 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (int i = 0; i < listForms.size(); i++) {
-           listForms.get(i).paintComponent(g);
+            listForms.get(i).paintComponent(g);
         }
-        
+
         //TODO put setX and setY for everyone here so it becomes relative
     }
 
@@ -97,15 +97,15 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
     public void endAnim() {
         // NEVAH
     }
-    
-    public void saveAll(){
-        
+
+    public void saveAll() {
+
         //Collecting
         int[][] keyList = new int[listForms.size()][Params.numberOfKeys];
-        for(int i=0;i<listForms.size();i++){
+        for (int i = 0; i < listForms.size(); i++) {
             keyList[i] = listForms.get(i).getKeyList();
         }
-        
+
         //Saving
         try {
             FileOutputStream fileOut = new FileOutputStream(Constants.c.get(Constants.controlersFile));
@@ -113,7 +113,7 @@ public class ControlsPanel extends FAPanel implements NeedingFocus, AnimPanel {
             out.writeObject(keyList);
             out.close();
             fileOut.close();
-            System.out.println("Saved controls in "+Constants.c.get(Constants.controlersFile));
+            System.out.println("Saved controls in " + Constants.c.get(Constants.controlersFile));
         } catch (IOException i) {
             i.printStackTrace();
         }

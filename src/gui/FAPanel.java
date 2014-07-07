@@ -26,24 +26,24 @@ public abstract class FAPanel extends JPanel {
     // Slide animation
     protected int speed;
     protected int maxxS = Constants.maxxS;
-    protected int minxS = Constants.minxS; 
+    protected int minxS = Constants.minxS;
     protected int maxxC = Constants.maxxC;
     protected int minxC = Constants.minxC;
-    
+
     protected int origX = 30;
     protected int origY = 30;
-    
+
     protected JButton btnGoBack = new JButton();
-    
+
     public FAPanel(TheFrame parent, JPanel prevPanel) {
         super();
         this.prevPanel = prevPanel;
         this.parent = parent;
-        if(sword == null){
+        if (sword == null) {
             sword = Graph.getGuimg().get("MM_sword");
             clouds = Graph.getGuimg().get("MM_clouds");
         }
-        if(!(this instanceof OptionMenu)){
+        if (!(this instanceof OptionMenu)) {
             btnGoBack.setUI(new Button_SampleUI());
             ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
             btnGoBack.setOpaque(false);
@@ -52,7 +52,7 @@ public abstract class FAPanel extends JPanel {
                     //LectureFichierSon.lire(Design.sonChtk);
                     ((Button_SampleUI)btnGoBack.getUI()).setHover(true);
                 }
-    
+
                 public void mouseExited(java.awt.event.MouseEvent evt) {
                     ((Button_SampleUI)btnGoBack.getUI()).setHover(false);
                 }
@@ -64,9 +64,9 @@ public abstract class FAPanel extends JPanel {
                 }
             });
         }
-        
+
     }
-    
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
@@ -85,12 +85,12 @@ public abstract class FAPanel extends JPanel {
         g2d.drawImage(clouds, (int)cloudsX, 50, 1600, 195, this);
         g2d.drawImage(sword, (int)swordX, 80, 2153, 762, this);
         //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
-        
+
     }
 
-    
+
     public void goBack() {
-        if(prevPanel instanceof MainMenu){
+        if (prevPanel instanceof MainMenu) {
             MainMenu pp = ((MainMenu)prevPanel);
             pp.setNextPanel(null);
             pp.startSliding(false);

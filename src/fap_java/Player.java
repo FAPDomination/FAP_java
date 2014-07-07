@@ -92,7 +92,7 @@ public abstract class Player extends Human {
      * The color of the player
      */
     protected Color color;
-    
+
     protected String colorName;
 
     /**
@@ -132,13 +132,13 @@ public abstract class Player extends Human {
     private FSM fsm;
 
     private int controler;
-    
-    private int x = -1,y=-1,wantedX=0,wantedY = 0;
+
+    private int x = -1, y = -1, wantedX = 0, wantedY = 0;
     private int animCount;
     private boolean dispComputed = false;
-    private int facDispX=0;
-    private int facDispY=0;
-    
+    private int facDispX = 0;
+    private int facDispY = 0;
+
 
     /**
      * Initializes a Player. Abstract class since the player creation is called by the characters extending this
@@ -264,7 +264,7 @@ public abstract class Player extends Human {
                     }
                 }
 
-                if(npc == null){
+                if (npc == null) {
                     // at last, look for auto-trigger ones
                     npc = Tools.checkAutoTriggerNPC(game);
                 }
@@ -300,7 +300,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, 1);
                 }
-                
+
             }
             //Up + Right
             else if (keys[0][1] == 1 && keys[2][1] == 1) {
@@ -310,7 +310,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(1, -1);
                 }
-                
+
             }
             //Up + Left
             else if (keys[0][1] == 1 && keys[3][1] == 1) {
@@ -320,7 +320,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                
+
             }
             // Down + Right
             else if (keys[1][1] == 1 && keys[2][1] == 1) {
@@ -330,7 +330,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(1, 1);
                 }
-               
+
             }
             //Regular
             // If the key LEFT is pressed
@@ -339,12 +339,12 @@ public abstract class Player extends Human {
                 ori = 5;
                 // Move the stick
                 shiftStick(-1, 0);
-                
+
             } else if (keys[2][1] == 1) { // If key RIGHT is pressed
                 ori = 2;
                 shiftStick(1, 0);
                 // If the key1 is pressed
-                
+
             } else if (keys[0][1] == 1) { // If key UP is pressed
                 // reset the timer for this stick so the player is not able to move for a little while
                 // Because of the hexa-grid to movings up and down are complicated
@@ -357,7 +357,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(0, -1);
                 }
-                
+
             } else if (keys[1][1] == 1) { // If key DOWN is pressed
                 ori = 3;
                 if (current.getI() % 2 == 0) {
@@ -365,7 +365,7 @@ public abstract class Player extends Human {
                 } else {
                     shiftStick(1, 1);
                 }
-                
+
             }
         } else if (game.isPauseNPC()) {
             //System.out.println("In D");
@@ -412,11 +412,11 @@ public abstract class Player extends Human {
                 c = fsm.getNextCell();
             } else {
                 // Get the supposed new position of the stick
-                c = game.getMap().getCell(current.getI() + dy,current.getJ() + dx);
+                c = game.getMap().getCell(current.getI() + dy, current.getJ() + dx);
             }
             // Adds colisions : one does not simply walk into an occupied tale
             boolean walkable = c != null && c.isWalkable() == true;
-            if (c!=null && c.getOccupied() != null) {
+            if (c != null && c.getOccupied() != null) {
                 walkable = false;
             }
             // Special Walk-on-NPC handling
@@ -448,13 +448,13 @@ public abstract class Player extends Human {
                 setDrawn(parent);
                 this.setI(current.getI());
                 this.setJ(current.getJ());
-                
-                switch(ori){
-                    case 2:
-                    case 3:
-                    case 4:
-                        drawn = current;
-                        break;
+
+                switch (ori) {
+                case 2:
+                case 3:
+                case 4:
+                    drawn = current;
+                    break;
                 }
 
                 if (!current.isWalked()) {
@@ -486,12 +486,12 @@ public abstract class Player extends Human {
                             current.setOccupied(null);
                             current = wantedCell;
                             current.setOccupied(this);
-                            
-                            
+
+
                             x = CMap.giveTalePosition(current.getI(), current.getJ())[0] + Params.OFFX;
                             y = CMap.giveTalePosition(current.getI(), current.getJ())[1] + Params.OFFY;
                             setDrawn(current);
-                            
+
                             this.setI(current.getI());
                             this.setJ(current.getJ());
                             current.activateCell(this);
@@ -552,43 +552,41 @@ public abstract class Player extends Human {
      */
     public void paintComponent(Graphics g) {
         // Smooth displacement
-        
-        if((wantedX != x || wantedY !=y) && !dispComputed){
+
+        if ((wantedX != x || wantedY != y) && !dispComputed) {
             dispComputed = true;
-            facDispX = -(x-wantedX)/Params.displacementAnimationLength;
-            facDispY = -(y-wantedY)/Params.displacementAnimationLength;
+            facDispX = -(x - wantedX) / Params.displacementAnimationLength;
+            facDispY = -(y - wantedY) / Params.displacementAnimationLength;
             int limit = 10;
-            if(facDispX > limit ||facDispY > limit){
+            if (facDispX > limit || facDispY > limit) {
                 x = wantedX;
                 y = wantedY;
             }
             animCount = Params.displacementAnimationLength;
         }
-        
-        if(x == -1 || Math.abs(wantedX - x) < 3 ||animCount <= 0){
+
+        if (x == -1 || Math.abs(wantedX - x) < 3 || animCount <= 0) {
             x = CMap.giveTalePosition(this.getI(), this.getJ())[0] + Params.OFFX;
             wantedX = x;
+        } else if (wantedX != x) {
+            x += facDispX;
         }
-        else if(wantedX != x){
-                x+=facDispX;
-        }
-        if(y == -1 ||  Math.abs(wantedY - y) < 3 ||animCount <= 0){
+        if (y == -1 || Math.abs(wantedY - y) < 3 || animCount <= 0) {
             y = CMap.giveTalePosition(this.getI(), this.getJ())[1] + Params.OFFY;
             wantedY = y;
+        } else if (wantedY != y) {
+            y += facDispY;
         }
-        else if(wantedY != y){
-                y+=facDispY;
-        }
-        
-        if(wantedX == x && wantedY == y ||animCount <= 0){
+
+        if (wantedX == x && wantedY == y || animCount <= 0) {
             drawn = current;
             dispComputed = false;
         }
-        
-        if(animCount > 0){
-            animCount --;
+
+        if (animCount > 0) {
+            animCount--;
         }
-        
+
         // Comment these three lines and uncomment the rest to have smooth displacement
         /*
         drawn = current;
@@ -667,14 +665,13 @@ public abstract class Player extends Human {
             this.setI(current.getI());
             this.setJ(current.getJ());
             current.activateCell(this);
-        }
-        else{
+        } else {
             try {
-                throw(new Exception("Can't kickback ! Parent occupied"));
+                throw (new Exception("Can't kickback ! Parent occupied"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
         }
     }
 
@@ -689,7 +686,7 @@ public abstract class Player extends Human {
     }
 
     public String toString() {
-        return "Player "+this.getColorName()+" no " + id + " at " + this.getI() + "," + this.getJ();
+        return "Player " + this.getColorName() + " no " + id + " at " + this.getI() + "," + this.getJ();
     }
 
     /**
@@ -705,10 +702,10 @@ public abstract class Player extends Human {
             if (c.getOwner() == this.team) {
                 owned.add(c);
             }
-            c=c.getNextInMap();
+            c = c.getNextInMap();
         }
 
-        if(owned.size()>0){
+        if (owned.size() > 0) {
             //Blast
             for (int i = 0; i < numberOfCells; i++) {
                 //Pick random cell
@@ -720,7 +717,7 @@ public abstract class Player extends Human {
                 owned.remove(randCell);
                 int cx = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[0] + Params.OFFX;
                 int cy = CMap.giveTalePosition(randCell.getI(), randCell.getJ())[1] + Params.OFFY;
-                Animation lightning = new AnimLightning(cx,cy,this.getGame().getThread());
+                Animation lightning = new AnimLightning(cx, cy, this.getGame().getThread());
             }
         }
     }
@@ -747,14 +744,14 @@ public abstract class Player extends Human {
      */
     public void initParams() {
         tmax = (int)(game.getThread().getDelay() * Params.paramTable.get("dispSpeed")[pc]);
-        if(game.getAdv() == 2){
-            tmax/=3;
+        if (game.getAdv() == 2) {
+            tmax /= 3;
         }
         //System.out.println(tmax);
         initHP = 100;
         //maxHP = (int)Params.paramTable.get("maxHP")[pc];
         decLifeForced = Params.paramTable.get("decLifeForced")[pc];
-        
+
         gainLife = 0.01;
         decLifeAuto = 1;
         lastDisplacement = 0;

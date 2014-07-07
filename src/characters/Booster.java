@@ -25,14 +25,14 @@ public class Booster extends Player {
         if (this.getGame().getThread().getCount() - this.getLastSkill() >= this.getSkillTime()) {
             this.setLastSkill(this.getGame().getThread().getCount());
             //Send Skill :
-            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime*1000);
+            this.changeParam("dispSpeed", Params.boosterSpeed, Params.boosterTime * 1000);
             //Add animation
             int x = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[0] + Params.OFFX;
             int y = CMap.giveTalePosition(this.getCurrent().getI(), this.getCurrent().getJ())[1] + Params.OFFY;
-            new AnimBooster(x,y,this.getGame().getThread());
+            new AnimBooster(x, y, this.getGame().getThread());
         }
     }
-    
+
     public void paintStick(Graphics g, int x, int y) {
         /*
         g.setColor(color);
@@ -43,14 +43,14 @@ public class Booster extends Player {
         double paintFactorW = Graph.facW;
         double paintFactorH = Graph.facH;
         // Paint shadow
-        Image img= Graph.characters.get("shadow");
+        Image img = Graph.characters.get("shadow");
         int width = (int)(img.getWidth(this.getGame()) * paintFactorW);
         int height = (int)(img.getHeight(this.getGame()) * paintFactorH);
-        Point offset = new Point(-18,4);
-        g.drawImage(img, x +offset.x ,y+offset.y, width,height, this.getGame());
-        offset = new Point(-24,-31);
-        
-        img = Graph.characters.get("Booster"+ori+"_"+this.getColorName());
-        g.drawImage(img, x +offset.x ,y+offset.y, 58,90, this.getGame());
+        Point offset = new Point(-18, 4);
+        g.drawImage(img, x + offset.x, y + offset.y, width, height, this.getGame());
+        offset = new Point(-24, -31);
+
+        img = Graph.characters.get("Booster" + ori + "_" + this.getColorName());
+        g.drawImage(img, x + offset.x, y + offset.y, 58, 90, this.getGame());
     }
 }

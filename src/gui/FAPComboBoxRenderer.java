@@ -20,13 +20,9 @@ public class FAPComboBoxRenderer extends BasicComboBoxRenderer implements ListCe
         this.setOpaque(true);
     }
 
-    public Component getListCellRendererComponent(
-                                       JList list,
-                                       Object value,
-                                       int index,
-                                       boolean isSelected,
-                                       boolean cellHasFocus) {
-        JLabel jl=new JLabel((String)value);
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
+                                                  boolean cellHasFocus) {
+        JLabel jl = new JLabel((String)value);
         jl.setOpaque(true);
         if (isSelected) {
             jl.setBackground(Graph.BLACK);
@@ -38,10 +34,10 @@ public class FAPComboBoxRenderer extends BasicComboBoxRenderer implements ListCe
 
         return jl;
     }
-    
-    public void paintComponent(Graphics g){
+
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.RED);
-        g.fillRect(0,0,40,50);
+        g.fillRect(0, 0, 40, 50);
     }
 }

@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FSM_State {
-    
+
     private int value;
     private Map<FSM_Event, FSM_State> transitionTable = new HashMap<FSM_Event, FSM_State>();
     private String associatedMethod;
-    
+
     /**
      * Creates a new State that the FSM could take
      * @param v
@@ -26,13 +26,13 @@ public class FSM_State {
     public int getValue() {
         return value;
     }
-    
+
     /**
      * Add a next state to take if the FSM encounters a designated event
      * @param ev : the event
      * @param st : the new state
      */
-    public void addTransition(FSM_Event ev,FSM_State st){
+    public void addTransition(FSM_Event ev, FSM_State st) {
         transitionTable.put(ev, st);
     }
 
@@ -43,17 +43,17 @@ public class FSM_State {
     public String getAssociatedMethod() {
         return associatedMethod;
     }
-    
+
     /**
      * Get the next state to take from this state with the param event
      * @param ev
      * @return : the new state
      */
-    public FSM_State getNextState(FSM_Event ev){
+    public FSM_State getNextState(FSM_Event ev) {
         return this.transitionTable.get(ev);
     }
 
-    public String toString(){
+    public String toString() {
         return this.associatedMethod;
     }
 }

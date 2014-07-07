@@ -11,20 +11,20 @@ public class GameSave implements Serializable {
     Map<String, Integer> mapValues;
     ArrayList<Boolean> gameSwitches;
     ArrayList<Boolean> unlockedChars;
-    
+
     public GameSave() {
-        mapValues =  new HashMap<String, Integer>();
+        mapValues = new HashMap<String, Integer>();
         gameSwitches = new ArrayList<Boolean>();
         unlockedChars = new ArrayList<Boolean>();
-        for(int i=0; i<Constants.listAdvMaps.length;i++){
+        for (int i = 0; i < Constants.listAdvMaps.length; i++) {
             String cellHash = Constants.listAdvMaps[i];
-            mapValues.put(cellHash,0);
+            mapValues.put(cellHash, 0);
             //System.out.println(table[0]+"-"+table[1]);
         }
-        for(int j=0;j<Constants.numberOfAdvSwitches;j++){
+        for (int j = 0; j < Constants.numberOfAdvSwitches; j++) {
             gameSwitches.add(false);
         }
-        for(int k=0;k<Constants.numberOfAdvChars;k++){
+        for (int k = 0; k < Constants.numberOfAdvChars; k++) {
             unlockedChars.add(false);
         }
         //unlockedChars.set(1, true);

@@ -16,36 +16,36 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
 
 public class Button_SampleUI extends BasicButtonUI {
-    
+
     // Dimension par défaut
     public static final int BUTTON_WIDTH = 80;
     public static final int BUTTON_HEIGHT = 30;
-    
+
     private static final int MARGIN_VALUE = 40;
     private static final Insets BUTTON_MARGIN = new Insets(MARGIN_VALUE, 0, MARGIN_VALUE, 0);
-    
-    private Color hsquare= null;
-    
-    private boolean hover=false;
-    
+
+    private Color hsquare = null;
+
+    private boolean hover = false;
+
     public static ComponentUI createUI(JComponent b) {
         b.setVisible(true);
         b.setOpaque(false);
         return new Button_SampleUI();
     }
-    
+
     public Button_SampleUI() {
         super();
     }
-    
+
     public Dimension getPreferredSize(JComponent c) {
         AbstractButton button = (AbstractButton)c;
         int width = Math.max(button.getWidth(), BUTTON_WIDTH);
         int height = Math.max(button.getHeight(), BUTTON_HEIGHT);
         return new Dimension(width, height);
     }
-    
-    
+
+
     public void paint(Graphics g, JComponent c) {
         AbstractButton button = (AbstractButton)c;
 
@@ -63,8 +63,8 @@ public class Button_SampleUI extends BasicButtonUI {
         if (isHover() && button.isEnabled()) {
             //button.setBackground(null);
             button.setForeground(Graph.BTN_COLOR_HOVER);
-            if(hsquare == null){
-                int randColor = Tools.randRange(0, Params.colorList.length-1);
+            if (hsquare == null) {
+                int randColor = Tools.randRange(0, Params.colorList.length - 1);
                 hsquare = Params.colorList[randColor];
             }
             square = hsquare;
@@ -75,7 +75,8 @@ public class Button_SampleUI extends BasicButtonUI {
             g.fillRect(0, 0, BWIDTH, BHEIGHT);
             */
         }
-        Graph.drawDarkBackgroundRectangle(g, 5, 5, button.getWidth()-10, button.getHeight(), square, 15, Graph.BG_DARK);
+        Graph.drawDarkBackgroundRectangle(g, 5, 5, button.getWidth() - 10, button.getHeight(), square, 15,
+                                          Graph.BG_DARK);
         super.paint(g, button);
     }
 

@@ -29,7 +29,7 @@ public class XMLparser {
     public XMLparser() {
         super();
     }
-    
+
     /**
      * Parses a map from a XML file and return the designated map
      * @see MapHandler
@@ -38,85 +38,85 @@ public class XMLparser {
      * @param game The game where it's supposed to take place
      * @return The created map
      */
-    public static CMap parseMap(int mapID, Game game){
+    public static CMap parseMap(int mapID, Game game) {
         // Creates a Handler that will process the datas
         DefaultHandler dh = new MapHandler(game, mapID);
         // Call the parse method
-        parseXML("Maps/map"+mapID+".xml", dh);
+        parseXML("Maps/map" + mapID + ".xml", dh);
 
         // Stores and returns the datas
-        MapHandler dhm = (MapHandler) dh;
+        MapHandler dhm = (MapHandler)dh;
         return dhm.getMap();
     }
-    
-    
+
+
     /**
      * Parses the map list in order to create minimaps
      * @see gui.MapListHandler
      * @return An ArrayList of Minimaps
      */
-    public static ArrayList<Minimap> parseMapList(){
+    public static ArrayList<Minimap> parseMapList() {
         // Creates a Handler that will process the datas
         MapListHandler dh = new MapListHandler();
         // Call the parse method
         parseXML("maps.xml", dh);
         return dh.getList();
     }
-    
-    public static void parseClassesDescList(){
+
+    public static void parseClassesDescList() {
         // Creates a Handler that will process the datas
         ClassesDescListHandler dh = new ClassesDescListHandler();
         // Call the parse method
         parseXML("classesDescriptions.xml", dh);
     }
-    
+
     /**
      * Parses the Big Table Parameter.
      * @see ParamTableHandler
      */
-    public static void parseParams(){
+    public static void parseParams() {
         // Creates a Handler that will process the datas
         DefaultHandler dh = new ParamTableHandler();
         // Call the parse method
         parseXML("paramTable.xml", dh);
     }
-    
+
     /**
      * This method is meant to parse a file and give the datas to a handler that will treat them
      * @param f The path and name of the file
      * @param gestionnaire The Handler that will process the datas
      */
-    private static void parseXML(String f, DefaultHandler gestionnaire){
-                        try{
-                                // create a parser factory
-                                SAXParserFactory fabrique = SAXParserFactory.newInstance();
+    private static void parseXML(String f, DefaultHandler gestionnaire) {
+        try {
+            // create a parser factory
+            SAXParserFactory fabrique = SAXParserFactory.newInstance();
 
-                                // create a parser
-                                SAXParser parseur = fabrique.newSAXParser();
+            // create a parser
+            SAXParser parseur = fabrique.newSAXParser();
 
-                                // Reading an XML File with a handler
-                                //File fichier = new File("resources/"+f);
-                                InputStream is = Graph.load.getResourceAsStream(f);
-                                //is.
-                                //File fichier;
-                                parseur.parse(is, gestionnaire);
-                                //parseur.parse(fichier, gestionnaire);
-                        }catch(ParserConfigurationException pce){
-                                System.out.println("Erreur de configuration du parseur");
-                                System.out.println("Lors de l'appel a newSAXParser()");
-                        }catch(SAXException se){
-                                System.out.println("Erreur de parsing");
-                                System.out.println("Lors de l'appel a parse()");
-                            String message = "Message : "+se.getMessage()+"\n";
-                            System.out.println(message);
-                                    
-                        }catch(IOException ioe){
-                                System.out.println("Erreur d'entree/sortie");
-                                System.out.println("Lors de l'appel a parse()");
-                                
-                            String message = "Message : "+ioe.getMessage()+"\n";
-                            //message += "Ligne "+ioe.getLineNumber()+", colonne "+ioe.getColumnNumber()+"\n";
-                            System.out.println(message);
-                        }
+            // Reading an XML File with a handler
+            //File fichier = new File("resources/"+f);
+            InputStream is = Graph.load.getResourceAsStream(f);
+            //is.
+            //File fichier;
+            parseur.parse(is, gestionnaire);
+            //parseur.parse(fichier, gestionnaire);
+        } catch (ParserConfigurationException pce) {
+            System.out.println("Erreur de configuration du parseur");
+            System.out.println("Lors de l'appel a newSAXParser()");
+        } catch (SAXException se) {
+            System.out.println("Erreur de parsing");
+            System.out.println("Lors de l'appel a parse()");
+            String message = "Message : " + se.getMessage() + "\n";
+            System.out.println(message);
+
+        } catch (IOException ioe) {
+            System.out.println("Erreur d'entree/sortie");
+            System.out.println("Lors de l'appel a parse()");
+
+            String message = "Message : " + ioe.getMessage() + "\n";
+            //message += "Ligne "+ioe.getLineNumber()+", colonne "+ioe.getColumnNumber()+"\n";
+            System.out.println(message);
+        }
     }
 }

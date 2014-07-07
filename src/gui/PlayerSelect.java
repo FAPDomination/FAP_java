@@ -1,7 +1,7 @@
 package gui;
 
-public class PlayerSelect{
-    
+public class PlayerSelect {
+
     private PlayerSelection panel;
     private int controler;
     private int pc;
@@ -16,7 +16,7 @@ public class PlayerSelect{
         team = 0;
         isFSM = 0;
     }
-    
+
     public PlayerSelect(PlayerSelection panel, int ctrl, int team) {
         this(panel);
         controler = ctrl;
@@ -47,9 +47,9 @@ public class PlayerSelect{
     public int getControler() {
         return controler;
     }
-    
-    public String toString(){
-        return ""+controler+"-"+team;
+
+    public String toString() {
+        return "" + controler + "-" + team;
     }
 
     public void setIsFSM(int isFSM) {
@@ -59,11 +59,11 @@ public class PlayerSelect{
     public int getIsFSM() {
         return isFSM;
     }
-    
-    public boolean equals(PlayerSelect e){
+
+    public boolean equals(PlayerSelect e) {
         boolean b = false;
-        if(this.getControler() == e.getControler()){
-            b= true;
+        if (this.getControler() == e.getControler()) {
+            b = true;
         }
         return b;
     }

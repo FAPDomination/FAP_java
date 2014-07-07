@@ -19,18 +19,18 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 
-public class ControlManager{
+public class ControlManager {
     private ControlsPanel panel;
     private int controler;
     private int x;
     private int y;
     private int active;
     private ArrayList<JButton> buttonList;
-    
+
     private int[] keyList;
-    
+
     private int incremY = 60;
-    
+
     public ControlManager(ControlsPanel panel, int controler, int x, int y) {
         super();
         this.panel = panel;
@@ -38,7 +38,7 @@ public class ControlManager{
         this.x = x;
         this.y = y;
         active = -1;
-     
+
         keyList = new int[Params.numberOfKeys];
         try {
             FileInputStream fileIn = new FileInputStream(Constants.c.get(Constants.controlersFile));
@@ -46,29 +46,27 @@ public class ControlManager{
             keyList = ((int[][])in.readObject())[controler];
             in.close();
             fileIn.close();
-        } 
-        catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Couldn't load keys file");
-        }
-        catch (IOException i) {
+        } catch (IOException i) {
             i.printStackTrace();
         } catch (ClassNotFoundException c) {
             System.out.println("Impossibru, class not found");
         }
-        
+
         buttonList = new ArrayList<JButton>();
-        for(int i=0;i<Params.numberOfKeys;i++){
+        for (int i = 0; i < Params.numberOfKeys; i++) {
             JButton jb = new JButton();
             jb.setSize(120, 40);
-            jb.setLocation(x, y+incremY*i);
-            
+            jb.setLocation(x, y + incremY * i);
+
             jb.setUI(new Button_SampleUI());
             ((Button_SampleUI)jb.getUI()).setHover(false);
             jb.setOpaque(false);
-            
+
             buttonList.add(jb);
 
-            jb.setText(""+KeyEvent.getKeyText(keyList[i]));
+            jb.setText("" + KeyEvent.getKeyText(keyList[i]));
             jb.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     computeButtons(buttonList.indexOf(e.getSource()));
@@ -76,25 +74,25 @@ public class ControlManager{
             });
             panel.add(jb);
         }
-        
+
     }
-    
-    public void receiveInfo(int code){
-        if(active != -1){
+
+    public void receiveInfo(int code) {
+        if (active != -1) {
             panel.setAllEnabled(true);
             JButton jb = buttonList.get(active);
             ((Button_SampleUI)jb.getUI()).setHover(false);
             keyList[active] = code;
 
-            jb.setText(""+KeyEvent.getKeyText(code));
+            jb.setText("" + KeyEvent.getKeyText(code));
             active = -1;
             panel.saveAll();
         }
     }
-    
-    
-    public void paintComponent(Graphics g){
-        int i=0;
+
+
+    public void paintComponent(Graphics g) {
+        int i = 0;
         //TODO Relative
         //TODO pretty texts
         int decremX = 55;
@@ -102,18 +100,22 @@ public class ControlManager{
         g.setColor(Color.BLACK);
         //Title
         g.setFont(Graph.H2_TITLE_FONT);
-        Graph.drawBorderedString(g, x+25, y-35, "Player "+(controler+1), Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x + 25, y - 35, "Player " + (controler + 1), Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         g.setFont(Graph.SIMPLE_TEXT_FONT);
         //Keys
-        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Haut ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x - decremX, y + initY + incremY * i, "Haut ",
+                                 Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Bas ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x - decremX, y + initY + incremY * i, "Bas ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Droite ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x - decremX, y + initY + incremY * i, "Droite ",
+                                 Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Gauche ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x - decremX, y + initY + incremY * i, "Gauche ",
+                                 Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
         i++;
-        Graph.drawBorderedString(g, x-decremX, y+initY+incremY*i, "Sort ", Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
+        Graph.drawBorderedString(g, x - decremX, y + initY + incremY * i, "Sort ",
+                                 Graph.MENU_TEXT_BORDER_TRANSLUSCENT);
     }
 
     public void setPanel(ControlsPanel panel) {
@@ -163,23 +165,22 @@ public class ControlManager{
     public ArrayList<JButton> getButtonList() {
         return buttonList;
     }
-    
-    public void computeButtons(int buttonID){
+
+    public void computeButtons(int buttonID) {
         JButton jb = buttonList.get(buttonID);
-        if(active == -1){
+        if (active == -1) {
             panel.setAllEnabled(false);
             jb.setEnabled(true);
             ((Button_SampleUI)jb.getUI()).setHover(true);
             active = buttonID;
             jb.setText("Press Key");
             panel.initFocus();
-        }
-        else{
+        } else {
             active = -1;
             panel.setAllEnabled(true);
             ((Button_SampleUI)jb.getUI()).setHover(false);
 
-            jb.setText(""+KeyEvent.getKeyText(keyList[buttonID]));
+            jb.setText("" + KeyEvent.getKeyText(keyList[buttonID]));
         }
     }
 

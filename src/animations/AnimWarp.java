@@ -16,18 +16,18 @@ public class AnimWarp extends Animation {
     private BufferedImage img;
     private int offX = 1;
     private int offY = 4;
-    
+
     private double startSecond;
     private double startThird;
     private double flashDuration;
-    
+
     public AnimWarp(int x, int y, TheComputingThread theThread) {
-        super(x, y, (int)(((double)(14)/24)*1000), theThread);
-        startSecond = ((double)4/14)*duration;
-        startThird = ((double)7/14)*duration;
-        flashDuration = ((double)7/14)*duration;
-        this.x+=offX;
-        this.y+=offY;
+        super(x, y, (int)(((double)(14) / 24) * 1000), theThread);
+        startSecond = ((double)4 / 14) * duration;
+        startThird = ((double)7 / 14) * duration;
+        flashDuration = ((double)7 / 14) * duration;
+        this.x += offX;
+        this.y += offY;
         ys = new int[3];
         ys[0] = 1;
         ys[1] = 1;
@@ -35,28 +35,30 @@ public class AnimWarp extends Animation {
         //File location = new File("resources/images/animations/teleport.png");
         img = Tools.getImageToFilter(Graph.getList().get("warp"));
     }
-    
+
     public AnimWarp(Cell c, TheComputingThread theThread) {
-        this(CMap.giveTalePosition(c)[0],CMap.giveTalePosition(c)[1],theThread);
+        this(CMap.giveTalePosition(c)[0], CMap.giveTalePosition(c)[1], theThread);
     }
 
     public String toString() {
-        return "Warp at "+x+"-"+y;
+        return "Warp at " + x + "-" + y;
     }
 
     public void paintComponent(Graphics g) {
 
         //TODO alpha
         float alpha;
-        alpha = (float)(((double)(flashDuration-position))/duration);
-        Tools.drawFilteredImage(img, 1f,1f,1f,alpha, g,x, (int)(y+miny*(((double)position)/flashDuration)));
-        if(position>startSecond){
-            alpha = (float)((flashDuration-(position-startSecond))/duration);
-            Tools.drawFilteredImage(img, 1f,1f,1f,alpha, g,x, (int)(y+miny*(((double)(position-startSecond))/flashDuration)));
+        alpha = (float)(((double)(flashDuration - position)) / duration);
+        Tools.drawFilteredImage(img, 1f, 1f, 1f, alpha, g, x, (int)(y + miny * (((double)position) / flashDuration)));
+        if (position > startSecond) {
+            alpha = (float)((flashDuration - (position - startSecond)) / duration);
+            Tools.drawFilteredImage(img, 1f, 1f, 1f, alpha, g, x,
+                                    (int)(y + miny * (((double)(position - startSecond)) / flashDuration)));
         }
-        if(position>startThird){
-            alpha = (float)((flashDuration-(position-startThird))/duration);
-            Tools.drawFilteredImage(img, 1f,1f,1f,alpha, g,x, (int)(y+miny*(((double)(position-startThird))/flashDuration)));
+        if (position > startThird) {
+            alpha = (float)((flashDuration - (position - startThird)) / duration);
+            Tools.drawFilteredImage(img, 1f, 1f, 1f, alpha, g, x,
+                                    (int)(y + miny * (((double)(position - startThird)) / flashDuration)));
         }
     }
 }

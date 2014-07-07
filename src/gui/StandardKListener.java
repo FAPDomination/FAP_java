@@ -7,20 +7,20 @@ import java.util.ArrayList;
 
 
 public class StandardKListener implements KeyListener {
-    
+
     private ArrayList<Integer> pressed = new ArrayList<Integer>();
-    
+
     public StandardKListener() {
         super();
     }
-    
+
     public void keyTyped(KeyEvent e) {
 
     }
 
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        if(!pressed.contains(code)){
+        if (!pressed.contains(code)) {
             pressed.add(code);
         }
     }

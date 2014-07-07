@@ -12,8 +12,8 @@ public abstract class Action implements Serializable {
 
     private Action next;
     private Action origNext;
-    
-    public Action(Action next){
+
+    public Action(Action next) {
         this.next = next;
         this.origNext = next;
     }
@@ -27,7 +27,7 @@ public abstract class Action implements Serializable {
     /**
      * Will reinitialize the action by reseting all modified fields to their original value
      */
-    public void reinit(){
+    public void reinit() {
         next = origNext;
     }
 
@@ -37,7 +37,7 @@ public abstract class Action implements Serializable {
      * @param g the game to extract values from
      */
     public abstract void setTransientValues(Game g);
-    
+
     /**
      * Set the next action in list
      * @param next the action that will replace/rebranch the current next one in the list
@@ -45,11 +45,11 @@ public abstract class Action implements Serializable {
     public void setNext(Action next) {
         this.next = next;
     }
-    
+
     /**
-       * Returns the next action in the list
-       * @return
-       */
+     * Returns the next action in the list
+     * @return
+     */
     public Action getNext() {
         return next;
     }
