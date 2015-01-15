@@ -1,27 +1,16 @@
 FAP_java
 ========
+(Title pending)
 
-Petite explication sur la légende dans le todo :
+This game is about conquests and hexagons. The more tiles you own, the more points you get, and you can take other players' cells by standing on them for a while.
+It also features special abilities and multiplayer up to 3 players on the same computer, for a maximum of 8 players including AIs.
 
-V : tâche finie<br />
-P : Pas maintenant (impossible ou inutile à l'heure actuelle avec le code présent)<br />
-? : cette tâche est-elle vraiment nécessaire ?<br />
-~ : réalisé mais pas satisfaisant (lourd en calcul, moche ...)<br />
-O : pas la compétence pour réaliser ça (go tuto)<br />
-T : Réalisé mais pas encore vraiment testé<br />
-! : Attention, bug ou item important<br />
-E : En cours (c'est commencé et c'est là qu'on s'est arrêté la dernière fois)<br />
-X : Tâche annulée
-S : Saaaale
-A : Optimisation
+## How do I play ?
 
-Un item parent dans l'arbre hérite de tous les symboles que peuvent avoir ses enfants
+You don't. Sorry I haven't done any makefile for this game yet. But in the meantime, enjoy those screenshots of the unfinished game :
 
-Projets futurs
---------------
+![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/08.png)
+![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/05.png)
+![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/07.png)
 
-<ul>
-<li>FAP-Adventure : en cours</li>
-<li>FAP-LAN : En cours</li>
-<li>FAP-Inter : I18n du projet avec fichiers de traduction</li>
-</ul>
+(If you really want to try it out, open an issue and ask for a makefile ;) )
