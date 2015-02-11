@@ -1,4 +1,5 @@
 *.jpr
+*.jar
 
 # FAP Domination save files
 *.leo
@@ -6,6 +7,8 @@
 classes/
 
 Ignore/
+
+build/
 
 # Specific
 fake/

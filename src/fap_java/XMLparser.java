@@ -42,10 +42,11 @@ public class XMLparser {
         // Creates a Handler that will process the datas
         DefaultHandler dh = new MapHandler(game, mapID);
         // Call the parse method
+        System.out.println("" + mapID);
         parseXML("Maps/map" + mapID + ".xml", dh);
 
         // Stores and returns the datas
-        MapHandler dhm = (MapHandler)dh;
+        MapHandler dhm = (MapHandler) dh;
         return dhm.getMap();
     }
 
@@ -99,7 +100,7 @@ public class XMLparser {
             InputStream is = Graph.load.getResourceAsStream(f);
             //is.
             //File fichier;
-            parseur.parse(is, gestionnaire);
+            parseur.parse("resources/"+f, gestionnaire);
             //parseur.parse(fichier, gestionnaire);
         } catch (ParserConfigurationException pce) {
             System.out.println("Erreur de configuration du parseur");

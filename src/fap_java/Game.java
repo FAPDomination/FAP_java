@@ -1003,7 +1003,7 @@ public class Game extends JPanel implements NeedingFocus {
         ArrayList<NPC> secList = Params.npcBank.get(nmap);
         if (secList == null && adv > 0) {
             System.err.println("Couldn't find NPC list for map no " + nmap);
-        } else {
+        } else if(secList !=null) {
             for (int i = 0; i < secList.size(); i++) {
                 this.addNPC(secList.get(i));
             }

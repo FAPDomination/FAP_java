@@ -178,7 +178,7 @@ public class Graph {
             list.put("frozen",
                      ImageIO.read(new File(Constants.c.get(Constants.pictureSet) + "/animations/frozen.png")));
             list.put("healthy",
-                     ImageIO.read(new File(Constants.c.get(Constants.pictureSet) + "/cells/HealtHyhealthy.png")));
+                     ImageIO.read(new File(Constants.c.get(Constants.pictureSet) + "/cells/HealthyHealthy.png")));
             list.put("booster",
                      ImageIO.read(new File(Constants.c.get(Constants.pictureSet) + "/animations/booster.png")));
             list.put("warlock_Trap",
