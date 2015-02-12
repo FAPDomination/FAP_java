@@ -7,10 +7,20 @@ It also features special abilities and multiplayer up to 3 players on the same c
 
 ## How do I play ?
 
-You don't. Sorry I haven't done any makefile for this game yet. But in the meantime, enjoy those screenshots of the unfinished game :
+The game is unfinished! It has a lot of ~~bugs~~ surprising features, is lacking graphics and music, the story mode is barely working. The day will come when this game is finished, but it is not this day. In the meantime, enjoy those screenshots of the unfinished game :
 
+![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/01.png)
 ![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/08.png)
 ![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/05.png)
 ![](https://raw.githubusercontent.com/LeonardA-L/FAP_java/master/screens/07.png)
 
-(If you really want to try it out, open an issue and ask for a makefile ;) )
+[A short demonstration video](http://youtu.be/klF-tjJ_Wd0)
+
+## I still want to play
+
+If you really don't care about the game being unfinished, you can manually build it and launch it. Be aware that this is a test version.
+
+```
+build.sh
+java -jar FapJava.jar
+```
